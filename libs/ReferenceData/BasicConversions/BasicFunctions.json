@@ -231,6 +231,13 @@
       "Mathematica": "*",
       "SymPy": "*"
     },
+    "Times": {
+      "MLP": "operation",
+      "LaTeX": "\\times",
+      "Maple": "*",
+      "Mathematica": "*",
+      "SymPy": "*"
+    },
     "Addition": {
       "MLP": "Addition",
       "LaTeX": "+",

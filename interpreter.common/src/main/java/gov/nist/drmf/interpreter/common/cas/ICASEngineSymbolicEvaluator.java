@@ -1,28 +1,32 @@
 package gov.nist.drmf.interpreter.common.cas;
 
+import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
+import gov.nist.drmf.interpreter.common.eval.SymbolicalTest;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
 
-import java.util.Observable;
-import java.util.Observer;
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author Andre Greiner-Petter
  */
-public interface ICASEngineSymbolicEvaluator<T> extends Observer, IAbortEvaluator<T> {
+public interface ICASEngineSymbolicEvaluator extends IAbortEvaluator {
 
-    T simplify( String expr, Set<String> requiredPackages ) throws ComputerAlgebraSystemEngineException;
+    SymbolicResult performSymbolicTest(SymbolicalTest test);
 
-    T simplify( String expr, String assumption, Set<String> requiredPackages ) throws ComputerAlgebraSystemEngineException;
+    /**
+     * Sets global assumptions that will be applied to all following tests.
+     * @param assumptions list of assumptions
+     */
+    default void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        // ignore by default
+    }
 
-    boolean isAsExpected(T in, double expect);
+    default void setTimeout(double timeoutInSeconds) {
+        setTimeout(EvaluatorType.SYMBOLIC, timeoutInSeconds);
+    }
 
-    boolean isConditionallyExpected(T in, double expect);
-
-    String getCondition(T in);
-
-    @Override
-    default void update(Observable o, Object arg) {
-        abort();
+    default void disableTimeout() {
+        disableTimeout(EvaluatorType.SYMBOLIC);
     }
 }

@@ -33,7 +33,8 @@ public interface IFeatureExtractor {
      * @param values the values
      */
     static void setFeatureValue(FeatureSet featureSet, String name, String... values) {
-        featureSet.setFeature(name, Arrays.asList(values.clone()));
+        if ( featureSet != null && values != null )
+            featureSet.setFeature(name, Arrays.asList(values.clone()));
     }
 
     /**

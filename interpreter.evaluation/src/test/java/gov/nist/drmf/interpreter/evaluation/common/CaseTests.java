@@ -1,5 +1,9 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
+import gov.nist.drmf.interpreter.common.eval.Label;
+import gov.nist.drmf.interpreter.common.latex.Relations;
+import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
+import gov.nist.drmf.interpreter.pom.common.SymbolTag;
 import org.junit.jupiter.api.Test;
 
 import java.util.LinkedList;

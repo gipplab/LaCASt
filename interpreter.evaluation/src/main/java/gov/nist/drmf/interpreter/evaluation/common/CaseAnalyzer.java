@@ -1,6 +1,9 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.eval.Label;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
+import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
+import gov.nist.drmf.interpreter.pom.common.SymbolTag;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -121,7 +124,7 @@ public class CaseAnalyzer {
             if ( !Case.isSemantic(symbInfo.symbolDefSymb) ) return null;
         }
 
-        EquationSplitter splitter = new EquationSplitter();
+        CaseEquationSplitter splitter = new CaseEquationSplitter();
         LinkedList<Case> cases = splitter.split(eq, metaData);
         for ( Case c : cases ) c.setOriginalLaTeXInput(eq);
         return cases;
@@ -201,7 +204,7 @@ public class CaseAnalyzer {
         if ( symbInfo.symbolDefSymb.equals("\\zeta(z)") ) symbInfo.symbolDefSymb = "\\zeta";
 
         metaData.tagAsDefinition();
-        EquationSplitter splitter = new EquationSplitter();
+        CaseEquationSplitter splitter = new CaseEquationSplitter();
         LinkedList<Case> caseList = splitter.split(eq, metaData);
         if ( caseList == null || caseList.isEmpty() ) return;
 
@@ -217,27 +220,5 @@ public class CaseAnalyzer {
         } else {
             LOG.warn("LHS does not match defined symbol. LHS: " + c.getLHS() + " vs DEF: " + symbInfo.symbolDefSymb);
         }
-    }
-
-    public static Relations getRelation(String eq) {
-        if ( eq.matches(".*(?:\\\\leq?|<=).*") ){
-            return Relations.LESS_EQ_THAN;
-        }
-        else if ( eq.matches( ".*(?:\\\\geq?|=>).*" ) ){
-            return Relations.GREATER_EQ_THAN;
-        }
-        else if ( eq.matches( ".*(?:\\\\neq?|<>).*" ) ){
-            return Relations.UNEQUAL;
-        }
-        else if ( eq.contains("<") ){
-            return Relations.LESS_THAN;
-        }
-        else if ( eq.contains( ">" ) ){
-            return Relations.GREATER_THAN;
-        }
-        else if ( eq.contains( "=" ) ) {
-            return Relations.EQUAL;
-        }
-        else return null;
     }
 }

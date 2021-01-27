@@ -1,52 +1,43 @@
 package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.*;
 import com.formulasearchengine.mathosphere.mlp.pojos.Position;
-import com.wolfram.jlink.Expr;
-import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
-import gov.nist.drmf.interpreter.common.pojo.*;
-import gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer;
-import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
-import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
-import gov.nist.drmf.interpreter.pom.moi.MOIDependency;
+import gov.nist.drmf.interpreter.common.interfaces.SemanticallyRanked;
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
+import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
+import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
+import gov.nist.drmf.interpreter.pom.moi.INode;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
-import mlp.ParseException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Andre Greiner-Petter
  */
 @JsonPropertyOrder({
-        "formula", "semanticFormula", "confidence", "translations",
+        "id", "formula", "semanticFormula", "confidence", "translations",
         "positions", "includes", "isPartOf", "definiens"
 })
-public class MOIPresentations {
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class MOIPresentations implements SemanticallyRanked {
     private static final Logger LOG = LogManager.getLogger(MOIPresentations.class.getName());
 
-    @JsonProperty("definiens")
-    private List<FormulaDefinition> definiens;
-
-    // for debug reasons
     @JsonIgnore
-    private List<String> macros;
+    private SemanticEnhancedAnnotationStatus status = SemanticEnhancedAnnotationStatus.BASE;
+
+    @JsonProperty("id")
+    private final String id;
 
     @JsonProperty("formula")
     private final String genericLatex;
+
+    @JsonProperty("definiens")
+    private List<FormulaDefinition> definiens;
 
     @JsonProperty("semanticFormula")
     private String semanticLatex;
@@ -55,7 +46,7 @@ public class MOIPresentations {
     private final Map<String, CASResult> casRepresentations;
 
     @JsonProperty("confidence")
-    private double score = 0;
+    private Double score;
 
     @JsonProperty("positions")
     private List<Position> positions;
@@ -66,94 +57,66 @@ public class MOIPresentations {
     @JsonProperty("isPartOf")
     private List<String> outgoingNodes;
 
-    private MOIPresentations() {
+    public MOIPresentations() {
+        id = "FORMULA_EMPTY";
         genericLatex = "";
         casRepresentations = new HashMap<>();
     }
 
+    /**
+     * Copy constructor
+     */
+    public MOIPresentations(MOIPresentations copy) {
+        this.status = copy.status;
+        this.id = copy.id;
+        this.genericLatex = copy.genericLatex;
+        if (copy.definiens != null) this.definiens = new LinkedList<>(copy.definiens);
+        this.semanticLatex = copy.semanticLatex;
+        this.casRepresentations = new HashMap<>(copy.casRepresentations);
+        this.score = copy.score;
+        if (copy.positions != null) this.positions = new LinkedList<>(copy.positions);
+        if (copy.ingoingNodes != null) this.ingoingNodes = new LinkedList<>(copy.ingoingNodes);
+        if (copy.outgoingNodes != null) this.outgoingNodes = new LinkedList<>(copy.outgoingNodes);
+    }
+
     public MOIPresentations(MOINode<MOIAnnotation> node) {
+        this.id = node.getId();
         this.genericLatex = node.getNode().getOriginalLaTeX();
         this.ingoingNodes = getDependants(node, true);
         this.outgoingNodes = getDependants(node, false);
-        this.positions = node.getAnnotation().getFormula().getPositions();
-        this.positions.sort( Position.getComparator() );
-        LOG.debug("Setup MOI representations on graph node: " + genericLatex);
-        SemanticEnhancer enhancer = new SemanticEnhancer();
-        casRepresentations = new HashMap<>();
-        try {
-            PrintablePomTaggedExpression semanticPTE = enhancer.semanticallyEnhance(node);
-            this.score = enhancer.getScore();
-            this.definiens = enhancer.getUsedDefiniens();
-            this.macros = enhancer.getUsedMacros();
+        this.casRepresentations = new HashMap<>();
 
-            definiens.sort(Comparator.comparingDouble(FormulaDefinition::getScore).reversed());
-            if ( semanticPTE == null ) {
-                LOG.warn("Unable to semantically enhance latex.");
-                return;
+        if ( node.getAnnotation() != null ) {
+            if ( node.getAnnotation().getFormula() != null ) {
+                this.positions = node.getAnnotation().getFormula().getPositions();
+                this.positions.sort( Position.getComparator() );
             }
 
-            this.semanticLatex = semanticPTE.getTexString();
-            LOG.debug("Semantically enhanced generic LaTeX: " + semanticLatex);
-
-            CASTranslators translators = CASTranslators.getTranslatorsInstance();
-            LOG.debug("Translate to all supported CAS.");
-            for ( String cas : translators.getSupportedCAS() ) {
-                try {
-                    String translation = translators.translate(cas, semanticPTE);
-                    CASResult result =  new CASResult(translation);
-                    if ( cas.equals("Mathematica") ) this.tryMathematicaComputation(result);
-                    this.casRepresentations.put(cas, result);
-                    LOG.debug("Translation to " + cas + ": " + translation);
-                } catch ( Exception e ) {
-                    LOG.warn("Unable to translate expression to CAS " + cas + ": " + e.toString());
-                }
-            }
-        } catch (IOException e) {
-            LOG.warn("Unable to generate semantic LaTeX.");
-            LOG.debug("Error when generating semantic LaTeX", e);
-        } catch (ParseException e) {
-            LOG.warn("Unable to parse LaTeX.");
-            LOG.debug("Error when parsing LaTeX", e);
-        } catch (InitTranslatorException e) {
-            LOG.error("Unable to setup CAS translators.", e);
-        }
-    }
-
-    private void tryMathematicaComputation(CASResult casResult) {
-        if ( !MathematicaConfig.isMathematicaPresent() ) return;
-
-        // let's add a fake numeric computation just to show how it may look like
-        NumericResult nr = new NumericResult(false, 0, 0, 0);
-        NumericCalculation nc = new NumericCalculation();
-        nc.setResult("no-computation-dummy");
-        HashMap<String, String> testValues = new HashMap<>();
-        testValues.put("\\alpha", "1");
-        testValues.put("\\beta", "2");
-        nc.setTestValues(testValues);
-        nr.addTestCalculations( nc );
-        casResult.setNumericResults(nr);
-
-        MathematicaSimplifier simplifier = new MathematicaSimplifier();
-        simplifier.setTimeout(1);
-        try {
-            Expr symbolicResultExpr = simplifier.simplify(casResult.getCasRepresentation(), null);
-            SymbolicCalculation sc = new SymbolicCalculation();
-            sc.setResult( symbolicResultExpr.toString() );
-            sc.setTestProperty("fullsimplify");
-            casResult.addSymbolicResult( sc );
-        } catch (ComputerAlgebraSystemEngineException e) {
-            LOG.debug("Unable to simplify mathematical expression.");
+            this.definiens = node.getAnnotation().getAttachedRelations().stream()
+                    .map(r -> new FormulaDefinition(r.getScore(), r.getDefinition()))
+                    .collect(Collectors.toCollection(LinkedList::new));
+            if ( !definiens.isEmpty() ) status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
         }
     }
 
     private List<String> getDependants(MOINode<MOIAnnotation> node, boolean ingoing) {
-        Stream<MOIDependency<MOIAnnotation>> stream = ingoing ?
-                node.getIngoingDependencies().stream() :
-                node.getOutgoingDependencies().stream();
-        return stream.map( d -> ingoing ? d.getSource() : d.getSink() )
+        Collection<INode<MOIAnnotation>> nodes = ingoing ?
+                node.getIngoingNodes() : node.getOutgoingNodes();
+
+        return nodes.stream().map( n -> (MOINode<MOIAnnotation>)n )
                 .map( MOINode::getNode )
                 .map( MathematicalObjectOfInterest::getOriginalLaTeX )
                 .collect(Collectors.toList());
+    }
+
+    @JsonIgnore
+    public SemanticEnhancedAnnotationStatus getRank() {
+        return status;
+    }
+
+    @JsonGetter("id")
+    public String getId() {
+        return id;
     }
 
     @JsonGetter("formula")
@@ -176,19 +139,45 @@ public class MOIPresentations {
         return casRepresentations;
     }
 
+    @JsonSetter("translations")
+    public void setCasRepresentations(Map<String, CASResult> casRepresentations) {
+        casRepresentations.forEach(this::addCasRepresentation);
+    }
+
+    @JsonIgnore
+    public void addCasRepresentation(String cas, CASResult casResult) {
+        updateStatus(getStatusFromCASResult(casResult));
+        this.casRepresentations.put(cas, casResult);
+    }
+
+    @JsonIgnore
+    private SemanticEnhancedAnnotationStatus getStatusFromCASResult(CASResult result) {
+        if ( result.getNumericResults() != null || result.getSymbolicResults() != null ) {
+            if ( !status.hasPassed( SemanticEnhancedAnnotationStatus.COMPUTED ) )
+                return SemanticEnhancedAnnotationStatus.COMPUTED;
+        } else if ( !result.getCasRepresentation().isBlank() )
+            return SemanticEnhancedAnnotationStatus.TRANSLATED;
+        return SemanticEnhancedAnnotationStatus.BASE;
+    }
+
+    @JsonIgnore
+    private void updateStatus(SemanticEnhancedAnnotationStatus newStatus) {
+        if ( newStatus.hasPassed(status) ) status = newStatus;
+    }
+
     @JsonGetter("confidence")
-    public double getScore() {
+    public Double getScore() {
         return score;
+    }
+
+    @JsonSetter("confidence")
+    public void setScore(Double score) {
+        this.score = score;
     }
 
     @JsonGetter("definiens")
     public List<FormulaDefinition> getDefiniens() {
         return definiens;
-    }
-
-    @JsonIgnore
-    public List<String> getMacros() {
-        return macros;
     }
 
     @JsonGetter("positions")
@@ -206,11 +195,39 @@ public class MOIPresentations {
         return outgoingNodes;
     }
 
+    @JsonSetter("definiens")
+    public void setDefiniens(List<FormulaDefinition> definiens) {
+        if ( !definiens.isEmpty() && !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
+            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
+        this.definiens = definiens;
+    }
+
+    @JsonSetter("semanticFormula")
+    public void setSemanticLatex(String semanticLatex) {
+        if ( !semanticLatex.isBlank() && !status.hasPassed( SemanticEnhancedAnnotationStatus.TRANSLATED ) )
+            status = SemanticEnhancedAnnotationStatus.TRANSLATED;
+        this.semanticLatex = semanticLatex;
+    }
+
+    @JsonSetter("includes")
+    public void setIngoingNodes(List<String> ingoingNodes) {
+        if ( !ingoingNodes.isEmpty() && !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
+            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
+        this.ingoingNodes = ingoingNodes;
+    }
+
+    @JsonSetter("isPartOf")
+    public void setOutgoingNodes(List<String> outgoingNodes) {
+        if ( !outgoingNodes.isEmpty() && !status.hasPassed( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED ) )
+            status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
+        this.outgoingNodes = outgoingNodes;
+    }
+
     @Override
     @JsonIgnore
     public String toString() {
         String out =
-                "Score: " + score + "; Used Definiens: " + definiens + "; Used Macros: " + macros + "\n" +
+                "Score: " + score + "; Used Definiens: " + definiens + "; Used Macros: ---" + "\n" +
                 " Generic LaTeX: " + genericLatex + "\n" +
                 "Semantic LaTeX: " + semanticLatex + "\n";
         for ( Map.Entry<String, CASResult> trans : this.casRepresentations.entrySet() ) {

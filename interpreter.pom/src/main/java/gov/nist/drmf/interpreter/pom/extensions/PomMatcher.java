@@ -7,9 +7,9 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.*;
-
-import static java.util.function.Predicate.not;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Andre Greiner-Petter
@@ -232,12 +232,18 @@ public class PomMatcher {
     ) {
         // than we take the first element, as the matcher...
         MatchablePomTaggedExpression m = matcherFirstElement;
+        if ( config.ignoreOperatorName() && PomTaggedExpressionUtility.isOperatorname(m) ) {
+            m = (MatchablePomTaggedExpression) m.getNextSibling();
+        }
+
         // if the first worked, we can move forward
         boolean innerTmpMatch = m.match(first, elements, config);
         while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
             first = elements.remove(0);
             m = (MatchablePomTaggedExpression)m.getNextSibling();
             if ( config.ignoreNumberOfAts() && PomTaggedExpressionUtility.isAt(m) ) {
+                continue;
+            } else if ( config.ignoreOperatorName() && PomTaggedExpressionUtility.isOperatorname(m) ) {
                 continue;
             }
             innerTmpMatch = m.match(first, elements, config);

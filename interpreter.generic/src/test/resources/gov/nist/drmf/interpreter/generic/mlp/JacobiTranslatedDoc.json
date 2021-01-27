@@ -1,0 +1,4487 @@
+{
+  "title" : "Jacobi polynomials",
+  "formulae" : [
+    {
+      "id" : "FORMULA_b725256371c41890892b17cf94d2106f",
+      "formula" : "P_{n}^{(\\alpha, \\beta)}(x)",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x}",
+      "confidence" : 0.9378384212127765,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], x]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, x)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, x)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 0,
+          "sentence" : 0,
+          "word" : 15
+        }
+      ],
+      "includes" : [
+        "x",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta"
+      ],
+      "isPartOf" : [
+        "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+        "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+        "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+        "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+        "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+        "P_0^{(\\alpha,\\beta)}(z)= 1",
+        "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
+        "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,..",
+        "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
+        "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+        "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+        "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+        "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+        "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&\\qquad= (2n+\\alpha + \\beta-1) \\Big\\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\Big\\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+        "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}",
+        "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
+        "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
+        "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
+        "d^j_{m'm}(\\phi) =\\left[ \\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\\right]^{\\frac{1}{2}} \\left(\\sin\\tfrac{\\phi}{2}\\right)^{m-m'} \\left(\\cos\\tfrac{\\phi}{2}\\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\\cos \\phi)"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.8135152636383296
+        },
+        {
+          "definition" : "class of classical orthogonal polynomial",
+          "score" : 0.722
+        },
+        {
+          "definition" : "mathematics",
+          "score" : 0.6584038577190456
+        },
+        {
+          "definition" : "hypergeometric polynomial",
+          "score" : 0.5713127376286706
+        },
+        {
+          "definition" : "Pochhammer 's symbol",
+          "score" : 0.36472730811035264
+        },
+        {
+          "definition" : "equivalent expression",
+          "score" : 0.362772320015081
+        },
+        {
+          "definition" : "orthogonality condition",
+          "score" : 0.3506858099067741
+        },
+        {
+          "definition" : "symmetry relation",
+          "score" : 0.3506857142907173
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.35068571428571427
+        },
+        {
+          "definition" : "Heine formula",
+          "score" : 0.35068571428571427
+        },
+        {
+          "definition" : "identity",
+          "score" : 0.35068571428571427
+        },
+        {
+          "definition" : "simplicity",
+          "score" : 0.3412842248511015
+        },
+        {
+          "definition" : "other terminal value",
+          "score" : 0.34128422478198883
+        },
+        {
+          "definition" : "recurrence relation for the Jacobi polynomial",
+          "score" : 0.3412842247769864
+        },
+        {
+          "definition" : "expression of the Wigner d-matrix",
+          "score" : 0.3412842247769857
+        },
+        {
+          "definition" : "Rodrigues ' formula",
+          "score" : 0.3224897825957048
+        },
+        {
+          "definition" : "special case",
+          "score" : 0.3146251755059523
+        },
+        {
+          "definition" : "polynomial",
+          "score" : 0.31459433391452507
+        },
+        {
+          "definition" : "derivative of the explicit expression",
+          "score" : 0.31459433390981145
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.31459433390952196
+        },
+        {
+          "definition" : "asymptotic of the Jacobi polynomial",
+          "score" : 0.31459433390952196
+        },
+        {
+          "definition" : "function of the Jacobi polynomial",
+          "score" : 0.31459433390952196
+        },
+        {
+          "definition" : "limit",
+          "score" : 0.31459433390952196
+        },
+        {
+          "definition" : "Mehler",
+          "score" : 0.31459433390952196
+        },
+        {
+          "definition" : "equivalent definition",
+          "score" : 0.28265584226469764
+        },
+        {
+          "definition" : "hypergeometric function",
+          "score" : 0.2776361880199776
+        },
+        {
+          "definition" : "nonnegative integer",
+          "score" : 0.27479123517494514
+        },
+        {
+          "definition" : "alternative normalization",
+          "score" : 0.27476039365263044
+        },
+        {
+          "definition" : "domain",
+          "score" : 0.27476039357851473
+        },
+        {
+          "definition" : "Gauss ' contiguous relation",
+          "score" : 0.27476039357851473
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.27476039357851473
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.27476039357851473
+        },
+        {
+          "definition" : "case",
+          "score" : 0.2489913090572421
+        },
+        {
+          "definition" : "series for the hypergeometric function",
+          "score" : 0.2489913090572421
+        },
+        {
+          "definition" : "quantity",
+          "score" : 0.22753405541557728
+        },
+        {
+          "definition" : "orthonormal basis",
+          "score" : 0.22750321389326258
+        },
+        {
+          "definition" : "branch of square root",
+          "score" : 0.22750321381914684
+        },
+        {
+          "definition" : "expression",
+          "score" : 0.22750321381914684
+        },
+        {
+          "definition" : "point",
+          "score" : 0.22750321381914684
+        },
+        {
+          "definition" : "term",
+          "score" : 0.22750321381914684
+        },
+        {
+          "definition" : "term of Jacobi polynomial",
+          "score" : 0.22750321381914684
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_b635fef078fb115b6dcaced6f5fc3f34",
+      "formula" : "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
+      "semanticFormula" : "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]",
+          "translationInformation" : {
+            "subEquations" : [
+              "(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "(1 - x)**(Symbol('alpha'))*(1 + x)**(Symbol('beta'))",
+          "translationInformation" : {
+            "subEquations" : [
+              "(1 - x)**(Symbol('alpha'))*(1 + x)**(Symbol('beta'))"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "(1 - x)^(alpha)*(1 + x)^(beta)",
+          "translationInformation" : {
+            "subEquations" : [
+              "(1 - x)^(alpha)*(1 + x)^(beta)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 0,
+          "sentence" : 1,
+          "word" : 8
+        }
+      ],
+      "includes" : [
+        "x"
+      ],
+      "isPartOf" : [
+        "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+        "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1"
+      ],
+      "definiens" : [
+        {
+          "definition" : "respect to the weight",
+          "score" : 0.722
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "orthogonality condition",
+          "score" : 0.37819124115895464
+        },
+        {
+          "definition" : "Rodrigues ' formula",
+          "score" : 0.3635871910523791
+        },
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.3420998607827622
+        },
+        {
+          "definition" : "equivalent definition",
+          "score" : 0.32375325072137184
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_7dec1d46e68831c4eca28b020fcb1604",
+      "formula" : "[-1, 1]",
+      "semanticFormula" : "[-1, 1]",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "[- 1 , 1]",
+          "translationInformation" : {
+            "subEquations" : [
+              "[- 1 , 1]"
+            ],
+            "freeVariables" : [ ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "[- 1 , 1]",
+          "translationInformation" : {
+            "subEquations" : [
+              "[- 1 , 1]"
+            ],
+            "freeVariables" : [ ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "[- 1 , 1]",
+          "translationInformation" : {
+            "subEquations" : [
+              "[- 1 , 1]"
+            ],
+            "freeVariables" : [ ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 0,
+          "sentence" : 1,
+          "word" : 12
+        },
+        {
+          "section" : 11,
+          "sentence" : 0,
+          "word" : 6
+        },
+        {
+          "section" : 11,
+          "sentence" : 2,
+          "word" : 3
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "interval",
+          "score" : 0.7691252825276034
+        },
+        {
+          "definition" : "respect to the weight",
+          "score" : 0.6288842031023242
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.4270447071245939
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.35159851049127144
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.2378174995334326
+        },
+        {
+          "definition" : "term",
+          "score" : 0.14390742558144942
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_c8b5b9184e45bca39744427c45693115",
+      "formula" : "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\Pochhammersym{\\alpha + 1}{n}}{n!} \\genhyperF{2}{1}@{- n , 1 + \\alpha + \\beta + n}{\\alpha + 1}{\\tfrac{1}{2}(1 - z)}",
+      "confidence" : 0.7595006538205181,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Pochhammer[\\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \\[Alpha]+ \\[Beta]+ n}, {\\[Alpha]+ 1}, Divide[1,2]*(1 - z)]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], z] = Divide[Pochhammer[\\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \\[Alpha]+ \\[Beta]+ n}, {\\[Alpha]+ 1}, Divide[1,2]*(1 - z)]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: HypergeometricPFQ[{$2}, {$3}, $4]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/16.2#E1\nMathematica:  https://",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, z) = (pochhammer(alpha + 1, n))/(factorial(n))*hypergeom([- n , 1 + alpha + beta + n], [alpha + 1], (1)/(2)*(1 - z))",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, z) = (pochhammer(alpha + 1, n))/(factorial(n))*hypergeom([- n , 1 + alpha + beta + n], [alpha + 1], (1)/(2)*(1 - z))"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: hypergeom([$2], [$3], $4)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/16.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: pochhammer($0, $1)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#iii\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 1,
+          "sentence" : 0,
+          "word" : 12
+        }
+      ],
+      "includes" : [
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "(\\alpha+1)_n",
+        "n",
+        "n + \\alpha + \\beta",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "Pochhammer 's symbol",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "hypergeometric function",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_223c39c524bdf2bf4c8bbf904ab164b1",
+      "formula" : "(\\alpha+1)_n",
+      "semanticFormula" : "\\Pochhammersym{\\alpha + 1}{n}",
+      "confidence" : 0.9073333333333333,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "Pochhammer[\\[Alpha]+ 1, n]",
+          "translationInformation" : {
+            "subEquations" : [
+              "Pochhammer[\\[Alpha]+ 1, n]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "pochhammer(alpha + 1, n)",
+          "translationInformation" : {
+            "subEquations" : [
+              "pochhammer(alpha + 1, n)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: pochhammer($0, $1)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#iii\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 1,
+          "sentence" : 0,
+          "word" : 15
+        }
+      ],
+      "includes" : [
+        "n"
+      ],
+      "isPartOf" : [
+        "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Pochhammer 's symbol",
+          "score" : 0.722
+        },
+        {
+          "definition" : "hypergeometric function",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_8aef2b8e75b872d1e8ef1530bb9bb795",
+      "formula" : "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + n + 1}}{n! \\EulerGamma@{\\alpha + \\beta + n + 1}} \\sum_{m=0}^n{n\\choose m} \\frac{\\EulerGamma@{\\alpha + \\beta + n + m + 1}}{\\EulerGamma@{\\alpha + m + 1}}(\\frac{z-1}{2})^m",
+      "confidence" : 0.8814743347990213,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Gamma[\\[Alpha]+ n + 1],(n)!*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*Sum[Binomial[n,m]*Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + m + 1],Gamma[\\[Alpha]+ m + 1]]*(Divide[z - 1,2])^(m), {m, 0, n}, GenerateConditions->None]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], z] = Divide[Gamma[\\[Alpha]+ n + 1],(n)!*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*Sum[Binomial[n,m]*Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + m + 1],Gamma[\\[Alpha]+ m + 1]]*(Divide[z - 1,2])^(m), {m, 0, n}, GenerateConditions->None]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, z) = (GAMMA(alpha + n + 1))/(factorial(n)*GAMMA(alpha + beta + n + 1))*sum(binomial(n,m)*(GAMMA(alpha + beta + n + m + 1))/(GAMMA(alpha + m + 1))*((z - 1)/(2))^(m), m = 0..n)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, z) = (GAMMA(alpha + n + 1))/(factorial(n)*GAMMA(alpha + beta + n + 1))*sum(binomial(n,m)*(GAMMA(alpha + beta + n + m + 1))/(GAMMA(alpha + m + 1))*((z - 1)/(2))^(m), m = 0..n)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 1,
+          "sentence" : 1,
+          "word" : 21
+        }
+      ],
+      "includes" : [
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "n",
+        "\\Gamma(z)",
+        "n + \\alpha + \\beta",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "equivalent expression",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "case",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "series for the hypergeometric function",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_b98cc2a3c71764be8bc7fe354e54ebf7",
+      "formula" : "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{(-1)^n}{2^n n!}(1 - z)^{-\\alpha}(1 + z)^{-\\beta} \\deriv [n]{ }{z} \\{(1 - z)^\\alpha(1 + z)^\\beta(1 - z^2)^n \\}",
+      "confidence" : 0.9378384212127765,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[(- 1)^(n),(2)^(n)* (n)!]*(1 - z)^(- \\[Alpha])*(1 + z)^(- \\[Beta])* D[(1 - z)^\\[Alpha]*(1 + z)^\\[Beta]*(1 - (z)^(2))^(n), {z, n}]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], z] = Divide[(- 1)^(n),(2)^(n)* (n)!]*(1 - z)^(- \\[Alpha])*(1 + z)^(- \\[Beta])* D[(1 - z)^\\[Alpha]*(1 + z)^\\[Beta]*(1 - (z)^(2))^(n), {z, n}]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, z) = ((- 1)^(n))/((2)^(n)* factorial(n))*(1 - z)^(- alpha)*(1 + z)^(- beta)* diff((1 - z)^(alpha)*(1 + z)^(beta)*(1 - (z)^(2))^(n), [z$(n)])",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, z) = ((- 1)^(n))/((2)^(n)* factorial(n))*(1 - z)^(- alpha)*(1 + z)^(- beta)* diff((1 - z)^(alpha)*(1 + z)^(beta)*(1 - (z)^(2))^(n), [z$(n)])"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 2,
+          "sentence" : 0,
+          "word" : 10
+        }
+      ],
+      "includes" : [
+        "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "Rodrigues ' formula",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "equivalent definition",
+          "score" : 0.6460746792928004
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_c67a4e52a3d370768609f2e25781a9d2",
+      "formula" : "\\alpha = \\beta = 0",
+      "semanticFormula" : "\\alpha = \\beta = 0",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "\\[Alpha] == \\[Beta] == 0",
+          "translationInformation" : {
+            "subEquations" : [
+              "\\[Alpha] = \\[Beta]",
+              "\\[Beta] = 0"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "Symbol('alpha') == Symbol('beta') == 0",
+          "translationInformation" : {
+            "subEquations" : [
+              "Symbol('alpha') = Symbol('beta')",
+              "Symbol('beta') = 0"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "alpha = beta = 0",
+          "translationInformation" : {
+            "subEquations" : [
+              "alpha = beta",
+              "beta = 0"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 2,
+          "sentence" : 1,
+          "word" : 1
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "Legendre polynomial",
+          "score" : 0.6859086196238077
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_a4907d0a0a6187a8ae845e5eca7cc6d7",
+      "formula" : "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n  \\;",
+      "semanticFormula" : "\\LegendrepolyP{n}@{z} = \\frac{1 }{2^n  n! } \\deriv [n]{ }{z}(z^2 - 1)^n",
+      "confidence" : 0.9041995034970904,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "LegendreP[n, z] == Divide[1,(2)^(n)* (n)!]*D[((z)^(2)- 1)^(n), {z, n}]",
+          "translationInformation" : {
+            "subEquations" : [
+              "LegendreP[n, z] = Divide[1,(2)^(n)* (n)!]*D[((z)^(2)- 1)^(n), {z, n}]"
+            ],
+            "freeVariables" : [
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\LegendrepolyP" : "Legendre polynomial; Example: \\LegendrepolyP{n}@{x}\nWill be translated to: LegendreP[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r10\nMathematica:  https://reference.wolfram.com/language/ref/LegendreP.html",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "LegendreP(n, z) = (1)/((2)^(n)* factorial(n))*diff(((z)^(2)- 1)^(n), [z$(n)])",
+          "translationInformation" : {
+            "subEquations" : [
+              "LegendreP(n, z) = (1)/((2)^(n)* factorial(n))*diff(((z)^(2)- 1)^(n), [z$(n)])"
+            ],
+            "freeVariables" : [
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\LegendrepolyP" : "Legendre polynomial; Example: \\LegendrepolyP{n}@{x}\nWill be translated to: LegendreP($0, $1)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r10\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 2,
+          "sentence" : 1,
+          "word" : 11
+        }
+      ],
+      "includes" : [
+        "n",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "Legendre polynomial",
+          "score" : 0.7125985104912714
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_9dd4e461268c8034f5c8564e155c67a6",
+      "formula" : "x",
+      "semanticFormula" : "x",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "x",
+          "translationInformation" : {
+            "subEquations" : [
+              "x"
+            ],
+            "freeVariables" : [
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "x",
+          "translationInformation" : {
+            "subEquations" : [
+              "x"
+            ],
+            "freeVariables" : [
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "x",
+          "translationInformation" : {
+            "subEquations" : [
+              "x"
+            ],
+            "freeVariables" : [
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 3,
+          "sentence" : 0,
+          "word" : 2
+        },
+        {
+          "section" : 11,
+          "sentence" : 0,
+          "word" : 1
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [
+        "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+        "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+        "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
+        "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.9097529883184008
+        },
+        {
+          "definition" : "special case",
+          "score" : 0.5672486918673748
+        },
+        {
+          "definition" : "nonnegative integer",
+          "score" : 0.5274147515363676
+        },
+        {
+          "definition" : "quantity",
+          "score" : 0.48015757177699975
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.4149862628581402
+        },
+        {
+          "definition" : "orthogonality condition",
+          "score" : 0.37217380952380946
+        },
+        {
+          "definition" : "class of classical orthogonal polynomial",
+          "score" : 0.34195572775317623
+        },
+        {
+          "definition" : "solution of the second order linear homogeneous differential equation",
+          "score" : 0.34128947089398726
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.3412842248511015
+        },
+        {
+          "definition" : "respect to the weight",
+          "score" : 0.3170812444090436
+        },
+        {
+          "definition" : "mathematics",
+          "score" : 0.3152658368857124
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.3145943339836376
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.3145943339836376
+        },
+        {
+          "definition" : "hypergeometric polynomial",
+          "score" : 0.22817471679533732
+        },
+        {
+          "definition" : "term",
+          "score" : 0.22750321389326258
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_928ae1a1423003c84cfa0f8765957889",
+      "formula" : "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x} = \\sum_{s=0}^n{n+\\alpha\\choose n-s}{n+\\beta \\choose s}(\\frac{x-1}{2})^{s}(\\frac{x+1}{2})^{n-s}",
+      "confidence" : 0.8953028732079359,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x] == Sum[Binomial[n + \\[Alpha],n - s]*Binomial[n + \\[Beta],s]*(Divide[x - 1,2])^(s)*(Divide[x + 1,2])^(n - s), {s, 0, n}, GenerateConditions->None]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], x] = Sum[Binomial[n + \\[Alpha],n - s]*Binomial[n + \\[Beta],s]*(Divide[x - 1,2])^(s)*(Divide[x + 1,2])^(n - s), {s, 0, n}, GenerateConditions->None]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, x) = sum(binomial(n + alpha,n - s)*binomial(n + beta,s)*((x - 1)/(2))^(s)*((x + 1)/(2))^(n - s), s = 0..n)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, x) = sum(binomial(n + alpha,n - s)*binomial(n + beta,s)*((x - 1)/(2))^(s)*((x + 1)/(2))^(n - s), s = 0..n)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 3,
+          "sentence" : 0,
+          "word" : 11
+        }
+      ],
+      "includes" : [
+        "x",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "n",
+        "s",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.6859086196238077
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_7b8b965ad4bca0e41ab51de7b31363a1",
+      "formula" : "n",
+      "semanticFormula" : "n",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "n",
+          "translationInformation" : {
+            "subEquations" : [
+              "n"
+            ],
+            "freeVariables" : [
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "n",
+          "translationInformation" : {
+            "subEquations" : [
+              "n"
+            ],
+            "freeVariables" : [
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "n",
+          "translationInformation" : {
+            "subEquations" : [
+              "n"
+            ],
+            "freeVariables" : [
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 3,
+          "sentence" : 1,
+          "word" : 3
+        },
+        {
+          "section" : 11,
+          "sentence" : 0,
+          "word" : 14
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [
+        "(\\alpha+1)_n",
+        "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+        "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+        "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+        "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n  \\;",
+        "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
+        "n, n + \\alpha, n + \\beta",
+        "n + \\alpha + \\beta",
+        "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+        "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
+        "n=m",
+        "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+        "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+        "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+        "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0",
+        "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&\\qquad= (2n+\\alpha + \\beta-1) \\Big\\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\Big\\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+        "n= 2, 3, ...",
+        "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}",
+        "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
+        "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
+        "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2},\\\\N &= n + \\tfrac{1}{2} (\\alpha+\\beta+1),\\\\\\gamma &= - \\tfrac{\\pi}{2} \\left (\\alpha + \\tfrac{1}{2} \\right ),\\end{align}",
+        "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.8688928255548329
+        },
+        {
+          "definition" : "integer",
+          "score" : 0.722
+        },
+        {
+          "definition" : "Gamma function",
+          "score" : 0.6839477168404777
+        },
+        {
+          "definition" : "quantity",
+          "score" : 0.6584627369697272
+        },
+        {
+          "definition" : "nonnegative integer",
+          "score" : 0.6317728461022634
+        },
+        {
+          "definition" : "special case",
+          "score" : 0.6317728461022634
+        },
+        {
+          "definition" : "Legendre polynomial",
+          "score" : 0.5120429549357158
+        },
+        {
+          "definition" : "Rodrigues ' formula",
+          "score" : 0.41371425056515165
+        },
+        {
+          "definition" : "orthogonality condition",
+          "score" : 0.3996726567405132
+        },
+        {
+          "definition" : "equivalent expression",
+          "score" : 0.39027116723178473
+        },
+        {
+          "definition" : "equivalent definition",
+          "score" : 0.3738803102341444
+        },
+        {
+          "definition" : "symmetry relation",
+          "score" : 0.350211185515873
+        },
+        {
+          "definition" : "identity",
+          "score" : 0.34953977816074233
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.34953968348089337
+        },
+        {
+          "definition" : "Heine formula",
+          "score" : 0.3495396826137982
+        },
+        {
+          "definition" : "simplicity",
+          "score" : 0.3426251035304757
+        },
+        {
+          "definition" : "other terminal value",
+          "score" : 0.3408096960071445
+        },
+        {
+          "definition" : "class of classical orthogonal polynomial",
+          "score" : 0.3402936249371742
+        },
+        {
+          "definition" : "solution of the second order linear homogeneous differential equation",
+          "score" : 0.3401690346273844
+        },
+        {
+          "definition" : "recurrence relation for the Jacobi polynomial",
+          "score" : 0.34014343914795553
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.3401381939721649
+        },
+        {
+          "definition" : "term",
+          "score" : 0.3401381939721649
+        },
+        {
+          "definition" : "Pochhammer 's symbol",
+          "score" : 0.33493639740158543
+        },
+        {
+          "definition" : "polynomial",
+          "score" : 0.3141198051396807
+        },
+        {
+          "definition" : "derivative of the explicit expression",
+          "score" : 0.3136037340697103
+        },
+        {
+          "definition" : "mathematics",
+          "score" : 0.3136037340697103
+        },
+        {
+          "definition" : "function of the Jacobi polynomial",
+          "score" : 0.31344831240981247
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.313448303104701
+        },
+        {
+          "definition" : "asymptotic of the Jacobi polynomial",
+          "score" : 0.3134483022376059
+        },
+        {
+          "definition" : "limit",
+          "score" : 0.3134483022376059
+        },
+        {
+          "definition" : "Mehler",
+          "score" : 0.3134483022376059
+        },
+        {
+          "definition" : "square root of the right hand side",
+          "score" : 0.28150981051866586
+        },
+        {
+          "definition" : "case",
+          "score" : 0.27649015627394585
+        },
+        {
+          "definition" : "series for the hypergeometric function",
+          "score" : 0.27649015627394585
+        },
+        {
+          "definition" : "alternative normalization",
+          "score" : 0.27610127233200465
+        },
+        {
+          "definition" : "Gauss ' contiguous relation",
+          "score" : 0.2736144574535428
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.27361436277369383
+        },
+        {
+          "definition" : "domain",
+          "score" : 0.2736143619065987
+        },
+        {
+          "definition" : "hypergeometric function",
+          "score" : 0.2478452773112104
+        },
+        {
+          "definition" : "orthonormal basis",
+          "score" : 0.22884409257263683
+        },
+        {
+          "definition" : "hypergeometric polynomial",
+          "score" : 0.22651261397933525
+        },
+        {
+          "definition" : "branch of square root",
+          "score" : 0.2263571923194374
+        },
+        {
+          "definition" : "point",
+          "score" : 0.22635718214723086
+        },
+        {
+          "definition" : "equation",
+          "score" : 0.18553036932110353
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_b1e4493881f1c47423915d9999dd9459",
+      "formula" : "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
+      "semanticFormula" : "{z \\choose n} = \\begin{cases}\\frac{\\EulerGamma@{z + 1}}{\\EulerGamma@{n + 1} \\EulerGamma@{z - n + 1}} n \\geq 0 0 & n < 0\\end{cases}",
+      "confidence" : 0.8346605129355306,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "Binomial[z,n] == ",
+          "translationInformation" : {
+            "subEquations" : [ ],
+            "freeVariables" : [
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "binomial(z,n) == ",
+          "translationInformation" : {
+            "subEquations" : [ ],
+            "freeVariables" : [
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "binomial(z,n) = ",
+          "translationInformation" : {
+            "subEquations" : [ ],
+            "freeVariables" : [
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 3,
+          "sentence" : 1,
+          "word" : 4
+        }
+      ],
+      "includes" : [
+        "n",
+        "\\Gamma(z)",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "integer",
+          "score" : 0.722
+        },
+        {
+          "definition" : "Gamma function",
+          "score" : 0.7125985104912714
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_c5accc69791b469f2ce6bde7e27a4506",
+      "formula" : "\\Gamma(z)",
+      "semanticFormula" : "\\EulerGamma@{z}",
+      "confidence" : 0.8377943427717734,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "Gamma[z]",
+          "translationInformation" : {
+            "subEquations" : [
+              "Gamma[z]"
+            ],
+            "freeVariables" : [
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "GAMMA(z)",
+          "translationInformation" : {
+            "subEquations" : [
+              "GAMMA(z)"
+            ],
+            "freeVariables" : [
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 3,
+          "sentence" : 1,
+          "word" : 6
+        }
+      ],
+      "includes" : [
+        "z"
+      ],
+      "isPartOf" : [
+        "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
+        "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+        "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
+        "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Gamma function",
+          "score" : 0.722
+        },
+        {
+          "definition" : "integer",
+          "score" : 0.722
+        },
+        {
+          "definition" : "orthogonality condition",
+          "score" : 0.4283234503913069
+        },
+        {
+          "definition" : "equivalent expression",
+          "score" : 0.41892196088257844
+        },
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.3922320700151146
+        },
+        {
+          "definition" : "derivative of the explicit expression",
+          "score" : 0.34225452772050396
+        },
+        {
+          "definition" : "case",
+          "score" : 0.3051409499247395
+        },
+        {
+          "definition" : "series for the hypergeometric function",
+          "score" : 0.3051409499247395
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_4161afcc29ec4aba9d1a79c1fe437fd6",
+      "formula" : "n, n + \\alpha, n + \\beta",
+      "semanticFormula" : "n, n + \\alpha, n + \\beta",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "n , n + \\[Alpha], n + \\[Beta]",
+          "translationInformation" : {
+            "subEquations" : [
+              "n , n + \\[Alpha], n + \\[Beta]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "n , n + Symbol('alpha'), n + Symbol('beta')",
+          "translationInformation" : {
+            "subEquations" : [
+              "n , n + Symbol('alpha'), n + Symbol('beta')"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "n , n + alpha , n + beta",
+          "translationInformation" : {
+            "subEquations" : [
+              "n , n + alpha , n + beta"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 3,
+          "sentence" : 2,
+          "word" : 8
+        }
+      ],
+      "includes" : [
+        "n",
+        "\\alpha,\\beta"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "quantity",
+          "score" : 0.722
+        },
+        {
+          "definition" : "nonnegative integer",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "special case",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.5500952380952381
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_30148eb3081f2fd3d2ccaf3ddb3e541c",
+      "formula" : "n + \\alpha + \\beta",
+      "semanticFormula" : "n + \\alpha + \\beta",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "n + \\[Alpha]+ \\[Beta]",
+          "translationInformation" : {
+            "subEquations" : [
+              "n + \\[Alpha]+ \\[Beta]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "n + Symbol('alpha')+ Symbol('beta')",
+          "translationInformation" : {
+            "subEquations" : [
+              "n + Symbol('alpha')+ Symbol('beta')"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "n + alpha + beta",
+          "translationInformation" : {
+            "subEquations" : [
+              "n + alpha + beta"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 3,
+          "sentence" : 2,
+          "word" : 11
+        }
+      ],
+      "includes" : [
+        "n"
+      ],
+      "isPartOf" : [
+        "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+        "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+        "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
+        "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+        "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0",
+        "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&\\qquad= (2n+\\alpha + \\beta-1) \\Big\\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\Big\\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+        "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}"
+      ],
+      "definiens" : [
+        {
+          "definition" : "nonnegative integer",
+          "score" : 0.722
+        },
+        {
+          "definition" : "quantity",
+          "score" : 0.6601229053380933
+        },
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.6476241008701227
+        },
+        {
+          "definition" : "special case",
+          "score" : 0.5730317852477183
+        },
+        {
+          "definition" : "orthogonality condition",
+          "score" : 0.45267071030642325
+        },
+        {
+          "definition" : "equivalent expression",
+          "score" : 0.36449136763412854
+        },
+        {
+          "definition" : "identity",
+          "score" : 0.3524055268732403
+        },
+        {
+          "definition" : "solution of the second order linear homogeneous differential equation",
+          "score" : 0.34315870430225354
+        },
+        {
+          "definition" : "recurrence relation for the Jacobi polynomial",
+          "score" : 0.3430341139924638
+        },
+        {
+          "definition" : "Pochhammer 's symbol",
+          "score" : 0.3242088302147525
+        },
+        {
+          "definition" : "derivative of the explicit expression",
+          "score" : 0.31698488450476003
+        },
+        {
+          "definition" : "Gauss ' contiguous relation",
+          "score" : 0.27648020616604074
+        },
+        {
+          "definition" : "case",
+          "score" : 0.2507103566762897
+        },
+        {
+          "definition" : "series for the hypergeometric function",
+          "score" : 0.2507103566762897
+        },
+        {
+          "definition" : "hypergeometric function",
+          "score" : 0.23711771012437738
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_f604a748edd68a6b7adf15118bb64595",
+      "formula" : "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{x} =(n + \\alpha)!(n + \\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!}(\\frac{x-1}{2})^{n-s}(\\frac{x+1}{2})^{s}",
+      "confidence" : 0.8953028732079359,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], x] == (n + \\[Alpha])!*(n + \\[Beta])!*Sum[Divide[1,(s)!*(n + \\[Alpha]- s)!*(\\[Beta]+ s)!*(n - s)!]*(Divide[x - 1,2])^(n - s)*(Divide[x + 1,2])^(s), {s, 0, n}, GenerateConditions->None]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], x] = (n + \\[Alpha])!*(n + \\[Beta])!*Sum[Divide[1,(s)!*(n + \\[Alpha]- s)!*(\\[Beta]+ s)!*(n - s)!]*(Divide[x - 1,2])^(n - s)*(Divide[x + 1,2])^(s), {s, 0, n}, GenerateConditions->None]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, x) = factorial(n + alpha)*factorial(n + beta)*sum((1)/(factorial(s)*factorial(n + alpha - s)*factorial(beta + s)*factorial(n - s))*((x - 1)/(2))^(n - s)*((x + 1)/(2))^(s), s = 0..n)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, x) = factorial(n + alpha)*factorial(n + beta)*sum((1)/(factorial(s)*factorial(n + alpha - s)*factorial(beta + s)*factorial(n - s))*((x - 1)/(2))^(n - s)*((x + 1)/(2))^(s), s = 0..n)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 3,
+          "sentence" : 2,
+          "word" : 23
+        }
+      ],
+      "includes" : [
+        "x",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "n",
+        "s",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "special case",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "nonnegative integer",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "quantity",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_03c7c0ace395d80182db07ae2c30f034",
+      "formula" : "s",
+      "semanticFormula" : "s",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "s",
+          "translationInformation" : {
+            "subEquations" : [
+              "s"
+            ],
+            "freeVariables" : [
+              "s"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "s",
+          "translationInformation" : {
+            "subEquations" : [
+              "s"
+            ],
+            "freeVariables" : [
+              "s"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "s",
+          "translationInformation" : {
+            "subEquations" : [
+              "s"
+            ],
+            "freeVariables" : [
+              "s"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 3,
+          "sentence" : 3,
+          "word" : 8
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [
+        "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+        "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.7778461045086086
+        },
+        {
+          "definition" : "integer value",
+          "score" : 0.6954080343007951
+        },
+        {
+          "definition" : "argument of the factorial",
+          "score" : 0.6687181434333315
+        },
+        {
+          "definition" : "special case",
+          "score" : 0.6432331635625809
+        },
+        {
+          "definition" : "sum",
+          "score" : 0.6288842031023242
+        },
+        {
+          "definition" : "nonnegative integer",
+          "score" : 0.6033992232315736
+        },
+        {
+          "definition" : "quantity",
+          "score" : 0.5561420434722057
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_5a59d52ac2638a6e955a48d2dbf276db",
+      "formula" : "P_0^{(\\alpha,\\beta)}(z)= 1",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{0}@{z} = 1",
+      "confidence" : 0.9378384212127765,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[0, \\[Alpha], \\[Beta], z] == 1",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[0, \\[Alpha], \\[Beta], z] = 1"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(0, alpha, beta, z) = 1",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(0, alpha, beta, z) = 1"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 4,
+          "sentence" : 0,
+          "word" : 0
+        }
+      ],
+      "includes" : [
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [ ]
+    },
+    {
+      "id" : "FORMULA_ca61fa237002fce94643d9197732d667",
+      "formula" : "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{1}@{z} =(\\alpha + 1) +(\\alpha + \\beta + 2) \\frac{z-1}{2}",
+      "confidence" : 0.9378384212127765,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[1, \\[Alpha], \\[Beta], z] == (\\[Alpha]+ 1)+(\\[Alpha]+ \\[Beta]+ 2)*Divide[z - 1,2]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[1, \\[Alpha], \\[Beta], z] = (\\[Alpha]+ 1)+(\\[Alpha]+ \\[Beta]+ 2)*Divide[z - 1,2]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(1, alpha, beta, z) = (alpha + 1)+(alpha + beta + 2)*(z - 1)/(2)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(1, alpha, beta, z) = (alpha + 1)+(alpha + beta + 2)*(z - 1)/(2)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 4,
+          "sentence" : 0,
+          "word" : 2
+        }
+      ],
+      "includes" : [
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [ ]
+    },
+    {
+      "id" : "FORMULA_f95cd8e6d82bfb68b3b85bef1c1662b1",
+      "formula" : "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,..",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{2}@{z} = \\frac{(\\alpha+1)(\\alpha+2)}{2} +(\\alpha + 2)(\\alpha + \\beta + 3) \\frac{z-1}{2} + \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}(\\frac{z-1}{2})^2",
+      "confidence" : 0.9378384212127765,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[2, \\[Alpha], \\[Beta], z] == Divide[(\\[Alpha]+ 1)*(\\[Alpha]+ 2),2]+(\\[Alpha]+ 2)*(\\[Alpha]+ \\[Beta]+ 3)*Divide[z - 1,2]+Divide[(\\[Alpha]+ \\[Beta]+ 3)*(\\[Alpha]+ \\[Beta]+ 4),2]*(Divide[z - 1,2])^(2)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[2, \\[Alpha], \\[Beta], z] = Divide[(\\[Alpha]+ 1)*(\\[Alpha]+ 2),2]+(\\[Alpha]+ 2)*(\\[Alpha]+ \\[Beta]+ 3)*Divide[z - 1,2]+Divide[(\\[Alpha]+ \\[Beta]+ 3)*(\\[Alpha]+ \\[Beta]+ 4),2]*(Divide[z - 1,2])^(2)"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(2, alpha, beta, z) = ((alpha + 1)*(alpha + 2))/(2)+(alpha + 2)*(alpha + beta + 3)*(z - 1)/(2)+((alpha + beta + 3)*(alpha + beta + 4))/(2)*((z - 1)/(2))^(2)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(2, alpha, beta, z) = ((alpha + 1)*(alpha + 2))/(2)+(alpha + 2)*(alpha + beta + 3)*(z - 1)/(2)+((alpha + beta + 3)*(alpha + beta + 4))/(2)*((z - 1)/(2))^(2)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 4,
+          "sentence" : 0,
+          "word" : 4
+        }
+      ],
+      "includes" : [
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [ ]
+    },
+    {
+      "id" : "FORMULA_77d1d3b415496da5bb77004fd55dff4c",
+      "formula" : "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
+      "semanticFormula" : "\\int_{-1}^1(1 - x)^{\\alpha}(1 + x)^{\\beta} \\JacobipolyP{\\alpha}{\\beta}{m}@{x} \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\diff{x} = \\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\EulerGamma@{n + \\alpha + 1} \\EulerGamma@{n + \\beta + 1}}{\\EulerGamma@{n + \\alpha + \\beta + 1} n!} \\delta_{nm} , \\qquad \\alpha , \\beta > - 1",
+      "confidence" : 0.860206560796601,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]* JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] == Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n*m]",
+          "translationInformation" : {
+            "subEquations" : [
+              "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]* JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] = Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n*m]"
+            ],
+            "freeVariables" : [
+              "Subscript[\\[Delta], n*m]",
+              "\\[Alpha]",
+              "\\[Beta]",
+              "m",
+              "n"
+            ],
+            "constraints" : [
+              "\\[Alpha], \\[Beta] > - 1"
+            ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\delta" : "Could be the first Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "int((1 - x)^(alpha)*(1 + x)^(beta)* JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n*m]",
+          "translationInformation" : {
+            "subEquations" : [
+              "int((1 - x)^(alpha)*(1 + x)^(beta)* JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n*m]"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "delta[n*m]",
+              "m",
+              "n"
+            ],
+            "constraints" : [
+              "alpha , beta > - 1"
+            ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\delta" : "Could be the first Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 5,
+          "sentence" : 0,
+          "word" : 7
+        }
+      ],
+      "includes" : [
+        "x",
+        "n + \\alpha + \\beta",
+        "(1 - x)^{\\alpha}(1 + x)^{\\beta}",
+        "\\Gamma(z)",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "orthogonality condition",
+          "score" : 0.722
+        },
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.6859086196238077
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_7805eba586f1593f610d48d02c5d5ecb",
+      "formula" : "n=m",
+      "semanticFormula" : "n=m",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "n == m",
+          "translationInformation" : {
+            "subEquations" : [
+              "n = m"
+            ],
+            "freeVariables" : [
+              "m",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "n == m",
+          "translationInformation" : {
+            "subEquations" : [
+              "n = m"
+            ],
+            "freeVariables" : [
+              "m",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "n = m",
+          "translationInformation" : {
+            "subEquations" : [
+              "n = m"
+            ],
+            "freeVariables" : [
+              "m",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 5,
+          "sentence" : 2,
+          "word" : 21
+        }
+      ],
+      "includes" : [
+        "n"
+      ],
+      "isPartOf" : [
+        "n= 2, 3, ...",
+        "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}"
+      ],
+      "definiens" : [
+        {
+          "definition" : "square root of the right hand side",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "equation",
+          "score" : 0.5500952380952381
+        },
+        {
+          "definition" : "recurrence relation for the Jacobi polynomial",
+          "score" : 0.3635871910523791
+        },
+        {
+          "definition" : "function of the Jacobi polynomial",
+          "score" : 0.3427705987904743
+        },
+        {
+          "definition" : "branch of square root",
+          "score" : 0.2556794787000992
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_885c4cc0c4b31f8e336b9b90a9f5a73a",
+      "formula" : "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{1} ={n+\\alpha\\choose n}",
+      "confidence" : 0.9378384212127765,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], 1] == Binomial[n + \\[Alpha],n]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], 1] = Binomial[n + \\[Alpha],n]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, 1) = binomial(n + alpha,n)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, 1) = binomial(n + alpha,n)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 5,
+          "sentence" : 3,
+          "word" : 20
+        }
+      ],
+      "includes" : [
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "simplicity",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "alternative normalization",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "orthonormal basis",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_324997ff1bef2ad1ea296179286ee476",
+      "formula" : "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{- z} =(- 1)^n \\JacobipolyP{\\beta}{\\alpha}{n}@{z}",
+      "confidence" : 0.8953028732079359,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], - z] == (- 1)^(n)* JacobiP[n, \\[Beta], \\[Alpha], z]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], - z] = (- 1)^(n)* JacobiP[n, \\[Beta], \\[Alpha], z]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, - z) = (- 1)^(n)* JacobiP(n, beta, alpha, z)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, - z) = (- 1)^(n)* JacobiP(n, beta, alpha, z)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 6,
+          "sentence" : 0,
+          "word" : 6
+        }
+      ],
+      "includes" : [
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "symmetry relation",
+          "score" : 0.722
+        },
+        {
+          "definition" : "polynomial",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "other terminal value",
+          "score" : 0.6460746792928004
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_94395b8a0992e45434577f269a17e6c4",
+      "formula" : "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{- 1} =(- 1)^n{n+\\beta\\choose n}",
+      "confidence" : 0.8953028732079359,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], - 1] == (- 1)^(n)*Binomial[n + \\[Beta],n]",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], - 1] = (- 1)^(n)*Binomial[n + \\[Beta],n]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, - 1) = (- 1)^(n)*binomial(n + beta,n)",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, - 1) = (- 1)^(n)*binomial(n + beta,n)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 6,
+          "sentence" : 0,
+          "word" : 14
+        }
+      ],
+      "includes" : [
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "other terminal value",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "polynomial",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "symmetry relation",
+          "score" : 0.6859086196238077
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_8ce4b16b22b58894aa86c421e8759df3",
+      "formula" : "k",
+      "semanticFormula" : "k",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "k",
+          "translationInformation" : {
+            "subEquations" : [
+              "k"
+            ],
+            "freeVariables" : [
+              "k"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "k",
+          "translationInformation" : {
+            "subEquations" : [
+              "k"
+            ],
+            "freeVariables" : [
+              "k"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "k",
+          "translationInformation" : {
+            "subEquations" : [
+              "k"
+            ],
+            "freeVariables" : [
+              "k"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 7,
+          "sentence" : 0,
+          "word" : 1
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [
+        "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+        "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
+        "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2},\\\\N &= n + \\tfrac{1}{2} (\\alpha+\\beta+1),\\\\\\gamma &= - \\tfrac{\\pi}{2} \\left (\\alpha + \\tfrac{1}{2} \\right ),\\end{align}"
+      ],
+      "definiens" : [
+        {
+          "definition" : "derivative of the explicit expression",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.38608592487665916
+        },
+        {
+          "definition" : "term",
+          "score" : 0.3766844353679306
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.34999454450046674
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.34999454450046674
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.3101606041694595
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_c1a5b2b20d5efff4922f26591d73e078",
+      "formula" : "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+      "semanticFormula" : "\\deriv [k]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + \\beta + n + 1 + k}}{2^k \\EulerGamma@{\\alpha + \\beta + n + 1}} \\JacobipolyP{\\alpha + k}{\\beta + k}{n-k}@{z}",
+      "confidence" : 0.8814743347990213,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, k}] == Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + 1 + k],(2)^(k)* Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*JacobiP[n - k, \\[Alpha]+ k, \\[Beta]+ k, z]",
+          "translationInformation" : {
+            "subEquations" : [
+              "D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, k}] = Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + 1 + k],(2)^(k)* Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*JacobiP[n - k, \\[Alpha]+ k, \\[Beta]+ k, z]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "k",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "diff(JacobiP(n, alpha, beta, z), [z$(k)]) = (GAMMA(alpha + beta + n + 1 + k))/((2)^(k)* GAMMA(alpha + beta + n + 1))*JacobiP(n - k, alpha + k, beta + k, z)",
+          "translationInformation" : {
+            "subEquations" : [
+              "diff(JacobiP(n, alpha, beta, z), [z$(k)]) = (GAMMA(alpha + beta + n + 1 + k))/((2)^(k)* GAMMA(alpha + beta + n + 1))*JacobiP(n - k, alpha + k, beta + k, z)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "k",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 7,
+          "sentence" : 0,
+          "word" : 10
+        }
+      ],
+      "includes" : [
+        "n + \\alpha + \\beta",
+        "\\Gamma(z)",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "k",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "\\alpha,\\beta",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "derivative of the explicit expression",
+          "score" : 0.6859086196238077
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_d070202e484c3f87021e1210f0cfe802",
+      "formula" : "P_{n}^{(\\alpha, \\beta)}",
+      "semanticFormula" : "P_{n}^{(\\alpha, \\beta)}",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "(Subscript[P, n])^(\\[Alpha], \\[Beta])",
+          "translationInformation" : {
+            "subEquations" : [
+              "(Subscript[P, n])^(\\[Alpha], \\[Beta])"
+            ],
+            "freeVariables" : [
+              "Subscript[P, n]",
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))",
+          "translationInformation" : {
+            "subEquations" : [
+              "(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "Symbol('{P}_{n}')",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "(P[n])^(alpha , beta)",
+          "translationInformation" : {
+            "subEquations" : [
+              "(P[n])^(alpha , beta)"
+            ],
+            "freeVariables" : [
+              "P[n]",
+              "alpha",
+              "beta",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 8,
+          "sentence" : 0,
+          "word" : 3
+        },
+        {
+          "section" : 11,
+          "sentence" : 0,
+          "word" : 11
+        }
+      ],
+      "includes" : [
+        "n",
+        "\\alpha,\\beta"
+      ],
+      "isPartOf" : [
+        "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+        "P_0^{(\\alpha,\\beta)}(z)= 1",
+        "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
+        "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+        "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
+        "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+        "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+        "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+        "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+        "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,..",
+        "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+        "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+        "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&\\qquad= (2n+\\alpha + \\beta-1) \\Big\\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\Big\\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+        "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}",
+        "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
+        "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
+        "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
+        "d^j_{m'm}(\\phi) =\\left[ \\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\\right]^{\\frac{1}{2}} \\left(\\sin\\tfrac{\\phi}{2}\\right)^{m-m'} \\left(\\cos\\tfrac{\\phi}{2}\\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\\cos \\phi)"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.8534190724334316
+        },
+        {
+          "definition" : "solution of the second order linear homogeneous differential equation",
+          "score" : 0.722
+        },
+        {
+          "definition" : "recurrence relation for the Jacobi polynomial",
+          "score" : 0.5927925509888069
+        },
+        {
+          "definition" : "derivative of the explicit expression",
+          "score" : 0.566102660121343
+        },
+        {
+          "definition" : "symmetry relation",
+          "score" : 0.5214444444444444
+        },
+        {
+          "definition" : "other terminal value",
+          "score" : 0.5120429549357158
+        },
+        {
+          "definition" : "polynomial",
+          "score" : 0.485353064068252
+        },
+        {
+          "definition" : "identity",
+          "score" : 0.4498056309413439
+        },
+        {
+          "definition" : "simplicity",
+          "score" : 0.44040414143261547
+        },
+        {
+          "definition" : "alternative normalization",
+          "score" : 0.3738803102341444
+        },
+        {
+          "definition" : "Gauss ' contiguous relation",
+          "score" : 0.3738803102341444
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.37102777777777773
+        },
+        {
+          "definition" : "function of the Jacobi polynomial",
+          "score" : 0.3635812763643209
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.3616262882690492
+        },
+        {
+          "definition" : "Heine formula",
+          "score" : 0.3574351312258654
+        },
+        {
+          "definition" : "orthogonality condition",
+          "score" : 0.3574351312258654
+        },
+        {
+          "definition" : "expression of the Wigner d-matrix",
+          "score" : 0.3408096960071445
+        },
+        {
+          "definition" : "equivalent expression",
+          "score" : 0.3401382032772763
+        },
+        {
+          "definition" : "class of classical orthogonal polynomial",
+          "score" : 0.34013819303096837
+        },
+        {
+          "definition" : "orthonormal basis",
+          "score" : 0.32662313047477654
+        },
+        {
+          "definition" : "asymptotic of the Jacobi polynomial",
+          "score" : 0.32134375084967315
+        },
+        {
+          "definition" : "limit",
+          "score" : 0.32134375084967315
+        },
+        {
+          "definition" : "Mehler",
+          "score" : 0.32134375084967315
+        },
+        {
+          "definition" : "special case",
+          "score" : 0.3136037340697103
+        },
+        {
+          "definition" : "Rodrigues ' formula",
+          "score" : 0.31344839778454997
+        },
+        {
+          "definition" : "Pochhammer 's symbol",
+          "score" : 0.313448303104701
+        },
+        {
+          "definition" : "mathematics",
+          "score" : 0.31344830216350456
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.29510245707057825
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.29510245707057825
+        },
+        {
+          "definition" : "domain",
+          "score" : 0.28150981051866586
+        },
+        {
+          "definition" : "branch of square root",
+          "score" : 0.27649015627394585
+        },
+        {
+          "definition" : "nonnegative integer",
+          "score" : 0.2737697937387031
+        },
+        {
+          "definition" : "equivalent definition",
+          "score" : 0.2736144574535428
+        },
+        {
+          "definition" : "term",
+          "score" : 0.2478452773112104
+        },
+        {
+          "definition" : "point",
+          "score" : 0.23425263075929803
+        },
+        {
+          "definition" : "expression",
+          "score" : 0.2270286850493056
+        },
+        {
+          "definition" : "term of Jacobi polynomial",
+          "score" : 0.2270286850493056
+        },
+        {
+          "definition" : "quantity",
+          "score" : 0.22651261397933525
+        },
+        {
+          "definition" : "case",
+          "score" : 0.2263571923194374
+        },
+        {
+          "definition" : "series for the hypergeometric function",
+          "score" : 0.2263571923194374
+        },
+        {
+          "definition" : "hypergeometric function",
+          "score" : 0.22635718301432597
+        },
+        {
+          "definition" : "hypergeometric polynomial",
+          "score" : 0.2263571820731295
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_643faf34fb9ce455fa62652afb937fb3",
+      "formula" : "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0",
+      "semanticFormula" : "(1 - x^2) y ' ' +(\\beta - \\alpha -(\\alpha + \\beta + 2) x) y ' + n(n + \\alpha + \\beta + 1) y = 0",
+      "confidence" : 0.0,
+      "translations" : { },
+      "positions" : [
+        {
+          "section" : 8,
+          "sentence" : 0,
+          "word" : 15
+        }
+      ],
+      "includes" : [
+        "n + \\alpha + \\beta",
+        "n",
+        "x"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "solution of the second order linear homogeneous differential equation",
+          "score" : 0.722
+        },
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.6859086196238077
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_238526af1095d1d92c03cb5704755132",
+      "formula" : "\\alpha,\\beta",
+      "semanticFormula" : "\\alpha,\\beta",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "\\[Alpha], \\[Beta]",
+          "translationInformation" : {
+            "subEquations" : [
+              "\\[Alpha], \\[Beta]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "Symbol('alpha'), Symbol('beta')",
+          "translationInformation" : {
+            "subEquations" : [
+              "Symbol('alpha'), Symbol('beta')"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "alpha , beta",
+          "translationInformation" : {
+            "subEquations" : [
+              "alpha , beta"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 9,
+          "sentence" : 0,
+          "word" : 9
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [
+        "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+        "P_0^{(\\alpha,\\beta)}(z)= 1",
+        "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
+        "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+        "n, n + \\alpha, n + \\beta",
+        "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
+        "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "P_n^{(\\alpha,\\beta)}(x)= \\sum_{s=0}^n {n+\\alpha\\choose n-s}{n+\\beta \\choose s} \\left(\\frac{x-1}{2}\\right)^{s} \\left(\\frac{x+1}{2}\\right)^{n-s}",
+        "P_n^{(\\alpha,\\beta)}(x)=(n+\\alpha)! (n+\\beta)! \\sum_{s=0}^n \\frac{1}{s! (n+\\alpha-s)!(\\beta+s)!(n-s)!} \\left(\\frac{x-1}{2}\\right)^{n-s} \\left(\\frac{x+1}{2}\\right)^{s}",
+        "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+        "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,..",
+        "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "P_n^{(\\alpha, \\beta)} (-1) = (-1)^n { n+\\beta\\choose n}",
+        "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)",
+        "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&\\qquad= (2n+\\alpha + \\beta-1) \\Big\\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\Big\\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+        "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}",
+        "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
+        "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
+        "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.7610166159802031
+        },
+        {
+          "definition" : "recurrence relation for the Jacobi polynomial",
+          "score" : 0.6839477168404777
+        },
+        {
+          "definition" : "identity",
+          "score" : 0.6021940404975354
+        },
+        {
+          "definition" : "solution of the second order linear homogeneous differential equation",
+          "score" : 0.5927925509888069
+        },
+        {
+          "definition" : "Gauss ' contiguous relation",
+          "score" : 0.5262687197903358
+        },
+        {
+          "definition" : "derivative of the explicit expression",
+          "score" : 0.485353064068252
+        },
+        {
+          "definition" : "symmetry relation",
+          "score" : 0.4498056309413439
+        },
+        {
+          "definition" : "other terminal value",
+          "score" : 0.44040414143261547
+        },
+        {
+          "definition" : "function of the Jacobi polynomial",
+          "score" : 0.41371425056515165
+        },
+        {
+          "definition" : "polynomial",
+          "score" : 0.41371425056515165
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.3996726567405132
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.39027116723178473
+        },
+        {
+          "definition" : "simplicity",
+          "score" : 0.39027116723178473
+        },
+        {
+          "definition" : "Heine formula",
+          "score" : 0.37102777777777773
+        },
+        {
+          "definition" : "orthogonality condition",
+          "score" : 0.35202659303920414
+        },
+        {
+          "definition" : "quantity",
+          "score" : 0.3401690346273844
+        },
+        {
+          "definition" : "equivalent expression",
+          "score" : 0.3401381939721649
+        },
+        {
+          "definition" : "class of classical orthogonal polynomial",
+          "score" : 0.34013819303095466
+        },
+        {
+          "definition" : "asymptotic of the Jacobi polynomial",
+          "score" : 0.33493639740158543
+        },
+        {
+          "definition" : "limit",
+          "score" : 0.33493639740158543
+        },
+        {
+          "definition" : "Mehler",
+          "score" : 0.33493639740158543
+        },
+        {
+          "definition" : "branch of square root",
+          "score" : 0.32662313047477654
+        },
+        {
+          "definition" : "alternative normalization",
+          "score" : 0.3237473360333137
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.3237473360333137
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.3237473360333137
+        },
+        {
+          "definition" : "nonnegative integer",
+          "score" : 0.31347914375992064
+        },
+        {
+          "definition" : "special case",
+          "score" : 0.31347914375992064
+        },
+        {
+          "definition" : "Rodrigues ' formula",
+          "score" : 0.31344831240981247
+        },
+        {
+          "definition" : "Pochhammer 's symbol",
+          "score" : 0.3134483022376059
+        },
+        {
+          "definition" : "mathematics",
+          "score" : 0.31344830216349084
+        },
+        {
+          "definition" : "domain",
+          "score" : 0.29510245707057825
+        },
+        {
+          "definition" : "orthonormal basis",
+          "score" : 0.27649015627394585
+        },
+        {
+          "definition" : "term",
+          "score" : 0.27649015627394585
+        },
+        {
+          "definition" : "equivalent definition",
+          "score" : 0.27361437207880523
+        },
+        {
+          "definition" : "point",
+          "score" : 0.2478452773112104
+        },
+        {
+          "definition" : "case",
+          "score" : 0.22635718301432597
+        },
+        {
+          "definition" : "series for the hypergeometric function",
+          "score" : 0.22635718301432597
+        },
+        {
+          "definition" : "hypergeometric function",
+          "score" : 0.22635718214723086
+        },
+        {
+          "definition" : "hypergeometric polynomial",
+          "score" : 0.22635718207311575
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_bbe31257a81536e1e108b8f41a89c164",
+      "formula" : "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&\\qquad= (2n+\\alpha + \\beta-1) \\Big\\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\Big\\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+      "semanticFormula" : "\\begin{align}&2 n(n + \\alpha + \\beta)(2 n + \\alpha + \\beta - 2) \\JacobipolyP{\\alpha}{\\beta}{n}@{z} \\\\ &\\qquad =(2 n + \\alpha + \\beta - 1) \\{(2 n + \\alpha + \\beta)(2 n + \\alpha + \\beta - 2) z + \\alpha^2 - \\beta^2 \\} \\JacobipolyP{\\alpha}{\\beta}{n-1}@{z} - 2(n + \\alpha - 1)(n + \\beta - 1)(2 n + \\alpha + \\beta) \\JacobipolyP{\\alpha}{\\beta}{n-2}@{z} ,\\end{align}",
+      "confidence" : 0.9041995034970904,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "2*n*(n + \\[Alpha]+ \\[Beta])*(2*n + \\[Alpha]+ \\[Beta]- 2)*JacobiP[n, \\[Alpha], \\[Beta], z] == (2*n + \\[Alpha]+ \\[Beta]- 1)*((2*n + \\[Alpha]+ \\[Beta])*(2*n + \\[Alpha]+ \\[Beta]- 2)*z + \\[Alpha]^(2)- \\[Beta]^(2))*JacobiP[n - 1, \\[Alpha], \\[Beta], z]- 2*(n + \\[Alpha]- 1)*(n + \\[Beta]- 1)*(2*n + \\[Alpha]+ \\[Beta])*JacobiP[n - 2, \\[Alpha], \\[Beta], z]",
+          "translationInformation" : {
+            "subEquations" : [
+              "2*n*(n + \\[Alpha]+ \\[Beta])*(2*n + \\[Alpha]+ \\[Beta]- 2)*JacobiP[n, \\[Alpha], \\[Beta], z] = (2*n + \\[Alpha]+ \\[Beta]- 1)*((2*n + \\[Alpha]+ \\[Beta])*(2*n + \\[Alpha]+ \\[Beta]- 2)*z + \\[Alpha]^(2)- \\[Beta]^(2))*JacobiP[n - 1, \\[Alpha], \\[Beta], z]- 2*(n + \\[Alpha]- 1)*(n + \\[Beta]- 1)*(2*n + \\[Alpha]+ \\[Beta])*JacobiP[n - 2, \\[Alpha], \\[Beta], z]"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "2*n*(n + alpha + beta)*(2*n + alpha + beta - 2)*JacobiP(n, alpha, beta, z) = (2*n + alpha + beta - 1)*((2*n + alpha + beta)*(2*n + alpha + beta - 2)*z + (alpha)^(2)- (beta)^(2))*JacobiP(n - 1, alpha, beta, z)- 2*(n + alpha - 1)*(n + beta - 1)*(2*n + alpha + beta)*JacobiP(n - 2, alpha, beta, z)",
+          "translationInformation" : {
+            "subEquations" : [
+              "2*n*(n + alpha + beta)*(2*n + alpha + beta - 2)*JacobiP(n, alpha, beta, z) = (2*n + alpha + beta - 1)*((2*n + alpha + beta)*(2*n + alpha + beta - 2)*z + (alpha)^(2)- (beta)^(2))*JacobiP(n - 1, alpha, beta, z)- 2*(n + alpha - 1)*(n + beta - 1)*(2*n + alpha + beta)*JacobiP(n - 2, alpha, beta, z)"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 9,
+          "sentence" : 0,
+          "word" : 12
+        }
+      ],
+      "includes" : [
+        "n + \\alpha + \\beta",
+        "\\alpha,\\beta",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "recurrence relation for the Jacobi polynomial",
+          "score" : 0.7125985104912714
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_742460c93f449417419cf4d797043608",
+      "formula" : "n= 2, 3, ...",
+      "semanticFormula" : "n= 2, 3",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "n == 2 , 3",
+          "translationInformation" : {
+            "subEquations" : [
+              "n = 2 , 3"
+            ],
+            "freeVariables" : [
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "n == 2 , 3",
+          "translationInformation" : {
+            "subEquations" : [
+              "n = 2 , 3"
+            ],
+            "freeVariables" : [
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "n = 2 , 3",
+          "translationInformation" : {
+            "subEquations" : [
+              "n = 2 , 3"
+            ],
+            "freeVariables" : [
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 9,
+          "sentence" : 0,
+          "word" : 14
+        }
+      ],
+      "includes" : [
+        "n=m",
+        "n"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "recurrence relation for the Jacobi polynomial",
+          "score" : 0.6859086196238077
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_2583a2b549a7ff71d02941bc95a657b7",
+      "formula" : "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}",
+      "semanticFormula" : "\\begin{align}(z - 1) \\deriv [1]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\ &= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\ &=(1 + \\alpha + \\beta + n)(P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)}) \\\\ &=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\ &= \\frac{2(n + 1) P_{n+1}^{(\\alpha,\\beta-1)} -(z(1 + \\alpha + \\beta + n) + \\alpha + 1 + n - \\beta) P_n^{(\\alpha,\\beta)}}{1+z} \\\\ &=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\ &= \\frac{1-z}{1+z}(\\beta P_n^{(\\alpha,\\beta)} -(\\beta + n) P_{n}^{(\\alpha+1,\\beta-1)}) .\\end{align}",
+      "confidence" : 0.9378384212127765,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) == n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) == (1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta])) == (\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta]) == Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] == Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))",
+          "translationInformation" : {
+            "subEquations" : [
+              "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] = Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1)",
+              "Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) = n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1)",
+              "n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) = (1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta]))",
+              "(1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta])) = (\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])",
+              "(\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta]) = Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z]",
+              "Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] = Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z]",
+              "Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] = Divide[1 - z,1 + z]*(\\[Beta]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))"
+            ],
+            "freeVariables" : [
+              "P",
+              "Subscript[P, n + 1]",
+              "Subscript[P, n - 1]",
+              "Subscript[P, n]",
+              "\\[Alpha]",
+              "\\[Beta]",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1) = n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta)) = (alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta) = (2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*P(P[n])^(alpha , beta)-(beta + n)*P(P[n])^(alpha + 1 , beta - 1))",
+          "translationInformation" : {
+            "subEquations" : [
+              "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1)",
+              "(1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1) = n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1)",
+              "n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta))",
+              "(1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta)) = (alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta)",
+              "(alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta) = (2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z)",
+              "(2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z)",
+              "((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*P(P[n])^(alpha , beta)-(beta + n)*P(P[n])^(alpha + 1 , beta - 1))"
+            ],
+            "freeVariables" : [
+              "P",
+              "P[n + 1]",
+              "P[n - 1]",
+              "P[n]",
+              "alpha",
+              "beta",
+              "n",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 9,
+          "sentence" : 2,
+          "word" : 11
+        }
+      ],
+      "includes" : [
+        "n + \\alpha + \\beta",
+        "\\alpha,\\beta",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "identity",
+          "score" : 0.722
+        },
+        {
+          "definition" : "Gauss ' contiguous relation",
+          "score" : 0.6460746792928004
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_43e16b736c3ae9163cfddd4918b3c9b8",
+      "formula" : "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
+      "semanticFormula" : "\\sum_{n=0}^\\infty \\JacobipolyP{\\alpha}{\\beta}{n}@{z} t^n = 2^{\\alpha + \\beta} R^{-1}(1 - t + R)^{-\\alpha}(1 + t + R)^{-\\beta}",
+      "confidence" : 0.8953028732079359,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "Sum[JacobiP[n, \\[Alpha], \\[Beta], z]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None] == (2)^(\\[Alpha]+ \\[Beta])* (R)^(- 1)*(1 - t + R)^(- \\[Alpha])*(1 + t + R)^(- \\[Beta])",
+          "translationInformation" : {
+            "subEquations" : [
+              "Sum[JacobiP[n, \\[Alpha], \\[Beta], z]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None] = (2)^(\\[Alpha]+ \\[Beta])* (R)^(- 1)*(1 - t + R)^(- \\[Alpha])*(1 + t + R)^(- \\[Beta])"
+            ],
+            "freeVariables" : [
+              "R",
+              "\\[Alpha]",
+              "\\[Beta]",
+              "t",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "sum(JacobiP(n, alpha, beta, z)*(t)^(n), n = 0..infinity) = (2)^(alpha + beta)* (R)^(- 1)*(1 - t + R)^(- alpha)*(1 + t + R)^(- beta)",
+          "translationInformation" : {
+            "subEquations" : [
+              "sum(JacobiP(n, alpha, beta, z)*(t)^(n), n = 0..infinity) = (2)^(alpha + beta)* (R)^(- 1)*(1 - t + R)^(- alpha)*(1 + t + R)^(- beta)"
+            ],
+            "freeVariables" : [
+              "R",
+              "alpha",
+              "beta",
+              "t",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 10,
+          "sentence" : 0,
+          "word" : 10
+        }
+      ],
+      "includes" : [
+        "n=m",
+        "\\alpha,\\beta",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "function of the Jacobi polynomial",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "branch of square root",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_2153500c5ffe4eef80d43a4c74554738",
+      "formula" : "R = R(z, t) = \\left(1 - 2zt + t^2\\right)^{\\frac{1}{2}}",
+      "semanticFormula" : "R = R(z , t) =(1 - 2 zt + t^2)^{\\frac{1}{2}}",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
+          "translationInformation" : {
+            "subEquations" : [
+              "R = R*(z , t)",
+              "R*(z , t) = (1 - 2*z*t + (t)^(2))^(Divide[1,2])"
+            ],
+            "freeVariables" : [
+              "R",
+              "t",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))",
+          "translationInformation" : {
+            "subEquations" : [
+              "R = R*(z , t)",
+              "R*(z , t) = (1 - 2*z*t + (t)**(2))**((1)/(2))"
+            ],
+            "freeVariables" : [
+              "R",
+              "t",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "R = R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))",
+          "translationInformation" : {
+            "subEquations" : [
+              "R = R*(z , t)",
+              "R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))"
+            ],
+            "freeVariables" : [
+              "R",
+              "t",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 10,
+          "sentence" : 0,
+          "word" : 13
+        }
+      ],
+      "includes" : [
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "branch of square root",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "function of the Jacobi polynomial",
+          "score" : 0.6460746792928004
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_72b205d3ea4ad955996b9b9bf51af87c",
+      "formula" : "R(z, 0) = 1",
+      "semanticFormula" : "R(z, 0) = 1",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "R*(z , 0) == 1",
+          "translationInformation" : {
+            "subEquations" : [
+              "R*(z , 0) = 1"
+            ],
+            "freeVariables" : [
+              "R",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "R*(z , 0) == 1",
+          "translationInformation" : {
+            "subEquations" : [
+              "R*(z , 0) = 1"
+            ],
+            "freeVariables" : [
+              "R",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "R*(z , 0) = 1",
+          "translationInformation" : {
+            "subEquations" : [
+              "R*(z , 0) = 1"
+            ],
+            "freeVariables" : [
+              "R",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 10,
+          "sentence" : 0,
+          "word" : 25
+        }
+      ],
+      "includes" : [
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "branch of square root",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "function of the Jacobi polynomial",
+          "score" : 0.6460746792928004
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_9dc229093c0cfe263c966e50e7f0a24a",
+      "formula" : "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos \\theta} = n^{-\\frac{1}{2}} k(\\theta) \\cos(\\AirymodderivN@{x} \\theta + \\gamma) + O(n^{-\\frac{3}{2}})",
+      "confidence" : 0.7551883285904557,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2]*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] = (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2]*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))"
+            ],
+            "freeVariables" : [
+              "O",
+              "\\[Alpha]",
+              "\\[Beta]",
+              "\\[Gamma]",
+              "\\[Theta]",
+              "k",
+              "n",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\AirymodderivN" : "Airy modulus function N; Example: \\AirymodderivN@{z}\nWill be translated to: \nAlternative translations: [Sqrt[AiryAiPrime[$0]^2 + AiryBiPrime[$0]^2]]Relevant links to definitions:\nDLMF:         http://dlmf.nist.gov/9.8#i\nMathematica:  https://"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)*cos(sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2)*theta + gamma)+ O*((n)^(-(3)/(2)))",
+          "translationInformation" : {
+            "subEquations" : [
+              "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)*cos(sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2)*theta + gamma)+ O*((n)^(-(3)/(2)))"
+            ],
+            "freeVariables" : [
+              "O",
+              "alpha",
+              "beta",
+              "gamma",
+              "k",
+              "n",
+              "theta",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\AirymodderivN" : "Airy modulus function N; Example: \\AirymodderivN@{z}\nWill be translated to: \nAlternative translations: [sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2)]Relevant links to definitions:\nDLMF:  http://dlmf.nist.gov/9.8#i\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=sqrt"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 11,
+          "sentence" : 0,
+          "word" : 21
+        }
+      ],
+      "includes" : [
+        "\\alpha,\\beta",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "k",
+        "O"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.722
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "term",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_25de4fcbf8879d9f165ef8adcb1f1d40",
+      "formula" : "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2},\\\\N &= n + \\tfrac{1}{2} (\\alpha+\\beta+1),\\\\\\gamma &= - \\tfrac{\\pi}{2} \\left (\\alpha + \\tfrac{1}{2} \\right ),\\end{align}",
+      "semanticFormula" : "\\begin{align}k(\\theta) &= \\cpi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2} , \\\\ \\AirymodderivN@{x} &= n + \\tfrac{1}{2} (\\alpha+\\beta+1), \\\\ \\gamma &= - \\tfrac{\\cpi}{2}(\\alpha + \\tfrac{1}{2}) ,\\end{align}",
+      "confidence" : 0.5725382359681349,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "k*(\\[Theta]) == (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nSqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])",
+          "translationInformation" : {
+            "subEquations" : [
+              "k*(\\[Theta]) = (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])",
+              "Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] = n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)",
+              "\\[Gamma] = -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])"
+            ],
+            "freeVariables" : [
+              "\\[Alpha]",
+              "\\[Beta]",
+              "\\[Gamma]",
+              "\\[Theta]",
+              "k",
+              "n",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
+              "\\cpi" : "Pi was translated to: Pi",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\AirymodderivN" : "Airy modulus function N; Example: \\AirymodderivN@{z}\nWill be translated to: \nAlternative translations: [Sqrt[AiryAiPrime[$0]^2 + AiryBiPrime[$0]^2]]Relevant links to definitions:\nDLMF:         http://dlmf.nist.gov/9.8#i\nMathematica:  https://",
+              "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: Sin[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E1\nMathematica:  https://reference.wolfram.com/language/ref/Sin.html"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "k*(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1); gamma = -(Pi)/(2)*(alpha +(1)/(2))",
+          "translationInformation" : {
+            "subEquations" : [
+              "k*(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2))",
+              "sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1)",
+              "gamma = -(Pi)/(2)*(alpha +(1)/(2))"
+            ],
+            "freeVariables" : [
+              "alpha",
+              "beta",
+              "gamma",
+              "k",
+              "n",
+              "theta",
+              "x"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
+              "\\cpi" : "Pi was translated to: Pi",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\AirymodderivN" : "Airy modulus function N; Example: \\AirymodderivN@{z}\nWill be translated to: \nAlternative translations: [sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2)]Relevant links to definitions:\nDLMF:  http://dlmf.nist.gov/9.8#i\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=sqrt",
+              "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: sin($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=sin"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 11,
+          "sentence" : 0,
+          "word" : 24
+        }
+      ],
+      "includes" : [
+        "n",
+        "k"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "term",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_f186217753c37b9b9f958d906208506e",
+      "formula" : "O",
+      "semanticFormula" : "O",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "O",
+          "translationInformation" : {
+            "subEquations" : [
+              "O"
+            ],
+            "freeVariables" : [
+              "O"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "O",
+          "translationInformation" : {
+            "subEquations" : [
+              "O"
+            ],
+            "freeVariables" : [
+              "O"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "O",
+          "translationInformation" : {
+            "subEquations" : [
+              "O"
+            ],
+            "freeVariables" : [
+              "O"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 11,
+          "sentence" : 0,
+          "word" : 28
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [
+        "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.722
+        },
+        {
+          "definition" : "term",
+          "score" : 0.722
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "interval",
+          "score" : 0.6460746792928004
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_ce84060a9db09d40e6b443d14a3e30f4",
+      "formula" : "[\\epsilon,\\pi-\\epsilon]",
+      "semanticFormula" : "[\\epsilon , \\cpi - \\epsilon]",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "[\\[Epsilon], Pi - \\[Epsilon]]",
+          "translationInformation" : {
+            "subEquations" : [
+              "[\\[Epsilon], Pi - \\[Epsilon]]"
+            ],
+            "freeVariables" : [
+              "\\[Epsilon]"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cpi" : "Pi was translated to: Pi"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "[Symbol('epsilon'), pi - Symbol('epsilon')]",
+          "translationInformation" : {
+            "subEquations" : [
+              "[Symbol('epsilon'), pi - Symbol('epsilon')]"
+            ],
+            "freeVariables" : [
+              "Symbol('epsilon')"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cpi" : "Pi was translated to: pi"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "[epsilon , Pi - epsilon]",
+          "translationInformation" : {
+            "subEquations" : [
+              "[epsilon , Pi - epsilon]"
+            ],
+            "freeVariables" : [
+              "epsilon"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cpi" : "Pi was translated to: Pi"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 11,
+          "sentence" : 0,
+          "word" : 36
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "interval",
+          "score" : 0.722
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "term",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_48cd3d9bc60a933438e6e151fcabafdf",
+      "formula" : "\\epsilon > 0",
+      "semanticFormula" : "\\epsilon > 0",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "\\[Epsilon] > 0",
+          "translationInformation" : {
+            "subEquations" : [
+              "\\[Epsilon] > 0"
+            ],
+            "freeVariables" : [
+              "\\[Epsilon]"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "Symbol('epsilon') > 0",
+          "translationInformation" : {
+            "subEquations" : [
+              "Symbol('epsilon') > 0"
+            ],
+            "freeVariables" : [
+              "Symbol('epsilon')"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "epsilon > 0",
+          "translationInformation" : {
+            "subEquations" : [
+              "epsilon > 0"
+            ],
+            "freeVariables" : [
+              "epsilon"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 11,
+          "sentence" : 0,
+          "word" : 39
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "interval",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "asymptotic",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "Darboux formula",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "term",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "interior",
+          "score" : 0.5500952380952381
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_af6de3ef393b4f48057f5b14b797ac07",
+      "formula" : "\\pm1",
+      "semanticFormula" : "\\pm1",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "\\[PlusMinus]1",
+          "translationInformation" : {
+            "subEquations" : [
+              "\\[PlusMinus]1"
+            ],
+            "freeVariables" : [ ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\pm" : "was translated to: \\[PlusMinus]"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "&+- 1",
+          "translationInformation" : {
+            "subEquations" : [
+              "&+- 1"
+            ],
+            "freeVariables" : [ ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\pm" : "was translated to: &+-"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 11,
+          "sentence" : 1,
+          "word" : 9
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "point",
+          "score" : 0.722
+        },
+        {
+          "definition" : "asymptotic of the Jacobi polynomial",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "Heine formula",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "Mehler",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "limit",
+          "score" : 0.5049074255814494
+        },
+        {
+          "definition" : "domain",
+          "score" : 0.46655930748162855
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_34980bfcd6b86900308ec8f48f593ff0",
+      "formula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
+      "semanticFormula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\alpha} J_\\alpha(z) \\\\ \\lim_{n \\to \\infty} n^{-\\beta} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\cpi - \\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\beta} J_\\beta(z)\\end{align}",
+      "confidence" : 0.8805714208615747,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Pi -Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)",
+          "translationInformation" : {
+            "subEquations" : [
+              "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] = (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)",
+              "Limit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Pi -Divide[z,n]]], n -> Infinity, GenerateConditions->None] = (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)"
+            ],
+            "freeVariables" : [
+              "Subscript[J, \\[Alpha]]",
+              "Subscript[J, \\[Beta]]",
+              "\\[Alpha]",
+              "\\[Beta]",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "\\cpi" : "Pi was translated to: Pi",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z); limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(Pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)",
+          "translationInformation" : {
+            "subEquations" : [
+              "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z)",
+              "limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(Pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)"
+            ],
+            "freeVariables" : [
+              "J[alpha]",
+              "J[beta]",
+              "alpha",
+              "beta",
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "\\cpi" : "Pi was translated to: Pi",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 11,
+          "sentence" : 1,
+          "word" : 18
+        }
+      ],
+      "includes" : [
+        "\\alpha,\\beta",
+        "n",
+        "P_{n}^{(\\alpha, \\beta)}",
+        "P_{n}^{(\\alpha, \\beta)}(x)",
+        "z"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "Heine formula",
+          "score" : 0.722
+        },
+        {
+          "definition" : "asymptotic of the Jacobi polynomial",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "limit",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "Mehler",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "domain",
+          "score" : 0.6460746792928004
+        },
+        {
+          "definition" : "point",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_fbade9e36a3f36d3d676c1b808451dd7",
+      "formula" : "z",
+      "semanticFormula" : "z",
+      "confidence" : 0.0,
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "z",
+          "translationInformation" : {
+            "subEquations" : [
+              "z"
+            ],
+            "freeVariables" : [
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "SymPy" : {
+          "translation" : "z",
+          "translationInformation" : {
+            "subEquations" : [
+              "z"
+            ],
+            "freeVariables" : [
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        },
+        "Maple" : {
+          "translation" : "z",
+          "translationInformation" : {
+            "subEquations" : [
+              "z"
+            ],
+            "freeVariables" : [
+              "z"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : { }
+          }
+        }
+      },
+      "positions" : [
+        {
+          "section" : 11,
+          "sentence" : 1,
+          "word" : 25
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [
+        "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
+        "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
+        "P_0^{(\\alpha,\\beta)}(z)= 1",
+        "P_{n}(z) = \\frac{1 }{2^n  n! } \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n  \\;",
+        "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
+        "\\Gamma(z)",
+        "R(z, 0) = 1",
+        "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
+        "R = R(z, t) = \\left(1 - 2zt + t^2\\right)^{\\frac{1}{2}}",
+        "\\sum_{n=0}^\\infty P_n^{(\\alpha,\\beta)}(z) t^n = 2^{\\alpha + \\beta} R^{-1} (1 - t + R)^{-\\alpha} (1 + t + R)^{-\\beta}",
+        "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
+        "\\begin{align}&2n (n + \\alpha + \\beta) (2n + \\alpha + \\beta - 2) P_n^{(\\alpha,\\beta)}(z) \\\\&\\qquad= (2n+\\alpha + \\beta-1) \\Big\\{ (2n+\\alpha + \\beta)(2n+\\alpha+\\beta-2) z +  \\alpha^2 - \\beta^2 \\Big\\} P_{n-1}^{(\\alpha,\\beta)}(z) - 2 (n+\\alpha - 1) (n + \\beta-1) (2n+\\alpha + \\beta) P_{n-2}^{(\\alpha, \\beta)}(z),\\end{align}",
+        "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
+        "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
+        "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}",
+        "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,..",
+        "P_n^{(\\alpha, \\beta)} (-z) = (-1)^n P_n^{(\\beta, \\alpha)} (z)"
+      ],
+      "definiens" : [
+        {
+          "definition" : "Heine formula",
+          "score" : 0.722
+        },
+        {
+          "definition" : "domain",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "asymptotic of the Jacobi polynomial",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "limit",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "Mehler",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "point",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "branch of square root",
+          "score" : 0.5406937485865095
+        },
+        {
+          "definition" : "function of the Jacobi polynomial",
+          "score" : 0.5140038577190457
+        },
+        {
+          "definition" : "identity",
+          "score" : 0.4784564245921376
+        },
+        {
+          "definition" : "Gauss ' contiguous relation",
+          "score" : 0.4025311038849381
+        },
+        {
+          "definition" : "recurrence relation for the Jacobi polynomial",
+          "score" : 0.3902770819198429
+        },
+        {
+          "definition" : "symmetry relation",
+          "score" : 0.3788619791666667
+        },
+        {
+          "definition" : "integer",
+          "score" : 0.3781904762645919
+        },
+        {
+          "definition" : "Gamma function",
+          "score" : 0.36878898675586336
+        },
+        {
+          "definition" : "Legendre polynomial",
+          "score" : 0.3687889866820372
+        },
+        {
+          "definition" : "equivalent expression",
+          "score" : 0.36878898668174825
+        },
+        {
+          "definition" : "derivative of the explicit expression",
+          "score" : 0.34458600631380554
+        },
+        {
+          "definition" : "polynomial",
+          "score" : 0.3427705987904743
+        },
+        {
+          "definition" : "Rodrigues ' formula",
+          "score" : 0.34209909581429815
+        },
+        {
+          "definition" : "Pochhammer 's symbol",
+          "score" : 0.3420990958142839
+        },
+        {
+          "definition" : "other terminal value",
+          "score" : 0.30293665845946705
+        },
+        {
+          "definition" : "equivalent definition",
+          "score" : 0.30226515548329097
+        },
+        {
+          "definition" : "case",
+          "score" : 0.2550079757239094
+        },
+        {
+          "definition" : "series for the hypergeometric function",
+          "score" : 0.2550079757239094
+        },
+        {
+          "definition" : "hypergeometric function",
+          "score" : 0.25500797572390876
+        },
+        {
+          "definition" : "Jacobi polynomial",
+          "score" : 0.25500797572390876
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_6964a7b6d1913beef831d08c5478f8cf",
+      "formula" : "d^{j}_{m',m}(\\varphi)",
+      "semanticFormula" : "d_{m',m}^{j}(\\varphi)",
+      "confidence" : 0.0,
+      "translations" : { },
+      "positions" : [
+        {
+          "section" : 12,
+          "sentence" : 0,
+          "word" : 11
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "expression of the Wigner d-matrix",
+          "score" : 0.722
+        },
+        {
+          "definition" : "term of Jacobi polynomial",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "expression",
+          "score" : 0.5988174995334326
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_4ccb6d1e7c90bf59553de9025e547412",
+      "formula" : "0 \\leq \\varphi \\leq 4\\pi)",
+      "semanticFormula" : "0 \\leq \\varphi \\leq 4 \\cpi)",
+      "confidence" : 0.0,
+      "translations" : { },
+      "positions" : [
+        {
+          "section" : 12,
+          "sentence" : 0,
+          "word" : 14
+        }
+      ],
+      "includes" : [ ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "term of Jacobi polynomial",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "expression of the Wigner d-matrix",
+          "score" : 0.6859086196238077
+        },
+        {
+          "definition" : "expression",
+          "score" : 0.5500952380952381
+        }
+      ]
+    },
+    {
+      "id" : "FORMULA_adb31e6dc814328e8bfc8b3f900eee59",
+      "formula" : "d^j_{m'm}(\\phi) =\\left[ \\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\\right]^{\\frac{1}{2}} \\left(\\sin\\tfrac{\\phi}{2}\\right)^{m-m'} \\left(\\cos\\tfrac{\\phi}{2}\\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\\cos \\phi)",
+      "semanticFormula" : "d_{m'm}^j(\\phi) = [\\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}]^{\\frac{1}{2}}(\\sin \\tfrac{\\phi}{2})^{m-m'}(\\cos \\tfrac{\\phi}{2})^{m+m'} \\JacobipolyP{m - m '}{m + m '}{j-m}@{\\cos \\phi}",
+      "confidence" : 0.8662724998444776,
+      "translations" : { },
+      "positions" : [
+        {
+          "section" : 12,
+          "sentence" : 0,
+          "word" : 21
+        }
+      ],
+      "includes" : [
+        "P_{n}^{(\\alpha, \\beta)}",
+        "P_{n}^{(\\alpha, \\beta)}(x)"
+      ],
+      "isPartOf" : [ ],
+      "definiens" : [
+        {
+          "definition" : "expression of the Wigner d-matrix",
+          "score" : 0.7125985104912714
+        },
+        {
+          "definition" : "expression",
+          "score" : 0.5988174995334326
+        },
+        {
+          "definition" : "term of Jacobi polynomial",
+          "score" : 0.5988174995334326
+        }
+      ]
+    }
+  ]
+}

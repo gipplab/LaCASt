@@ -18,25 +18,29 @@ public final class MapleConfig {
 
     private MapleConfig(){}
 
+    public static boolean isMapleSetup() {
+        return areSystemVariablesSetProperly() && isThreadStackIncreased();
+    }
+
     public static boolean areSystemVariablesSetProperly() {
         boolean libExists = RequirementChecker.validEnvVariable(
                 Keys.SYSTEM_ENV_LD_LIBRARY_PATH,
                 Keys.KEY_MAPLE,
                 "<maple-installation-path>",
-                "bin.X86_64_LINUX"
+                "maple\\d+/bin\\.X86_64_LINUX"
         );
 
         if ( !libExists ) return false;
 
-        boolean mapleExists = RequirementChecker.validEnvVariable(
+        return RequirementChecker.validEnvVariable(
                 Keys.SYSTEM_ENV_MAPLE,
                 Keys.KEY_MAPLE,
                 "for Linux: <maple-installation-path>/bin.X86_64_LINUX",
-                "maple"
+                "maple\\d+"
         );
+    }
 
-        if ( !mapleExists ) return false;
-
+    public static boolean isThreadStackIncreased() {
         // try check JVM option -Xss is set
         try {
             RuntimeMXBean runtimeMXBean = ManagementFactory.getRuntimeMXBean();
@@ -48,7 +52,7 @@ public final class MapleConfig {
                     } else {
                         LOG.printf(Level.WARN,
                                 "Identified setting of specific thread stack size %s but it looks too small. "+
-                                "You may not specify sufficient thread stack size for Maple 2019 or above. " +
+                                        "You may not specify sufficient thread stack size for Maple 2019 or above. " +
                                         "Use 10M or more, otherwise Maple might crash.",
                                 arg);
                     }
@@ -56,14 +60,13 @@ public final class MapleConfig {
                 }
             }
             // this means we reached the end without proper JVM option. This does not work for maple unfortunately.
-            LOG.warn("Maple 2019 and above require a higher thread stack size to work properly. " +
+            LOG.warn("Maple 2020 and above require a higher thread stack size to work properly. " +
                     "Specify it on JVM start via -Xss or -XX:ThreadStackSize. Use at least 10M, e.g., -Xss50M.");
             return false;
         } catch ( Error | Exception e ) {
             LOG.debug("Unable to check -Xss variable on this JVM. Let's hope the user properly set -Xss.");
+            return true;
         }
-
-        return true;
     }
 
 }

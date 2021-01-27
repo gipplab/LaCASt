@@ -1,11 +1,15 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.common.cas.Constraints;
+import gov.nist.drmf.interpreter.common.eval.INumericTestCase;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.latex.Relations;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
+import gov.nist.drmf.interpreter.pom.common.SymbolTag;
 import gov.nist.drmf.interpreter.pom.extensions.MatchablePomTaggedExpression;
 import gov.nist.drmf.interpreter.pom.extensions.PomMatcher;
 import gov.nist.drmf.interpreter.pom.extensions.PomMatcherBuilder;
@@ -24,7 +28,7 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public class Case {
+public class Case implements INumericTestCase {
     private static final Logger LOG = LogManager.getLogger(Case.class.getName());
 
     private String originalLaTeXInput = null;

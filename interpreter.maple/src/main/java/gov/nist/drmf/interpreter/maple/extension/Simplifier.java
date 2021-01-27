@@ -2,9 +2,11 @@ package gov.nist.drmf.interpreter.maple.extension;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -13,13 +15,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
 /**
  * @author Andre Greiner-Petter
  */
-public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
+public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
     private static final Logger LOG = LogManager.getLogger(Simplifier.class.getName());
 
     /**
@@ -47,6 +50,23 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
             LOG.fatal("Unable to initiate the symbol and function translator.", e);
         }
         packageWrapper = new PackageWrapper(basicFunctionsTranslator, symbolTranslator);
+    }
+
+    @Override
+    public void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        String cmd = String.join(", ", assumptions);
+        try {
+            maple.evaluate("assume(" + cmd + ");");
+            LOG.info("Set global assumptions in Maple: " + assumptions);
+        } catch (MapleException me) {
+            LOG.error("Unable to set global assumptions for Maple: " + assumptions);
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    @Override
+    public void setTimeout(EvaluatorType type, double timeLimit) {
+        if ( EvaluatorType.SYMBOLIC.equals(type) ) this.timeout = timeLimit;
     }
 
     @Override
@@ -193,6 +213,13 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
         return false;
     }
 
+    private String latestTestExpression = "";
+
+    @Override
+    public String getLatestTestExpression() {
+        return latestTestExpression;
+    }
+
     /**
      * Simplify given expression. Be aware, the given expression should not
      * end with ';'.
@@ -202,6 +229,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
      * @see Algebraic
      */
     public Algebraic mapleSimplify( String maple_expr, Set<String> requiredPackages ) throws MapleException {
+        latestTestExpression = "";
         String simplify = chooseSimplify(requiredPackages);
 
         if ( !requiredPackages.isEmpty() ) {
@@ -211,6 +239,7 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
         }
 
         String command = simplify + "(" + maple_expr + ")";
+        latestTestExpression = command;
         if ( timeout > 0 ) {
             command = "try timelimit("+timeout+","+command+"); catch \"time expired\": \"";
             command += MapleInterface.TIMED_OUT_SIGNAL;
@@ -286,6 +315,16 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     }
 
     @Override
+    public boolean isTrue(Algebraic in) throws ComputerAlgebraSystemEngineException {
+        try {
+            Algebraic boolResult = maple.evaluate( "evalb(" + in.toString() + ");" );
+            return "true".equals(boolResult.toString());
+        } catch (MapleException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
+
+    @Override
     public boolean isAsExpected(Algebraic in, double expect) {
         String str = in.toString();
         try {
@@ -304,11 +343,6 @@ public class Simplifier implements ICASEngineSymbolicEvaluator<Algebraic> {
     @Override
     public String getCondition(Algebraic in) {
         return "";
-    }
-
-    @Override
-    public void abort() {
-        LOG.warn("Abortion is not supported by Maple.");
     }
 
     @Override

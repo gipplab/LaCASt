@@ -1,14 +1,21 @@
 package gov.nist.drmf.interpreter.common.cas;
 
-import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
 
 /**
  * @author Andre Greiner-Petter
  */
-public interface IAbortEvaluator<T> {
-    void setTimeout(double timeoutInSeconds);
+public interface IAbortEvaluator {
+    /**
+     * Sets the timeout for the upcoming computation
+     * @param timeoutInSeconds sets the timeout in seconds
+     */
+    void setTimeout(EvaluatorType type, double timeoutInSeconds);
 
-    void abort();
-
-    boolean wasAborted(T result);
+    /**
+     * Disables the timeout. The computation may run forever
+     */
+    default void disableTimeout(EvaluatorType type) {
+        setTimeout(type, -1);
+    }
 }

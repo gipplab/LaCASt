@@ -26,6 +26,9 @@ public class MatcherConfig {
     private boolean ignoreBracketLogic = false;
     private boolean ignoreNumberOfAts = false;
 
+    private boolean ignoreOperatorName = true;
+    private boolean ignoreFontManipulation = false;
+
     private final Map<String, String> illegalTokenForWildcards = new HashMap<>();
 
     private MatcherConfig() {
@@ -37,6 +40,7 @@ public class MatcherConfig {
         this.allowFollowingTokens = referenceConfig.allowFollowingTokens;
         this.ignoreBracketLogic = referenceConfig.ignoreBracketLogic;
         this.ignoreNumberOfAts = referenceConfig.ignoreNumberOfAts;
+        this.ignoreOperatorName = referenceConfig.ignoreOperatorName;
         this.illegalTokenForWildcards.putAll(referenceConfig.illegalTokenForWildcards);
     }
 
@@ -73,6 +77,24 @@ public class MatcherConfig {
 
     public MatcherConfig ignoreNumberOfAts(boolean ignoreNumberOfAts) {
         this.ignoreNumberOfAts = ignoreNumberOfAts;
+        return this;
+    }
+
+    public boolean ignoreOperatorName() {
+        return ignoreOperatorName;
+    }
+
+    public MatcherConfig ignoreOperatorName(boolean ignoreOperatorName) {
+        this.ignoreOperatorName = ignoreOperatorName;
+        return this;
+    }
+
+    public boolean ignoreFontManipulation() {
+        return ignoreFontManipulation;
+    }
+
+    public MatcherConfig ignoreFontManipulation(boolean ignoreFontManipulation) {
+        this.ignoreFontManipulation = ignoreFontManipulation;
         return this;
     }
 

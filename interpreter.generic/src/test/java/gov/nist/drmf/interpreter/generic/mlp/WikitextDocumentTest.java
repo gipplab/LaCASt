@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
@@ -22,9 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 @AssumeElasticsearchAvailability
 public class WikitextDocumentTest {
-    @Test
-    void simpleWikitextTest() throws IOException {
-        String text = getResourceContent("simpleWikitest.xml");
+    @Resource("simpleWikitest.xml")
+    void simpleWikitextTest(String text) {
         Document document = new WikitextDocument(text);
 
         MLPDependencyGraph semanticGraph = document.getMOIDependencyGraph();
@@ -44,9 +44,5 @@ public class WikitextDocumentTest {
         Collections.sort(relations);
         assertEquals("Jacobi polynomial", relations.get(0).getDefinition());
         assertEquals("Carl Gustav Jacob Jacobi", relations.get(1).getDefinition());
-    }
-
-    private String getResourceContent(String resourceFilename) throws IOException {
-        return IOUtils.toString(this.getClass().getResourceAsStream(resourceFilename), StandardCharsets.UTF_8);
     }
 }

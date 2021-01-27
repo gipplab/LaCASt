@@ -9,6 +9,7 @@ import gov.nist.drmf.interpreter.cas.translation.components.util.LimitAnalyzer;
 import gov.nist.drmf.interpreter.cas.translation.components.util.MeomArgumentExtractor;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.pom.common.grammar.LimitedExpressions;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
@@ -35,8 +36,8 @@ public class LimitedTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(LimitedTranslator.class.getName());
 
     // perform translation and put everything into global_exp
-    private BasicFunctionsTranslator bft;
-    private LimitAnalyzer limitAnalyzer;
+    private final BasicFunctionsTranslator bft;
+    private final LimitAnalyzer limitAnalyzer;
 
     private final TranslatedExpression localTranslations;
 
@@ -65,8 +66,8 @@ public class LimitedTranslator extends AbstractListTranslator {
         LimitedExpressions category = LimitedExpressions.getExpression(root);
         checkCategoryValidity(category, root);
 
-        MathematicalEssentialOperatorMetadata limit = saveGetLimit(list, category);;
-        getInfoLogger().getFreeVariables().suppressingVars(limit.getVars());
+        MathematicalEssentialOperatorMetadata limit = saveGetLimit(list, category);
+        mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::suppressingVars, limit.getVars());
 
         // find elements that are part of the argument:
         // next, split into argument parts and the rest
@@ -78,8 +79,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         // add translation and the rest of the translation
         updateTranslationLists(finalTranslation, translatedPotentialArguments, category);
 
-        getInfoLogger().getFreeVariables().releaseVars(limit.getVars());
-
+        mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::releaseVars, limit.getVars());
         return localTranslations;
     }
 
@@ -134,12 +134,10 @@ public class LimitedTranslator extends AbstractListTranslator {
             LimitedExpressions category
     ) {
         // add translation and the rest of the translation
-        localTranslations.addTranslatedExpression(finalTranslation);
-        getGlobalTranslationList().addTranslatedExpression(finalTranslation);
+        perform(TranslatedExpression::addTranslatedExpression, finalTranslation);
 
         if ( !category.equals(LimitedExpressions.INT) ){
-            localTranslations.addTranslatedExpression(translatedPotentialArguments);
-            getGlobalTranslationList().addTranslatedExpression(translatedPotentialArguments);
+            perform(TranslatedExpression::addTranslatedExpression, translatedPotentialArguments);
         }
     }
 
@@ -235,6 +233,7 @@ public class LimitedTranslator extends AbstractListTranslator {
             limit.overwriteUpperLimit(te.getTranslatedExpression());
         }
 
+        if ( limit == null ) return new MathematicalEssentialOperatorMetadata();
         return limit;
     }
 

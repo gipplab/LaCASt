@@ -17,7 +17,11 @@ public enum Commands {
     FILTER_ASSUMPTIONS("filterAssumptions[XXX-1, XXX-2]", 2),
     FILTER_GLOBAL_ASSUMPTIONS("filterGlobalAssumptions[XXX-1, XXX-2, XXX-3]", 3),
     CREATE_TEST_CASES("createTestCases[XXX-1, XXX-2, XXX-3, XXX-4, XXX-5, XXX-6]", 6),
-    COMPLEMENT("Complement[XXX-1, XXX-2]", 2);
+    COMPLEMENT("Complement[XXX-1, XXX-2]", 2),
+    TIME_CONSTRAINED("TimeConstrained[XXX-1, XXX-2]", 2),
+    WAS_NUMERICALLY_SUCCESSFUL("wasSuccessful[XXX-1, XXX-2]", 2),
+    CLEAR_CACHE("ClearSystemCache[]", 0)
+    ;
 
 
     private static final String PLACE_HOLDER = "XXX";

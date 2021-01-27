@@ -70,9 +70,10 @@ public class ReplacementConfig {
             input = rule.replace(input);
         }
 
-//        LOG.debug("Applied generalized replacement rules.");
-
-        if ( link == null ) return input;
+        if ( link == null ) {
+            if ( input != null ) input = input.trim();
+            return input;
+        }
 
         for ( ConditionalReplacementRule rule : dlmfRules ) {
             if ( rule.applicable(link) ) {
@@ -81,6 +82,7 @@ public class ReplacementConfig {
             }
         }
 
+        if ( input != null ) input = input.trim();
         return input;
     }
 }

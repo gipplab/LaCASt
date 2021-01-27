@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.blueprints;
 import gov.nist.drmf.interpreter.pom.common.grammar.LimDirections;
 import gov.nist.drmf.interpreter.pom.common.grammar.LimitedExpressions;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -14,10 +15,16 @@ import java.util.List;
 public class MathematicalEssentialOperatorMetadata {
     public static String DEFAULT_UPPER_LIMIT = "\\infty";
 
-    private List<String> vars, upper, lower;
+    private final List<String> vars, upper, lower;
     private LimDirections direction;
 
     private boolean isLimitOverSet = false;
+
+    public MathematicalEssentialOperatorMetadata() {
+        this.vars = new LinkedList<>();
+        this.upper = new LinkedList<>();
+        this.lower = new LinkedList<>();
+    }
 
     public MathematicalEssentialOperatorMetadata(List<String> vars, List<String> lower, List<String> upper) {
         this.vars = vars;

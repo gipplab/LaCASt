@@ -62,12 +62,12 @@ specialVariables := proc(vars::list, values::list)
   return output;
 end proc:
 
-buildTestValues := proc(ass::list, values::list)
+buildTestValues := proc(ass::list, values::list, maxcombis::posint)
   local combi, combo, output, tmpBool, idx;
   output := NULL;
   combi := cartprod(values);
   while not combi[finished] do
-    if nops([output]) > 299 then
+    if nops([output]) >= maxcombis then
       break
     end if:
     combo := combi[nextvalue]();

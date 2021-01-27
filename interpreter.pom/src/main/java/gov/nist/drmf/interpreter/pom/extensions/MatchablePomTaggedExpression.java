@@ -231,6 +231,11 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             MatcherConfig config
     ){
         MathTerm otherRoot = expression.getRoot();
+        if ( config.ignoreOperatorName() && MathTermUtility.isOperatorname(otherRoot) ) {
+            expression = followingExpressions.remove(0);
+            otherRoot = expression.getRoot();
+        }
+
         while (config.ignoreNumberOfAts() && MathTermUtility.isAt(otherRoot)) {
             if ( followingExpressions.isEmpty() ) {
                 return true;
@@ -239,12 +244,14 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             otherRoot = expression.getRoot();
         }
 
+//        String otherString = PomTaggedExpressionUtility.getAppropriateFontTex(expression, config.ignoreOperatorName());
+//        String thisString = PomTaggedExpressionUtility.getAppropriateFontTex(this, config.ignoreOperatorName());
 
+        String otherString = expression.getRoot().getTermText();
+        String thisString = this.getRoot().getTermText();
 
-        String otherString = PomTaggedExpressionUtility.getAppropriateFontTex(expression);
-        String thisString = PomTaggedExpressionUtility.getAppropriateFontTex(this);
         // TODO we might want to loose this test based on config (maybe ignore feature set, font manipulation, etc).
-        if (!thisString.equals(otherString)) {
+        if (!thisString.equals(otherString) || !matchesAccents(expression, config)) {
             return false;
         }
 
@@ -288,9 +295,9 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
     ) {
         PrintablePomTaggedExpression expression;
 
-        if ( !isSingleSequenceWildcard && fontManipulations.isEmpty() ) {
+        if ( continueMatchingEvenWithSingleSequence(bracketStack) && fontManipulations.isEmpty() ) {
             while (!followingExpressions.isEmpty()){
-                expression = followingExpressions.remove(0);
+                expression = followingExpressions.get(0);
                 if ( invalidBracketStack(bracketStack, expression) ) {
                     if ( !config.allowFollowingTokens() ) return false;
                     else break;
@@ -299,12 +306,22 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
                     if ( !config.allowFollowingTokens() ) return false;
                     else break;
                 }
+                followingExpressions.remove(0);
                 matches.add(expression);
+                if ( isSingleSequenceWildcard && bracketStack.isEmpty() ) {
+                    break;
+                }
             }
         }
 
         if ( !bracketStack.isEmpty() ) return false;
         return getCaptures().setCapturedGroup(wildcardID, matches);
+    }
+
+    private boolean continueMatchingEvenWithSingleSequence(
+            LinkedList<Brackets> bracketStack
+    ) {
+        return !isSingleSequenceWildcard || !bracketStack.isEmpty();
     }
 
     private boolean matchWildcardUntilEnd(
@@ -317,13 +334,14 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         PrintablePomTaggedExpression next = followingExpressions.remove(0);
 
         // fill up wild card until the next hit
-        while (!isSingleSequenceWildcard && continueMatching(bracketStack, next, followingExpressions, config)) {
+        while (continueMatchingEvenWithSingleSequence(bracketStack) && continueMatching(bracketStack, next, followingExpressions, config)) {
             if ( earlyFailWhileContinueMatching(next, followingExpressions, bracketStack, config) ) {
                 return false;
             }
 
             matches.add(next);
             next = followingExpressions.remove(0);
+            if ( isSingleSequenceWildcard && bracketStack.isEmpty() ) break;
         }
 
         if ( next == null || !bracketStack.isEmpty() ) return false;
@@ -450,8 +468,9 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
      * @return true if the accents matched otherwise false
      */
     private boolean matchesAccents(PomTaggedExpression pte, MatcherConfig config) {
-        List<String> otherFontManipulations = PomTaggedExpressionUtility.getFontManipulations(pte);
+        if ( config.ignoreFontManipulation() ) return true;
 
+        List<String> otherFontManipulations = PomTaggedExpressionUtility.getFontManipulations(pte);
         if ( this.fontManipulations.size() > otherFontManipulations.size() ) return false;
 
         for ( int i = 0; i < this.fontManipulations.size(); i++ ) {

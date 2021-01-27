@@ -29,6 +29,11 @@ public class GraphVisualizer {
             library.put(""+counter[0], l);
             counter[0]++;
         });
+
+//        library.put("1", "P_{n}^{(\\alpha, \\beta)}(x)");
+//        library.put("2", "P_{n}^{(\\alpha, \\beta)}(z)");
+//        library.put("3", "P_{n}^{(\\alpha, \\beta)}(y)");
+
         MOIDependencyGraph<?> moiGraph = MOIDependencyGraphBuilder.generateGraph(library);
         System.out.println("Loaded library.");
 
@@ -60,7 +65,7 @@ public class GraphVisualizer {
         }
 
         for ( MOINode<?> moiNode : moiGraph.getVertices() ) {
-            for ( MOIDependency moiEdge : moiNode.getOutgoingDependencies() ) {
+            for ( IDependency<?> moiEdge : moiNode.getOutgoingDependencies() ) {
                 if ( !nodeMemory.contains(moiNode.hashCode()) || !nodeMemory.contains(moiEdge.getSink().hashCode()) ) continue;
                 Edge e = graph.addEdge(
                         "E"+i,
@@ -97,7 +102,7 @@ public class GraphVisualizer {
 
     private static void addDependencies(Graph graph, Collection<MOIDependency> dependencyList, boolean outgoing) throws InterruptedException {
         for ( MOIDependency moiEdge : dependencyList ) {
-            MOINode node = outgoing ? moiEdge.getSink() : moiEdge.getSource();
+            MOINode node = (MOINode) (outgoing ? moiEdge.getSink() : moiEdge.getSource());
             if ( !nodeMemory.contains(node.hashCode()) ) {
                 Node sn = graph.addNode(node.hashCode()+"");
                 nodeMemory.add(node.hashCode());

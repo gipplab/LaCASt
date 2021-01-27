@@ -36,7 +36,7 @@ public class MathematicalObjectOfInterestTests {
     @Test
     public void jacobiPolyTest() throws ParseException {
         MathematicalObjectOfInterest moi = new MathematicalObjectOfInterest("P_{n}^{(\\alpha,\\beta)} (x)");
-        assertEquals("var0_{var1}^{(var2 , var3)} (var4)", moi.getPattern());
+        assertEquals("var0_{var1}^{(var2 , var3)}(var4)", moi.getPattern());
 
         Map<String, String> wildCardMapping = moi.getWildcardIdentifierMapping();
         assertTrue(wildCardMapping.containsValue("P"));
@@ -133,7 +133,7 @@ public class MathematicalObjectOfInterestTests {
         assertEquals("- n", hGroups.get("var1"));
         assertEquals("1 + \\alpha + \\beta + n", hGroups.get("var2"));
         assertEquals("\\alpha + 1", hGroups.get("var3"));
-        assertEquals("\\frac{1}{2} (1 - z)", hGroups.get("var4"));
+        assertEquals("\\frac{1}{2}(1 - z)", hGroups.get("var4"));
 
         assertNull(definition.match(jacobi));
         assertNull(definition.match(pochhammerSymbol));

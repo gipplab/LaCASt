@@ -1,107 +1,43 @@
 package gov.nist.drmf.interpreter.common.cas;
 
+import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
+import gov.nist.drmf.interpreter.common.eval.NumericalTest;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import gov.nist.drmf.interpreter.common.eval.NumericResult;
 
-import java.util.Collection;
 import java.util.List;
-import java.util.Observer;
 
 /**
  * @author Andre Greiner-Petter
  */
-public interface ICASEngineNumericalEvaluator<T> extends Observer, IAbortEvaluator<T> {
-    static final Logger LOG = LogManager.getLogger(ICASEngineNumericalEvaluator.class.getName());
-
+public interface ICASEngineNumericalEvaluator extends IAbortEvaluator {
     /**
-     * Stores the variables of the given expression and returns the
-     * name of the variable that stores the information.
-     * @param variables mathematical expression (already translated)
-     * @param testValues list of values
-     * @return name of the variable to access the variables of the expression
+     * Main method of the CAS engine numeric evaluator
+     * @param test the test case
+     * @return the result of the test case
      */
-    void storeVariables(Collection<String> variables, Collection<String> testValues);
-
-    /**
-     * Stores the given constraint variables and their values.
-     * It also updates the previously stored variables.
-     * @param constraintVariables list of variables of the constraints (translated)
-     * @param constraintValues the values for the constraint variables (ordered and translated)
-     * @return the name of the variable that accesses the constraint variables
-     */
-    void storeConstraintVariables(
-            List<String> constraintVariables,
-            List<String> constraintValues);
-
-    /**
-     * Essentially the same as {@link #storeConstraintVariables(List, List)}.
-     * @param extraVariables list of special treatment variables (translated)
-     * @param extraValues the values for the variables (ordered and translated)
-     * @return the name of the variable that accesses the special treatment variables
-     */
-    void storeExtraVariables(
-            List<String> extraVariables,
-            List<String> extraValues);
-
-    /**
-     * Sets constraints and returns the name of variables that is defined as the constraints.
-     * It returns null of no constraints exists.
-     * @param constraints constraints
-     * @return name of variable or null
-     */
-    String setConstraints(List<String> constraints);
-
-    /**
-     * Builds the test cases and returns the name of variable.
-     * @param maxCombis maximum number of combinations
-     * @return name of test cases variable
-     * @throws ComputerAlgebraSystemEngineException
-     * @throws IllegalArgumentException
-     */
-    String buildTestCases(String nameOfConstraints, int maxCombis) throws ComputerAlgebraSystemEngineException, IllegalArgumentException;
-
-    T performNumericalTests(
-            String expression,
-            String testCasesName,
-            String postProcessingMethodName,
-            int precision
-    ) throws ComputerAlgebraSystemEngineException;
-
-    ResultType getStatusOfResult(T results) throws ComputerAlgebraSystemEngineException;
-
-    default int getPerformedTestCases() {
-        return 0;
-    }
-
-    default int getNumberOfFailedTestCases() {
-        return 0;
-    }
-
-    default void setGlobalAssumptions(List<String> assumptions){
-        LOG.warn("Ignoring global assumptions. Overwrite setGlobalAssumptions if you wanna use them!");
-    };
+    NumericResult performNumericTest(NumericalTest test) throws ComputerAlgebraSystemEngineException;
 
     /**
      * In Maple its evalf( input );
-     * @param input
-     * @return
+     * @param expression input
+     * @return the numeric test expression (e.g., evalf(input))
      */
-    String generateNumericalTestExpression(String input);
+    String generateNumericTestExpression(String expression);
 
     /**
-     * Returns the name of the values-variable for the variable names.
-     * @param variableName when vars is the variable that holds the variables,
-     *                     you can call this method with {@param variableName} vars
-     *                     to get the according variable name of the values.
-     * @return name of values
+     * Sets global assumptions that will be applied to all following tests.
+     * @param assumptions list of assumptions
      */
-    static String getValuesName( String variableName ) {
-        return variableName + "Vals";
+    default void setGlobalNumericAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
+        // ignore by default
     }
 
-    enum ResultType {
-        SUCCESS, FAILURE, ERROR
+    default void setTimeout(double timeoutInSeconds) {
+        setTimeout(EvaluatorType.NUMERIC, timeoutInSeconds);
+    }
+
+    default void disableTimeout() {
+        disableTimeout(EvaluatorType.NUMERIC);
     }
 }

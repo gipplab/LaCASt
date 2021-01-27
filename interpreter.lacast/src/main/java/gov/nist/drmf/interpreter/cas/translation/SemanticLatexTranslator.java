@@ -3,8 +3,10 @@ package gov.nist.drmf.interpreter.cas.translation;
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
 import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.cas.logging.TranslatedExpressionHelper;
 import gov.nist.drmf.interpreter.common.InformationLogger;
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
@@ -14,10 +16,13 @@ import gov.nist.drmf.interpreter.common.interfaces.IDLMFTranslator;
 import gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule;
 import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.LinkedList;
 
 /**
  * <p>
@@ -60,8 +65,6 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
 
     private TranslatedExpression localTranslations;
 
-    private String latestTranslationExpression;
-
     /**
      * Creates a forward translator to the specified language.
      * @param to_language the language key
@@ -96,8 +99,25 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
         this.config = orig.config;
         this.parser = orig.parser;
         this.localTranslations = new TranslatedExpression();
-        this.latestTranslationExpression = orig.latestTranslationExpression;
         this.init();
+    }
+
+    /**
+     * Returns the source language of this translator which is always "LaTeX"
+     * @return the source language of this translator
+     */
+    @Override
+    public String getSourceLanguage() {
+        return config.getFROM_LANGUAGE();
+    }
+
+    /**
+     * Returns the target language of this translator, i.e., the language to which the expressions will be translated to.
+     * @return the translations the expressions will be translated to
+     */
+    @Override
+    public String getTargetLanguage() {
+        return config.getTO_LANGUAGE();
     }
 
     /**
@@ -167,7 +187,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
     public synchronized TranslationInformation translateToObject( String expression, String label ) throws TranslationException {
         if ( expression == null || expression.isEmpty() ) {
             LOG.warn("Tried to translate an empty expression");
-            return null;
+            return new TranslationInformation();
         }
 
         innerTranslate(expression, label);
@@ -175,26 +195,11 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
     }
 
     public TranslationInformation getTranslationInformationObject() {
-        TranslationInformation ti = new TranslationInformation(
-                this.latestTranslationExpression,
-                getGlobalTranslationList().getTranslatedExpression()
-        );
-        ti.setInformation(getInfoLogger());
-        ti.setRequiredPackages(getTranslatedExpressionObject().getRequiredPackages());
-        ti.addTranslatedConstraints(getTranslatedExpressionObject().getConstraints());
-        for ( TranslatedExpression te : getListOfPartialTranslations() ) {
-            TranslationInformation t = new TranslationInformation(this.latestTranslationExpression, te.getTranslatedExpression());
-            t.setInformation(getInfoLogger());
-            t.setRequiredPackages(te.getRequiredPackages());
-            t.addTranslatedConstraints(te.getConstraints());
-            ti.addTranslations(t);
-        }
-        return ti;
+        return super.getTranslationInformation();
     }
 
     private String innerTranslate( String expression, String label ) throws TranslationException {
         try {
-            this.latestTranslationExpression = expression;
             PomTaggedExpression exp = parser.parse(expression, label);
             translate(exp);
             if ( !super.getInfoLogger().isEmpty() && !config.shortenedOutput() ) {
@@ -224,22 +229,62 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
 
     @Override
     public synchronized TranslatedExpression translate( PomTaggedExpression expression ) throws TranslationException {
+        // This is the actual translation expression. Every other translation method
+        // is calling this method to translate something. Hence, we only need to prepare translations
+        // in this method, i.e., resetting everything and start from scratch.
+
+        // 1) prepare new run, with reset and setup translation information object
         reset();
+        if ( expression instanceof PrintablePomTaggedExpression ) {
+            getTranslationInformation().setExpression( ((PrintablePomTaggedExpression) expression).getTexString() );
+        }
+
         localTranslations = new TranslatedExpression();
         TranslatedExpression global = super.getGlobalTranslationList();
 
-        parseGeneralExpression(expression, null);
+        // 2) perform translations
+        parseGeneralExpression(expression, new LinkedList<>());
 
+        // 3) clean up
         localTranslations.clear();
         localTranslations.addTranslatedExpression(global);
         localTranslations.addRequiredPackages(global.getRequiredPackages());
 
+        updateTranslationInformation();
+
+        // 4) return result
         return localTranslations;
+    }
+
+    private void updateTranslationInformation() {
+        TranslationInformation ti = super.getTranslationInformation();
+        if ( getListOfPartialTranslations().isEmpty() ) {
+            perform(
+                    TranslatedExpression::appendRelationalComponent,
+                    getGlobalTranslationList().getElementsAfterRelation().getTranslatedExpression().trim()
+            );
+        } else getGlobalTranslationList().clearRelationalComponents();
+
+        ti.setTranslatedExpression( localTranslations.getTranslatedExpression() );
+        ti.setInformation( getInfoLogger() );
+        TranslatedExpressionHelper.addTranslatedExpressionInformation( getGlobalTranslationList(), ti );
+
+        for ( TranslatedExpression te : getListOfPartialTranslations() ) {
+            TranslationInformation t = new TranslationInformation();
+            TranslatedExpressionHelper.addTranslatedExpressionInformation(te, t);
+            t.setInformation(getInfoLogger());
+            ti.addTranslations(t);
+        }
     }
 
     @Override
     public InformationLogger getInfoLogger(){
         return super.getInfoLogger();
+    }
+
+    @Override
+    public TranslationInformation getTranslationInformation(){
+        return super.getTranslationInformation();
     }
 
     @Override

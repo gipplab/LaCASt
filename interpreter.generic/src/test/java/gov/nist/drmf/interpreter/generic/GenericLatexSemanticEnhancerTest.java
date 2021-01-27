@@ -1,30 +1,34 @@
 package gov.nist.drmf.interpreter.generic;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
-import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
+import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
+import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
+import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import mlp.ParseException;
-import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * @author Andre Greiner-Petter
  */
 @AssumeElasticsearchAvailability
 public class GenericLatexSemanticEnhancerTest {
-    @Test
-    void simpleWikitextTest() throws IOException {
-        String text = getResourceContent("mlp/simpleWikitest.xml");
+    @Resource("mlp/simpleWikitest.xml")
+    void simpleWikitextTest(String text) {
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
-        SemanticEnhancedDocument semanticDocument = enhancer.getSemanticEnhancedDocument(text);
+        SemanticEnhancedDocument semanticDocument = enhancer.generateAnnotatedDocument(text);
+        assertEquals(SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED, semanticDocument.getRank());
+        enhancer.appendTranslationsToDocument(semanticDocument);
+        assertEquals(SemanticEnhancedAnnotationStatus.TRANSLATED, semanticDocument.getRank());
+
         List<MOIPresentations> moiPresentationsList = semanticDocument.getFormulae();
 
         MOIPresentations jacobi = moiPresentationsList.stream()
@@ -59,22 +63,35 @@ public class GenericLatexSemanticEnhancerTest {
         String notIncludedMath = "\\Gamma( (\\alpha+1)_n )";
 
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
-        MOIPresentations gammaMOI = enhancer.enhanceGenericLaTeX(context, includedMath);
+        SemanticEnhancedDocument sed = enhancer.generateAnnotatedDocument(context);
+
+        MOIPresentations gammaMOI = enhancer.generateMOIPresentationFromDocument(sed, includedMath);
         assertNotNull(gammaMOI);
         assertEquals("\\Gamma(z)", gammaMOI.getGenericLatex());
+        assertEquals(SemanticEnhancedAnnotationStatus.TRANSLATED, gammaMOI.getRank());
         assertEquals("\\EulerGamma@{z}", gammaMOI.getSemanticLatex());
         assertEquals("GAMMA(z)", gammaMOI.getCasResults("Maple").getCasRepresentation());
         assertEquals("Gamma[z]", gammaMOI.getCasResults("Mathematica").getCasRepresentation());
 
-        MOIPresentations gammaCompositionMOI = enhancer.enhanceGenericLaTeX(context, notIncludedMath);
+        MOIPresentations gammaCompositionMOI = enhancer.generateMOIPresentationFromDocument(sed, notIncludedMath);
         assertNotNull(gammaCompositionMOI);
         assertEquals("\\Gamma( (\\alpha+1)_n )", gammaCompositionMOI.getGenericLatex());
+        assertEquals(SemanticEnhancedAnnotationStatus.TRANSLATED, gammaMOI.getRank());
         assertEquals("\\EulerGamma@{\\Pochhammersym{\\alpha + 1}{n}}", gammaCompositionMOI.getSemanticLatex());
         assertEquals("GAMMA(pochhammer(alpha + 1, n))", gammaCompositionMOI.getCasResults("Maple").getCasRepresentation());
         assertEquals("Gamma[Pochhammer[\\[Alpha]+ 1, n]]", gammaCompositionMOI.getCasResults("Mathematica").getCasRepresentation());
     }
 
-    private String getResourceContent(String resourceFilename) throws IOException {
-        return IOUtils.toString(this.getClass().getResourceAsStream(resourceFilename), StandardCharsets.UTF_8);
+    /**
+     * This rather short test case is quite heavy. Providing a json of the annotated document (i.e., a document with
+     * definitions for each formula and the entire dependency graph) it checks if the outcome is the same document
+     * annotated with translations to semantic LaTeX and the CAS Maple/Mathematica when possible.
+     */
+    @Resource({"mlp/JacobiSemanticAnnotatedDoc.json", "mlp/JacobiTranslatedDoc.json"})
+    void addTranslationsTest(String annotatedDoc, String translatedDoc) throws JsonProcessingException {
+        SemanticEnhancedDocument sed = SemanticEnhancedDocument.deserialize(annotatedDoc);
+        GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
+        enhancer.appendTranslationsToDocument(sed);
+        assertEquals( translatedDoc, sed.serialize() );
     }
 }

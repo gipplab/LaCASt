@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.common.symbols.GreekLetters;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import mlp.MathTerm;
@@ -15,7 +16,7 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
  * @author Andre Greiner-Petter
  */
 public class GreekLetterTranslator extends AbstractTranslator {
-    private TranslatedExpression localTranslations = new TranslatedExpression();
+    private final TranslatedExpression localTranslations = new TranslatedExpression();
 
     /**
      * Every translator has an abstract super translator object, which should be
@@ -40,7 +41,17 @@ public class GreekLetterTranslator extends AbstractTranslator {
             );
         }
 
-        parseGreekLetter(term.getTermText());
+        String translation = null;
+        if ( super.getConfig().translateLettersAsConstantsMode() ) {
+            translation = tryTranslationAsConstant(expression);
+        }
+
+        if ( translation == null ) translation = parseGreekLetter(term.getTermText());
+
+        // otherwise add all
+        perform(TranslatedExpression::addTranslatedExpression, translation);
+        mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, translation);
+
         return localTranslations;
     }
 
@@ -54,7 +65,7 @@ public class GreekLetterTranslator extends AbstractTranslator {
      *
      * @param GreekLetter the Greek letter
      */
-    private void parseGreekLetter(String GreekLetter) throws TranslationException {
+    private String parseGreekLetter(String GreekLetter) throws TranslationException {
         // try to translate
         GreekLetters l = getConfig().getGreekLettersTranslator();
         String translated_letter = l.translate(GreekLetter);
@@ -76,9 +87,18 @@ public class GreekLetterTranslator extends AbstractTranslator {
                     GreekLetter);
         }
 
-        // otherwise add all
-        localTranslations.addTranslatedExpression(translated_letter);
-        getGlobalTranslationList().addTranslatedExpression(translated_letter);
-        getInfoLogger().getFreeVariables().addFreeVariable(translated_letter);
+        return translated_letter;
+    }
+
+    private String tryTranslationAsConstant(PomTaggedExpression exp) {
+        MathConstantTranslator mct = new MathConstantTranslator(getSuperTranslator());
+        try {
+            TranslatedExpression te = mct.translate(exp);
+            super.getGlobalTranslationList().removeLastNExps( te.getLength() );
+            return te.getTranslatedExpression();
+        } catch ( TranslationException | NullPointerException e ) {
+            // unable to translate it as a constant so just return null
+            return null;
+        }
     }
 }

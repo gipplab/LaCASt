@@ -20,3 +20,7 @@ lacast.generic:
   elasticsearch.port: 9200
   elasticsearch.macros.index: "dlmf-macros"
   mathoid.url: "http://localhost:10044/texvcinfo"
+  settings:
+    max.relations: 3
+    max.macros: 5
+    max.depth: -1

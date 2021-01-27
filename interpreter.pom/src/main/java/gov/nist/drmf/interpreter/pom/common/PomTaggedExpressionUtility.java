@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.pom.common;
 
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.FeatureValues;
@@ -41,7 +41,8 @@ public final class PomTaggedExpressionUtility {
 
     public static boolean beginsWithRelation(PomTaggedExpression pte) {
         if ( pte == null ) return false;
-        if ( pte.isEmpty() ) return beginsWithRelation(pte.getNextSibling());
+        if ( pte.isEmpty() || MathTermUtility.equals(pte.getRoot(), MathTermTags.spaces) )
+            return beginsWithRelation(pte.getNextSibling());
         if ( MathTermUtility.isRelationSymbol(pte.getRoot()) ) return true;
         if ( pte.getComponents().size() <= 1 ) return false;
 
@@ -58,12 +59,47 @@ public final class PomTaggedExpressionUtility {
         }
     }
 
+    public static boolean isOperatorname(PomTaggedExpression pte) {
+        return MathTermUtility.isOperatorname(pte.getRoot());
+    }
+
+    public static boolean isRelationSymbol(PomTaggedExpression pte) {
+        return MathTermUtility.isRelationSymbol(pte.getRoot());
+    }
+
+    /**
+     * Checks if the given PTE is a square root or general root
+     * @param e expression
+     * @return true if the expression is a root
+     */
+    public static boolean isSQRT(PomTaggedExpression e) {
+        String etag = e.getTag();
+        if ( etag == null ) return false;
+        ExpressionTags et = ExpressionTags.getTagByKey(etag);
+        return et != null && (et.equals(ExpressionTags.square_root) || et.equals(ExpressionTags.general_root));
+    }
+
+    /**
+     * Returns true if the given pte is \quad or \qquad
+     * @param pte probable long space
+     * @return true if pte is \quad or \qquad
+     */
+    public static boolean isLongSpace( PomTaggedExpression pte ) {
+        if ( pte == null ) return false;
+        return MathTermTags.is( pte, MathTermTags.spaces ) &&
+                pte.getRoot().getTermText().matches("\\\\q+uads?");
+    }
+
     public static boolean isEmptyEquationElement(PomTaggedExpression pte) {
         return pte != null && ExpressionTags.equation.equalsPTE(pte.getParent()) && pte.isEmpty();
     }
 
     public static boolean isSequence(PomTaggedExpression pte) {
         return ExpressionTags.sequence.equalsPTE(pte);
+    }
+
+    public static boolean isEquationArray(PomTaggedExpression pte) {
+        return ExpressionTags.equation.equalsPTE(pte) || ExpressionTags.equation_array.equalsPTE(pte);
     }
 
     /**
@@ -174,10 +210,14 @@ public final class PomTaggedExpressionUtility {
     }
 
     public static String getAppropriateFontTex(PomTaggedExpression pte) {
+        return getAppropriateFontTex(pte, false);
+    }
+
+    public static String getAppropriateFontTex(PomTaggedExpression pte, boolean ignoreMathRm) {
         if ( startsWithEmptyEquation(pte) )
             return "&";
 
-        String appropriateTex = MathTermUtility.getAppropriateFontTex(pte.getRoot());
+        String appropriateTex = MathTermUtility.getAppropriateFontTex(pte.getRoot(), ignoreMathRm);
 
         List<String> rootAccents = FeatureValues.ACCENT.getFeatureValues(pte.getRoot());
         List<String> exprAccents = FeatureValues.ACCENT.getFeatureValues(pte);
