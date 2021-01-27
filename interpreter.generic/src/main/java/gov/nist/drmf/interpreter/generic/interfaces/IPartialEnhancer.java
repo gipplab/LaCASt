@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.generic.interfaces;
 
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -23,8 +24,10 @@ public interface IPartialEnhancer {
     default void appendCASRepresentation(MOIPresentations moi, String key, ITranslator translator)
             throws MinimumRequirementNotFulfilledException, TranslationException {
         moi.requires( SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED );
-        String casReprs = translator.translate(moi.getSemanticLatex());
-        CASResult casResult = new CASResult(casReprs);
+        TranslationInformation casReprsInfo = translator.translateToObject(moi.getSemanticLatex());
+        MetaTranslationInformation metaInfo = new MetaTranslationInformation(casReprsInfo);
+        CASResult casResult = new CASResult(casReprsInfo.getTranslatedExpression());
+        casResult.setTranslationInformation(metaInfo);
         moi.addCasRepresentation(key, casResult);
     }
 

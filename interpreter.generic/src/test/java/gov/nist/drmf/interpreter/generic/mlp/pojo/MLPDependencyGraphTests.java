@@ -29,7 +29,7 @@ public class MLPDependencyGraphTests {
         MOIPresentations sed = mapper.readValue(json, MOIPresentations.class);
         assertEquals( SemanticEnhancedAnnotationStatus.COMPUTED, sed.getRank() );
         assertEquals( "P_{n}^{(\\alpha, \\beta)}(x)", sed.getGenericLatex() );
-        assertEquals( 1, sed.getDefiniens().size() );
+        assertEquals( 41, sed.getDefiniens().size() );
 
         Map<String, CASResult> casRes = sed.getCasRepresentations();
         assertEquals(2, casRes.keySet().size());
@@ -38,11 +38,11 @@ public class MLPDependencyGraphTests {
 
         CASResult mathRes = casRes.get("Mathematica");
         assertEquals( "JacobiP[n, \\[Alpha], \\[Beta], x]", mathRes.getCasRepresentation() );
-        assertEquals(TestResultType.FAILURE, mathRes.getNumericResults().getTestResultType() );
-        assertEquals( 1, mathRes.getNumericResults().getNumberOfTotalTests() );
-        assertEquals( 1, mathRes.getNumericResults().getNumberOfFailedTests() );
+        assertEquals(TestResultType.SKIPPED, mathRes.getNumericResults().overallResult() );
+        assertEquals( 0, mathRes.getNumericResults().getNumberOfTotalTests() );
+        assertEquals( 0, mathRes.getNumericResults().getNumberOfFailedTests() );
         assertEquals( 0, mathRes.getNumericResults().getNumberOfSuccessfulTests() );
-        assertEquals( 1, mathRes.getNumericResults().getTestCalculations().size() );
+        assertEquals( 0, mathRes.getNumericResults().getTestCalculationsGroups().size() );
     }
 
     @Resource("SingleNodeExample.json")

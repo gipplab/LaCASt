@@ -39,11 +39,11 @@ public interface INumericTestCalculator {
 
     /**
      * Returns the result type of the given test. Either it was successful, failed or it threw an error.
-     * @param results the results from {@link #performNumericalTest(NumericalTest)}
+     * @param result the results from {@link #performNumericalTest(NumericalTest)}
      * @return the result type, successful, failed or error
      * @throws ComputerAlgebraSystemEngineException if the given result cannot be analyzed properly
      */
     default TestResultType testResult(NumericResult result) throws ComputerAlgebraSystemEngineException {
-        return result.getTestResultType();
+        return result.overallResult();
     }
 }

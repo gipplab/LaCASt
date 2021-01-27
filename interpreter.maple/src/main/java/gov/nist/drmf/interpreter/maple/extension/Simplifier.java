@@ -213,6 +213,13 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
         return false;
     }
 
+    private String latestTestExpression = "";
+
+    @Override
+    public String getLatestTestExpression() {
+        return latestTestExpression;
+    }
+
     /**
      * Simplify given expression. Be aware, the given expression should not
      * end with ';'.
@@ -222,6 +229,7 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
      * @see Algebraic
      */
     public Algebraic mapleSimplify( String maple_expr, Set<String> requiredPackages ) throws MapleException {
+        latestTestExpression = "";
         String simplify = chooseSimplify(requiredPackages);
 
         if ( !requiredPackages.isEmpty() ) {
@@ -231,6 +239,7 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
         }
 
         String command = simplify + "(" + maple_expr + ")";
+        latestTestExpression = command;
         if ( timeout > 0 ) {
             command = "try timelimit("+timeout+","+command+"); catch \"time expired\": \"";
             command += MapleInterface.TIMED_OUT_SIGNAL;

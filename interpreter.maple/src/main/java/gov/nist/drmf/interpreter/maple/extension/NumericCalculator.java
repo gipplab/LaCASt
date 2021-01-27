@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
+import gov.nist.drmf.interpreter.common.eval.NumericCalculationGroup;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.eval.NumericCalculation;
@@ -46,6 +47,12 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
     private final String specVarN = "nSpecialVars";
     private final String consN = "constraints";
 
+    private String latestTestExpression = "";
+    private String lhs, rhs;
+    private String lastPrecision;
+    private String latestResultCheckMethod = "";
+    private final List<String> latestAppliedConstraints;
+
     private boolean conVarSet = false;
     private boolean specVarSet = false;
 
@@ -60,6 +67,7 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
     public NumericCalculator() {
         maple = MapleInterface.getUniqueMapleInterface();
         commandsList = new StringBuffer();
+        latestAppliedConstraints = new LinkedList<>();
 
         SymbolTranslator symbolTranslator = new SymbolTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
         BasicFunctionsTranslator basicFunctionsTranslator = new BasicFunctionsTranslator(Keys.KEY_MAPLE);
@@ -92,7 +100,13 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
         timedOutBySetup = false;
         numberOfFailedCases = 0;
         numberOfTestCases = 0;
+        latestTestExpression = "";
+        lhs = "";
+        rhs = "";
+        lastPrecision = "0";
         requiredPackages.clear();
+        latestAppliedConstraints.clear();
+        latestResultCheckMethod = "";
 
         String varValues = AbstractCasEngineNumericalEvaluator.getValuesName(varNames);
         String conValsN = AbstractCasEngineNumericalEvaluator.getValuesName(conVarN);
@@ -114,6 +128,12 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
         } finally {
             commandsList = new StringBuffer();
         }
+    }
+
+    @Override
+    public void setCurrentTestCase(String lhs, String rhs) {
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
     @Override
@@ -285,6 +305,7 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
 
         try {
             Algebraic a = maple.evaluate("constraints;");
+            setActiveConstraints(a);
             LOG.info("Active constraints: " + a.toString());
         } catch (MapleException e) {
             LOG.error("Unable to check constraints", e);
@@ -294,6 +315,19 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
         commandsList.append(testValuesN).append(":= buildTestValues(")
                 .append(constraintsName).append(",").append(testValuesN).append(",").append(maxCombis).append("):").append(NL);
         return testValuesN;
+    }
+
+    private void setActiveConstraints(Algebraic constraintsList) throws MapleException {
+        if ( constraintsList == null ) return;
+
+        if ( !(constraintsList instanceof com.maplesoft.openmaple.List) ) {
+            latestAppliedConstraints.add(constraintsList.toString());
+        }
+
+        com.maplesoft.openmaple.List conList = (com.maplesoft.openmaple.List) constraintsList;
+        for ( int i = 0; i < conList.length(); i++ ) {
+            latestAppliedConstraints.add( conList.get(i).toString() );
+        }
     }
 
     private String additionalCalculations(String combis) {
@@ -322,6 +356,8 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
     ) throws ComputerAlgebraSystemEngineException {
         if ( timedOutBySetup ) return null;
 
+        latestTestExpression = expression;
+
         loadPackages();
 
         if ( timeLimit > 0 ) {
@@ -348,20 +384,23 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
                             ");";
             LOG.debug("Start numerical evaluation: " + numericalTest);
 
+            latestResultCheckMethod = postProcessingMethodName;
             Algebraic results = maple.evaluate(numericalTest);
-            if ( wasAborted(results) ) return results;
-            else if ( postProcessingMethodName != null && !postProcessingMethodName.isEmpty() ) {
-                Algebraic result = maple.evaluate(
-                        postProcessingMethodName + "(numResults);"
-                );
+            return results;
 
-                if ( result instanceof com.maplesoft.openmaple.List ) {
-                    com.maplesoft.openmaple.List list = (com.maplesoft.openmaple.List) result;
-                    LOG.info("First entries of result list [total: " + list.length() + "]: " + list.subList(0, Math.min(5, list.length())));
-                }
-
-                return result;
-            } else return results;
+//            if ( wasAborted(results) ) return results;
+//            else if ( postProcessingMethodName != null && !postProcessingMethodName.isEmpty() ) {
+//                Algebraic result = maple.evaluate(
+//                        postProcessingMethodName + "(numResults);"
+//                );
+//
+//                if ( result instanceof com.maplesoft.openmaple.List ) {
+//                    com.maplesoft.openmaple.List list = (com.maplesoft.openmaple.List) result;
+//                    LOG.info("First entries of result list [total: " + list.length() + "]: " + list.subList(0, Math.min(5, list.length())));
+//                }
+//
+//                return result;
+//            } else return results;
         } catch (MapleException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         } finally {
@@ -370,39 +409,70 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
     }
 
     @Override
-    public TestResultType getStatusOfResult(Algebraic results) throws ComputerAlgebraSystemEngineException {
+    public TestResultType getStatusOfResult(Algebraic result) throws ComputerAlgebraSystemEngineException {
+        if ( result == null ) return TestResultType.ERROR;
         try {
-            if ( results instanceof com.maplesoft.openmaple.List ) {
-                com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) results;
-                numberOfFailedCases = resList.length();
-                return getStatusOfList(resList);
-            } else {
-                LOG.warn("Sieved list was not a list object... " + results.toString());
+            if ( latestResultCheckMethod.isBlank() ) {
+                LOG.error("Unable to find current result method. Something went wrong with perform numeric test order.");
                 return TestResultType.ERROR;
+            }
+
+            if ( result instanceof com.maplesoft.openmaple.List ) {
+                com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) result;
+                if ( resList.length() != 2 ) {
+                    LOG.error("The provided result is not a single result. Expected a list of value and test values but got " + resList.toString());
+                    return TestResultType.ERROR;
+                }
+
+                Algebraic aResult = maple.evaluate(
+                        latestResultCheckMethod + "(" + resList.get(0).toString() + ");"
+                );
+                String resString = aResult.toString();
+                if ( "False".equals(resString) ) return TestResultType.FAILURE;
+                else if ( "True".equals(resString) ) return TestResultType.SUCCESS;
+                else {
+                    LOG.warn("Analyzing test result: " + resString);
+                    return TestResultType.ERROR;
+                }
+            } else {
+                if ( wasAborted(result) ) {
+                    return TestResultType.SKIPPED;
+                } else {
+                    LOG.warn("Result was not a list object... " + result.toString());
+                    return TestResultType.ERROR;
+                }
             }
         } catch (MapleException me) {
             throw new ComputerAlgebraSystemEngineException(me);
+        } catch (Exception e) {
+            LOG.warn("Error during check the result. " + result.toString());
+            return TestResultType.ERROR;
         }
     }
 
     @Override
-    public List<NumericCalculation> getNumericCalculationList(Algebraic result) {
+    public NumericCalculationGroup getNumericCalculationGroup(Algebraic results) {
         try {
-            if ( result instanceof com.maplesoft.openmaple.List ) {
-                com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) result;
-                List<NumericCalculation> calcs = new LinkedList<>();
+            if ( results instanceof com.maplesoft.openmaple.List ) {
+                com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) results;
+                NumericCalculationGroup group = new NumericCalculationGroup();
+                group.setTestExpression(latestTestExpression);
+                group.setConstraints(new LinkedList<>(latestAppliedConstraints));
+                group.setLhs(lhs);
+                group.setRhs(rhs);
+
                 for ( int i = 0; i < resList.length(); i++ ) {
                     Algebraic resI = resList.get(i);
                     NumericCalculation singleCalc = getNumericCalculation(resI);
-                    if ( singleCalc != null ) calcs.add(singleCalc);
+                    if ( singleCalc != null ) group.addTestCalculation(singleCalc);
                 }
-                return calcs;
+                return group;
             }
         } catch (MapleException me) {
             LOG.warn("Unable to create list of numerical calculations from given result.");
         }
         LOG.debug("Given list was empty or not a list.");
-        return new LinkedList<>();
+        return new NumericCalculationGroup();
     }
 
     private NumericCalculation getNumericCalculation(Algebraic singleResult) {
@@ -416,7 +486,10 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
             }
 
             NumericCalculation numericCalculation = new NumericCalculation();
-            numericCalculation.setResult(resList.get(0).toString());
+            LOG.trace("Get result of " + resList);
+            numericCalculation.setResult(getStatusOfResult(resList));
+            numericCalculation.setResultExpression(resList.get(0).toString());
+
             Map<String, String> varValMap = new HashMap<>();
             numericCalculation.setTestValues(varValMap);
 
@@ -432,7 +505,7 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
             }
 
             return numericCalculation;
-        } catch (MapleException e) {
+        } catch (ComputerAlgebraSystemEngineException | MapleException e) {
             LOG.warn("Unable to analyze the single result " + singleResult.toString(), e);
             return null;
         }

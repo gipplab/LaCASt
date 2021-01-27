@@ -132,7 +132,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
     public NumericResult computeNumerically(String semanticLatex, String casName) {
         if ( EvaluationSkipper.shouldNotBeEvaluated(semanticLatex) ) {
             LOG.debug("The test expression should not be evaluated due to missing equation or because it contains underscores (troublesome for CAS): " + semanticLatex);
-            return new NumericResult().markAsSkipped();
+            return new NumericResult();
         }
 
         lazyInit();
@@ -160,7 +160,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
     public SymbolicResult computeSymbolically(String semanticLatex, String casName) {
         if ( EvaluationSkipper.shouldNotBeEvaluated(semanticLatex) ) {
             LOG.debug("The test expression should not be evaluated due to missing equation or because it contains underscores (troublesome for CAS): " + semanticLatex);
-            return new SymbolicResult().markAsSkipped();
+            return new SymbolicResult();
         }
 
         lazyInit();

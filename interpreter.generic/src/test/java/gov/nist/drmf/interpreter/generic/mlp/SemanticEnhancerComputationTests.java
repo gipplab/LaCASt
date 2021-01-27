@@ -33,10 +33,10 @@ public class SemanticEnhancerComputationTests {
     void numericComputationMathematicaTest() {
         NumericResult nr = enhancer.computeNumerically("x - 1", Keys.KEY_MATHEMATICA);
         assertNotNull( nr );
-        assertEquals(TestResultType.SKIPPED, nr.getTestResultType() );
+        assertEquals(TestResultType.SKIPPED, nr.overallResult() );
         assertEquals(nr.getNumberOfTotalTests(), 0);
         assertEquals(nr.getNumberOfFailedTests(), 0);
-        assertEquals(nr.getTestCalculations().size(), 0);
+        assertEquals(nr.getTestCalculationsGroups().size(), 0);
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -51,9 +51,9 @@ public class SemanticEnhancerComputationTests {
     void symbolicComputationMathematicaTest() {
         SymbolicResult sr = enhancer.computeSymbolically("x = y", Keys.KEY_MATHEMATICA);
         assertNotNull( sr );
-        assertEquals(TestResultType.FAILURE, sr.getTestResultType());
-        assertTrue( sr.getNumberOfTests() > 0 );
-        assertTrue( sr.getTestCalculations().size() > 0 );
+        assertEquals(TestResultType.FAILURE, sr.overallResult());
+        assertTrue( sr.getNumberOfTotalTests() > 0 );
+        assertTrue( sr.getTestCalculationsGroups().size() > 0 );
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(sr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -68,10 +68,28 @@ public class SemanticEnhancerComputationTests {
     void numericRelationComputationMathematicaTest() {
         NumericResult nr = enhancer.computeNumerically("x < x^2", Keys.KEY_MATHEMATICA);
         assertNotNull( nr );
-        assertEquals(TestResultType.FAILURE, nr.getTestResultType());
+        assertEquals(TestResultType.FAILURE, nr.overallResult());
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertTrue( nr.getNumberOfFailedTests() > 0 );
-        assertTrue( nr.getTestCalculations().size() > 0 );
+        assertTrue( nr.getTestCalculationsGroups().size() > 0 );
+        try {
+            String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
+            assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
+            LOG.debug(representation);
+        } catch (JsonProcessingException e) {
+            LOG.debug("Unable to print numeric test calculation");
+        }
+    }
+
+    @Test
+    @AssumeMathematicaAvailability
+    void numericMultiRelationComputationMathematicaTest() {
+        NumericResult nr = enhancer.computeNumerically("x < x^2 < x^3", Keys.KEY_MATHEMATICA);
+        assertNotNull( nr );
+        assertEquals(TestResultType.FAILURE, nr.overallResult());
+        assertTrue( nr.getNumberOfTotalTests() > 0 );
+        assertTrue( nr.getNumberOfFailedTests() > 0 );
+        assertEquals( 2, nr.getTestCalculationsGroups().size() );
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -86,10 +104,10 @@ public class SemanticEnhancerComputationTests {
     void numericComputationMapleTest() {
         NumericResult nr = enhancer.computeNumerically("x - 1", Keys.KEY_MAPLE);
         assertNotNull( nr );
-        assertEquals(TestResultType.SKIPPED, nr.getTestResultType());
+        assertEquals(TestResultType.SKIPPED, nr.overallResult());
         assertEquals(nr.getNumberOfTotalTests(), 0);
         assertEquals(nr.getNumberOfFailedTests(), 0);
-        assertEquals(nr.getTestCalculations().size(), 0);
+        assertEquals(nr.getTestCalculationsGroups().size(), 0);
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -104,9 +122,9 @@ public class SemanticEnhancerComputationTests {
     void symbolicComputationMapleTest() {
         SymbolicResult sr = enhancer.computeSymbolically("x = y", Keys.KEY_MAPLE);
         assertNotNull( sr );
-        assertEquals(TestResultType.FAILURE, sr.getTestResultType());
-        assertTrue( sr.getNumberOfTests() > 0 );
-        assertTrue( sr.getTestCalculations().size() > 0 );
+        assertEquals(TestResultType.FAILURE, sr.overallResult());
+        assertTrue( sr.getNumberOfTotalTests() > 0 );
+        assertTrue( sr.getTestCalculationsGroups().size() > 0 );
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(sr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -121,10 +139,28 @@ public class SemanticEnhancerComputationTests {
     void numericRelationComputationMapleTest() {
         NumericResult nr = enhancer.computeNumerically("x < x^2", Keys.KEY_MAPLE);
         assertNotNull( nr );
-        assertEquals(TestResultType.FAILURE, nr.getTestResultType());
+        assertEquals(TestResultType.FAILURE, nr.overallResult());
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertTrue( nr.getNumberOfFailedTests() > 0 );
-        assertTrue( nr.getTestCalculations().size() > 0 );
+        assertTrue( nr.getTestCalculationsGroups().size() > 0 );
+        try {
+            String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
+            assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
+            LOG.debug(representation);
+        } catch (JsonProcessingException e) {
+            LOG.debug("Unable to print numeric test calculation");
+        }
+    }
+
+    @Test
+    @AssumeMapleAvailability
+    void numericMultiRelationComputationMapleTest() {
+        NumericResult nr = enhancer.computeNumerically("x < x^2 < x^3", Keys.KEY_MAPLE);
+        assertNotNull( nr );
+        assertEquals(TestResultType.FAILURE, nr.overallResult());
+        assertTrue( nr.getNumberOfTotalTests() > 0 );
+        assertTrue( nr.getNumberOfFailedTests() > 0 );
+        assertEquals( 2, nr.getTestCalculationsGroups().size() );
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -143,11 +179,11 @@ public class SemanticEnhancerComputationTests {
                 Keys.KEY_MATHEMATICA
         );
         assertNotNull( nr );
-        assertEquals(TestResultType.SUCCESS, nr.getTestResultType());
+        assertEquals(TestResultType.SUCCESS, nr.overallResult());
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertEquals( nr.getNumberOfTotalTests(), nr.getNumberOfSuccessfulTests() );
         assertEquals( 0, nr.getNumberOfFailedTests() );
-        assertTrue( nr.getTestCalculations().isEmpty() );
+        assertFalse( nr.getTestCalculationsGroups().isEmpty() );
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -166,11 +202,11 @@ public class SemanticEnhancerComputationTests {
                 Keys.KEY_MAPLE
         );
         assertNotNull( nr );
-        assertEquals(TestResultType.SUCCESS, nr.getTestResultType());
+        assertEquals(TestResultType.SUCCESS, nr.overallResult());
         assertTrue( nr.getNumberOfTotalTests() > 0 );
         assertEquals( nr.getNumberOfTotalTests(), nr.getNumberOfSuccessfulTests() );
         assertEquals( 0, nr.getNumberOfFailedTests() );
-        assertTrue( nr.getTestCalculations().isEmpty() );
+        assertFalse( nr.getTestCalculationsGroups().isEmpty() );
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -178,6 +214,46 @@ public class SemanticEnhancerComputationTests {
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
+    }
+
+    @Test
+    @AssumeMapleAvailability
+    void numericComputationJacobiMapleTest() {
+        NumericResult nr = enhancer.computeNumerically(
+                "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = " +
+                        "\\frac{\\EulerGamma@{\\alpha + n + 1}}{n! \\EulerGamma@{\\alpha + \\beta + n + 1}} " +
+                        "\\sum_{m=0}^n{n\\choose m} \\frac" +
+                            "{\\EulerGamma@{\\alpha + \\beta + n + m + 1}}" +
+                            "{\\EulerGamma@{\\alpha + m + 1}}" +
+                        "(\\frac{z-1}{2})^m",
+                Keys.KEY_MAPLE
+        );
+        assertNotNull( nr );
+        assertEquals(TestResultType.SUCCESS, nr.overallResult());
+        assertTrue( nr.getNumberOfTotalTests() > 0 );
+        assertEquals( nr.getNumberOfTotalTests(), nr.getNumberOfSuccessfulTests() );
+        assertEquals( 0, nr.getNumberOfFailedTests() );
+        assertFalse( nr.getTestCalculationsGroups().isEmpty() );
+    }
+
+    @Test
+    @AssumeMapleAvailability
+    void numericComputationJacobiMathematicaTest() {
+        NumericResult nr = enhancer.computeNumerically(
+                "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = " +
+                        "\\frac{\\EulerGamma@{\\alpha + n + 1}}{n! \\EulerGamma@{\\alpha + \\beta + n + 1}} " +
+                        "\\sum_{m=0}^n{n\\choose m} \\frac" +
+                        "{\\EulerGamma@{\\alpha + \\beta + n + m + 1}}" +
+                        "{\\EulerGamma@{\\alpha + m + 1}}" +
+                        "(\\frac{z-1}{2})^m",
+                Keys.KEY_MATHEMATICA
+        );
+        assertNotNull( nr );
+        assertEquals(TestResultType.SUCCESS, nr.overallResult());
+        assertTrue( nr.getNumberOfTotalTests() > 0 );
+        assertEquals( nr.getNumberOfTotalTests(), nr.getNumberOfSuccessfulTests() );
+        assertEquals( 0, nr.getNumberOfFailedTests() );
+        assertFalse( nr.getTestCalculationsGroups().isEmpty() );
     }
 
     @Test
@@ -189,9 +265,9 @@ public class SemanticEnhancerComputationTests {
                 Keys.KEY_MATHEMATICA
         );
         assertNotNull( sr );
-        assertEquals(TestResultType.SUCCESS, sr.getTestResultType());
-        assertTrue( sr.getNumberOfTests() > 0 );
-        assertTrue( sr.getTestCalculations().size() > 0 );
+        assertEquals(TestResultType.SUCCESS, sr.overallResult());
+        assertTrue( sr.getNumberOfTotalTests() > 0 );
+        assertTrue( sr.getTestCalculationsGroups().size() > 0 );
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(sr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -210,9 +286,9 @@ public class SemanticEnhancerComputationTests {
                 Keys.KEY_MAPLE
         );
         assertNotNull( sr );
-        assertEquals(TestResultType.SUCCESS, sr.getTestResultType());
-        assertTrue( sr.getNumberOfTests() > 0 );
-        assertTrue( sr.getTestCalculations().size() > 0 );
+        assertEquals(TestResultType.SUCCESS, sr.overallResult());
+        assertTrue( sr.getNumberOfTotalTests() > 0 );
+        assertTrue( sr.getTestCalculationsGroups().size() > 0 );
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(sr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
@@ -230,7 +306,7 @@ public class SemanticEnhancerComputationTests {
                 Keys.KEY_MAPLE
         );
         assertNotNull( nr );
-        assertEquals( 0, nr.getNumberOfTotalTests() );
+        assertEquals( 1, nr.getNumberOfTotalTests() );
         assertEquals( 1, nr.getNumberOfFailedTests() );
         assertEquals( 0, nr.getNumberOfSuccessfulTests() );
         try {

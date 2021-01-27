@@ -96,6 +96,11 @@ public class MathematicaSimplifier extends AbstractCasEngineSymbolicEvaluator<Ex
         return "";
     }
 
+    @Override
+    public String getLatestTestExpression() {
+        return miEquiChecker.getLatestTestExpression();
+    }
+
     private Expr fullSimplify(String expression, String assumption, Set<String> requiredPackages) throws ComputerAlgebraSystemEngineException {
         logReqPackages(requiredPackages);
         try {

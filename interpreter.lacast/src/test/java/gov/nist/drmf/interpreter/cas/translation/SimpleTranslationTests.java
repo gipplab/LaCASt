@@ -670,6 +670,21 @@ class SimpleTranslationTests {
     }
 
     @Test
+    public void multiEquationTest() {
+        String input = "x = x^2 , \\qquad x = 1";
+        TranslationInformation ti = sltMathematica.translateToObject(input);
+        assertEquals(2, ti.getRelationalComponents().getComponents().size(), ti.getRelationalComponents().getComponents().toString());
+        assertEquals(1, ti.getRelationalComponents().getRelations().size(), ti.getRelationalComponents().getRelations().toString());
+        assertEquals(1, ti.getTranslatedConstraints().size(), ti.getTranslatedConstraints().toString());
+
+        List<String> comps = ti.getRelationalComponents().getComponents();
+        assertEquals("x", comps.get(0));
+        assertEquals("(x)^(2)", comps.get(1));
+        assertEquals(Relations.EQUAL, ti.getRelationalComponents().getRelations().get(0));
+        assertEquals("x == 1", ti.getTranslatedConstraints().get(0));
+    }
+
+    @Test
     public void macroPackageTranslatorConfigOnOffTest() {
         ForwardTranslationProcessConfig config = slt.getConfig();
         String testExpression = "\\qGamma{q}@{\\qfactorial{n}{q}}";

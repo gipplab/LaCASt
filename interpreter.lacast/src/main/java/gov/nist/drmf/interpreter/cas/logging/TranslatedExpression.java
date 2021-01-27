@@ -34,6 +34,8 @@ public class TranslatedExpression {
 
 //    private final RelationalComponents relationalComponents;
 
+    private boolean lockRelationalComponents = false;
+
     public TranslatedExpression(){
         this.trans_exps = new LinkedList<>();
         this.autoMergeLast = 0;
@@ -66,14 +68,14 @@ public class TranslatedExpression {
         componentsPositions.clear();
     }
 
-    public void addRelationalComponents(RelationalComponents relationalComponents) {
-        int currIdx = Math.max(0, trans_exps.size()-1);
-        if ( this.componentsPositions.containsKey(currIdx) ) {
-            this.componentsPositions.put(currIdx, relationalComponents);
-        } else {
-            this.componentsPositions.get(currIdx).addRelationalComponents(relationalComponents);
-        }
-    }
+//    public void addRelationalComponents(RelationalComponents relationalComponents) {
+//        int currIdx = Math.max(0, trans_exps.size()-1);
+//        if ( this.componentsPositions.containsKey(currIdx) ) {
+//            this.componentsPositions.put(currIdx, relationalComponents);
+//        } else {
+//            this.componentsPositions.get(currIdx).addRelationalComponents(relationalComponents);
+//        }
+//    }
 
     public RelationalComponents getAllRelationalComponents() {
         RelationalComponents total = new RelationalComponents();
@@ -86,12 +88,22 @@ public class TranslatedExpression {
         return total;
     }
 
+    public void lockRelationalComponents() {
+        lockRelationalComponents = true;
+    }
+
+    public void releaseRelationalComponents() {
+        lockRelationalComponents = false;
+    }
+
     public void appendRelationalComponent(String component) {
+        if ( lockRelationalComponents ) return;
         RelationalComponents last = getLastRelationalComponent();
         last.addComponent(component);
     }
 
     public void appendRelationalRelation(String rel) {
+        if ( lockRelationalComponents ) return;
         RelationalComponents last = getLastRelationalComponent();
         last.addRelation(rel);
     }
@@ -145,13 +157,13 @@ public class TranslatedExpression {
         this.constraints.add(constraint);
     }
 
-    public void tagLastNExpressionsToConstraint(int n) {
-        LinkedList<String> constraintElements = new LinkedList<>();
-        for ( int i = 0; i < n && !trans_exps.isEmpty(); i++ ) {
-            constraintElements.addFirst( trans_exps.removeLast() );
-        }
-        addConstraint( String.join("", constraintElements) );
-    }
+//    public void tagLastNExpressionsToConstraint(int n) {
+//        LinkedList<String> constraintElements = new LinkedList<>();
+//        for ( int i = 0; i < n && !trans_exps.isEmpty(); i++ ) {
+//            constraintElements.addFirst( trans_exps.removeLast() );
+//        }
+//        addConstraint( String.join("", constraintElements) );
+//    }
 
     public List<String> getConstraints() {
         return this.constraints;

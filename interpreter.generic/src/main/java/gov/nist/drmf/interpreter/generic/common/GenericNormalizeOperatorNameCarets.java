@@ -38,7 +38,7 @@ public class GenericNormalizeOperatorNameCarets {
     }
 
     private void handleOperatorname(List<PrintablePomTaggedExpression> components, int operatorIndex) {
-        if ( operatorIndex + 2 > components.size() ) return;
+        if ( operatorIndex + 4 > components.size() ) return;
         List<PrintablePomTaggedExpression> newComponents = new LinkedList<>(components.subList(0, operatorIndex+2));
 
         PrintablePomTaggedExpression potCaret = components.get(operatorIndex+2);
@@ -64,6 +64,7 @@ public class GenericNormalizeOperatorNameCarets {
             if ( bracket != null && bracket.opened ) {
                 bracketStack.addLast(bracket);
             } else if ( bracket != null ) {
+                if ( bracketStack.isEmpty() ) break;
                 bracketStack.removeLast();
             } else if ( bracketStack.isEmpty() ) {
                 if ( i == startIndex ) return i;

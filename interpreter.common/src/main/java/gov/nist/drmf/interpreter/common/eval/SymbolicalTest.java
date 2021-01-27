@@ -18,7 +18,7 @@ public class SymbolicalTest implements Serializable {
 
     private ISymbolicTestCases[] testCases;
 
-    private List<String> testExpressions;
+    private List<SymbolicalTestBaseCase> testExpressions;
     private List<String> expectedValues;
 
     private Set<String> requiredPackages;
@@ -43,9 +43,21 @@ public class SymbolicalTest implements Serializable {
 
         this.testExpressions = new LinkedList<>();
         this.expectedValues = new LinkedList<>();
+
+        if ( ti.getPartialTranslations().isEmpty() ) {
+            addTranslationTests(ti, config, translator);
+        } else {
+            for ( TranslationInformation subTi : ti.getPartialTranslations() ) {
+                addTranslationTests(subTi, config, translator);
+            }
+        }
+
+    }
+
+    private void addTranslationTests(TranslationInformation ti, SymbolicalConfig config, IConstraintTranslator translator) {
         RelationalComponents relComps = ti.getRelationalComponents();
         if ( relComps.getComponents().size() == 1 ) {
-            testExpressions.add( relComps.getComponents().getFirst() );
+            testExpressions.add( new SymbolicalTestBaseCase(relComps.getComponents().getFirst()) );
             expectedValues.add( config.getExpectationValue() );
         } else {
             LinkedList<String> comps = new LinkedList<>(relComps.getComponents());
@@ -56,12 +68,14 @@ public class SymbolicalTest implements Serializable {
                 Relations rel = rels.removeFirst();
 
                 if ( Relations.EQUAL.equals(rel) ) {
-                    this.testExpressions.add( config.getTestExpression(lhs, rhs) );
+                    SymbolicalTestBaseCase test = new SymbolicalTestBaseCase(lhs, rhs, config.getTestExpression(lhs, rhs));
+                    this.testExpressions.add( test );
                     this.expectedValues.add( config.getExpectationValue() );
                 } else {
                     // rebuild expression and add it as it is... expecting true now :)
                     String testExpression = lhs + rel.getSymbol(translator.getTargetLanguage() ) + rhs;
-                    this.testExpressions.add( testExpression );
+                    SymbolicalTestBaseCase test = new SymbolicalTestBaseCase(lhs, rhs, testExpression);
+                    this.testExpressions.add( test );
                     this.expectedValues.add( "true" );
                 }
             }
@@ -72,7 +86,7 @@ public class SymbolicalTest implements Serializable {
         this.testCases = testCases;
     }
 
-    public void setTestExpressions(List<String> testExpressions) {
+    public void setTestExpressions(List<SymbolicalTestBaseCase> testExpressions) {
         this.testExpressions = testExpressions;
     }
 
@@ -88,7 +102,7 @@ public class SymbolicalTest implements Serializable {
         return testCases;
     }
 
-    public List<String> getTestExpression() {
+    public List<SymbolicalTestBaseCase> getTestExpression() {
         return testExpressions;
     }
 

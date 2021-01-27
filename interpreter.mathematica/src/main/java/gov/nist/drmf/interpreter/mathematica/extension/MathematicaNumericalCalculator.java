@@ -1,14 +1,15 @@
 package gov.nist.drmf.interpreter.mathematica.extension;
 
 import com.wolfram.jlink.Expr;
+import com.wolfram.jlink.ExprFormatException;
 import com.wolfram.jlink.MathLinkException;
-import gov.nist.drmf.interpreter.common.cas.GenericCommandBuilder;
 import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineNumericalEvaluator;
+import gov.nist.drmf.interpreter.common.cas.GenericCommandBuilder;
 import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
+import gov.nist.drmf.interpreter.common.eval.NumericCalculation;
+import gov.nist.drmf.interpreter.common.eval.NumericCalculationGroup;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.eval.NumericCalculation;
-import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -52,12 +53,20 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
     private final String cons = "assumptions";
     private final String testCasesVar = "testCases";
 
+    private String latestTestExpression = "";
+    private String lhs, rhs;
+
+    private String lastPrecision;
+
+    private final List<String> latestAppliedConstraints;
+
     private int testCases = 0;
     private int failedCases = 0;
     private Expr wasAborted = null;
 
     public MathematicaNumericalCalculator() {
         this.mathematicaInterface = MathematicaInterface.getInstance();
+        this.latestAppliedConstraints = new LinkedList<>();
     }
 
     private void clearVariables() {
@@ -74,12 +83,23 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
         testCases = 0;
         failedCases = 0;
         wasAborted = null;
+        latestAppliedConstraints.clear();
+        latestTestExpression = "";
+        lhs = "";
+        rhs = "";
+        lastPrecision = "0";
 
         try {
             mathematicaInterface.evaluate(cmd);
         } catch (MathLinkException e) {
             LOG.error("Cannot clear variables.");
         }
+    }
+
+    @Override
+    public void setCurrentTestCase(String lhs, String rhs) {
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
     private static void addVarDefinitionNL(StringBuilder sb, String varName, String def) {
@@ -191,7 +211,7 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
         sb.append(testCasesVar);
 
         String commandString = sb.toString();
-        LOG.trace("Numerical Test Commands:"+NL+commandString);
+        LOG.debug("Numerical Test Commands:"+NL+commandString);
 
         LOG.debug("Compute number of test cases and check if it is in range.");
         Expr res = runWithTimeout(commandString, timeout);
@@ -209,8 +229,15 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
             LOG.info("Setup variables for numerical test case.");
             LOG.trace(sb.toString());
             mathematicaInterface.evaluate(sb.toString());
-            String appliedConst = mathematicaInterface.evaluate(cons);
-            LOG.debug("Applying constraints: " + appliedConst);
+            Expr appliedConstraints = mathematicaInterface.evaluateToExpression(cons);
+            for ( Expr ac : appliedConstraints.args() ) {
+                if ( ac != null ) {
+                    String s = mathematicaInterface.evaluate("ToString["+ac.toString()+", InputForm]");
+                    if ( !s.isBlank() ) s = s.substring(1, s.length()-1);
+                    latestAppliedConstraints.add(s);
+                }
+            }
+            LOG.debug("Applying constraints: " + appliedConstraints.toString());
         } catch (MathLinkException e) {
             LOG.warn("Unable to setup variables for numerical test cases", e);
         }
@@ -258,7 +285,9 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
 
         sb = new StringBuilder();
         addVarDefinitionNL(sb, expr, expression);
-        sb.append(Commands.NUMERICAL_TEST.build(expr, testCasesName, Double.toString(1/(double)precision)));
+        latestTestExpression = expression;
+        lastPrecision = Double.toString(1/(double)precision);
+        sb.append(Commands.NUMERICAL_TEST.build(expr, testCasesName, lastPrecision));
         LOG.info("Compute numerical test for: " + expression);
 
         return runWithTimeout(sb.toString(), timeout);
@@ -274,19 +303,15 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
 
     @Override
     public TestResultType getStatusOfResult(Expr results) {
-        String resStr = results.toString();
-
+        String checkCommand = Commands.WAS_NUMERICALLY_SUCCESSFUL.build(results.toString(), lastPrecision);
         try {
-            failedCases = results.length();
-        } catch (Error | Exception e) {
-            // nothing to do
+            String result = mathematicaInterface.evaluate(checkCommand);
+            if ( "True".equals(result) ) return TestResultType.SUCCESS;
+            else return TestResultType.FAILURE;
+        } catch (MathLinkException e) {
+            LOG.warn("Unable to analyze result: " + e.getMessage());
+            return TestResultType.ERROR;
         }
-
-//        LOG.info("Numerical test finished. Result: " + resStr);
-        LOG.info("Numerical test finished. Result: " + LogManipulator.shortenOutput(resStr, 5));
-        if ( !resStr.matches("^\\{.*") ) return TestResultType.ERROR;
-        if ( resStr.matches("\\{}|\\{0(?:.0)?[^\\d.]+}") ) return TestResultType.SUCCESS;
-        return TestResultType.FAILURE;
     }
 
     @Override
@@ -305,20 +330,29 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
     }
 
     @Override
-    public List<NumericCalculation> getNumericCalculationList(Expr result) {
-        if ( !result.listQ() ) return new LinkedList<>();
+    public NumericCalculationGroup getNumericCalculationGroup(Expr result) {
+        if ( !result.listQ() ) return new NumericCalculationGroup();
 
-        List<NumericCalculation> resultsList = new LinkedList<>();
+        NumericCalculationGroup group = new NumericCalculationGroup();
+        group.setLhs(lhs);
+        group.setRhs(rhs);
+        group.setTestExpression(latestTestExpression);
+        group.setConstraints(new LinkedList<>(latestAppliedConstraints));
+
         Expr[] resultsArr = result.args();
         for ( Expr res : resultsArr ) {
-            NumericCalculation nc = getNumericCalculation(res);
-            if ( nc != null ) resultsList.add(nc);
+            try {
+                NumericCalculation nc = getNumericCalculation(res);
+                group.addTestCalculation(nc);
+            } catch (MathLinkException mle) {
+                LOG.warn("Unable to generate string of internal expression: " + res.toString());
+            }
         }
 
-        return resultsList;
+        return group;
     }
 
-    private NumericCalculation getNumericCalculation(Expr result) {
+    private NumericCalculation getNumericCalculation(Expr result) throws MathLinkException {
         if ( !result.listQ() ) return null;
 
         Expr[] singleResultArgs = result.args();
@@ -327,8 +361,10 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
             return null;
         }
 
-        NumericCalculation nc = new NumericCalculation();
-        nc.setResult( singleResultArgs[0].toString() );
+        NumericCalculation nc = new NumericCalculation( getStatusOfResult(singleResultArgs[0]) );
+        String s = mathematicaInterface.evaluate("ToString["+singleResultArgs[0].toString()+", InputForm]");
+        if ( !s.isBlank() ) s = s.substring(1, s.length()-1);
+        nc.setResultExpression( s );
 
         Map<String, String> varValMap = new HashMap<>();
         nc.setTestValues(varValMap);
@@ -343,7 +379,11 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
             }
 
             Expr[] varValPairArr = varValPair.args();
-            varValMap.put( varValPairArr[0].toString(), varValPairArr[1].toString() );
+            String key = mathematicaInterface.evaluate("ToString["+varValPairArr[0].toString()+", InputForm]");
+            String val = mathematicaInterface.evaluate("ToString["+varValPairArr[1].toString()+", InputForm]");
+            if ( !key.isBlank() ) key = key.substring(1, key.length()-1);
+            if ( !val.isBlank() ) val = val.substring(1, val.length()-1);
+            varValMap.put( key, val );
         }
 
         return nc;

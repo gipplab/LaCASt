@@ -46,10 +46,18 @@ public class SymbolicEquivalenceChecker {
         return fullSimplify( test, assumption, Duration.ofSeconds(-1) );
     }
 
+    private String latestTestExpression = "";
+
+    public String getLatestTestExpression() {
+        return latestTestExpression;
+    }
+
     public Expr fullSimplify(String test, String assumption, Duration timeout) throws MathLinkException {
+        latestTestExpression = "";
         String expr = assumption == null ?
                 Commands.FULL_SIMPLIFY.build(test) :
                 Commands.FULL_SIMPLIFY_ASSUMPTION.build(test, assumption);
+        latestTestExpression = expr;
 
         LOG.debug("Start simplification: " + expr);
         return mathematica.evaluateToExpression(expr, timeout);

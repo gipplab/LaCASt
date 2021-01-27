@@ -32,18 +32,23 @@ public class NumericalTest implements Serializable {
 
     private Set<String> requiredPackages;
 
-    public NumericalTest(String testExpression) {
+    private final String lhs, rhs;
+
+    public NumericalTest(String lhs, String rhs, String testExpression) {
         this.testExpression = testExpression;
         this.requiredPackages = new HashSet<>();
+        this.lhs = lhs;
+        this.rhs = rhs;
     }
 
     public NumericalTest(
+            String lhs, String rhs,
             String testExpression,
             INumericTestCase c,
             NumericalConfig config,
             IConstraintTranslator translator
     ) {
-        this(testExpression);
+        this(lhs, rhs, testExpression);
 
         String label = c.getEquationLabel();
         testValues = config.getListOfNumericalValues(translator, label);
@@ -106,6 +111,14 @@ public class NumericalTest implements Serializable {
         if ( requiredPackages == null ) this.requiredPackages = new HashSet<>();
         else this.requiredPackages = new HashSet<>(requiredPackages);
         return this;
+    }
+
+    public String getLhs() {
+        return lhs;
+    }
+
+    public String getRhs() {
+        return rhs;
     }
 
     public Set<String> getRequiredPackages() {

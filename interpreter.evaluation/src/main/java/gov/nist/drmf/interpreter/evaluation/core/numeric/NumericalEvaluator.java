@@ -406,6 +406,7 @@ public class NumericalEvaluator extends AbstractNumericalEvaluator {//implements
         variables.addAll(rhs.getFreeVariables().getFreeVariables());
 
         NumericalTest test = new NumericalTest(
+                lhs.getTranslatedExpression(), rhs.getTranslatedExpression(),
                 getTestedExpression(lhs.getTranslatedExpression(), rhs.getTranslatedExpression(), c),
                 c,
                 config,
