@@ -2,9 +2,13 @@ package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.common.InformationLogger;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
+import gov.nist.drmf.interpreter.common.latex.Relations;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
@@ -19,6 +23,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -142,7 +147,7 @@ class SimpleTranslationTests {
     @Test
     void fracMultiply2() {
         String in = "(\\frac{x}{y})x";
-        String eout = "((x)/(y))* x";
+        String eout = "((x)/(y))*x";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -304,7 +309,7 @@ class SimpleTranslationTests {
     @Test
     void multiplyTrickyBarTest() {
         String in = "(\\tfrac{1}{4} + |z|)n";
-        String eout = "((1)/(4)+abs(z))* n";
+        String eout = "((1)/(4)+abs(z))*n";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -320,7 +325,7 @@ class SimpleTranslationTests {
     @Test
     void multiplyTrickyBar3Test() {
         String in = "(\\tfrac{1}{4} + \\left|z \\right|)n";
-        String eout = "((1)/(4)+abs(z))* n";
+        String eout = "((1)/(4)+abs(z))*n";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -329,6 +334,78 @@ class SimpleTranslationTests {
     void generalBracketTest() {
         String in = "\\left[ x \\right] + \\left( y \\right) + \\left| z \\right|";
         String eout = "(x)+(y)+abs(z)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void simpleTranslateInequalityTest() {
+        String in = "3 > 2";
+        String eout = "3 > 2";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+
+        RelationalComponents comps = slt.getTranslationInformation().getRelationalComponents();
+        assertEquals(2, comps.getComponents().size(), comps.getComponents().toString());
+        assertEquals(1, comps.getRelations().size(), comps.getRelations().toString());
+
+        assertEquals("3", comps.getComponents().get(0), comps.getComponents().toString());
+        assertEquals("2", comps.getComponents().get(1), comps.getComponents().toString());
+        assertEquals(Relations.GREATER_THAN, comps.getRelations().get(0), comps.getRelations().toString());
+    }
+
+    @Test
+    void simpleTranslateInequalityReverseTest() {
+        String in = "2 < 3";
+        String eout = "2 < 3";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+
+        RelationalComponents comps = slt.getTranslationInformation().getRelationalComponents();
+        assertEquals(2, comps.getComponents().size(), comps.getComponents().toString());
+        assertEquals(1, comps.getRelations().size(), comps.getRelations().toString());
+
+        assertEquals("2", comps.getComponents().get(0), comps.getComponents().toString());
+        assertEquals("3", comps.getComponents().get(1), comps.getComponents().toString());
+        assertEquals(Relations.LESS_THAN, comps.getRelations().get(0), comps.getRelations().toString());
+    }
+
+    @Test
+    void multiplyBracketTest() {
+        String in = "2 (x + y)";
+        String eout = "2*(x + y)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void angleBracketTest() {
+        String in = "2 < 3 + 5 > x";
+        String eout = "2*(3 + 5)*x";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void noAngleBracketButRelationTest() {
+        String in = "2 < 3 + 5 < x";
+        String eout = "2 < 3 + 5 < x";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void noAngleBracketButRelationReverseTest() {
+        String in = "2 > 3 + 5 > x";
+        String eout = "2 > 3 + 5 > x";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void spaceBehindSlashTest() {
+        String in = "2/3";
+        String eout = "2/3";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -343,6 +420,19 @@ class SimpleTranslationTests {
         String outRev = slt.translate(inRev);
         assertEquals(eout, out);
         assertEquals(eout, outRev);
+    }
+
+    @Test
+    void constantModeTranslationTest() {
+        String in = "e + \\pi + i";
+        String out = slt.translate(in);
+        assertEquals("e + pi + i", out);
+        System.out.println(slt.getTranslationInformation().getTranslationInformation());
+        slt.getConfig().setLettersAsConstantsMode(true);
+        TranslationInformation ti = slt.translateToObject(in);
+        assertEquals("exp(1)+ Pi + i", ti.getTranslatedExpression());
+        System.out.println(ti.getTranslationInformation());
+        slt.getConfig().setLettersAsConstantsMode(false);
     }
 
     @Test
@@ -382,6 +472,27 @@ class SimpleTranslationTests {
     void bracketNormalizationDerivTest() {
         String in = "\\deriv [n]{}{z} \\{ z (1 - z^2)^n \\}";
         String out = "diff(z*(1 - (z)^(2))^(n), [z$(n)])";
+        assertEquals(out, slt.translate(in));
+    }
+
+    @Test
+    void operatornameTest() {
+        String in = "\\operatorname{sin}(x)";
+        String out = "sin(x)";
+        assertEquals(out, slt.translate(in));
+    }
+
+    @Test
+    void operatornameCustomFunctionTest() {
+        String in = "\\operatorname{li}(x)";
+        String out = "li(x)";
+        assertEquals(out, slt.translate(in));
+    }
+
+    @Test
+    void genericLatexTest() {
+        String in = "\\operatorname{li} (x) = \\lim_{\\varepsilon \\to 0+} (\\int_0^{1-\\varepsilon} \\frac{\\diff{t}}{\\ln t} + \\int_{1+\\varepsilon}^x \\frac{\\diff{t}}{\\ln t})";
+        String out = "li(x) = limit(int((1)/(ln(t)), t = 0..1 - varepsilon)+ int((1)/(ln(t)), t = 1 + varepsilon..x), varepsilon = 0, right)";
         assertEquals(out, slt.translate(in));
     }
 
@@ -431,7 +542,7 @@ class SimpleTranslationTests {
         String label = "4.2.E33";
         String res = slt.translate(in, label);
         System.out.println(res);
-        assertEquals("exp(z) = (exp(z))* exp(2*k*z*Pi*I)", res);
+        assertEquals("exp(z) = (exp(z))*exp(2*k*z*Pi*I)", res);
     }
 
     @Test
@@ -449,6 +560,28 @@ class SimpleTranslationTests {
         String expect = "1 +(binomial(n + 1,k))^(2)";
         String actual = slt.translate(input);
         assertEquals(expect, actual);
+    }
+
+    @Test
+    public void constraintTranslation() {
+        String input = "1 + x \\quad x > 1";
+        String expect = "1 + x";
+        TranslationInformation translation = slt.translateToObject(input);
+        assertEquals(expect, translation.getTranslatedExpression());
+        List<String> constraints = translation.getTranslatedConstraints();
+        assertEquals(1, constraints.size());
+        assertEquals("x > 1", constraints.get(0));
+    }
+
+    @Test
+    public void multiConstraintTranslation() {
+        String input = "\\erf@@{(z)}^{(k)} = \\frac{2 (-1)^{k-1}}{\\sqrt{\\cpi}} \\HermitepolyH{k-1}@{z} \\expe^{-z^2} = \\frac{2}{\\sqrt{\\cpi}} \\deriv [{k-1}]{ }{z}(\\expe^{-z^2}) , \\qquad k = 1 , 2 , \\dots";
+        String expect = "(erf(z))^(k) = (2*(- 1)^(k - 1))/(sqrt(Pi))*HermiteH(k - 1, z)*exp(- (z)^(2)) = (2)/(sqrt(Pi))*diff(exp(- (z)^(2)), [z$(k - 1)])";
+        TranslationInformation translation = slt.translateToObject(input);
+        assertEquals(expect, translation.getTranslatedExpression());
+        List<String> constraints = translation.getTranslatedConstraints();
+        assertEquals(1, constraints.size());
+        assertEquals("k = 1 , 2 , ..", constraints.get(0));
     }
 
     @Test
@@ -534,6 +667,21 @@ class SimpleTranslationTests {
         String input = "{\\sqrt{1-k^2}}^{-1}\\ln{\\Jacobielldck{x}{k}+\\sqrt{1-k^2}\\Jacobiellsck{x}{k}}";
         String output = sltMathematica.translate(input, "12.14.8");
         assertEquals("(Sqrt[1 - (k)^(2)])^(- 1)* Log[JacobiDC[x, (k)^2]+Sqrt[1 - (k)^(2)]*JacobiSC[x, (k)^2]]", output);
+    }
+
+    @Test
+    public void multiEquationTest() {
+        String input = "x = x^2 , \\qquad x = 1";
+        TranslationInformation ti = sltMathematica.translateToObject(input);
+        assertEquals(2, ti.getRelationalComponents().getComponents().size(), ti.getRelationalComponents().getComponents().toString());
+        assertEquals(1, ti.getRelationalComponents().getRelations().size(), ti.getRelationalComponents().getRelations().toString());
+        assertEquals(1, ti.getTranslatedConstraints().size(), ti.getTranslatedConstraints().toString());
+
+        List<String> comps = ti.getRelationalComponents().getComponents();
+        assertEquals("x", comps.get(0));
+        assertEquals("(x)^(2)", comps.get(1));
+        assertEquals(Relations.EQUAL, ti.getRelationalComponents().getRelations().get(0));
+        assertEquals("x == 1", ti.getTranslatedConstraints().get(0));
     }
 
     @Test

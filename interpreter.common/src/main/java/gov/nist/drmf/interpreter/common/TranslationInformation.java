@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.common;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
+import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
 
 import java.util.*;
 
@@ -16,18 +17,35 @@ public class TranslationInformation {
 
     private Set<String> requiredPackages;
 
+    private FreeVariables freeVariables;
+
+    private RelationalComponents relationalComponents;
+
     private List<TranslationInformation> partialTranslations;
 
-    public TranslationInformation(
-            String expression,
-            String translatedExpression
-    ) {
-        this.expression = expression;
-        this.translatedExpression = translatedExpression;
+    public TranslationInformation() {
+        this.expression = "";
+        this.translatedExpression = "";
         this.information = new InformationLogger();
         this.requiredPackages = new HashSet<>();
         this.translatedConstraints = new LinkedList<>();
+        this.freeVariables = new FreeVariables();
+        this.relationalComponents = new RelationalComponents();
         this.partialTranslations = new LinkedList<>();
+    }
+
+    public TranslationInformation(String expression, String translatedExpression) {
+        this();
+        this.expression = expression;
+        this.translatedExpression = translatedExpression;
+    }
+
+    public void setExpression(String expression) {
+        this.expression = expression;
+    }
+
+    public void setTranslatedExpression(String translatedExpression) {
+        this.translatedExpression = translatedExpression;
     }
 
     public void setInformation(InformationLogger information) {
@@ -36,6 +54,14 @@ public class TranslationInformation {
 
     public void setRequiredPackages(Set<String> requiredPackages) {
         this.requiredPackages = new HashSet<>(requiredPackages);
+    }
+
+    public void setFreeVariables(FreeVariables freeVariables) {
+        this.freeVariables = freeVariables;
+    }
+
+    public void setRelationalComponents(RelationalComponents relationalComponents) {
+        this.relationalComponents = relationalComponents;
     }
 
     public void addTranslatedConstraints(String... translatedConstraint) {
@@ -67,7 +93,11 @@ public class TranslationInformation {
     }
 
     public FreeVariables getFreeVariables() {
-        return information.getFreeVariables();
+        return freeVariables;
+    }
+
+    public RelationalComponents getRelationalComponents() {
+        return relationalComponents;
     }
 
     public Set<String> getRequiredPackages() {

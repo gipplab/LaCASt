@@ -1,20 +1,18 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
-import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
+import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
-import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
@@ -194,7 +192,7 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals("a", groups.get("par1"));
         assertEquals("b", groups.get("par2"));
         assertEquals("n", groups.get("par3"));
-        assertEquals("x \\cdot (x^2 + y)", groups.get("var1"));
+        assertEquals("x \\cdot(x^2 + y)", groups.get("var1"));
 
         assertTrue(blueprint.match("P^{(a,b)}_{n} ( x \\cdot (x^2 + y) )", MatcherConfig.getExactMatchConfig()));
     }
@@ -313,7 +311,7 @@ public class MatchablePomTaggedExpressionTests {
         PomMatcher matcher = blueprint.matcher(test);
         PrintablePomTaggedExpression ppte = matcher.replacePattern("\\JacobipolyP{var2}{var3}{var4}@{var5}");
         assertEquals(
-                "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{d^n}{dz^n} \\{z (1 - z^2)^n \\}",
+                "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{d^n}{dz^n} \\{z(1 - z^2)^n \\}",
                 ppte.getTexString()
         );
     }
@@ -362,7 +360,7 @@ public class MatchablePomTaggedExpressionTests {
         assertTrue(blueprint.match(ppte, MatcherConfig.getDefaultMatchConfig()));
 
         Map<String, String> matches = blueprint.getStringMatches();
-        assertEquals("f (x)", matches.get("var1"));
+        assertEquals("f(x)", matches.get("var1"));
     }
 
     @Test
@@ -392,7 +390,7 @@ public class MatchablePomTaggedExpressionTests {
 
         assertTrue(matcher.find(), matcher.groups().toString()); // than it matches the elements of the sequence, namely all
         group = matcher.groups();
-        assertEquals("f (p)", group.get("var0")); // before it matched as a sequence, now it matched as 4 elements f, (, p, and )
+        assertEquals("f(p)", group.get("var0")); // before it matched as a sequence, now it matched as 4 elements f, (, p, and )
 
         assertTrue(matcher.find(), matcher.groups().toString()); // than it matches the elements of the sequence, namely all
         group = matcher.groups();
@@ -480,7 +478,7 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals("- n", matches.get("var3"));
         assertEquals("1 + \\alpha + \\beta + n", matches.get("var4"));
         assertEquals("\\alpha + 1", matches.get("var5"));
-        assertEquals("\\tfrac{1}{2} (1 - z)", matches.get("var6"));
+        assertEquals("\\tfrac{1}{2}(1 - z)", matches.get("var6"));
     }
 
     @Test
@@ -689,7 +687,7 @@ public class MatchablePomTaggedExpressionTests {
         String test = "\\Gamma(\\Gamma(x))";
         PomMatcher pomMatcher = blueprint.matcher( test, MatcherConfig.getInPlaceMatchConfig() );
         assertTrue(pomMatcher.find());
-        assertEquals("\\Gamma (x)", pomMatcher.groups().get("var1"));
+        assertEquals("\\Gamma(x)", pomMatcher.groups().get("var1"));
         assertTrue(pomMatcher.latestHitMatchedExact());
 
         assertTrue(pomMatcher.find());
@@ -698,8 +696,18 @@ public class MatchablePomTaggedExpressionTests {
 
         pomMatcher.reset();
         assertTrue(pomMatcher.find());
-        assertEquals("\\Gamma (x)", pomMatcher.groups().get("var1"));
+        assertEquals("\\Gamma(x)", pomMatcher.groups().get("var1"));
         assertTrue(pomMatcher.latestHitMatchedExact());
+    }
+
+    @Test
+    public void ignoreOperatorNameTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "sin(x)", "([pv])ar\\d");
+
+        String test = "\\operatorname{sin}(x)";
+        PomMatcher pomMatcher = blueprint.matcher( test, MatcherConfig.getInPlaceMatchConfig() );
+        assertTrue(pomMatcher.match());
     }
 
     @Test
@@ -1084,7 +1092,7 @@ public class MatchablePomTaggedExpressionTests {
         PomMatcher pomMatcher = blueprint.matcher(test);
 
         PrintablePomTaggedExpression result = pomMatcher.replacePattern( "var1^2" );
-        assertEquals("f (x^2) + g (y^2)", result.getTexString());
+        assertEquals("f(x^2) + g(y^2)", result.getTexString());
     }
 
     @Test
@@ -1282,6 +1290,51 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void singleWildcardSequenceTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "a + {VAR0}", "VAR\\d");
+
+        String test = "a + (x + y)";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("(x + y)", groups.get("VAR0"));
+        assertFalse(matcher.find());
+    }
+
+    @Test
+    public void singleWildcardSequenceInPlaceTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "a + {VAR0}", "VAR\\d");
+
+        String test = "a + (x + y) + z";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("(x + y)", groups.get("VAR0"));
+        assertFalse(matcher.find());
+    }
+
+    @Test
+    public void singleWildcardSequenceNotEndTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "a + {VAR0} + b", "VAR\\d");
+
+        String test = "a + (x + y) + b";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        assertTrue(matcher.find());
+        Map<String, String> groups = matcher.groups();
+        assertNotNull(groups);
+        assertEquals("(x + y)", groups.get("VAR0"));
+        assertFalse(matcher.find());
+    }
+
+    @Test
     public void directMatchTest() throws ParseException {
         MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x");
         assertTrue(blueprint.match("x"));
@@ -1391,6 +1444,61 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void fontManipulationNonWildcardTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + \\overline{y}", "var1");
+        assertTrue(blueprint.match("x + \\overline{y}"));
+        assertFalse(blueprint.match("x + \\tilde{y}"));
+    }
+
+    @Test
+    public void ignoreOperatornameMathrmTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + \\mathrm{y}", "var1");
+        assertFalse(blueprint.match("x + \\operatorname{y}"));
+        assertFalse(blueprint.match("x + \\overline{y}"));
+
+        assertTrue(blueprint.match("x + \\operatorname{y}", MatcherConfig.getExactMatchConfig().ignoreFontManipulation(true)));
+        assertTrue(blueprint.match("x + \\overline{y}", MatcherConfig.getExactMatchConfig().ignoreFontManipulation(true)));
+    }
+
+    @Test
+    public void ignoreOperatornameTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + y", "var1");
+        assertTrue(blueprint.match("x + \\operatorname{y}"));
+    }
+
+    @Test
+    public void operatornameSubexpressionTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("\\operatorname{ln} (x)");
+        PomMatcher m = blueprint.matcher("\\operatorname{ln}(x) + \\epsilon_{i j k}");
+        assertTrue(m.find());
+    }
+
+    @Test
+    public void replaceOperatorTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "\\operatorname{ln} (var1)", "([pv])ar\\d");
+
+        String test = "\\operatorname{ln} (z) = 1";
+        PomMatcher matcher = blueprint.matcher(test);
+
+        PrintablePomTaggedExpression result = matcher.replacePattern( "\\ln@@{z}" );
+        assertEquals("\\ln@@{z} = 1", result.getTexString());
+    }
+
+    @Test
+    public void replaceOperatorIgnoreOperatorTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "\\operatorname{erf} var1", "([pv])ar\\d");
+
+        MatcherConfig config = MatcherConfig.getInPlaceMatchConfig().ignoreOperatorName(true);
+        String test = "\\operatorname{erf} z = \\frac{2}{\\sqrt\\pi}";
+        PomMatcher matcher = blueprint.matcher(test, config);
+
+        PrintablePomTaggedExpression result = matcher.replacePattern( "\\erf@@{var1}" );
+        assertEquals("\\erf@@{z} = \\frac{2}{\\sqrt\\pi}", result.getTexString());
+    }
+
+    @Test
     public void pomMatcherReplaceAllRealWorldTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "P^{(var1, var2)}_{var3} (var4)", "([pv])ar\\d");
@@ -1426,7 +1534,7 @@ public class MatchablePomTaggedExpressionTests {
         MatchablePomTaggedExpression pochhammerBlueprint = PomMatcherBuilder.compile(mlp, "(var1)_{var2}", "var\\d");
         PomMatcher matcher = pochhammerBlueprint.matcher("\\Gamma( (\\alpha+1)_n )");
         PrintablePomTaggedExpression result = matcher.replacePattern( "\\Pochhammersym{var1}{var2}" );
-        assertEquals("\\Gamma (\\Pochhammersym{\\alpha + 1}{n})", result.getTexString());
+        assertEquals("\\Gamma(\\Pochhammersym{\\alpha + 1}{n})", result.getTexString());
     }
 
     @Test
@@ -1434,7 +1542,7 @@ public class MatchablePomTaggedExpressionTests {
     public void pomMatcherReplaceJacobiArticleTest() throws ParseException {
         // contains the jacobi polynomial, the pochhammer symbol and the hypergeometric function
         String test = "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)";
-        String semantic = "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\Pochhammersym{\\alpha + 1}{n}}{n!} \\genhyperF{2}{1}@{- n, 1 + \\alpha + \\beta + n}{\\alpha + 1}{\\tfrac{1}{2} (1 - z)}";
+        String semantic = "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\Pochhammersym{\\alpha + 1}{n}}{n!} \\genhyperF{2}{1}@{- n, 1 + \\alpha + \\beta + n}{\\alpha + 1}{\\tfrac{1}{2}(1 - z)}";
 
         MatchablePomTaggedExpression jacobiBlueprint = PomMatcherBuilder.compile(mlp, "P^{(var1, var2)}_{var3} (var4)", "var\\d");
         MatchablePomTaggedExpression pochhammerBlueprint = PomMatcherBuilder.compile(mlp, "(var1)_{var2}", "var\\d");
@@ -1467,9 +1575,8 @@ public class MatchablePomTaggedExpressionTests {
         assertEquals("\\Jacobithetaq{3}@@{0}{\\exp@{-\\pi\\ccompellintKk@{k}/\\compellintKk@{k}}}", ppte.getTexString());
     }
 
-    @Test
-    public void stressTest() throws ParseException, IOException {
-        String testStrings = getResourceContent("StressTestList.txt");
+    @Resource("StressTestList.txt")
+    public void stressTest(String testStrings) throws ParseException {
         String lookout = "P_{var1}^{(var2, var3)}(var4)";
         MatchablePomTaggedExpression matchPTE = PomMatcherBuilder.compile(mlp, lookout, "var\\d");
 
@@ -1496,9 +1603,5 @@ public class MatchablePomTaggedExpressionTests {
         if ( elapsed.toMillis() > 500 ) {
             LOG.warn("Stress test took over half a second. There seem to be a problem with the performance. It's worth checking.");
         }
-    }
-
-    private String getResourceContent(String resourceFilename) throws IOException {
-        return IOUtils.toString(this.getClass().getResourceAsStream(resourceFilename), StandardCharsets.UTF_8);
     }
 }

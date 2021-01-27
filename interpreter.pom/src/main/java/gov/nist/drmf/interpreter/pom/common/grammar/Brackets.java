@@ -476,6 +476,7 @@ public enum Brackets {
      * @return false if there are no brackets
      */
     public static boolean isEnclosedByBrackets(String str) {
+        if ( str == null ) return false;
         String tmp = str.trim();
         if (!tmp.matches(OPEN_PATTERN + ".*" + CLOSED_PATTERN)) {
             return false;

@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.cas.translation.components.util;
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
 import gov.nist.drmf.interpreter.cas.blueprints.MathematicalEssentialOperatorMetadata;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
+import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
@@ -244,6 +245,13 @@ public class MeomArgumentExtractor {
             MathTerm mt = curr.getRoot();
             // if the tag is null, it might be a fraction. if not, there are multiple options
             RETURN_VAL val = RETURN_VAL.NONE;
+            list.remove(0);
+            if ( AbstractListTranslator.upcomingConstraint(curr, list) ) {
+                list.add(0, curr);
+                return;
+            }
+            list.add(0, curr);
+
             if ( mt.getTag() != null ) {
                 val = variableExtractor.handleNonEmptyTag(cache, parenthesisCache, mt);
             } else {

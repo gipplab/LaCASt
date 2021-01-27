@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
@@ -272,5 +273,10 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
         }
 
         return args;
+    }
+
+    public static boolean upcomingConstraint( PomTaggedExpression exp, List<PomTaggedExpression> expList ) {
+        return MathTermTags.is( exp, MathTermTags.comma )
+                && !expList.isEmpty() && PomTaggedExpressionUtility.isLongSpace(expList.get(0));
     }
 }

@@ -17,12 +17,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Observer;
 
-import static gov.nist.drmf.interpreter.common.constants.GlobalConstants.NL;
-
 /**
  * @author Andre Greiner-Petter
  */
-public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebraic> {
+public final class MapleInterface implements IComputerAlgebraSystemEngine {
     private static final Logger LOG = LogManager.getLogger(MapleInterface.class.getName());
 
     /**
@@ -92,8 +90,10 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebr
      *                          pre-defined Maple procedure fails.
      */
     private void init() throws MapleException {
+        LOG.info("Establish Maple connection");
         listener = new MapleListener(true);
         engine = new Engine( maple_args, listener, null, null );
+        LOG.info("Successfully setup Maple engine connection");
     }
 
     /**
@@ -117,22 +117,10 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebr
     }
 
     @Override
-    public Algebraic enterCommand(String command) throws ComputerAlgebraSystemEngineException {
+    public String enterCommand(String command) throws ComputerAlgebraSystemEngineException {
         try {
-            return evaluate(command);
+            return evaluate(command).toString();
         } catch (MapleException me) {
-            throw new ComputerAlgebraSystemEngineException(me);
-        }
-    }
-
-    @Override
-    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
-        String cmd = String.join(", ", assumptions);
-        try {
-            evaluate("assume(" + cmd + ");");
-            LOG.info("Set global assumptions in Maple: " + Arrays.toString(assumptions));
-        } catch (MapleException me) {
-            LOG.error("Unable to set global assumptions for Maple: " + Arrays.toString(assumptions));
             throw new ComputerAlgebraSystemEngineException(me);
         }
     }
@@ -157,6 +145,10 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebr
 
     @Override
     public String buildList(List<String> list) {
+        return buildMapleList(list);
+    }
+
+    public static String buildMapleList(List<String> list) {
         if ( list == null ) {
             return null;
         }
@@ -208,8 +200,12 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebr
      */
     public static MapleInterface getUniqueMapleInterface() {
         if ( mapleInterface == null ) {
+            LOG.info("Maple interface is not setup yet. Start initialization.");
             try {
-                if (MapleConfig.areSystemVariablesSetProperly()) mapleInterface = new MapleInterface();
+                LOG.info("Check if Maple setup is set properly");
+                if (MapleConfig.isMapleSetup()) {
+                    mapleInterface = new MapleInterface();
+                }
                 return mapleInterface;
             } catch (MapleException e) {
                 LOG.error("Unable to load ");
@@ -225,19 +221,6 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine<Algebr
      * @return unique listener
      */
     public static MapleListener getUniqueMapleListener(){ return listener; }
-
-    /**
-     * Quick check if Maple is available.
-     * @return true if maple is running and available
-     */
-    public static boolean isMaplePresent() {
-        try {
-            return getUniqueMapleInterface() != null;
-        } catch ( Exception | Error e ) {
-            LOG.warn("Cannot init maple interface", e);
-            return false;
-        }
-    }
 
     public boolean isAbortedExpression(Algebraic result) {
         if ( result instanceof MString) {

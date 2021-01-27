@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.*;
 
 import static gov.nist.drmf.interpreter.pom.common.FeatureSetUtility.getSetByFeatureValue;
+import static gov.nist.drmf.interpreter.pom.common.FeatureSetUtility.isConsideredAsRelation;
 
 /**
  * @author Andre Greiner-Petter
@@ -110,6 +111,15 @@ public final class MathTermUtility {
         return tag.equals(t);
     }
 
+    public static boolean equalsOr( MathTerm term, MathTermTags... tags ) {
+        if ( term == null ) return false;
+        MathTermTags t = MathTermTags.getTagByKey(term.getTag());
+        for ( MathTermTags tag : tags ) {
+            if ( tag.equals(t) ) return true;
+        }
+        return false;
+    }
+
     /**
      * Returns true if the given term is a relation symbol
      * @param term a math term
@@ -135,17 +145,24 @@ public final class MathTermUtility {
         return LimitedExpressions.isLimitedExpression(term);
     }
 
-    public static String getAppropriateFontTex(MathTerm term) {
+    public static String getAppropriateFontTex(MathTerm term, boolean ignoreMathrm) {
         String token = term.getTermText();
         if ( term.wasFontActionApplied() ) {
-            token = term.firstFontAction() + "{" + token + "}";
+            if ( !ignoreMathrm || !"\\mathrm".equals(term.firstFontAction()) )
+                token = term.firstFontAction() + "{" + token + "}";
         }
 
         List<String> accents = FeatureValues.ACCENT.getFeatureValues(term);
         for ( int i = accents.size()-1; i >= 0; i-- ) {
+            if ( ignoreMathrm && "mathrm".equals(accents.get(i)) ) continue;
             token = "\\" + accents.get(i) + "{" + token + "}";
         }
         return token;
+    }
+
+    public static boolean isOperatorname(MathTerm term) {
+        MathTermTags tag = MathTermTags.getTagByMathTerm(term);
+        return MathTermTags.command.equals(tag) && term.getTermText().equals("\\operatorname");
     }
 
     public static MathTerm secureClone(MathTerm term) {

@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.cas.common;
 import gov.nist.drmf.interpreter.cas.blueprints.BlueprintMaster;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
+import gov.nist.drmf.interpreter.common.config.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,9 +24,12 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
     private String LINE_DELIMITER = "\n";
 
     private BlueprintMaster limitParser = null;
+
     private boolean extensiveOutput = false;
 
     private boolean inlinePackageMode = false;
+
+    private boolean translateLettersAsConstantsIfPossible = false;
 
     public ForwardTranslationProcessConfig(String to_language) {
         super(Keys.KEY_LATEX, to_language);
@@ -49,6 +52,10 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
      */
     public void shortenOutput(boolean shortenOutput) {
         extensiveOutput = !shortenOutput;
+    }
+
+    public void setLettersAsConstantsMode(boolean lettersAsConstantsMode) {
+        this.translateLettersAsConstantsIfPossible = lettersAsConstantsMode;
     }
 
     /**
@@ -91,6 +98,10 @@ public class ForwardTranslationProcessConfig extends TranslationProcessConfig {
 
     public boolean isInlinePackageMode() {
         return inlinePackageMode;
+    }
+
+    public boolean translateLettersAsConstantsMode() {
+        return translateLettersAsConstantsIfPossible;
     }
 
     public String getTAB() {

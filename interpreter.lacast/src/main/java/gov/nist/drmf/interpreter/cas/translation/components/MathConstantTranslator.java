@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
@@ -84,9 +85,8 @@ public class MathConstantTranslator extends AbstractTranslator {
 
         if ( translation != null ) {
             // anyway, finally we translated it...
-            localTranslations.addTranslatedExpression(translation);
             // add getGlobalTranslationList() as well
-            getGlobalTranslationList().addTranslatedExpression(translation);
+            perform(TranslatedExpression::addTranslatedExpression, translation);
             getInfoLogger().addGeneralInfo(
                     constant,
                     DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) + " was translated to: " + translation
@@ -95,24 +95,25 @@ public class MathConstantTranslator extends AbstractTranslator {
         }
 
         // still null? try to translate it as a Greek letter than if possible
-        if ( !tryGreekLetterTranslation(exp, set, constant) ) {
+//        if ( !tryGreekLetterTranslation(exp, set, constant) ) {
             throw TranslationException.buildExceptionObj(
                     this, "Unable to translate constant " +
                             constant + " - " + set.getFeature(Keys.FEATURE_MEANINGS),
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
                     constant);
-        }
+//        }
     }
 
     private String alternativeConstantTranslation(Constants c, FeatureSet set, String constant) {
         // try from LaTeX to CAS (instead of DLMF to CAS)
         LOG.debug("Cannot translate math constant by MLP key. Try latex instead.");
+        boolean constantsMode = super.getConfig().translateLettersAsConstantsMode();
         String translation = c.translate(Keys.KEY_LATEX, CAS, constant);
-        if (translation != null) {
+        if (translation != null && (!constantsMode || "i".equals(constant))) {
             // if this works, inform the user, that we use this translation now!
             String dlmf = c.translate(Keys.KEY_LATEX, Keys.KEY_DLMF, constant);
             getInfoLogger().addGeneralInfo(
-                    translation,
+                    constant,
                     "You use a typical letter for a constant [" +
                             DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) + "]." + System.lineSeparator() +
                             "We keep it like it is! But you should know that " + CAS +
@@ -122,35 +123,41 @@ public class MathConstantTranslator extends AbstractTranslator {
             );
             // and now, use this translation
             translation = constant;
-            getInfoLogger().getFreeVariables().addFreeVariable(translation);
+            mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, translation);
+        } else if ( translation != null ) {
+            getInfoLogger().addGeneralInfo(
+                    constant,
+                    "Encountered " + constant + " which is usually the constant '" + translation + "'" + System.lineSeparator() +
+                            "[" + DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) + "]. Translated it to: " + translation + System.lineSeparator()
+            );
         }
         return translation;
     }
 
-    private boolean tryGreekLetterTranslation(PomTaggedExpression exp, FeatureSet set, String constant) {
-        LOG.debug("Still unable to translate math constant as a constant. If its greek letter, fallback to greek translation");
-        try {
-            String alphabet = set.getFeature(Keys.FEATURE_ALPHABET).first();
-            if (alphabet.contains(Keys.FEATURE_VALUE_GREEK)) {
-                LOG.debug("Indeed a greek letter, inform user and translate as greek letter.");
-                getInfoLogger().addGeneralInfo(
-                        constant,
-                        "Unable to translate " + constant + " [" + DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) +
-                                "]. But since it is a Greek letter we translated it to a Greek letter in "
-                                + CAS + "."
-                );
-                GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
-                localTranslations = glt.translate(exp);
-                getInfoLogger().getFreeVariables().addFreeVariable(localTranslations.getTranslatedExpression());
-                return true;
-            } else {
-                throw TranslationException.buildExceptionObj(this,
-                        "Cannot translate mathematical constant " + constant + " - " +
-                                set.getFeature(Keys.FEATURE_MEANINGS),
-                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, constant);
-            }
-        } catch (NullPointerException npe) {
-            return false;
-        }
-    }
+//    private boolean tryGreekLetterTranslation(PomTaggedExpression exp, FeatureSet set, String constant) {
+//        LOG.debug("Still unable to translate math constant as a constant. If its greek letter, fallback to greek translation");
+//        try {
+//            String alphabet = set.getFeature(Keys.FEATURE_ALPHABET).first();
+//            if (alphabet.contains(Keys.FEATURE_VALUE_GREEK)) {
+//                LOG.debug("Indeed a greek letter, inform user and translate as greek letter.");
+//                getInfoLogger().addGeneralInfo(
+//                        constant,
+//                        "Unable to translate " + constant + " [" + DLMFFeatureValues.MEANING.getFeatureValue(set, CAS) +
+//                                "]. But since it is a Greek letter we translated it to a Greek letter in "
+//                                + CAS + "."
+//                );
+//                GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
+//                localTranslations = glt.translate(exp);
+//                mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, localTranslations.getTranslatedExpression());
+//                return true;
+//            } else {
+//                throw TranslationException.buildExceptionObj(this,
+//                        "Cannot translate mathematical constant " + constant + " - " +
+//                                set.getFeature(Keys.FEATURE_MEANINGS),
+//                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, constant);
+//            }
+//        } catch (NullPointerException npe) {
+//            return false;
+//        }
+//    }
 }

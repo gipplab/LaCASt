@@ -1,24 +1,21 @@
 package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 
-import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
-import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
-import gov.nist.drmf.interpreter.core.DLMFTranslator;
+import gov.nist.drmf.interpreter.common.eval.SymbolicCalculation;
+import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
+import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
 import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
 import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
-import gov.nist.drmf.interpreter.evaluation.core.EvaluationConfig;
-import gov.nist.drmf.interpreter.evaluation.core.numeric.NumericalConfig;
-import gov.nist.drmf.interpreter.maple.common.MapleConstants;
-import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
-import gov.nist.drmf.interpreter.maple.extension.Simplifier;
+import gov.nist.drmf.interpreter.maple.MapleConnector;
+import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,12 +28,12 @@ import java.util.*;
  * @author Andre Greiner-Petter
  */
 @SuppressWarnings({"WeakerAccess", "unchecked"})
-public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
+public class SymbolicEvaluator extends AbstractSymbolicEvaluator {
     private static final String MANUAL_SKIP_IDS = "7731";
 
     private static final Logger LOG = LogManager.getLogger(SymbolicEvaluator.class.getName());
 
-    private SymbolicConfig config;
+    private SymbolicalConfig config;
 
     private HashMap<Integer, String> labelLib;
     private Set<ID> skips;
@@ -60,18 +57,14 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
      * 3) performTests();
      */
     public SymbolicEvaluator(
-            IConstraintTranslator forwardTranslator,
-            IComputerAlgebraSystemEngine<T> engine,
-            ICASEngineSymbolicEvaluator<T> symbolicEvaluator,
-            ISymbolicTestCases[] testCases,
-            String[] defaultPrevAfterCmds
-    ) throws IOException {
-        super( forwardTranslator, engine, symbolicEvaluator, testCases );
+            NativeComputerAlgebraInterfaceBuilder casBuilder
+    ) throws IOException, InitTranslatorException {
+        super( new DLMFTranslator(casBuilder.getLanguageKey()), casBuilder.getCASEngine(), casBuilder.getSymbolicEvaluator(), casBuilder.getDefaultSymbolicTestCases() );
 
         CaseAnalyzer.ACTIVE_BLUEPRINTS = false; // take raw constraints
 
-        this.config = new SymbolicConfig();
-        symbolicEvaluator.setTimeout(config.getTimeout());
+        this.config = new SymbolicalConfig(casBuilder.getDefaultSymbolicTestCases());
+        casBuilder.getSymbolicEvaluator().setTimeout(config.getTimeout());
         super.setTimeoutSeconds(config.getTimeout());
 
         NumericalConfig.NumericalProperties.KEY_OUTPUT.setValue(config.getOutputPath().toString());
@@ -99,7 +92,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         }
 
         Status.reset();
-        mathematica = (engine instanceof MathematicaInterface);
+        mathematica = (casBuilder.getCASEngine() instanceof MathematicaInterface);
         expectedResult = Double.parseDouble(config.getExpectationValue());
     }
 
@@ -154,7 +147,7 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         if ( overallAss != null && !overallAss.isEmpty() ){
             String[] ass = overallAss.split(" \\|\\| ");
             String[] transAss = this.getThisConstraintTranslator().translateEachConstraint(ass);
-            super.setGlobalAssumptions(transAss);
+            super.setGlobalSymbolicAssumptions(List.of(transAss));
         }
     }
 
@@ -166,15 +159,6 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         } catch ( ComputerAlgebraSystemEngineException casee ) {
             LOG.error("Cannot perform assumptions.", casee);
         }
-    }
-
-    public static String[] getMaplePrevAfterCommands() {
-        String[] pac = new String[2];
-        pac[0] = MapleConstants.ENV_VAR_LEGENDRE_CUT_FERRER;
-        pac[0] += System.lineSeparator();
-        //pac[0] += FERRER_DEF_ASS + System.lineSeparator();
-        pac[1] = MapleConstants.ENV_VAR_LEGENDRE_CUT_LEGENDRE;
-        return pac;
     }
 
     public String[] checkPrevCommand( String caseStr ){
@@ -201,6 +185,10 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             Status.SKIPPED.add();
             return;
         }
+
+        LOG.info("Replacing defined symbols.");
+        c.replaceSymbolsUsed(super.getSymbolDefinitionLibrary());
+        LOG.info("Final Test case: " + c);
 
         // first translations
         String lhs = null, rhs = null;
@@ -271,57 +259,15 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
         LOG.info(c.getLine() + ": Start simplifications. Expected outcome is "
                 + (config.getExpectationValue() == null ? "numerical" : config.getExpectationValue()));
 
-        for (int i = 0; i < type.length; i++) {
-            aborted[i] = false;
-            if (!type[i].isActivated()) {
-                successStr[i] = type[i].compactToString();
-                continue;
-            }
+        ICASEngineSymbolicEvaluator evaluator = super.getSymbolicEvaluator();
+        SymbolicalTest test = new SymbolicalTest(
+                config,
+                getThisConstraintTranslator(),
+                expression,
+                type
+        );
 
-            String testStr = type[i].buildCommand(expression);
-
-            try {
-                T res = simplify(testStr, arrConstraints);
-                if (res == null) {
-                    LOG.warn("CAS return NULL for: " + testStr);
-                    throw new IllegalArgumentException("Error in CAS!");
-                }
-
-                if (isAbortedResult(res)) {
-                    success[i] = false;
-                    aborted[i] = true;
-                    successStr[i] = type[i].getShortName() + ": Aborted";
-                    LOG.info(c.getLine() + " [" + type[i].getShortName() + "] Computation aborted.");
-                } else {
-                    // String strRes = res.toString();
-                    LOG.info(c.getLine() + " [" + type[i].getShortName() + "] Simplified expression: " + res);
-
-                    if (validOutCome(res, expectedResult)) {
-                        success[i] = true;
-                        successStr[i] = type[i].getShortName() + ": " + res;
-                    } else if ( isConditionallyValid(res, expectedResult) ) {
-                        String condition = getCondition(res);
-                        success[i] = true;
-                        successStr[i] = type[i].getShortName() + ": " + expectedResult + " under condition: " + condition;
-                        LOG.warn(c.getLine() + " [" + type[i].getShortName() + "]: Correct result but under extra conditions: " + condition);
-                    } else {
-                        success[i] = false;
-                        successStr[i] = type[i].getShortName() + ": NaN";
-                    }
-                }
-                errors[i] = false;
-            } catch (ComputerAlgebraSystemEngineException casee) {
-                LOG.error(c.getLine() + ": " + type[i].getShortName() + " - Error in CAS: " + casee.toString(), casee);
-                success[i] = false;
-                successStr[i] = type[i].getShortName() + ": CAS Error (" + casee.getMessage() + ")";
-                errors[i] = true;
-            } catch (IllegalArgumentException iae) {
-                LOG.error(c.getLine() + ": " + type[i].getShortName() + " - Result was null");
-                success[i] = false;
-                successStr[i] = type[i].getShortName() + ": NULL";
-                errors[i] = true;
-            }
-        }
+        SymbolicResult result = evaluator.performSymbolicTest(test);
 
         if (preAndPostCommands != null) {
             try {
@@ -332,25 +278,22 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             }
         }
 
-        // if one of the above is true -> we are done
-        boolean allError = true;
         boolean allAborted = true;
-        for (int i = 0; i < success.length; i++) {
-            if (!errors[i]) allError = false;
-            if (!aborted[i]) allAborted = false;
-            if (success[i]) {
-                if ( successStr[i].contains("condition") ) {
-                    lineResults[c.getLine()].add("Successful under condition " + Arrays.toString(successStr));
+        for (SymbolicCalculation sc : result.getAllCalculations()) {
+            allAborted &= sc.wasAborted();
+            if ( TestResultType.SUCCESS.equals(sc.getResult()) ) {
+                if ( sc.isWasConditionallySuccessful() ) {
+                    lineResults[c.getLine()].add("Successful under condition " + result.printCalculations());
                     Status.SUCCESS_UNDER_EXTRA_CONDITION.add();
                 } else {
-                    lineResults[c.getLine()].add("Successful " + Arrays.toString(successStr));
+                    lineResults[c.getLine()].add("Successful " + result.printCalculations());
                     Status.SUCCESS_SYMB.add();
                 }
                 return;
             }
         }
 
-        if (allError) {
+        if (TestResultType.ERROR.equals(result.overallResult())) {
             lineResults[c.getLine()].add("All Errors: " + Arrays.toString(successStr));
             Status.ERROR.add();
         } else if (allAborted) {
@@ -361,8 +304,98 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
             Status.FAILURE.add();
         }
 
+//        for (int i = 0; i < type.length; i++) {
+//            aborted[i] = false;
+//            if (!type[i].isActivated()) {
+//                successStr[i] = type[i].compactToString();
+//                continue;
+//            }
+//
+//            String testStr = type[i].buildCommand(expression);
+//
+//            try {
+//                T res = simplify(testStr, arrConstraints);
+//                if (res == null) {
+//                    LOG.warn("CAS return NULL for: " + testStr);
+//                    throw new IllegalArgumentException("Error in CAS!");
+//                }
+//
+//                if (isAbortedResult(res)) {
+//                    success[i] = false;
+//                    aborted[i] = true;
+//                    successStr[i] = type[i].getShortName() + ": Aborted";
+//                    LOG.info(c.getLine() + " [" + type[i].getShortName() + "] Computation aborted.");
+//                } else {
+//                    // String strRes = res.toString();
+//                    LOG.info(c.getLine() + " [" + type[i].getShortName() + "] Simplified expression: " + res);
+//
+//                    if (validOutCome(res, expectedResult)) {
+//                        success[i] = true;
+//                        successStr[i] = type[i].getShortName() + ": " + res;
+//                    } else if ( isConditionallyValid(res, expectedResult) ) {
+//                        String condition = getCondition(res);
+//                        success[i] = true;
+//                        successStr[i] = type[i].getShortName() + ": " + expectedResult + " under condition: " + condition;
+//                        LOG.warn(c.getLine() + " [" + type[i].getShortName() + "]: Correct result but under extra conditions: " + condition);
+//                    } else {
+//                        success[i] = false;
+//                        successStr[i] = type[i].getShortName() + ": NaN";
+//                    }
+//                }
+//                errors[i] = false;
+//            } catch (ComputerAlgebraSystemEngineException casee) {
+//                LOG.error(c.getLine() + ": " + type[i].getShortName() + " - Error in CAS: " + casee.toString(), casee);
+//                success[i] = false;
+//                successStr[i] = type[i].getShortName() + ": CAS Error (" + casee.getMessage() + ")";
+//                errors[i] = true;
+//            } catch (IllegalArgumentException iae) {
+//                LOG.error(c.getLine() + ": " + type[i].getShortName() + " - Result was null");
+//                success[i] = false;
+//                successStr[i] = type[i].getShortName() + ": NULL";
+//                errors[i] = true;
+//            }
+//        }
+
+//        if (preAndPostCommands != null) {
+//            try {
+//                enterEngineCommand(preAndPostCommands[1]);
+//                LOG.debug("Enter post-testing commands: " + preAndPostCommands[1]);
+//            } catch (ComputerAlgebraSystemEngineException e) {
+//                LOG.warn("Unable to enter post-testinc commands: " + preAndPostCommands[1], e);
+//            }
+//        }
+//
+//        // if one of the above is true -> we are done
+//        boolean allError = true;
+//        boolean allAborted = true;
+//        for (int i = 0; i < success.length; i++) {
+//            if (!errors[i]) allError = false;
+//            if (!aborted[i]) allAborted = false;
+//            if (success[i]) {
+//                if ( successStr[i].contains("condition") ) {
+//                    lineResults[c.getLine()].add("Successful under condition " + Arrays.toString(successStr));
+//                    Status.SUCCESS_UNDER_EXTRA_CONDITION.add();
+//                } else {
+//                    lineResults[c.getLine()].add("Successful " + Arrays.toString(successStr));
+//                    Status.SUCCESS_SYMB.add();
+//                }
+//                return;
+//            }
+//        }
+//
+//        if (allError) {
+//            lineResults[c.getLine()].add("All Errors: " + Arrays.toString(successStr));
+//            Status.ERROR.add();
+//        } else if (allAborted) {
+//            lineResults[c.getLine()].add("All Aborted: " + Arrays.toString(successStr));
+//            Status.ABORTED.add();
+//        } else {
+//            lineResults[c.getLine()].add("Failure " + Arrays.toString(successStr));
+//            Status.FAILURE.add();
+//        }
+
         try {
-            if (getGcCaller() % 1 == 0) {
+            if (getGcCaller() % 10 == 0) {
                 forceGC();
                 resetGcCaller();
             } else stepGcCaller();
@@ -395,35 +428,13 @@ public class SymbolicEvaluator<T> extends AbstractSymbolicEvaluator<T> {
     }
 
     public static SymbolicEvaluator createStandardMapleEvaluator() throws Exception {
-        DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MAPLE);
-        MapleInterface mapleInterface = MapleInterface.getUniqueMapleInterface();
-        Simplifier simplifier = new Simplifier();
-
-        SymbolicEvaluator evaluator = new SymbolicEvaluator(
-                dlmfTranslator,
-                mapleInterface,
-                simplifier,
-                SymbolicMapleEvaluatorTypes.values(),
-                SymbolicEvaluator.getMaplePrevAfterCommands()
-        );
-
+        SymbolicEvaluator evaluator = new SymbolicEvaluator(new MapleConnector());
         evaluator.init();
         return evaluator;
     }
 
     public static SymbolicEvaluator createStandardMathematicaEvaluator() throws Exception {
-        DLMFTranslator dlmfTranslator = new DLMFTranslator(Keys.KEY_MATHEMATICA);
-        MathematicaInterface mathematicaInterface = MathematicaInterface.getInstance();
-        MathematicaSimplifier mathematicaSimplifier = new MathematicaSimplifier();
-
-        SymbolicEvaluator evaluator = new SymbolicEvaluator(
-                dlmfTranslator,
-                mathematicaInterface,
-                mathematicaSimplifier,
-                SymbolicMathematicaEvaluatorTypes.values(),
-                null
-        );
-
+        SymbolicEvaluator evaluator = new SymbolicEvaluator(new MathematicaConnector());
         evaluator.init();
         return evaluator;
     }

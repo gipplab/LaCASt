@@ -1,0 +1,37 @@
+{
+    "id" : "FORMULA_d436a98830cfbd4c9b4b985906935038",
+    "formula" : "\\operatorname{erf} z = \\frac{2}{\\sqrt\\pi}\\int_0^z e^{-t^2}\\,dt",
+    "confidence" : 0.0,
+    "translations" : {},
+    "positions" : [
+        {
+            "section" : 0,
+            "sentence" : 0,
+            "word" : 37
+        }
+    ],
+    "includes" : [ ],
+    "isPartOf" : [ ],
+    "definiens" : [
+        {
+            "definition" : "complex function",
+            "score" : 0.6460746792928004
+        },
+        {
+            "definition" : "Gauss error function",
+            "score" : 0.5988174995334326
+        },
+        {
+            "definition" : "error function",
+            "score" : 0.5500952380952381
+        },
+        {
+            "definition" : "mathematics",
+            "score" : 0.5500952380952381
+        },
+        {
+            "definition" : "erf",
+            "score" : 0.5049074255814494
+        }
+    ]
+}

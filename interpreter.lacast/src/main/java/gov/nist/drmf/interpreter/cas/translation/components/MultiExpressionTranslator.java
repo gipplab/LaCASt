@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractListTranslator;
 import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
@@ -119,11 +120,12 @@ public class MultiExpressionTranslator extends AbstractTranslator {
             }
 
             TranslatedExpression elementTranslation = parseGeneralExpression(arrayComponent, null);
+            elementTranslation.appendRelationalComponent( elementTranslation.getElementsAfterRelation().getTranslatedExpression().trim() );
             getGlobalTranslationList().removeLastNExps(elementTranslation.getLength());
 
             // ok we split the expressions here
             if ( split(previousElementContainedRelationSymbol, elementTranslation, nextBeginsWithRelation, endedOnRelationSymbol) ) {
-                if ( !previouslyAddedLineDelimiter ) addPartialTranslation(localTranslations);
+                if ( !previouslyAddedLineDelimiter ) addPartialTranslation(new TranslatedExpression(localTranslations));
                 addLineDelimiter(elementTranslation); // adds a line delimiter to translation lists
                 localTranslations.addTranslatedExpression(elementTranslation);
                 addPartialTranslation(elementTranslation);
@@ -137,6 +139,15 @@ public class MultiExpressionTranslator extends AbstractTranslator {
             LOG.debug("Translated single element in equation array to: " + elementTranslation.getTranslatedExpression());
             endedOnRelationSymbol = elementTranslation.endedOnRelationSymbol();
             previousElementContainedRelationSymbol = elementTranslation.containsRelationSymbol();
+        }
+
+        if ( getListOfPartialTranslations().isEmpty() ) {
+            // well, thats a hack now... it looked like two equations but was only one. so the second part of the
+            // equation will be added in the end actually... hence we must remove it here, if it exists...
+            RelationalComponents r = localTranslations.getLastRelationalComponent();
+            if ( r != null ) {
+                if ( !r.getComponents().isEmpty() ) r.getComponents().removeLast();
+            }
         }
 
         LOG.debug("Finished all translation of equation array");

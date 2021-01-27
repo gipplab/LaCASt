@@ -32,7 +32,7 @@ public class SemanticMLPWrapper extends MLPWrapper {
         Instant start = Instant.now();
         MacrosLexicon.init();
         addLexicon( MacrosLexicon.getDLMFMacroLexicon() );
-        LOG.printf(Level.DEBUG, "Loaded PoM-tagger [%dms]", Duration.between(start, Instant.now()).toMillis());
+        LOG.printf(Level.INFO, "Loaded PoM-tagger [%dms]", Duration.between(start, Instant.now()).toMillis());
     }
 
     /**

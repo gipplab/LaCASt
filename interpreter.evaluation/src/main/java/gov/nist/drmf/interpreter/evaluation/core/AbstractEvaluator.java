@@ -2,12 +2,14 @@ package gov.nist.drmf.interpreter.evaluation.core;
 
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
+import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.evaluation.common.*;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
+import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -23,7 +25,7 @@ import java.util.stream.Stream;
 /**
  * @author Andre Greiner-Petter
  */
-public abstract class AbstractEvaluator<T> {
+public abstract class AbstractEvaluator {
     private static final Logger LOG = LogManager.getLogger(AbstractEvaluator.class.getName());
 
     public final static String NL = System.lineSeparator();
@@ -31,7 +33,7 @@ public abstract class AbstractEvaluator<T> {
     private static double timeoutMS = 30_000;
 
     private IConstraintTranslator forwardTranslator;
-    private IComputerAlgebraSystemEngine<T> engine;
+    private IComputerAlgebraSystemEngine engine;
 
     private HashMap<String, Integer> missingMacrosLib;
 
@@ -53,7 +55,7 @@ public abstract class AbstractEvaluator<T> {
 
     public AbstractEvaluator(
             IConstraintTranslator forwardTranslator,
-            IComputerAlgebraSystemEngine<T> engine
+            IComputerAlgebraSystemEngine engine
     ) {
         this.forwardTranslator = forwardTranslator;
         this.packageWrapper = forwardTranslator.getPackageWrapper();
@@ -69,10 +71,6 @@ public abstract class AbstractEvaluator<T> {
 
     public double getTimeoutSeconds() {
         return AbstractEvaluator.timeoutMS;
-    }
-
-    public void setGlobalAssumptions(String... assumptions) throws ComputerAlgebraSystemEngineException {
-        engine.setGlobalAssumptions(assumptions);
     }
 
     public SymbolDefinedLibrary getSymbolDefinitionLibrary() {
@@ -94,8 +92,8 @@ public abstract class AbstractEvaluator<T> {
         this.rememberPackages = false;
     }
 
-    public T enterEngineCommand(String cmd) throws ComputerAlgebraSystemEngineException {
-        return engine.enterCommand(cmd);
+    public void enterEngineCommand(String cmd) throws ComputerAlgebraSystemEngineException {
+        engine.enterCommand(cmd);
     }
 
     public Set<String> getRequiredPackages() {
@@ -303,27 +301,6 @@ public abstract class AbstractEvaluator<T> {
             LOG.fatal("Cannot load dataset!", ioe);
             return null;
         }
-    }
-
-    protected static Thread getAbortionThread(IAbortEvaluator evaluator) {
-        return getAbortionThread(evaluator, timeoutMS);
-    }
-
-    protected static Thread getAbortionThread(IAbortEvaluator evaluator, double timeout) {
-        return new Thread(() -> {
-            boolean interrupted = false;
-            LOG.debug("Start waiting for abortion.");
-            try {
-                Thread.sleep((int)timeout);
-            } catch ( InterruptedException ie ) {
-                LOG.debug("Interrupted, no abortion necessary.");
-                interrupted = true;
-            }
-
-            if ( !interrupted ) {
-                evaluator.abort();
-            }
-        });
     }
 
     public abstract EvaluationConfig getConfig();

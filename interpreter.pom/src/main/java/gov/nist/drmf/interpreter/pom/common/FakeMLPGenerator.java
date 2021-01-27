@@ -82,4 +82,9 @@ public final class FakeMLPGenerator {
         mt.setNamedFeature(FeatureSetUtility.LATEX_FEATURE_KEY, b.symbol);
         return mt;
     }
+
+    public static PomTaggedExpression generateBracketExpression(Brackets b) {
+        MathTerm mt = generateBracket(b);
+        return new PrintablePomTaggedExpression(mt);
+    }
 }

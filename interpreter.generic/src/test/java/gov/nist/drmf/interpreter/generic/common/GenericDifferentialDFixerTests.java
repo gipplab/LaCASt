@@ -41,6 +41,16 @@ public class GenericDifferentialDFixerTests {
     }
 
     @Test
+    void multiDiffDTests() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("\\int \\int xy dxdy");
+        GenericDifferentialDFixer fixer = new GenericDifferentialDFixer(ppte);
+        PrintablePomTaggedExpression newPPTE = fixer.fixDifferentialD();
+
+        assertEquals(ppte, newPPTE);
+        assertEquals("\\int \\int xy \\diff{x} \\diff{y}", newPPTE.getTexString());
+    }
+
+    @Test
     void fixGenericDifferentialDInFracTests() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("\\int \\frac{dx}{x}");
         GenericDifferentialDFixer fixer = new GenericDifferentialDFixer(ppte);
@@ -51,13 +61,23 @@ public class GenericDifferentialDFixerTests {
     }
 
     @Test
+    void trickyFracTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("\\int x \\frac{x + dx}{x} + 2");
+        GenericDifferentialDFixer fixer = new GenericDifferentialDFixer(ppte);
+        PrintablePomTaggedExpression newPPTE = fixer.fixDifferentialD();
+
+        assertEquals(ppte, newPPTE);
+        assertEquals("\\int x \\frac{x + \\diff{x}}{x} + 2", newPPTE.getTexString());
+    }
+
+    @Test
     void argumentIntTests() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("\\int_{-1}^1 (1 - x) dx");
         GenericDifferentialDFixer fixer = new GenericDifferentialDFixer(ppte);
         PrintablePomTaggedExpression newPPTE = fixer.fixDifferentialD();
 
         assertEquals(ppte, newPPTE);
-        assertEquals("\\int_{-1}^1 (1 - x) \\diff{x}", newPPTE.getTexString());
+        assertEquals("\\int_{-1}^1(1 - x) \\diff{x}", newPPTE.getTexString());
     }
 
     @Test
@@ -67,6 +87,26 @@ public class GenericDifferentialDFixerTests {
         PrintablePomTaggedExpression newPPTE = fixer.fixDifferentialD();
 
         assertEquals(ppte, newPPTE);
-        assertEquals("\\int_{-1}^1 e^{izs} (1 - s^2)^{\\nu-\\frac{1}{2}} \\diff{s}", newPPTE.getTexString());
+        assertEquals("\\int_{-1}^1 e^{izs}(1 - s^2)^{\\nu-\\frac{1}{2}} \\diff{s}", newPPTE.getTexString());
+    }
+
+    @Test
+    void compellIntTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("E(e) \\,=\\, \\int_0^{\\pi/2}\\sqrt {1 - e^2 \\sin^2\\theta}\\ d\\theta");
+        GenericDifferentialDFixer fixer = new GenericDifferentialDFixer(ppte);
+        PrintablePomTaggedExpression newPPTE = fixer.fixDifferentialD();
+
+        assertEquals(ppte, newPPTE);
+        assertEquals("E(e) = \\int_0^{\\pi/2} \\sqrt {1 - e^2 \\sin^2\\theta} \\diff{\\theta}", newPPTE.getTexString());
+    }
+
+    @Test
+    void mathrmDTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("\\int_0^\\varphi \\frac {\\mathrm{d}\\theta}{\\sqrt{1 - k^2 \\sin^2 \\theta}}");
+        GenericDifferentialDFixer fixer = new GenericDifferentialDFixer(ppte);
+        PrintablePomTaggedExpression newPPTE = fixer.fixDifferentialD();
+
+        assertEquals(ppte, newPPTE);
+        assertEquals("\\int_0^\\varphi \\frac{\\diff{\\theta}}{\\sqrt{1 - k^2 \\sin^2 \\theta}}", newPPTE.getTexString());
     }
 }

@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.maple.translation;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
-import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
+import gov.nist.drmf.interpreter.common.config.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
@@ -165,7 +165,17 @@ public final class MapleTranslator extends AbstractAlgebraicTranslator<Algebraic
         }
     }
 
-    public static String extractNameOfProcedure( String maple_proc ){
+    @Override
+    public String getSourceLanguage() {
+        return Keys.KEY_MAPLE;
+    }
+
+    @Override
+    public String getTargetLanguage() {
+        return Keys.KEY_LATEX;
+    }
+
+    public static String extractNameOfProcedure(String maple_proc ){
         return maple_proc.split(define_symb)[0].trim();
     }
 

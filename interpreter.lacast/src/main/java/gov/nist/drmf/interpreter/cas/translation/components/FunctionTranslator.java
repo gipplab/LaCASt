@@ -95,7 +95,7 @@ public class FunctionTranslator extends AbstractListTranslator {
         if ( !exp.getRoot().getTermText().startsWith("\\") ) {
             // a function without leading backslash. Maybe we should take it as alphanumeric?
             // ok, lets take it as alphanumeric if, and only if there are no arguments (following is empty)
-            return following.isEmpty();
+            return following == null || following.isEmpty();
         } else return false;
     }
 
@@ -147,6 +147,12 @@ public class FunctionTranslator extends AbstractListTranslator {
      * @return true if everything was fine
      */
     private TranslatedExpression parse(List<PomTaggedExpression> following_exp) {
+        if ( following_exp == null || following_exp.isEmpty() ) {
+            throw TranslationException.buildException(
+                    this, "Unable to retrieve argument of function.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT);
+        }
+
         // get first expression
         PomTaggedExpression first = following_exp.remove(0);
 
@@ -158,6 +164,9 @@ public class FunctionTranslator extends AbstractListTranslator {
         PomTaggedExpression powerExp = null;
         if (MathTermTags.is(first, MathTermTags.caret)) {
             powerExp = first;
+            if ( following_exp.isEmpty() ) throw TranslationException.buildException(
+                    this, "Unable to retrieve argument of function.",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT);
             first = following_exp.remove(0);
         }
 

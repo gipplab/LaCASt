@@ -38,17 +38,18 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
     @Override
     public MOINode<T> addNode(String id, String moi, T annotation) throws ParseException, NotMatchableException {
         if ( containsNode(id) ) return getNode(id);
-        return addNode(id, mlp.parse(moi), annotation);
+        return addNode(id, moi, mlp.parse(moi), annotation);
     }
 
     /**
      * Adds a node to the graph with the given annotation.
      * @param id the unique node ID
+     * @param latex the original latex string that was used to generate the MOI
      * @param moi the mathematical object of interest
      * @param annotation the annotation object (or null)
      * @return the added Node
      */
-    public MOINode<T> addNode(String id, PrintablePomTaggedExpression moi, T annotation) throws NotMatchableException {
+    public MOINode<T> addNode(String id, String latex, PrintablePomTaggedExpression moi, T annotation) throws NotMatchableException {
         // the node already exists, so no need to add a new one, the user do not need to know that
         // because there is no difference between two identical nodes in the graph or just one of them
         if ( containsNode(id) ) {
@@ -57,11 +58,21 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
         }
 
         LOG.info("Add new MOI node to graph: " + moi.getTexString());
-        MOINode<T> node = new MOINode<>(id, new MathematicalObjectOfInterest(moi), annotation);
+        MOINode<T> node = new MOINode<>(id, new MathematicalObjectOfInterest(latex, moi), annotation);
         LOG.info("Setup dependencies for new node");
         updateDependencies(node);
         vertices.put(node.getId(), node);
         return node;
+    }
+
+    /**
+     * Adds a node to the existing graph without adding any dependencies in between.
+     * If a node exists with the same ID this method does nothing.
+     * @param node the node to add
+     */
+    protected void addNode(MOINode<T> node) {
+        if ( containsNode(node.getId()) ) return;
+        vertices.put(node.getId(), node);
     }
 
     /**
@@ -74,12 +85,25 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
             for ( MOIDependency<T> dependency : dependencies ) {
                 this.edges.put(
                         new Connection(
-                                dependency.getSource().getId(),
-                                dependency.getSink().getId()),
+                                dependency.getSourceNode().getId(),
+                                dependency.getSinkNode().getId()),
                         dependency
                 );
             }
         }
+    }
+
+    protected void addDependency(MOINode<T> source, MOINode<T> sink) {
+        if ( source == null || sink == null ) return;
+        MOIDependency<T> dependency = new MOIDependency<>(source, sink);
+        this.edges.put(
+                new Connection(
+                        dependency.getSourceNode().getId(),
+                        dependency.getSinkNode().getId()),
+                dependency
+        );
+        source.addOutgoingDependency(dependency);
+        sink.addIngoingDependency(dependency);
     }
 
     @Override
@@ -87,19 +111,19 @@ public class MOIDependencyGraph<T> implements IMOIGraph<T> {
         MOINode<T> node = vertices.remove(id);
         if ( node == null ) return null;
 
-        Collection<MOIDependency<T>> outgoingEdges = node.getOutgoingDependencies();
-        for ( MOIDependency<T> out : outgoingEdges ) {
-            MOINode<T> outNode = out.getSink();
-            Collection<MOIDependency<T>> outNodeInEdges = outNode.getIngoingDependencies();
+        Collection<? extends IDependency<T>> outgoingEdges = node.getOutgoingDependencies();
+        for ( IDependency<T> out : outgoingEdges ) {
+            MOINode<T> outNode = (MOINode<T>) out.getSink();
+            Collection<? extends IDependency<T>> outNodeInEdges = outNode.getIngoingDependencies();
             outNodeInEdges.remove(out);
             this.edges.remove(new Connection(node.getId(), outNode.getId()));
         }
         outgoingEdges.clear();
 
-        Collection<MOIDependency<T>> ingoingEdges = node.getIngoingDependencies();
-        for ( MOIDependency<T> in : ingoingEdges ) {
-            MOINode<T> inNode = in.getSource();
-            Collection<MOIDependency<T>> inNodeOutEdges = inNode.getOutgoingDependencies();
+        Collection<? extends IDependency<T>> ingoingEdges = node.getIngoingDependencies();
+        for ( IDependency<T> in : ingoingEdges ) {
+            MOINode<T> inNode = (MOINode<T>) in.getSource();
+            Collection<? extends IDependency<T>> inNodeOutEdges = inNode.getOutgoingDependencies();
             inNodeOutEdges.remove(in);
             this.edges.remove(new Connection(inNode.getId(), node.getId()));
         }

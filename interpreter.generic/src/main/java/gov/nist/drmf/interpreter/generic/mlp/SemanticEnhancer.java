@@ -1,131 +1,257 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
-import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import com.formulasearchengine.mathosphere.mlp.pojos.MathTag;
+import com.formulasearchengine.mathosphere.mlp.text.WikiTextUtils;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
+import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
+import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
+import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
+import gov.nist.drmf.interpreter.common.eval.*;
+import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
+import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
+import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
+import gov.nist.drmf.interpreter.common.eval.NumericResult;
+import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
+import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
+import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
+import gov.nist.drmf.interpreter.generic.common.GenericConstantReplacer;
 import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
-import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
-import gov.nist.drmf.interpreter.generic.elasticsearch.MacroResult;
+import gov.nist.drmf.interpreter.generic.interfaces.IPartialEnhancer;
 import gov.nist.drmf.interpreter.generic.macro.*;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIAnnotation;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPLacastScorer;
-import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
-import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticReplacementRule;
+import gov.nist.drmf.interpreter.generic.mlp.cas.CASConnections;
+import gov.nist.drmf.interpreter.generic.mlp.cas.CASTranslators;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.*;
+import gov.nist.drmf.interpreter.pom.common.DefaultNumericTestCase;
 import gov.nist.drmf.interpreter.pom.extensions.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import gov.nist.drmf.interpreter.pom.moi.MathematicalObjectOfInterest;
 import mlp.ParseException;
+import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
  */
-public class SemanticEnhancer {
+public class SemanticEnhancer implements IPartialEnhancer {
     private static final Logger LOG = LogManager.getLogger(SemanticEnhancer.class.getName());
 
-    private final MacroDistributionAnalyzer macroDist;
+    private final MacroRetriever retriever;
 
-    private DLMFElasticSearchClient elasticSearchConnector;
+    private final GenericLacastConfig config;
 
-    private static final int considerNumberOfTopRelations = 3;
-    private static final int considerNumberOfTopMacros = 5;
+    private CASConnections casConnections;
 
-    private final Set<String> macroPatternMemory;
-    private final LinkedList<SemanticReplacementRule> macroPatterns;
-
-    private final Set<String> definiensMemory;
-    private final List<FormulaDefinition> definiens;
-    private final List<String> macros;
-
-    private double score;
-
-    public SemanticEnhancer() {
-        this.macroPatternMemory = new HashSet<>();
-        this.macroPatterns = new LinkedList<>();
-        this.definiensMemory = new HashSet<>();
-        this.definiens = new LinkedList<>();
-        this.macros = new LinkedList<>();
-        this.score = 0;
-        this.macroDist = MacroDistributionAnalyzer.getStandardInstance();
+    protected SemanticEnhancer() {
+        this(GenericLacastConfig.getDefaultConfig());
     }
 
-    private void reset() {
-        elasticSearchConnector = new DLMFElasticSearchClient();
-        macroPatternMemory.clear();
-        macroPatterns.clear();
-        definiensMemory.clear();
-        definiens.clear();
-        macros.clear();
-        score = 0;
+    public SemanticEnhancer(GenericLacastConfig config) {
+        this.retriever = new MacroRetriever(config);
+        this.config = config;
     }
 
-    private void cleanup() {
-        elasticSearchConnector.stop();
-        elasticSearchConnector = null;
+    private synchronized void lazyInit() {
+        if ( casConnections == null )
+            this.casConnections = new CASConnections(config);
     }
 
-    public double getScore() {
-        return score;
+    @Override
+    public MOIPresentations generateAnnotatedLatex(String latex, MLPDependencyGraph graph) throws ParseException {
+        MathTag mathTag = new MathTag(latex, WikiTextUtils.MathMarkUpType.LATEX);
+        MOINode<MOIAnnotation> node = graph.addFormulaNode( mathTag );
+        return new MOIPresentations( node );
     }
 
-    public List<FormulaDefinition> getUsedDefiniens() {
-        return definiens;
-    }
-
-    public List<String> getUsedMacros() {
-        return macros;
-    }
-
-    public PrintablePomTaggedExpression semanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
-        reset();
-        PrintablePomTaggedExpression result = coreSemanticallyEnhance(node);
-        cleanup();
-        return result;
-    }
-
-    private PrintablePomTaggedExpression coreSemanticallyEnhance(MOINode<MOIAnnotation> node) throws IOException, ParseException {
+    @Override
+    public void appendSemanticLatex(MOIPresentations moi, MOINode<MOIAnnotation> node) throws ParseException {
         String originalTex = node.getNode().getOriginalLaTeX();
         LOG.info("Start semantically enhancing moi " + node.getId() + ": " + originalTex);
 
-        definiens.addAll(
-                node.getAnnotation().getAttachedRelations().stream()
-                    .map( r -> new FormulaDefinition(r.getScore(), r.getDefinition()) )
-                    .collect(Collectors.toList())
+        RetrievedMacros retrievedMacros = retriever.retrieveReplacements(node);
+        coreSemanticallyEnhance(moi, node, retrievedMacros);
+    }
+
+    @Override
+    public void appendComputationResults(MOIPresentations moi) throws MinimumRequirementNotFulfilledException {
+        moi.requires( SemanticEnhancedAnnotationStatus.TRANSLATED );
+        LOG.info("Compute MOI " + moi.getId());
+
+        Map<String, CASResult> casResultMap = moi.getCasRepresentations();
+        Instant start = Instant.now();
+        for ( String casName : casResultMap.keySet() ) {
+            appendComputationResults(moi, casName);
+        }
+        Duration elapsed = Duration.between(start, Instant.now());
+        LOG.printf(Level.INFO,
+                "Finished all calculations for %s [%d.%ds]",
+                moi.getId(),
+                elapsed.toSecondsPart(),
+                elapsed.toMillisPart()
         );
+    }
 
-        List<MOINode<MOIAnnotation>> dependentNodes = node.getDependencyNodes();
-        retrieveReplacementListsEnhance(node, dependentNodes);
-        LOG.info("Retrieved "+ macroPatterns.size() +" replacement rules. Start applying each rule.");
+    @Override
+    public void appendComputationResults(MOIPresentations moi, String casName) throws MinimumRequirementNotFulfilledException {
+        Instant start = Instant.now();
+//        if ( moi.getId().equals("FORMULA_43e16b736c3ae9163cfddd4918b3c9b8") ) return;
 
+        moi.requires( SemanticEnhancedAnnotationStatus.TRANSLATED );
+        Map<String, CASResult> casResultMap = moi.getCasRepresentations();
+        String semanticLaTeX = moi.getSemanticLatex();
+        LOG.info("Compute numeric and symbolic verification for CAS " + casName + " on MOI " + moi.getId());
+        CASResult casResult = casResultMap.get(casName);
+        LOG.debug("Compute numerical verification tests on " + moi.getId());
+        NumericResult nr = computeNumerically(semanticLaTeX, casName);
+        casResult.setNumericResults(nr);
+        LOG.debug("Compute symbolical verification tests on " + moi.getId());
+        SymbolicResult sr = computeSymbolically(semanticLaTeX, casName);
+        casResult.setSymbolicResults(sr);
+
+        Duration elapsed = Duration.between(start, Instant.now());
+        LOG.printf(Level.INFO,
+                "Finished numeric and symbolic in %s calculations for %s [%d.%ds]",
+                casName,
+                moi.getId(),
+                elapsed.toSecondsPart(),
+                elapsed.toMillisPart()
+        );
+    }
+
+    @Override
+    public NumericResult computeNumerically(String semanticLatex, String casName) {
+        if ( EvaluationSkipper.shouldNotBeEvaluated(semanticLatex) ) {
+            LOG.debug("The test expression should not be evaluated due to missing equation or because it contains underscores (troublesome for CAS): " + semanticLatex);
+            return new NumericResult();
+        }
+
+        lazyInit();
+        NativeComputerAlgebraInterfaceBuilder cas = this.casConnections.getCASConnection(casName);
+        try {
+            if ( cas == null ) {
+                LOG.debug("The requested CAS is not connected with valid native CAS. Skip it.");
+            } else {
+                NumericResult result = computeNumericResults(semanticLatex, cas);
+                try { cas.getCASEngine().forceGC(); }
+                catch (NullPointerException | ComputerAlgebraSystemEngineException e){
+                    LOG.warn("Unable to call GC in CAS " + casName + ". Ignore it and hope we can survive", e);
+                }
+                return result;
+            }
+        } catch (ComputerAlgebraSystemEngineException e) {
+            LOG.warn("Unable to perform numerical tests for " + casName + ": " + semanticLatex, e);
+        } catch (Exception e) {
+            LOG.warn("Unable to analyze test. Something went wrong: " + semanticLatex, e);
+        }
+        return null;
+    }
+
+    @Override
+    public SymbolicResult computeSymbolically(String semanticLatex, String casName) {
+        if ( EvaluationSkipper.shouldNotBeEvaluated(semanticLatex) ) {
+            LOG.debug("The test expression should not be evaluated due to missing equation or because it contains underscores (troublesome for CAS): " + semanticLatex);
+            return new SymbolicResult();
+        }
+
+        lazyInit();
+        NativeComputerAlgebraInterfaceBuilder cas = this.casConnections.getCASConnection(casName);
+        try {
+            if ( cas == null ) {
+                LOG.debug("The requested CAS "+ casName +" is not connected with valid native CAS. Skip it.");
+            } else {
+                SymbolicResult result = computeSymbolicResults(semanticLatex, cas);
+                try { cas.getCASEngine().forceGC(); }
+                catch (NullPointerException | ComputerAlgebraSystemEngineException e){
+                    LOG.warn("Unable to call GC in CAS "+ casName +". Ignore it and hope we can survive", e);
+                }
+                return result;
+            }
+        } catch (Exception e) {
+            LOG.warn("Unable to analyze test. Something went wrong: " + semanticLatex, e);
+        }
+        return null;
+    }
+
+    private synchronized NumericResult computeNumericResults(
+            String semanticLatex,
+            NativeComputerAlgebraInterfaceBuilder cas
+    ) throws ComputerAlgebraSystemEngineException {
+        NumericalConfig config = this.casConnections.getNumericalConfig(cas.getLanguageKey());
+        IConstraintTranslator dlmfTranslator;
+        try {
+            dlmfTranslator = new DLMFTranslator(cas.getLanguageKey());
+        } catch (InitTranslatorException e) {
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+        TranslationInformation ti = dlmfTranslator.translateToObject(semanticLatex);
+        DefaultNumericalTestCaseBuilder testCaseBuilder = new DefaultNumericalTestCaseBuilder(
+                config, cas.getNumericEvaluator(), dlmfTranslator, cas.getEvaluationScriptHandler()
+        );
+        DefaultNumericTestCase defaultNumericTestCase = new DefaultNumericTestCase(ti);
+
+        List<NumericalTest> tests = testCaseBuilder.buildTestCases(ti, defaultNumericTestCase);
+        ICASEngineNumericalEvaluator numericEvaluator = cas.getNumericEvaluator();
+
+        NumericResult numericResult = new NumericResult();
+        for ( NumericalTest test : tests ) {
+            try {
+                NumericResult partialResult = numericEvaluator.performNumericTest(test);
+                numericResult.addFurtherResults(partialResult);
+            } catch (ComputerAlgebraSystemEngineException e) {
+                LOG.warn("A numeric test failed: " + e.getMessage());
+            }
+        }
+        return numericResult;
+    }
+
+    private synchronized SymbolicResult computeSymbolicResults(
+            String semanticLatex,
+            NativeComputerAlgebraInterfaceBuilder cas
+    ) {
+        SymbolicalConfig config = this.casConnections.getSymbolicalConfig(cas.getLanguageKey());
+        IConstraintTranslator dlmfTranslator;
+        try {
+            dlmfTranslator = new DLMFTranslator(cas.getLanguageKey());
+        } catch (InitTranslatorException e) {
+            return new SymbolicResult().markAsCrashed();
+        }
+        ISymbolicTestCases[] testCases = cas.getDefaultSymbolicTestCases();
+
+        SymbolicalTest symbolicalTest = new SymbolicalTest(config, dlmfTranslator, semanticLatex, testCases);
+        ICASEngineSymbolicEvaluator symbolicEvaluator = cas.getSymbolicEvaluator();
+        return symbolicEvaluator.performSymbolicTest(symbolicalTest);
+    }
+
+    private void coreSemanticallyEnhance(MOIPresentations moiPresentation, MOINode<MOIAnnotation> node, RetrievedMacros retrievedMacros) throws ParseException {
         MathematicalObjectOfInterest moi = node.getNode();
         PrintablePomTaggedExpression pte = moi.getMoi();
         Set<String> replacementPerformed = new HashSet<>();
         LOG.debug("Start replacements on MOI: " + pte.getTexString());
 
+        if ( retrievedMacros.containedEulerMascheroniEvidence() ) {
+            LOG.debug("The hit contained an evidence on Euler-Mascheroni constant. Hence we replace all \\gamma by \\EulerConstant");
+            GenericConstantReplacer.replaceGammaAsEulerMascheroniConstant(pte);
+        }
+
         GenericReplacementTool genericReplacementTool = new GenericReplacementTool(pte);
         pte = genericReplacementTool.getSemanticallyEnhancedExpression();
         LOG.debug("Replaced general patterns: " + pte.getTexString());
 
-        macroPatterns.sort((a, b) -> {
-            double diff = a.getScore() - b.getScore();
-            if ( diff == 0 ) {
-                MacroCounter c1 = macroDist.getMacroCounter( "\\" + a.getMacro().getName() );
-                MacroCounter c2 = macroDist.getMacroCounter( "\\" + b.getMacro().getName() );
-
-                return c2.getMacroCounter() - c1.getMacroCounter();
-            }
-
-            return Double.compare(b.getScore(), a.getScore());
-        });
-
+        List<SemanticReplacementRule> macroPatterns = retrievedMacros.getPatterns();
         int counter = 0;
-        while( !macroPatterns.isEmpty() ) {
-            SemanticReplacementRule semanticReplacementRule = macroPatterns.removeFirst();
-            MacroBean macro = semanticReplacementRule.getMacro();
-            MatcherConfig config = MacroHelper.getMatchingConfig(macro, node);
+        double score = 0.0;
+        for( SemanticReplacementRule semanticReplacementRule : macroPatterns ) {
+            MatcherConfig config = MacroHelper.getMatchingConfig(semanticReplacementRule, node);
 
             MacroGenericSemanticEntry entry = semanticReplacementRule.getPattern();
             String genericLaTeXPattern = entry.getGenericTex();
@@ -144,64 +270,18 @@ public class SemanticEnhancer {
             LOG.debug("Replacement applied, updated MOI: " + pte.getTexString());
             if ( matcher.performedReplacements() ) {
                 counter++;
-                this.score += semanticReplacementRule.getScore();
+                score += semanticReplacementRule.getScore();
             }
         }
 
-        this.score = counter > 0 ? score/(double)counter : 0;
+        score = counter > 0 ? score/(double)counter : 0;
 
         LOG.info("Semantically enhanced MOI.\n" +
                 "From: "+node.getNode().getOriginalLaTeX()+"\n" +
                 "To:   "+pte.getTexString()
         );
 
-        return pte;
-    }
-
-    private void retrieveReplacementListsEnhance(
-            MOINode<MOIAnnotation> node,
-            List<MOINode<MOIAnnotation>> dependencyList
-    ) throws IOException {
-        List<Relation> definiensList = node.getAnnotation().getAttachedRelations();
-        LOG.debug("Retrieve " + definiensList.size() + " definiens for node "+ node.getId() +": " + node.getNode().getOriginalLaTeX());
-        Collections.sort(definiensList);
-
-        for ( int i = 0; i < definiensList.size() && i < considerNumberOfTopRelations; i++ ) {
-            Relation definitionRelation = definiensList.get(i);
-            double definiensScore = definitionRelation.getScore();
-            String definition = definitionRelation.getDefinition();
-            if ( this.definiensMemory.contains(definition) ) continue;
-
-//            this.definiens.add(new FormulaDefiniens(definiensScore, definition));
-            LinkedList<MacroResult> macros = elasticSearchConnector.searchMacroDescription(definition);
-            LOG.debug("For definition " + definition + ": retrieved " + macros.size() + " semantic macros " + macros);
-
-            double maxMacroScore = macros.isEmpty() ? 0 : macros.get(0).getScore();
-            MLPLacastScorer scorer = new MLPLacastScorer(maxMacroScore);
-
-            for ( int j = 0; j < macros.size() && j < considerNumberOfTopMacros; j++ ) {
-                MacroResult macroResult = macros.get(j);
-                MacroBean macro = macroResult.getMacro();
-                if ( this.macros.contains(macro.getName()) )
-                    continue;
-
-                this.macros.add( macro.getName() );
-                if ( !macroPatternMemory.contains(macro.getName()) ) {
-                    LOG.debug("Add semantic macro " + macro.getName());
-                    macroPatternMemory.add(macro.getName());
-
-                    MacroCounter counter = macroDist.getMacroCounter("\\" + macro.getName());
-                    for ( MacroGenericSemanticEntry entry : macro.getTex() ) {
-                        double score = counter != null ?
-                                scorer.getScore( definiensScore, macroResult.getScore(), entry.getScore() ) :
-                                0;
-                        macroPatterns.add( new SemanticReplacementRule(macro, entry, score) );
-                    }
-                }
-            }
-        }
-
-        if ( !dependencyList.isEmpty() )
-            retrieveReplacementListsEnhance(dependencyList.remove(0), dependencyList);
+        moiPresentation.setScore(score);
+        moiPresentation.setSemanticLatex(pte.getTexString());
     }
 }

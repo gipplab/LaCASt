@@ -10,6 +10,8 @@ import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.intellij.lang.annotations.Language;
 
 import java.util.HashMap;
@@ -21,6 +23,7 @@ import java.util.Map;
  * @author Andre Greiner-Petter
  */
 public class GenericFractionDerivFixer {
+    private static final Logger LOG = LogManager.getLogger(GenericFractionDerivFixer.class.getName());
 
     private static class DerivArguments {
         private PrintablePomTaggedExpression degree;

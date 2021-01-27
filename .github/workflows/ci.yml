@@ -44,6 +44,7 @@ jobs:
           ./cc-test-reporter upload-coverage -d > jacocoUpload.log 2>&1
       - name: Creating release
         id: create_release
+        if: github.ref == 'refs/heads/master' && success()
         run: |
           TRAVIS_TAG="$(mvn -q -Dexec.executable=echo -Dexec.args='${project.version}' --non-recursive exec:exec)"
           rm -rf libs/logs
@@ -51,35 +52,17 @@ jobs:
           zip -r -9 release/${TRAVIS_TAG}.zip bin/* config/* libs/* scripts/* README.md CONTRIBUTING.md
           echo "::set-output name=release::${TRAVIS_TAG}"
           echo "${TRAVIS_TAG}" >> release/tag.txt
-      - name: Upload release artifact
-        id: upload_release_artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: release
-          path: release/*
-  deploy_github:
-    name: Deploy Release on GitHub
-    if: github.ref == 'refs/heads/master'
-    needs: build_and_test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download release artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: release
-          path: release
-      - name: Get filename from artifact
-        id: get_release_id
-        run: echo "::set-output name=release::$(cat release/tag.txt)"
       - name: Generate tag
         id: generate_tag
+        if: github.ref == 'refs/heads/master' && success()
         run: echo "::set-output name=tag::LaCASt-$(cat release/tag.txt)-r${GITHUB_RUN_ID}"
-      - name: Upload release assets
+      - name: Deploy release on Github
         uses: svenstaro/upload-release-action@v2
+        if: github.ref == 'refs/heads/master' && success()
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ steps.generate_tag.outputs.tag }}
-          file: ./release/${{ steps.get_release_id.outputs.release }}.zip
+          file: ./release/${{ steps.create_release.outputs.release }}.zip
           file_glob: false
           overwrite: true
           body: "Auto Release"

@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -123,9 +124,8 @@ public class LetterTranslator extends AbstractListTranslator {
             localTranslations.addTranslatedExpression(mct.translate(exp));
             // no global adjustment necessary, already performed by constant translator
         } else {
-            localTranslations.addTranslatedExpression(term.getTermText());
-            getGlobalTranslationList().addTranslatedExpression(localTranslations);
-            getInfoLogger().getFreeVariables().addFreeVariable(term.getTermText());
+            perform(TranslatedExpression::addTranslatedExpression, term.getTermText());
+            mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, term.getTermText());
         }
     }
 
@@ -190,13 +190,12 @@ public class LetterTranslator extends AbstractListTranslator {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
                     "was translated to: " + t);
-            localTranslations.addTranslatedExpression(t);
-            getGlobalTranslationList().addTranslatedExpression(t);
+            perform(TranslatedExpression::addTranslatedExpression, t);
 
             // the only special math letter which is a free variable is \ell...
             if ( MathTermTags.special_math_letter.equals(MathTermTags.getTagByMathTerm(term)) &&
                     "\\ell".equals(term.getTermText())) {
-                getInfoLogger().getFreeVariables().addFreeVariable(t);
+                mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, t);
             }
 
             return true;
@@ -207,13 +206,10 @@ public class LetterTranslator extends AbstractListTranslator {
         FeatureSet fset = term.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
         if (fset != null) {
             String trans = DLMFFeatureValues.CAS_TRANSLATIONS.getFeatureValue(fset, getConfig().getTO_LANGUAGE());
-            if (trans != null) {
-                getInfoLogger().addMacroInfo(
-                        term.getTermText(), "was translated to: " + trans);
-                localTranslations.addTranslatedExpression(trans);
-                getGlobalTranslationList().addTranslatedExpression(trans);
-                return true;
-            }
+            getInfoLogger().addMacroInfo(
+                    term.getTermText(), "was translated to: " + trans);
+            perform(TranslatedExpression::addTranslatedExpression, trans);
+            return true;
         }
         return false;
     }
@@ -229,16 +225,15 @@ public class LetterTranslator extends AbstractListTranslator {
             var = ""+alpha.charAt(i);
             output = var + getConfig().getMULTIPLY();
             // add it to local and global
-            localTranslations.addTranslatedExpression(output);
-            getGlobalTranslationList().addTranslatedExpression(output);
-            getInfoLogger().getFreeVariables().addFreeVariable(var);
+
+            perform(TranslatedExpression::addTranslatedExpression, output);
+            mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, var);
         }
 
         // add the last one, but without space
         output = "" + alpha.charAt(alpha.length() - 1);
-        localTranslations.addTranslatedExpression(output);
-        getGlobalTranslationList().addTranslatedExpression(output);
-        getInfoLogger().getFreeVariables().addFreeVariable(output);
+        perform(TranslatedExpression::addTranslatedExpression, output);
+        mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, output);
         return localTranslations;
     }
 
@@ -252,7 +247,8 @@ public class LetterTranslator extends AbstractListTranslator {
             } // if not, simply translate it as a Greek letter
             GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
             TranslatedExpression te = glt.translate(exp);
-            getInfoLogger().getFreeVariables().addFreeVariable(te.getTranslatedExpression());
+            // thats meta right? :)
+            te.getFreeVariables().addFreeVariable(te.getTranslatedExpression());
             return te;
         }
 
@@ -307,7 +303,7 @@ public class LetterTranslator extends AbstractListTranslator {
                     term.getTermText(),
                     String.format(LETTER_MSG, DLMFFeatureValues.MEANING.getFeatureValue(constantSet, CAS))
             );
-        } else {
+        } else if ( !super.getConfig().translateLettersAsConstantsMode() ) {
             getInfoLogger().addGeneralInfo(
                     term.getTermText(),
                     String.format(GREEK_MSG, DLMFFeatureValues.MEANING.getFeatureValue(constantSet, CAS), dlmf, term.getTermText())
@@ -346,8 +342,7 @@ public class LetterTranslator extends AbstractListTranslator {
 
         getGlobalTranslationList().removeLastNExps(power.clear());
 
-        localTranslations.addTranslatedExpression(translation);
-        getGlobalTranslationList().addTranslatedExpression(translation);
+        perform(TranslatedExpression::addTranslatedExpression, translation);
 
         getInfoLogger().addMacroInfo("\\expe", "Recognizes e with power as the exponential function. " +
                 "It was translated as a function.");

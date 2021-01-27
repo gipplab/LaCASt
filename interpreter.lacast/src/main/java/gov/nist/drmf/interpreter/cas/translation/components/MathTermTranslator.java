@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -189,8 +190,7 @@ public class MathTermTranslator extends AbstractListTranslator {
                 break;
             default: return null;
         }
-        localTranslations.addTranslatedExpression(translation);
-        getGlobalTranslationList().addTranslatedExpression(translation);
+        perform(TranslatedExpression::addTranslatedExpression, translation);
         return localTranslations;
     }
 
@@ -247,7 +247,10 @@ public class MathTermTranslator extends AbstractListTranslator {
                             exp.getRoot().getTermText()
                     );
                 }
-            case dlmf_macro: case command:
+            case command:
+                te = checkForOperatorname(exp, following_exp);
+                if ( te != null ) break;
+            case dlmf_macro:
             case alphanumeric: case abbreviation:
             case special_math_letter: case symbol: case constant: case letter:
                 LetterTranslator letterT = new LetterTranslator(getSuperTranslator());
@@ -255,6 +258,43 @@ public class MathTermTranslator extends AbstractListTranslator {
                 break;
         }
         return te;
+    }
+
+    private TranslatedExpression checkForOperatorname(PomTaggedExpression exp, List<PomTaggedExpression> followingExp) {
+        if (!PomTaggedExpressionUtility.isOperatorname(exp)) return null;
+        LOG.debug("Encountered operatorname. Tag following expression (argument) as a function and continue with function translator");
+
+        if ( followingExp == null || followingExp.isEmpty() ) {
+            throw TranslationException.buildException(
+                    this, "\\operatorname has no argument",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT
+            );
+        }
+
+        PomTaggedExpression arg = followingExp.remove(0);
+        MathTerm term = arg.getRoot();
+        boolean isValidOperator = MathTermUtility.equalsOr(term,
+                MathTermTags.letter,
+                MathTermTags.alphanumeric,
+                MathTermTags.abbreviation,
+                MathTermTags.function
+        );
+
+        super.getInfoLogger().addGeneralInfo(
+                term.getTermText(), "Was interpreted as a function call because of a leading \\operatorname."
+        );
+
+        if ( !isValidOperator ) {
+            throw TranslationException.buildExceptionObj(
+                    this, "The element " + term.getTermText() + " cannot be tagged as a function",
+                    TranslationExceptionReason.INVALID_LATEX_INPUT,
+                    term.getTermText()
+            );
+        }
+
+        PomTaggedExpressionUtility.tagAsFunction(arg);
+        FunctionTranslator ft = new FunctionTranslator(this.getSuperTranslator());
+        return ft.translate(arg, followingExp);
     }
 
     private TranslatedExpression translateOperation(PomTaggedExpression exp, List<PomTaggedExpression> following_exp) {
@@ -297,8 +337,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             case less_than:
             case greater_than: // all above should translated directly
                 String translation = translateSymbol(term);
-                localTranslations.addTranslatedExpression(translation);
-                getGlobalTranslationList().addTranslatedExpression(translation);
+                perform(TranslatedExpression::addTranslatedExpression, translation);
 
                 te = localTranslations;
                 break;
@@ -353,8 +392,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         } else {
             symbol = sT.translateFromMLPKey(tag.tag());
         }
-        localTranslations.addTranslatedExpression(symbol);
-        getGlobalTranslationList().addTranslatedExpression(symbol);
+        perform(TranslatedExpression::addTranslatedExpression, symbol);
     }
 
     private TranslatedExpression parseFences(MathTerm term, List<PomTaggedExpression> following_exp) {
@@ -431,8 +469,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             );
         }
 
-        localTranslations.addTranslatedExpression(translation);
-        getGlobalTranslationList().addTranslatedExpression(translation);
+        perform(TranslatedExpression::addTranslatedExpression, translation);
         return localTranslations;
     }
 
@@ -459,8 +496,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         getGlobalTranslationList().removeLastNExps(translatedExpression.getLength());
 
         String intervalTranslation = buildIntervalTranslation(translatedExpression, bracket, firstArgument);
-        localTranslations.addTranslatedExpression(intervalTranslation);
-        getGlobalTranslationList().addTranslatedExpression(intervalTranslation);
+        perform(TranslatedExpression::addTranslatedExpression, intervalTranslation);
         return localTranslations;
     }
 
@@ -491,8 +527,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         String relationTranslation = sT.translate(term.getTermText());
         if (bracket == null || !Brackets.isOpenedSetBracket(bracket)) {
             // nothing special, just translate term and return it. Following expressions are handled by someone else
-            localTranslations.addTranslatedExpression(relationTranslation);
-            getGlobalTranslationList().addTranslatedExpression(relationTranslation);
+            perform(TranslatedExpression::addTranslatedExpression, relationTranslation);
             return true;
         } else if ( !bracket.opened ) {
             throw TranslationException.buildExceptionObj(

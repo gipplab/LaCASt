@@ -1,5 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
+import gov.nist.drmf.interpreter.common.eval.Label;
+
 /**
  * @author Andre Greiner-Petter
  */

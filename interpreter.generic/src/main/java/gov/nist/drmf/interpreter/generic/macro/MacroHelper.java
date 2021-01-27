@@ -1,6 +1,8 @@
 package gov.nist.drmf.interpreter.generic.macro;
 
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticReplacementRule;
+import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.extensions.MatcherConfig;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import org.intellij.lang.annotations.Language;
@@ -86,6 +88,8 @@ public final class MacroHelper {
 
             e = e.replaceAll("#", VAR_PREFIX);
             e = cleanString(e);
+            if ( e.matches(VAR_PREFIX + "\\d+") )
+                e = "{" + e + "}";
             list.add(e);
         }
     }
@@ -141,10 +145,14 @@ public final class MacroHelper {
         return in.replaceAll("\\\\InvisibleComma", " ");
     }
 
-    public static MatcherConfig getMatchingConfig(MacroBean bean, MOINode<?> node) {
+    public static MatcherConfig getMatchingConfig(SemanticReplacementRule replacementRule, MOINode<?> node) {
+        MacroBean bean = replacementRule.getMacro();
         MatcherConfig config = MatcherConfig.getInPlaceMatchConfig();
         if ( node.isSource() && !node.isSink() ) config = MatcherConfig.getExactMatchConfig();
-        return updateMatchingConfig(bean, config);
+        config = updateMatchingConfig(bean, config);
+        String genericTex = replacementRule.getPattern().getGenericTex();
+        if ( !genericTex.matches(".*(overline|tilde).*") ) config.ignoreFontManipulation(true);
+        return config;
     }
 
     public static MatcherConfig updateMatchingConfig(MacroBean bean, MatcherConfig config) {

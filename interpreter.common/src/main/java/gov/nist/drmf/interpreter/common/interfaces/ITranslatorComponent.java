@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.common.interfaces;
 
-import gov.nist.drmf.interpreter.common.TranslationProcessConfig;
+import gov.nist.drmf.interpreter.common.config.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 
 /**

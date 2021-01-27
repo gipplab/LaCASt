@@ -14,7 +14,7 @@ import java.util.stream.Stream;
  * @see DependencyPattern
  * @author Andre Greiner-Petter
  */
-public class MOINode<T> implements INode<MOIDependency<T>> {
+public class MOINode<T> implements INode<T> {
     // the id of the node
     private final String id;
 
@@ -51,27 +51,22 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
         return moi;
     }
 
-    /**
-     * Get all dependent nodes (along ingoing edges).
-     * @return sorted list (by layer) of dependent nodes
-     */
-    public List<MOINode<T>> getDependencyNodes() {
-        List<MOINode<T>> dependants = new LinkedList<>();
-        for ( MOIDependency<T> dependency : this.ingoing ) {
-            dependants.add( dependency.getSource() );
-        }
-
-        return dependants;
-    }
-
     @Override
-    public Collection<MOIDependency<T>> getIngoingDependencies() {
+    public Collection<? extends IDependency<T>> getIngoingDependencies() {
         return ingoing;
     }
 
     @Override
-    public Collection<MOIDependency<T>> getOutgoingDependencies() {
+    public Collection<? extends IDependency<T>> getOutgoingDependencies() {
         return outgoing;
+    }
+
+    void addIngoingDependency(MOIDependency<T> ingoingDependency) {
+        this.ingoing.add(ingoingDependency);
+    }
+
+    void addOutgoingDependency(MOIDependency<T> outgoingDependency) {
+        this.outgoing.add(outgoingDependency);
     }
 
     /**
@@ -86,8 +81,9 @@ public class MOINode<T> implements INode<MOIDependency<T>> {
      */
     public boolean dependsOnlyOnIdentifier() {
         if ( ingoing.isEmpty() ) return false;
-        return getIngoingDependencies().stream()
+        return ingoing.stream()
                 .map( MOIDependency::getSource )
+                .map( i -> (MOINode<T>)i )
                 .map( MOINode::getNode )
                 .allMatch( MathematicalObjectOfInterest::isIdentifier );
     }

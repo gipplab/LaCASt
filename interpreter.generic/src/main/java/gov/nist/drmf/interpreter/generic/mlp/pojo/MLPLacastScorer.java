@@ -7,14 +7,29 @@ public class MLPLacastScorer {
 
     private double maxEsScore = 0;
 
+    private double esScore = 0;
+    private double dlmfScore = 0;
+    private double mlpScore = 0;
+
     public MLPLacastScorer(double maxEsScore) {
         this.maxEsScore = maxEsScore;
     }
 
-    public double getScore(
-            double mlpScore,
-            double esScore,
-            double dlmfScore) {
-        return mlpScore * (esScore/maxEsScore) * dlmfScore;
+    public void setMacroESScore(double esScore) {
+        this.esScore = esScore;
+    }
+
+    public void setMacroLikelihoodScore(double dlmfScore) {
+        this.dlmfScore = dlmfScore;
+    }
+
+    public void setMlpScore(double mlpScore) {
+        this.mlpScore = mlpScore;
+    }
+
+    public double getScore() {
+        double relEsScore = maxEsScore <= 0 ? 0 : esScore/maxEsScore;
+        // take the average score not the multiplication
+        return (mlpScore + relEsScore + dlmfScore)/3.0;
     }
 }

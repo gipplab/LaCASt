@@ -6,6 +6,7 @@ import gov.nist.drmf.interpreter.cas.translation.AbstractTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -126,7 +127,7 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
     private TranslatedExpression parseUnderscores(PomTaggedExpression exp) {
         // first of all, remove the previous expression. It becomes a whole new block.
         String var = getGlobalTranslationList().removeLastExpression();
-        boolean wasVariable = getInfoLogger().getFreeVariables().removeLastVariable(var);
+        boolean wasVariable = getGlobalTranslationList().getFreeVariables().removeLastVariable(var);
 
         // get the subscript expression and translate it.
         PomTaggedExpression subscript_exp = exp.getComponents().get(0);
@@ -152,7 +153,9 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
 
         // add our final representation for subscripts to the global lexicon
         getGlobalTranslationList().addTranslatedExpression(translation);
-        if ( wasVariable ) getInfoLogger().getFreeVariables().addFreeVariable(translation);
+        if ( wasVariable ) {
+            mapPerform(TranslatedExpression::getFreeVariables, FreeVariables::addFreeVariable, translation);
+        }
         return localTranslations;
     }
 }

@@ -9,12 +9,12 @@
 # =================================================================================================
 generalReplacements:
   -
-    pattern: (?<!\\)\\(?:displaystyle|hbox|[Bb]ig[lrg]?(?![a-zA-Z])|(?:[sb]f|cal)(?![a-zA-Z])|[!,; ]|(?:neg)?(?:m|med|thin|thick)space(?:\{.+\})?|q+uad+)
+    pattern: (?<!\\)\\(?:displaystyle|hbox|[Bb]ig[lrg]?(?![a-zA-Z])|(?:[sb]f|cal)(?![a-zA-Z])|[!,; ]|(?:neg)?(?:m|med|thin|thick)space(?:\{.+\})?)
   -
     pattern: \[\s*\]
   -
     # you need single quotes here
-    pattern: '(?:[.;<>^/\t\s]|\\\\)+$'
+    pattern: '(?:[.;^/\t\s]|\\\\)+$'
   -
     pattern: (\\hiderel\s*\{\s*([=<>/+\-])\s*})
     replacement: $2
@@ -23,6 +23,11 @@ generalReplacements:
     pattern: (\d)(?:\s+|\\[;,! ])+(\d)
     replacement: $1$2
     groups: 2
+  -
+    # new line spacing declarations can be ignored
+    # well... im not sure why we need three \... probably we internally replace \ by \\?
+    pattern: \\\\\[\d+.*?\]
+    replacement: \\\
   -
     # replace \* with *
     pattern: \\\*

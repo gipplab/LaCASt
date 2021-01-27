@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.common;
 
-import gov.nist.drmf.interpreter.common.TeXPreProcessor;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,10 +13,18 @@ public class TeXPreProcessorTest {
     @Test
     public void displayStyleTest(){
         String input = "{\\displaystyle{\\displaystyle{\\displaystyle\\ctsHahn{n}@{x}{a}{b}{c}{d}{}={%&#10;\\mathrm{i}^{n}}\\frac{\\pochhammer{a+c}{n}\\pochhammer{a+d}{n}}{n!}\\,\\HyperpFq{3}%&#10;{2}@@{-n,n+a+b+c+d-1,a+\\mathrm{i}x}{a+c,a+d}{1}}}}";
-        String expect = "{{{\\ctsHahn{n}@{x}{a}{b}{c}{d}{}={%&#10;\\mathrm{i}^{n}}\\frac{\\pochhammer{a+c}{n}\\pochhammer{a+d}{n}}{n!}\\HyperpFq{3}%&#10;{2}@@{-n,n+a+b+c+d-1,a+\\mathrm{i}x}{a+c,a+d}{1}}}}";
+        String expect = "{{\\ctsHahn{n}@{x}{a}{b}{c}{d}{}={%&#10;\\mathrm{i}^{n}}\\frac{\\pochhammer{a+c}{n}\\pochhammer{a+d}{n}}{n!}\\HyperpFq{3}%&#10;{2}@@{-n,n+a+b+c+d-1,a+\\mathrm{i}x}{a+c,a+d}{1}}}";
 
         String output = TeXPreProcessor.preProcessingTeX( input );
         assertEquals( expect, output, "Clear displaystyle didn't work." );
+    }
+
+    @Test
+    public void displayStyleCommaTest(){
+        String input = "{\\displaystyle \\zeta(s) =\\sum_{n=1}^\\infty\\frac{1}{n^s} ,}";
+
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( "\\zeta(s) =\\sum_{n=1}^\\infty\\frac{1}{n^s}", output, "Clear displaystyle didn't work." );
     }
 
     @Test
@@ -28,9 +36,17 @@ public class TeXPreProcessorTest {
     }
 
     @Test
+    public void lineBreakSpacingTest(){
+        String input = "a \\\\[5pt] b";
+        String expect = "a \\\\ b";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output );
+    }
+
+    @Test
     public void stylesTest(){
         String input = "{\\sf\\bf a}";
-        String expect = "{ a}";
+        String expect = "a";
         String output = TeXPreProcessor.preProcessingTeX( input );
         assertEquals( expect, output);
     }
