@@ -1,6 +1,7 @@
 package gov.nist.drmf.interpreter.pom.common;
 
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.FeatureValues;
@@ -18,6 +19,8 @@ import java.util.List;
 public final class PomTaggedExpressionNormalizer {
     public static final byte NORMALIZE_SUB_SUPERSCRIPTS = 0b0001;
     public static final byte NORMALIZE_PARENTHESES = 0b0010;
+
+    private static final SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
 
     private PomTaggedExpressionNormalizer() {}
 
@@ -113,4 +116,45 @@ public final class PomTaggedExpressionNormalizer {
         return tmp;
     }
 
+    /**
+     * Internally changes the given expression by switching \pm and \mp to + or -. The second parameter specifies
+     * which case you want to change it to. First case (true) means \pm becomes +, second case means it becomes -.
+     * @param pte the pte to change
+     * @param firstCase first case or second case mode
+     * @return the updated expression without \pm and \mp
+     */
+    public static boolean normalizePm(PomTaggedExpression pte, boolean firstCase) {
+        boolean encountered = false;
+        if ( pte == null || pte.isEmpty() ) return false;
+        if ( MathTermUtility.equals(pte.getRoot(), MathTermTags.operation) ) {
+            MathTerm term = pte.getRoot();
+            if ( "\\pm".equals(term.getTermText()) ) {
+                if ( firstCase ) setMathTermPlus(term);
+                else setMathTermMinus(term);
+                pte.setRoot(term);
+                encountered = true;
+            } else if ( "\\mp".equals(term.getTermText()) ) {
+                if ( firstCase ) setMathTermMinus(term);
+                else setMathTermPlus(term);
+                pte.setRoot(term);
+                encountered = true;
+            }
+        } else if ( !pte.getComponents().isEmpty() ) {
+            for ( PomTaggedExpression child : pte.getComponents() )
+                encountered |= normalizePm(child, firstCase);
+        }
+        return encountered;
+    }
+
+    private static void setMathTermPlus(MathTerm term) {
+        term.setTermText("+");
+        term.setTag(MathTermTags.plus.tag());
+        mlp.loadFeatures(term);
+    }
+
+    private static void setMathTermMinus(MathTerm term) {
+        term.setTermText("-");
+        term.setTag(MathTermTags.minus.tag());
+        mlp.loadFeatures(term);
+    }
 }

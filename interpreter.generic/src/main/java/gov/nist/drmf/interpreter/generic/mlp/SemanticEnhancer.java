@@ -11,6 +11,7 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.MinimumRequirementNotFulfilledException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.latex.CaseSplitter;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
@@ -34,10 +35,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
 /**
@@ -193,15 +191,22 @@ public class SemanticEnhancer implements IPartialEnhancer {
         } catch (InitTranslatorException e) {
             throw new ComputerAlgebraSystemEngineException(e);
         }
-        TranslationInformation ti = dlmfTranslator.translateToObject(semanticLatex);
+
         DefaultNumericalTestCaseBuilder testCaseBuilder = new DefaultNumericalTestCaseBuilder(
                 config, cas.getNumericEvaluator(), dlmfTranslator, cas.getEvaluationScriptHandler()
         );
-        DefaultNumericTestCase defaultNumericTestCase = new DefaultNumericTestCase(ti);
 
-        List<NumericalTest> tests = testCaseBuilder.buildTestCases(ti, defaultNumericTestCase);
+        List<String> texCases = CaseSplitter.splitPMSymbols(semanticLatex);
+        List<NumericalTest> tests = new LinkedList<>();
+
+        for ( String texCase : texCases ) {
+            TranslationInformation ti = dlmfTranslator.translateToObject(texCase);
+            DefaultNumericTestCase defaultNumericTestCase = new DefaultNumericTestCase(ti);
+            List<NumericalTest> caseTests = testCaseBuilder.buildTestCases(ti, defaultNumericTestCase);
+            tests.addAll(caseTests);
+        }
+
         ICASEngineNumericalEvaluator numericEvaluator = cas.getNumericEvaluator();
-
         NumericResult numericResult = new NumericResult();
         for ( NumericalTest test : tests ) {
             try {

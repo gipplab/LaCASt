@@ -685,6 +685,17 @@ class SimpleTranslationTests {
     }
 
     @Test
+    public void pmTest() {
+        String input = "x \\pm y";
+        TranslationInformation ti = sltMathematica.translateToObject(input);
+        List<TranslationInformation> partialTranslations = ti.getPartialTranslations();
+        assertEquals(2, partialTranslations.size());
+        assertEquals("x \\[PlusMinus]y", ti.getTranslatedExpression());
+        assertEquals("x + y", partialTranslations.get(0).getTranslatedExpression());
+        assertEquals("x - y", partialTranslations.get(1).getTranslatedExpression());
+    }
+
+    @Test
     public void macroPackageTranslatorConfigOnOffTest() {
         ForwardTranslationProcessConfig config = slt.getConfig();
         String testExpression = "\\qGamma{q}@{\\qfactorial{n}{q}}";
