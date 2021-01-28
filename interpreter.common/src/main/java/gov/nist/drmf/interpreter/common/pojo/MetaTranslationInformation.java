@@ -78,6 +78,7 @@ public class MetaTranslationInformation implements Serializable {
             } else {
                 while ( !rels.isEmpty() && comps.size() >= 2 ) {
                     Relations rel = rels.removeFirst();
+                    if ( rel == null ) continue;
                     subEquations.add(
                             comps.removeFirst() + " " + rel.getSymbol() + " " + comps.get(0)
                     );

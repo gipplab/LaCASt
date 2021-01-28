@@ -117,6 +117,30 @@ public class RelationExtractionTests {
     }
 
     @Test
+    void longMultiEquationSimpleTest() {
+        slt.translate("\\cos t = \\frac{\\cot t}{\\sqrt{1 + \\cot^2t}} = \\frac{-ma}{\\sqrt{m^2 a^2 + b^2}},\\quad\\quad\\sin t = \\frac{1}{\\sqrt{1 + \\cot^2t}} = \\frac{b}{\\sqrt{m^2 a^2 + b^2}}");
+        test(slt.getTranslationInformation(), gen(
+                "Cos[t]",
+                "Divide[Cot[t],Sqrt[1 + (Cot[t])^(2)]]",
+                "Divide[- m*a,Sqrt[(m)^(2)* (a)^(2)+ (b)^(2)]]"
+                ),
+                gen("=", "="));
+    }
+
+    @Test
+    void longMultiEquationTest() {
+        slt.translate("\\cos t = \\frac{\\cot t}{\\pm\\sqrt{1 + \\cot^2t}} = \\frac{-ma}{\\pm\\sqrt{m^2 a^2 + b^2}},\\quad\\quad\\sin t = \\frac{1}{\\pm\\sqrt{1 + \\cot^2t}} = \\frac{b}{\\pm\\sqrt{m^2 a^2 + b^2}}");
+        test(slt.getTranslationInformation(), gen(
+                "Cos[t]",
+                "Divide[Cot[t],\\[PlusMinus]Sqrt[1 + (Cot[t])^(2)]]",
+                "Divide[- m*a,\\[PlusMinus]Sqrt[(m)^(2)* (a)^(2)+ (b)^(2)]]"
+                ),
+                gen("=", "="));
+        List<String> constraints = slt.getTranslationInformation().getTranslatedConstraints();
+        System.out.println(constraints);
+    }
+
+    @Test
     void eqArrayCombinedTest() {
         slt.translate("\\begin{align}&2n (n + \\alpha + \\beta) \\\\&= \\JacobipolyP{\\alpha}{\\beta}{n-1}@{z} - 2 (n+\\alpha - 1),\\end{align}");
         TranslationInformation ti = slt.getTranslationInformationObject();
@@ -155,10 +179,10 @@ public class RelationExtractionTests {
         assertEquals(rel.length, comps.getRelations().size(), "Expected " + Arrays.toString(rel) + " but got " + comps.getRelations());
 
         for ( int i = 0; i < parts.length; i++ )
-            assertEquals(parts[i], comps.getComponents().get(i), "Expected to relation part '" + parts[i] + "' but got " + comps.getComponents().get(i));
+            assertEquals(parts[i], comps.getComponents().get(i), "Expected the relation part '" + parts[i] + "' but got " + comps.getComponents().get(i));
 
         for ( int i = 0; i < rel.length; i++ )
-            assertEquals(rel[i], comps.getRelations().get(i).getSymbol(), "Expected to relation part '" + rel[i] + "' but got " + comps.getRelations().get(i));
+            assertEquals(rel[i], comps.getRelations().get(i).getSymbol(), "Expected the relation part '" + rel[i] + "' but got " + comps.getRelations().get(i));
     }
 
     private static String[] gen(String... p) {

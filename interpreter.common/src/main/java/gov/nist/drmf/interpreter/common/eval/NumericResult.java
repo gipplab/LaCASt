@@ -151,7 +151,7 @@ public class NumericResult implements Serializable, ITestResultCounter {
 
     @JsonGetter("overallResult")
     public TestResultType overallResult() {
-        if ( testCalculationsGroups.isEmpty() ) return TestResultType.SKIPPED;
+        if ( testCalculationsGroups.isEmpty() || numberOfTotalTests == 0 ) return TestResultType.SKIPPED;
         if (numberOfTotalTests == numberOfSuccessfulTests) return TestResultType.SUCCESS;
         else if ( numberOfErrorTests == 0 && numberOfFailedTests > 0) return TestResultType.FAILURE;
         else if ( numberOfSkippedTests > 0 ) return TestResultType.SKIPPED;

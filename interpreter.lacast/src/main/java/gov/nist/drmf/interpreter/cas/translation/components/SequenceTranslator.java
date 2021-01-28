@@ -304,17 +304,24 @@ public class SequenceTranslator extends AbstractListTranslator {
         TranslatedExpression copyOfLocal = new TranslatedExpression(localTranslations);
         localTranslations.clear();
 
+        TranslatedExpression copyOfGlobal = new TranslatedExpression(super.getGlobalTranslationList());
+        super.getGlobalTranslationList().clear();
+
         super.getGlobalTranslationList().lockRelationalComponents();
         while ( !expList.isEmpty() ) translateNext( expList.remove(0), expList, false );
         super.getGlobalTranslationList().releaseRelationalComponents();
 
-        super.getGlobalTranslationList().removeLastNExps( localTranslations.getLength() );
-        super.getGlobalTranslationList().addConstraint( localTranslations.getTranslatedExpression() );
         copyOfLocal.addConstraint( localTranslations.getTranslatedExpression() );
         copyOfLocal.getFreeVariables().addFreeVariables( localTranslations.getFreeVariables() );
 
+        copyOfGlobal.addConstraint( localTranslations.getTranslatedExpression() );
+        copyOfGlobal.getFreeVariables().addFreeVariables( localTranslations.getFreeVariables() );
+
         localTranslations.clear();
         localTranslations.addTranslatedExpression(copyOfLocal);
+
+        super.getGlobalTranslationList().clear();
+        super.getGlobalTranslationList().addTranslatedExpression(copyOfGlobal);
     }
 
     private boolean bracketMatchOrSetMode(Brackets bracket) {
@@ -420,6 +427,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     private String checkMultiplyAddition(PomTaggedExpression exp, List<PomTaggedExpression> exp_list, String part) {
+        if ( part == null ) return "";
         TranslatedExpression global = getGlobalTranslationList();
 
         PomTaggedExpression specTreatExp = treatFirstExpression(part, exp);
