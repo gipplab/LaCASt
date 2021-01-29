@@ -121,11 +121,13 @@ public class MacroTranslator extends AbstractListTranslator {
         }
 
         // now check for optional parameters, if any
-        LinkedList<String> optionalParas = parseOptionalParameters(followingExps);
+        LinkedList<String> optionalParas = parseOptionalParameters(macroTerm, followingExps);
 
         // in case of optional arguments, we have to retrieve other information from the lexicons
         if (!optionalParas.isEmpty()) {
             fset = macroTerm.getNamedFeatureSet(Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + optionalParas.size());
+            // that's a fall back... if the user misses to specify the number of optional parameters, we better
+            // overwrite them now
             IFeatureExtractor.setFeatureValue(fset, Keys.NUM_OF_OPT_PARAMS, Integer.toString(optionalParas.size()));
             info = new MacroInfoHolder(this, fset, cas, macro);
         } else if ( translationException != null ) {
@@ -250,7 +252,7 @@ public class MacroTranslator extends AbstractListTranslator {
      *
      * @param followingExps the expressions right after the macro itself
      */
-    private LinkedList<String> parseOptionalParameters(List<PomTaggedExpression> followingExps) {
+    private LinkedList<String> parseOptionalParameters(MathTerm macroTerm, List<PomTaggedExpression> followingExps) {
         LinkedList<String> optionalArguments = new LinkedList<>();
 
         // check for optional arguments
@@ -263,18 +265,20 @@ public class MacroTranslator extends AbstractListTranslator {
                 break;
             }
 
-            continueParsing = continueOptionalParameterParsing(first, followingExps, optionalArguments);
+            continueParsing = continueOptionalParameterParsing(macroTerm, first, followingExps, optionalArguments);
         }
 
         return optionalArguments;
     }
 
     private boolean continueOptionalParameterParsing(
+            MathTerm macroTerm,
             PomTaggedExpression first,
             List<PomTaggedExpression> followingExps,
             List<String> optionalArguments
     ) {
         if ( MathTermUtility.equals(first.getRoot(), MathTermTags.left_bracket) ) {
+            if ( !macroExistWithOptionalParameter(macroTerm, 1) ) return false;
             String optional = translateInnerExp(followingExps.remove(0), followingExps).toString();
             Matcher m = OPTIONAL_PARAMS_PATTERN.matcher(optional);
             if (m.matches()) {
@@ -286,6 +290,17 @@ public class MacroTranslator extends AbstractListTranslator {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Checks if the given math term macro is allowed to have the given number of optional parameters.
+     * @param macroTerm the math term representing a DLMF macro
+     * @param numberOfOptionalParameters the number of optional parameters
+     * @return true if the macro may have the given number of optional parameters, otherwise false
+     */
+    private boolean macroExistWithOptionalParameter(MathTerm macroTerm, int numberOfOptionalParameters) {
+        FeatureSet fset = macroTerm.getNamedFeatureSet(Keys.KEY_DLMF_MACRO_OPTIONAL_PREFIX + numberOfOptionalParameters);
+        return fset != null;
     }
 
     private LinkedList<String> parseParameters(List<PomTaggedExpression> followingExps, int numberOfParameters) {

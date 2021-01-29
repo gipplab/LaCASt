@@ -32,6 +32,14 @@ public class GenericReplacementToolTests {
     }
 
     @Test
+    void imReplacementTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("x + \\operatorname{Im} (z)");
+        GenericConstantReplacer replacementTool = new GenericConstantReplacer(ppte);
+        ppte = replacementTool.fixConstants();
+        assertEquals("x + \\imagpart (z)", ppte.getTexString());
+    }
+
+    @Test
     void simpleDiffTest() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("\\int_0^1 x dx");
         GenericReplacementTool replacementTool = new GenericReplacementTool(ppte);
