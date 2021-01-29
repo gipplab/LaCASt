@@ -456,7 +456,7 @@ public class SequenceTranslator extends AbstractListTranslator {
     }
 
     private String addSimpleSpace(String part) {
-        if ( part == null ) return "";
+        if ( part == null || part.isBlank() ) return "";
         if ( !part.matches(".*\\s+$") )
             part += SPACE;
         return part;

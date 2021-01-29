@@ -317,4 +317,23 @@ public class SemanticEnhancerComputationTests {
             LOG.debug("Unable to print numeric test calculation");
         }
     }
+
+    @Test
+    @AssumeMathematicaAvailability
+    void scorerDefinitionMathematicaTest() {
+        NumericResult nr = enhancer.computeNumerically(
+                "\\ScorerGi@{x} = \\frac{1}{\\cpi} \\int_0^\\infty \\sin(\\frac{t^3}{3} + xt) \\diff{t}",
+                Keys.KEY_MATHEMATICA
+        );
+        assertNotNull( nr );
+        assertEquals(TestResultType.SKIPPED, nr.overallResult());
+        assertTrue(nr.wasAborted());
+        try {
+            String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
+            assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
+            LOG.debug(representation);
+        } catch (JsonProcessingException e) {
+            LOG.debug("Unable to print numeric test calculation");
+        }
+    }
 }
