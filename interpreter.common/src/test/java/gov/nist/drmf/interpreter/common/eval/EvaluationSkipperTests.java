@@ -100,4 +100,11 @@ public class EvaluationSkipperTests {
         assertFalse( EvaluationSkipper.shouldBeEvaluated(in) );
         assertTrue( EvaluationSkipper.shouldNotBeEvaluated(in) );
     }
+
+    @Test
+    void limIntTest() {
+        String in = "\\logint@{x} = \\lim_{\\varepsilon \\to 0+}(\\int_0^{1-\\varepsilon} \\frac{\\diff{t}}{\\ln t} + \\int_{1+\\varepsilon}^x \\frac{\\diff{t}}{\\ln t})";
+        assertTrue( EvaluationSkipper.shouldBeEvaluated(in) );
+        assertFalse( EvaluationSkipper.shouldNotBeEvaluated(in) );
+    }
 }

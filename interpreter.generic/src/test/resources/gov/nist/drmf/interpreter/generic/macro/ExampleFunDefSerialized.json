@@ -397,6 +397,31 @@
       "score" : 0.0
     } ]
   },
+  "qLaguerrepolyL" : {
+    "macro" : "qLaguerrepolyL",
+    "meta" : {
+      "description" : "the $q$-Laguerre polynomial",
+      "meaning" : "q-Laguerre-polynomial-L",
+      "openMathID" : "orthpoly5_dlmf:q-Laguerre_L",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ "\\alpha", "n" ],
+        "standardVariables" : [ "x", "q" ]
+      }
+    },
+    "numberOfParameters" : 2,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 2,
+    "TeX" : [ {
+      "genericTeX" : "L_{par2} (var1;var2)",
+      "semanticTeX" : "\\qLaguerrepolyL{par1}{par2}@{var1}{var2}",
+      "score" : 1.0
+    }, {
+      "genericTeX" : "L_{par2}",
+      "semanticTeX" : "\\qLaguerrepolyL{par1}{par2}@{x}{q}",
+      "score" : 0.0
+    } ]
+  },
   "Riemannthetachar" : {
     "macro" : "Riemannthetachar",
     "meta" : {
@@ -415,7 +440,7 @@
     "TeX" : [ {
       "genericTeX" : "\\theta\\left[{par1 \\atop par2}\\right] (var1 | var2)",
       "semanticTeX" : "\\Riemannthetachar{par1}{par2}@{var1}{var2}",
-      "score" : 0.0
+      "score" : 1.0
     }, {
       "genericTeX" : "\\theta\\left[{par1 \\atop par2}\\right]",
       "semanticTeX" : "\\Riemannthetachar{par1}{par2}@{z}{\\Omega}",

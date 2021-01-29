@@ -129,15 +129,6 @@ public class SymbolicResult implements Serializable, ITestResultCounter {
         }
     }
 
-    @JsonGetter("overallResult")
-    public TestResultType overallResult() {
-        if ( testCalculationsGroups.isEmpty() ) return TestResultType.SKIPPED;
-        if (numberOfTotalTests == numberOfSuccessfulTests) return TestResultType.SUCCESS;
-        else if ( numberOfErrorTests == 0 && numberOfFailedTests > 0) return TestResultType.FAILURE;
-        else if ( numberOfSkippedTests > 0 ) return TestResultType.SKIPPED;
-        else return TestResultType.ERROR;
-    }
-
     @JsonIgnore
     public String printCalculations() {
         List<String> results = testCalculationsGroups.stream()
@@ -178,5 +169,11 @@ public class SymbolicResult implements Serializable, ITestResultCounter {
     @Override
     public void increaseNumberOfSkippedTests() {
         numberOfSkippedTests++;
+    }
+
+    @JsonIgnore
+    @Override
+    public int getNumberOfCalculationGroups() {
+        return testCalculationsGroups.size();
     }
 }

@@ -14,6 +14,13 @@
         "Mathematica": "Limit[Sum[Subscript[a, n]*(x)^(n), {n, 0, Infinity}, GenerateConditions->None], z -> 1, Direction -> \"FromBelow\", GenerateConditions->None] == s"
     },
     {
+        "name": "LOG_INTEGRAL_DEFINITION",
+        "DLMF": "",
+        "LaTeX": "\\logint@{x} = \\lim_{\\varepsilon \\to 0+}(\\int_0^{1-\\varepsilon} \\frac{\\diff{t}}{\\ln t} + \\int_{1+\\varepsilon}^x \\frac{\\diff{t}}{\\ln t})",
+        "Maple": "Li(x) = limit(int((1)/(ln(t)), t = 0..1 - varepsilon)+ int((1)/(ln(t)), t = 1 + varepsilon..x), varepsilon = 0, right)",
+        "Mathematica": "LogIntegral[x] == Limit[Integrate[Divide[1,Log[t]], {t, 0, 1 - \\[CurlyEpsilon]}, GenerateConditions->None]+ Integrate[Divide[1,Log[t]], {t, 1 + \\[CurlyEpsilon], x}, GenerateConditions->None], \\[CurlyEpsilon] -> 0, Direction -> \"FromAbove\", GenerateConditions->None]"
+    },
+    {
         "name": "FRAC",
         "DLMF": "4.31.1",
         "LaTeX": "\\lim_{z \\to 0} \\frac{\\sinh@@{z}}{z}",

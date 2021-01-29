@@ -508,6 +508,26 @@ Symbol: \BernoullipolyB
 	Number of Variables: 1
 	Slot of Differentiation: 1
 
+Symbol: \BesselAmat
+
+  Feature Set: dlmf-macro
+	DLMF: \BesselAmat{\nu}@{\Matrix{T}}
+	DLMF-Link: dlmf.nist.gov/35.5#i
+	Meanings: Bessel function with matrix argument
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
+Symbol: \BesselBmat
+
+  Feature Set: dlmf-macro
+	DLMF: \BesselBmat{\nu}@{\Matrix{T}}
+	DLMF-Link: dlmf.nist.gov/35.5#E3
+	Meanings: Bessel function with matrix argument
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+
 Symbol: \BesselC
 
   Feature Set: dlmf-macro
@@ -665,6 +685,16 @@ Symbol: \CarlsonellintRC
 	Meanings: Carlson elliptic integral
 	Number of Ats: 2
 	Number of Parameters: 0
+	Number of Variables: 2
+
+Symbol: \Carlsonmultivarhyper
+
+  Feature Set: dlmf-macro
+	DLMF: \Carlsonmultivarhyper{-a}@{\Vector{b}}{\Vector{z}}
+	DLMF-Link: dlmf.nist.gov/19.16#E9
+	Meanings: Multivariate hypergeometric function
+	Number of Ats: 1
+	Number of Parameters: 1
 	Number of Variables: 2
 
 Symbol: \CarlsonsymellintRD
@@ -1078,6 +1108,8 @@ Symbol: \EulernumberE
   Feature Set: dlmf-macro
 	DLMF: \EulernumberE{n}
 	DLMF-Link: dlmf.nist.gov/24.2#ii
+	Maple: euler($0)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=euler
 	Mathematica: EulerE[$0]
 	Meanings: Euler polynomial
 	Number of Ats: 0
@@ -1235,6 +1267,18 @@ Symbol: \FishersHh
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+
+Symbol: \FourierTrans
+
+  Feature Set: dlmf-macro
+	DLMF: \FourierTrans@@{f}{s}
+	DLMF-Link: dlmf.nist.gov/1.14#E1
+	Maple-Alternatives: fourier(f, t, -x)/sqrt(2*Pi)
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/fourier
+	Meanings: Fourier transformation
+	Number of Ats: 2
+	Number of Parameters: 0
+	Number of Variables: 2
 
 Symbol: \Fresnelcosint
 
@@ -1528,6 +1572,18 @@ Symbol: \HeunpolyHp
 	Number of Parameters: 2
 	Number of Variables: 7
 	Slot of Differentiation: 7
+
+Symbol: \HilbertTrans
+
+  Feature Set: dlmf-macro
+	DLMF: \HilbertTrans@{f}{s}
+	DLMF-Link: dlmf.nist.gov/1.14#SS5.p1
+	Maple-Alternatives: hilbert(f, t, s)
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/hilbert
+	Meanings: Hilbert transformation
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 2
 
 Symbol: \Hurwitzzeta
 
@@ -2314,6 +2370,18 @@ Symbol: \LamepolyuE
 	Number of Variables: 2
 	Slot of Differentiation: 1
 
+Symbol: \LaplaceTrans
+
+  Feature Set: dlmf-macro
+	DLMF: \LaplaceTrans@{f}{s}
+	DLMF-Link: dlmf.nist.gov/1.14#E17
+	Maple-Alternatives: laplace(f, t, s)
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/laplace
+	Meanings: Laplace transformation
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 2
+
 Symbol: \Lattice
 
   Feature Set: dlmf-macro
@@ -2638,6 +2706,30 @@ Symbol: \Mathieuse
 	Number of Variables: 2
 	Slot of Differentiation: 1
 
+Symbol: \Matrix
+
+  Feature Set: dlmf-macro
+	DLMF: \Matrix{A}
+	DLMF-Link: drmf.wmflabs.org/wiki/Definition:Matrix
+	Maple: Matrix([[],[]])
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Matrix
+	Meanings: Matrix
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 1
+
+Symbol: \MeijerG
+
+  Feature Set: dlmf-macro
+	DLMF: \MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}}
+	DLMF-Link: dlmf.nist.gov/16.17#E1
+	Maple: MeijerG([[a_1, .., a_n],[a_n+1, .., a_p]], [[b_1, .., b_m],[b_m+1, .., b_q]],z)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=MeijerG
+	Meanings: Meijer-G function
+	Number of Ats: 3
+	Number of Parameters: 4
+	Number of Variables: 3
+
 Symbol: \Meixner
 
   Feature Set: dlmf-macro
@@ -2681,6 +2773,18 @@ Symbol: \MeixnerpolyM
 	Number of Parameters: 1
 	Number of Variables: 3
 	Slot of Differentiation: 1
+
+Symbol: \MellinTrans
+
+  Feature Set: dlmf-macro
+	DLMF: \MellinTrans@{f}{s}
+	DLMF-Link: dlmf.nist.gov/1.14#E32
+	Maple-Alternatives: mellin(f, t, s)
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=inttrans/mellin
+	Meanings: Mellin transformation
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 2
 
 Symbol: \MillsM
 
@@ -2910,6 +3014,39 @@ Symbol: \Residue
 	Number of Variables: 0
 	Role: symbol
 
+Symbol: \RiemannsymP
+
+  Feature Set: dlmf-macro
+	DLMF: \RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}}
+	DLMF-Link: dlmf.nist.gov/15.11#E3
+	Meanings: Riemann's P-symbol
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 1
+
+Symbol: \Riemanntheta
+
+  Feature Set: dlmf-macro
+	DLMF: \Riemanntheta@{\Vector{z}}{\Matrix{\Omega}}
+	DLMF-Link: dlmf.nist.gov/21.2#E1
+	Maple: RiemannTheta($0, $1)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=RiemannTheta
+	Meanings: Riemann theta function
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 2
+	Slot of Differentiation: 1
+
+Symbol: \Riemannthetachar
+
+  Feature Set: dlmf-macro
+	DLMF: \Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}}
+	DLMF-Link: dlmf.nist.gov/21.2#E5
+	Meanings: Riemann theta function with characteristics
+	Number of Ats: 1
+	Number of Parameters: 2
+	Number of Variables: 2
+
 Symbol: \Riemannxi
 
   Feature Set: dlmf-macro
@@ -2997,6 +3134,16 @@ Symbol: \StieltjesConstants
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+
+Symbol: \StieltjesTrans
+
+  Feature Set: dlmf-macro
+	DLMF: \StieltjesTrans@{f}{s}
+	DLMF-Link: dlmf.nist.gov/1.14#E47
+	Meanings: Stieltjes transformation
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 2
 
 Symbol: \StieltjesWigert
 
@@ -3100,6 +3247,18 @@ Symbol: \Ultra
 	Number of Parameters: 2
 	Number of Variables: 1
 	Slot of Differentiation: 1
+
+Symbol: \Vector
+
+  Feature Set: dlmf-macro
+	DLMF: \Vector{a}
+	DLMF-Link: drmf.wmflabs.org/wiki/Definition:Vector
+	Maple: Vector([$0])
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=Vector
+	Meanings: Vector
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 1
 
 Symbol: \VoigtH
 
@@ -4089,6 +4248,17 @@ Symbol: \cDiff
 	Number of Variables: 0
 	Role: dlmf-macro
 
+Symbol: \canonint
+
+  Feature Set: dlmf-macro
+	DLMF: \canonint{K}@{\Vector{x}}
+	DLMF-Link: dlmf.nist.gov/36.2#E4
+	Meanings: Canonical integral
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
+	Slot of Differentiation: 1
+
 Symbol: \card
 
   Feature Set: dlmf-macro
@@ -4599,6 +4769,16 @@ Symbol: \ctsqUltrae
 	Number of Parameters: 1
 	Number of Variables: 3
 
+Symbol: \cuspcatastrophe
+
+  Feature Set: dlmf-macro
+	DLMF: \cuspcatastrophe{K}@{t}{\Vector{x}}
+	DLMF-Link: dlmf.nist.gov/36.2#E1
+	Meanings: Cuspoid catastrophe
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 2
+
 Symbol: \deltaDistribution
 
   Feature Set: dlmf-macro
@@ -4645,6 +4825,16 @@ Symbol: \diff
 	Number of Parameters: 0
 	Number of Variables: 1
 	Role: dlmf-macro
+
+Symbol: \diffrcanonint
+
+  Feature Set: dlmf-macro
+	DLMF: \diffrcanonint{K}@{\Vector{x}}{k}
+	DLMF-Link: dlmf.nist.gov/36.2#E10
+	Meanings: Diffraction catastrophe
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 2
 
 Symbol: \digamma
 
@@ -4818,6 +5008,37 @@ Symbol: \dualqKrawtchouk
 	Number of Parameters: 1
 	Number of Variables: 4
 
+Symbol: \ellumbcanonint
+
+  Feature Set: dlmf-macro
+	DLMF: \ellumbcanonint@{\Vector{x}}
+	DLMF-Link: dlmf.nist.gov/36.2#E6
+	Meanings: Elliptic umbilic canonical integral
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 1
+	Slot of Differentiation: 1
+
+Symbol: \ellumbcatastrophe
+
+  Feature Set: dlmf-macro
+	DLMF: \ellumbcatastrophe@{s}{t}{\Vector{x}}
+	DLMF-Link: dlmf.nist.gov/36.2#E2
+	Meanings: Elliptic umbilic catastrophe
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 3
+
+Symbol: \ellumbdiffrcanonint
+
+  Feature Set: dlmf-macro
+	DLMF: \ellumbdiffrcanonint@{\Vector{x}}{k}
+	DLMF-Link: dlmf.nist.gov/36.2#E11
+	Meanings: Diffraction elliptic umbilic catastrophe
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 2
+
 Symbol: \envCoulumbM
 
   Feature Set: dlmf-macro
@@ -4949,6 +5170,19 @@ Symbol: \expintEin
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+
+Symbol: \exptrace
+
+  Feature Set: dlmf-macro
+	DLMF: \exptrace@{\Matrix{X}}
+	DLMF-Link: dlmf.nist.gov/35.1#p3.t1.r10
+	Maple: exp(Trace(X))
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=LinearAlgebra/Trace
+	Maple-Package: LinearAlgebra
+	Meanings: Exponential of the trace of a matrix
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 1
 
 Symbol: \f
 
@@ -5151,16 +5385,26 @@ Symbol: \genhyperH
 Symbol: \genhyperOlverF
 
   Feature Set: dlmf-macro
-	DLMF: \genhyperOlverF{2}{1}@{a,b}{c}{z}
-	DLMF-Link: dlmf.nist.gov/15.2#E5
+	DLMF: \genhyperOlverF{p}{q}@@{\Vector{a}}{\Vector{b}}{z}
+	DLMF-Link: dlmf.nist.gov/16.2#E5
 	Maple: hypergeom([$2], [$3], $4)
 	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom
 	Mathematica: HypergeometricPFQRegularized[{$2}, {$3}, $4]
-	Meanings: Hypergeometric function
-	Number of Ats: 1
+	Meanings: Olver's generalized hypergeometric function
+	Number of Ats: 2
 	Number of Parameters: 2
 	Number of Variables: 3
 	Slot of Differentiation: 3
+
+Symbol: \genhyperPsimat
+
+  Feature Set: dlmf-macro
+	DLMF: \genhyperPsimat@{a}{b}{\Matrix{T}}
+	DLMF-Link: dlmf.nist.gov/35.6#E2
+	Meanings: Confluent hypergeometric function of matrix argument of the second kind
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 3
 
 Symbol: \genlog
 
@@ -5248,6 +5492,37 @@ Symbol: \hyperOlverF
 	Number of Parameters: 0
 	Number of Variables: 4
 	Slot of Differentiation: 4
+
+Symbol: \hyperumbcanonint
+
+  Feature Set: dlmf-macro
+	DLMF: \hyperumbcanonint@{\Vector{x}}
+	DLMF-Link: dlmf.nist.gov/36.2#E8
+	Meanings: hyperbolic umbilic canonical integral
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 1
+	Slot of Differentiation: 1
+
+Symbol: \hyperumbcatastrophe
+
+  Feature Set: dlmf-macro
+	DLMF: \hyperumbcatastrophe@{s}{t}{\Vector{x}}
+	DLMF-Link: dlmf.nist.gov/36.2#E3
+	Meanings: Hyperbolic umbilic catastrophe
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 3
+
+Symbol: \hyperumbdiffrcanonint
+
+  Feature Set: dlmf-macro
+	DLMF: \hyperumbdiffrcanonint@{\Vector{x}}{k}
+	DLMF-Link: dlmf.nist.gov/36.2#E11
+	Meanings: Diffraction hyperbolic umbilic catastrophe
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 2
 
 Symbol: \idem
 
@@ -5695,6 +5970,16 @@ Symbol: \logint
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+
+Symbol: \mod
+
+  Feature Set: dlmf-macro
+	DLMF: \mod
+	DLMF-Link: dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10
+	Meanings: Modulo
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 0
 
 Symbol: \modBesselI
 
@@ -7135,6 +7420,16 @@ Symbol: \pseudoJacobi
 	Number of Variables: 3
 	Slot of Differentiation: 1
 
+Symbol: \pvint_
+
+  Feature Set: dlmf-macro
+	DLMF: \pvint_{a}^{b} \f{f}@{x} \diff{x}
+	DLMF-Link: dlmf.nist.gov/1.4#E24
+	Meanings: Cauchy principle value
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 0
+
 Symbol: \qAppellPhi
 
   Feature Set: dlmf-macro
@@ -7313,40 +7608,22 @@ Symbol: \qKrawtchouk
 Symbol: \qLaguerre
 
   Feature Set: dlmf-macro
-	DLMF: \qLaguerre[\alpha]{n}@@{x}{q}
+	DLMF: \qLaguerre{\alpha}{n}@@{x}{q}
 	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qLaguerre
 	Meanings: q-Laguerre polynomial
 	Number of Ats: 2
-	Number of Parameters: 1
-	Number of Variables: 2
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \qLaguerre[\alpha]{n}@@{x}{q}
-	DLMF-Link: drmf.wmflabs.org/wiki/Definition:qLaguerre
-	Meanings: q-Laguerre polynomial
-	Number of Ats: 2
-	Number of Parameters: 1
+	Number of Parameters: 2
 	Number of Variables: 2
 	Slot of Differentiation: 1
 
 Symbol: \qLaguerrepolyL
 
   Feature Set: dlmf-macro
-	DLMF: \qLaguerrepolyL{n}@{x}{q}
+	DLMF: \qLaguerrepolyL{\alpha}{n}@{x}{q}
 	DLMF-Link: dlmf.nist.gov/18.27#E15
 	Meanings: q-Laguerre polynomial
 	Number of Ats: 1
-	Number of Parameters: 1
-	Number of Variables: 2
-	Slot of Differentiation: 1
-
-  Feature Set: dlmf-alternative-1
-	DLMF: \qLaguerrepolyL[\alpha]{n}@{x}{q}
-	DLMF-Link: dlmf.nist.gov/18.27#E15
-	Meanings: q-Laguerre polynomial
-	Number of Ats: 1
-	Number of Parameters: 1
+	Number of Parameters: 2
 	Number of Variables: 2
 	Slot of Differentiation: 1
 
@@ -7778,6 +8055,16 @@ Symbol: \repinterfc
 	Number of Variables: 1
 	Role: dlmf-macro
 	Slot of Differentiation: 1
+
+Symbol: \scRiemanntheta
+
+  Feature Set: dlmf-macro
+	DLMF: \scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}}
+	DLMF-Link: dlmf.nist.gov/21.2#E2
+	Meanings: Scaled Riemann theta function
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 2
 
 Symbol: \scbigqJacobipolyP
 
@@ -8322,6 +8609,26 @@ Symbol: \tpderiv
 	Number of Variables: 2
 	Role: dlmf-macro
 
+Symbol: \trace
+
+  Feature Set: dlmf-macro
+	DLMF: \trace
+	DLMF-Link: dlmf.nist.gov/35.1#p3.t1.r9
+	Meanings: Trace of a matrix
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 1
+
+Symbol: \transpose
+
+  Feature Set: dlmf-macro
+	DLMF: \transpose
+	DLMF-Link: dlmf.nist.gov/1.3.E5
+	Meanings: Transpose of matrix
+	Number of Ats: 0
+	Number of Parameters: 0
+	Number of Variables: 1
+
 Symbol: \trianglepoly
 
   Feature Set: dlmf-macro
@@ -8345,6 +8652,37 @@ Symbol: \ultrasphpoly
 	Number of Parameters: 2
 	Number of Variables: 1
 	Slot of Differentiation: 1
+
+Symbol: \umbcanonint
+
+  Feature Set: dlmf-macro
+	DLMF: \umbcanonint@{\Vector{x}}
+	DLMF-Link: dlmf.nist.gov/36.2#E5
+	Meanings: Umbilic canonical integral
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 1
+	Slot of Differentiation: 1
+
+Symbol: \umbdiffrcanonint
+
+  Feature Set: dlmf-macro
+	DLMF: \umbdiffrcanonint@{\Vector{x}}{k}
+	DLMF-Link: dlmf.nist.gov/36.2#E11
+	Meanings: Diffraction umbilic catastrophe
+	Number of Ats: 1
+	Number of Parameters: 0
+	Number of Variables: 2
+
+Symbol: \variation
+
+  Feature Set: dlmf-macro
+	DLMF: \variation[a,b]@{f}
+	DLMF-Link: dlmf.nist.gov/1.4#E33
+	Meanings: Total variation
+	Number of Ats: 1
+	Number of Parameters: 1
+	Number of Variables: 1
 
 Symbol: \zAirya
 
@@ -8449,5 +8787,15 @@ Symbol: \zderivBessely
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
 	Meanings: Zeros of derivative of Bessel function second kind
 	Number of Ats: 0
+	Number of Parameters: 1
+	Number of Variables: 1
+
+Symbol: \zonalpolyZ
+
+  Feature Set: dlmf-macro
+	DLMF: \zonalpolyZ{\kappa}@{\Matrix{T}}
+	DLMF-Link: dlmf.nist.gov/35.4#SS1.p3
+	Meanings: Zonal polynomial
+	Number of Ats: 1
 	Number of Parameters: 1
 	Number of Variables: 1
