@@ -165,6 +165,23 @@ public class SemanticEnhancerTests {
         }
     }
 
+    @Test
+    void laguerrePolyTest() throws ParseException {
+        String genericLaTeXExample = "\\sum_{n=0}^\\infty \\frac{n!\\,\\Gamma\\left(\\alpha + 1\\right)}{\\Gamma\\left(n+\\alpha+1\\right)}L_n^{(\\alpha)}(x)L_n^{(\\alpha)}(y)t^n";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample,
+                "Hille formula",
+                "Laguerre polynomial",
+                "Gamma function"
+        );
+        MOIPresentations moi = new MOIPresentations(node);
+
+        // this node has no further dependencies. Simply "Levi Civita Symbol" is attached and should be performed.
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\sum_{n=0}^\\infty \\frac{n! \\EulerGamma@{\\alpha + 1}}{\\EulerGamma@{n + \\alpha + 1}} \\LaguerrepolyL[\\alpha]{n}@{x} \\LaguerrepolyL[\\alpha]{n}@{y} t^n", moi.getSemanticLatex());
+    }
+
     @Resource("ErrorFunctionMOI.json")
     void errorFunctionTranslationTest(String json) throws JsonProcessingException, ParseException {
         MOIPresentations moi = SemanticEnhancedDocument.getMapper().readValue(json, MOIPresentations.class);
@@ -177,9 +194,15 @@ public class SemanticEnhancerTests {
         assertEquals("\\erf@@{z} = \\frac{2}{\\sqrt{\\cpi}} \\int_0^z \\expe^{-t^2} \\diff{t}", moi.getSemanticLatex());
     }
 
-    private MOINode<MOIAnnotation> buildNode(String id, String genericTex, String annotationText) throws ParseException {
+    private MOINode<MOIAnnotation> buildNode(String id, String genericTex, String... annotationText) throws ParseException {
         MOIAnnotation complexExpression = new MOIAnnotation();
-        complexExpression.appendRelation(new Relation(genericTex, annotationText));
+        int c = annotationText.length;
+        for ( String anno : annotationText ) {
+            Relation rel = new Relation(genericTex, anno);
+            rel.setScore( c/(double)annotationText.length );
+            complexExpression.appendRelation(rel);
+            c--;
+        }
         MathematicalObjectOfInterest complexMOI = new MathematicalObjectOfInterest(genericTex);
         return new MOINode<>(id, complexMOI, complexExpression);
     }

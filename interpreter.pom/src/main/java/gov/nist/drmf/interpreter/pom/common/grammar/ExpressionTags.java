@@ -22,7 +22,8 @@ public enum ExpressionTags {
     multi_case_single_case("case"),
     balanced_expression("balanced-expression"),
     accented("accented"),
-    choose("choose");
+    choose("choose"),
+    moved("moved"); // that's a custom tag indicating this token was moved in pre-processing
 
     private final String tag;
 

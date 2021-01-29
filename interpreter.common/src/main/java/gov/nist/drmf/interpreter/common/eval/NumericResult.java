@@ -78,6 +78,8 @@ public class NumericResult implements Serializable, ITestResultCounter {
      */
     @JsonIgnore
     public void addFurtherResults(NumericResult nr) {
+        wasAborted |= nr.wasAborted;
+        crashed |= nr.crashed;
         this.addTestCalculationsGroup( nr.getTestCalculationsGroups() );
     }
 

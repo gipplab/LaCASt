@@ -199,8 +199,12 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
      */
     public NumericResult getNumericResult(T results) throws ComputerAlgebraSystemEngineException {
         NumericResult nr = new NumericResult();
-        NumericCalculationGroup group = getNumericCalculationGroup(results);
-        nr.addTestCalculationsGroup( group );
+        if ( wasAborted(results) ) {
+            nr.wasAborted(true);
+        } else {
+            NumericCalculationGroup group = getNumericCalculationGroup(results);
+            nr.addTestCalculationsGroup( group );
+        }
         return nr;
     }
 

@@ -696,6 +696,13 @@ class SimpleTranslationTests {
     }
 
     @Test
+    public void emptyArgTest() {
+        String input = "x + \\genhyperF{0}{1}@{}{\\alpha + 1}{\\frac{xyt}{(1-t)^2}}";
+        String out = slt.translate(input);
+        assertEquals("x + hypergeom([], [alpha + 1], (x*y*t)/((1 - t)^(2)))", out);
+    }
+
+    @Test
     public void macroPackageTranslatorConfigOnOffTest() {
         ForwardTranslationProcessConfig config = slt.getConfig();
         String testExpression = "\\qGamma{q}@{\\qfactorial{n}{q}}";

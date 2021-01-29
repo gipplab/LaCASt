@@ -54,7 +54,8 @@ public enum MathTermTags {
     primes("primes"),
     operator("operator"),
     modulo("modulo"),
-    vbar("vertical-bar");
+    vbar("vertical-bar"),
+    probability_dist("probability distribution");
 
     public static final String OPEN_PARENTHESIS_PATTERN =
             "(left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";

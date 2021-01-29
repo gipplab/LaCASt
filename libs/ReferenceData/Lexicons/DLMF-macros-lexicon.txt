@@ -2180,6 +2180,8 @@ Symbol: \LaguerrepolyL
   Feature Set: dlmf-alternative-1
 	DLMF: \LaguerrepolyL[\alpha]{n}@{x}
 	DLMF-Link: dlmf.nist.gov/18.3#T1.t1.r12
+	Maple: LaguerreL($1, $0, $2)
+	Maple-Link: www.maplesoft.com/support/help/maple/view.aspx?path=LaguerreL
 	Mathematica: LaguerreL[$1, $0, $2]
 	Meanings: Laguerre polynomial
 	Number of Ats: 1
