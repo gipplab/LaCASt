@@ -19,7 +19,7 @@ Content-Type: application/json
             "path": "meta",
             "query": {
                 "match": {
-                    "meta.description": "(Legendre's) incomplete elliptic integral of the first kind"
+                    "meta.description": "Laguerre polynomial"
                 }
             }
         }

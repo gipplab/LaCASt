@@ -31,6 +31,8 @@ public class MacroDefinitionStyleFileParser {
     private static final Pattern COMMENT_LINE = Pattern.compile("^\\s*%.*\n?$",
             Pattern.MULTILINE);
 
+    private static final Pattern OPT_ARG_SPEC_PATTERN = Pattern.compile("\\[\\d+]\\[]");
+
     private final Map<String, MacroBean> macros;
 
     public MacroDefinitionStyleFileParser() {
@@ -74,18 +76,18 @@ public class MacroDefinitionStyleFileParser {
             handleOptionalMacro(args, numberOfParameterStr);
             return null;
         } else {
-            return handleMacro(args, numberOfParameterStr);
+            return handleMacro(args, numberOfParameterStr, line);
         }
     }
 
-    private MacroBean handleMacro(LinkedList<String> args, String numberOfParameterStr) {
+    private MacroBean handleMacro(LinkedList<String> args, String numberOfParameterStr, String defLine) {
         MacroBean currentBean = new MacroBean(args.removeFirst());
         int numOfParameter = Objects.nonNull(numberOfParameterStr) ? Integers.parseInt(numberOfParameterStr) : 0;
         if ( args.isEmpty() )
             throw new IllegalArgumentException("Generic LaTeX is mandatory but was null for " + currentBean.getName());
         List<String> genericLaTeX = cleanIfx(args.removeFirst());
 
-        if ( genericLaTeX.size() == 2 ) {
+        if ( genericLaTeX.size() == 2 && hasOptionalArgument(defLine) ) {
             String genericLaTeXOpt;
             // that means the first #1 argument is actually an optional argument
             currentBean.setGenericLaTeXParametersWithoutOptionalParameter(numOfParameter, reduceNumbers(genericLaTeX.get(0)));
@@ -125,6 +127,11 @@ public class MacroDefinitionStyleFileParser {
                     "Found optional argument macro before analyzing the standard macro: " + beanName
             );
         }
+    }
+
+    private boolean hasOptionalArgument(String line) {
+        Matcher m = OPT_ARG_SPEC_PATTERN.matcher(line);
+        return m.find();
     }
 
     private String parseDefSpecLine(String line, LinkedList<String> args) {
