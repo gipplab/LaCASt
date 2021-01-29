@@ -44,6 +44,30 @@ public class TeXPreProcessorTest {
     }
 
     @Test
+    public void imagePartTest(){
+        String input = "\\Im (z+1)";
+        String expect = "\\imagpart (z+1)";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output );
+    }
+
+    @Test
+    public void nonImagePartTest(){
+        String input = "\\Image z";
+        String expect = "\\Image z";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output );
+    }
+
+    @Test
+    public void realPartTest(){
+        String input = "\\Re z";
+        String expect = "\\realpart z";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output );
+    }
+
+    @Test
     public void stylesTest(){
         String input = "{\\sf\\bf a}";
         String expect = "a";

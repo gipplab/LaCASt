@@ -40,3 +40,9 @@ generalReplacements:
     pattern: \\defeq([^a-zA-Z]|$)
     replacement: ' = $1'
     groups: 1
+  -
+    pattern: \\Im(?![a-zA-Z])
+    replacement: \\imagpart
+  -
+    pattern: \\Re(?![a-zA-Z])
+    replacement: \\realpart

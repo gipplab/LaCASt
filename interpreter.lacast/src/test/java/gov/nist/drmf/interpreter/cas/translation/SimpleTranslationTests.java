@@ -696,6 +696,13 @@ class SimpleTranslationTests {
     }
 
     @Test
+    public void imagPartTest() {
+        String input = "\\imagpart [z+1]";
+        String out = sltMathematica.translate(input);
+        assertEquals("Im[z + 1]", out);
+    }
+
+    @Test
     public void emptyArgTest() {
         String input = "x + \\genhyperF{0}{1}@{}{\\alpha + 1}{\\frac{xyt}{(1-t)^2}}";
         String out = slt.translate(input);
