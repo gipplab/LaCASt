@@ -19,7 +19,7 @@ Content-Type: application/json
             "path": "meta",
             "query": {
                 "match": {
-                    "meta.description": "Laguerre polynomial"
+                    "meta.description": "q-analog of the hypergeometric series"
                 }
             }
         }

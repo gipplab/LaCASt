@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
@@ -165,6 +166,9 @@ public class SequenceTranslator extends AbstractListTranslator {
                 expList.remove(0);
                 handleConstraints(expList);
                 break;
+            } else if ( isCaseSplit(exp, expList) ) {
+                handleCaseSplit(expList);
+                break;
             } else if ( sequenceHelper.handleAsBracket(bracket, expList) ) {
                 translateAsBracket(prev, bracket, expList);
             } else {
@@ -175,6 +179,18 @@ public class SequenceTranslator extends AbstractListTranslator {
 
         // finally return value
         return localTranslations;
+    }
+
+    private boolean isCaseSplit( PomTaggedExpression exp, List<PomTaggedExpression> expList ) {
+        String text = exp.getRoot().getTermText();
+        if ( text.matches("[,;.]") ) {
+            // if this comma is part of a sequence but the sequence is not the root of the parse tree
+            // in this case the comma is nested and hence not a splitter
+            if ( exp.getParent() != null && exp.getParent().getParent() != null ) return false;
+            if ( !expList.isEmpty() && MathTermUtility.equals(expList.get(0).getRoot(), MathTermTags.newline) )
+                expList.remove(0);
+            return true;
+        } else return MathTermUtility.equals(exp.getRoot(), MathTermTags.newline);
     }
 
     private void translateAsBracket(PomTaggedExpression prev, Brackets bracket, List<PomTaggedExpression> expList) {
@@ -322,6 +338,20 @@ public class SequenceTranslator extends AbstractListTranslator {
 
         super.getGlobalTranslationList().clear();
         super.getGlobalTranslationList().addTranslatedExpression(copyOfGlobal);
+    }
+
+    private void handleCaseSplit(List<PomTaggedExpression> expList) {
+        LOG.debug("Encountered a case split. Move translations to subexpression list");
+        TranslatedExpression copyOfGlobal = new TranslatedExpression(super.getGlobalTranslationList());
+        copyOfGlobal.replaceLastExpression( copyOfGlobal.getLastExpression().trim() );
+        super.addPartialTranslation(copyOfGlobal);
+
+        localTranslations.clear();
+        String last = super.getGlobalTranslationList().getLastExpression();
+        last = last.trim() + getConfig().getLineDelimiter() + " ";
+        super.getGlobalTranslationList().replaceLastExpression( last );
+        while ( !expList.isEmpty() ) translateNext( expList.remove(0), expList, false );
+        super.addPartialTranslation(localTranslations);
     }
 
     private boolean bracketMatchOrSetMode(Brackets bracket) {

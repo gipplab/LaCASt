@@ -39,6 +39,9 @@ public class MacroRetriever {
         dependentNodes.add( node );
 
         RetrievedMacros retrievedMacros = new RetrievedMacros(macroDistributionAnalyzer);
+        if ( config.getSuppressedMacros() != null && !config.getSuppressedMacros().isEmpty() )
+            config.getSuppressedMacros().forEach(retrievedMacros::addMacro);
+
         try {
             retrieveReplacements(client, 0, dependentNodes, retrievedMacros);
         } catch (IOException ioe) {

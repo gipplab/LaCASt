@@ -176,7 +176,7 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];;
 \nplanepartitions@{n};;;
 \nrestpartitions[k]@{\mathrm{condition}}{n};;;
 \nrestcompositions@{\mathrm{condition}}{n};;;
-\bigO@{x};;;
+\bigO@{x};O[$0];;
 \littleo@{x};;;
 \sim;;;
 \abs{$0};Abs[$0];;

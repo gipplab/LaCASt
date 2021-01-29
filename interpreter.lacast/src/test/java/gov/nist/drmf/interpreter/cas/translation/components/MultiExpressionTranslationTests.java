@@ -46,6 +46,37 @@ public class MultiExpressionTranslationTests {
     }
 
     @Test
+    public void simpleNewLineTest() {
+        TranslationInformation ti = slt.translateToObject("x = y, \\\\ x = z");
+        assertEquals("x = y; x = z", ti.getTranslatedExpression());
+
+        List<TranslationInformation> partialTranslations = ti.getPartialTranslations();
+        assertEquals(2, partialTranslations.size());
+        assertEquals("x = y", partialTranslations.get(0).getTranslatedExpression());
+        assertEquals("x = z", partialTranslations.get(1).getTranslatedExpression());
+    }
+
+    @Test
+    public void commaSplitTest() {
+        TranslationInformation ti = slt.translateToObject("x = y, x = z");
+        assertEquals("x = y; x = z", ti.getTranslatedExpression());
+
+        List<TranslationInformation> partialTranslations = ti.getPartialTranslations();
+        assertEquals(2, partialTranslations.size());
+        assertEquals("x = y", partialTranslations.get(0).getTranslatedExpression());
+        assertEquals("x = z", partialTranslations.get(1).getTranslatedExpression());
+    }
+
+    @Test
+    public void noCommaTest() {
+        TranslationInformation ti = slt.translateToObject("f(x,y)");
+        assertEquals("f*(x , y)", ti.getTranslatedExpression());
+
+        List<TranslationInformation> partialTranslations = ti.getPartialTranslations();
+        assertEquals(0, partialTranslations.size());
+    }
+
+    @Test
     public void alignEnvironmentTest() throws ParseException {
         MultiExpressionTranslator gt = new MultiExpressionTranslator(slt);
         PomTaggedExpression pte = mlp.parse("\\begin{align} x &= y \\\\ x &= z \\end{align}");
