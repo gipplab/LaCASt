@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
@@ -65,6 +66,25 @@ public class SemanticEnhancerTests {
         semanticEnhancer.appendSemanticLatex(moi, node);
         assertNotNull(moi.getSemanticLatex());
         assertEquals("\\HermitepolyH{k-1}@{z}", moi.getSemanticLatex());
+    }
+
+    @Test
+    void suppressMacroTest() throws ParseException {
+        String genericLaTeXExample = "(x)";
+        String exampleAnnotationText = "greatest common divisor";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, exampleAnnotationText);
+        MOIPresentations moi = new MOIPresentations(node);
+
+        GenericLacastConfig config = GenericLacastConfig.getDefaultConfig();
+        config.getSuppressedMacros().clear();
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer(config);
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\pgcd{x}", moi.getSemanticLatex());
+
+        config.getSuppressedMacros().add("pgcd");
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertEquals("(x)", moi.getSemanticLatex());
     }
 
     @Test

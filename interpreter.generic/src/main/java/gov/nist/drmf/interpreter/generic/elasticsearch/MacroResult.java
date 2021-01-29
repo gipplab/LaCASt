@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.generic.elasticsearch;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.nist.drmf.interpreter.generic.macro.MacroBean;
 
 /**

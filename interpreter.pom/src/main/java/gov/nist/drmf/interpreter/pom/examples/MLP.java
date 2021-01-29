@@ -89,7 +89,7 @@ public class MLP {
             eq = "\\begin{align} x &= y \\\\ &= z.,; \\end{align}";
             eq = "x = < \\leq \\neq y";
             eq = "\\operatorname{li} (x)";
-            eq = "\\pm \\iunit + \\expe - \\Beta";
+            eq = "\\pm \\iunit \\\\ \\expe - \\Beta";
 
             System.out.println();
             System.out.println("Input: " + eq);
