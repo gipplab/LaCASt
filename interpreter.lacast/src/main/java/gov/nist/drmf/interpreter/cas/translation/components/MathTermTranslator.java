@@ -188,6 +188,9 @@ public class MathTermTranslator extends AbstractListTranslator {
             case multiply:
                 translation = getConfig().getMULTIPLY();
                 break;
+            case newline:
+                translation = getConfig().getLineDelimiter();
+                break;
             default: return null;
         }
         perform(TranslatedExpression::addTranslatedExpression, translation);

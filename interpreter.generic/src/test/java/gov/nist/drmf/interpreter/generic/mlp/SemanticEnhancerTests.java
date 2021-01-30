@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.formulasearchengine.mathosphere.mlp.pojos.Relation;
+import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
@@ -65,6 +66,59 @@ public class SemanticEnhancerTests {
         semanticEnhancer.appendSemanticLatex(moi, node);
         assertNotNull(moi.getSemanticLatex());
         assertEquals("\\HermitepolyH{k-1}@{z}", moi.getSemanticLatex());
+    }
+
+    @Test
+    void suppressMacroTest() throws ParseException {
+        String genericLaTeXExample = "(x)";
+        String exampleAnnotationText = "greatest common divisor";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, exampleAnnotationText);
+        MOIPresentations moi = new MOIPresentations(node);
+
+        GenericLacastConfig config = GenericLacastConfig.getDefaultConfig();
+        config.getSuppressedMacros().clear();
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer(config);
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\pgcd{x}", moi.getSemanticLatex());
+
+        config.getSuppressedMacros().add("pgcd");
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertEquals("(x)", moi.getSemanticLatex());
+    }
+
+    @Test
+    void wignerTest() throws ParseException {
+        String genericLaTeXExample = "\\begin{Bmatrix}    i & j & \\ell\\\\    k & m & n  \\end{Bmatrix} = x_i";
+        String exampleAnnotationText = "6j symbol";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, exampleAnnotationText);
+        MOIPresentations moi = new MOIPresentations(node);
+
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\Wignersixjsym{i}{j}{\\ell}{k}{m}{n} = x_i", moi.getSemanticLatex());
+    }
+
+    @Test
+    void lommelSTest() throws ParseException {
+        String genericLaTeXExample = "S_{\\mu,\\nu}(z) = s_{\\mu,\\nu}(z) + 2^{\\mu-1} \\Gamma\\left(\\frac{\\mu + \\nu + 1}{2}\\right) \\Gamma\\left(\\frac{\\mu - \\nu + 1}{2}\\right)\\left(\\sin \\left[(\\mu - \\nu)\\frac{\\pi}{2}\\right] J_\\nu(z) - \\cos \\left[(\\mu - \\nu)\\frac{\\pi}{2}\\right] Y_\\nu(z)\\right)";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample,
+                "Lommel function", "Euler Gamma function", "Bessel function of the first kind", "Bessel function of the second kind");
+        MOIPresentations moi = new MOIPresentations(node);
+
+        GenericLacastConfig config = new GenericLacastConfig(GenericLacastConfig.getDefaultConfig());
+        config.setMaxRelations(4);
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer(config);
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\LommelS{\\mu}{\\nu}@{z} = " +
+                "\\Lommels{\\mu}{\\nu}@{z} + 2^{\\mu-1} " +
+                        "\\EulerGamma@{\\frac{\\mu + \\nu + 1}{2}} " +
+                        "\\EulerGamma@{\\frac{\\mu - \\nu + 1}{2}}(\\sin [(\\mu - \\nu) " +
+                        "\\frac{\\cpi}{2}] \\BesselJ{\\nu}@{z} - \\cos [(\\mu - \\nu) " +
+                        "\\frac{\\cpi}{2}] \\BesselY{\\nu}@{z})",
+                moi.getSemanticLatex());
     }
 
     @Test
@@ -165,6 +219,23 @@ public class SemanticEnhancerTests {
         }
     }
 
+    @Test
+    void laguerrePolyTest() throws ParseException {
+        String genericLaTeXExample = "\\sum_{n=0}^\\infty \\frac{n!\\,\\Gamma\\left(\\alpha + 1\\right)}{\\Gamma\\left(n+\\alpha+1\\right)}L_n^{(\\alpha)}(x)L_n^{(\\alpha)}(y)t^n";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample,
+                "Hille formula",
+                "Laguerre polynomial",
+                "Gamma function"
+        );
+        MOIPresentations moi = new MOIPresentations(node);
+
+        // this node has no further dependencies. Simply "Levi Civita Symbol" is attached and should be performed.
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\sum_{n=0}^\\infty \\frac{n! \\EulerGamma@{\\alpha + 1}}{\\EulerGamma@{n + \\alpha + 1}} \\LaguerrepolyL[\\alpha]{n}@{x} \\LaguerrepolyL[\\alpha]{n}@{y} t^n", moi.getSemanticLatex());
+    }
+
     @Resource("ErrorFunctionMOI.json")
     void errorFunctionTranslationTest(String json) throws JsonProcessingException, ParseException {
         MOIPresentations moi = SemanticEnhancedDocument.getMapper().readValue(json, MOIPresentations.class);
@@ -177,9 +248,15 @@ public class SemanticEnhancerTests {
         assertEquals("\\erf@@{z} = \\frac{2}{\\sqrt{\\cpi}} \\int_0^z \\expe^{-t^2} \\diff{t}", moi.getSemanticLatex());
     }
 
-    private MOINode<MOIAnnotation> buildNode(String id, String genericTex, String annotationText) throws ParseException {
+    private MOINode<MOIAnnotation> buildNode(String id, String genericTex, String... annotationText) throws ParseException {
         MOIAnnotation complexExpression = new MOIAnnotation();
-        complexExpression.appendRelation(new Relation(genericTex, annotationText));
+        int c = annotationText.length;
+        for ( String anno : annotationText ) {
+            Relation rel = new Relation(genericTex, anno);
+            rel.setScore( c/(double)annotationText.length );
+            complexExpression.appendRelation(rel);
+            c--;
+        }
         MathematicalObjectOfInterest complexMOI = new MathematicalObjectOfInterest(genericTex);
         return new MOINode<>(id, complexMOI, complexExpression);
     }

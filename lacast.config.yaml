@@ -24,3 +24,4 @@ lacast.generic:
     max.relations: 3
     max.macros: 5
     max.depth: -1
+    suppressMacros: ["pgcd"]

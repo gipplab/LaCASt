@@ -14,6 +14,8 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Retrieves replacement macros.
@@ -39,6 +41,9 @@ public class MacroRetriever {
         dependentNodes.add( node );
 
         RetrievedMacros retrievedMacros = new RetrievedMacros(macroDistributionAnalyzer);
+        if ( config.getSuppressedMacros() != null && !config.getSuppressedMacros().isEmpty() )
+            config.getSuppressedMacros().forEach(retrievedMacros::addMacro);
+
         try {
             retrieveReplacements(client, 0, dependentNodes, retrievedMacros);
         } catch (IOException ioe) {
@@ -99,9 +104,20 @@ public class MacroRetriever {
         }
     }
 
+    private static Pattern NUMBER_TEXT_PATTERN = Pattern.compile("(\\d)([a-zA-Z])|([a-zA-Z])(\\d)");
+
+    private String preprocessDefinition(String def) {
+        StringBuilder sb = new StringBuilder();
+        Matcher m = NUMBER_TEXT_PATTERN.matcher(def);
+        while ( m.find() ) m.appendReplacement(sb, m.group(1)+ " " + m.group(2));
+        m.appendTail(sb);
+        return sb.toString();
+    }
+
     private void retrieveFromDefinition(DLMFElasticSearchClient esClient, RetrievedMacros retrievedMacros, Relation definitionRelation) throws IOException {
         double definiensScore = definitionRelation.getScore();
         String definition = definitionRelation.getDefinition();
+        definition = preprocessDefinition(definition);
 
         if ( retrievedMacros.containsDefinition(definition) ) return;
         retrievedMacros.addDefinition(definition);

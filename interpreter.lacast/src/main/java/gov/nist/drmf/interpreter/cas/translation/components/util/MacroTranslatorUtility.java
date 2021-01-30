@@ -1,5 +1,8 @@
 package gov.nist.drmf.interpreter.cas.translation.components.util;
 
+import gov.nist.drmf.interpreter.common.cas.CASLinkBuilderMaple;
+import gov.nist.drmf.interpreter.common.cas.CASLinkBuilderMathematica;
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import mlp.PomTaggedExpression;
@@ -46,7 +49,18 @@ public final class MacroTranslatorUtility {
                 ((cas + ": ").length() >= generalTab.length() ?
                         0 : (generalTab.length() - (cas + ": ").length()))
         );
-        sb.append(cas).append(": ").append(currTab).append(translationInfo.getDefCas());
+
+        String casDef = translationInfo.getDefCas();
+        if ( casDef == null || casDef.isBlank() || casDef.matches("https://") ) {
+            if (Keys.KEY_MAPLE.matches(cas)) {
+                String func = CASLinkBuilderMaple.extractFunctionNameFromPattern(translationInfo.getTranslationPattern());
+                casDef = CASLinkBuilderMaple.build(func);
+            } else if (Keys.KEY_MATHEMATICA.matches(cas)) {
+                String func = CASLinkBuilderMathematica.extractFunctionNameFromPattern(translationInfo.getTranslationPattern());
+                casDef = CASLinkBuilderMathematica.build(func);
+            }
+        }
+        sb.append(cas).append(": ").append(currTab).append(casDef);
         return sb.toString();
     }
 

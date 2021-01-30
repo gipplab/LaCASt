@@ -37,7 +37,7 @@
     "macroCounter" : 5,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 5
+      "1" : 5
     }
   },
   "\\modcylinder" : {
@@ -45,8 +45,7 @@
     "macroCounter" : 39,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 3,
-      "1" : 36
+      "1" : 39
     }
   },
   "\\aGudermannian" : {
@@ -70,8 +69,7 @@
     "macroCounter" : 32,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 2,
-      "1" : 30
+      "1" : 32
     }
   },
   "\\genBesselphi" : {
@@ -136,8 +134,8 @@
     "macroCounter" : 46,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 18,
-      "1" : 28
+      "0" : 11,
+      "1" : 35
     }
   },
   "\\deltaDistribution" : {
@@ -145,7 +143,7 @@
     "macroCounter" : 20,
     "optionalArgumentCounter" : 6,
     "atCounter" : {
-      "0" : 17
+      "0" : 14
     }
   },
   "\\idem" : {
@@ -161,9 +159,8 @@
     "macroCounter" : 64,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 10,
-      "1" : 52,
-      "2" : 2
+      "1" : 60,
+      "2" : 4
     }
   },
   "\\Weierstrasspinvar" : {
@@ -171,9 +168,9 @@
     "macroCounter" : 14,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 5,
+      "0" : 2,
       "1" : 2,
-      "2" : 7
+      "2" : 10
     }
   },
   "\\Weierstrasszetalatt" : {
@@ -181,9 +178,8 @@
     "macroCounter" : 36,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 10,
       "1" : 2,
-      "2" : 24
+      "2" : 34
     }
   },
   "\\expintEi" : {
@@ -251,6 +247,14 @@
       "1" : 11
     }
   },
+  "\\BesselBmat" : {
+    "macro" : "\\BesselBmat",
+    "macroCounter" : 5,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 5
+    }
+  },
   "\\DirichletL" : {
     "macro" : "\\DirichletL",
     "macroCounter" : 12,
@@ -273,8 +277,7 @@
     "macroCounter" : 21,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 1,
-      "1" : 19
+      "1" : 20
     }
   },
   "\\CarlsonellintRC" : {
@@ -322,8 +325,7 @@
     "macroCounter" : 12,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 2,
-      "1" : 10
+      "1" : 12
     }
   },
   "\\qRacahpolyR" : {
@@ -363,8 +365,7 @@
     "macroCounter" : 13,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 1,
-      "1" : 12
+      "1" : 13
     }
   },
   "\\Stirlingnumbers" : {
@@ -396,8 +397,8 @@
     "macroCounter" : 253,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 37,
-      "1" : 216
+      "0" : 1,
+      "1" : 252
     }
   },
   "\\Weierstrassplatt" : {
@@ -405,9 +406,9 @@
     "macroCounter" : 93,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 12,
+      "0" : 1,
       "1" : 4,
-      "2" : 77
+      "2" : 88
     }
   },
   "\\sphharmonicY" : {
@@ -457,9 +458,8 @@
     "macroCounter" : 44,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 2,
       "1" : 2,
-      "2" : 40
+      "2" : 42
     }
   },
   "\\exp" : {
@@ -534,8 +534,7 @@
     "macroCounter" : 59,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 12,
-      "1" : 47
+      "1" : 59
     }
   },
   "\\Rayleighsigma" : {
@@ -584,8 +583,7 @@
     "macroCounter" : 70,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 6,
-      "1" : 64
+      "1" : 70
     }
   },
   "\\LamepolycdE" : {
@@ -617,8 +615,7 @@
     "macroCounter" : 18,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 8,
-      "1" : 10
+      "1" : 18
     }
   },
   "\\Waringg" : {
@@ -634,8 +631,7 @@
     "macroCounter" : 60,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 2,
-      "1" : 58
+      "1" : 60
     }
   },
   "\\assLegendrepoly" : {
@@ -678,6 +674,15 @@
       "1" : 1
     }
   },
+  "\\ellumbcanonint" : {
+    "macro" : "\\ellumbcanonint",
+    "macroCounter" : 27,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 12,
+      "1" : 14
+    }
+  },
   "\\ceiling" : {
     "macro" : "\\ceiling",
     "macroCounter" : 9,
@@ -718,6 +723,14 @@
     "optionalArgumentCounter" : 0,
     "atCounter" : {
       "1" : 4
+    }
+  },
+  "\\variation" : {
+    "macro" : "\\variation",
+    "macroCounter" : 10,
+    "optionalArgumentCounter" : 10,
+    "atCounter" : {
+      "0" : 10
     }
   },
   "\\assJacobipolyP" : {
@@ -832,9 +845,9 @@
     "macroCounter" : 55,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 16,
-      "1" : 6,
-      "2" : 33
+      "0" : 1,
+      "1" : 7,
+      "2" : 47
     }
   },
   "\\genhyperH" : {
@@ -874,9 +887,9 @@
     "macroCounter" : 55,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 16,
-      "1" : 6,
-      "2" : 33
+      "0" : 1,
+      "1" : 7,
+      "2" : 47
     }
   },
   "\\ClebschGordan" : {
@@ -933,8 +946,16 @@
     "macroCounter" : 84,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 28,
-      "1" : 56
+      "0" : 1,
+      "1" : 83
+    }
+  },
+  "\\Carlsonmultivarhyper" : {
+    "macro" : "\\Carlsonmultivarhyper",
+    "macroCounter" : 54,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 54
     }
   },
   "\\auxsincosintf" : {
@@ -975,8 +996,8 @@
     "macroCounter" : 492,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 27,
-      "1" : 465
+      "0" : 5,
+      "1" : 487
     }
   },
   "\\ccompellintKk" : {
@@ -1009,8 +1030,8 @@
     "macroCounter" : 141,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 23,
-      "1" : 118
+      "0" : 5,
+      "1" : 136
     }
   },
   "\\Moebiusmu" : {
@@ -1060,8 +1081,7 @@
     "macroCounter" : 134,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 3,
-      "1" : 131
+      "1" : 134
     }
   },
   "\\nsquares" : {
@@ -1215,6 +1235,15 @@
       "2" : 5
     }
   },
+  "\\hyperumbcanonint" : {
+    "macro" : "\\hyperumbcanonint",
+    "macroCounter" : 20,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 8,
+      "1" : 11
+    }
+  },
   "\\qEulernumberA" : {
     "macro" : "\\qEulernumberA",
     "macroCounter" : 1,
@@ -1269,8 +1298,8 @@
     "macroCounter" : 153,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 11,
-      "1" : 142
+      "0" : 4,
+      "1" : 149
     }
   },
   "\\Wignerninejsym" : {
@@ -1334,8 +1363,8 @@
     "macroCounter" : 9,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 4,
-      "1" : 5
+      "0" : 1,
+      "1" : 8
     }
   },
   "\\Hankelphasederivphi" : {
@@ -1343,8 +1372,7 @@
     "macroCounter" : 18,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 1,
-      "1" : 17
+      "1" : 18
     }
   },
   "\\EulerBeta" : {
@@ -1466,13 +1494,28 @@
       "2" : 7
     }
   },
+  "\\RiemannsymP" : {
+    "macro" : "\\RiemannsymP",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 14
+    }
+  },
+  "\\ellumbcatastrophe" : {
+    "macro" : "\\ellumbcatastrophe",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
   "\\paraUbar" : {
     "macro" : "\\paraUbar",
     "macroCounter" : 8,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 1,
-      "1" : 7
+      "1" : 8
     }
   },
   "\\LamepolyscdE" : {
@@ -1488,8 +1531,7 @@
     "macroCounter" : 186,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 14,
-      "1" : 172
+      "1" : 186
     }
   },
   "\\LamepolysE" : {
@@ -1546,8 +1588,7 @@
     "macroCounter" : 9,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 1,
-      "1" : 8
+      "1" : 9
     }
   },
   "\\Pade" : {
@@ -1563,8 +1604,7 @@
     "macroCounter" : 9,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 1,
-      "1" : 8
+      "1" : 9
     }
   },
   "\\incellintEk" : {
@@ -1573,6 +1613,15 @@
     "optionalArgumentCounter" : 0,
     "atCounter" : {
       "1" : 51
+    }
+  },
+  "\\MeijerG" : {
+    "macro" : "\\MeijerG",
+    "macroCounter" : 19,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1,
+      "2" : 18
     }
   },
   "\\cosint" : {
@@ -1626,6 +1675,14 @@
       "1" : 21
     }
   },
+  "\\hyperumbcatastrophe" : {
+    "macro" : "\\hyperumbcatastrophe",
+    "macroCounter" : 1,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 1
+    }
+  },
   "\\sinh" : {
     "macro" : "\\sinh",
     "macroCounter" : 231,
@@ -1640,8 +1697,8 @@
     "macroCounter" : 55,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 38,
-      "1" : 17
+      "0" : 30,
+      "1" : 25
     }
   },
   "\\MathieuGs" : {
@@ -1650,6 +1707,15 @@
     "optionalArgumentCounter" : 0,
     "atCounter" : {
       "1" : 1
+    }
+  },
+  "\\cuspcatastrophe" : {
+    "macro" : "\\cuspcatastrophe",
+    "macroCounter" : 17,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2,
+      "1" : 15
     }
   },
   "\\nplanepartitions" : {
@@ -1753,6 +1819,15 @@
       "0" : 2
     }
   },
+  "\\canonint" : {
+    "macro" : "\\canonint",
+    "macroCounter" : 61,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 21,
+      "1" : 40
+    }
+  },
   "\\sech" : {
     "macro" : "\\sech",
     "macroCounter" : 35,
@@ -1818,6 +1893,14 @@
     "optionalArgumentCounter" : 0,
     "atCounter" : {
       "1" : 1
+    }
+  },
+  "\\trace" : {
+    "macro" : "\\trace",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 2
     }
   },
   "\\sumdivisors" : {
@@ -1941,8 +2024,7 @@
     "macroCounter" : 20,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 5,
-      "1" : 15
+      "1" : 20
     }
   },
   "\\aJacobiellnsk" : {
@@ -1974,8 +2056,7 @@
     "macroCounter" : 52,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 3,
-      "1" : 49
+      "1" : 52
     }
   },
   "\\bDiff" : {
@@ -1991,9 +2072,8 @@
     "macroCounter" : 42,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 9,
-      "1" : 25,
-      "2" : 8
+      "1" : 26,
+      "2" : 16
     }
   },
   "\\modularlambdatau" : {
@@ -2025,9 +2105,8 @@
     "macroCounter" : 39,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 3,
-      "1" : 26,
-      "2" : 10
+      "1" : 27,
+      "2" : 12
     }
   },
   "\\ScorerHi" : {
@@ -2035,8 +2114,7 @@
     "macroCounter" : 28,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 5,
-      "1" : 23
+      "1" : 28
     }
   },
   "\\irregCoulombh" : {
@@ -2044,8 +2122,8 @@
     "macroCounter" : 19,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 2,
-      "1" : 17
+      "0" : 1,
+      "1" : 18
     }
   },
   "\\normincGammaQ" : {
@@ -2195,6 +2273,14 @@
       "2" : 18
     }
   },
+  "\\genhyperPsimat" : {
+    "macro" : "\\genhyperPsimat",
+    "macroCounter" : 4,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 4
+    }
+  },
   "\\irregCoulombH" : {
     "macro" : "\\irregCoulombH",
     "macroCounter" : 16,
@@ -2209,8 +2295,8 @@
     "macroCounter" : 29,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 8,
-      "1" : 21
+      "0" : 1,
+      "1" : 28
     }
   },
   "\\irregCoulombG" : {
@@ -2218,8 +2304,8 @@
     "macroCounter" : 33,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 11,
-      "1" : 22
+      "0" : 5,
+      "1" : 28
     }
   },
   "\\HankelmodM" : {
@@ -2227,8 +2313,8 @@
     "macroCounter" : 63,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 41,
-      "1" : 22
+      "0" : 34,
+      "1" : 29
     }
   },
   "\\zAiryb" : {
@@ -2301,8 +2387,7 @@
     "macroCounter" : 168,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 21,
-      "1" : 147
+      "1" : 168
     }
   },
   "\\BesselYimag" : {
@@ -2426,8 +2511,7 @@
     "macroCounter" : 12,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 2,
-      "1" : 10
+      "1" : 12
     }
   },
   "\\Kelvinker" : {
@@ -2435,9 +2519,9 @@
     "macroCounter" : 37,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 11,
-      "1" : 3,
-      "2" : 23
+      "0" : 2,
+      "1" : 4,
+      "2" : 31
     }
   },
   "\\genAiryintB" : {
@@ -2477,8 +2561,8 @@
     "macroCounter" : 1731,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 4,
-      "1" : 1727
+      "0" : 1,
+      "1" : 1730
     }
   },
   "\\Kelvinkei" : {
@@ -2486,9 +2570,9 @@
     "macroCounter" : 37,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 11,
-      "1" : 3,
-      "2" : 23
+      "0" : 2,
+      "1" : 4,
+      "2" : 31
     }
   },
   "\\nprimes" : {
@@ -2497,6 +2581,14 @@
     "optionalArgumentCounter" : 0,
     "atCounter" : {
       "1" : 7
+    }
+  },
+  "\\Riemanntheta" : {
+    "macro" : "\\Riemanntheta",
+    "macroCounter" : 39,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 39
     }
   },
   "\\genEulersumH" : {
@@ -2557,6 +2649,14 @@
       "1" : 6
     }
   },
+  "\\Riemannthetachar" : {
+    "macro" : "\\Riemannthetachar",
+    "macroCounter" : 35,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 35
+    }
+  },
   "\\qGamma" : {
     "macro" : "\\qGamma",
     "macroCounter" : 26,
@@ -2570,8 +2670,7 @@
     "macroCounter" : 40,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 2,
-      "1" : 38
+      "1" : 40
     }
   },
   "\\Coulombphasetheta" : {
@@ -2661,8 +2760,8 @@
     "macroCounter" : 130,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 13,
-      "1" : 117
+      "0" : 3,
+      "1" : 127
     }
   },
   "\\paraW" : {
@@ -2670,8 +2769,8 @@
     "macroCounter" : 33,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 11,
-      "1" : 22
+      "0" : 2,
+      "1" : 31
     }
   },
   "\\MillsM" : {
@@ -2695,8 +2794,8 @@
     "macroCounter" : 49,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 10,
-      "1" : 39
+      "0" : 2,
+      "1" : 47
     }
   },
   "\\modMathieuFe" : {
@@ -2816,8 +2915,8 @@
     "macroCounter" : 168,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 6,
-      "1" : 162
+      "0" : 2,
+      "1" : 166
     }
   },
   "\\intinnerprod" : {
@@ -2841,8 +2940,8 @@
     "macroCounter" : 211,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 5,
-      "1" : 206
+      "0" : 1,
+      "1" : 210
     }
   },
   "\\dilChebyshevpolyC" : {
@@ -2858,9 +2957,16 @@
     "macroCounter" : 179,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 3,
-      "1" : 105,
+      "1" : 108,
       "2" : 71
+    }
+  },
+  "\\umbdiffrcanonint" : {
+    "macro" : "\\umbdiffrcanonint",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
     }
   },
   "\\Mathieuce" : {
@@ -2868,8 +2974,8 @@
     "macroCounter" : 96,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 6,
-      "1" : 90
+      "0" : 1,
+      "1" : 95
     }
   },
   "\\imagpart" : {
@@ -3075,8 +3181,7 @@
     "macroCounter" : 126,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 42,
-      "1" : 84
+      "1" : 126
     }
   },
   "\\AskeyWilsonpolyp" : {
@@ -3277,8 +3382,15 @@
     "macroCounter" : 27,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 2,
-      "1" : 25
+      "1" : 27
+    }
+  },
+  "\\transpose" : {
+    "macro" : "\\transpose",
+    "macroCounter" : 15,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "0" : 15
     }
   },
   "\\modMathieuIe" : {
@@ -3294,9 +3406,9 @@
     "macroCounter" : 68,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 14,
+      "0" : 12,
       "1" : 48,
-      "2" : 6
+      "2" : 8
     }
   },
   "\\AlSalamChiharapolyQ" : {
@@ -3330,8 +3442,7 @@
     "macroCounter" : 19,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 3,
-      "1" : 16
+      "1" : 19
     }
   },
   "\\sinint" : {
@@ -3389,8 +3500,7 @@
     "macroCounter" : 84,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 2,
-      "1" : 82
+      "1" : 84
     }
   },
   "\\HankelmodderivN" : {
@@ -3398,8 +3508,7 @@
     "macroCounter" : 20,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 1,
-      "1" : 19
+      "1" : 20
     }
   },
   "\\Kroneckerdelta" : {
@@ -3448,6 +3557,14 @@
     "optionalArgumentCounter" : 0,
     "atCounter" : {
       "1" : 18
+    }
+  },
+  "\\zonalpolyZ" : {
+    "macro" : "\\zonalpolyZ",
+    "macroCounter" : 19,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 19
     }
   },
   "\\DiscriminantDelta" : {
@@ -3540,6 +3657,14 @@
       "1" : 73
     }
   },
+  "\\exptrace" : {
+    "macro" : "\\exptrace",
+    "macroCounter" : 15,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 15
+    }
+  },
   "\\NeumannpolyO" : {
     "macro" : "\\NeumannpolyO",
     "macroCounter" : 4,
@@ -3562,6 +3687,14 @@
     "optionalArgumentCounter" : 0,
     "atCounter" : {
       "1" : 4
+    }
+  },
+  "\\scRiemanntheta" : {
+    "macro" : "\\scRiemanntheta",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
     }
   },
   "\\zderivAirya" : {
@@ -3634,8 +3767,7 @@
     "macroCounter" : 211,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 55,
-      "1" : 156
+      "1" : 211
     }
   },
   "\\sphBesselY" : {
@@ -3643,8 +3775,15 @@
     "macroCounter" : 30,
     "optionalArgumentCounter" : 0,
     "atCounter" : {
-      "0" : 1,
-      "1" : 29
+      "1" : 30
+    }
+  },
+  "\\BesselAmat" : {
+    "macro" : "\\BesselAmat",
+    "macroCounter" : 14,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 14
     }
   },
   "\\Fresnelcosint" : {
@@ -3695,6 +3834,14 @@
       "1" : 6
     }
   },
+  "\\diffrcanonint" : {
+    "macro" : "\\diffrcanonint",
+    "macroCounter" : 2,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 2
+    }
+  },
   "\\LeviCivitasym" : {
     "macro" : "\\LeviCivitasym",
     "macroCounter" : 10,
@@ -3709,6 +3856,14 @@
     "optionalArgumentCounter" : 0,
     "atCounter" : {
       "2" : 1
+    }
+  },
+  "\\umbcanonint" : {
+    "macro" : "\\umbcanonint",
+    "macroCounter" : 6,
+    "optionalArgumentCounter" : 0,
+    "atCounter" : {
+      "1" : 6
     }
   },
   "\\aJacobiellsck" : {

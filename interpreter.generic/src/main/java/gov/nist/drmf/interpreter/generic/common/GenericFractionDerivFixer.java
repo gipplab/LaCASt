@@ -172,7 +172,7 @@ public class GenericFractionDerivFixer {
         if ( PomTaggedExpressionUtility.isSequence(pte) ) components.addAll( pte.getPrintableComponents() );
         else components.add( pte );
 
-        if ( !checkValidity(components, "d") ) return null;
+        if ( !checkValidity(components, "d") && !checkValidity(components, "\\\\partial") ) return null;
 
         if ( components.size() == 1 ) {
             // still valid but its just simply d in the numerator
@@ -211,8 +211,11 @@ public class GenericFractionDerivFixer {
         if ( components.isEmpty() ) return null;
 
         PrintablePomTaggedExpression first = components.get(0);
-        // first is either d or alphanumeric with d in beginning
-        if ( !first.getRoot().getTermText().startsWith("d") ) return null;
+        if ( !checkValidity(components, "d") &&
+                !checkValidity(components, "\\\\partial") &&
+                !first.getRoot().getTermText().startsWith("d")
+        )
+            return null;
 
         return getArgument(numeratorInformation.degree, components);
     }

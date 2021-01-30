@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.common.eval;
 
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.latex.CaseSplitter;
 import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
 import gov.nist.drmf.interpreter.common.latex.Relations;
 
@@ -38,20 +39,22 @@ public class SymbolicalTest implements Serializable {
     ) {
         this.testCases = testCases;
 
-        TranslationInformation ti = translator.translateToObject(latex);
-        this.requiredPackages = ti.getRequiredPackages();
-
         this.testExpressions = new LinkedList<>();
         this.expectedValues = new LinkedList<>();
 
-        if ( ti.getPartialTranslations().isEmpty() ) {
-            addTranslationTests(ti, config, translator);
-        } else {
-            for ( TranslationInformation subTi : ti.getPartialTranslations() ) {
-                addTranslationTests(subTi, config, translator);
+        List<String> cases = CaseSplitter.splitPMSymbols(latex);
+        for ( String texCase : cases ) {
+            TranslationInformation ti = translator.translateToObject(texCase);
+            this.requiredPackages = ti.getRequiredPackages();
+
+            if ( ti.getPartialTranslations().isEmpty() ) {
+                addTranslationTests(ti, config, translator);
+            } else {
+                for ( TranslationInformation subTi : ti.getPartialTranslations() ) {
+                    addTranslationTests(subTi, config, translator);
+                }
             }
         }
-
     }
 
     private void addTranslationTests(TranslationInformation ti, SymbolicalConfig config, IConstraintTranslator translator) {

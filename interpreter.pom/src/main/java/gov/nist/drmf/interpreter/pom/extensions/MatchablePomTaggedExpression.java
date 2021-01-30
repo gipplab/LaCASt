@@ -2,9 +2,12 @@ package gov.nist.drmf.interpreter.pom.extensions;
 
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -244,15 +247,20 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             otherRoot = expression.getRoot();
         }
 
-//        String otherString = PomTaggedExpressionUtility.getAppropriateFontTex(expression, config.ignoreOperatorName());
-//        String thisString = PomTaggedExpressionUtility.getAppropriateFontTex(this, config.ignoreOperatorName());
+        if ( PomTaggedExpressionUtility.equals(expression, ExpressionTags.matrix) ) {
+            if ( !PomTaggedExpressionUtility.equals(this, ExpressionTags.matrix) ) return false;
 
-        String otherString = expression.getRoot().getTermText();
-        String thisString = this.getRoot().getTermText();
+            String refStr = expression.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
+            String thisStr = this.getFeatureValue(FeatureSetUtility.LATEX_FEATURE_KEY);
+            if ( thisStr != null && !thisStr.equals(refStr) ) return false;
+        } else {
+            String otherString = expression.getRoot().getTermText();
+            String thisString = this.getRoot().getTermText();
 
-        // TODO we might want to loose this test based on config (maybe ignore feature set, font manipulation, etc).
-        if (!thisString.equals(otherString) || !matchesAccents(expression, config)) {
-            return false;
+            // TODO we might want to loose this test based on config (maybe ignore feature set, font manipulation, etc).
+            if (!thisString.equals(otherString) || !matchesAccents(expression, config)) {
+                return false;
+            }
         }
 
         // since both term matches, we have to check their children
@@ -269,6 +277,9 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             List<PrintablePomTaggedExpression> followingExpressions,
             MatcherConfig config
     ) {
+        // if the first element in a wildcard is _ or ^ or !, we can directly return false
+        if ( isIllegalFirstWildcardMatch(expression) ) return false;
+
         // or it is a wildcard, which means it can be essentially anything
         // note that a wildcard cannot have any children, which makes it easier
 
@@ -285,6 +296,19 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         return nextSibling == null ? // if its null, almost everything hits just until end
                 captureUntilEnd(followingExpressions, bracketStack, matches, config) :
                 matchWildcardUntilEnd(followingExpressions, bracketStack, matches, config);
+    }
+
+    private boolean isIllegalFirstWildcardMatch(PomTaggedExpression pte) {
+        if ( pte == null ) return true;
+
+        MathTerm term = pte.getRoot();
+        return PomTaggedExpressionUtility.equals(pte, ExpressionTags.sub_super_script) ||
+                MathTermUtility.equalsOr(term,
+                        MathTermTags.underscore,
+                        MathTermTags.caret,
+                        MathTermTags.comma,
+                        MathTermTags.semicolon
+        );
     }
 
     private boolean captureUntilEnd(

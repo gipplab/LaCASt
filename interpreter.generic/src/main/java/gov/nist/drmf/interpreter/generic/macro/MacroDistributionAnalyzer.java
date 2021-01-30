@@ -35,10 +35,10 @@ public class MacroDistributionAnalyzer {
     private static MacroDistributionAnalyzer instance;
 
     public static MacroDistributionAnalyzer getStandardInstance() {
-        if ( instance == null ) {
+        if (instance == null) {
             instance = new MacroDistributionAnalyzer();
             try {
-                instance.load( GlobalPaths.PATH_SEMANTIC_MACROS_DISTRIBUTIONS );
+                instance.load(GlobalPaths.PATH_SEMANTIC_MACROS_DISTRIBUTIONS);
             } catch (IOException e) {
                 LOG.error("Unable to load standard distribution of dlmf macros. All values set to 0.", e);
             }
@@ -55,7 +55,8 @@ public class MacroDistributionAnalyzer {
         String serializedData = Files.readString(p);
         ObjectMapper mapper = new ObjectMapper();
         TypeReference<HashMap<String, MacroCounter>> typeRef =
-                new TypeReference<HashMap<String, MacroCounter>>() {};
+                new TypeReference<HashMap<String, MacroCounter>>() {
+                };
         dist = mapper.readValue(serializedData, typeRef);
         LOG.debug("Successfully initiated standard distributions of DLMF macros.");
     }
@@ -68,13 +69,13 @@ public class MacroDistributionAnalyzer {
 
         Files.lines(path)
                 .sequential()
-                .peek( l -> {
+                .peek(l -> {
                     lines[0]++;
                     LOG.debug("Analyzing line " + lines[0]);
                 })
-                .filter( l -> !l.contains("Warning") )
-                .map( l -> l.split("\\\\url")[0] )
-                .map( l -> {
+                .filter(l -> !l.contains("Warning"))
+                .map(l -> l.split("\\\\url")[0])
+                .map(l -> {
                     try {
                         return mlpWrapper.parse(l);
                     } catch (ParseException e) {
@@ -82,8 +83,8 @@ public class MacroDistributionAnalyzer {
                         return null;
                     }
                 })
-                .filter( Objects::nonNull )
-                .forEach( this::analyze );
+                .filter(Objects::nonNull)
+                .forEach(this::analyze);
 
         LOG.info("Finished analyzing all macros. Encountered " + this.dist.size() + " macros.");
     }
@@ -95,10 +96,10 @@ public class MacroDistributionAnalyzer {
     }
 
     private void analyzeInternally(List<PrintablePomTaggedExpression> remainingPte) {
-        while ( !remainingPte.isEmpty() ) {
+        while (!remainingPte.isEmpty()) {
             PrintablePomTaggedExpression next = remainingPte.remove(0);
-            if ( MathTermUtility.isDLMFMacro(next.getRoot()) ) analyzeDlmfMacro(next);
-            remainingPte.addAll( next.getPrintableComponents() );
+            if (MathTermUtility.isDLMFMacro(next.getRoot())) analyzeDlmfMacro(next);
+            remainingPte.addAll(next.getPrintableComponents());
         }
     }
 
@@ -110,12 +111,13 @@ public class MacroDistributionAnalyzer {
         counter.incrementMacroCounter();
 
         FeatureSet featureSet = macroTerm.getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
-        if ( featureSet == null ) return;
+        if (featureSet == null) return;
 
         try {
             int numOfParams = Integer.parseInt(DLMFFeatureValues.NUMBER_OF_PARAMETERS.getFeatureValue(featureSet, null));
-            analyzeFollowingNodesOfMacro( counter, macro.getNextSibling(), numOfParams );
-        } catch (NullPointerException | NumberFormatException e) {} // simply ignore that
+            analyzeFollowingNodesOfMacro(counter, macro.getNextSibling(), numOfParams);
+        } catch (NullPointerException | NumberFormatException e) {
+        } // simply ignore that
     }
 
     private void analyzeFollowingNodesOfMacro(
@@ -123,15 +125,15 @@ public class MacroDistributionAnalyzer {
             PomTaggedExpression sibling,
             int numOfParams
     ) {
-        if ( sibling == null ) return;
+        if (sibling == null) return;
 
         Brackets bracket = Brackets.getBracket(sibling);
-        if ( Brackets.left_brackets.equals(bracket) ) {
+        if (Brackets.left_brackets.equals(bracket)) {
             sibling = untilClosingBracket(counter, sibling);
         }
 
-        for ( int i = 0; i < numOfParams; i++ ) {
-            if ( sibling == null ) {
+        for (int i = 0; i < numOfParams; i++) {
+            if (sibling == null) {
                 LOG.warn("Reached the end of siblings before we passed all number of parameters. Something went wrong");
                 return;
             }
@@ -139,13 +141,17 @@ public class MacroDistributionAnalyzer {
         }
 
         // skip carets before ats
-        while ( sibling != null && MathTermUtility.equals( sibling.getRoot(), MathTermTags.caret )) {
+        while ( sibling != null && (
+                MathTermUtility.equals(sibling.getRoot(), MathTermTags.caret)
+                        || MathTermUtility.equals(sibling.getRoot(), MathTermTags.prime)
+                        || MathTermUtility.equals(sibling.getRoot(), MathTermTags.primes)
+        )) {
             sibling = sibling.getNextSibling();
         }
 
         // now we should reached the @ symbols... lets count them
         int atCounter = 0;
-        while ( sibling != null && MathTermUtility.isAt(sibling.getRoot()) ) {
+        while (sibling != null && MathTermUtility.isAt(sibling.getRoot())) {
             atCounter++;
             sibling = sibling.getNextSibling();
         }
@@ -155,29 +161,29 @@ public class MacroDistributionAnalyzer {
     private PomTaggedExpression untilClosingBracket(MacroCounter counter, PomTaggedExpression sibling) {
         int open = 1;
         boolean containedOptionalElement = false;
-        while ( open > 0 ) {
+        while (open > 0) {
             sibling = sibling.getNextSibling();
-            if ( sibling == null ) {
+            if (sibling == null) {
                 LOG.warn("Unable to handle optional argument. Suddenly reached the end without ever closing the optional argument.");
                 return null;
             }
             Brackets bracket = Brackets.getBracket(sibling);
-            if ( Brackets.left_brackets.equals(bracket) ) open++;
-            else if ( Brackets.right_brackets.equals(bracket) ) open--;
+            if (Brackets.left_brackets.equals(bracket)) open++;
+            else if (Brackets.right_brackets.equals(bracket)) open--;
             else containedOptionalElement = true;
         }
 
         // slightly modified version. Quite often we see empty optional arguments. For example \FerresP[]{n}@{x}
         // this is equivalent to removing the optional brackets at all: \FerrersP{n}@{x}. Hence we count them only
         // if the optional argument was not empty.
-        if ( containedOptionalElement )
+        if (containedOptionalElement)
             counter.incrementOptionalArgumentCounter();
 
         return sibling.getNextSibling();
     }
 
     public synchronized MacroCounter getMacroCounter(String macro) {
-        return dist.computeIfAbsent( macro, MacroCounter::new );
+        return dist.computeIfAbsent(macro, MacroCounter::new);
     }
 
     public static void main(String[] args) throws IOException {

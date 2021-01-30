@@ -85,13 +85,13 @@ DLMF;DLMF-Link;Meanings;Number of Parameters;Number of Ats;Number of Variables;S
 \expe;http://dlmf.nist.gov/4.2.E11;Euler's constant;0;0;0;;;;mathematical constant
 \CatalansConstant;http://dlmf.nist.gov/25.11.E40;Catalan's constant;0;0;0;;;;mathematical constant
 ;;;;;;;;;
-\Matrix{A};http://drmf.wmflabs.org/wiki/Definition:Matrix;Matrix;0;0;1;;;;ignore
-\Vector{a};http://drmf.wmflabs.org/wiki/Definition:Vector;Vector;0;0;1;;;;ignore
-\trace;http://dlmf.nist.gov/35.1#p3.t1.r9;Trace of a matrix;0;0;1;;;;ignore
-\transpose;http://dlmf.nist.gov/1.3.E5;Transpose of matrix;0;0;1;;;;ignore
-\exptrace@{\Matrix{X}};http://dlmf.nist.gov/35.1#p3.t1.r10;Exponential of the trace of a matrix;0;1;1;;;;ignore
-\det A;http://dlmf.nist.gov/1.3#i;Determinant;0;0;1;;;;ignore
-\diag A;http://dlmf.nist.gov/21.1#p2.t1.r11;Diagonal part of matrix;0;0;1;;;;ignore
+\Matrix{A};http://drmf.wmflabs.org/wiki/Definition:Matrix;Matrix;0;0;1;;;;
+\Vector{a};http://drmf.wmflabs.org/wiki/Definition:Vector;Vector;0;0;1;;;;
+\trace;http://dlmf.nist.gov/35.1#p3.t1.r9;Trace of a matrix;0;0;1;;;;
+\transpose;http://dlmf.nist.gov/1.3.E5;Transpose of matrix;0;0;1;;;;
+\exptrace@{\Matrix{X}};http://dlmf.nist.gov/35.1#p3.t1.r10;Exponential of the trace of a matrix;0;1;1;;;;
+\det A;http://dlmf.nist.gov/1.3#i;Determinant;0;0;1;;;;
+\diag A;http://dlmf.nist.gov/21.1#p2.t1.r11;Diagonal part of matrix;0;0;1;;;;
 \phase@@{z};http://dlmf.nist.gov/1.9#E7;Phase / Argument of a complex number;0;2;1;1;;;dlmf-macro
 \phase@@{z};http://dlmf.nist.gov/1.9#E7;Argument of a complex number;0;2;1;1;;;dlmf-macro
 ;;;;;;;;;
@@ -116,8 +116,8 @@ DLMF;DLMF-Link;Meanings;Number of Parameters;Number of Ats;Number of Variables;S
 \neq;not defined;Not equal;0;0;0;;;;symbol
 \ifrac{a}{b};http://dlmf.nist.gov/4.2.E8;Fraction;0;0;2;;;;
 \power{x}{y};http://dlmf.nist.gov/36.12#E9;Power;0;0;2;;;;
-n!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r14;Factorial;0;0;0;;;;ignore
-n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0;;;;ignore
+n!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r14;Factorial;0;0;0;;;;
+n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0;;;;
 \shiftfactorial{a}{\kappa};http://dlmf.nist.gov/35.4#E1;Partitional shifted factorial;0;0;2;;;;
 \floor{x};http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r16;Floor;0;0;1;;;;
 \ceiling{x};http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r17;Ceiling;0;0;1;;;;
@@ -133,7 +133,7 @@ n!!;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r15;Double factorial;0;0;0
 \cartprod;http://dlmf.nist.gov/23.1#p2.t1.r18;Cartesian product of groups;0;0;0;;;;symbol
 \divides;http://dlmf.nist.gov/24.1#p2.t1.r4;Devides;0;0;0;;;;symbol
 \liminf;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r4;Least limit point;0;0;0;;;;symbol
-\mod;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10;Modulo;0;0;0;;;;ignore
+\mod;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r10;Modulo;0;0;0;;;;
 \opminus;http://dlmf.nist.gov/5.7.E7;Negative unity to an integer power;0;0;0;;;;symbol
 \poly{p}{n}@{x};http://drmf.wmflabs.org/wiki/Definition:poly;Polynomial;2;1;1;;;;
 \ncompositions@{n};http://dlmf.nist.gov/26.11#p1;Number of compositions;0;1;1;;;;
@@ -160,7 +160,7 @@ X1:\ipderivX\ipderiv[n]{f}{x};http://dlmf.nist.gov/1.4#E4;Derivative;0;0;2;;;;dl
 \AntiDer@{x}{f(x)};http://drmf.wmflabs.org/wiki/Definition:AntiDer;Anti-Derivative;0;1;2;;;;dlmf-macro
 \Int{a}{b}@{x}{f(x)};http://drmf.wmflabs.org/wiki/Definition:Int;Integral;2;1;2;;;;
 \int;http://dlmf.nist.gov/1.4#iv;Indefinite Integral;0;0;0;;;;symbol
-\pvint_{a}^{b} \f{f}@{x} \diff{x};http://dlmf.nist.gov/1.4#E24;Cauchy principle value;0;0;0;;;;ignore
+\pvint_{a}^{b} \f{f}@{x} \diff{x};http://dlmf.nist.gov/1.4#E24;Cauchy principle value;0;0;0;;;;
 \Schwarzian{z}{\zeta};http://dlmf.nist.gov/1.13#E20;Schwarzian derivative;0;0;2;;;;
 \Complexes;http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r1;Set of complex numbers;0;0;0;;;;symbol
 \Reals;http://dlmf.nist.gov/front/introduction#Sx4.p2.t1.r14;Set of real numbers;0;0;0;;;;symbol
@@ -237,8 +237,8 @@ X1:\nrestpartitionsX\nrestpartitions[k]@{\mathrm{condition}}{n};http://dlmf.nist
 \sphHankelh{1}{n}@{z};http://dlmf.nist.gov/10.47#E5;Spherical Bessel function of the third kind;2;1;1;1;;;
 \modsphBesseli{1}{n}@{z};http://dlmf.nist.gov/10.47#E7;Modified spherical Bessel function of the first kind;2;1;1;1;;;
 \modsphBesselK{n}@{z};http://dlmf.nist.gov/10.47#E9;Modified spherical Bessel function of the second kind;1;1;1;1;;;
-\BesselAmat{\nu}@{\Matrix{T}};http://dlmf.nist.gov/35.5#i;Bessel function with matrix argument;1;1;1;;;;ignore
-\BesselBmat{\nu}@{\Matrix{T}};http://dlmf.nist.gov/35.5#E3;Bessel function with matrix argument;1;1;1;;;;ignore
+\BesselAmat{\nu}@{\Matrix{T}};http://dlmf.nist.gov/35.5#i;Bessel function with matrix argument;1;1;1;;;;
+\BesselBmat{\nu}@{\Matrix{T}};http://dlmf.nist.gov/35.5#E3;Bessel function with matrix argument;1;1;1;;;;
 \JacksonqBesselI{\nu}@{z}{q};http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselI;Jackson q-Bessel function I;1;1;2;1;;;
 \JacksonqBesselII{\nu}@{z}{q};http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselII;Jackson q-Bessel function II;1;1;2;1;;;
 \JacksonqBesselIII{\nu}@{z}{q};http://drmf.wmflabs.org/wiki/Definition:JacksonqBesselIII;Jackson q-Bessel function III;1;1;2;1;;;
@@ -250,20 +250,20 @@ X1:\nrestpartitionsX\nrestpartitions[k]@{\mathrm{condition}}{n};http://dlmf.nist
 \normincBetaI{x}@{a}{b};http://dlmf.nist.gov/8.17#E2;Regularized incomplete Beta function;1;1;2;;;;
 \multivarEulerBeta{m}@{a}{b};http://dlmf.nist.gov/35.3#E3;Multivariate Euler-Beta function;1;1;2;;R(a), R(b) > 1/2*(m-1);;
 ;;;;;;;;;
-\canonint{K}@{\Vector{x}};http://dlmf.nist.gov/36.2#E4;Canonical integral;1;1;1;1;;;ignore
-\umbcanonint@{\Vector{x}};http://dlmf.nist.gov/36.2#E5;Umbilic canonical integral;0;1;1;1;;;ignore
-\ellumbcanonint@{\Vector{x}};http://dlmf.nist.gov/36.2#E6;Elliptic umbilic canonical integral;0;1;1;1;;;ignore
-\hyperumbcanonint@{\Vector{x}};http://dlmf.nist.gov/36.2#E8;hyperbolic umbilic canonical integral;0;1;1;1;;;ignore
+\canonint{K}@{\Vector{x}};http://dlmf.nist.gov/36.2#E4;Canonical integral;1;1;1;1;;;
+\umbcanonint@{\Vector{x}};http://dlmf.nist.gov/36.2#E5;Umbilic canonical integral;0;1;1;1;;;
+\ellumbcanonint@{\Vector{x}};http://dlmf.nist.gov/36.2#E6;Elliptic umbilic canonical integral;0;1;1;1;;;
+\hyperumbcanonint@{\Vector{x}};http://dlmf.nist.gov/36.2#E8;hyperbolic umbilic canonical integral;0;1;1;1;;;
 ;;;;;;;;;
 \Catalannumber@{n};http://dlmf.nist.gov/26.5#E1;Catalan number;0;1;1;1;;;
 ;;;;;;;;;
-\cuspcatastrophe{K}@{t}{\Vector{x}};http://dlmf.nist.gov/36.2#E1;Cuspoid catastrophe;1;1;2;;;;ignore
-\ellumbcatastrophe@{s}{t}{\Vector{x}};http://dlmf.nist.gov/36.2#E2;Elliptic umbilic catastrophe;0;1;3;;;;ignore
-\hyperumbcatastrophe@{s}{t}{\Vector{x}};http://dlmf.nist.gov/36.2#E3;Hyperbolic umbilic catastrophe;0;1;3;;;;ignore
-\diffrcanonint{K}@{\Vector{x}}{k};http://dlmf.nist.gov/36.2#E10;Diffraction catastrophe;1;1;2;;;;ignore
-\umbdiffrcanonint@{\Vector{x}}{k};http://dlmf.nist.gov/36.2#E11;Diffraction umbilic catastrophe;0;1;2;;;;ignore
-\ellumbdiffrcanonint@{\Vector{x}}{k};http://dlmf.nist.gov/36.2#E11;Diffraction elliptic umbilic catastrophe;0;1;2;;;;ignore
-\hyperumbdiffrcanonint@{\Vector{x}}{k};http://dlmf.nist.gov/36.2#E11;Diffraction hyperbolic umbilic catastrophe;0;1;2;;;;ignore
+\cuspcatastrophe{K}@{t}{\Vector{x}};http://dlmf.nist.gov/36.2#E1;Cuspoid catastrophe;1;1;2;;;;
+\ellumbcatastrophe@{s}{t}{\Vector{x}};http://dlmf.nist.gov/36.2#E2;Elliptic umbilic catastrophe;0;1;3;;;;
+\hyperumbcatastrophe@{s}{t}{\Vector{x}};http://dlmf.nist.gov/36.2#E3;Hyperbolic umbilic catastrophe;0;1;3;;;;
+\diffrcanonint{K}@{\Vector{x}}{k};http://dlmf.nist.gov/36.2#E10;Diffraction catastrophe;1;1;2;;;;
+\umbdiffrcanonint@{\Vector{x}}{k};http://dlmf.nist.gov/36.2#E11;Diffraction umbilic catastrophe;0;1;2;;;;
+\ellumbdiffrcanonint@{\Vector{x}}{k};http://dlmf.nist.gov/36.2#E11;Diffraction elliptic umbilic catastrophe;0;1;2;;;;
+\hyperumbdiffrcanonint@{\Vector{x}}{k};http://dlmf.nist.gov/36.2#E11;Diffraction hyperbolic umbilic catastrophe;0;1;2;;;;
 ;;;;;;;;;
 \ChebyshevPsi@{x};http://dlmf.nist.gov/25.16#E1;Chebyshev Psi-function;0;1;1;1;;;
 ;;;;;;;;;
@@ -315,7 +315,7 @@ X1:\ndivisorsX\ndivisors[k]@{n};http://dlmf.nist.gov/27.2#SS1.p4;Divisor functio
 \Bulirschincellintel{1}@{x}{k_c};http://dlmf.nist.gov/19.2#E15;Bulirsch's incomplete elliptic integral of first kind;0;1;2;1;;;
 \Bulirschincellintel{2}@{x}{k_c}{a}{b};http://dlmf.nist.gov/19.2#E12;Bulirsch's incomplete elliptic integral of second kind;0;1;4;1;;;
 \Bulirschincellintel{3}@{x}{k_c}{p};http://dlmf.nist.gov/19.2#E16;Bulirsch's incomplete elliptic integral of third kind;0;1;3;1;;;
-\Carlsonmultivarhyper{-a}@{\Vector{b}}{\Vector{z}};http://dlmf.nist.gov/19.16#E9;Multivariate hypergeometric function;1;1;2;;;;ignore
+\Carlsonmultivarhyper{-a}@{\Vector{b}}{\Vector{z}};http://dlmf.nist.gov/19.16#E9;Multivariate hypergeometric function;1;1;2;;;;
 \CarlsonsymellintRF@@{x}{y}{z};http://dlmf.nist.gov/19.16#E1;Symmetric elliptic integral of the first kind;0;2;3;3;;;
 \CarlsonsymellintRJ@@{x}{y}{z}{p};http://dlmf.nist.gov/19.16#E2;Symmetric elliptic integral of the second kind;0;2;4;3;;;
 \CarlsonsymellintRG@@{x}{y}{z};http://dlmf.nist.gov/19.16#E3;Symmetric elliptic integral of the third kind;0;2;3;3;;;
@@ -376,13 +376,13 @@ X1:\EulertotientphiX\Eulertotientphi[k]@{n};http://dlmf.nist.gov/27.2#E6;Euler's
 \genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};http://dlmf.nist.gov/16.2#E1;Generalized hypergeometric function;2;3;3;3;;;
 \genhyperH{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z};http://dlmf.nist.gov/16.4#E16;Bilateral hypergeometric function;2;3;3;3;;;
 \hyperOlverF@@@{a}{b}{c}{z};http://dlmf.nist.gov/15.2#E2;Olver's hypergeometric function;0;3;4;4;;;
-\genhyperOlverF{p}{q}@@{\Vector{a}}{\Vector{b}}{z};http://dlmf.nist.gov/16.2#E5;Olver's generalized hypergeometric function;2;2;3;3;;;ignore
+\genhyperOlverF{p}{q}@@{\Vector{a}}{\Vector{b}}{z};http://dlmf.nist.gov/16.2#E5;Olver's generalized hypergeometric function;2;2;3;3;;;
 \KummerconfhyperM@{a}{b}{z};http://dlmf.nist.gov/13.2#E2;Kummer confluent hypergeometric functions M;0;1;3;3;;;
 \KummerconfhyperU@{a}{b}{z};http://dlmf.nist.gov/13.2#E6;Kummer confluent hypergeometric functions U;0;1;3;3;;;
 \OlverconfhyperM@{a}{b}{z};http://dlmf.nist.gov/13.2#E3;Olver's confluent hypergeometric functions U;0;1;3;3;;;
-\genhyperPsimat@{a}{b}{\Matrix{T}};http://dlmf.nist.gov/35.6#E2;Confluent hypergeometric function of matrix argument of the second kind;0;1;3;;;;ignore
+\genhyperPsimat@{a}{b}{\Matrix{T}};http://dlmf.nist.gov/35.6#E2;Confluent hypergeometric function of matrix argument of the second kind;0;1;3;;;;
 \LauricellaFD@{a}{b_1,...,b_n}{c}{z_1,...,z_n};http://dlmf.nist.gov/19.15#p1;Lauricella's multivariate hypergeometric function;0;1;4;4;;;
-\RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};http://dlmf.nist.gov/15.11#E3;Riemann's P-symbol;0;1;1;;;;ignore
+\RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};http://dlmf.nist.gov/15.11#E3;Riemann's P-symbol;0;1;1;;;;
 ;;;;;;;;;
 \idem@{\chi_1}{\chi_1,...,\chi_n};http://dlmf.nist.gov/17.1#p3;Idem function;0;1;2;;;;
 ;;;;;;;;;
@@ -487,7 +487,7 @@ X1:\DunsterQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Me
 \MathieuFs{m}@{z}{h};http://dlmf.nist.gov/28.26#E2;Cross-products of Mathieu function;1;1;2;1;;;
 \MathieuGc{m}@{z}{h};http://dlmf.nist.gov/28.26#E1;Cross-products of Mathieu function;1;1;2;1;;;
 \MathieuGs{m}@{z}{h};http://dlmf.nist.gov/28.26#E2;Cross-products of Mathieu function;1;1;2;1;;;
-\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};http://dlmf.nist.gov/16.17#E1;Meijer-G function;4;3;3;;;;ignore
+\MeijerG{m}{n}{p}{q}@@@{z}{\Vector{a}}{\Vector{b}};http://dlmf.nist.gov/16.17#E1;Meijer-G function;4;3;3;;;;
 ;;;;;;;;;
 \MillsM@{x};http://dlmf.nist.gov/7.8#E1;Mills' Ratio;0;1;1;1;;;
 ;;;;;;;;;
@@ -502,9 +502,9 @@ X1:\DunsterQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Me
 ;;;;;;;;;
 \Rayleighsigma{n}@{\nu};http://dlmf.nist.gov/10.21#E55;Rayleigh function;1;1;1;1;;;
 ;;;;;;;;;
-\Riemanntheta@{\Vector{z}}{\Matrix{\Omega}};http://dlmf.nist.gov/21.2#E1;Riemann theta function;0;1;2;1;;;ignore
-\Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};http://dlmf.nist.gov/21.2#E5;Riemann theta function with characteristics;2;1;2;;;;ignore
-\scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}};http://dlmf.nist.gov/21.2#E2;Scaled Riemann theta function;0;1;2;;;;ignore
+\Riemanntheta@{\Vector{z}}{\Matrix{\Omega}};http://dlmf.nist.gov/21.2#E1;Riemann theta function;0;1;2;1;;;
+\Riemannthetachar{\Vector{\alpha}}{\Vector{\beta}}@{\Vector{z}}{\Matrix{\Omega}};http://dlmf.nist.gov/21.2#E5;Riemann theta function with characteristics;2;1;2;;;;
+\scRiemanntheta@{\Vector{z}}{\Matrix{\Omega}};http://dlmf.nist.gov/21.2#E2;Scaled Riemann theta function;0;1;2;;;;
 \Riemannxi@{s};http://dlmf.nist.gov/25.4#E4;Riemann's xi-function;0;1;1;1;;;
 \Riemannzeta@{s};http://dlmf.nist.gov/25.2#E1;Riemann zeta function;0;1;1;1;;;
 ;;;;;;;;;
@@ -530,7 +530,7 @@ X1:\DunsterQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Me
 \Kroneckerdelta{j}{k};http://dlmf.nist.gov/front/introduction#Sx4.p1.t1.r4;Kronecker delta;0;0;2;;;;
 \NeumannFactor{n};http://drmf.wmflabs.org/wiki/Definition:NeumannFactor;Neumann factor;0;0;1;;;;
 \LeviCivitasym{j}{k}{l};http://dlmf.nist.gov/1.6#E14;Levi-Civita symbol;0;0;3;;;;
-\RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};http://dlmf.nist.gov/15.11#E3;Riemann's P-symbol;0;1;1;;;;ignore
+\RiemannsymP@{\begin{Bmatrix} \alpha & \beta &\gamma & \\ a_1 & b_1 & c_1 & z \\ a_2 & b_2 & c_2 & \end{Bmatrix}};http://dlmf.nist.gov/15.11#E3;Riemann's P-symbol;0;1;1;;;;
 \pochhammer{a}{n};http://dlmf.nist.gov/5.2#iii;Pochhammer symbol;0;0;2;;;;
 \Pochhammersym{a}{n};http://dlmf.nist.gov/5.2#iii;Pochhammer symbol;0;0;2;;;;
 \Wignerthreejsym@@{j_1}{j_2}{j_3}{m_1}{m_2}{m_3};http://dlmf.nist.gov/34.2#E4;3j symbol;0;2;6;;;;
@@ -541,17 +541,17 @@ X1:\DunsterQX\DunsterQ[\mu]{\tau}@{x};http://dlmf.nist.gov/14.20#E2;Conical / Me
 \terminant{p}@{z};http://dlmf.nist.gov/2.11#E11;Terminant function;1;1;1;1;;;
 \scterminant{p}@{z};http://dlmf.nist.gov/9.7#E22;Rescaled terminant function;1;1;1;1;;;
 ;;;;;;;;;
-\FourierTrans@@{f}{s};http://dlmf.nist.gov/1.14#E1;Fourier transformation;0;2;2;;;;ignore
-\LaplaceTrans@{f}{s};http://dlmf.nist.gov/1.14#E17;Laplace transformation;0;1;2;;;;ignore
-\MellinTrans@{f}{s};http://dlmf.nist.gov/1.14#E32;Mellin transformation;0;1;2;;;;ignore
-\HilbertTrans@{f}{s};http://dlmf.nist.gov/1.14#SS5.p1;Hilbert transformation;0;1;2;;;;ignore
-\StieltjesTrans@{f}{s};http://dlmf.nist.gov/1.14#E47;Stieltjes transformation;0;1;2;;;;ignore
+\FourierTrans@@{f}{s};http://dlmf.nist.gov/1.14#E1;Fourier transformation;0;2;2;;;;
+\LaplaceTrans@{f}{s};http://dlmf.nist.gov/1.14#E17;Laplace transformation;0;1;2;;;;
+\MellinTrans@{f}{s};http://dlmf.nist.gov/1.14#E32;Mellin transformation;0;1;2;;;;
+\HilbertTrans@{f}{s};http://dlmf.nist.gov/1.14#SS5.p1;Hilbert transformation;0;1;2;;;;
+\StieltjesTrans@{f}{s};http://dlmf.nist.gov/1.14#E47;Stieltjes transformation;0;1;2;;;;
 ;;;;;;;;;
-\variation[a,b]@{f};http://dlmf.nist.gov/1.4#E33;Total variation;1;1;1;;;;ignore
+\variation[a,b]@{f};http://dlmf.nist.gov/1.4#E33;Total variation;1;1;1;;;;
 ;;;;;;;;;
-\gradient f;http://dlmf.nist.gov/1.6#E20;Gradiant of differentiable scalar function;0;0;1;;;;ignore
-\divergence F;http://dlmf.nist.gov/1.6#E21;Divergence of a differentiable vector-valued function;0;0;1;;;;ignore
-\curl F;http://dlmf.nist.gov/1.6#E22;Curl of vector-valued function;0;0;1;;;;ignore
+\gradient f;http://dlmf.nist.gov/1.6#E20;Gradiant of differentiable scalar function;0;0;1;;;;
+\divergence F;http://dlmf.nist.gov/1.6#E21;Divergence of a differentiable vector-valued function;0;0;1;;;;
+\curl F;http://dlmf.nist.gov/1.6#E22;Curl of vector-valued function;0;0;1;;;;
 \VoigtU@{x}{t};http://dlmf.nist.gov/7.19#E1;Voigt function U;0;1;2;;;;
 \VoigtV@{x}{t};http://dlmf.nist.gov/7.19#E2;Voigt function V;0;1;2;;;;
 \VoigtH@{a}{u};http://dlmf.nist.gov/7.19#E4;Line broadening function;0;1;2;;;;
@@ -673,7 +673,7 @@ X1:\assLegendrePX\assLegendreP[mu]{nu}@{z};http://dlmf.nist.gov/14.21#Ex1;associ
 \Wilson{n}@{x}{a}{b}{c}{d};http://dlmf.nist.gov/18.25#T1.t1.r2;Wilson polynomial;1;1;5;1;;;
 \WilsonpolyW{n}@{x}{a}{b}{c}{d};http://dlmf.nist.gov/18.25#T1.t1.r2;Wilson polynomial;1;1;5;1;;;
 ;;;;;;;;;
-\zonalpolyZ{\kappa}@{\Matrix{T}};http://dlmf.nist.gov/35.4#SS1.p3;Zonal polynomial;1;1;1;;;;ignore
+\zonalpolyZ{\kappa}@{\Matrix{T}};http://dlmf.nist.gov/35.4#SS1.p3;Zonal polynomial;1;1;1;;;;
 ;;;;;;;;;
 \qSin{q}@@{x};http://dlmf.nist.gov/17.3#E4;q-Sine function;1;2;1;1;;;
 \qsin{q}@@{x};http://dlmf.nist.gov/17.3#E3;q-Sine function;1;2;1;1;;;
@@ -722,10 +722,8 @@ X1:\assLegendrePX\assLegendreP[mu]{nu}@{z};http://dlmf.nist.gov/14.21#Ex1;associ
 \dualqKrawtchouk{n}@@{\lambda(x)}{c}{N}{q};http://drmf.wmflabs.org/wiki/Definition:dualqKrawtchouk;dual q-Krawtchouk polynomial;1;2;4;;;;
 \qtmqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};http://drmf.wmflabs.org/wiki/Definition:qtmqKrawtchouk;quantum q-Krawtchouk polynomial;1;2;4;;;;
 \AffqKrawtchouk{n}@@{q^{-x}}{p}{N}{q};http://drmf.wmflabs.org/wiki/Definition:AffqKrawtchouk;Affine q-Krawtchouck polynomial;1;2;4;;;;
-\qLaguerre[\alpha]{n}@@{x}{q};http://drmf.wmflabs.org/wiki/Definition:qLaguerre;q-Laguerre polynomial;1;2;2;1;;;
-X1:\qLaguerreX\qLaguerre[\alpha]{n}@@{x}{q};http://drmf.wmflabs.org/wiki/Definition:qLaguerre;q-Laguerre polynomial;1;2;2;1;;;
-\qLaguerrepolyL{n}@{x}{q};http://dlmf.nist.gov/18.27#E15;q-Laguerre polynomial;1;1;2;1;;;
-X1:\qLaguerrepolyLX\qLaguerrepolyL[\alpha]{n}@{x}{q};http://dlmf.nist.gov/18.27#E15;q-Laguerre polynomial;1;1;2;1;;;
+\qLaguerre{\alpha}{n}@@{x}{q};http://drmf.wmflabs.org/wiki/Definition:qLaguerre;q-Laguerre polynomial;2;2;2;1;;;
+\qLaguerrepolyL{\alpha}{n}@{x}{q};http://dlmf.nist.gov/18.27#E15;q-Laguerre polynomial;2;1;2;1;;;
 \bigqLaguerre{n}@{x}{a}{b}{q};http://drmf.wmflabs.org/wiki/Definition:bigqLaguerre;big q-Laguerre polynomial;1;1;4;1;;;
 \littleqLaguerre{n}@{x}{a}{q};http://drmf.wmflabs.org/wiki/Definition:littleqLaguerre;little q-Laguerre polynomial;1;1;3;1;;;
 \qLegendre{n}@{x}{q};http://drmf.wmflabs.org/wiki/Definition:qLegendre;q-Legendre polynomial;1;1;2;1;;;

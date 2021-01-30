@@ -67,16 +67,10 @@ public class MOIPresentations implements SemanticallyRanked {
      * Copy constructor
      */
     public MOIPresentations(MOIPresentations copy) {
-        this.status = copy.status;
         this.id = copy.id;
         this.genericLatex = copy.genericLatex;
-        if (copy.definiens != null) this.definiens = new LinkedList<>(copy.definiens);
-        this.semanticLatex = copy.semanticLatex;
-        this.casRepresentations = new HashMap<>(copy.casRepresentations);
-        this.score = copy.score;
-        if (copy.positions != null) this.positions = new LinkedList<>(copy.positions);
-        if (copy.ingoingNodes != null) this.ingoingNodes = new LinkedList<>(copy.ingoingNodes);
-        if (copy.outgoingNodes != null) this.outgoingNodes = new LinkedList<>(copy.outgoingNodes);
+        this.casRepresentations = new HashMap<>();
+        overwrite(copy);
     }
 
     public MOIPresentations(MOINode<MOIAnnotation> node) {
@@ -97,6 +91,17 @@ public class MOIPresentations implements SemanticallyRanked {
                     .collect(Collectors.toCollection(LinkedList::new));
             if ( !definiens.isEmpty() ) status = SemanticEnhancedAnnotationStatus.SEMANTICALLY_ANNOTATED;
         }
+    }
+
+    public void overwrite(MOIPresentations copy) {
+        this.status = copy.status;
+        if (copy.definiens != null) this.definiens = new LinkedList<>(copy.definiens);
+        this.semanticLatex = copy.semanticLatex;
+        this.casRepresentations.putAll(copy.casRepresentations);
+        this.score = copy.score;
+        if (copy.positions != null) this.positions = new LinkedList<>(copy.positions);
+        if (copy.ingoingNodes != null) this.ingoingNodes = new LinkedList<>(copy.ingoingNodes);
+        if (copy.outgoingNodes != null) this.outgoingNodes = new LinkedList<>(copy.outgoingNodes);
     }
 
     private List<String> getDependants(MOINode<MOIAnnotation> node, boolean ingoing) {
