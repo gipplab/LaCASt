@@ -1461,6 +1461,13 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void matrixMatchTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("\\begin{pmatrix} i & j & \\ell\\\\ k & m & n \\end{pmatrix}", "");
+        assertFalse(blueprint.match("\\begin{Bmatrix} i & j & \\ell\\\\ k & m & n \\end{Bmatrix}"));
+        assertTrue(blueprint.match("\\begin{pmatrix} i & j & \\ell\\\\ k & m & n \\end{pmatrix}"));
+    }
+
+    @Test
     public void ignoreOperatornameTest() throws ParseException {
         MatchablePomTaggedExpression blueprint = PomMatcherBuilder.compile("x + y", "var1");
         assertTrue(blueprint.match("x + \\operatorname{y}"));

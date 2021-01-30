@@ -1,4 +1,25 @@
 {
+  "Wignerninejsym" : {
+    "macro" : "Wignerninejsym",
+    "meta" : {
+      "description" : "Wigner 9 j symbol",
+      "meaning" : "Wigner-9-j-symbol",
+      "openMathID" : "none",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ ],
+        "standardVariables" : [ "j_{11}", "j_{12}", "j_{13}", "j_{21}", "j_{22}", "j_{23}", "j_{31}", "j_{32}", "j_{33}" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 9,
+    "TeX" : [ {
+      "genericTeX" : "\\begin{Bmatrix} var1 & var2 & var3 \\\\ var4 & var5 & var6 \\\\ var7 & var8 & var9 \\end{Bmatrix}",
+      "semanticTeX" : "\\Wignerninejsym{var1}{var2}{var3}{var4}{var5}{var6}",
+      "score" : 1.0
+    } ]
+  },
   "ln" : {
     "macro" : "ln",
     "meta" : {
@@ -343,6 +364,27 @@
       "score" : 0.0
     } ]
   },
+  "Wignerthreejsym" : {
+    "macro" : "Wignerthreejsym",
+    "meta" : {
+      "description" : "Wigner 3 j symbol",
+      "meaning" : "Wigner-3-j-symbol",
+      "openMathID" : "none",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ ],
+        "standardVariables" : [ "j_1", "j_2", "j_3", "m_1", "m_2", "m_3" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 6,
+    "TeX" : [ {
+      "genericTeX" : "\\begin{pmatrix} var1 & var2 & var3 \\\\ var4 & var5 & var6 \\end{pmatrix}",
+      "semanticTeX" : "\\Wignerthreejsym{var1}{var2}{var3}{var4}{var5}{var6}",
+      "score" : 1.0
+    } ]
+  },
   "Pochhammersym" : {
     "macro" : "Pochhammersym",
     "meta" : {
@@ -420,6 +462,27 @@
       "genericTeX" : "L_{par2}",
       "semanticTeX" : "\\qLaguerrepolyL{par1}{par2}@{x}{q}",
       "score" : 0.0
+    } ]
+  },
+  "Wignersixjsym" : {
+    "macro" : "Wignersixjsym",
+    "meta" : {
+      "description" : "Wigner 6 j symbol",
+      "meaning" : "Wigner-6-j-symbol",
+      "openMathID" : "none",
+      "standardArguments" : {
+        "standardOptionalParameters" : [ ],
+        "standardParameters" : [ ],
+        "standardVariables" : [ "j_1", "j_2", "j_3", "l_1", "l_2", "l_3" ]
+      }
+    },
+    "numberOfParameters" : 0,
+    "numberOfOptionalParameters" : 0,
+    "numberOfArguments" : 6,
+    "TeX" : [ {
+      "genericTeX" : "\\begin{Bmatrix} var1 & var2 & var3 \\\\ var4 & var5 & var6 \\end{Bmatrix}",
+      "semanticTeX" : "\\Wignersixjsym{var1}{var2}{var3}{var4}{var5}{var6}",
+      "score" : 1.0
     } ]
   },
   "Riemannthetachar" : {
