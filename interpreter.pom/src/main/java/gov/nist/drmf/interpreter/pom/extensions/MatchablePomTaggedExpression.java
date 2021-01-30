@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
+import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -276,6 +277,9 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             List<PrintablePomTaggedExpression> followingExpressions,
             MatcherConfig config
     ) {
+        // if the first element in a wildcard is _ or ^ or !, we can directly return false
+        if ( isIllegalFirstWildcardMatch(expression) ) return false;
+
         // or it is a wildcard, which means it can be essentially anything
         // note that a wildcard cannot have any children, which makes it easier
 
@@ -292,6 +296,19 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         return nextSibling == null ? // if its null, almost everything hits just until end
                 captureUntilEnd(followingExpressions, bracketStack, matches, config) :
                 matchWildcardUntilEnd(followingExpressions, bracketStack, matches, config);
+    }
+
+    private boolean isIllegalFirstWildcardMatch(PomTaggedExpression pte) {
+        if ( pte == null ) return true;
+
+        MathTerm term = pte.getRoot();
+        return PomTaggedExpressionUtility.equals(pte, ExpressionTags.sub_super_script) ||
+                MathTermUtility.equalsOr(term,
+                        MathTermTags.underscore,
+                        MathTermTags.caret,
+                        MathTermTags.comma,
+                        MathTermTags.semicolon
+        );
     }
 
     private boolean captureUntilEnd(

@@ -183,6 +183,8 @@ public class SequenceTranslator extends AbstractListTranslator {
 
     private boolean isCaseSplit( PomTaggedExpression exp, List<PomTaggedExpression> expList ) {
         String text = exp.getRoot().getTermText();
+        if ( !super.getGlobalTranslationList().containsRelationSymbol() ) return false;
+
         if ( text.matches("[,;.]") ) {
             // if this comma is part of a sequence but the sequence is not the root of the parse tree
             // in this case the comma is nested and hence not a splitter

@@ -12,6 +12,7 @@ import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailabilit
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,7 +41,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -57,7 +58,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(sr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -75,7 +76,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -93,7 +94,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -111,7 +112,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -128,7 +129,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(sr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -146,7 +147,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -164,7 +165,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -187,7 +188,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -210,7 +211,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -271,7 +272,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(sr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -292,7 +293,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(sr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -312,13 +313,14 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
     }
 
     @Test
+    @Disabled
     @AssumeMathematicaAvailability
     void scorerDefinitionMathematicaTest() {
         NumericResult nr = enhancer.computeNumerically(
@@ -331,7 +333,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
@@ -348,7 +350,7 @@ public class SemanticEnhancerComputationTests {
         try {
             String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
             assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
-            LOG.debug(representation);
+            LOG.trace(representation);
         } catch (JsonProcessingException e) {
             LOG.debug("Unable to print numeric test calculation");
         }
