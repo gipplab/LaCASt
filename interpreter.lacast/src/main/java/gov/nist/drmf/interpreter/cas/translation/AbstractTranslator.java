@@ -167,9 +167,12 @@ public abstract class AbstractTranslator implements IForwardTranslator {
                     TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
         }
 
-        // if it is an empty exp, we are done
+        // if it is an empty exp, simply add an empty translation
         if (exp.isEmpty()) {
-            return globalExp;
+            transExpression = new TranslatedExpression();
+            transExpression.addTranslatedExpression("");
+            globalExp.addTranslatedExpression("");
+            return transExpression;
         }
 
         // handle all different cases
@@ -374,7 +377,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      * For example, consider you want to add a string via {@link TranslatedExpression#addTranslatedExpression(String)}
      * to your local and global lists. Than you can do this via
      * <pre>
-     *     addLocalAndGlobal(
+     *     perform(
      *          TranslatedExpression::addTranslatedExpression,
      *          localTranslations,
      *          output
@@ -403,7 +406,7 @@ public abstract class AbstractTranslator implements IForwardTranslator {
      * applying the value {@param value}, we perform a mapping via {@param map}. For example, if you
      * want to add variables to the local and global {@link TranslatedExpression} object you can do this via
      * <pre>
-     * addLocalAndGlobalMap(
+     * mapPerform(
      *      TranslatedExpression::getFreeVariables,
      *      FreeVariables::addFreeVariable,
      *      localTranslations,

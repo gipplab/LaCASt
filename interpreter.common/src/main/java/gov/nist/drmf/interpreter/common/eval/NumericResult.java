@@ -78,6 +78,8 @@ public class NumericResult implements Serializable, ITestResultCounter {
      */
     @JsonIgnore
     public void addFurtherResults(NumericResult nr) {
+        wasAborted |= nr.wasAborted;
+        crashed |= nr.crashed;
         this.addTestCalculationsGroup( nr.getTestCalculationsGroups() );
     }
 
@@ -149,15 +151,6 @@ public class NumericResult implements Serializable, ITestResultCounter {
         }
     }
 
-    @JsonGetter("overallResult")
-    public TestResultType overallResult() {
-        if ( testCalculationsGroups.isEmpty() ) return TestResultType.SKIPPED;
-        if (numberOfTotalTests == numberOfSuccessfulTests) return TestResultType.SUCCESS;
-        else if ( numberOfErrorTests == 0 && numberOfFailedTests > 0) return TestResultType.FAILURE;
-        else if ( numberOfSkippedTests > 0 ) return TestResultType.SKIPPED;
-        else return TestResultType.ERROR;
-    }
-
     @JsonIgnore
     @Override
     public void increaseNumberOfSuccessfulTests() {
@@ -180,5 +173,11 @@ public class NumericResult implements Serializable, ITestResultCounter {
     @Override
     public void increaseNumberOfSkippedTests() {
         numberOfSkippedTests++;
+    }
+
+    @JsonIgnore
+    @Override
+    public int getNumberOfCalculationGroups() {
+        return testCalculationsGroups.size();
     }
 }

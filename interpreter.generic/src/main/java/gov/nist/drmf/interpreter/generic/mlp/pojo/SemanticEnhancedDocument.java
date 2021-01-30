@@ -13,7 +13,11 @@ import gov.nist.drmf.interpreter.common.interfaces.SemanticallyRanked;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -54,6 +58,15 @@ public class SemanticEnhancedDocument implements SemanticallyRanked {
     }
 
     @JsonIgnore
+    public Map<String, MOIPresentations> getMoiMapping(Function<String, String> keyGen) {
+        HashMap<String, MOIPresentations> mapping = new HashMap<>();
+        for ( MOIPresentations moi : getFormulae() ) {
+            mapping.put( keyGen.apply(moi.getId()), moi );
+        }
+        return mapping;
+    }
+
+    @JsonIgnore
     public SemanticEnhancedAnnotationStatus getRank() {
         return getRank(this);
     }
@@ -62,6 +75,23 @@ public class SemanticEnhancedDocument implements SemanticallyRanked {
     public static SemanticEnhancedDocument deserialize(String json) throws JsonProcessingException {
         ObjectMapper mapper = getMapper();
         return mapper.readValue(json, SemanticEnhancedDocument.class);
+    }
+
+    /**
+     * Loads all files from the given path and tries to deserialize them as {@link SemanticEnhancedDocument}.
+     * @param path
+     * @return
+     */
+    @JsonIgnore
+    public static List<SemanticEnhancedDocument> deserialize(Path path) throws IOException {
+        ObjectMapper mapper = SemanticEnhancedDocument.getMapper();
+        return Files.list(path).map(Path::toFile).map(f -> {
+            try {
+                return mapper.readValue(f, SemanticEnhancedDocument.class);
+            } catch (IOException e) {
+                return null;
+            }
+        }).filter(Objects::nonNull).collect(Collectors.toList());
     }
 
     @JsonIgnore

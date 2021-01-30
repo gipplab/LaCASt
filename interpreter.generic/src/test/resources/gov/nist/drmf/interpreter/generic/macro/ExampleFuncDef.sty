@@ -104,6 +104,12 @@
     description={the principal branch of logarithm function},% $\ln$},
     sortkey={ln 1 0 z},
     ]{1}[\mleft(#1\mright)][#1]
+\defSpecFun{qLaguerrepolyL}[2]{L\ifx.#1.\else^{(#1)}\fi_{#2}}[%
+    meaning=q-Laguerre-polynomial-L, om=orthpoly5_dlmf:q-Laguerre_L,
+    params={\alpha}{n}, args={x}{q},
+    description={the $q$-Laguerre polynomial},% $\qLaguerrepolyL{\alpha}{n}$},
+    sortkey={L 2 3 z z z z},
+    ]{2}[\mleft(#1;#2\mright)]
 \defSpecFun{Jacobiellcsk}{\operatorname{cs}}[%
     meaning=Jacobi-elliptic-cs,role=OPFUNCTION, om=ellfunk1_dlmf:cs,
     args={u}{k},

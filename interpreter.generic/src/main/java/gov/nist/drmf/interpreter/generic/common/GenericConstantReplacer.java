@@ -9,6 +9,7 @@ import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -31,7 +32,50 @@ public class GenericConstantReplacer {
 
     public PrintablePomTaggedExpression fixConstants() {
         replaceInternal(referencePTE);
+        fixImReOperatorInternal(List.of(referencePTE));
         return referencePTE;
+    }
+
+    private void fixImReOperatorInternal(List<PomTaggedExpression> elements) {
+        if ( elements == null || elements.isEmpty() ) return;
+
+        LinkedList<PomTaggedExpression> newElements = new LinkedList<>();
+        boolean replaced = false;
+        for ( int i = 0; i < elements.size(); i++ ) {
+            PomTaggedExpression pte = elements.get(i);
+            if ( PomTaggedExpressionUtility.isOperatorname(pte) ) {
+                PomTaggedExpression next = pte.getNextSibling();
+                if ( next != null && next.getRoot().getTermText().toLowerCase().matches("im|re") ) {
+                    fixImReOperator(next);
+                    newElements.add(pte);
+                    i++;
+                    replaced = true;
+                    continue;
+                }
+            }
+            newElements.add(pte);
+        }
+
+        if ( replaced ) {
+            PomTaggedExpression parent = newElements.get(0).getParent();
+            if ( parent != null ) parent.setComponents(newElements);
+        }
+
+        for ( PomTaggedExpression p : newElements ) {
+            if ( p != null && !p.getComponents().isEmpty() ) fixImReOperatorInternal(p.getComponents());
+        }
+    }
+
+    private void fixImReOperator(PomTaggedExpression imre) {
+        MathTerm term = imre.getRoot();
+        String macro;
+        if ( term.getTermText().toLowerCase().matches("im") ) macro = "\\imagpart";
+        else macro = "\\realpart";
+
+        PomTaggedExpression operator = imre.getPreviousSibling();
+        operator.getRoot().setTermText(macro);
+        mlp.loadFeatures(operator.getRoot());
+        operator.setRoot(operator.getRoot());
     }
 
     private void replaceInternal(PrintablePomTaggedExpression pte) {

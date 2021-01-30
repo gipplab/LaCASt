@@ -154,7 +154,7 @@ Permutations[$0];\npermutations{n};1;;;;;;
 ;\nplanepartitions@{n};;;;;;;
 ;\nrestpartitions[k]@{\mathrm{condition}}{n};;;;;;;
 ;\nrestcompositions@{\mathrm{condition}}{n};;;;;;;
-;\bigO@{x};;;;;;;
+O[x];\bigO@{$0};;;;;;;https://reference.wolfram.com/language/ref/O.html
 ;\littleo@{x};;;;;;;
 ;\sim;;;;;;;
 ;;;;;;;;

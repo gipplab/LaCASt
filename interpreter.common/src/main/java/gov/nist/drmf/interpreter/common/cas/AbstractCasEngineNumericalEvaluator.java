@@ -113,7 +113,7 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
      * @param postProcessingMethodName the process to call after the test was performed (for post processing)
      * @param precision the precision the numerical test should use
      * @return the original CAS result. Use {@link #wasAborted(Object)} and {@link #getStatusOfResult(Object)} to analyze
-     * the result or call {@link #getNumericCalculationList(Object)} to get an object list of the result
+     * the result or call {@link #getNumericCalculationGroup(Object)} (Object)} to get an object list of the result
      * @throws ComputerAlgebraSystemEngineException if something in the CAS went wrong during the test
      */
     public abstract T performGeneratedTestOnExpression(
@@ -199,8 +199,12 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
      */
     public NumericResult getNumericResult(T results) throws ComputerAlgebraSystemEngineException {
         NumericResult nr = new NumericResult();
-        NumericCalculationGroup group = getNumericCalculationGroup(results);
-        nr.addTestCalculationsGroup( group );
+        if ( wasAborted(results) ) {
+            nr.wasAborted(true);
+        } else {
+            NumericCalculationGroup group = getNumericCalculationGroup(results);
+            nr.addTestCalculationsGroup( group );
+        }
         return nr;
     }
 

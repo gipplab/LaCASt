@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import gov.nist.drmf.interpreter.common.process.RmiSubprocessInfo;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @author Andre Greiner-Petter
  */
@@ -95,6 +98,14 @@ public class GenericLacastConfig {
         this.mathoidUrl = mathoidUrl;
     }
 
+    public List<String> getSuppressedMacros() {
+        return settings.suppressedMacros;
+    }
+
+    public void setSuppressedMacros(List<String> suppressedMacros) {
+        this.settings.suppressedMacros = suppressedMacros;
+    }
+
     public ElasticSearchConfig getESConfig() {
         return new ElasticSearchConfig(
                 esHost, esPort, macroIndex
@@ -124,6 +135,9 @@ public class GenericLacastConfig {
 
         @JsonProperty("max.depth")
         private int maxDepth = -1;
+
+        @JsonProperty("suppressMacros")
+        private List<String> suppressedMacros = new LinkedList<>();
 
         public Settings() {}
     }

@@ -52,7 +52,7 @@ public class OperationTranslator extends AbstractListTranslator {
             TranslatedExpression extended_divisor =
                     parseGeneralExpression( following_exp.remove(0), following_exp );
             String last = extended_divisor.getLastExpression();
-            if ( last == null ) {
+            if ( last == null || last.isBlank() ) {
                 last = getGlobalTranslationList().getLastExpression();
                 divisorExp.removeLastExpression();
             }

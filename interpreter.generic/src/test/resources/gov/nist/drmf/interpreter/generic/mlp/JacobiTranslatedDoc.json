@@ -436,7 +436,7 @@
       "id" : "FORMULA_c8b5b9184e45bca39744427c45693115",
       "formula" : "P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\Pochhammersym{\\alpha + 1}{n}}{n!} \\genhyperF{2}{1}@{- n , 1 + \\alpha + \\beta + n}{\\alpha + 1}{\\tfrac{1}{2}(1 - z)}",
-      "confidence" : 0.7595006538205181,
+      "confidence" : 0.7595315736242781,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Pochhammer[\\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \\[Alpha]+ \\[Beta]+ n}, {\\[Alpha]+ 1}, Divide[1,2]*(1 - z)]",
@@ -453,9 +453,9 @@
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: HypergeometricPFQ[{$2}, {$3}, $4]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/16.2#E1\nMathematica:  https://",
+              "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: HypergeometricPFQ[{$2}, {$3}, $4]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/16.2#E1\nMathematica:  reference.wolfram.com/language/ref/HypergeometricPFQ.html",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://"
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  reference.wolfram.com/language/ref/Pochhammer.html"
             }
           }
         },
@@ -532,7 +532,7 @@
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://"
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  reference.wolfram.com/language/ref/Pochhammer.html"
             }
           }
         },
@@ -586,7 +586,7 @@
       "id" : "FORMULA_8aef2b8e75b872d1e8ef1530bb9bb795",
       "formula" : "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + n + 1}}{n! \\EulerGamma@{\\alpha + \\beta + n + 1}} \\sum_{m=0}^n{n\\choose m} \\frac{\\EulerGamma@{\\alpha + \\beta + n + m + 1}}{\\EulerGamma@{\\alpha + m + 1}}(\\frac{z-1}{2})^m",
-      "confidence" : 0.8814743347990213,
+      "confidence" : 0.8818092635071948,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Gamma[\\[Alpha]+ n + 1],(n)!*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*Sum[Binomial[n,m]*Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + m + 1],Gamma[\\[Alpha]+ m + 1]]*(Divide[z - 1,2])^(m), {m, 0, n}, GenerateConditions->None]",
@@ -683,7 +683,7 @@
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://"
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html"
             }
           }
         },
@@ -828,7 +828,7 @@
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\LegendrepolyP" : "Legendre polynomial; Example: \\LegendrepolyP{n}@{x}\nWill be translated to: LegendreP[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r10\nMathematica:  https://reference.wolfram.com/language/ref/LegendreP.html",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://"
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html"
             }
           }
         },
@@ -1337,7 +1337,7 @@
       "id" : "FORMULA_b1e4493881f1c47423915d9999dd9459",
       "formula" : "{z \\choose n} = \\begin{cases} \\frac{\\Gamma(z+1)}{\\Gamma(n+1)\\Gamma(z-n+1)} & n \\geq 0 \\\\ 0 & n < 0 \\end{cases}",
       "semanticFormula" : "{z \\choose n} = \\begin{cases}\\frac{\\EulerGamma@{z + 1}}{\\EulerGamma@{n + 1} \\EulerGamma@{z - n + 1}} n \\geq 0 0 & n < 0\\end{cases}",
-      "confidence" : 0.8346605129355306,
+      "confidence" : 0.8353303703518778,
       "translations" : {
         "Mathematica" : {
           "translation" : "Binomial[z,n] == ",
@@ -1404,7 +1404,7 @@
       "id" : "FORMULA_c5accc69791b469f2ce6bde7e27a4506",
       "formula" : "\\Gamma(z)",
       "semanticFormula" : "\\EulerGamma@{z}",
-      "confidence" : 0.8377943427717734,
+      "confidence" : 0.8384642001881207,
       "translations" : {
         "Mathematica" : {
           "translation" : "Gamma[z]",
@@ -2067,7 +2067,7 @@
       "id" : "FORMULA_77d1d3b415496da5bb77004fd55dff4c",
       "formula" : "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
       "semanticFormula" : "\\int_{-1}^1(1 - x)^{\\alpha}(1 + x)^{\\beta} \\JacobipolyP{\\alpha}{\\beta}{m}@{x} \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\diff{x} = \\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\EulerGamma@{n + \\alpha + 1} \\EulerGamma@{n + \\beta + 1}}{\\EulerGamma@{n + \\alpha + \\beta + 1} n!} \\delta_{nm} , \\qquad \\alpha , \\beta > - 1",
-      "confidence" : 0.860206560796601,
+      "confidence" : 0.8605414895047745,
       "translations" : {
         "Mathematica" : {
           "translation" : "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]* JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] == Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n*m]",
@@ -2542,7 +2542,7 @@
       "id" : "FORMULA_c1a5b2b20d5efff4922f26591d73e078",
       "formula" : "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
       "semanticFormula" : "\\deriv [k]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + \\beta + n + 1 + k}}{2^k \\EulerGamma@{\\alpha + \\beta + n + 1}} \\JacobipolyP{\\alpha + k}{\\beta + k}{n-k}@{z}",
-      "confidence" : 0.8814743347990213,
+      "confidence" : 0.8818092635071948,
       "translations" : {
         "Mathematica" : {
           "translation" : "D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, k}] == Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + 1 + k],(2)^(k)* Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*JacobiP[n - k, \\[Alpha]+ k, \\[Beta]+ k, z]",
@@ -2560,7 +2560,7 @@
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
             }
@@ -3234,11 +3234,9 @@
       "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "n == 2 , 3",
+          "translation" : "n == 2\n 3",
           "translationInformation" : {
-            "subEquations" : [
-              "n = 2 , 3"
-            ],
+            "subEquations" : [ ],
             "freeVariables" : [
               "n"
             ],
@@ -3247,11 +3245,9 @@
           }
         },
         "SymPy" : {
-          "translation" : "n == 2 , 3",
+          "translation" : "n == 2\n 3",
           "translationInformation" : {
-            "subEquations" : [
-              "n = 2 , 3"
-            ],
+            "subEquations" : [ ],
             "freeVariables" : [
               "n"
             ],
@@ -3260,11 +3256,9 @@
           }
         },
         "Maple" : {
-          "translation" : "n = 2 , 3",
+          "translation" : "n = 2; 3",
           "translationInformation" : {
-            "subEquations" : [
-              "n = 2 , 3"
-            ],
+            "subEquations" : [ ],
             "freeVariables" : [
               "n"
             ],
@@ -3324,7 +3318,7 @@
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://"
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html"
             }
           }
         },
@@ -3611,58 +3605,56 @@
     {
       "id" : "FORMULA_9dc229093c0cfe263c966e50e7f0a24a",
       "formula" : "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
-      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos \\theta} = n^{-\\frac{1}{2}} k(\\theta) \\cos(\\AirymodderivN@{x} \\theta + \\gamma) + O(n^{-\\frac{3}{2}})",
-      "confidence" : 0.7551883285904557,
+      "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos \\theta} = n^{-\\frac{1}{2}} k(\\theta) \\cos(N \\theta + \\gamma) + O(n^{-\\frac{3}{2}})",
+      "confidence" : 0.9378384212127765,
       "translations" : {
         "Mathematica" : {
-          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2]*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))",
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[N*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))",
           "translationInformation" : {
             "subEquations" : [
-              "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] = (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2]*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))"
+              "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] = (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[N*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))"
             ],
             "freeVariables" : [
+              "N",
               "O",
               "\\[Alpha]",
               "\\[Beta]",
               "\\[Gamma]",
               "\\[Theta]",
               "k",
-              "n",
-              "x"
+              "n"
             ],
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\AirymodderivN" : "Airy modulus function N; Example: \\AirymodderivN@{z}\nWill be translated to: \nAlternative translations: [Sqrt[AiryAiPrime[$0]^2 + AiryBiPrime[$0]^2]]Relevant links to definitions:\nDLMF:         http://dlmf.nist.gov/9.8#i\nMathematica:  https://"
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
         "Maple" : {
-          "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)*cos(sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2)*theta + gamma)+ O*((n)^(-(3)/(2)))",
+          "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)*cos(N*theta + gamma)+ O*((n)^(-(3)/(2)))",
           "translationInformation" : {
             "subEquations" : [
-              "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)*cos(sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2)*theta + gamma)+ O*((n)^(-(3)/(2)))"
+              "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)*cos(N*theta + gamma)+ O*((n)^(-(3)/(2)))"
             ],
             "freeVariables" : [
+              "N",
               "O",
               "alpha",
               "beta",
               "gamma",
               "k",
               "n",
-              "theta",
-              "x"
+              "theta"
             ],
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
               "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\AirymodderivN" : "Airy modulus function N; Example: \\AirymodderivN@{z}\nWill be translated to: \nAlternative translations: [sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2)]Relevant links to definitions:\nDLMF:  http://dlmf.nist.gov/9.8#i\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=sqrt"
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -3709,25 +3701,25 @@
     {
       "id" : "FORMULA_25de4fcbf8879d9f165ef8adcb1f1d40",
       "formula" : "\\begin{align}k(\\theta) &= \\pi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2},\\\\N &= n + \\tfrac{1}{2} (\\alpha+\\beta+1),\\\\\\gamma &= - \\tfrac{\\pi}{2} \\left (\\alpha + \\tfrac{1}{2} \\right ),\\end{align}",
-      "semanticFormula" : "\\begin{align}k(\\theta) &= \\cpi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2} , \\\\ \\AirymodderivN@{x} &= n + \\tfrac{1}{2} (\\alpha+\\beta+1), \\\\ \\gamma &= - \\tfrac{\\cpi}{2}(\\alpha + \\tfrac{1}{2}) ,\\end{align}",
-      "confidence" : 0.5725382359681349,
+      "semanticFormula" : "\\begin{align}k(\\theta) &= \\cpi^{-\\frac{1}{2}} \\sin^{-\\alpha-\\frac{1}{2}} \\tfrac{\\theta}{2} \\cos^{-\\beta-\\frac{1}{2}} \\tfrac{\\theta}{2} , \\\\ N &= n + \\tfrac{1}{2} (\\alpha+\\beta+1), \\\\ \\gamma &= - \\tfrac{\\cpi}{2}(\\alpha + \\tfrac{1}{2}) ,\\end{align}",
+      "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "k*(\\[Theta]) == (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nSqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])",
+          "translation" : "k*(\\[Theta]) == (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nN == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])",
           "translationInformation" : {
             "subEquations" : [
               "k*(\\[Theta]) = (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])",
-              "Sqrt[AiryAiPrime[x]^2 + AiryBiPrime[x]^2] = n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)",
+              "N = n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)",
               "\\[Gamma] = -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])"
             ],
             "freeVariables" : [
+              "N",
               "\\[Alpha]",
               "\\[Beta]",
               "\\[Gamma]",
               "\\[Theta]",
               "k",
-              "n",
-              "x"
+              "n"
             ],
             "constraints" : [ ],
             "tokenTranslations" : {
@@ -3735,27 +3727,53 @@
               "\\cpi" : "Pi was translated to: Pi",
               "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\AirymodderivN" : "Airy modulus function N; Example: \\AirymodderivN@{z}\nWill be translated to: \nAlternative translations: [Sqrt[AiryAiPrime[$0]^2 + AiryBiPrime[$0]^2]]Relevant links to definitions:\nDLMF:         http://dlmf.nist.gov/9.8#i\nMathematica:  https://",
               "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: Sin[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E1\nMathematica:  https://reference.wolfram.com/language/ref/Sin.html"
             }
           }
         },
+        "SymPy" : {
+          "translation" : "k*(Symbol('theta')) == (pi)**(-(1)/(2))* (sin((Symbol('theta'))/(2)))**(- Symbol('alpha')-(1)/(2))* (cos((Symbol('theta'))/(2)))**(- Symbol('beta')-(1)/(2))\nN == n +(1)/(2)*(Symbol('alpha')+ Symbol('beta')+ 1)\nSymbol('gamma') == -(pi)/(2)*(Symbol('alpha')+(1)/(2))",
+          "translationInformation" : {
+            "subEquations" : [
+              "k*(Symbol('theta')) = (pi)**(-(1)/(2))* (sin((Symbol('theta'))/(2)))**(- Symbol('alpha')-(1)/(2))* (cos((Symbol('theta'))/(2)))**(- Symbol('beta')-(1)/(2))",
+              "N = n +(1)/(2)*(Symbol('alpha')+ Symbol('beta')+ 1)",
+              "Symbol('gamma') = -(pi)/(2)*(Symbol('alpha')+(1)/(2))"
+            ],
+            "freeVariables" : [
+              "N",
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "Symbol('gamma')",
+              "Symbol('theta')",
+              "k",
+              "n"
+            ],
+            "constraints" : [ ],
+            "tokenTranslations" : {
+              "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nSymPy: https://docs.sympy.org/latest/modules/functions/elementary.html#cos",
+              "\\cpi" : "Pi was translated to: pi",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: sin($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E1\nSymPy: https://docs.sympy.org/latest/modules/functions/elementary.html#sin"
+            }
+          }
+        },
         "Maple" : {
-          "translation" : "k*(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1); gamma = -(Pi)/(2)*(alpha +(1)/(2))",
+          "translation" : "k*(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); N = n +(1)/(2)*(alpha + beta + 1); gamma = -(Pi)/(2)*(alpha +(1)/(2))",
           "translationInformation" : {
             "subEquations" : [
               "k*(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2))",
-              "sqrt(AiryAi(1, x)^2+AiryBi(1, x)^2) = n +(1)/(2)*(alpha + beta + 1)",
+              "N = n +(1)/(2)*(alpha + beta + 1)",
               "gamma = -(Pi)/(2)*(alpha +(1)/(2))"
             ],
             "freeVariables" : [
+              "N",
               "alpha",
               "beta",
               "gamma",
               "k",
               "n",
-              "theta",
-              "x"
+              "theta"
             ],
             "constraints" : [ ],
             "tokenTranslations" : {
@@ -3763,7 +3781,6 @@
               "\\cpi" : "Pi was translated to: Pi",
               "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\AirymodderivN" : "Airy modulus function N; Example: \\AirymodderivN@{z}\nWill be translated to: \nAlternative translations: [sqrt(AiryAi(1, $0)^2+AiryBi(1, $0)^2)]Relevant links to definitions:\nDLMF:  http://dlmf.nist.gov/9.8#i\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=sqrt",
               "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: sin($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=sin"
             }
           }
@@ -4056,7 +4073,8 @@
           "translation" : "\\[PlusMinus]1",
           "translationInformation" : {
             "subEquations" : [
-              "\\[PlusMinus]1"
+              "+ 1",
+              "- 1"
             ],
             "freeVariables" : [ ],
             "constraints" : [ ],
@@ -4069,7 +4087,8 @@
           "translation" : "&+- 1",
           "translationInformation" : {
             "subEquations" : [
-              "&+- 1"
+              "+ 1",
+              "- 1"
             ],
             "freeVariables" : [ ],
             "constraints" : [ ],
@@ -4119,7 +4138,7 @@
       "id" : "FORMULA_34980bfcd6b86900308ec8f48f593ff0",
       "formula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left ( \\tfrac{z}{n} \\right ) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\alpha} J_\\alpha(z)\\\\ \\lim_{n \\to \\infty} n^{-\\beta}P_n^{(\\alpha,\\beta)}\\left(\\cos \\left (\\pi - \\tfrac{z}{n} \\right) \\right) &= \\left(\\tfrac{z}{2}\\right)^{-\\beta} J_\\beta(z)\\end{align}",
       "semanticFormula" : "\\begin{align}\\lim_{n \\to \\infty} n^{-\\alpha} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\alpha} J_\\alpha(z) \\\\ \\lim_{n \\to \\infty} n^{-\\beta} \\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos(\\cpi - \\tfrac{z}{n})} &=(\\tfrac{z}{2})^{-\\beta} J_\\beta(z)\\end{align}",
-      "confidence" : 0.8805714208615747,
+      "confidence" : 0.8808458503239184,
       "translations" : {
         "Mathematica" : {
           "translation" : "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Pi -Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)",

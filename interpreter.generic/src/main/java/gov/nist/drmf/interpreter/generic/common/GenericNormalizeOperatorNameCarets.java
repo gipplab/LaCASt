@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.generic.common;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.PomTaggedExpression;
@@ -51,6 +52,7 @@ public class GenericNormalizeOperatorNameCarets {
         newComponents.addAll(components.subList(operatorIndex+3, endIndex+1));
         newComponents.add(potCaret);
         newComponents.addAll(components.subList(endIndex+1, components.size()));
+        potCaret.addSecondaryTags(ExpressionTags.moved.tag());
 
         PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression) potCaret.getParent();
         parent.setPrintableComponents(newComponents);

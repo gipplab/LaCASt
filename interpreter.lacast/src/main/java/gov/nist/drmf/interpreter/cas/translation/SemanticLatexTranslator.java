@@ -16,6 +16,7 @@ import gov.nist.drmf.interpreter.common.interfaces.IDLMFTranslator;
 import gov.nist.drmf.interpreter.common.replacements.ConditionalReplacementRule;
 import gov.nist.drmf.interpreter.common.replacements.IReplacementCondition;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionNormalizer;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
@@ -235,30 +236,52 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
 
         // 1) prepare new run, with reset and setup translation information object
         reset();
+
+        boolean forceFillUp = false;
         if ( expression instanceof PrintablePomTaggedExpression ) {
+            // in this case, we can trigger +/- splitting
+            PrintablePomTaggedExpression copy = new PrintablePomTaggedExpression((PrintablePomTaggedExpression) expression);
+            if ( PomTaggedExpressionNormalizer.normalizePm(copy, true) ) {
+                // there was a PM and it split so we should translate the first case
+                TranslatedExpression firstCase = translateSingleExpression(copy, false);
+                reset();
+                // change original expression (expression) to first case
+                copy = new PrintablePomTaggedExpression((PrintablePomTaggedExpression) expression);
+                PomTaggedExpressionNormalizer.normalizePm(copy, false);
+                TranslatedExpression secondCase = translateSingleExpression(copy, false);
+                reset();
+                addPartialTranslation(firstCase);
+                addPartialTranslation(secondCase);
+                forceFillUp = true;
+            }
+
             getTranslationInformation().setExpression( ((PrintablePomTaggedExpression) expression).getTexString() );
         }
 
+        return translateSingleExpression(expression, forceFillUp);
+    }
+
+    private TranslatedExpression translateSingleExpression(PomTaggedExpression pte, boolean forceFillUp) {
         localTranslations = new TranslatedExpression();
         TranslatedExpression global = super.getGlobalTranslationList();
 
         // 2) perform translations
-        parseGeneralExpression(expression, new LinkedList<>());
+        parseGeneralExpression(pte, new LinkedList<>());
 
         // 3) clean up
         localTranslations.clear();
         localTranslations.addTranslatedExpression(global);
         localTranslations.addRequiredPackages(global.getRequiredPackages());
 
-        updateTranslationInformation();
+        updateTranslationInformation(forceFillUp);
 
         // 4) return result
         return localTranslations;
     }
 
-    private void updateTranslationInformation() {
+    private void updateTranslationInformation(boolean forceFillUp) {
         TranslationInformation ti = super.getTranslationInformation();
-        if ( getListOfPartialTranslations().isEmpty() ) {
+        if ( getListOfPartialTranslations().isEmpty() || forceFillUp ) {
             perform(
                     TranslatedExpression::appendRelationalComponent,
                     getGlobalTranslationList().getElementsAfterRelation().getTranslatedExpression().trim()
