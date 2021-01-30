@@ -101,6 +101,27 @@ public class SemanticEnhancerTests {
     }
 
     @Test
+    void lommelSTest() throws ParseException {
+        String genericLaTeXExample = "S_{\\mu,\\nu}(z) = s_{\\mu,\\nu}(z) + 2^{\\mu-1} \\Gamma\\left(\\frac{\\mu + \\nu + 1}{2}\\right) \\Gamma\\left(\\frac{\\mu - \\nu + 1}{2}\\right)\\left(\\sin \\left[(\\mu - \\nu)\\frac{\\pi}{2}\\right] J_\\nu(z) - \\cos \\left[(\\mu - \\nu)\\frac{\\pi}{2}\\right] Y_\\nu(z)\\right)";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample,
+                "Lommel function", "Euler Gamma function", "Bessel function of the first kind", "Bessel function of the second kind");
+        MOIPresentations moi = new MOIPresentations(node);
+
+        GenericLacastConfig config = GenericLacastConfig.getDefaultConfig();
+        config.setMaxRelations(4);
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer(config);
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\LommelS{\\mu}{\\nu}@{z} = " +
+                "\\Lommels{\\mu}{\\nu}@{z} + 2^{\\mu-1} " +
+                        "\\EulerGamma@{\\frac{\\mu + \\nu + 1}{2}} " +
+                        "\\EulerGamma@{\\frac{\\mu - \\nu + 1}{2}}(\\sin [(\\mu - \\nu) " +
+                        "\\frac{\\cpi}{2}] \\BesselJ{\\nu}@{z} - \\cos [(\\mu - \\nu) " +
+                        "\\frac{\\cpi}{2}] \\BesselY{\\nu}@{z})",
+                moi.getSemanticLatex());
+    }
+
+    @Test
     void leviCivitaInPlaceSourceNotSinkTest() throws ParseException {
         String genericLaTeXExample = "x + \\epsilon_{i j k}";
         String exampleAnnotationText = "Levi Civita Symbol";

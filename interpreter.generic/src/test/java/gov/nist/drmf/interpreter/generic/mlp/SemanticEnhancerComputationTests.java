@@ -336,4 +336,22 @@ public class SemanticEnhancerComputationTests {
             LOG.debug("Unable to print numeric test calculation");
         }
     }
+
+    @Test
+    @AssumeMapleAvailability
+    void lommelMapleTest() {
+        NumericResult nr = enhancer.computeNumerically(
+                "\\Lommels{\\mu}{\\nu}@{z} = \\frac{\\cpi}{2} [\\BesselY{\\nu}@{z} \\int_{0}^{z} x^{\\mu} \\BesselJ{\\nu}@{x} \\diff{x} - \\BesselJ{\\nu}@{z} \\int_{0}^{z} x^{\\mu} \\BesselY{\\nu}@{x} \\diff{x}]",
+                Keys.KEY_MAPLE
+        );
+        assertNotNull( nr );
+        try {
+            String representation = SemanticEnhancedDocument.getMapper().writeValueAsString(nr);
+            assertFalse( representation.matches(".*[Ee](rror|RROR).*") );
+            LOG.debug(representation);
+        } catch (JsonProcessingException e) {
+            LOG.debug("Unable to print numeric test calculation");
+        }
+
+    }
 }
