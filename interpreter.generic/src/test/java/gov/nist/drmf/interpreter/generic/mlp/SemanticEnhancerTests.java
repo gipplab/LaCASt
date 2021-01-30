@@ -88,6 +88,19 @@ public class SemanticEnhancerTests {
     }
 
     @Test
+    void wignerTest() throws ParseException {
+        String genericLaTeXExample = "\\begin{Bmatrix}    i & j & \\ell\\\\    k & m & n  \\end{Bmatrix} = x_i";
+        String exampleAnnotationText = "6j symbol";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, exampleAnnotationText);
+        MOIPresentations moi = new MOIPresentations(node);
+
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\Wignersixjsym{i}{j}{\\ell}{k}{m}{n} = x_i", moi.getSemanticLatex());
+    }
+
+    @Test
     void leviCivitaInPlaceSourceNotSinkTest() throws ParseException {
         String genericLaTeXExample = "x + \\epsilon_{i j k}";
         String exampleAnnotationText = "Levi Civita Symbol";

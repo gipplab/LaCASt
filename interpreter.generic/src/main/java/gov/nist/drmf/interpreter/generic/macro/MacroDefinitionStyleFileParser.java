@@ -65,6 +65,14 @@ public class MacroDefinitionStyleFileParser {
         }
 
         handleMetaDataAfterHit(currentBean, m, true);
+        loadWignerSymbols();
+    }
+
+    private void loadWignerSymbols() {
+        MacroWignerSymbols wignerSymbols = new MacroWignerSymbols();
+        for ( MacroWignerSymbols.Type type : MacroWignerSymbols.Type.values() ) {
+            macros.put( type.getMacro(), wignerSymbols.getWignerSymbol(type) );
+        }
     }
 
     private MacroBean handleNewMacroHit( String line ) {
