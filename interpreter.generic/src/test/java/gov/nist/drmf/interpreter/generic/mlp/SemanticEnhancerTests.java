@@ -107,7 +107,7 @@ public class SemanticEnhancerTests {
                 "Lommel function", "Euler Gamma function", "Bessel function of the first kind", "Bessel function of the second kind");
         MOIPresentations moi = new MOIPresentations(node);
 
-        GenericLacastConfig config = GenericLacastConfig.getDefaultConfig();
+        GenericLacastConfig config = new GenericLacastConfig(GenericLacastConfig.getDefaultConfig());
         config.setMaxRelations(4);
         SemanticEnhancer semanticEnhancer = new SemanticEnhancer(config);
         semanticEnhancer.appendSemanticLatex(moi, node);

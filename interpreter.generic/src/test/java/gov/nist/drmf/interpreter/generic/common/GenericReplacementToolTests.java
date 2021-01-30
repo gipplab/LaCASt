@@ -36,7 +36,7 @@ public class GenericReplacementToolTests {
         PrintablePomTaggedExpression ppte = mlp.parse("x + \\operatorname{Im} (z)");
         GenericConstantReplacer replacementTool = new GenericConstantReplacer(ppte);
         ppte = replacementTool.fixConstants();
-        assertEquals("x + \\imagpart (z)", ppte.getTexString());
+        assertEquals("x + \\imagpart(z)", ppte.getTexString());
     }
 
     @Test
