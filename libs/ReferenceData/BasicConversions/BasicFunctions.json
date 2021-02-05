@@ -14,6 +14,12 @@
       "Mathematica": "[$0]",
       "SymPy": "($0)"
     },
+    "Function Definition": {
+      "MLP": "function definition",
+      "LaTeX": "$0\\left($1\\right) := $2",
+      "Maple": "$0 := ($1) -> $2",
+      "Mathematica": "$0[$1] := $2"
+    },
     "Fraction": {
       "MLP": "fraction",
       "LaTeX": "\\frac{$0}{$1}",
@@ -83,6 +89,11 @@
       "Maple": "abs($0)",
       "Mathematica": "Abs[$0]",
       "SymPy": "abs($0)"
+    },
+    "Norm": {
+      "MLP": "norm",
+      "LaTeX": "\\| $0 \\|",
+      "Mathematica": "Norm[$0]"
     },
     "Sum": {
       "MLP": "sum",
@@ -298,6 +309,12 @@
       "Maple": "<>",
       "Mathematica": "\\[NotEqual]",
       "SymPy": "<>"
+    },
+    "Negated Equality": {
+      "MLP": "negated equality",
+      "LaTeX": "\\not =",
+      "Maple": "<>",
+      "Mathematica": "\\[NotEqual]"
     },
     "Less Than or Equality": {
       "MLP": "relation_leq",

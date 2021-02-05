@@ -297,6 +297,7 @@ X1:\nrestpartitionsX\nrestpartitions[k]@{\mathrm{condition}}{n};http://dlmf.nist
 ;;;;;;;;;
 \DirichletL@{s}{\chi};http://dlmf.nist.gov/25.15#E1;Dirichlet L-function;0;1;2;;;;
 \Dirichletchar@@{n}{k};http://dlmf.nist.gov/27.8;Dirichlet character;0;2;2;;;;
+X1:\DirichletcharX\Dirichletchar[r]@@{n}{k};http://dlmf.nist.gov/27.8;Dirichlet character;0;2;2;;;;
 ;;;;;;;;;
 \DiscriminantDelta@{\tau};http://dlmf.nist.gov/27.14#E16;Discriminant function;0;1;1;1;;;
 ;;;;;;;;;

@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.generic.elasticsearch;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import gov.nist.drmf.interpreter.common.config.ElasticSearchConfig;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.generic.macro.MacroBean;
@@ -81,8 +82,8 @@ public class DLMFElasticSearchClient {
         }
     }
 
-    public LinkedList<MacroResult> searchMacroDescription(String description) throws IOException {
-        SearchRequest searchRequest = buildSearchRequest(description);
+    public LinkedList<MacroResult> searchMacroDescription(String description, int max) throws IOException {
+        SearchRequest searchRequest = buildSearchRequest(description, max);
         SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
         LinkedList<MacroResult> results = new LinkedList<>();
         for ( SearchHit hit : searchResponse.getHits() ) {
@@ -92,7 +93,7 @@ public class DLMFElasticSearchClient {
         return results;
     }
 
-    private SearchRequest buildSearchRequest(String description) {
+    private SearchRequest buildSearchRequest(String description, int size) {
         MatchQueryBuilder matchQB = QueryBuilders.matchQuery("meta.description", description);
 
         // score mode avg is default, but it should not make any difference because every doc only
@@ -101,6 +102,7 @@ public class DLMFElasticSearchClient {
 
         SearchSourceBuilder sb = new SearchSourceBuilder();
         sb.query(nestedQB);
+        if ( size > 0 ) sb.size(size);
 
         SearchRequest searchRequest = new SearchRequest();
         searchRequest.indices(index);
@@ -154,6 +156,9 @@ public class DLMFElasticSearchClient {
         String macroDefinitions = Files.readString(GlobalPaths.PATH_SEMANTIC_MACROS_DEFINITIONS);
         macroParser.load(macroDefinitions);
         Map<String, MacroBean> macros = macroParser.getExtractedMacros();
+        ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        String ser = mapper.writeValueAsString(macros);
+        Files.writeString(GlobalPaths.PATH_MACROS_REPLACEMENT_PATTERNS, ser);
         indexElements(macros);
     }
 

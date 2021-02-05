@@ -28,7 +28,7 @@ public class MapleScriptHandler implements INumericalEvaluationScripts {
         numericProcedures[0] = numericalProc;
 
         // load expectation of results template
-        NumericalConfig config =  NumericalConfig.config();
+        NumericalConfig config = new NumericalConfig();
         String expectationTemplate = config.getExpectationTemplate();
         // load numerical sieve
         String sieve_procedure = MapleTranslator.extractProcedure( GlobalPaths.PATH_MAPLE_NUMERICAL_SIEVE_PROCEDURE );

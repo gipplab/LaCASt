@@ -1,0 +1,50 @@
+Matches:
+Associated Legendre polynomials-FORMULA_6f29e15c07089506a70db1b3f54b27a5: c_{lm} = (-1)^m \frac{(\ell-m)!}{(\ell+m)!}
+Barnes G-function-FORMULA_6bc0d742c4d25c1abb61158150489676: \frac{1}{\Gamma(z)}= z e^{\gamma z} \prod_{k=1}^\infty \left\{ \left(1+\frac{z}{k}\right)e^{-z/k} \right\}
+Bessel function-FORMULA_0f521573a47e7fd187dafed615b0ecce: \begin{align}J_{-(m+\frac{1}{2})}(x) &= (-1)^{m+1} Y_{m+\frac{1}{2}}(x), \\Y_{-(m+\frac{1}{2})}(x) &= (-1)^m J_{m+\frac{1}{2}}(x).\end{align}
+Big q-Jacobi polynomials-FORMULA_0680f701a101288f89487a7a3fabefb1: \displaystyle   P_n(x;a,b,c;q)={}_3\phi_2(q^{-n},abq^{n+1},x;aq,cq;q,q)
+Chebyshev polynomials-FORMULA_d9eb68704833b0f525c4ca81a749d9ca: x_k = \cos\left(\frac{\pi(k+1/2)}{n}\right),\quad k=0,\ldots,n-1
+Continuous dual Hahn polynomials-FORMULA_b0d448ba925dc6b2bf2ce32a1253dee4: S_n(x^2;a,b,c)= {}_3F_2(-n,a+ix,a-ix;a+b,a+c;1).
+Dirichlet L-function-FORMULA_dcb9beab8f504cfc907c3165d24e5ad3: \chi(-1) = 1
+Error function-FORMULA_523ec091d0929f0fa69ae7e0d563a72b: \operatorname{erf}^{(k)}(z) = \frac{2 (-1)^{k-1}}{\sqrt{\pi}} \mathit{H}_{k-1}(z) e^{-z^2} = \frac{2}{\sqrt{\pi}}  \frac{d^{k-1}}{dz^{k-1}} \left(e^{-z^2}\right),\qquad k=1, 2, \dots
+Exponential integral-FORMULA_a9a738ef9d4e46360dd9b87b39c691bf: N=1
+Gamma function-FORMULA_19a0f00da77cc439ad679c579a295bd2: \frac{1}{\Gamma(z)} = \frac{i}{2\pi}\int_C (-t)^{-z}e^{-t}\,dt
+Gaussian quadrature-FORMULA_8c49145544fca24efb8de07eb1275c09: w_{i} = \frac{1}{p'_{n}(x_{i})}\int_{a}^{b}\omega(x)\frac{p_{n}(x)}{x-x_{i}}dx
+Gauss–Hermite quadrature-FORMULA_cdf8d887d4b5ad1a7724773d8eef8fd2: \int_{-\infty}^{+\infty} e^{-x^2} f(x)\,dx \approx \sum_{i=1}^n w_i f(x_i)
+Gegenbauer polynomials-FORMULA_34d9d355f0c0e28d91465c3b575fb0a1: =2
+Hahn polynomials-FORMULA_777007203448847310455e0b0eaaeb2c: Q_n(x;\alpha,\beta,N)= {}_3F_2(-n,-x,n+\alpha+\beta+1;\alpha+1,-N+1;1).
+Hermite polynomials-FORMULA_249043719eb4dd70350b460363255e11: E(x, y; u) := \sum_{n=0}^\infty u^n \, \psi_n (x) \, \psi_n (y) = \frac{1}{\sqrt{\pi (1 - u^2)}} \, \exp\left(-\frac{1 - u}{1 + u} \, \frac{(x + y)^2}{4} - \frac{1 + u}{1 - u} \, \frac{(x - y)^2}{4}\right)
+Heun function-FORMULA_8c78ef87048e61947a6d7d4b5e06aa63: 192/24 = 8 = 2 \times 4
+Hill differential equation-FORMULA_3a6745862e8f6ef2b93c343ad82b40c0: f(t+p) = f(t)
+Hurwitz zeta function-FORMULA_80a3608d4c2aae63f082861007c16c38: s\not =1
+Hypergeometric function-FORMULA_aaffb0ad8dea17d68491d9fb6ebcfbe3: c = a + 1
+Ince equation-FORMULA_ce9ed9f979f486263028e3d86b63ac60: w^{\prime\prime}+\xi\sin(2z)w^{\prime}+(\eta-p\xi\cos(2z))w=0.
+Incomplete Bessel K function/generalized incomplete gamma function-FORMULA_c333a7966510ed0b8f4de3147eabe47a: K_v(x,y)=\int_1^\infty\frac{e^{-xt-\frac{y}{t}}}{t^{v+1}}dt
+Incomplete Bessel functions-FORMULA_35ab66efafff0de40d98c0778ebb63c3: H_{-v}^{(1)}(z,w)=e^{v\pi i}H_v^{(1)}(z,w)
+Jacobi elliptic functions-FORMULA_b54c03865b3efa9ea9112567cd66f59d: \frac{\mathrm{d}}{\mathrm{d}z} \operatorname{dn}(z) = - k^2 \operatorname{sn}(z) \operatorname{cn}(z)
+Jacobi polynomials-FORMULA_c8b5b9184e45bca39744427c45693115: P_n^{(\alpha,\beta)}(z)=\frac{(\alpha+1)_n}{n!}\,{}_2F_1\left(-n,1+\alpha+\beta+n;\alpha+1;\tfrac{1}{2}(1-z)\right)
+Kelvin functions-FORMULA_07453e6baf8f216467f9b664de795bfc: g_1(x) = \sum_{k \geq 1} \frac{\sin(k \pi / 4)}{k! (8x)^k} \prod_{l = 1}^k (2l - 1)^2
+Legendre function-FORMULA_06f9b7b1d3f141742ad1c582b55056ba: x = \pm 1
+Legendre polynomials-FORMULA_8646bd0d06e9454aaa39dfc506fe54f7: \frac{1}{\left| \mathbf{x}-\mathbf{x}' \right|} = \frac{1}{\sqrt{r^2+{r'}^2-2r{r'}\cos\gamma}} = \sum_{\ell=0}^\infty \frac{{r'}^\ell}{r^{\ell+1}} P_\ell(\cos \gamma)
+Lemniscatic elliptic function-FORMULA_24137d79f0a282f42fdf9ea93576e998: e_1=\tfrac12,\qquad e_2=0,\qquad e_3=-\tfrac12
+Little q-Jacobi polynomials-FORMULA_c492265e4cd4beeeb776dad843dc1f73: \displaystyle  p_n(x;a,b;q) = {}_2\phi_1(q^{-n},abq^{n+1};aq;q,xq)
+Logarithm-FORMULA_579837194f2124b255d579031524a91c: 2^{4} = 2 \times2 \times 2 \times 2 = 16
+Logarithmic integral function-FORMULA_36fb8f8330168b8f8acda0dc36851474: \operatorname{li}(x) = \lim_{\varepsilon \to 0+} \left( \int_0^{1-\varepsilon} \frac{dt}{\ln t} + \int_{1+\varepsilon}^x \frac{dt}{\ln t} \right)
+Mathieu function-FORMULA_f694135eafc20195a9d96ca3ce8af674: \sigma = \pm 1
+Meijer G-function-FORMULA_028eb01ef675c90ea0f74fcdd93fc78c: \gamma> 0,n-p=m-q> 0
+Meixner–Pollaczek polynomials-FORMULA_96d19b4b504f801548c69064d662043b: P_1^{(\lambda)}(x;\phi)=2(\lambda\cos\phi + x\sin\phi)
+Modular lambda function-FORMULA_4e5334aa6f5fa551b0718a2372816061: y^2=x(x-1)(x-\lambda)
+Orthogonal polynomials-FORMULA_c0641714ec593f58211623652c4a34f0: P_n(x) = c_n \, \det \begin{bmatrix}m_0 & m_1 &  m_2 &\cdots & m_n \\m_1 & m_2 &  m_3 &\cdots & m_{n+1} \\&&\vdots&& \vdots \\m_{n-1} &m_n& m_{n+1} &\cdots &m_{2n-1}\\1 & x & x^2 & \cdots & x^n\end{bmatrix}
+Painlevé transcendents-FORMULA_0a306ab913684a1ba3935715d3dd8ad8: c=\infty
+Parabolic cylinder function-FORMULA_bec6388631b20f2af14e375b13e1533f: \frac{d^2f}{dz^2} + \left(\tilde{a}z^2+\tilde{b}z+\tilde{c}\right)f=0
+Q-Charlier polynomials-FORMULA_925d68ff3ddf733a69ec9936dfede5d6: \displaystyle c_n(q^{-x};a;q) = {}_2\phi_1(q^{-n},q^{-x};0;q,-q^{n+1}/a)
+Q-Laguerre polynomials-FORMULA_dea0af895f73964b98741e71bc0635cb: \displaystyle  L_n^{(\alpha)}(x;q) = \frac{(q^{\alpha+1};q)_n}{(q;q)_n} {}_1\phi_1(q^{-n};q^{\alpha+1};q,-q^{n+\alpha+1}x)
+Riemann zeta function-FORMULA_bd88ec58aa42c7a59bc2f4ff458a54cf: \psi(x) := \sum_{n=1}^\infty e^{-n^2 \pi x}
+Scorer's function-FORMULA_c8116180276232704ca3e9f67f207565: \mathrm{Gi}(x) = \frac{1}{\pi} \int_0^\infty \sin\left(\frac{t^3}{3} + xt\right)\, dt
+Stieltjes–Wigert polynomials-FORMULA_583d3b9e00bbd73091b01f368d1a82c7: w(x) = \frac{k}{\sqrt{\pi}} x^{-1/2} \exp(-k^2\log^2 x)
+Theta function-FORMULA_bfba6c35dbbcd8b89c6a29b1ffd6f517: q = e^{i\pi\tau}
+Whittaker function-FORMULA_16ec3a3583ee2b4621d316bf839c1725: \frac{d^2w}{dz^2}+\left(-\frac{1}{4}+\frac{\kappa}{z}+\frac{1/4-\mu^2}{z^2}\right)w=0
+Config: Max Relations: 6, Max Macros: 6, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 45
+Non-Matching: 47

@@ -46,3 +46,6 @@ generalReplacements:
   -
     pattern: \\Re(?![a-zA-Z])
     replacement: \\realpart
+  -
+    pattern: (\^|_)([a-zA-Z])([a-zA-Z])
+    replacement: '$1$2 $3'

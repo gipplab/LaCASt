@@ -773,6 +773,7 @@ Symbol: \Charlier
   Feature Set: dlmf-macro
 	DLMF: \Charlier{n}@{x}{a}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r5
+	Mathematica-Alternatives: HypergeometricPFQ[{-($0), -($1)}, {}, -Divide[1,$2]]
 	Meanings: Charlier polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -784,6 +785,7 @@ Symbol: \CharlierpolyC
   Feature Set: dlmf-macro
 	DLMF: \CharlierpolyC{n}@{x}{a}
 	DLMF-Link: dlmf.nist.gov/18.19#T1.t1.r5
+	Mathematica-Alternatives: HypergeometricPFQ[{-($0), -($1)}, {}, -Divide[1,$2]]
 	Meanings: Charlier polynomial
 	Number of Ats: 1
 	Number of Parameters: 1
@@ -997,6 +999,16 @@ Symbol: \Dirichletchar
   Feature Set: dlmf-macro
 	DLMF: \Dirichletchar@@{n}{k}
 	DLMF-Link: dlmf.nist.gov/27.8
+	Mathematica: DirichletCharacter[1, $1, $0]
+	Meanings: Dirichlet character
+	Number of Ats: 2
+	Number of Parameters: 0
+	Number of Variables: 2
+
+  Feature Set: dlmf-alternative-1
+	DLMF: \Dirichletchar[r]@@{n}{k}
+	DLMF-Link: dlmf.nist.gov/27.8
+	Mathematica: DirichletCharacter[$0, $2, $1]
 	Meanings: Dirichlet character
 	Number of Ats: 2
 	Number of Parameters: 0
@@ -4163,6 +4175,8 @@ Symbol: \bigO
   Feature Set: dlmf-macro
 	DLMF: \bigO@{x}
 	DLMF-Link: dlmf.nist.gov/2.1#E3
+	Mathematica: O[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/O.html
 	Meanings: Landau notation O
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -4402,6 +4416,7 @@ Symbol: \contHahnpolyp
   Feature Set: dlmf-macro
 	DLMF: \contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}}
 	DLMF-Link: dlmf.nist.gov/18.19#P2.p1
+	Mathematica-Alternatives: I^($0)*Divide[Pochhammer[$2 + $4, $0]*Pochhammer[$2 + $5, $0], ($0)!] * HypergeometricPFQ[{-($0), $0 + 2*Re[$2 + $3] - 1, $2 + I*($1)}, {$2 + $4, $2 + $5}, 1]
 	Meanings: Continuous Hahn polynomial
 	Number of Ats: 1
 	Number of Parameters: 1

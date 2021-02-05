@@ -28,9 +28,26 @@ public class TeXPreProcessorTest {
     }
 
     @Test
+    public void environmentTest(){
+        String input = "\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array}";
+        String expect = "\\frac{m+1}{n}\\\\1+\\frac{m+1}{n}";
+
+        String output = TeXPreProcessor.removeTeXEnvironment( input );
+        assertEquals( expect, output, "Clear environment with setting didn't work." );
+    }
+
+    @Test
     public void paranthesisTest(){
         String input = "\\bigl( x \\bigr) \\bigg/ \\Big( y \\Big)";
         String expect = "( x ) / ( y )";
+        String output = TeXPreProcessor.preProcessingTeX( input );
+        assertEquals( expect, output );
+    }
+
+    @Test
+    public void caretBugAvoidTest(){
+        String input = "a^bc^de_qm^a";
+        String expect = "a^b c^d e_q m^a";
         String output = TeXPreProcessor.preProcessingTeX( input );
         assertEquals( expect, output );
     }

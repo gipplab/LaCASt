@@ -3461,11 +3461,11 @@
       "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
+          "translation" : "R == R[z , t] == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
           "translationInformation" : {
             "subEquations" : [
-              "R = R*(z , t)",
-              "R*(z , t) = (1 - 2*z*t + (t)^(2))^(Divide[1,2])"
+              "R = R[z , t]",
+              "R[z , t] = (1 - 2*z*t + (t)^(2))^(Divide[1,2])"
             ],
             "freeVariables" : [
               "R",
@@ -3473,15 +3473,17 @@
               "z"
             ],
             "constraints" : [ ],
-            "tokenTranslations" : { }
+            "tokenTranslations" : {
+              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
+            }
           }
         },
         "SymPy" : {
-          "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))",
+          "translation" : "R == R(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))",
           "translationInformation" : {
             "subEquations" : [
-              "R = R*(z , t)",
-              "R*(z , t) = (1 - 2*z*t + (t)**(2))**((1)/(2))"
+              "R = R(z , t)",
+              "R(z , t) = (1 - 2*z*t + (t)**(2))**((1)/(2))"
             ],
             "freeVariables" : [
               "R",
@@ -3489,15 +3491,17 @@
               "z"
             ],
             "constraints" : [ ],
-            "tokenTranslations" : { }
+            "tokenTranslations" : {
+              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
+            }
           }
         },
         "Maple" : {
-          "translation" : "R = R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))",
+          "translation" : "R = R(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))",
           "translationInformation" : {
             "subEquations" : [
-              "R = R*(z , t)",
-              "R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))"
+              "R = R(z , t)",
+              "R(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))"
             ],
             "freeVariables" : [
               "R",
@@ -3505,7 +3509,9 @@
               "z"
             ],
             "constraints" : [ ],
-            "tokenTranslations" : { }
+            "tokenTranslations" : {
+              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
+            }
           }
         }
       },
@@ -3538,45 +3544,48 @@
       "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "R*(z , 0) == 1",
+          "translation" : "R[z , 0] == 1",
           "translationInformation" : {
             "subEquations" : [
-              "R*(z , 0) = 1"
+              "R[z , 0] = 1"
             ],
             "freeVariables" : [
-              "R",
               "z"
             ],
             "constraints" : [ ],
-            "tokenTranslations" : { }
+            "tokenTranslations" : {
+              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
+            }
           }
         },
         "SymPy" : {
-          "translation" : "R*(z , 0) == 1",
+          "translation" : "R(z , 0) == 1",
           "translationInformation" : {
             "subEquations" : [
-              "R*(z , 0) = 1"
+              "R(z , 0) = 1"
             ],
             "freeVariables" : [
-              "R",
               "z"
             ],
             "constraints" : [ ],
-            "tokenTranslations" : { }
+            "tokenTranslations" : {
+              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
+            }
           }
         },
         "Maple" : {
-          "translation" : "R*(z , 0) = 1",
+          "translation" : "R(z , 0) = 1",
           "translationInformation" : {
             "subEquations" : [
-              "R*(z , 0) = 1"
+              "R(z , 0) = 1"
             ],
             "freeVariables" : [
-              "R",
               "z"
             ],
             "constraints" : [ ],
-            "tokenTranslations" : { }
+            "tokenTranslations" : {
+              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
+            }
           }
         }
       },
@@ -3609,43 +3618,43 @@
       "confidence" : 0.9378384212127765,
       "translations" : {
         "Mathematica" : {
-          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[N*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))",
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ \\[CapitalOmicron][(n)^(-Divide[3,2])]",
           "translationInformation" : {
             "subEquations" : [
-              "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] = (n)^(-Divide[1,2])* k*(\\[Theta])*Cos[N*\\[Theta]+ \\[Gamma]]+ O*((n)^(-Divide[3,2]))"
+              "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] = (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ \\[CapitalOmicron][(n)^(-Divide[3,2])]"
             ],
             "freeVariables" : [
               "N",
-              "O",
               "\\[Alpha]",
               "\\[Beta]",
+              "\\[CapitalOmicron]",
               "\\[Gamma]",
               "\\[Theta]",
-              "k",
               "n"
             ],
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "O" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
           }
         },
         "Maple" : {
-          "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)*cos(N*theta + gamma)+ O*((n)^(-(3)/(2)))",
+          "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ Omicron((n)^(-(3)/(2)))",
           "translationInformation" : {
             "subEquations" : [
-              "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k*(theta)*cos(N*theta + gamma)+ O*((n)^(-(3)/(2)))"
+              "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ Omicron((n)^(-(3)/(2)))"
             ],
             "freeVariables" : [
               "N",
-              "O",
+              "Omicron",
               "alpha",
               "beta",
               "gamma",
-              "k",
               "n",
               "theta"
             ],
@@ -3653,8 +3662,10 @@
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "O" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
           }
         }
@@ -3705,10 +3716,10 @@
       "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "k*(\\[Theta]) == (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nN == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])",
+          "translation" : "k[\\[Theta]] == (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])\nN == n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)\n\\[Gamma] == -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])",
           "translationInformation" : {
             "subEquations" : [
-              "k*(\\[Theta]) = (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])",
+              "k[\\[Theta]] = (Pi)^(-Divide[1,2])* (Sin[Divide[\\[Theta],2]])^(- \\[Alpha]-Divide[1,2])* (Cos[Divide[\\[Theta],2]])^(- \\[Beta]-Divide[1,2])",
               "N = n +Divide[1,2]*(\\[Alpha]+ \\[Beta]+ 1)",
               "\\[Gamma] = -Divide[Pi,2]*(\\[Alpha]+Divide[1,2])"
             ],
@@ -3718,12 +3729,12 @@
               "\\[Beta]",
               "\\[Gamma]",
               "\\[Theta]",
-              "k",
               "n"
             ],
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
+              "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
               "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
@@ -3732,10 +3743,10 @@
           }
         },
         "SymPy" : {
-          "translation" : "k*(Symbol('theta')) == (pi)**(-(1)/(2))* (sin((Symbol('theta'))/(2)))**(- Symbol('alpha')-(1)/(2))* (cos((Symbol('theta'))/(2)))**(- Symbol('beta')-(1)/(2))\nN == n +(1)/(2)*(Symbol('alpha')+ Symbol('beta')+ 1)\nSymbol('gamma') == -(pi)/(2)*(Symbol('alpha')+(1)/(2))",
+          "translation" : "k(Symbol('theta')) == (pi)**(-(1)/(2))* (sin((Symbol('theta'))/(2)))**(- Symbol('alpha')-(1)/(2))* (cos((Symbol('theta'))/(2)))**(- Symbol('beta')-(1)/(2))\nN == n +(1)/(2)*(Symbol('alpha')+ Symbol('beta')+ 1)\nSymbol('gamma') == -(pi)/(2)*(Symbol('alpha')+(1)/(2))",
           "translationInformation" : {
             "subEquations" : [
-              "k*(Symbol('theta')) = (pi)**(-(1)/(2))* (sin((Symbol('theta'))/(2)))**(- Symbol('alpha')-(1)/(2))* (cos((Symbol('theta'))/(2)))**(- Symbol('beta')-(1)/(2))",
+              "k(Symbol('theta')) = (pi)**(-(1)/(2))* (sin((Symbol('theta'))/(2)))**(- Symbol('alpha')-(1)/(2))* (cos((Symbol('theta'))/(2)))**(- Symbol('beta')-(1)/(2))",
               "N = n +(1)/(2)*(Symbol('alpha')+ Symbol('beta')+ 1)",
               "Symbol('gamma') = -(pi)/(2)*(Symbol('alpha')+(1)/(2))"
             ],
@@ -3745,12 +3756,12 @@
               "Symbol('beta')",
               "Symbol('gamma')",
               "Symbol('theta')",
-              "k",
               "n"
             ],
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nSymPy: https://docs.sympy.org/latest/modules/functions/elementary.html#cos",
+              "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: pi",
               "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
@@ -3759,10 +3770,10 @@
           }
         },
         "Maple" : {
-          "translation" : "k*(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); N = n +(1)/(2)*(alpha + beta + 1); gamma = -(Pi)/(2)*(alpha +(1)/(2))",
+          "translation" : "k(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2)); N = n +(1)/(2)*(alpha + beta + 1); gamma = -(Pi)/(2)*(alpha +(1)/(2))",
           "translationInformation" : {
             "subEquations" : [
-              "k*(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2))",
+              "k(theta) = (Pi)^(-(1)/(2))* (sin((theta)/(2)))^(- alpha -(1)/(2))* (cos((theta)/(2)))^(- beta -(1)/(2))",
               "N = n +(1)/(2)*(alpha + beta + 1)",
               "gamma = -(Pi)/(2)*(alpha +(1)/(2))"
             ],
@@ -3771,13 +3782,13 @@
               "alpha",
               "beta",
               "gamma",
-              "k",
               "n",
               "theta"
             ],
             "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
+              "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
               "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
@@ -4141,15 +4152,13 @@
       "confidence" : 0.8808458503239184,
       "translations" : {
         "Mathematica" : {
-          "translation" : "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)\nLimit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Pi -Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)",
+          "translation" : "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]][z]\nLimit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Pi -Divide[z,n]]], n -> Infinity, GenerateConditions->None] == (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]][z]",
           "translationInformation" : {
             "subEquations" : [
-              "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] = (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]]*(z)",
-              "Limit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Pi -Divide[z,n]]], n -> Infinity, GenerateConditions->None] = (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]]*(z)"
+              "Limit[(n)^(- \\[Alpha])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Divide[z,n]]], n -> Infinity, GenerateConditions->None] = (Divide[z,2])^(- \\[Alpha])* Subscript[J, \\[Alpha]][z]",
+              "Limit[(n)^(- \\[Beta])* JacobiP[n, \\[Alpha], \\[Beta], Cos[Pi -Divide[z,n]]], n -> Infinity, GenerateConditions->None] = (Divide[z,2])^(- \\[Beta])* Subscript[J, \\[Beta]][z]"
             ],
             "freeVariables" : [
-              "Subscript[J, \\[Alpha]]",
-              "Subscript[J, \\[Beta]]",
               "\\[Alpha]",
               "\\[Beta]",
               "z"
@@ -4158,21 +4167,20 @@
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
+              "J" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
         "Maple" : {
-          "translation" : "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z); limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(Pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)",
+          "translation" : "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha](z); limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(Pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta](z)",
           "translationInformation" : {
             "subEquations" : [
-              "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha]*(z)",
-              "limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(Pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta]*(z)"
+              "limit((n)^(- alpha)* JacobiP(n, alpha, beta, cos((z)/(n))), n = infinity) = ((z)/(2))^(- alpha)* J[alpha](z)",
+              "limit((n)^(- beta)* JacobiP(n, alpha, beta, cos(Pi -(z)/(n))), n = infinity) = ((z)/(2))^(- beta)* J[beta](z)"
             ],
             "freeVariables" : [
-              "J[alpha]",
-              "J[beta]",
               "alpha",
               "beta",
               "z"
@@ -4181,6 +4189,7 @@
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
+              "J" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
             }

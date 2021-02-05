@@ -64,7 +64,7 @@ public class LetterTranslator extends AbstractListTranslator {
                         Keys.FEATURE_VALUE_CONSTANT
                 );
 
-        TranslatedExpression tmp = broadcastTranslation(term, constantSet);
+        TranslatedExpression tmp = broadcastTranslation(exp, term, constantSet);
         this.exp = null;
         this.following_exp = null;
         return tmp;
@@ -75,7 +75,7 @@ public class LetterTranslator extends AbstractListTranslator {
         return localTranslations;
     }
 
-    private TranslatedExpression broadcastTranslation(MathTerm term, FeatureSet constantSet) {
+    private TranslatedExpression broadcastTranslation(PomTaggedExpression pte, MathTerm term, FeatureSet constantSet) {
         MathTermTags tag = MathTermTags.getTagByMathTerm(term);
         TranslatedExpression te;
         switch (tag) {
@@ -97,7 +97,7 @@ public class LetterTranslator extends AbstractListTranslator {
                 // so there is no \ in front of the text.
                 // that's why a constant here is the same like a alphanumeric expression
                 // ==> do nothing and switch to alphanumeric
-                te = parseAlphanumeric(term, constantSet);
+                te = parseAlphanumeric(pte, term, constantSet);
                 break;
             default:
                 throw TranslationException.buildException(this,
@@ -214,16 +214,23 @@ public class LetterTranslator extends AbstractListTranslator {
         return false;
     }
 
-    private TranslatedExpression parseAlphanumeric(MathTerm term, FeatureSet constantSet) {
+    private TranslatedExpression parseAlphanumeric(PomTaggedExpression pte, MathTerm term, FeatureSet constantSet) {
         TranslatedExpression te = tryParseGreekOrConstant(term, constantSet);
         if ( te != null ) return te;
+
+        boolean isUnderscore = false;
+        if ( pte.getParent() != null && MathTermUtility.equals( pte.getParent().getRoot(), MathTermTags.underscore ) )
+            isUnderscore = true;
 
         String alpha = term.getTermText();
         String var, output;
         // add multiplication symbol between all letters
         for (int i = 0; i < alpha.length() - 1; i++) {
             var = ""+alpha.charAt(i);
-            output = var + getConfig().getMULTIPLY();
+            if ( isUnderscore ) {
+                // in case of underscore, it is a list rather than a multiplication...
+                output = var + ", ";
+            } else output = var + getConfig().getMULTIPLY();
             // add it to local and global
 
             perform(TranslatedExpression::addTranslatedExpression, output);

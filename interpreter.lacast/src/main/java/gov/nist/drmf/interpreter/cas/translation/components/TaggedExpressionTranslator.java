@@ -47,7 +47,8 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
 
         // no tag shouldn't happen
         if ( expTag == null ) {
-            throw TranslationException.buildException(this, "Empty expression tag",
+            throw TranslationException.buildException(this,
+                    "Empty expression tag. Unable to translate: " + expression.getRoot().getTermText(),
                     TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
 

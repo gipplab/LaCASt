@@ -209,6 +209,16 @@ public class PrintablePomTaggedExpressionTests {
     }
 
     @Test
+    public void emptyExpressionTest() throws ParseException {
+        String texString = "x + {}_1 F_2";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps, "x", "+", "{}", "_1", "F", "_2");
+    }
+
+    @Test
     public void semanticLaTeXTest() throws ParseException, IOException {
         String texString = "\\JacobiP{\\alpha}{\\beta}{n}@{a+\\cos@{x}}";
         SemanticMLPWrapper smlp = SemanticMLPWrapper.getStandardInstance();
@@ -746,6 +756,35 @@ public class PrintablePomTaggedExpressionTests {
                 "(", "2", "n", "+", "\\alpha", "+", "\\beta", "-", "1", ")",
                 "\\{", "z", "+", "\\alpha", "^2", "-", "\\beta", "^2", "\\}",
                 "z", ","
+        );
+    }
+
+    @Test
+    public void environmentExtremeHardTest() throws ParseException {
+        String texString = "\\begin{align}" +
+                    "\\int x^m \\exp(ix^n)dx & =\\frac{x^{m+1}}{m+1}_1F_1\\left(" +
+                        "\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array}" +
+                    "\\mid ix^n\\right) \\\\" +
+                "& =\\frac{1}{n} i^{(m+1)/n}\\gamma\\left(\\frac{m+1}{n},-ix^n\\right),\\end{align}";
+        PrintablePomTaggedExpression ppte = mlp.parse(texString);
+        assertEquals(texString, ppte.getTexString());
+
+        List<PrintablePomTaggedExpression> printComps = ppte.getPrintableComponents();
+        checkList(printComps,
+                "\\int x^m \\exp(ix^n)dx & =\\frac{x^{m+1}}{m+1}_1F_1\\left(\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array}\\mid ix^n\\right)",
+                "& =\\frac{1}{n} i^{(m+1)/n}\\gamma\\left(\\frac{m+1}{n},-ix^n\\right),"
+        );
+
+        List<PrintablePomTaggedExpression> printComps1 = printComps.get(0).getPrintableComponents();
+        checkList(printComps1,
+                "\\int x^m \\exp(ix^n)dx",
+                "=\\frac{x^{m+1}}{m+1}_1F_1\\left(\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array}\\mid ix^n\\right)"
+        );
+
+        List<PrintablePomTaggedExpression> printComps2 = printComps.get(1).getPrintableComponents();
+        checkList(printComps2,
+                "",
+                "=\\frac{1}{n} i^{(m+1)/n}\\gamma\\left(\\frac{m+1}{n},-ix^n\\right),"
         );
     }
 

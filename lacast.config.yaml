@@ -25,3 +25,4 @@ lacast.generic:
     max.macros: 5
     max.depth: -1
     suppressMacros: ["pgcd"]
+#    supportDescriptions: ["Euler gamma function"]

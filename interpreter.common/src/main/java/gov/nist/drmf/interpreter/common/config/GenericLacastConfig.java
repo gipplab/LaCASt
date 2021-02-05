@@ -106,6 +106,14 @@ public class GenericLacastConfig {
         this.settings.suppressedMacros = suppressedMacros;
     }
 
+    public List<String> getSupportDescriptions() {
+        return settings.supportDescriptions;
+    }
+
+    public void setSupportDescriptions(List<String> supportDescriptions) {
+        this.settings.supportDescriptions = supportDescriptions;
+    }
+
     public ElasticSearchConfig getESConfig() {
         return new ElasticSearchConfig(
                 esHost, esPort, macroIndex
@@ -138,6 +146,9 @@ public class GenericLacastConfig {
 
         @JsonProperty("suppressMacros")
         private List<String> suppressedMacros = new LinkedList<>();
+
+        @JsonProperty("supportDescriptions")
+        private List<String> supportDescriptions = new LinkedList<>();
 
         public Settings() {}
     }

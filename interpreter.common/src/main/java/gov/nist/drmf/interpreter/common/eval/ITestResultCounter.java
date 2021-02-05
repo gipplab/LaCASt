@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 
 public interface ITestResultCounter {
 
+    boolean wasAborted();
+
     void increaseNumberOfSuccessfulTests();
 
     void increaseNumberOfFailedTests();

@@ -573,9 +573,9 @@ public enum Brackets {
             return Brackets.abs_val_open;
         } else if (isAbsValueClosedBracket(currentOpenBracket, bracket)) {
             return Brackets.abs_val_close;
-        } else {
-            return bracket;
-        }
+        } else if ( (currentOpenBracket == null || Brackets.fence_open.equals(currentOpenBracket)) && Brackets.fence_open.equals(bracket) ){
+            return Brackets.fence_close;
+        } else return bracket;
     }
 
     private static boolean isAbsValueClosedBracket(Brackets currentOpenBracket, Brackets bracket) {
