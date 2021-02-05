@@ -1,0 +1,973 @@
+/usr/lib/jvm/java-1.11.0-openjdk-amd64/bin/java -Xss100M -Didea.launcher.port=46785 -Didea.launcher.bin.path=/opt/intellij/bin -Dfile.encoding=UTF-8 -classpath /mnt/share/Projects/LaCASt/interpreter.generic/target/classes:/mnt/share/Projects/LaCASt/interpreter.pom/target/classes:/mnt/share/Projects/LaCASt/interpreter.common/target/classes:/home/andreg-p/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-yaml/2.11.0/jackson-dataformat-yaml-2.11.0.jar:/home/andreg-p/.m2/repository/org/yaml/snakeyaml/1.26/snakeyaml-1.26.jar:/home/andreg-p/.m2/repository/com/google/code/gson/gson/2.8.6/gson-2.8.6.jar:/home/andreg-p/.m2/repository/org/hamcrest/hamcrest/2.2/hamcrest-2.2.jar:/home/andreg-p/.m2/repository/org/jetbrains/annotations/19.0.0/annotations-19.0.0.jar:/home/andreg-p/.m2/repository/org/graphstream/gs-core/2.0/gs-core-2.0.jar:/home/andreg-p/.m2/repository/org/graphstream/pherd/1.0/pherd-1.0.jar:/home/andreg-p/.m2/repository/org/graphstream/mbox2/1.0/mbox2-1.0.jar:/home/andreg-p/.m2/repository/org/graphstream/gs-ui-swing/2.0/gs-ui-swing-2.0.jar:/home/andreg-p/.m2/repository/gov/nist/drmf/interpreter/mlp/1.1/mlp-1.1.jar:/mnt/share/Projects/LaCASt/interpreter.lacast/target/classes:/home/andreg-p/.m2/repository/commons-cli/commons-cli/1.4/commons-cli-1.4.jar:/home/andreg-p/.m2/repository/org/apache/commons/commons-text/1.8/commons-text-1.8.jar:/home/andreg-p/.m2/repository/com/thoughtworks/xstream/xstream/1.4.15/xstream-1.4.15.jar:/home/andreg-p/.m2/repository/xmlpull/xmlpull/1.1.3.1/xmlpull-1.1.3.1.jar:/home/andreg-p/.m2/repository/xpp3/xpp3_min/1.1.4c/xpp3_min-1.1.4c.jar:/mnt/share/Projects/LaCASt/interpreter.core/target/classes:/mnt/share/Projects/LaCASt/interpreter.mathematica/target/classes:/home/andreg-p/.m2/repository/gov/nist/drmf/interpreter/mathematica/1.0/mathematica-1.0.jar:/mnt/share/Projects/LaCASt/interpreter.maple/target/classes:/home/andreg-p/.m2/repository/gov/nist/drmf/interpreter/maple/2020.1/maple-2020.1.jar:/home/andreg-p/.m2/repository/gov/nist/drmf/interpreter/maple-call/2020.1/maple-call-2020.1.jar:/home/andreg-p/.m2/repository/commons-io/commons-io/2.6/commons-io-2.6.jar:/home/andreg-p/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.11.0/jackson-databind-2.11.0.jar:/home/andreg-p/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.11.0/jackson-annotations-2.11.0.jar:/home/andreg-p/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.11.0/jackson-core-2.11.0.jar:/home/andreg-p/.m2/repository/org/elasticsearch/client/elasticsearch-rest-high-level-client/7.6.1/elasticsearch-rest-high-level-client-7.6.1.jar:/home/andreg-p/.m2/repository/org/elasticsearch/elasticsearch/7.6.1/elasticsearch-7.6.1.jar:/home/andreg-p/.m2/repository/org/elasticsearch/elasticsearch-core/7.6.1/elasticsearch-core-7.6.1.jar:/home/andreg-p/.m2/repository/org/elasticsearch/elasticsearch-secure-sm/7.6.1/elasticsearch-secure-sm-7.6.1.jar:/home/andreg-p/.m2/repository/org/elasticsearch/elasticsearch-x-content/7.6.1/elasticsearch-x-content-7.6.1.jar:/home/andreg-p/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-smile/2.8.11/jackson-dataformat-smile-2.8.11.jar:/home/andreg-p/.m2/repository/com/fasterxml/jackson/dataformat/jackson-dataformat-cbor/2.8.11/jackson-dataformat-cbor-2.8.11.jar:/home/andreg-p/.m2/repository/org/elasticsearch/elasticsearch-geo/7.6.1/elasticsearch-geo-7.6.1.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-core/8.4.0/lucene-core-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-analyzers-common/8.4.0/lucene-analyzers-common-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-backward-codecs/8.4.0/lucene-backward-codecs-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-grouping/8.4.0/lucene-grouping-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-highlighter/8.4.0/lucene-highlighter-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-join/8.4.0/lucene-join-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-memory/8.4.0/lucene-memory-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-misc/8.4.0/lucene-misc-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-queries/8.4.0/lucene-queries-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-queryparser/8.4.0/lucene-queryparser-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-sandbox/8.4.0/lucene-sandbox-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-spatial/8.4.0/lucene-spatial-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-spatial-extras/8.4.0/lucene-spatial-extras-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-spatial3d/8.4.0/lucene-spatial3d-8.4.0.jar:/home/andreg-p/.m2/repository/org/apache/lucene/lucene-suggest/8.4.0/lucene-suggest-8.4.0.jar:/home/andreg-p/.m2/repository/org/elasticsearch/elasticsearch-cli/7.6.1/elasticsearch-cli-7.6.1.jar:/home/andreg-p/.m2/repository/net/sf/jopt-simple/jopt-simple/5.0.2/jopt-simple-5.0.2.jar:/home/andreg-p/.m2/repository/com/carrotsearch/hppc/0.8.1/hppc-0.8.1.jar:/home/andreg-p/.m2/repository/joda-time/joda-time/2.10.4/joda-time-2.10.4.jar:/home/andreg-p/.m2/repository/com/tdunning/t-digest/3.2/t-digest-3.2.jar:/home/andreg-p/.m2/repository/org/hdrhistogram/HdrHistogram/2.1.9/HdrHistogram-2.1.9.jar:/home/andreg-p/.m2/repository/org/elasticsearch/jna/4.5.1/jna-4.5.1.jar:/home/andreg-p/.m2/repository/org/elasticsearch/client/elasticsearch-rest-client/7.6.1/elasticsearch-rest-client-7.6.1.jar:/home/andreg-p/.m2/repository/org/apache/httpcomponents/httpcore/4.4.12/httpcore-4.4.12.jar:/home/andreg-p/.m2/repository/org/apache/httpcomponents/httpasyncclient/4.1.4/httpasyncclient-4.1.4.jar:/home/andreg-p/.m2/repository/org/apache/httpcomponents/httpcore-nio/4.4.12/httpcore-nio-4.4.12.jar:/home/andreg-p/.m2/repository/commons-codec/commons-codec/1.11/commons-codec-1.11.jar:/home/andreg-p/.m2/repository/commons-logging/commons-logging/1.1.3/commons-logging-1.1.3.jar:/home/andreg-p/.m2/repository/org/elasticsearch/plugin/mapper-extras-client/7.6.1/mapper-extras-client-7.6.1.jar:/home/andreg-p/.m2/repository/org/elasticsearch/plugin/parent-join-client/7.6.1/parent-join-client-7.6.1.jar:/home/andreg-p/.m2/repository/org/elasticsearch/plugin/aggs-matrix-stats-client/7.6.1/aggs-matrix-stats-client-7.6.1.jar:/home/andreg-p/.m2/repository/org/elasticsearch/plugin/rank-eval-client/7.6.1/rank-eval-client-7.6.1.jar:/home/andreg-p/.m2/repository/org/elasticsearch/plugin/lang-mustache-client/7.6.1/lang-mustache-client-7.6.1.jar:/home/andreg-p/.m2/repository/com/github/spullara/mustache/java/compiler/0.9.6/compiler-0.9.6.jar:/mnt/share/Projects/LaCASt/mathosphere/mathosphere-core/target/classes:/home/andreg-p/.m2/repository/org/apache/logging/log4j/log4j-1.2-api/2.10.0/log4j-1.2-api-2.10.0.jar:/home/andreg-p/.m2/repository/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar:/home/andreg-p/.m2/repository/org/apache/logging/log4j/log4j-slf4j-impl/2.10.0/log4j-slf4j-impl-2.10.0.jar:/mnt/share/Projects/LaCASt/mathosphere/evaluation/target/classes:/home/andreg-p/.m2/repository/com/google/guava/guava/23.0/guava-23.0.jar:/home/andreg-p/.m2/repository/com/google/code/findbugs/jsr305/1.3.9/jsr305-1.3.9.jar:/home/andreg-p/.m2/repository/com/google/errorprone/error_prone_annotations/2.0.18/error_prone_annotations-2.0.18.jar:/home/andreg-p/.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar:/home/andreg-p/.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar:/home/andreg-p/.m2/repository/net/sf/saxon/Saxon-HE/9.5.1-6/Saxon-HE-9.5.1-6.jar:/mnt/share/Projects/LaCASt/mathosphere/lib/MathMLTools/mathml-core/target/classes:/mnt/share/Projects/LaCASt/mathosphere/lib/MathMLTools/mathml-utils/target/classes:/home/andreg-p/.m2/repository/org/unbescape/unbescape/1.1.6.RELEASE/unbescape-1.1.6.RELEASE.jar:/home/andreg-p/.m2/repository/org/xmlunit/xmlunit-matchers/2.6.3/xmlunit-matchers-2.6.3.jar:/home/andreg-p/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/andreg-p/.m2/repository/org/xmlunit/xmlunit-core/2.6.3/xmlunit-core-2.6.3.jar:/home/andreg-p/.m2/repository/cz/muni/fi/mir/mathml-canonicalizer/1.3.1/mathml-canonicalizer-1.3.1.jar:/home/andreg-p/.m2/repository/org/jdom/jdom2/2.0.6/jdom2-2.0.6.jar:/home/andreg-p/.m2/repository/jaxen/jaxen/1.1.6/jaxen-1.1.6.jar:/home/andreg-p/.m2/repository/xmlunit/xmlunit/1.6/xmlunit-1.6.jar:/home/andreg-p/.m2/repository/org/apache/commons/commons-lang3/3.10/commons-lang3-3.10.jar:/home/andreg-p/.m2/repository/org/eclipse/mylyn/wikitext/wikitext.mediawiki/0.9.4.I20090220-1600-e3x/wikitext.mediawiki-0.9.4.I20090220-1600-e3x.jar:/home/andreg-p/.m2/repository/org/eclipse/mylyn/wikitext/wikitext/0.9.4.I20090220-1600-e3x/wikitext-0.9.4.I20090220-1600-e3x.jar:/home/andreg-p/.m2/repository/org/netbeans/external/org-eclipse-mylyn-wikitext-core/RELEASE113/org-eclipse-mylyn-wikitext-core-RELEASE113.jar:/home/andreg-p/.m2/repository/org/netbeans/external/com-google-guava/RELEASE113/com-google-guava-RELEASE113.jar:/home/andreg-p/.m2/repository/com/beust/jcommander/1.72/jcommander-1.72.jar:/home/andreg-p/.m2/repository/org/sweble/wikitext/swc-engine/3.1.9/swc-engine-3.1.9.jar:/home/andreg-p/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/home/andreg-p/.m2/repository/xtc/rats-runtime/1.15.0/rats-runtime-1.15.0.jar:/home/andreg-p/.m2/repository/com/sun/xml/bind/jaxb-impl/2.2.5/jaxb-impl-2.2.5.jar:/home/andreg-p/.m2/repository/de/fau/cs/osr/utils/utils/3.0.8/utils-3.0.8.jar:/home/andreg-p/.m2/repository/de/fau/cs/osr/ptk/ptk-common/3.0.8/ptk-common-3.0.8.jar:/home/andreg-p/.m2/repository/org/sweble/wikitext/swc-parser-lazy/3.1.9/swc-parser-lazy-3.1.9.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-java/1.11.2/flink-java-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-core/1.11.2/flink-core-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-annotations/1.11.2/flink-annotations-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-metrics-core/1.11.2/flink-metrics-core-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-shaded-asm-7/7.1-11.0/flink-shaded-asm-7-7.1-11.0.jar:/home/andreg-p/.m2/repository/com/esotericsoftware/kryo/kryo/2.24.0/kryo-2.24.0.jar:/home/andreg-p/.m2/repository/com/esotericsoftware/minlog/minlog/1.2/minlog-1.2.jar:/home/andreg-p/.m2/repository/org/objenesis/objenesis/2.1/objenesis-2.1.jar:/home/andreg-p/.m2/repository/org/apache/commons/commons-compress/1.20/commons-compress-1.20.jar:/home/andreg-p/.m2/repository/org/apache/commons/commons-math3/3.5/commons-math3-3.5.jar:/home/andreg-p/.m2/repository/org/apache/flink/force-shading/1.11.2/force-shading-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-streaming-java_2.12/1.11.2/flink-streaming-java_2.12-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-runtime_2.12/1.11.2/flink-runtime_2.12-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-queryable-state-client-java/1.11.2/flink-queryable-state-client-java-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-hadoop-fs/1.11.2/flink-hadoop-fs-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-shaded-zookeeper-3/3.4.14-11.0/flink-shaded-zookeeper-3-3.4.14-11.0.jar:/home/andreg-p/.m2/repository/org/javassist/javassist/3.24.0-GA/javassist-3.24.0-GA.jar:/home/andreg-p/.m2/repository/org/scala-lang/scala-library/2.12.7/scala-library-2.12.7.jar:/home/andreg-p/.m2/repository/com/typesafe/akka/akka-actor_2.12/2.5.21/akka-actor_2.12-2.5.21.jar:/home/andreg-p/.m2/repository/com/typesafe/config/1.3.3/config-1.3.3.jar:/home/andreg-p/.m2/repository/org/scala-lang/modules/scala-java8-compat_2.12/0.8.0/scala-java8-compat_2.12-0.8.0.jar:/home/andreg-p/.m2/repository/com/typesafe/akka/akka-stream_2.12/2.5.21/akka-stream_2.12-2.5.21.jar:/home/andreg-p/.m2/repository/org/reactivestreams/reactive-streams/1.0.2/reactive-streams-1.0.2.jar:/home/andreg-p/.m2/repository/com/typesafe/ssl-config-core_2.12/0.3.7/ssl-config-core_2.12-0.3.7.jar:/home/andreg-p/.m2/repository/org/scala-lang/modules/scala-parser-combinators_2.12/1.1.1/scala-parser-combinators_2.12-1.1.1.jar:/home/andreg-p/.m2/repository/com/typesafe/akka/akka-protobuf_2.12/2.5.21/akka-protobuf_2.12-2.5.21.jar:/home/andreg-p/.m2/repository/com/typesafe/akka/akka-slf4j_2.12/2.5.21/akka-slf4j_2.12-2.5.21.jar:/home/andreg-p/.m2/repository/org/clapper/grizzled-slf4j_2.12/1.3.2/grizzled-slf4j_2.12-1.3.2.jar:/home/andreg-p/.m2/repository/com/github/scopt/scopt_2.12/3.5.0/scopt_2.12-3.5.0.jar:/home/andreg-p/.m2/repository/org/xerial/snappy/snappy-java/1.1.4/snappy-java-1.1.4.jar:/home/andreg-p/.m2/repository/com/twitter/chill_2.12/0.7.6/chill_2.12-0.7.6.jar:/home/andreg-p/.m2/repository/com/twitter/chill-java/0.7.6/chill-java-0.7.6.jar:/home/andreg-p/.m2/repository/org/lz4/lz4-java/1.6.0/lz4-java-1.6.0.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-shaded-guava/18.0-11.0/flink-shaded-guava-18.0-11.0.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-clients_2.12/1.11.2/flink-clients_2.12-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-optimizer_2.12/1.11.2/flink-optimizer_2.12-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-runtime-web_2.12/1.11.2/flink-runtime-web_2.12-1.11.2.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-shaded-netty/4.1.39.Final-11.0/flink-shaded-netty-4.1.39.Final-11.0.jar:/home/andreg-p/.m2/repository/org/apache/flink/flink-shaded-jackson/2.10.1-11.0/flink-shaded-jackson-2.10.1-11.0.jar:/home/andreg-p/.m2/repository/nz/ac/waikato/cms/weka/LibSVM/1.0.10/LibSVM-1.0.10.jar:/home/andreg-p/.m2/repository/nz/ac/waikato/cms/weka/weka-dev/3.9.5/weka-dev-3.9.5.jar:/home/andreg-p/.m2/repository/com/github/vbmacher/java-cup/11b-20160615/java-cup-11b-20160615.jar:/home/andreg-p/.m2/repository/com/github/vbmacher/java-cup-runtime/11b-20160615/java-cup-runtime-11b-20160615.jar:/home/andreg-p/.m2/repository/com/github/fracpete/jfilechooser-bookmarks/0.1.6/jfilechooser-bookmarks-0.1.6.jar:/home/andreg-p/.m2/repository/com/github/fracpete/jclipboardhelper/0.1.0/jclipboardhelper-0.1.0.jar:/home/andreg-p/.m2/repository/com/sun/istack/istack-commons-runtime/3.0.11/istack-commons-runtime-3.0.11.jar:/home/andreg-p/.m2/repository/jakarta/activation/jakarta.activation-api/1.2.2/jakarta.activation-api-1.2.2.jar:/home/andreg-p/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/2.3.3/jakarta.xml.bind-api-2.3.3.jar:/home/andreg-p/.m2/repository/org/glassfish/jaxb/jaxb-runtime/2.3.3/jaxb-runtime-2.3.3.jar:/home/andreg-p/.m2/repository/org/glassfish/jaxb/txw2/2.3.3/txw2-2.3.3.jar:/home/andreg-p/.m2/repository/com/sun/activation/jakarta.activation/1.2.2/jakarta.activation-1.2.2.jar:/home/andreg-p/.m2/repository/tw/edu/ntu/csie/libsvm/3.24/libsvm-3.24.jar:/home/andreg-p/.m2/repository/nz/ac/waikato/cms/weka/SMOTE/1.0.3/SMOTE-1.0.3.jar:/home/andreg-p/.m2/repository/nz/ac/waikato/cms/weka/weka-stable/3.8.1/weka-stable-3.8.1.jar:/home/andreg-p/.m2/repository/nz/ac/waikato/cms/weka/thirdparty/java-cup-11b/2015.03.26/java-cup-11b-2015.03.26.jar:/home/andreg-p/.m2/repository/nz/ac/waikato/cms/weka/thirdparty/java-cup-11b-runtime/2015.03.26/java-cup-11b-runtime-2015.03.26.jar:/home/andreg-p/.m2/repository/nz/ac/waikato/cms/weka/thirdparty/bounce/0.18/bounce-0.18.jar:/home/andreg-p/.m2/repository/com/googlecode/matrix-toolkits-java/mtj/1.0.4/mtj-1.0.4.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_ref-osx-x86_64/1.1/netlib-native_ref-osx-x86_64-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/native_ref-java/1.1/native_ref-java-1.1.jar:/home/andreg-p/.m2/repository/com/github/fommil/jniloader/1.1/jniloader-1.1.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_ref-linux-x86_64/1.1/netlib-native_ref-linux-x86_64-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_ref-linux-i686/1.1/netlib-native_ref-linux-i686-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_ref-win-x86_64/1.1/netlib-native_ref-win-x86_64-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_ref-win-i686/1.1/netlib-native_ref-win-i686-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_ref-linux-armhf/1.1/netlib-native_ref-linux-armhf-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_system-osx-x86_64/1.1/netlib-native_system-osx-x86_64-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/native_system-java/1.1/native_system-java-1.1.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_system-linux-x86_64/1.1/netlib-native_system-linux-x86_64-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_system-linux-i686/1.1/netlib-native_system-linux-i686-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_system-linux-armhf/1.1/netlib-native_system-linux-armhf-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_system-win-x86_64/1.1/netlib-native_system-win-x86_64-1.1-natives.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/netlib-native_system-win-i686/1.1/netlib-native_system-win-i686-1.1-natives.jar:/home/andreg-p/.m2/repository/net/sourceforge/f2j/arpack_combined_all/0.1/arpack_combined_all-0.1.jar:/home/andreg-p/.m2/repository/com/googlecode/netlib-java/netlib-java/1.1/netlib-java-1.1.jar:/home/andreg-p/.m2/repository/com/github/fommil/netlib/core/1.1/core-1.1.jar:/home/andreg-p/.m2/repository/uk/ac/ed/ph/snuggletex/snuggletex-core/1.2.2/snuggletex-core-1.2.2.jar:/home/andreg-p/.m2/repository/com/alexeygrigorev/rseq/0.0.1/rseq-0.0.1.jar:/home/andreg-p/.m2/repository/com/fasterxml/jackson/jr/jackson-jr-objects/2.11.0/jackson-jr-objects-2.11.0.jar:/home/andreg-p/.m2/repository/edu/stanford/nlp/stanford-corenlp/4.0.0/stanford-corenlp-4.0.0.jar:/home/andreg-p/.m2/repository/com/apple/AppleJavaExtensions/1.4/AppleJavaExtensions-1.4.jar:/home/andreg-p/.m2/repository/de/jollyday/jollyday/0.4.9/jollyday-0.4.9.jar:/home/andreg-p/.m2/repository/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar:/home/andreg-p/.m2/repository/xom/xom/1.3.2/xom-1.3.2.jar:/home/andreg-p/.m2/repository/xml-apis/xml-apis/1.3.03/xml-apis-1.3.03.jar:/home/andreg-p/.m2/repository/xerces/xercesImpl/2.8.0/xercesImpl-2.8.0.jar:/home/andreg-p/.m2/repository/xalan/xalan/2.7.0/xalan-2.7.0.jar:/home/andreg-p/.m2/repository/org/ejml/ejml-core/0.38/ejml-core-0.38.jar:/home/andreg-p/.m2/repository/org/ejml/ejml-ddense/0.38/ejml-ddense-0.38.jar:/home/andreg-p/.m2/repository/org/ejml/ejml-simple/0.38/ejml-simple-0.38.jar:/home/andreg-p/.m2/repository/org/ejml/ejml-fdense/0.38/ejml-fdense-0.38.jar:/home/andreg-p/.m2/repository/org/ejml/ejml-cdense/0.38/ejml-cdense-0.38.jar:/home/andreg-p/.m2/repository/org/ejml/ejml-zdense/0.38/ejml-zdense-0.38.jar:/home/andreg-p/.m2/repository/org/ejml/ejml-dsparse/0.38/ejml-dsparse-0.38.jar:/home/andreg-p/.m2/repository/org/glassfish/javax.json/1.0.4/javax.json-1.0.4.jar:/home/andreg-p/.m2/repository/com/google/protobuf/protobuf-java/3.9.2/protobuf-java-3.9.2.jar:/home/andreg-p/.m2/repository/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar:/home/andreg-p/.m2/repository/javax/xml/bind/jaxb-api/2.4.0-b180830.0359/jaxb-api-2.4.0-b180830.0359.jar:/home/andreg-p/.m2/repository/com/sun/xml/bind/jaxb-core/2.3.0.1/jaxb-core-2.3.0.1.jar:/home/andreg-p/.m2/repository/edu/stanford/nlp/stanford-corenlp/4.0.0/stanford-corenlp-4.0.0-models.jar:/home/andreg-p/.m2/repository/edu/stanford/nlp/stanford-corenlp/3.9.2/stanford-corenlp-3.9.2-models-german.jar:/home/andreg-p/.m2/repository/com/io7m/xom/xom/1.2.10/xom-1.2.10.jar:/home/andreg-p/.m2/repository/com/googlecode/efficient-java-matrix-library/ejml/0.23/ejml-0.23.jar:/home/andreg-p/.m2/repository/com/jcabi/jcabi-xml/0.20/jcabi-xml-0.20.jar:/home/andreg-p/.m2/repository/com/jcabi/jcabi-log/0.17.2/jcabi-log-0.17.2.jar:/home/andreg-p/.m2/repository/com/jcabi/jcabi-aspects/0.22/jcabi-aspects-0.22.jar:/home/andreg-p/.m2/repository/org/aspectj/aspectjrt/1.8.4/aspectjrt-1.8.4.jar:/home/andreg-p/.m2/repository/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar:/home/andreg-p/.m2/repository/com/jcabi/jcabi-immutable/1.4/jcabi-immutable-1.4.jar:/home/andreg-p/.m2/repository/org/cactoos/cactoos/0.5/cactoos-0.5.jar:/home/andreg-p/.m2/repository/org/apache/commons/commons-csv/1.2/commons-csv-1.2.jar:/home/andreg-p/.m2/repository/net/sf/json-lib/json-lib/2.4/json-lib-2.4-jdk15.jar:/home/andreg-p/.m2/repository/commons-beanutils/commons-beanutils/1.8.0/commons-beanutils-1.8.0.jar:/home/andreg-p/.m2/repository/commons-lang/commons-lang/2.5/commons-lang-2.5.jar:/home/andreg-p/.m2/repository/net/sf/ezmorph/ezmorph/1.0.6/ezmorph-1.0.6.jar:/home/andreg-p/.m2/repository/com/fasterxml/jackson/datatype/jackson-datatype-guava/2.11.0/jackson-datatype-guava-2.11.0.jar:/home/andreg-p/.m2/repository/org/apache/httpcomponents/httpclient/4.5.3/httpclient-4.5.3.jar:/home/andreg-p/.m2/repository/org/apache/httpcomponents/httpclient-cache/4.5.3/httpclient-cache-4.5.3.jar:/home/andreg-p/.m2/repository/javax/annotation/javax.annotation-api/1.3.2/javax.annotation-api-1.3.2.jar:/home/andreg-p/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.0/junit-jupiter-api-5.6.0.jar:/home/andreg-p/.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar:/home/andreg-p/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/andreg-p/.m2/repository/org/junit/platform/junit-platform-commons/1.6.0/junit-platform-commons-1.6.0.jar:/home/andreg-p/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.6.0/junit-jupiter-params-5.6.0.jar:/home/andreg-p/.m2/repository/org/apache/logging/log4j/log4j-core/2.13.3/log4j-core-2.13.3.jar:/home/andreg-p/.m2/repository/org/apache/logging/log4j/log4j-api/2.13.3/log4j-api-2.13.3.jar:/opt/idea-IU-202.7660.26/lib/idea_rt.jar com.intellij.rt.execution.application.AppMainV2 gov.nist.drmf.interpreter.generic.EvaluationHelper
+[03:46:18,202 DEBUG] ConfigDiscovery:44 - Loading config
+[03:46:18,219 DEBUG] ConfigDiscovery:83 - Try to load config from environment variable LACAST_CONFIG
+[03:46:18,220 DEBUG] ConfigDiscovery:95 - Try to load config from the local directory.
+[03:46:18,263 INFO] ConfigDiscovery:69 - Loaded config from working directory [62ms]
+[03:46:18,458 DEBUG] SemanticMLPWrapper:31 - Loading PoM-tagger lexicon
+[03:46:18,482 INFO] SemanticMLPWrapper:35 - Loaded PoM-tagger [24ms]
+[03:46:18,486 INFO] MathematicaInterface:56 - Instantiating mathematica interface
+[03:46:19,265 INFO] MathematicaInterface:68 - Successfully instantiated mathematica interface
+[03:46:19,268 DEBUG] EvaluationHelper:411 - Enter gold entry: EllipticF[ArcSin[JacobiSN[u, (k)^2]], (k)^2] == u
+[03:46:19,282 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_04e9de23897a3b23dee1a9b7312ad99e: Equal[EllipticF[ArcSin[JacobiSN[u, Power[k, 2]]], Power[k, 2]], u]
+[03:46:19,283 DEBUG] EvaluationHelper:417 - Translate: F(x;k) = u
+[03:46:19,367 DEBUG] EvaluationHelper:419 - Enter lacast trans: F*(x ; k) == u
+[03:46:19,368 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Times[F, k], u]
+[03:46:19,368 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[Times[F, k], u]
+  Gold: Equal[EllipticF[ArcSin[JacobiSN[u, Power[k, 2]]], Power[k, 2]], u]
+[03:46:19,369 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: F(x;k) = u
+[03:46:20,777 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:20,777 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[F[k], u]
+  Gold: Equal[EllipticF[ArcSin[JacobiSN[u, Power[k, 2]]], Power[k, 2]], u]
+[03:46:20,777 DEBUG] EvaluationHelper:411 - Enter gold entry: ChebyshevT[n, x] == Divide[Gamma[1/2]*Sqrt[1 - (x)^(2)],(- 2)^(n)* Gamma[n + 1/2]]*D[(1 - (x)^(2))^(n - 1/2), {x, n}]
+[03:46:20,933 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_725c6b6b645d425d3b385ac2c002da77: Equal[ChebyshevT[n, x], Times[Power[-2, Times[-1, n]], Power[Pi, Rational[1, 2]], Power[Plus[1, Times[-1, Power[x, 2]]], Rational[1, 2]], Factorial[n], Power[Gamma[Plus[Rational[1, 2], n]], -1], DifferenceRoot[Function[{, }, {Equal[Plus[Times[Plus[1, , Times[-2, n]], []], Times[-1, Plus[-3, Times[-2, ], Times[2, n]], x, [Plus[1, ]]], Times[Plus[2, ], Plus[-1, x], Plus[1, x], [Plus[2, ]]]], 0], Equal[[0], Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-1, 2], n]]], Equal[[1], Times[-1, Plus[-1, Times[2, n]], x, Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-3, 2], n]]]]}]][n]]]
+[03:46:20,934 DEBUG] EvaluationHelper:417 - Translate: \ChebyshevpolyT{n}@{x} = \frac{\Gamma(1/2)\sqrt{1-x^2}}{(-2)^n\Gamma(n+1/2)} \deriv [n]{ }{x}([1 - x^2]^{n-1/2})
+[03:46:20,979 DEBUG] PatternFiller:84 - Fill pattern: ChebyshevT[$0, $1]
+[03:46:20,980 DEBUG] PatternFiller:86 - Translated DLMF macro to: ChebyshevT[n, x]
+[03:46:21,021 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \deriv
+[03:46:21,023 WARN] SequenceTranslator:459 - Normalizing brackets to normal parenthesis: ( )
+[03:46:21,024 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \deriv
+[03:46:21,032 WARN] SequenceTranslator:459 - Normalizing brackets to normal parenthesis: ( )
+[03:46:21,042 DEBUG] PatternFiller:84 - Fill pattern: D[$1, {$2, $0}]
+[03:46:21,042 DEBUG] PatternFiller:86 - Translated DLMF macro to: D[(1 - (x)^(2))^(n - 1/2), {x, n}]
+[03:46:21,044 DEBUG] EvaluationHelper:419 - Enter lacast trans: ChebyshevT[n, x] == Divide[\[CapitalGamma]*(1/2)*Sqrt[1 - (x)^(2)],(- 2)^(n)* \[CapitalGamma]*(n + 1/2)]*D[(1 - (x)^(2))^(n - 1/2), {x, n}]
+[03:46:21,166 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[ChebyshevT[n, x], Times[Power[-1, Times[-1, n]], Power[2, Plus[-1, Times[-1, n]]], Power[Plus[Rational[1, 2], n], -1], Power[Plus[1, Times[-1, Power[x, 2]]], Rational[1, 2]], Factorial[n], DifferenceRoot[Function[{, }, {Equal[Plus[Times[Plus[1, , Times[-2, n]], []], Times[-1, Plus[-3, Times[-2, ], Times[2, n]], x, [Plus[1, ]]], Times[Plus[2, ], Plus[-1, x], Plus[1, x], [Plus[2, ]]]], 0], Equal[[0], Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-1, 2], n]]], Equal[[1], Times[-1, Plus[-1, Times[2, n]], x, Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-3, 2], n]]]]}]][n]]]
+[03:46:21,167 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[ChebyshevT[n, x], Times[Power[-1, Times[-1, n]], Power[2, Plus[-1, Times[-1, n]]], Power[Plus[Rational[1, 2], n], -1], Power[Plus[1, Times[-1, Power[x, 2]]], Rational[1, 2]], Factorial[n], DifferenceRoot[Function[{, }, {Equal[Plus[Times[Plus[1, , Times[-2, n]], []], Times[-1, Plus[-3, Times[-2, ], Times[2, n]], x, [Plus[1, ]]], Times[Plus[2, ], Plus[-1, x], Plus[1, x], [Plus[2, ]]]], 0], Equal[[0], Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-1, 2], n]]], Equal[[1], Times[-1, Plus[-1, Times[2, n]], x, Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-3, 2], n]]]]}]][n]]]
+  Gold: Equal[ChebyshevT[n, x], Times[Power[-2, Times[-1, n]], Power[Pi, Rational[1, 2]], Power[Plus[1, Times[-1, Power[x, 2]]], Rational[1, 2]], Factorial[n], Power[Gamma[Plus[Rational[1, 2], n]], -1], DifferenceRoot[Function[{, }, {Equal[Plus[Times[Plus[1, , Times[-2, n]], []], Times[-1, Plus[-3, Times[-2, ], Times[2, n]], x, [Plus[1, ]]], Times[Plus[2, ], Plus[-1, x], Plus[1, x], [Plus[2, ]]]], 0], Equal[[0], Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-1, 2], n]]], Equal[[1], Times[-1, Plus[-1, Times[2, n]], x, Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-3, 2], n]]]]}]][n]]]
+[03:46:21,167 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: T_n(x) = \\frac{\\Gamma(1/2)\\sqrt{1-x^2}}{(-2)^n\\,\\Gamma(n+1/2)} \\  \\frac{d^n}{dx^n}\\left([1-x^2]^{n-1/2}\\right)
+[03:46:21,295 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:21,296 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Equal[ChebyshevT[n, x], Times[Power[-2, Times[-1, n]], Power[Pi, Rational[1, 2]], Power[Plus[1, Times[-1, Power[x, 2]]], Rational[1, 2]], Factorial[n], Power[Gamma[Plus[Rational[1, 2], n]], -1], DifferenceRoot[Function[{, }, {Equal[Plus[Times[Plus[1, , Times[-2, n]], []], Times[-1, Plus[-3, Times[-2, ], Times[2, n]], x, [Plus[1, ]]], Times[Plus[2, ], Plus[-1, x], Plus[1, x], [Plus[2, ]]]], 0], Equal[[0], Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-1, 2], n]]], Equal[[1], Times[-1, Plus[-1, Times[2, n]], x, Power[Plus[1, Times[-1, Power[x, 2]]], Plus[Rational[-3, 2], n]]]]}]][n]]]
+[03:46:21,296 DEBUG] EvaluationHelper:411 - Enter gold entry: \[Gamma] > 0
+ n - p == m - q > 0
+[03:46:21,297 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_028eb01ef675c90ea0f74fcdd93fc78c: Inequality[Plus[n, Times[-1, p]], Equal, Plus[m, Times[-1, q]], Greater, 0]
+[03:46:21,297 DEBUG] EvaluationHelper:417 - Translate: \gamma> 0,n-p=m-q> 0
+[03:46:21,301 DEBUG] SequenceTranslator:346 - Encountered a case split. Move translations to subexpression list
+[03:46:21,310 DEBUG] EvaluationHelper:419 - Enter lacast trans: \[Gamma] > 0
+ n - p == m - q > 0
+[03:46:21,310 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Inequality[Plus[n, Times[-1, p]], Equal, Plus[m, Times[-1, q]], Greater, 0]
+[03:46:21,311 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Inequality[Plus[n, Times[-1, p]], Equal, Plus[m, Times[-1, q]], Greater, 0]
+[03:46:21,311 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\gamma> 0,n-p=m-q> 0
+[03:46:21,335 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:21,336 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Inequality[Plus[n, Times[-1, p]], Equal, Plus[m, Times[-1, q]], Greater, 0]
+[03:46:21,336 DEBUG] EvaluationHelper:411 - Enter gold entry: w[x_] := Divide[k,Sqrt[Pi]]*(x)^(- 1/2)* Exp[- (k)^(2)* (Log[x])^(2)]
+[03:46:21,336 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_583d3b9e00bbd73091b01f368d1a82c7: Null
+[03:46:21,337 DEBUG] EvaluationHelper:417 - Translate: w(x) = \frac{k}{\sqrt{\cpi}} x^{-1/2} \exp(- k^2 \log^2 x)
+[03:46:21,349 WARN] MacroTranslator:391 - The arguments of \exp was not given in curly brackets but parenthesis. This is will be rejected in future releases.
+[03:46:21,352 DEBUG] PatternFiller:84 - Fill pattern: Log[$0]
+[03:46:21,352 DEBUG] PatternFiller:86 - Translated DLMF macro to: Log[x]
+[03:46:21,353 DEBUG] PatternFiller:84 - Fill pattern: Exp[$0]
+[03:46:21,354 DEBUG] PatternFiller:86 - Translated DLMF macro to: Exp[- (k)^(2)* (Log[x])^(2)]
+[03:46:21,355 DEBUG] EvaluationHelper:419 - Enter lacast trans: w*(x) == Divide[k,Sqrt[Pi]]*(x)^(- 1/2)* Exp[- (k)^(2)* (Log[x])^(2)]
+[03:46:21,356 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Times[w, x], Times[Power[E, Times[-1, Power[k, 2], Power[Log[x], 2]]], k, Power[Pi, Rational[-1, 2]], Power[x, Rational[-1, 2]]]]
+[03:46:21,356 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[Times[w, x], Times[Power[E, Times[-1, Power[k, 2], Power[Log[x], 2]]], k, Power[Pi, Rational[-1, 2]], Power[x, Rational[-1, 2]]]]
+  Gold: Null
+[03:46:21,356 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: w(x) = \\frac{k}{\\sqrt{\\pi}} x^{-1/2} \\exp(-k^2\\log^2 x)
+[03:46:21,375 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:21,376 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Times[Power[E, Times[-1, Power[k, 2], Power[Log[x], 2]]], k, Power[Pi, Rational[-1, 2]], Power[x, Rational[-1, 2]]], Times[Power[E, Times[-1, Power[k, 2], Power[log, 2], x]], k, Power[Pi, Rational[-1, 2]], Power[x, Rational[-1, 2]]]]
+  Gold: Null
+[03:46:21,376 DEBUG] EvaluationHelper:411 - Enter gold entry: (2)^(4) == 2 * 2 * 2 * 2 == 16
+[03:46:21,376 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_579837194f2124b255d579031524a91c: True
+[03:46:21,376 DEBUG] EvaluationHelper:417 - Translate: 2^{4} = 2 \times2 \times 2 \times 2 = 16
+[03:46:21,386 DEBUG] EvaluationHelper:419 - Enter lacast trans: (2)^(4) == 2 * 2 * 2 * 2 == 16
+[03:46:21,386 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: True
+[03:46:21,387 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: True
+[03:46:21,387 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: 2^{4} = 2 \\times2 \\times 2 \\times 2 = 16
+[03:46:21,409 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:21,410 INFO] EvaluationHelper:440 - Import full form matches gold entry: True
+[03:46:21,410 DEBUG] EvaluationHelper:411 - Enter gold entry: q == Exp[I*Pi*\[Tau]]
+[03:46:21,411 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_bfba6c35dbbcd8b89c6a29b1ffd6f517: Equal[q, Power[E, Times[Complex[0, 1], Pi, τ]]]
+[03:46:21,411 DEBUG] EvaluationHelper:417 - Translate: q = \expe^{\iunit \cpi \tau}
+[03:46:21,416 DEBUG] EvaluationHelper:419 - Enter lacast trans: q == Exp[I*Pi*\[Tau]]
+[03:46:21,417 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[q, Power[E, Times[Complex[0, 1], Pi, τ]]]
+[03:46:21,417 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[q, Power[E, Times[Complex[0, 1], Pi, τ]]]
+[03:46:21,418 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: q = e^{i\\pi\\tau}
+[03:46:21,441 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:21,441 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[q, Power[e, Times[i, πτ]]]
+  Gold: Equal[q, Power[E, Times[Complex[0, 1], Pi, τ]]]
+[03:46:21,442 DEBUG] EvaluationHelper:411 - Enter gold entry: Sum[Divide[(n)!*Gamma[\[Alpha]+ 1],Gamma[n + \[Alpha]+ 1]]*LaguerreL[n, \[Alpha], x]*LaguerreL[n, \[Alpha], x]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None] == Divide[1,(1 - t)^(\[Alpha]+ 1)]*Exp[-(x + y)*t/(1 - t)]*HypergeometricPFQ[{}, {\[Alpha]+ 1}, Divide[x*y*t,(1 - t)^(2)]]
+[03:46:21,606 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_f179a85d8102cbedb67cf60b188a68b7: Equal[Sum[Times[Power[t, n], Factorial[n], Gamma[Plus[1, α]], Power[Gamma[Plus[1, n, α]], -1], Power[LaguerreL[n, α, x], 2]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]], Times[Power[E, Times[-1, Power[Plus[1, Times[-1, t]], -1], t, Plus[x, y]]], Power[Plus[1, Times[-1, t]], Plus[-1, Times[-1, α]]], Power[Times[Power[Plus[1, Times[-1, t]], -1], Power[t, Rational[1, 2]], Power[x, Rational[1, 2]], Power[y, Rational[1, 2]]], Times[-1, α]], BesselI[α, Times[2, Power[Plus[1, Times[-1, t]], -1], Power[t, Rational[1, 2]], Power[x, Rational[1, 2]], Power[y, Rational[1, 2]]]], Gamma[Plus[1, α]]]]
+[03:46:21,607 DEBUG] EvaluationHelper:417 - Translate: \sum_{n=0}^\infty \frac{n! \Gamma(\alpha + 1)}{\Gamma(n + \alpha + 1)} \LaguerrepolyL[\alpha]{n}@{x} \LaguerrepolyL[\alpha]{n}@{y} t^n = \frac{1}{(1-t)^{\alpha + 1}} e_0^{-(x+y)t/(1-t)} F_1(; \alpha + 1 ; \frac{xyt}{(1-t)^2})
+[03:46:21,623 DEBUG] ForwardTranslationProcessConfig:80 - Lazy init blueprint masters.
+[03:46:21,711 DEBUG] FreeVariables:62 - Suppress free variables [n]
+[03:46:21,711 DEBUG] FreeVariables:62 - Suppress free variables [n]
+[03:46:21,713 DEBUG] MeomArgumentLimitChecker:36 - Limited expression breakpoint reached (reason: relation)
+[03:46:21,720 WARN] SequenceTranslator:459 - Normalizing brackets to normal parenthesis: ( )
+[03:46:21,721 DEBUG] PatternFiller:84 - Fill pattern: LaguerreL[$1, $0, $2]
+[03:46:21,721 DEBUG] PatternFiller:86 - Translated DLMF macro to: LaguerreL[n, \[Alpha], x]
+[03:46:21,722 WARN] SequenceTranslator:459 - Normalizing brackets to normal parenthesis: ( )
+[03:46:21,723 DEBUG] PatternFiller:84 - Fill pattern: LaguerreL[$1, $0, $2]
+[03:46:21,723 DEBUG] PatternFiller:86 - Translated DLMF macro to: LaguerreL[n, \[Alpha], y]
+[03:46:21,727 DEBUG] FreeVariables:75 - Release free variables [n]
+[03:46:21,727 DEBUG] FreeVariables:75 - Release free variables [n]
+[03:46:21,730 DEBUG] MathConstantTranslator:109 - Cannot translate math constant by MLP key. Try latex instead.
+[03:46:21,753 DEBUG] EvaluationHelper:419 - Enter lacast trans: Sum[Divide[(n)!*\[CapitalGamma]*(\[Alpha]+ 1),\[CapitalGamma]*(n + \[Alpha]+ 1)]*LaguerreL[n, \[Alpha], x]*LaguerreL[n, \[Alpha], y]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None] == Divide[1,(1 - t)^(\[Alpha]+ 1)]*(Subscript[e, 0])^(-(x + y)*t/(1 - t))*Subscript[F, 1]*(; \[Alpha]+ 1 ;Divide[x*y*t,(1 - t)^(2)])
+[03:46:21,756 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: $Failed
+[03:46:21,756 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: $Failed
+  Gold: Equal[Sum[Times[Power[t, n], Factorial[n], Gamma[Plus[1, α]], Power[Gamma[Plus[1, n, α]], -1], Power[LaguerreL[n, α, x], 2]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]], Times[Power[E, Times[-1, Power[Plus[1, Times[-1, t]], -1], t, Plus[x, y]]], Power[Plus[1, Times[-1, t]], Plus[-1, Times[-1, α]]], Power[Times[Power[Plus[1, Times[-1, t]], -1], Power[t, Rational[1, 2]], Power[x, Rational[1, 2]], Power[y, Rational[1, 2]]], Times[-1, α]], BesselI[α, Times[2, Power[Plus[1, Times[-1, t]], -1], Power[t, Rational[1, 2]], Power[x, Rational[1, 2]], Power[y, Rational[1, 2]]]], Gamma[Plus[1, α]]]]
+[03:46:21,757 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\sum_{n=0}^\\infty \\frac{n!\\,\\Gamma\\left(\\alpha + 1\\right)}{\\Gamma\\left(n+\\alpha+1\\right)}L_n^{(\\alpha)}(x)L_n^{(\\alpha)}(y)t^n=\\frac{1}{(1-t)^{\\alpha + 1}}e^{-(x+y)t/(1-t)}\\,_0F_1\\left(;\\alpha + 1;\\frac{xyt}{(1-t)^2}\\right)
+[03:46:21,787 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:21,788 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Equal[Sum[Times[Power[t, n], Factorial[n], Gamma[Plus[1, α]], Power[Gamma[Plus[1, n, α]], -1], Power[LaguerreL[n, α, x], 2]], {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]], Times[Power[E, Times[-1, Power[Plus[1, Times[-1, t]], -1], t, Plus[x, y]]], Power[Plus[1, Times[-1, t]], Plus[-1, Times[-1, α]]], Power[Times[Power[Plus[1, Times[-1, t]], -1], Power[t, Rational[1, 2]], Power[x, Rational[1, 2]], Power[y, Rational[1, 2]]], Times[-1, α]], BesselI[α, Times[2, Power[Plus[1, Times[-1, t]], -1], Power[t, Rational[1, 2]], Power[x, Rational[1, 2]], Power[y, Rational[1, 2]]]], Gamma[Plus[1, α]]]]
+[03:46:21,788 DEBUG] EvaluationHelper:411 - Enter gold entry: x == ProductLog[x]*(E)^(ProductLog[x])
+D[x,ProductLog[x]] = (ProductLog[x] + 1)*Exp[ProductLog[x]]
+[03:46:21,791 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_fe13643d8449f601f150fd50c0751cf2: Times[Power[E, ProductLog[x]], Plus[1, ProductLog[x]]]
+[03:46:21,791 DEBUG] EvaluationHelper:417 - Translate: \begin{align}x &= u \expe^u , \\ \frac{dx}{du} &=(u + 1) \expe^u .\end{align}
+[03:46:21,800 DEBUG] MultiExpressionTranslator:98 - Translation equation array
+[03:46:21,802 DEBUG] MathTermTranslator:333 - Expression sequence ends on punctuation. Ignoring this symbol.
+[03:46:21,803 DEBUG] MultiExpressionTranslator:139 - Translated single element in equation array to: x == u*Exp[u]
+[03:46:21,805 DEBUG] MathTermTranslator:333 - Expression sequence ends on punctuation. Ignoring this symbol.
+[03:46:21,806 DEBUG] MultiExpressionTranslator:139 - Translated single element in equation array to: Divide[d*x,d*u] == (u + 1)*Exp[u]
+[03:46:21,807 DEBUG] MultiExpressionTranslator:153 - Finished all translation of equation array
+[03:46:21,807 DEBUG] EvaluationHelper:419 - Enter lacast trans: x == u*Exp[u]
+Divide[d*x,d*u] == (u + 1)*Exp[u]
+[03:46:21,808 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Times[Power[u, -1], x], Times[Power[E, u], Plus[1, u]]]
+[03:46:21,808 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[Times[Power[u, -1], x], Times[Power[E, u], Plus[1, u]]]
+  Gold: Times[Power[E, ProductLog[x]], Plus[1, ProductLog[x]]]
+[03:46:21,808 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\begin{align}x & =ue^u, \\\\[5pt]\\frac{dx}{du} & =(u+1)e^u.\\end{align}
+[03:46:21,927 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:21,928 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: ExpressionCell[TraditionalForm[{{TextCell[Row[{" ", ExpressionCell[TI[x], "InlineFormula"], " "}]], TextCell[Row[{" ", ExpressionCell[{ErrorBox[ErrorBox[""]], Null, u, Null, Power[e, u], Null, ErrorBox[ErrorBox[","]]}, "InlineFormula"], " "}]]}, {TextCell[Row[{" ", ExpressionCell[Times[d, x], "InlineFormula"], " "}]], TextCell[Row[{" ", ExpressionCell[{ErrorBox[ErrorBox[""]], Null, Plus[1, u], Null, Power[e, u], Null, ErrorBox[ErrorBox["."]]}, "InlineFormula"], " "}]]}}]]
+  Gold: Times[Power[E, ProductLog[x]], Plus[1, ProductLog[x]]]
+[03:46:21,928 DEBUG] EvaluationHelper:411 - Enter gold entry: Subscript[\[CapitalTheta], \[CapitalLambda]_][\[Tau]_] := Sum[Exp[I*Pi*\[Tau]*(Norm[x])^(2)], {x, \[CapitalLambda]}]
+[03:46:21,928 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_39f4baaa3543f22706b6f7701518f3eb: Null
+[03:46:21,928 DEBUG] EvaluationHelper:417 - Translate: \Theta_\Lambda(\tau) = \sum_{x\in\Lambda} \expe^{\iunit \cpi \tau \|x \|^2} \qquad \mathrm{Im} \tau > 0
+[03:46:21,939 DEBUG] FreeVariables:62 - Suppress free variables [x]
+[03:46:21,939 DEBUG] FreeVariables:62 - Suppress free variables [x]
+[03:46:21,940 DEBUG] MeomArgumentExtractor:300 - Limited expression breakpoint reached (reason: outer closing parenthesis)
+[03:46:21,942 DEBUG] SequenceTranslator:321 - Interpret following elements as constraints
+[03:46:21,944 DEBUG] FreeVariables:75 - Release free variables [x]
+[03:46:21,944 DEBUG] FreeVariables:75 - Release free variables [x]
+[03:46:21,945 DEBUG] EvaluationHelper:419 - Enter lacast trans: Subscript[\[CapitalTheta], \[CapitalLambda]]*(\[Tau]) == Sum[Exp[I*Pi*\[Tau]*(Norm[x])^(2)], {x, \[CapitalLambda]}, GenerateConditions->None] > 0
+[03:46:22,122 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Inequality[Times[τ, Subscript[Θ, Λ]], Equal, Sum[Power[E, Times[Complex[0, 1], Pi, τ, Power[Norm[x], 2]]], {x, Λ}, Rule[GenerateConditions, None]], Greater, 0]
+[03:46:22,122 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Inequality[Times[τ, Subscript[Θ, Λ]], Equal, Sum[Power[E, Times[Complex[0, 1], Pi, τ, Power[Norm[x], 2]]], {x, Λ}, Rule[GenerateConditions, None]], Greater, 0]
+  Gold: Null
+[03:46:22,122 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\Theta_\\Lambda(\\tau) = \\sum_{x\\in\\Lambda}e^{i\\pi\\tau\\|x\\|^2}\\qquad\\mathrm{Im}\\,\\tau > 0
+[03:46:22,147 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:22,148 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Null
+[03:46:22,148 DEBUG] EvaluationHelper:411 - Enter gold entry: Integrate[(x)^(m)* Exp[I*(x)^(n)], x, GenerateConditions->None] == Divide[(x)^(m + 1),m + 1]*HypergeometricPFQ[{Divide[m + 1,n]}, {1 +Divide[m + 1,n]}, I*(x)^(n)] == Divide[1,n]*(I)^((m + 1)/n)* Gamma[Divide[m + 1,n], 0, - I*(x)^(n)]
+[03:46:22,197 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_bf1e8348d5ada03e04c8d6022816091a: Equal[Times[-1, Power[n, -1], Power[x, Plus[1, m]], Power[Times[Complex[0, -1], Power[x, n]], Times[-1, Plus[1, m], Power[n, -1]]], Gamma[Times[Plus[1, m], Power[n, -1]], Times[Complex[0, -1], Power[x, n]]]], Times[Power[n, -1], Power[x, Plus[1, m]], Power[Times[Complex[0, -1], Power[x, n]], Plus[Times[-1, Power[n, -1]], Times[-1, m, Power[n, -1]]]], Gamma[Plus[Power[n, -1], Times[m, Power[n, -1]]], 0, Times[Complex[0, -1], Power[x, n]]]], Times[Power[Complex[0, 1], Times[Plus[1, m], Power[n, -1]]], Power[n, -1], Gamma[Times[Plus[1, m], Power[n, -1]], 0, Times[Complex[0, -1], Power[x, n]]]]]
+[03:46:22,197 DEBUG] EvaluationHelper:417 - Translate: \begin{align}\int x^m \exp(\iunit x^n) \diff{x} &= \frac{x^{m+1}}{m+1}_1 F_1(\begin{array}{c} \frac{m+1}{n}\\1+\frac{m+1}{n}\end{array} \mid \iunit x^n) \\ &= \frac{1}{n} \iunit^{(m+1)/n} \incgamma@{\frac{m+1}{n}}{- \iunit x^n} ,\end{align}
+[03:46:22,315 DEBUG] MultiExpressionTranslator:98 - Translation equation array
+[03:46:22,315 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:46:22,315 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:46:22,317 WARN] MacroTranslator:391 - The arguments of \exp was not given in curly brackets but parenthesis. This is will be rejected in future releases.
+[03:46:22,319 DEBUG] PatternFiller:84 - Fill pattern: Exp[$0]
+[03:46:22,319 DEBUG] PatternFiller:86 - Translated DLMF macro to: Exp[I*(x)^(n)]
+[03:46:22,320 DEBUG] FreeVariables:75 - Release free variables [x]
+[03:46:22,320 DEBUG] FreeVariables:75 - Release free variables [x]
+[03:46:22,327 ERROR] SemanticLatexTranslator:218 - Unable to translate \begin{align}\int x^m \exp(\iunit x^n) \diff{x} &= \frac{x^{m+1}}{m+1}_1 F_1(\begin{array}{c} \frac{m+1}{n}\\1+\frac{m+1}{n}\end{array} \mid \iunit x^n) \\ &= \frac{1}{n} \iunit^{(m+1)/n} \incgamma@{\frac{m+1}{n}}{- \iunit x^n} ,\end{align};
+Reason: (LaTeX -> Mathematica) An unknown or missing element occurred: Empty expression tag. Unable to translate:
+[03:46:22,327 WARN] EvaluationHelper:431 - Unable to enter/translate lacast translation
+ gov.nist.drmf.interpreter.common.exceptions.TranslationException: Empty expression tag. Unable to translate:
+	at gov.nist.drmf.interpreter.common.exceptions.TranslationException.buildException(TranslationException.java:82) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.translate(TaggedExpressionTranslator.java:50) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:184) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translateNext(SequenceTranslator.java:293) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translate(SequenceTranslator.java:260) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translateAsBracket(SequenceTranslator.java:207) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translate(SequenceTranslator.java:173) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.translate(TaggedExpressionTranslator.java:66) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:184) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.MultiExpressionTranslator.parseEquation(MultiExpressionTranslator.java:73) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.MultiExpressionTranslator.translate(MultiExpressionTranslator.java:42) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.translate(TaggedExpressionTranslator.java:73) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:184) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.MultiExpressionTranslator.parseEquationArray(MultiExpressionTranslator.java:122) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.MultiExpressionTranslator.translate(MultiExpressionTranslator.java:45) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.translate(TaggedExpressionTranslator.java:73) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:184) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translateSingleExpression(SemanticLatexTranslator.java:269) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:261) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.innerTranslate(SemanticLatexTranslator.java:205) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:173) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:149) ~[classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.compareMathematicaTranslation(EvaluationHelper.java:418) [classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.main(EvaluationHelper.java:469) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.intellij.rt.execution.application.AppMainV2.main(AppMainV2.java:128) [idea_rt.jar:?]
+[03:46:22,345 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\begin{align}\\int x^m \\exp(ix^n)\\,dx & =\\frac{x^{m+1}}{m+1}\\,_1F_1\\left(\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array}\\mid ix^n\\right) \\\\& =\\frac{1}{n} i^{(m+1)/n}\\gamma\\left(\\frac{m+1}{n},-ix^n\\right),\\end{align}
+[03:46:22,480 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:22,480 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: ExpressionCell[TraditionalForm[{{TextCell[Row[{" ", ExpressionCell[{ErrorBox[ErrorBox["∫"]], Null, Power[x, m], Null, exp, Null, Times[i, Power[x, n]], Null, ErrorBox[ErrorBox[""]], Null, x}, "InlineFormula"], " "}]], TextCell[Row[{" ", ExpressionCell[{ErrorBox[RowBox[{ErrorBox[RowBox[{"", "
+", FractionBox[SuperscriptBox[StyleBox["x", "TI"], RowBox[{StyleBox["m", "TI"], "+", "1"}]], RowBox[{StyleBox["m", "TI"], "+", "1"}]]}]], "
+", " "}]], Null, 1, Null, Subscript[F, 1], Null, Alternatives[ExpressionCell[TraditionalForm[{{TextCell[RawBoxes[Cell[BoxData[RowBox[{StyleBox["m", "TI"], "+", "1"}]], "InlineFormula"]]]}, {TextCell[RawBoxes[Cell[BoxData[{"1", "
+", "+", "
+", FractionBox[RowBox[{StyleBox["m", "TI"], "+", "1"}], StyleBox["n", "TI"]]}], "InlineFormula"]]]}}]], Times[i, Power[x, n]]]}, "InlineFormula"], " "}]]}, {TextCell[Row[{" ", TextCell["", "InlineFormula"], " "}]], TextCell[Row[{" ", ExpressionCell[{ErrorBox[ErrorBox[""]], Null, Power[n, -1], Null, Power[i, Times[Plus[1, m], Power[n, -1]]], Null, γ, Null, ErrorBox[RowBox[{"(", ErrorBox[RowBox[{FractionBox[RowBox[{StyleBox["m", "TI"], "+", "1"}], StyleBox["n", "TI"]], ",", "-", StyleBox["i", "TI"], SuperscriptBox[StyleBox["x", "TI"], StyleBox["n", "TI"]]}]], ")"}]], Null, ErrorBox[ErrorBox[","]]}, "InlineFormula"], " "}]]}}]]
+  Gold: Equal[Times[-1, Power[n, -1], Power[x, Plus[1, m]], Power[Times[Complex[0, -1], Power[x, n]], Times[-1, Plus[1, m], Power[n, -1]]], Gamma[Times[Plus[1, m], Power[n, -1]], Times[Complex[0, -1], Power[x, n]]]], Times[Power[n, -1], Power[x, Plus[1, m]], Power[Times[Complex[0, -1], Power[x, n]], Plus[Times[-1, Power[n, -1]], Times[-1, m, Power[n, -1]]]], Gamma[Plus[Power[n, -1], Times[m, Power[n, -1]]], 0, Times[Complex[0, -1], Power[x, n]]]], Times[Power[Complex[0, 1], Times[Plus[1, m], Power[n, -1]]], Power[n, -1], Gamma[Times[Plus[1, m], Power[n, -1]], 0, Times[Complex[0, -1], Power[x, n]]]]]
+[03:46:22,480 DEBUG] EvaluationHelper:411 - Enter gold entry: D[w, {z, 2}]+(-Divide[1,4]+Divide[\[Kappa],z]+Divide[1/4 - \[Mu]^(2),(z)^(2)])*w == 0
+[03:46:22,481 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_16ec3a3583ee2b4621d316bf839c1725: Equal[Times[w, Plus[Rational[-1, 4], Times[Power[z, -1], κ], Times[Power[z, -2], Plus[Rational[1, 4], Times[-1, Power[μ, 2]]]]]], 0]
+[03:46:22,482 DEBUG] EvaluationHelper:417 - Translate: \deriv [2]{w}{z} +(- \frac{1}{4} + \frac{\kappa}{z} + \frac{1/4-\mu^2}{z^2}) w = 0
+[03:46:22,485 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \deriv
+[03:46:22,486 WARN] SequenceTranslator:459 - Normalizing brackets to normal parenthesis: ( )
+[03:46:22,487 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \deriv
+[03:46:22,487 DEBUG] PatternFiller:84 - Fill pattern: D[$1, {$2, $0}]
+[03:46:22,487 DEBUG] PatternFiller:86 - Translated DLMF macro to: D[w, {z, 2}]
+[03:46:22,493 DEBUG] EvaluationHelper:419 - Enter lacast trans: D[w, {z, 2}]+(-Divide[1,4]+Divide[\[Kappa],z]+Divide[1/4 - \[Mu]^(2),(z)^(2)])*w == 0
+[03:46:22,494 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Times[w, Plus[Rational[-1, 4], Times[Power[z, -1], κ], Times[Power[z, -2], Plus[Rational[1, 4], Times[-1, Power[μ, 2]]]]]], 0]
+[03:46:22,494 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[Times[w, Plus[Rational[-1, 4], Times[Power[z, -1], κ], Times[Power[z, -2], Plus[Rational[1, 4], Times[-1, Power[μ, 2]]]]]], 0]
+[03:46:22,494 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\frac{d^2w}{dz^2}+\\left(-\\frac{1}{4}+\\frac{\\kappa}{z}+\\frac{1/4-\\mu^2}{z^2}\\right)w=0
+[03:46:22,511 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:22,512 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Plus[Times[d, w, Power[z, -2]], Times[w, Plus[Rational[-1, 4], Times[Power[z, -1], κ], Times[Power[z, -2], Plus[Rational[1, 4], Times[-1, Power[μ, 2]]]]]]], 0]
+  Gold: Equal[Times[w, Plus[Rational[-1, 4], Times[Power[z, -1], κ], Times[Power[z, -2], Plus[Rational[1, 4], Times[-1, Power[μ, 2]]]]]], 0]
+[03:46:22,512 DEBUG] EvaluationHelper:411 - Enter gold entry: \[CapitalPhi][z, s, a] == Divide[1,1 - z]*Divide[1,(a)^(s)]+ Sum[Divide[(- 1)^(n)* PolyLog[-n, z],(n)!]*Divide[Pochhammer[s, n],(a)^(n + s)], {n, 1, N - 1}, GenerateConditions->None]+ O[a]^(- N - s)
+[03:46:27,105 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_a0cc62efe3cabac6d8bebe5b8b94b5fa: Equal[Φ[z, s, a], Plus[Times[Power[a, Times[-1, s]], Power[Plus[1, Times[-1, z]], -1]], Times[Power[a, Plus[Times[-1, N], Times[-1, s]]], SeriesData[a, 0, {}, 0, 0, 1]], Sum[Times[Power[-1, n], Power[a, Plus[Times[-1, n], Times[-1, s]]], Power[Factorial[n], -1], Pochhammer[s, n], PolyLog[Times[-1, n], z]], {n, 1, Plus[-1, N]}, Rule[GenerateConditions, None]]]]
+[03:46:27,105 DEBUG] EvaluationHelper:417 - Translate: \Phi(z , s , a) = \frac{1}{1-z} \frac{1}{a^{s}} + \sum_{n=1}^{N-1} \frac{(- 1)^{n} L \iunit_{-n}(z)}{n!} \frac{\Pochhammersym{s}{n}}{a^{n+s}} + O(a^{-N-s})
+[03:46:27,117 DEBUG] FreeVariables:62 - Suppress free variables [n]
+[03:46:27,117 DEBUG] FreeVariables:62 - Suppress free variables [n]
+[03:46:27,120 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \Pochhammersym
+[03:46:27,120 DEBUG] PatternFiller:84 - Fill pattern: Pochhammer[$0, $1]
+[03:46:27,120 DEBUG] PatternFiller:86 - Translated DLMF macro to: Pochhammer[s, n]
+[03:46:27,122 DEBUG] FreeVariables:75 - Release free variables [n]
+[03:46:27,123 DEBUG] FreeVariables:75 - Release free variables [n]
+[03:46:27,123 DEBUG] EvaluationHelper:419 - Enter lacast trans: \[CapitalPhi]*(z , s , a) == Divide[1,1 - z]*Divide[1,(a)^(s)]+ Sum[Divide[(- 1)^(n)* L*Subscript[I, - n]*(z),(n)!]*Divide[Pochhammer[s, n],(a)^(n + s)], {n, 1, N - 1}, GenerateConditions->None]+ O*((a)^(- N - s))
+[03:46:27,124 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: $Failed
+[03:46:27,124 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: $Failed
+  Gold: Equal[Φ[z, s, a], Plus[Times[Power[a, Times[-1, s]], Power[Plus[1, Times[-1, z]], -1]], Times[Power[a, Plus[Times[-1, N], Times[-1, s]]], SeriesData[a, 0, {}, 0, 0, 1]], Sum[Times[Power[-1, n], Power[a, Plus[Times[-1, n], Times[-1, s]]], Power[Factorial[n], -1], Pochhammer[s, n], PolyLog[Times[-1, n], z]], {n, 1, Plus[-1, N]}, Rule[GenerateConditions, None]]]]
+[03:46:27,124 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\Phi(z,s,a) = \\frac{1}{1-z} \\frac{1}{a^{s}}    +    \\sum_{n=1}^{N-1} \\frac{(-1)^{n} \\mathrm{Li}_{-n}(z)}{n!} \\frac{(s)_{n}}{a^{n+s}}    +O(a^{-N-s})
+[03:46:27,561 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:27,561 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Φ[z, s, a], Plus[Times[Power[a, Times[-1, s]], Power[Plus[1, Times[-1, z]], -1]], SeriesData[Power[a, Plus[Times[-1, N], Times[-1, s]]], 0, {}, 1, 1, 1], Sum[Times[Power[-1, n], Power[a, Plus[Times[-1, n], Times[-1, s]]], Power[Factorial[n], -1], Subscript[s, n], Subscript[Li, Times[-1, n]][z]], {n, 1, Plus[-1, N]}]]]
+  Gold: Equal[Φ[z, s, a], Plus[Times[Power[a, Times[-1, s]], Power[Plus[1, Times[-1, z]], -1]], Times[Power[a, Plus[Times[-1, N], Times[-1, s]]], SeriesData[a, 0, {}, 0, 0, 1]], Sum[Times[Power[-1, n], Power[a, Plus[Times[-1, n], Times[-1, s]]], Power[Factorial[n], -1], Pochhammer[s, n], PolyLog[Times[-1, n], z]], {n, 1, Plus[-1, N]}, Rule[GenerateConditions, None]]]]
+[03:46:27,561 DEBUG] EvaluationHelper:411 - Enter gold entry: SinIntegral[I*x] == I*SinhIntegral[x]
+[03:46:27,562 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_0feb8031b89a9707b164163ec50265f0: True
+[03:46:27,562 DEBUG] EvaluationHelper:417 - Translate: \sinint@{\iunit x} = \iunit \operatorname{Shi}(x)
+[03:46:27,564 DEBUG] PatternFiller:84 - Fill pattern: SinIntegral[$0]
+[03:46:27,564 DEBUG] PatternFiller:86 - Translated DLMF macro to: SinIntegral[I*x]
+[03:46:27,565 DEBUG] MathTermTranslator:269 - Encountered operatorname. Tag following expression (argument) as a function and continue with function translator
+[03:46:27,567 DEBUG] FunctionTranslator:66 - Trigger general function translator
+[03:46:27,568 DEBUG] EvaluationHelper:419 - Enter lacast trans: SinIntegral[I*x] == I*Shi[x]
+[03:46:27,569 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Times[Complex[0, 1], SinhIntegral[x]], Times[Complex[0, 1], Shi[x]]]
+[03:46:27,569 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[Times[Complex[0, 1], SinhIntegral[x]], Times[Complex[0, 1], Shi[x]]]
+  Gold: True
+[03:46:27,569 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\operatorname{Si}(ix) = i\\operatorname{Shi}(x)
+[03:46:27,586 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:27,586 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Times[ix, Si], Times[i, Shi, x]]
+  Gold: True
+[03:46:27,586 DEBUG] EvaluationHelper:411 - Enter gold entry: f[t + p] == f[t]
+[03:46:27,587 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_3a6745862e8f6ef2b93c343ad82b40c0: Equal[f[Plus[p, t]], f[t]]
+[03:46:27,587 DEBUG] EvaluationHelper:417 - Translate: f(t+p) = f(t)
+[03:46:27,590 DEBUG] EvaluationHelper:419 - Enter lacast trans: f*(t + p) == f*(t)
+[03:46:27,590 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Times[f, Plus[p, t]], Times[f, t]]
+[03:46:27,590 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[Times[f, Plus[p, t]], Times[f, t]]
+  Gold: Equal[f[Plus[p, t]], f[t]]
+[03:46:27,591 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: f(t+p) = f(t)
+[03:46:27,609 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:27,609 INFO] EvaluationHelper:440 - Import full form matches gold entry: Equal[f[Plus[p, t]], f[t]]
+[03:46:27,609 DEBUG] EvaluationHelper:411 - Enter gold entry: Integrate[sinc[(t)]*Exp[- I*2*Pi*f*t], {t, - Infinity, Infinity}, GenerateConditions->None] == rect[f]
+[03:46:27,696 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_6340f4a043f912a3557e084aaf03792a: Equal[Integrate[Times[Power[E, Times[Complex[0, -2], f, Pi, t]], sinc[t]], {t, DirectedInfinity[-1], DirectedInfinity[1]}, Rule[GenerateConditions, None]], rect[f]]
+[03:46:27,696 DEBUG] EvaluationHelper:417 - Translate: \int_{-\infty}^\infty \operatorname{sinc}(t) \expe^{- \iunit 2 \cpi f t} \diff{t} = \operatorname{rect}(f)
+[03:46:27,699 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:46:27,700 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:46:27,701 DEBUG] MathTermTranslator:269 - Encountered operatorname. Tag following expression (argument) as a function and continue with function translator
+[03:46:27,701 DEBUG] FunctionTranslator:66 - Trigger general function translator
+[03:46:27,702 DEBUG] FreeVariables:75 - Release free variables [t]
+[03:46:27,703 DEBUG] FreeVariables:75 - Release free variables [t]
+[03:46:27,703 DEBUG] MathTermTranslator:269 - Encountered operatorname. Tag following expression (argument) as a function and continue with function translator
+[03:46:27,704 DEBUG] FunctionTranslator:66 - Trigger general function translator
+[03:46:27,704 DEBUG] EvaluationHelper:419 - Enter lacast trans: sincIntegrate[sinc[(t)*]*Exp[- I*2*Pi*f*t], {t, - Infinity, Infinity}, GenerateConditions->None] == rect[f]
+[03:46:27,705 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: $Failed
+[03:46:27,706 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: $Failed
+  Gold: Equal[Integrate[Times[Power[E, Times[Complex[0, -2], f, Pi, t]], sinc[t]], {t, DirectedInfinity[-1], DirectedInfinity[1]}, Rule[GenerateConditions, None]], rect[f]]
+[03:46:27,706 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\int_{-\\infty}^\\infty \\operatorname{sinc}(t) \\, e^{-i 2 \\pi f t}\\,dt = \\operatorname{rect}(f)
+[03:46:54,348 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:54,349 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Integrate[Times[Power[e, Times[-2, f, i, Pi, t]], sinc, t], {t, DirectedInfinity[-1], DirectedInfinity[1]}], Times[f, rect]]
+  Gold: Equal[Integrate[Times[Power[E, Times[Complex[0, -2], f, Pi, t]], sinc[t]], {t, DirectedInfinity[-1], DirectedInfinity[1]}, Rule[GenerateConditions, None]], rect[f]]
+[03:46:54,349 DEBUG] EvaluationHelper:411 - Enter gold entry: JacobiP[n, \[Alpha], \[Beta], z] == Divide[Pochhammer[\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \[Alpha]+ \[Beta]+ n}, {\[Alpha]+ 1}, Divide[1,2]*(1 - z)]
+[03:46:54,351 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_c8b5b9184e45bca39744427c45693115: Equal[JacobiP[n, α, β, z], Times[Power[Factorial[n], -1], HypergeometricPFQ[{Times[-1, n], Plus[1, n, α, β]}, {Plus[1, α]}, Times[Rational[1, 2], Plus[1, Times[-1, z]]]], Pochhammer[Plus[1, α], n]]]
+[03:46:54,351 DEBUG] EvaluationHelper:417 - Translate: \JacobipolyP{\alpha}{\beta}{n}@{z} = \frac{\Pochhammersym{\alpha + 1}{n}}{n!} \genhyperF{2}{1}@{- n , 1 + \alpha + \beta + n}{\alpha + 1}{\tfrac{1}{2}(1 - z)}
+[03:46:54,354 DEBUG] PatternFiller:84 - Fill pattern: JacobiP[$2, $0, $1, $3]
+[03:46:54,354 DEBUG] PatternFiller:86 - Translated DLMF macro to: JacobiP[n, \[Alpha], \[Beta], z]
+[03:46:54,355 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \Pochhammersym
+[03:46:54,355 DEBUG] PatternFiller:84 - Fill pattern: Pochhammer[$0, $1]
+[03:46:54,356 DEBUG] PatternFiller:86 - Translated DLMF macro to: Pochhammer[\[Alpha]+ 1, n]
+[03:46:54,359 DEBUG] PatternFiller:84 - Fill pattern: HypergeometricPFQ[{$2}, {$3}, $4]
+[03:46:54,359 DEBUG] PatternFiller:86 - Translated DLMF macro to: HypergeometricPFQ[{- n , 1 + \[Alpha]+ \[Beta]+ n}, {\[Alpha]+ 1}, Divide[1,2]*(1 - z)]
+[03:46:54,360 DEBUG] EvaluationHelper:419 - Enter lacast trans: JacobiP[n, \[Alpha], \[Beta], z] == Divide[Pochhammer[\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \[Alpha]+ \[Beta]+ n}, {\[Alpha]+ 1}, Divide[1,2]*(1 - z)]
+[03:46:54,361 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[JacobiP[n, α, β, z], Times[Power[Factorial[n], -1], HypergeometricPFQ[{Times[-1, n], Plus[1, n, α, β]}, {Plus[1, α]}, Times[Rational[1, 2], Plus[1, Times[-1, z]]]], Pochhammer[Plus[1, α], n]]]
+[03:46:54,361 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[JacobiP[n, α, β, z], Times[Power[Factorial[n], -1], HypergeometricPFQ[{Times[-1, n], Plus[1, n, α, β]}, {Plus[1, α]}, Times[Rational[1, 2], Plus[1, Times[-1, z]]]], Pochhammer[Plus[1, α], n]]]
+[03:46:54,362 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: P_n^{(\\alpha,\\beta)}(z)=\\frac{(\\alpha+1)_n}{n!}\\,{}_2F_1\\left(-n,1+\\alpha+\\beta+n;\\alpha+1;\\tfrac{1}{2}(1-z)\\right)
+[03:46:54,380 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:54,380 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Equal[JacobiP[n, α, β, z], Times[Power[Factorial[n], -1], HypergeometricPFQ[{Times[-1, n], Plus[1, n, α, β]}, {Plus[1, α]}, Times[Rational[1, 2], Plus[1, Times[-1, z]]]], Pochhammer[Plus[1, α], n]]]
+[03:46:54,380 DEBUG] EvaluationHelper:411 - Enter gold entry: N == 1
+[03:46:54,381 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_a9a738ef9d4e46360dd9b87b39c691bf: Equal[N, 1]
+[03:46:54,381 DEBUG] EvaluationHelper:417 - Translate: N=1
+[03:46:54,382 DEBUG] EvaluationHelper:419 - Enter lacast trans: N == 1
+[03:46:54,382 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[N, 1]
+[03:46:54,383 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[N, 1]
+[03:46:54,383 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: N=1
+[03:46:54,399 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:54,399 INFO] EvaluationHelper:440 - Import full form matches gold entry: Equal[N, 1]
+[03:46:54,399 DEBUG] EvaluationHelper:411 - Enter gold entry: Hypergeometric1F1Regularized[1, 2, z] == (Exp[z]- 1)/z
+ Hypergeometric1F1Regularized[1, 3, z] == (2)!*(Exp[z]- 1 - z)/(z)^(2)
+[03:46:54,403 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_d83a3ce5244b566d8f71edb7f81afa43: Equal[Times[Power[E, z], Power[z, -2], Plus[1, Times[-1, GammaRegularized[2, z]]]], Times[2, Plus[-1, Power[E, z], Times[-1, z]], Power[z, -2]]]
+[03:46:54,403 DEBUG] EvaluationHelper:417 - Translate: \KummerconfhyperM@{1}{2}{z} =(\expe^z - 1) / z , \KummerconfhyperM@{1}{3}{z} = 2!(\expe^z - 1 - z) / z^2
+[03:46:54,405 DEBUG] PatternFiller:84 - Fill pattern: Hypergeometric1F1[$0, $1, $2]
+[03:46:54,405 DEBUG] PatternFiller:86 - Translated DLMF macro to: Hypergeometric1F1[1, 2, z]
+[03:46:54,407 DEBUG] SequenceTranslator:346 - Encountered a case split. Move translations to subexpression list
+[03:46:54,407 DEBUG] PatternFiller:84 - Fill pattern: Hypergeometric1F1[$0, $1, $2]
+[03:46:54,407 DEBUG] PatternFiller:86 - Translated DLMF macro to: Hypergeometric1F1[1, 3, z]
+[03:46:54,410 DEBUG] EvaluationHelper:419 - Enter lacast trans: Hypergeometric1F1[1, 2, z] == (Exp[z]- 1)/z
+ Hypergeometric1F1[1, 3, z] == (2)!*(Exp[z]- 1 - z)/(z)^(2)
+[03:46:54,412 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: True
+[03:46:54,412 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: True
+  Gold: Equal[Times[Power[E, z], Power[z, -2], Plus[1, Times[-1, GammaRegularized[2, z]]]], Times[2, Plus[-1, Power[E, z], Times[-1, z]], Power[z, -2]]]
+[03:46:54,412 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: M(1,2,z)=(e^z-1)/z,\\ \\ M(1,3,z)=2!(e^z-1-z)/z^2
+[03:46:54,431 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:54,431 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Equal[Times[Power[E, z], Power[z, -2], Plus[1, Times[-1, GammaRegularized[2, z]]]], Times[2, Plus[-1, Power[E, z], Times[-1, z]], Power[z, -2]]]
+[03:46:54,431 DEBUG] EvaluationHelper:411 - Enter gold entry: \[Psi][x_] := Sum[Exp[-(n)^(2)*Pi*x], {n, 1, Infinity}]
+[03:46:54,432 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_bd88ec58aa42c7a59bc2f4ff458a54cf: Null
+[03:46:54,432 DEBUG] EvaluationHelper:417 - Translate: \psi(x) : = \sum_{n=1}^\infty \expe^{- n^2 \cpi x}
+[03:46:54,434 ERROR] SemanticLatexTranslator:218 - Unable to translate \psi(x) : = \sum_{n=1}^\infty \expe^{- n^2 \cpi x};
+Reason: (LaTeX -> Mathematica) An unknown or missing element occurred: Empty math term tag
+[03:46:54,435 WARN] EvaluationHelper:431 - Unable to enter/translate lacast translation
+ gov.nist.drmf.interpreter.common.exceptions.TranslationException: Empty math term tag
+	at gov.nist.drmf.interpreter.common.exceptions.TranslationException.buildException(TranslationException.java:82) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator.translate(MathTermTranslator.java:82) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralTerm(AbstractTranslator.java:216) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:188) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translateNext(SequenceTranslator.java:293) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translate(SequenceTranslator.java:175) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.translate(TaggedExpressionTranslator.java:66) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:184) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translateSingleExpression(SemanticLatexTranslator.java:269) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:261) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.innerTranslate(SemanticLatexTranslator.java:205) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:173) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:149) ~[classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.compareMathematicaTranslation(EvaluationHelper.java:418) [classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.main(EvaluationHelper.java:469) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.intellij.rt.execution.application.AppMainV2.main(AppMainV2.java:128) [idea_rt.jar:?]
+[03:46:54,435 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\psi(x) := \\sum_{n=1}^\\infty e^{-n^2 \\pi x}
+[03:46:54,452 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:54,453 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Null
+[03:46:54,453 DEBUG] EvaluationHelper:411 - Enter gold entry: BesselJ[- (m +Divide[1,2]), x] == (- 1)^(m + 1)* BesselY[m +Divide[1,2], x]
+BesselY[- (m +Divide[1,2]), x] == (- 1)^(m)* BesselJ[m +Divide[1,2], x]
+[03:46:54,453 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_0f521573a47e7fd187dafed615b0ecce: Equal[BesselY[Plus[Rational[-1, 2], Times[-1, m]], x], Times[Power[-1, m], BesselJ[Plus[Rational[1, 2], m], x]]]
+[03:46:54,453 DEBUG] EvaluationHelper:417 - Translate: \begin{align}\BesselJ{-(m+\frac{1}{2})}@{x} &=(- 1)^{m+1} \BesselY{m+\frac{1}{2}}@{x} , \\ \BesselY{-(m+\frac{1}{2})}@{x} &=(- 1)^m \BesselJ{m+\frac{1}{2}}@{x} .\end{align}
+[03:46:54,457 DEBUG] MultiExpressionTranslator:98 - Translation equation array
+[03:46:54,458 DEBUG] PatternFiller:84 - Fill pattern: BesselJ[$0, $1]
+[03:46:54,458 DEBUG] PatternFiller:86 - Translated DLMF macro to: BesselJ[-(m +Divide[1,2]), x]
+[03:46:54,460 DEBUG] PatternFiller:84 - Fill pattern: BesselY[$0, $1]
+[03:46:54,460 DEBUG] PatternFiller:86 - Translated DLMF macro to: BesselY[m +Divide[1,2], x]
+[03:46:54,461 DEBUG] MathTermTranslator:333 - Expression sequence ends on punctuation. Ignoring this symbol.
+[03:46:54,461 DEBUG] MultiExpressionTranslator:139 - Translated single element in equation array to: BesselJ[-(m +Divide[1,2]), x] == (- 1)^(m + 1)* BesselY[m +Divide[1,2], x]
+[03:46:54,462 DEBUG] PatternFiller:84 - Fill pattern: BesselY[$0, $1]
+[03:46:54,462 DEBUG] PatternFiller:86 - Translated DLMF macro to: BesselY[-(m +Divide[1,2]), x]
+[03:46:54,464 DEBUG] PatternFiller:84 - Fill pattern: BesselJ[$0, $1]
+[03:46:54,464 DEBUG] PatternFiller:86 - Translated DLMF macro to: BesselJ[m +Divide[1,2], x]
+[03:46:54,464 DEBUG] MathTermTranslator:333 - Expression sequence ends on punctuation. Ignoring this symbol.
+[03:46:54,464 DEBUG] MultiExpressionTranslator:139 - Translated single element in equation array to: BesselY[-(m +Divide[1,2]), x] == (- 1)^(m)* BesselJ[m +Divide[1,2], x]
+[03:46:54,465 DEBUG] MultiExpressionTranslator:153 - Finished all translation of equation array
+[03:46:54,465 DEBUG] EvaluationHelper:419 - Enter lacast trans: BesselJ[-(m +Divide[1,2]), x] == (- 1)^(m + 1)* BesselY[m +Divide[1,2], x]
+BesselY[-(m +Divide[1,2]), x] == (- 1)^(m)* BesselJ[m +Divide[1,2], x]
+[03:46:54,465 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[BesselY[Plus[Rational[-1, 2], Times[-1, m]], x], Times[Power[-1, m], BesselJ[Plus[Rational[1, 2], m], x]]]
+[03:46:54,466 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[BesselY[Plus[Rational[-1, 2], Times[-1, m]], x], Times[Power[-1, m], BesselJ[Plus[Rational[1, 2], m], x]]]
+[03:46:54,466 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\begin{align}J_{-(m+\\frac{1}{2})}(x) &= (-1)^{m+1} Y_{m+\\frac{1}{2}}(x), \\\\Y_{-(m+\\frac{1}{2})}(x) &= (-1)^m J_{m+\\frac{1}{2}}(x).\\end{align}
+[03:46:54,493 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:54,493 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: ExpressionCell[TraditionalForm[{{TextCell[Row[{" ", ExpressionCell[{ErrorBox[SubscriptBox[StyleBox["J", "TI"], ErrorBox[RowBox[{"-", "[", RowBox[{StyleBox["m", "TI"], "+", FractionBox["1", "2"]}], "]"}]]]], Null, ErrorBox[ErrorBox["("]], Null, x, Null, ErrorBox[ErrorBox[")"]]}, "InlineFormula"], " "}]], TextCell[Row[{" ", ExpressionCell[{ErrorBox[ErrorBox[""]], Null, Power[-1, Plus[1, m]], Null, Subscript[Y, Plus[Rational[1, 2], m]], Null, x, Null, ErrorBox[ErrorBox[","]]}, "InlineFormula"], " "}]]}, {TextCell[Row[{" ", ExpressionCell[{ErrorBox[SubscriptBox[StyleBox["Y", "TI"], ErrorBox[RowBox[{"-", "[", RowBox[{StyleBox["m", "TI"], "+", FractionBox["1", "2"]}], "]"}]]]], Null, ErrorBox[ErrorBox["("]], Null, x, Null, ErrorBox[ErrorBox[")"]]}, "InlineFormula"], " "}]], TextCell[Row[{" ", ExpressionCell[{ErrorBox[ErrorBox[""]], Null, Power[-1, m], Null, Subscript[J, Plus[Rational[1, 2], m]], Null, x, Null, ErrorBox[ErrorBox["."]]}, "InlineFormula"], " "}]]}}]]
+  Gold: Equal[BesselY[Plus[Rational[-1, 2], Times[-1, m]], x], Times[Power[-1, m], BesselJ[Plus[Rational[1, 2], m], x]]]
+[03:46:54,493 DEBUG] EvaluationHelper:411 - Enter gold entry: EulerE[n] == (2)^(n)* EulerE[n, Divide[1,2]]
+[03:46:54,494 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_a7fcf738c676932d58f39ff9f7df22ae: True
+[03:46:54,494 DEBUG] EvaluationHelper:417 - Translate: \EulernumberE{n} = 2^n \EulernumberE{n}(\tfrac{1}{2})
+[03:46:54,495 DEBUG] PatternFiller:84 - Fill pattern: EulerE[$0]
+[03:46:54,495 DEBUG] PatternFiller:86 - Translated DLMF macro to: EulerE[n]
+[03:46:54,496 DEBUG] PatternFiller:84 - Fill pattern: EulerE[$0]
+[03:46:54,496 DEBUG] PatternFiller:86 - Translated DLMF macro to: EulerE[n]
+[03:46:54,497 DEBUG] EvaluationHelper:419 - Enter lacast trans: EulerE[n] == (2)^(n)* EulerE[n]*(Divide[1,2])
+[03:46:54,497 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[EulerE[n], Times[Power[2, Plus[-1, n]], EulerE[n]]]
+[03:46:54,497 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[EulerE[n], Times[Power[2, Plus[-1, n]], EulerE[n]]]
+  Gold: True
+[03:46:54,497 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: E_n=2^nE_n(\\tfrac{1}{2})
+[03:46:54,514 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:54,514 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Subscript[E, n], Times[Power[2, n], Subscript[E, n][Rational[1, 2]]]]
+  Gold: True
+[03:46:54,514 DEBUG] EvaluationHelper:411 - Enter gold entry: D[DawsonF[y], {y, 1}] == 1 - 2*y*DawsonF[y]
+[03:46:54,514 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_f6b555bd8ce626d90119ab5eafdaeff2: True
+[03:46:54,515 DEBUG] EvaluationHelper:417 - Translate: F'(y)=1-2yF(y)
+[03:46:54,515 ERROR] SemanticLatexTranslator:218 - Unable to translate F'(y)=1-2yF(y);
+Reason: (LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places.
+[03:46:54,516 WARN] EvaluationHelper:431 - Unable to enter/translate lacast translation
+ gov.nist.drmf.interpreter.common.exceptions.TranslationException: Primes can only be translated behind semantic macros (differentiation primes) but not in other places.
+	at gov.nist.drmf.interpreter.common.exceptions.TranslationException.buildException(TranslationException.java:82) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator.handleInvalidTags(MathTermTranslator.java:130) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator.translate(MathTermTranslator.java:89) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralTerm(AbstractTranslator.java:216) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:188) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translateNext(SequenceTranslator.java:293) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translate(SequenceTranslator.java:175) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.translate(TaggedExpressionTranslator.java:66) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:184) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translateSingleExpression(SemanticLatexTranslator.java:269) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:261) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.innerTranslate(SemanticLatexTranslator.java:205) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:173) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:149) ~[classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.compareMathematicaTranslation(EvaluationHelper.java:418) [classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.main(EvaluationHelper.java:469) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.intellij.rt.execution.application.AppMainV2.main(AppMainV2.java:128) [idea_rt.jar:?]
+[03:46:54,516 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: F'(y)=1-2yF(y)
+[03:46:54,533 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:46:54,533 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Derivative[1][F][y], Plus[1, Times[-2, y, F[y]]]]
+  Gold: True
+[03:46:54,533 DEBUG] EvaluationHelper:411 - Enter gold entry: Divide[1,Gamma[z]] == z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}, GenerateConditions->None]
+[03:47:10,889 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_6bc0d742c4d25c1abb61158150489676: Equal[Power[Gamma[z], -1], Times[z, Power[Gamma[Plus[1, z]], -1]]]
+[03:47:10,889 DEBUG] EvaluationHelper:417 - Translate: \frac{1}{\EulerGamma@{z}} = z \expe^{\EulerConstant z} \prod_{k=1}^\infty \{(1 + \frac{z}{k}) \expe^{-z/k} \}
+[03:47:10,892 DEBUG] PatternFiller:84 - Fill pattern: Gamma[$0]
+[03:47:10,892 DEBUG] PatternFiller:86 - Translated DLMF macro to: Gamma[z]
+[03:47:10,895 DEBUG] FreeVariables:62 - Suppress free variables [k]
+[03:47:10,896 DEBUG] FreeVariables:62 - Suppress free variables [k]
+[03:47:10,898 WARN] SequenceTranslator:459 - Normalizing brackets to normal parenthesis: ( )
+[03:47:10,898 DEBUG] FreeVariables:75 - Release free variables [k]
+[03:47:10,898 DEBUG] FreeVariables:75 - Release free variables [k]
+[03:47:10,899 DEBUG] EvaluationHelper:419 - Enter lacast trans: Divide[1,Gamma[z]] == z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}, GenerateConditions->None]
+[03:47:18,008 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Power[Gamma[z], -1], Times[z, Power[Gamma[Plus[1, z]], -1]]]
+[03:47:18,008 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[Power[Gamma[z], -1], Times[z, Power[Gamma[Plus[1, z]], -1]]]
+[03:47:18,009 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\frac{1}{\\Gamma(z)}= z e^{\\gamma z} \\prod_{k=1}^\\infty \\left\\{ \\left(1+\\frac{z}{k}\\right)e^{-z/k} \\right\\}
+[03:47:32,614 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:47:32,614 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Power[Gamma[z], -1], {Times[Power[e, Times[z, γ]], z, Product[Times[Power[e, Times[-1, Power[k, -1], z]], Plus[1, Times[Power[k, -1], z]]], {k, 1, DirectedInfinity[1]}]]}]
+  Gold: Equal[Power[Gamma[z], -1], Times[z, Power[Gamma[Plus[1, z]], -1]]]
+[03:47:32,614 DEBUG] EvaluationHelper:411 - Enter gold entry: f[x_, y_] := Divide[1,Beta[x, y]]
+[03:47:32,614 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_5f59825d73d63a9990498edca7222261: Null
+[03:47:32,614 DEBUG] EvaluationHelper:417 - Translate: \EulerPhi@{z} = \frac{1}{\Beta(x,y)}
+[03:47:32,616 DEBUG] PatternFiller:84 - Fill pattern: QPochhammer[$0,$0]
+[03:47:32,616 DEBUG] PatternFiller:86 - Translated DLMF macro to: QPochhammer[z,z]
+[03:47:32,618 ERROR] SemanticLatexTranslator:218 - Unable to translate \EulerPhi@{z} = \frac{1}{\Beta(x,y)};
+Reason: (LaTeX -> Mathematica) An unknown or missing element occurred: Unknown MathTerm Tag: probability distribution for \Beta [\Beta]
+[03:47:32,618 WARN] EvaluationHelper:431 - Unable to enter/translate lacast translation
+ gov.nist.drmf.interpreter.common.exceptions.TranslationException: Unknown MathTerm Tag: probability distribution for \Beta
+	at gov.nist.drmf.interpreter.common.exceptions.TranslationException.buildExceptionObj(TranslationException.java:67) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator.translateOthers(MathTermTranslator.java:383) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.MathTermTranslator.translate(MathTermTranslator.java:103) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralTerm(AbstractTranslator.java:216) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:188) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translateNext(SequenceTranslator.java:293) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translate(SequenceTranslator.java:175) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.translate(TaggedExpressionTranslator.java:66) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:184) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.extractMultipleSubExpressions(TaggedExpressionTranslator.java:209) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.extractMultipleSubExpressions(TaggedExpressionTranslator.java:190) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.parseBasicFunction(TaggedExpressionTranslator.java:162) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.translate(TaggedExpressionTranslator.java:84) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:184) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translateNext(SequenceTranslator.java:293) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.SequenceTranslator.translate(SequenceTranslator.java:175) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.components.TaggedExpressionTranslator.translate(TaggedExpressionTranslator.java:66) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.AbstractTranslator.parseGeneralExpression(AbstractTranslator.java:184) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translateSingleExpression(SemanticLatexTranslator.java:269) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:261) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.innerTranslate(SemanticLatexTranslator.java:205) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:173) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:149) ~[classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.compareMathematicaTranslation(EvaluationHelper.java:418) [classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.main(EvaluationHelper.java:469) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.intellij.rt.execution.application.AppMainV2.main(AppMainV2.java:128) [idea_rt.jar:?]
+[03:47:32,618 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: f(z)=\\frac{1}{\\Beta(x,y)}
+[03:47:32,636 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:47:32,636 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Null
+[03:47:32,636 DEBUG] EvaluationHelper:411 - Enter gold entry: Subscript[g, 1][x_] := Sum[Divide[Sin[k*Pi/4],(k)!*(8*x)^(k)]*Product[(2*l - 1)^(2), {l, 1, k}, GenerateConditions->None], {k, 1, Infinity}, GenerateConditions->None]
+[03:47:32,636 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_07453e6baf8f216467f9b664de795bfc: Null
+[03:47:32,636 DEBUG] EvaluationHelper:417 - Translate: g_1(x) = \sum_{k \geq 1} \frac{\sin(k \cpi / 4)}{k! (8x)^k} \prod_{l = 1}^k(2 l - 1)^2
+[03:47:32,643 DEBUG] FreeVariables:62 - Suppress free variables [k]
+[03:47:32,643 DEBUG] FreeVariables:62 - Suppress free variables [k]
+[03:47:32,646 WARN] MacroTranslator:391 - The arguments of \sin was not given in curly brackets but parenthesis. This is will be rejected in future releases.
+[03:47:32,647 DEBUG] PatternFiller:84 - Fill pattern: Sin[$0]
+[03:47:32,648 DEBUG] PatternFiller:86 - Translated DLMF macro to: Sin[k*Pi/4]
+[03:47:32,651 DEBUG] FreeVariables:62 - Suppress free variables [l]
+[03:47:32,651 DEBUG] FreeVariables:62 - Suppress free variables [l]
+[03:47:32,652 DEBUG] FreeVariables:75 - Release free variables [l]
+[03:47:32,653 DEBUG] FreeVariables:75 - Release free variables [l]
+[03:47:32,653 DEBUG] FreeVariables:75 - Release free variables [k]
+[03:47:32,653 DEBUG] FreeVariables:75 - Release free variables [k]
+[03:47:32,654 DEBUG] EvaluationHelper:419 - Enter lacast trans: Subscript[g, 1]*(x) == Sum[Divide[Sin[k*Pi/4],(k)!*(8*x)^(k)]*Product[(2*l - 1)^(2), {l, 1, k}, GenerateConditions->None], {k, 1, Infinity}, GenerateConditions->None]
+[03:48:03,922 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Times[x, Subscript[g, 1]], Sum[Times[Power[2, Times[-1, k]], Power[Pi, -1], Power[x, Times[-1, k]], Power[Factorial[k], -1], Power[Gamma[Plus[Rational[1, 2], k]], 2], Sin[Times[Rational[1, 4], k, Pi]]], {k, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]
+[03:48:03,923 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[Times[x, Subscript[g, 1]], Sum[Times[Power[2, Times[-1, k]], Power[Pi, -1], Power[x, Times[-1, k]], Power[Factorial[k], -1], Power[Gamma[Plus[Rational[1, 2], k]], 2], Sin[Times[Rational[1, 4], k, Pi]]], {k, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]
+  Gold: Null
+[03:48:03,923 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: g_1(x) = \\sum_{k \\geq 1} \\frac{\\sin(k \\pi / 4)}{k! (8x)^k} \\prod_{l = 1}^k (2l - 1)^2
+[03:48:34,734 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:48:34,734 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Sum[Times[Power[2, Times[-1, k]], Power[Pi, -1], Power[x, Times[-1, k]], Power[Factorial[k], -1], Power[Gamma[Plus[Rational[1, 2], k]], 2], Sin[Times[Rational[1, 4], k, Pi]]], {k, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]], Sum[Times[Times[Sin[Times[k, Times[Pi, Power[4, -1]]]], Power[Times[Factorial[k], Power[Times[8, x], k]], -1]], Product[Power[Plus[Times[2, l], -1], 2], {l, 1, k}]], GreaterEqual[k, 1]]]
+  Gold: Null
+[03:48:34,734 DEBUG] EvaluationHelper:411 - Enter gold entry: Subscript[x, k] == Cos[Divide[Pi*(k + 1/2),n]]
+[03:48:34,734 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_d9eb68704833b0f525c4ca81a749d9ca: Equal[Subscript[x, k], Cos[Times[Plus[Rational[1, 2], k], Power[n, -1], Pi]]]
+[03:48:34,735 DEBUG] EvaluationHelper:417 - Translate: x_k = \cos(\frac{\cpi(k + 1 / 2)}{n}) , \quad k = 0 , \ldots , n - 1
+[03:48:34,736 WARN] MacroTranslator:391 - The arguments of \cos was not given in curly brackets but parenthesis. This is will be rejected in future releases.
+[03:48:34,737 DEBUG] PatternFiller:84 - Fill pattern: Cos[$0]
+[03:48:34,738 DEBUG] PatternFiller:86 - Translated DLMF macro to: Cos[Divide[Pi*(k + 1/2),n]]
+[03:48:34,738 DEBUG] SequenceTranslator:321 - Interpret following elements as constraints
+[03:48:34,739 DEBUG] EvaluationHelper:419 - Enter lacast trans: Subscript[x, k] == Cos[Divide[Pi*(k + 1/2),n]]
+[03:48:34,739 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Subscript[x, k], Cos[Times[Plus[Rational[1, 2], k], Power[n, -1], Pi]]]
+[03:48:34,739 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[Subscript[x, k], Cos[Times[Plus[Rational[1, 2], k], Power[n, -1], Pi]]]
+[03:48:34,739 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: x_k = \\cos\\left(\\frac{\\pi(k+1/2)}{n}\\right),\\quad k=0,\\ldots,n-1
+[03:48:34,756 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:48:34,756 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Equal[Subscript[x, k], Cos[Times[Plus[Rational[1, 2], k], Power[n, -1], Pi]]]
+[03:48:34,756 DEBUG] EvaluationHelper:411 - Enter gold entry: 192/24 == 8 == 2 * 4
+[03:48:34,756 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_8c78ef87048e61947a6d7d4b5e06aa63: True
+[03:48:34,756 DEBUG] EvaluationHelper:417 - Translate: 192/24 = 8 = 2 \times 4
+[03:48:34,759 DEBUG] EvaluationHelper:419 - Enter lacast trans: 192/24 == 8 == 2 * 4
+[03:48:34,759 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: True
+[03:48:34,759 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: True
+[03:48:34,759 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: 192/24 = 8 = 2 \\times 4
+[03:48:34,776 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:48:34,777 INFO] EvaluationHelper:440 - Import full form matches gold entry: True
+[03:48:34,777 DEBUG] EvaluationHelper:411 - Enter gold entry: \[Sigma] == \[PlusMinus]1
+[03:48:34,777 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_f694135eafc20195a9d96ca3ce8af674: Equal[σ, PlusMinus[1]]
+[03:48:34,777 DEBUG] EvaluationHelper:417 - Translate: \sigma = \pm 1
+[03:48:34,779 DEBUG] EvaluationHelper:419 - Enter lacast trans: \[Sigma] == \[PlusMinus]1
+[03:48:34,780 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[σ, PlusMinus[1]]
+[03:48:34,780 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[σ, PlusMinus[1]]
+[03:48:34,780 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\sigma = \\pm 1
+[03:48:34,795 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:48:34,796 INFO] EvaluationHelper:440 - Import full form matches gold entry: Equal[σ, PlusMinus[1]]
+[03:48:34,796 DEBUG] EvaluationHelper:411 - Enter gold entry: LogIntegral[x] == Limit[Integrate[Divide[1,Log[t]], {t, 0, 1 - \[CurlyEpsilon]}, GenerateConditions->None]+ Integrate[Divide[1,Log[t]], {t, 1 + \[CurlyEpsilon], x}, GenerateConditions->None], \[CurlyEpsilon] -> 0, Direction -> "FromAbove", GenerateConditions->None]
+[03:49:58,621 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_36fb8f8330168b8f8acda0dc36851474: ConditionalExpression[Undefined, LessEqual[x, 0]]
+[03:49:58,622 DEBUG] EvaluationHelper:417 - Translate: \logint@{x} = \lim_{\varepsilon \to 0+}(\int_0^{1-\varepsilon} \frac{\diff{t}}{\ln t} + \int_{1+\varepsilon}^x \frac{\diff{t}}{\ln t})
+[03:49:58,624 DEBUG] PatternFiller:84 - Fill pattern: LogIntegral[$0]
+[03:49:58,624 DEBUG] PatternFiller:86 - Translated DLMF macro to: LogIntegral[x]
+[03:49:58,626 DEBUG] FreeVariables:62 - Suppress free variables [\[CurlyEpsilon]]
+[03:49:58,627 DEBUG] FreeVariables:62 - Suppress free variables [\[CurlyEpsilon]]
+[03:49:58,628 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:49:58,628 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:49:58,629 DEBUG] PatternFiller:84 - Fill pattern: Log[$0]
+[03:49:58,629 DEBUG] PatternFiller:86 - Translated DLMF macro to: Log[t]
+[03:49:58,629 DEBUG] FreeVariables:75 - Release free variables [t]
+[03:49:58,629 DEBUG] FreeVariables:75 - Release free variables [t]
+[03:49:58,630 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:49:58,630 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:49:58,630 DEBUG] PatternFiller:84 - Fill pattern: Log[$0]
+[03:49:58,630 DEBUG] PatternFiller:86 - Translated DLMF macro to: Log[t]
+[03:49:58,631 DEBUG] FreeVariables:75 - Release free variables [t]
+[03:49:58,631 DEBUG] FreeVariables:75 - Release free variables [t]
+[03:49:58,632 DEBUG] FreeVariables:75 - Release free variables [\[CurlyEpsilon]]
+[03:49:58,632 DEBUG] FreeVariables:75 - Release free variables [\[CurlyEpsilon]]
+[03:49:58,632 DEBUG] EvaluationHelper:419 - Enter lacast trans: LogIntegral[x] == Limit[Integrate[Divide[1,Log[t]], {t, 0, 1 - \[CurlyEpsilon]}, GenerateConditions->None]+ Integrate[Divide[1,Log[t]], {t, 1 + \[CurlyEpsilon], x}, GenerateConditions->None], \[CurlyEpsilon] -> 0, Direction -> "FromAbove", GenerateConditions->None]
+[03:51:14,320 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: ConditionalExpression[Undefined, LessEqual[x, 0]]
+[03:51:14,320 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: ConditionalExpression[Undefined, LessEqual[x, 0]]
+[03:51:14,320 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\operatorname{li}(x) = \\lim_{\\varepsilon \\to 0+} \\left( \\int_0^{1-\\varepsilon} \\frac{dt}{\\ln t} + \\int_{1+\\varepsilon}^x \\frac{dt}{\\ln t} \\right)
+[03:51:14,339 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:14,340 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: ConditionalExpression[Undefined, LessEqual[x, 0]]
+[03:51:14,340 DEBUG] EvaluationHelper:411 - Enter gold entry: (y)^(2) == x*(x - 1)*(x - \[Lambda])
+[03:51:14,340 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_4e5334aa6f5fa551b0718a2372816061: Equal[Power[y, 2], Times[Plus[-1, x], x, Plus[x, Times[-1, λ]]]]
+[03:51:14,340 DEBUG] EvaluationHelper:417 - Translate: y^2=x(x-1)(x-\lambda)
+[03:51:14,343 DEBUG] EvaluationHelper:419 - Enter lacast trans: (y)^(2) == x*(x - 1)*(x - \[Lambda])
+[03:51:14,344 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Power[y, 2], Times[Plus[-1, x], x, Plus[x, Times[-1, λ]]]]
+[03:51:14,344 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[Power[y, 2], Times[Plus[-1, x], x, Plus[x, Times[-1, λ]]]]
+[03:51:14,344 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: y^2=x(x-1)(x-\\lambda)
+[03:51:14,362 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:14,362 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Power[y, 2], Times[Plus[x, Times[-1, λ]], x[Plus[-1, x]]]]
+  Gold: Equal[Power[y, 2], Times[Plus[-1, x], x, Plus[x, Times[-1, λ]]]]
+[03:51:14,363 DEBUG] EvaluationHelper:411 - Enter gold entry: D[Erf[z], {z, k}] == Divide[2*(- 1)^(k - 1),Sqrt[Pi]]*HermiteH[k - 1, z]*Exp[- (z)^(2)] == Divide[2,Sqrt[Pi]]*D[Exp[- (z)^(2)], {z, k - 1}]
+[03:51:14,366 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_523ec091d0929f0fa69ae7e0d563a72b: Equal[Times[Power[2, k], Power[z, Plus[1, Times[-1, k]]], HypergeometricPFQRegularized[{Rational[1, 2], 1}, {Plus[1, Times[Rational[-1, 2], k]], Times[Rational[1, 2], Plus[3, Times[-1, k]]]}, Times[-1, Power[z, 2]]]], Times[2, Power[-1, Plus[-1, k]], Power[E, Times[-1, Power[z, 2]]], Power[Pi, Rational[-1, 2]], HermiteH[Plus[-1, k], z]], Times[2, Power[Pi, Rational[-1, 2]], D[Power[E, Times[-1, Power[z, 2]]], {z, Plus[-1, k]}]]]
+[03:51:14,366 DEBUG] EvaluationHelper:417 - Translate: \erf@@{(z)}^{(k)} = \frac{2 (-1)^{k-1}}{\sqrt{\cpi}} \HermitepolyH{k-1}@{z} \expe^{-z^2} = \frac{2}{\sqrt{\cpi}} \deriv [{k-1}]{ }{z}(\expe^{-z^2}) , \qquad k = 1 , 2 , \dots
+[03:51:14,370 DEBUG] PatternFiller:84 - Fill pattern: Erf[$0]
+[03:51:14,370 DEBUG] PatternFiller:86 - Translated DLMF macro to: Erf[z]
+[03:51:14,373 DEBUG] PatternFiller:84 - Fill pattern: HermiteH[$0, $1]
+[03:51:14,373 DEBUG] PatternFiller:86 - Translated DLMF macro to: HermiteH[k - 1, z]
+[03:51:14,374 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \deriv
+[03:51:14,374 WARN] SequenceTranslator:459 - Normalizing brackets to normal parenthesis: ( )
+[03:51:14,375 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \deriv
+[03:51:14,375 DEBUG] PatternFiller:84 - Fill pattern: D[$1, {$2, $0}]
+[03:51:14,376 DEBUG] PatternFiller:86 - Translated DLMF macro to: D[Exp[- (z)^(2)], {z, k - 1}]
+[03:51:14,376 DEBUG] SequenceTranslator:321 - Interpret following elements as constraints
+[03:51:14,377 DEBUG] EvaluationHelper:419 - Enter lacast trans: (Erf[z])^(k) == Divide[2*(- 1)^(k - 1),Sqrt[Pi]]*HermiteH[k - 1, z]*Exp[- (z)^(2)] == Divide[2,Sqrt[Pi]]*D[Exp[- (z)^(2)], {z, k - 1}]
+[03:51:14,378 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Power[Erf[z], k], Times[2, Power[-1, Plus[-1, k]], Power[E, Times[-1, Power[z, 2]]], Power[Pi, Rational[-1, 2]], HermiteH[Plus[-1, k], z]], Times[2, Power[Pi, Rational[-1, 2]], D[Power[E, Times[-1, Power[z, 2]]], {z, Plus[-1, k]}]]]
+[03:51:14,378 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[Power[Erf[z], k], Times[2, Power[-1, Plus[-1, k]], Power[E, Times[-1, Power[z, 2]]], Power[Pi, Rational[-1, 2]], HermiteH[Plus[-1, k], z]], Times[2, Power[Pi, Rational[-1, 2]], D[Power[E, Times[-1, Power[z, 2]]], {z, Plus[-1, k]}]]]
+  Gold: Equal[Times[Power[2, k], Power[z, Plus[1, Times[-1, k]]], HypergeometricPFQRegularized[{Rational[1, 2], 1}, {Plus[1, Times[Rational[-1, 2], k]], Times[Rational[1, 2], Plus[3, Times[-1, k]]]}, Times[-1, Power[z, 2]]]], Times[2, Power[-1, Plus[-1, k]], Power[E, Times[-1, Power[z, 2]]], Power[Pi, Rational[-1, 2]], HermiteH[Plus[-1, k], z]], Times[2, Power[Pi, Rational[-1, 2]], D[Power[E, Times[-1, Power[z, 2]]], {z, Plus[-1, k]}]]]
+[03:51:14,378 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\operatorname{erf}^{(k)}(z) = \\frac{2 (-1)^{k-1}}{\\sqrt{\\pi}} \\mathit{H}_{k-1}(z) e^{-z^2} = \\frac{2}{\\sqrt{\\pi}}  \\frac{d^{k-1}}{dz^{k-1}} \\left(e^{-z^2}\\right),\\qquad k=1, 2, \\dots
+[03:51:14,399 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:14,399 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Equal[Times[Power[2, k], Power[z, Plus[1, Times[-1, k]]], HypergeometricPFQRegularized[{Rational[1, 2], 1}, {Plus[1, Times[Rational[-1, 2], k]], Times[Rational[1, 2], Plus[3, Times[-1, k]]]}, Times[-1, Power[z, 2]]]], Times[2, Power[-1, Plus[-1, k]], Power[E, Times[-1, Power[z, 2]]], Power[Pi, Rational[-1, 2]], HermiteH[Plus[-1, k], z]], Times[2, Power[Pi, Rational[-1, 2]], D[Power[E, Times[-1, Power[z, 2]]], {z, Plus[-1, k]}]]]
+[03:51:14,399 DEBUG] EvaluationHelper:411 - Enter gold entry: Subscript[e, 1] == Divide[1,2]
+ Subscript[e, 2] = 0
+ Subscript[e, 3] = -Divide[1,2]
+[03:51:14,400 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_24137d79f0a282f42fdf9ea93576e998: Rational[-1, 2]
+[03:51:14,400 DEBUG] EvaluationHelper:417 - Translate: e_1=\tfrac12,\qquad e_2=0,\qquad e_3=-\tfrac12
+[03:51:14,401 DEBUG] MathConstantTranslator:109 - Cannot translate math constant by MLP key. Try latex instead.
+[03:51:14,402 DEBUG] SequenceTranslator:321 - Interpret following elements as constraints
+[03:51:14,402 DEBUG] MathConstantTranslator:109 - Cannot translate math constant by MLP key. Try latex instead.
+[03:51:14,402 DEBUG] MathConstantTranslator:109 - Cannot translate math constant by MLP key. Try latex instead.
+[03:51:14,403 DEBUG] EvaluationHelper:419 - Enter lacast trans: Subscript[e, 1] == Divide[1,2]
+[03:51:14,404 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Subscript[e, 1], Rational[1, 2]]
+[03:51:14,404 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[Subscript[e, 1], Rational[1, 2]]
+  Gold: Rational[-1, 2]
+[03:51:14,404 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: e_1=\\tfrac12,\\qquad e_2=0,\\qquad e_3=-\\tfrac12
+[03:51:14,439 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:14,439 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Rational[-1, 2]
+[03:51:14,439 DEBUG] EvaluationHelper:411 - Enter gold entry: c == Infinity
+[03:51:14,440 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_0a306ab913684a1ba3935715d3dd8ad8: Equal[c, DirectedInfinity[1]]
+[03:51:14,440 DEBUG] EvaluationHelper:417 - Translate: c=\infty
+[03:51:14,440 DEBUG] EvaluationHelper:419 - Enter lacast trans: c == Infinity
+[03:51:14,441 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[c, DirectedInfinity[1]]
+[03:51:14,441 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[c, DirectedInfinity[1]]
+[03:51:14,441 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: c=\\infty
+[03:51:14,456 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:14,457 INFO] EvaluationHelper:440 - Import full form matches gold entry: Equal[c, DirectedInfinity[1]]
+[03:51:14,457 DEBUG] EvaluationHelper:411 - Enter gold entry: AngerJ[\[Nu], z] == Cos[Divide[\[Pi]*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k),(4)^(k)* Gamma[k +Divide[\[Nu],2]+ 1]*Gamma[k -Divide[\[Nu],2]+ 1]], {k, 0, Infinity}, GenerateConditions->None]+ Sin[Divide[\[Pi]*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k + 1),(2)^(2*k + 1)* Gamma[k +Divide[\[Nu],2]+Divide[3,2]]*Gamma[k -Divide[\[Nu],2]+Divide[3,2]]], {k, 0, Infinity}, GenerateConditions->None]
+[03:51:14,703 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_014efde25f995ccd08168a36ec7ef86d: Equal[AngerJ[ν, z], Plus[Times[Cos[Times[Rational[1, 2], Pi, ν]], Power[Gamma[Times[Rational[1, 2], Plus[2, Times[-1, ν]]]], -1], Power[Gamma[Times[Rational[1, 2], Plus[2, ν]]], -1], HypergeometricPFQ[{1}, {Plus[1, Times[Rational[-1, 2], ν]], Plus[1, Times[Rational[1, 2], ν]]}, Times[Rational[-1, 4], Power[z, 2]]]], Times[Rational[1, 2], z, Power[Gamma[Times[Rational[1, 2], Plus[3, Times[-1, ν]]]], -1], Power[Gamma[Times[Rational[1, 2], Plus[3, ν]]], -1], HypergeometricPFQ[{1}, {Plus[Rational[3, 2], Times[Rational[-1, 2], ν]], Plus[Rational[3, 2], Times[Rational[1, 2], ν]]}, Times[Rational[-1, 4], Power[z, 2]]], Sin[Times[Rational[1, 2], Pi, ν]]]]]
+[03:51:14,703 DEBUG] EvaluationHelper:417 - Translate: \AngerJ{\nu}@{z} = \cos \frac{\cpi \nu}{2} \sum_{k=0}^\infty \frac{(-1)^k z^{2k}}{4^k \Gamma(k + \frac{\nu}{2} + 1) \Gamma(k - \frac{\nu}{2} + 1)} + \sin \frac{\cpi \nu}{2} \sum_{k=0}^\infty \frac{(-1)^k z^{2k+1}}{2^{2k+1} \Gamma(k + \frac{\nu}{2} + \frac{3}{2}) \Gamma(k - \frac{\nu}{2} + \frac{3}{2})}
+[03:51:14,707 DEBUG] PatternFiller:84 - Fill pattern: AngerJ[$0, $1]
+[03:51:14,707 DEBUG] PatternFiller:86 - Translated DLMF macro to: AngerJ[\[Nu], z]
+[03:51:14,708 DEBUG] PatternFiller:84 - Fill pattern: Cos[$0]
+[03:51:14,708 DEBUG] PatternFiller:86 - Translated DLMF macro to: Cos[Divide[Pi*\[Nu],2]]
+[03:51:14,710 DEBUG] FreeVariables:62 - Suppress free variables [k]
+[03:51:14,710 DEBUG] FreeVariables:62 - Suppress free variables [k]
+[03:51:14,712 DEBUG] MeomArgumentExtractor:111 - Limited expression breakpoint reached (reason: sharing variables)
+[03:51:14,715 DEBUG] PatternFiller:84 - Fill pattern: Sin[$0]
+[03:51:14,715 DEBUG] PatternFiller:86 - Translated DLMF macro to: Sin[Divide[Pi*\[Nu],2]]
+[03:51:14,716 DEBUG] FreeVariables:75 - Release free variables [k]
+[03:51:14,716 DEBUG] FreeVariables:75 - Release free variables [k]
+[03:51:14,717 DEBUG] FreeVariables:62 - Suppress free variables [k]
+[03:51:14,717 DEBUG] FreeVariables:62 - Suppress free variables [k]
+[03:51:14,722 DEBUG] FreeVariables:75 - Release free variables [k]
+[03:51:14,722 DEBUG] FreeVariables:75 - Release free variables [k]
+[03:51:14,722 DEBUG] EvaluationHelper:419 - Enter lacast trans: AngerJ[\[Nu], z] == Cos[Divide[Pi*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k),(4)^(k)* \[CapitalGamma]*(k +Divide[\[Nu],2]+ 1)*\[CapitalGamma]*(k -Divide[\[Nu],2]+ 1)], {k, 0, Infinity}, GenerateConditions->None]+ Sin[Divide[Pi*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k + 1),(2)^(2*k + 1)* \[CapitalGamma]*(k +Divide[\[Nu],2]+Divide[3,2])*\[CapitalGamma]*(k -Divide[\[Nu],2]+Divide[3,2])], {k, 0, Infinity}, GenerateConditions->None]
+[03:51:14,968 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[AngerJ[ν, z], Plus[Times[-2, Power[Γ, -2], Power[Plus[-2, ν], -1], Power[ν, -1], Power[Plus[2, ν], -1], Cos[Times[Rational[1, 2], Pi, ν]], Plus[Times[2, Hypergeometric2F1[1, Plus[1, Times[Rational[-1, 2], ν]], Plus[2, Times[Rational[-1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[ν, Hypergeometric2F1[1, Plus[1, Times[Rational[-1, 2], ν]], Plus[2, Times[Rational[-1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[-2, Hypergeometric2F1[1, Plus[1, Times[Rational[1, 2], ν]], Plus[2, Times[Rational[1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[ν, Hypergeometric2F1[1, Plus[1, Times[Rational[1, 2], ν]], Plus[2, Times[Rational[1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]]]], Times[-1, z, Power[Γ, -2], Power[Plus[-3, ν], -1], Power[ν, -1], Power[Plus[3, ν], -1], Plus[Times[3, Hypergeometric2F1[1, Plus[Rational[3, 2], Times[Rational[-1, 2], ν]], Plus[Rational[5, 2], Times[Rational[-1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[ν, Hypergeometric2F1[1, Plus[Rational[3, 2], Times[Rational[-1, 2], ν]], Plus[Rational[5, 2], Times[Rational[-1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[-3, Hypergeometric2F1[1, Plus[Rational[3, 2], Times[Rational[1, 2], ν]], Plus[Rational[5, 2], Times[Rational[1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[ν, Hypergeometric2F1[1, Plus[Rational[3, 2], Times[Rational[1, 2], ν]], Plus[Rational[5, 2], Times[Rational[1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]]], Sin[Times[Rational[1, 2], Pi, ν]]]]]
+[03:51:14,968 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[AngerJ[ν, z], Plus[Times[-2, Power[Γ, -2], Power[Plus[-2, ν], -1], Power[ν, -1], Power[Plus[2, ν], -1], Cos[Times[Rational[1, 2], Pi, ν]], Plus[Times[2, Hypergeometric2F1[1, Plus[1, Times[Rational[-1, 2], ν]], Plus[2, Times[Rational[-1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[ν, Hypergeometric2F1[1, Plus[1, Times[Rational[-1, 2], ν]], Plus[2, Times[Rational[-1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[-2, Hypergeometric2F1[1, Plus[1, Times[Rational[1, 2], ν]], Plus[2, Times[Rational[1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[ν, Hypergeometric2F1[1, Plus[1, Times[Rational[1, 2], ν]], Plus[2, Times[Rational[1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]]]], Times[-1, z, Power[Γ, -2], Power[Plus[-3, ν], -1], Power[ν, -1], Power[Plus[3, ν], -1], Plus[Times[3, Hypergeometric2F1[1, Plus[Rational[3, 2], Times[Rational[-1, 2], ν]], Plus[Rational[5, 2], Times[Rational[-1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[ν, Hypergeometric2F1[1, Plus[Rational[3, 2], Times[Rational[-1, 2], ν]], Plus[Rational[5, 2], Times[Rational[-1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[-3, Hypergeometric2F1[1, Plus[Rational[3, 2], Times[Rational[1, 2], ν]], Plus[Rational[5, 2], Times[Rational[1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]], Times[ν, Hypergeometric2F1[1, Plus[Rational[3, 2], Times[Rational[1, 2], ν]], Plus[Rational[5, 2], Times[Rational[1, 2], ν]], Times[Rational[-1, 4], Power[z, 2]]]]], Sin[Times[Rational[1, 2], Pi, ν]]]]]
+  Gold: Equal[AngerJ[ν, z], Plus[Times[Cos[Times[Rational[1, 2], Pi, ν]], Power[Gamma[Times[Rational[1, 2], Plus[2, Times[-1, ν]]]], -1], Power[Gamma[Times[Rational[1, 2], Plus[2, ν]]], -1], HypergeometricPFQ[{1}, {Plus[1, Times[Rational[-1, 2], ν]], Plus[1, Times[Rational[1, 2], ν]]}, Times[Rational[-1, 4], Power[z, 2]]]], Times[Rational[1, 2], z, Power[Gamma[Times[Rational[1, 2], Plus[3, Times[-1, ν]]]], -1], Power[Gamma[Times[Rational[1, 2], Plus[3, ν]]], -1], HypergeometricPFQ[{1}, {Plus[Rational[3, 2], Times[Rational[-1, 2], ν]], Plus[Rational[3, 2], Times[Rational[1, 2], ν]]}, Times[Rational[-1, 4], Power[z, 2]]], Sin[Times[Rational[1, 2], Pi, ν]]]]]
+[03:51:14,968 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\mathbf{J}_\\nu(z)=\\cos\\frac{\\pi\\nu}{2}\\sum_{k=0}^\\infty\\frac{(-1)^kz^{2k}}{4^k\\Gamma\\left(k+\\frac{\\nu}{2}+1\\right)\\Gamma\\left(k-\\frac{\\nu}{2}+1\\right)}+\\sin\\frac{\\pi\\nu}{2}\\sum_{k=0}^\\infty\\frac{(-1)^kz^{2k+1}}{2^{2k+1}\\Gamma\\left(k+\\frac{\\nu}{2}+\\frac{3}{2}\\right)\\Gamma\\left(k-\\frac{\\nu}{2}+\\frac{3}{2}\\right)}
+[03:51:15,117 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:15,118 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[BesselJ[ν, z], Plus[Times[Rational[1, 2], cos, πν, Power[Gamma[Times[Rational[1, 2], Plus[2, Times[-1, ν]]]], -1], Power[Gamma[Times[Rational[1, 2], Plus[2, ν]]], -1], HypergeometricPFQ[{1}, {Plus[1, Times[Rational[-1, 2], ν]], Plus[1, Times[Rational[1, 2], ν]]}, Times[Rational[-1, 4], Power[z, 2]]]], Times[Rational[1, 4], sin, z, πν, Power[Gamma[Times[Rational[1, 2], Plus[3, Times[-1, ν]]]], -1], Power[Gamma[Times[Rational[1, 2], Plus[3, ν]]], -1], HypergeometricPFQ[{1}, {Plus[Rational[3, 2], Times[Rational[-1, 2], ν]], Plus[Rational[3, 2], Times[Rational[1, 2], ν]]}, Times[Rational[-1, 4], Power[z, 2]]]]]]
+  Gold: Equal[AngerJ[ν, z], Plus[Times[Cos[Times[Rational[1, 2], Pi, ν]], Power[Gamma[Times[Rational[1, 2], Plus[2, Times[-1, ν]]]], -1], Power[Gamma[Times[Rational[1, 2], Plus[2, ν]]], -1], HypergeometricPFQ[{1}, {Plus[1, Times[Rational[-1, 2], ν]], Plus[1, Times[Rational[1, 2], ν]]}, Times[Rational[-1, 4], Power[z, 2]]]], Times[Rational[1, 2], z, Power[Gamma[Times[Rational[1, 2], Plus[3, Times[-1, ν]]]], -1], Power[Gamma[Times[Rational[1, 2], Plus[3, ν]]], -1], HypergeometricPFQ[{1}, {Plus[Rational[3, 2], Times[Rational[-1, 2], ν]], Plus[Rational[3, 2], Times[Rational[1, 2], ν]]}, Times[Rational[-1, 4], Power[z, 2]]], Sin[Times[Rational[1, 2], Pi, ν]]]]]
+[03:51:15,118 DEBUG] EvaluationHelper:411 - Enter gold entry: == 2
+[03:51:15,118 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_34d9d355f0c0e28d91465c3b575fb0a1: $Failed
+[03:51:15,118 DEBUG] EvaluationHelper:417 - Translate: =2
+[03:51:15,119 DEBUG] EvaluationHelper:419 - Enter lacast trans: == 2
+[03:51:15,119 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: $Failed
+[03:51:15,119 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: $Failed
+[03:51:15,119 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: =2
+[03:51:15,136 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:15,136 INFO] EvaluationHelper:440 - Import full form matches gold entry: $Failed
+[03:51:15,136 DEBUG] EvaluationHelper:411 - Enter gold entry: LegendreQ[v, \[Mu], x] == Cos[(\[Mu]*Pi)*]*(Divide[1 + x,1 - x])^(\[Mu]/2)*Divide[Hypergeometric2F1[v + 1, - v, 1 - \[Mu], 1/2 - 2/x],Gamma[1 - \[Mu]]]
+[03:51:15,137 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_b5ab87b9cd2da05be00884345889d9e3: $Failed
+[03:51:15,137 DEBUG] EvaluationHelper:417 - Translate: \FerrersQ[\mu]{v}@{x} = \cos(\mu \cpi)(\frac{1+x}{1-x})^{\mu/2} \frac{F(v+1,-v;1-\mu;1/2-2/x)}  {\Gamma(1-\mu ) }
+[03:51:15,139 WARN] SequenceTranslator:459 - Normalizing brackets to normal parenthesis: ( )
+[03:51:15,139 DEBUG] PatternFiller:84 - Fill pattern: LegendreQ[$1, $0, $2]
+[03:51:15,139 DEBUG] PatternFiller:86 - Translated DLMF macro to: LegendreQ[v, \[Mu], x]
+[03:51:15,140 WARN] MacroTranslator:391 - The arguments of \cos was not given in curly brackets but parenthesis. This is will be rejected in future releases.
+[03:51:15,140 DEBUG] PatternFiller:84 - Fill pattern: Cos[$0]
+[03:51:15,140 DEBUG] PatternFiller:86 - Translated DLMF macro to: Cos[(\[Mu]*Pi)*]
+[03:51:15,143 DEBUG] EvaluationHelper:419 - Enter lacast trans: LegendreQ[v, \[Mu], x] == Cos[(\[Mu]*Pi)*]*(Divide[1 + x,1 - x])^(\[Mu]/2)*Divide[F*(v + 1 , - v ; 1 - \[Mu]; 1/2 - 2/x),\[CapitalGamma]*(1 - \[Mu])]
+[03:51:15,144 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: $Failed
+[03:51:15,144 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: $Failed
+[03:51:15,144 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: Q_v^\\mu(x)= \\cos(\\mu\\pi)\\left(\\frac{1+x}{1-x}\\right)^{\\mu/2}\\frac{F(v+1,-v;1-\\mu;1/2-2/x)}  {\\Gamma(1-\\mu ) }
+[03:51:15,162 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:15,162 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Power[Subscript[Q, v], μ][x], Times[Power[Times[Power[Plus[1, Times[-1, x]], -1], Plus[1, x]], Times[Rational[1, 2], μ]], Cos[μπ], F[Plus[1, v], Plus[Rational[1, 2], Times[-2, Power[x, -1]]]], Power[Gamma[Plus[1, Times[-1, μ]]], -1]]]
+  Gold: $Failed
+[03:51:15,162 DEBUG] EvaluationHelper:411 - Enter gold entry: StruveH[\[Alpha], z] == Divide[(z)^(\[Alpha]+ 1),(2)^\[Alpha]*Sqrt[Pi]*Gamma[\[Alpha]+Divide[3,2]]]*HypergeometricPFQ[{1}, {Divide[3,2], \[Alpha]+Divide[3,2]}, -Divide[(z)^(2),4]]
+[03:51:15,167 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_6dc2da7f595d2f199fbc15768167f006: True
+[03:51:15,167 DEBUG] EvaluationHelper:417 - Translate: \StruveH{\alpha}@{z} = \frac{z^{\alpha+1}}{2^{\alpha} \sqrt{\cpi} \EulerGamma@{\alpha + \tfrac{3}{2}}}{}_1 F_2(1 , \tfrac{3}{2} , \alpha + \tfrac{3}{2} , - \tfrac{z^2}{4})
+[03:51:15,169 DEBUG] PatternFiller:84 - Fill pattern: StruveH[$0, $1]
+[03:51:15,170 DEBUG] PatternFiller:86 - Translated DLMF macro to: StruveH[\[Alpha], z]
+[03:51:15,171 DEBUG] PatternFiller:84 - Fill pattern: Gamma[$0]
+[03:51:15,172 DEBUG] PatternFiller:86 - Translated DLMF macro to: Gamma[\[Alpha]+Divide[3,2]]
+[03:51:15,174 DEBUG] EvaluationHelper:419 - Enter lacast trans: StruveH[\[Alpha], z] == Divide[(z)^(\[Alpha]+ 1),(2)^\[Alpha]*Sqrt[Pi]*Gamma[\[Alpha]+Divide[3,2]]]Subscript[, 1]*Subscript[F, 2]*(1 ,Divide[3,2], \[Alpha]+Divide[3,2], -Divide[(z)^(2),4])
+[03:51:15,177 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: $Failed
+[03:51:15,177 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: $Failed
+  Gold: True
+[03:51:15,177 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\mathbf{H}_{\\alpha}(z) = \\frac{z^{\\alpha+1}}{2^{\\alpha}\\sqrt{\\pi} \\Gamma \\left (\\alpha+\\tfrac{3}{2} \\right )} {}_1F_2 \\left (1,\\tfrac{3}{2}, \\alpha+\\tfrac{3}{2},-\\tfrac{z^2}{4} \\right )
+[03:51:15,197 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:15,197 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: True
+[03:51:15,198 DEBUG] EvaluationHelper:411 - Enter gold entry: D[JacobiDN[z, (k)^2], {z, 1}] == - (k)^(2)* JacobiSN[z, (k)^2]*JacobiCN[z, (k)^2]
+[03:51:15,373 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_b54c03865b3efa9ea9112567cd66f59d: True
+[03:51:15,373 DEBUG] EvaluationHelper:417 - Translate: \deriv [1]{ }{z} \Jacobielldnk@@{(z)}{k} = - k^2 \Jacobiellsnk@@{(z)}{k} \Jacobiellcnk@@{(z)}{k}
+[03:51:15,375 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \deriv
+[03:51:15,375 WARN] SequenceTranslator:459 - Normalizing brackets to normal parenthesis: ( )
+[03:51:15,375 DEBUG] MacroInfoHolder:84 - Cannot extract slot of differentiation for \deriv
+[03:51:15,375 DEBUG] MeomArgumentLimitChecker:36 - Limited expression breakpoint reached (reason: relation)
+[03:51:15,376 DEBUG] PatternFiller:84 - Fill pattern: JacobiDN[$0, ($1)^2]
+[03:51:15,376 DEBUG] PatternFiller:86 - Translated DLMF macro to: JacobiDN[z, (k)^2]
+[03:51:15,376 DEBUG] PatternFiller:84 - Fill pattern: D[$1, {$2, $0}]
+[03:51:15,377 DEBUG] PatternFiller:86 - Translated DLMF macro to: D[JacobiDN[z, (k)^2], {z, 1}]
+[03:51:15,377 DEBUG] PatternFiller:84 - Fill pattern: JacobiSN[$0, ($1)^2]
+[03:51:15,378 DEBUG] PatternFiller:86 - Translated DLMF macro to: JacobiSN[z, (k)^2]
+[03:51:15,378 DEBUG] PatternFiller:84 - Fill pattern: JacobiCN[$0, ($1)^2]
+[03:51:15,378 DEBUG] PatternFiller:86 - Translated DLMF macro to: JacobiCN[z, (k)^2]
+[03:51:15,378 DEBUG] EvaluationHelper:419 - Enter lacast trans: D[JacobiDN[z, (k)^2], {z, 1}] == - (k)^(2)* JacobiSN[z, (k)^2]*JacobiCN[z, (k)^2]
+[03:51:15,379 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: True
+[03:51:15,379 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: True
+[03:51:15,379 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\frac{\\mathrm{d}}{\\mathrm{d}z} \\operatorname{dn}(z) = - k^2 \\operatorname{sn}(z) \\operatorname{cn}(z)
+[03:51:15,399 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:15,399 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[dn, Times[-1, cn, Power[k, 2], sn, Power[z, 2]]]
+  Gold: True
+[03:51:15,399 DEBUG] EvaluationHelper:411 - Enter gold entry: ScorerGi[x] == Divide[1,Pi]*Integrate[Sin[Divide[(t)^(3),3]+ x*t], {t, 0, Infinity}, GenerateConditions->None]
+[03:51:26,126 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_c8116180276232704ca3e9f67f207565: ConditionalExpression[Equal[ScorerGi[x], Times[Power[Pi, -1], Plus[Times[Rational[1, 3], Pi, AiryBi[x]], Times[Rational[-1, 2], Power[x, 2], HypergeometricPFQ[{1}, {Rational[2, 3], Rational[5, 6], Rational[7, 6], Rational[4, 3]}, Times[Rational[1, 1296], Power[x, 6]]]], Times[Rational[-1, 40], Power[x, 5], HypergeometricPFQ[{1}, {Rational[7, 6], Rational[4, 3], Rational[5, 3], Rational[11, 6]}, Times[Rational[1, 1296], Power[x, 6]]]]]]], Element[x, Reals]]
+[03:51:26,126 DEBUG] EvaluationHelper:417 - Translate: \ScorerGi@{x} = \frac{1}{\cpi} \int_0^\infty \sin(\frac{t^3}{3} + xt) \diff{t}
+[03:51:26,127 DEBUG] PatternFiller:84 - Fill pattern: ScorerGi[$0]
+[03:51:26,128 DEBUG] PatternFiller:86 - Translated DLMF macro to: ScorerGi[x]
+[03:51:26,128 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:51:26,129 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:51:26,129 WARN] MacroTranslator:391 - The arguments of \sin was not given in curly brackets but parenthesis. This is will be rejected in future releases.
+[03:51:26,130 DEBUG] PatternFiller:84 - Fill pattern: Sin[$0]
+[03:51:26,130 DEBUG] PatternFiller:86 - Translated DLMF macro to: Sin[Divide[(t)^(3),3]+ x*t]
+[03:51:26,130 DEBUG] FreeVariables:75 - Release free variables [t]
+[03:51:26,130 DEBUG] FreeVariables:75 - Release free variables [t]
+[03:51:26,130 DEBUG] EvaluationHelper:419 - Enter lacast trans: ScorerGi[x] == Divide[1,Pi]*Integrate[Sin[Divide[(t)^(3),3]+ x*t], {t, 0, Infinity}, GenerateConditions->None]
+[03:51:29,833 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: ConditionalExpression[Equal[ScorerGi[x], Times[Power[Pi, -1], Plus[Times[Rational[1, 3], Pi, AiryBi[x]], Times[Rational[-1, 2], Power[x, 2], HypergeometricPFQ[{1}, {Rational[2, 3], Rational[5, 6], Rational[7, 6], Rational[4, 3]}, Times[Rational[1, 1296], Power[x, 6]]]], Times[Rational[-1, 40], Power[x, 5], HypergeometricPFQ[{1}, {Rational[7, 6], Rational[4, 3], Rational[5, 3], Rational[11, 6]}, Times[Rational[1, 1296], Power[x, 6]]]]]]], Element[x, Reals]]
+[03:51:29,833 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: ConditionalExpression[Equal[ScorerGi[x], Times[Power[Pi, -1], Plus[Times[Rational[1, 3], Pi, AiryBi[x]], Times[Rational[-1, 2], Power[x, 2], HypergeometricPFQ[{1}, {Rational[2, 3], Rational[5, 6], Rational[7, 6], Rational[4, 3]}, Times[Rational[1, 1296], Power[x, 6]]]], Times[Rational[-1, 40], Power[x, 5], HypergeometricPFQ[{1}, {Rational[7, 6], Rational[4, 3], Rational[5, 3], Rational[11, 6]}, Times[Rational[1, 1296], Power[x, 6]]]]]]], Element[x, Reals]]
+[03:51:29,833 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\mathrm{Gi}(x) = \\frac{1}{\\pi} \\int_0^\\infty \\sin\\left(\\frac{t^3}{3} + xt\\right)\\, dt
+[03:51:32,198 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:32,198 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Gi[x], Times[Rational[1, 2], Power[3, Rational[-2, 3]], Power[Pi, -1], Gamma[Rational[1, 3]], Plus[Cos[xt], Times[Power[3, Rational[1, 2]], Sin[xt]]]]]
+  Gold: ConditionalExpression[Equal[ScorerGi[x], Times[Power[Pi, -1], Plus[Times[Rational[1, 3], Pi, AiryBi[x]], Times[Rational[-1, 2], Power[x, 2], HypergeometricPFQ[{1}, {Rational[2, 3], Rational[5, 6], Rational[7, 6], Rational[4, 3]}, Times[Rational[1, 1296], Power[x, 6]]]], Times[Rational[-1, 40], Power[x, 5], HypergeometricPFQ[{1}, {Rational[7, 6], Rational[4, 3], Rational[5, 3], Rational[11, 6]}, Times[Rational[1, 1296], Power[x, 6]]]]]]], Element[x, Reals]]
+[03:51:32,198 DEBUG] EvaluationHelper:411 - Enter gold entry: Subscript[c, l, m] == (- 1)^(m)*Divide[(\[ScriptL]- m)!,(\[ScriptL]+ m)!]
+[03:51:32,199 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_6f29e15c07089506a70db1b3f54b27a5: Equal[Subscript[c, l, m], Times[Power[-1, m], Factorial[Plus[Times[-1, m], ℓ]], Power[Factorial[Plus[m, ℓ]], -1]]]
+[03:51:32,199 DEBUG] EvaluationHelper:417 - Translate: c_{lm} = (-1)^m \frac{(\ell-m)!}{(\ell+m)!}
+[03:51:32,203 DEBUG] EvaluationHelper:419 - Enter lacast trans: Subscript[c, l*m] == (- 1)^(m)*Divide[(\[ScriptL]- m)!,(\[ScriptL]+ m)!]
+[03:51:32,203 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[Subscript[c, Times[l, m]], Times[Power[-1, m], Factorial[Plus[Times[-1, m], ℓ]], Power[Factorial[Plus[m, ℓ]], -1]]]
+[03:51:32,204 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: Equal[Subscript[c, Times[l, m]], Times[Power[-1, m], Factorial[Plus[Times[-1, m], ℓ]], Power[Factorial[Plus[m, ℓ]], -1]]]
+  Gold: Equal[Subscript[c, l, m], Times[Power[-1, m], Factorial[Plus[Times[-1, m], ℓ]], Power[Factorial[Plus[m, ℓ]], -1]]]
+[03:51:32,204 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: c_{lm} = (-1)^m \\frac{(\\ell-m)!}{(\\ell+m)!}
+[03:51:32,221 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:32,221 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: Equal[Subscript[c, lm], Times[Power[-1, m], Factorial[Plus[Times[-1, m], ℓ]], Power[Factorial[Plus[m, ℓ]], -1]]]
+  Gold: Equal[Subscript[c, l, m], Times[Power[-1, m], Factorial[Plus[Times[-1, m], ℓ]], Power[Factorial[Plus[m, ℓ]], -1]]]
+[03:51:32,221 DEBUG] EvaluationHelper:411 - Enter gold entry: c == a + 1
+[03:51:32,221 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_aaffb0ad8dea17d68491d9fb6ebcfbe3: Equal[c, Plus[1, a]]
+[03:51:32,221 DEBUG] EvaluationHelper:417 - Translate: c = a + 1
+[03:51:32,222 DEBUG] EvaluationHelper:419 - Enter lacast trans: c == a + 1
+[03:51:32,222 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[c, Plus[1, a]]
+[03:51:32,222 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[c, Plus[1, a]]
+[03:51:32,222 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: c = a + 1
+[03:51:32,239 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:32,239 INFO] EvaluationHelper:440 - Import full form matches gold entry: Equal[c, Plus[1, a]]
+[03:51:32,239 DEBUG] EvaluationHelper:411 - Enter gold entry: EllipticE[(e)^2] == Integrate[Sqrt[1 - (e)^(2)*(Sin[\[Theta]])^(2)], {\[Theta], 0, Pi/2}, GenerateConditions->None]
+[03:51:33,781 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_d3e28ddd096754fb8e1e52aaaa4f7770: ConditionalExpression[True, Or[LessEqual[Re[Power[e, 2]], 1], NotElement[Power[e, 2], Reals]]]
+[03:51:33,781 DEBUG] EvaluationHelper:417 - Translate: \compellintEk@{\expe} = \int_0^{\cpi / 2} \sqrt{1 - \expe^2 \sin^2 \theta} \diff{\theta}
+[03:51:33,782 DEBUG] PatternFiller:84 - Fill pattern: EllipticE[($0)^2]
+[03:51:33,782 DEBUG] PatternFiller:86 - Translated DLMF macro to: EllipticE[(E)^2]
+[03:51:33,783 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:51:33,783 DEBUG] FreeVariables:62 - Suppress free variables []
+[03:51:33,784 DEBUG] PatternFiller:84 - Fill pattern: Sin[$0]
+[03:51:33,784 DEBUG] PatternFiller:86 - Translated DLMF macro to: Sin[\[Theta]]
+[03:51:33,784 DEBUG] FreeVariables:75 - Release free variables [\[Theta]]
+[03:51:33,784 DEBUG] FreeVariables:75 - Release free variables [\[Theta]]
+[03:51:33,785 DEBUG] EvaluationHelper:419 - Enter lacast trans: EllipticE[(E)^2] == Integrate[Sqrt[1 - Exp[2]*(Sin[\[Theta]])^(2)], {\[Theta], 0, Pi/2}, GenerateConditions->None]
+[03:51:35,268 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: True
+[03:51:35,268 WARN] EvaluationHelper:427 - Lacast did not match gold:
+LaCASt: True
+  Gold: ConditionalExpression[True, Or[LessEqual[Re[Power[e, 2]], 1], NotElement[Power[e, 2], Reals]]]
+[03:51:35,268 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: E(e) \\,=\\, \\int_0^{\\pi/2}\\sqrt {1 - e^2 \\sin^2\\theta}\\ d\\theta
+[03:51:35,284 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:51:35,284 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: ConditionalExpression[True, Or[LessEqual[Re[Power[e, 2]], 1], NotElement[Power[e, 2], Reals]]]
+[03:51:35,284 DEBUG] EvaluationHelper:411 - Enter gold entry: Integrate[Divide[Gamma[Divide[s,2], 0, (z)^(2)* Pi],((z)^(2)* Pi)^(Divide[s,2])]*Exp[- 2*Pi*I*k*z], {z, - Infinity, Infinity}, GenerateConditions->None] == Divide[Gamma[Divide[1 - s,2], (k)^(2)* Pi],((k)^(2)* Pi)^(Divide[1 - s,2])]
+[03:53:41,010 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_c82b4ceebacd2b4a03b2eff406834e61: Equal[Integrate[Times[Power[E, Times[Complex[0, -2], k, Pi, z]], Power[Pi, Times[Rational[-1, 2], s]], Power[Power[z, 2], Times[Rational[-1, 2], s]], Gamma[Times[Rational[1, 2], s], 0, Times[Pi, Power[z, 2]]]], {z, DirectedInfinity[-1], DirectedInfinity[1]}, Rule[GenerateConditions, None]], Times[Power[Power[k, 2], Times[Rational[1, 2], Plus[-1, s]]], Power[Pi, Times[Rational[1, 2], Plus[-1, s]]], Gamma[Times[Rational[1, 2], Plus[1, Times[-1, s]]], Times[Power[k, 2], Pi]]]]
+[03:53:41,010 DEBUG] EvaluationHelper:417 - Translate: \int_{-\infty}^\infty \frac{\incgamma@{\frac s 2}{z^2 \cpi}}{(z^2 \cpi)^\frac s 2} \expe^{- 2 \cpi \iunit k z} \diff{}  \frac{\incGamma@{}{\cpi} \cpi}
+[03:53:41,012 WARN] EvaluationHelper:431 - Unable to enter/translate lacast translation
+ gov.nist.drmf.interpreter.common.exceptions.TranslationException: Encountered "<EOF>" at line 1, column 150.
+Was expecting one of:
+    <LPAREN> ...
+    <RPAREN> ...
+    "{" ...
+    <LBRACKET> ...
+    <RBRACKET> ...
+    <ESCAPED_LBRACE> ...
+    <ESCAPED_RBRACE> ...
+    "\\backslash" ...
+    <LETTER> ...
+    <DIGIT> ...
+    "`" ...
+    "!" ...
+    "@" ...
+    "*" ...
+    "-" ...
+    "=" ...
+    "+" ...
+    "|" ...
+    ";" ...
+    <COLON> ...
+    "\'" ...
+    "\"" ...
+    "," ...
+    <LESS_THEN> ...
+    "." ...
+    <GREATER_THAN> ...
+    "/" ...
+    "?" ...
+    "\\And" ...
+    "\\#" ...
+    "\\%" ...
+    "\\$" ...
+    "\\_" ...
+    "\\&" ...
+    <ESCAPED_SYMBOL_ALLOWED> ...
+    <ESCAPED_SYMBOL_DISALLOWED> ...
+    <FRAC> ...
+    <BINOM> ...
+    "\\stackrel" ...
+    "\\overset" ...
+    "\\underset" ...
+    "\\sqrt" ...
+    <ELLIPSIS> ...
+    "\\dots" ...
+    <TEXT_FONT_TYPEFACE> ...
+    <TEXT_FONT_SIZE> ...
+    <CONTROLLED_SPACE> ...
+    <OTHER_LATEX> ...
+    "\\sqrt" ...
+
+	at gov.nist.drmf.interpreter.common.exceptions.TranslationException.buildException(TranslationException.java:96) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.innerTranslate(SemanticLatexTranslator.java:211) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:173) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.translate(SemanticLatexTranslator.java:149) ~[classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.compareMathematicaTranslation(EvaluationHelper.java:418) [classes/:?]
+	at gov.nist.drmf.interpreter.generic.EvaluationHelper.main(EvaluationHelper.java:469) [classes/:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:?]
+	at jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:?]
+	at jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:?]
+	at java.lang.reflect.Method.invoke(Method.java:566) ~[?:?]
+	at com.intellij.rt.execution.application.AppMainV2.main(AppMainV2.java:128) [idea_rt.jar:?]
+Caused by: mlp.ParseException: Encountered "<EOF>" at line 1, column 150.
+Was expecting one of:
+    <LPAREN> ...
+    <RPAREN> ...
+    "{" ...
+    <LBRACKET> ...
+    <RBRACKET> ...
+    <ESCAPED_LBRACE> ...
+    <ESCAPED_RBRACE> ...
+    "\\backslash" ...
+    <LETTER> ...
+    <DIGIT> ...
+    "`" ...
+    "!" ...
+    "@" ...
+    "*" ...
+    "-" ...
+    "=" ...
+    "+" ...
+    "|" ...
+    ";" ...
+    <COLON> ...
+    "\'" ...
+    "\"" ...
+    "," ...
+    <LESS_THEN> ...
+    "." ...
+    <GREATER_THAN> ...
+    "/" ...
+    "?" ...
+    "\\And" ...
+    "\\#" ...
+    "\\%" ...
+    "\\$" ...
+    "\\_" ...
+    "\\&" ...
+    <ESCAPED_SYMBOL_ALLOWED> ...
+    <ESCAPED_SYMBOL_DISALLOWED> ...
+    <FRAC> ...
+    <BINOM> ...
+    "\\stackrel" ...
+    "\\overset" ...
+    "\\underset" ...
+    "\\sqrt" ...
+    <ELLIPSIS> ...
+    "\\dots" ...
+    <TEXT_FONT_TYPEFACE> ...
+    <TEXT_FONT_SIZE> ...
+    <CONTROLLED_SPACE> ...
+    <OTHER_LATEX> ...
+    "\\sqrt" ...
+
+	at mlp.PomParser.generateParseException(PomParser.java:9434) ~[mlp-1.1.jar:?]
+	at mlp.PomParser.jj_consume_token(PomParser.java:9307) ~[mlp-1.1.jar:?]
+	at mlp.PomParser.Argument(PomParser.java:2202) ~[mlp-1.1.jar:?]
+	at mlp.PomParser.LatexCmd2Param(PomParser.java:2018) ~[mlp-1.1.jar:?]
+	at mlp.PomParser.BasicExprNo2BackslashNorCR(PomParser.java:1570) ~[mlp-1.1.jar:?]
+	at mlp.PomParser.BasicExpression(PomParser.java:1470) ~[mlp-1.1.jar:?]
+	at mlp.PomParser.Expression(PomParser.java:1336) ~[mlp-1.1.jar:?]
+	at mlp.PomParser.parse(PomParser.java:461) ~[mlp-1.1.jar:?]
+	at mlp.PomParser.parse(PomParser.java:424) ~[mlp-1.1.jar:?]
+	at gov.nist.drmf.interpreter.pom.MLPWrapper.parseRaw(MLPWrapper.java:126) ~[classes/:?]
+	at gov.nist.drmf.interpreter.pom.MLPWrapper.parse(MLPWrapper.java:112) ~[classes/:?]
+	at gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator.innerTranslate(SemanticLatexTranslator.java:204) ~[classes/:?]
+	... 9 more
+[03:53:41,012 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: \\int_{-\\infty}^\\infty \\frac {\\gamma\\left(\\frac s 2, z^2 \\pi \\right)} {(z^2 \\pi)^\\frac s 2} e^{-2 \\pi i k z} \\mathrm d z = \\frac {\\Gamma\\left(\\frac {1-s} 2, k^2 \\pi \\right)} {(k^2 \\pi)^\\frac {1-s} 2}
+[03:53:41,030 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:53:41,030 WARN] EvaluationHelper:443 - Import did not match gold:
+Import: $Failed
+  Gold: Equal[Integrate[Times[Power[E, Times[Complex[0, -2], k, Pi, z]], Power[Pi, Times[Rational[-1, 2], s]], Power[Power[z, 2], Times[Rational[-1, 2], s]], Gamma[Times[Rational[1, 2], s], 0, Times[Pi, Power[z, 2]]]], {z, DirectedInfinity[-1], DirectedInfinity[1]}, Rule[GenerateConditions, None]], Times[Power[Power[k, 2], Times[Rational[1, 2], Plus[-1, s]]], Power[Pi, Times[Rational[1, 2], Plus[-1, s]]], Gamma[Times[Rational[1, 2], Plus[1, Times[-1, s]]], Times[Power[k, 2], Pi]]]]
+[03:53:41,030 DEBUG] EvaluationHelper:411 - Enter gold entry: x == \[PlusMinus]1
+[03:53:41,031 DEBUG] EvaluationHelper:414 - Successfully full-formed gold entry FORMULA_06f9b7b1d3f141742ad1c582b55056ba: Equal[x, PlusMinus[1]]
+[03:53:41,031 DEBUG] EvaluationHelper:417 - Translate: x = \pm 1
+[03:53:41,034 DEBUG] EvaluationHelper:419 - Enter lacast trans: x == \[PlusMinus]1
+[03:53:41,034 DEBUG] EvaluationHelper:422 - Successfully entered lacast trans: Equal[x, PlusMinus[1]]
+[03:53:41,034 INFO] EvaluationHelper:424 - Lacast full form matches gold entry: Equal[x, PlusMinus[1]]
+[03:53:41,034 DEBUG] EvaluationHelper:436 - Try to use Mathematica's import function: x = \\pm 1
+[03:53:41,052 DEBUG] EvaluationHelper:438 - Successfully entered mathematicas import
+[03:53:41,052 INFO] EvaluationHelper:440 - Import full form matches gold entry: Equal[x, PlusMinus[1]]
+Gold CAS	#Ent.Gold	#Ent.Lacast	#Ent.Import	LCT Match	LCT Not Match	Import Match	Import NotMatch
+      44	       44	         39	          0	       20	           19	           9	             35
+
+
+Process finished with exit code 0

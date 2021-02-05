@@ -6,7 +6,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 /**
  * This extension of an translator allows to pass DLMF labels due the translation process
  */
-public interface IDLMFTranslator extends ITranslator {
+public interface IDLMFTranslator<T> extends ITranslator {
     /**
      * Translates the given expression.
      * @param expression expression
@@ -28,4 +28,7 @@ public interface IDLMFTranslator extends ITranslator {
      * @throws TranslationException if an error due translation occurs.
      */
     TranslationInformation translateToObject( String expression, String label ) throws TranslationException;
+
+
+    TranslationInformation translateToObjectFeatured( String expression, TranslationFeature<T> translationFeatures );
 }

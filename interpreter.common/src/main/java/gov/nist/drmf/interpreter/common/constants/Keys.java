@@ -43,6 +43,8 @@ public final class Keys {
 
     public static final String KEY_ABSOLUTE_VALUE = "absolute value";
 
+    public static final String KEY_NORM = "norm";
+
     public static final String
             NUM_OF_VARS         = "Number of Variables",
             NUM_OF_ATS          = "Number of Ats",
@@ -75,6 +77,7 @@ public final class Keys {
             MLP_KEY_ADDITION        = "Addition",
             MLP_KEY_FRACTION        = "fraction",
             MLP_KEY_FUNCTION_ARGS   = "function arguments",
+            MLP_KEY_FUNCTION_DEF    = "function definition",
             MLP_KEY_UNDERSCORE      = "underscore",
             MLP_KEY_LOAD_PACKAGE    = "load-package",
             MLP_KEY_UNLOAD_PACKAGE  = "unload-package",

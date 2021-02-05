@@ -45,6 +45,11 @@ public class SymbolicResult implements Serializable, ITestResultCounter {
         overallResult = TestResultType.SKIPPED;
     }
 
+    @JsonIgnore
+    public boolean wasAborted() {
+        return false;
+    }
+
     @JsonSetter("overallResult")
     public void setOverallResult(TestResultType overallResult) {
         this.overallResult = overallResult;

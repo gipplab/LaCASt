@@ -6,7 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import gov.nist.drmf.interpreter.common.interfaces.SemanticallyRanked;
@@ -41,6 +43,11 @@ public class SemanticEnhancedDocument implements SemanticallyRanked {
         this.formulae = new LinkedList<>(copy.formulae);
     }
 
+    public SemanticEnhancedDocument(String title) {
+        this.title = title;
+        this.formulae = new LinkedList<>();
+    }
+
     public SemanticEnhancedDocument(String title, MLPDependencyGraph graph) {
         this.title = title;
         this.formulae = graph.getVertices().stream()
@@ -67,6 +74,11 @@ public class SemanticEnhancedDocument implements SemanticallyRanked {
     }
 
     @JsonIgnore
+    public MOIPresentations getMoi(String id) {
+        return this.formulae.stream().filter(f -> id.equals(f.getId())).findFirst().orElse(null);
+    }
+
+    @JsonIgnore
     public SemanticEnhancedAnnotationStatus getRank() {
         return getRank(this);
     }
@@ -85,18 +97,28 @@ public class SemanticEnhancedDocument implements SemanticallyRanked {
     @JsonIgnore
     public static List<SemanticEnhancedDocument> deserialize(Path path) throws IOException {
         ObjectMapper mapper = SemanticEnhancedDocument.getMapper();
-        return Files.list(path).map(Path::toFile).map(f -> {
-            try {
-                return mapper.readValue(f, SemanticEnhancedDocument.class);
-            } catch (IOException e) {
-                return null;
+        if ( Files.isDirectory(path) ) {
+            return Files.list(path).map(Path::toFile).map(f -> {
+                try {
+                    return mapper.readValue(f, SemanticEnhancedDocument.class);
+                } catch (IOException e) {
+                    return null;
+                }
+            }).filter(Objects::nonNull).collect(Collectors.toList());
+        } else {
+            String docsStr = Files.readString(path);
+            if ( docsStr.startsWith("[") ) {
+                SemanticEnhancedDocument[] docs = mapper.readValue(docsStr, SemanticEnhancedDocument[].class);
+                return Arrays.asList(docs.clone());
+            } else {
+                return List.of(deserialize(docsStr));
             }
-        }).filter(Objects::nonNull).collect(Collectors.toList());
+        }
     }
 
     @JsonIgnore
     public String serialize() throws JsonProcessingException {
-        return getMapper().writer(printer).writeValueAsString(this);
+        return writerInstance.writeValueAsString(this);
     }
 
     @JsonIgnore
@@ -112,17 +134,26 @@ public class SemanticEnhancedDocument implements SemanticallyRanked {
     private static ObjectMapper mapperInstance;
 
     @JsonIgnore
-    private static DefaultPrettyPrinter printer;
+    private static ObjectWriter writerInstance;
 
     public static ObjectMapper getMapper() {
         if ( mapperInstance == null ) {
-            mapperInstance = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+            mapperInstance = new ObjectMapper()
+                    .enable(SerializationFeature.INDENT_OUTPUT)
+                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             mapperInstance.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
             mapperInstance.registerModule(new GuavaModule());
 
-            printer = new DefaultPrettyPrinter();
+            DefaultPrettyPrinter printer = new DefaultPrettyPrinter();
             printer.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+            writerInstance = mapperInstance.writer(printer);
         }
         return mapperInstance;
+    }
+
+    public static ObjectWriter getWriter() {
+        getMapper();
+        return writerInstance;
     }
 }

@@ -1,0 +1,222 @@
+=============== Most important tests =================
+
+==== NO TRANSLATION AT ALL ====
+Config: Generic -> Semantic directly
+No Semantic: 3, Gold Size: 92
+Matching: 16
+Non-Matching: 76
+
+==== DEPTH SHOULD BE 1 (higher is not important) ====
+Config: Max Relations: 3, Max Macros: 1, Max Depth: -1 (no macro translations)
+No Semantic: 3, Gold Size: 92
+Matching: 16
+Non-Matching: 76
+
+Config: Max Relations: 3, Max Macros: 1, Max Depth: 0
+No Semantic: 3, Gold Size: 92
+Matching: 31
+Non-Matching: 61
+
+Config: Max Relations: 4, Max Macros: 4, Max Depth: 0
+No Semantic: 3, Gold Size: 92
+Matching: 36
+Non-Matching: 56
+
+Config: Max Relations: 5, Max Macros: 5, Max Depth: 0
+No Semantic: 3, Gold Size: 92
+Matching: 37
+Non-Matching: 55
+
+Config: Max Relations: 3, Max Macros: 1, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 35
+Non-Matching: 57
+
+==== SIMPLE HIGH RELATION - MACROS IS BEST, MIN 4, BETTER 5 ====
+Config: Max Relations: 4, Max Macros: 4, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 41
+Non-Matching: 51
+
+Config: Max Relations: 5, Max Macros: 3, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 40
+Non-Matching: 52
+
+Config: Max Relations: 3, Max Macros: 5, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 40
+Non-Matching: 52
+
+
+
+
+
+
+
+
+
+
+
+OTHER TESTS
+
+Config: Max Relations: 1, Max Macros: 1, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 32
+Non-Matching: 60
+
+Config: Max Relations: 5, Max Macros: 1, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 35
+Non-Matching: 57
+
+Config: Max Relations: 1, Max Macros: 5, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 32
+Non-Matching: 60
+
+Config: Max Relations: 1, Max Macros: 1, Max Depth: 5
+No Semantic: 3, Gold Size: 92
+Matching: 32
+Non-Matching: 60
+
+Config: Max Relations: 5, Max Macros: 5, Max Depth: 5
+No Semantic: 3, Gold Size: 92
+Matching: 40
+Non-Matching: 52
+
+Config: Max Relations: 3, Max Macros: 5, Max Depth: -1
+No Semantic: 3, Gold Size: 92
+Matching: 39
+Non-Matching: 53
+
+Config: Max Relations: 10, Max Macros: 1, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 35
+Non-Matching: 57
+
+Config: Max Relations: 15, Max Macros: 1, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 35
+Non-Matching: 57
+
+Config: Max Relations: 5, Max Macros: 5, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 40
+Non-Matching: 52
+
+Config: Max Relations: 5, Max Macros: 15, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 38
+Non-Matching: 54
+
+Config: Max Relations: 5, Max Macros: 5, Max Depth: 5
+No Semantic: 3, Gold Size: 92
+Matching: 40
+Non-Matching: 52
+
+Config: Max Relations: 5, Max Macros: 5, Max Depth: -1
+No Semantic: 3, Gold Size: 92
+Matching: 40
+Non-Matching: 52
+
+=======================================================
+=================== Depths Tests ======================
+
+Config: Max Relations: 3, Max Macros: 1, Max Depth: -1
+No Semantic: 3, Gold Size: 92
+Matching: 16
+Non-Matching: 76
+
+Config: Max Relations: 3, Max Macros: 1, Max Depth: 0
+No Semantic: 3, Gold Size: 92
+Matching: 31
+Non-Matching: 61
+
+Config: Max Relations: 3, Max Macros: 1, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 35
+Non-Matching: 57
+
+=======================================================
+=================== Macros Tests ======================
+
+Config: Max Relations: 3, Max Macros: 2, Max Depth: 0
+No Semantic: 3, Gold Size: 92
+Matching: 32
+Non-Matching: 60
+
+Config: Max Relations: 3, Max Macros: 3, Max Depth: 0
+No Semantic: 3, Gold Size: 92
+Matching: 33
+Non-Matching: 59
+
+Config: Max Relations: 3, Max Macros: 5, Max Depth: 0
+No Semantic: 3, Gold Size: 92
+Matching: 34
+Non-Matching: 58
+
+Config: Max Relations: 5, Max Macros: 10, Max Depth: 0
+No Semantic: 3, Gold Size: 92
+Matching: 36
+Non-Matching: 56
+
+Config: Max Relations: 3, Max Macros: 1, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 35
+Non-Matching: 57
+
+Config: Max Relations: 3, Max Macros: 2, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 36
+Non-Matching: 56
+
+Config: Max Relations: 3, Max Macros: 3, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 38
+Non-Matching: 54
+
+Config: Max Relations: 3, Max Macros: 5, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 39
+Non-Matching: 53
+
+Config: Max Relations: 3, Max Macros: 10, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 40
+Non-Matching: 52
+
+Config: Max Relations: 3, Max Macros: 15, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 38
+Non-Matching: 54
+
+Config: Max Relations: 10, Max Macros: 1, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 35
+Non-Matching: 57
+
+Config: Max Relations: 10, Max Macros: 2, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 36
+Non-Matching: 56
+
+Config: Max Relations: 10, Max Macros: 3, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 39
+Non-Matching: 53
+
+Config: Max Relations: 10, Max Macros: 5, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 39
+Non-Matching: 53
+
+Config: Max Relations: 10, Max Macros: 10, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 40
+Non-Matching: 52
+
+Config: Max Relations: 10, Max Macros: 15, Max Depth: 1
+No Semantic: 3, Gold Size: 92
+Matching: 37
+Non-Matching: 55

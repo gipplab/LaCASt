@@ -219,6 +219,7 @@ public class MathTermTranslator extends AbstractListTranslator {
             case fence:
                 te = parseFences(term, following_exp);
                 break;
+            case negated_equals:
             case relation:
                 te = parseRelation(term, following_exp);
                 break;

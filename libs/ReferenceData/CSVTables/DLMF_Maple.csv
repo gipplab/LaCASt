@@ -745,7 +745,7 @@ X1:\LaguerrepolyLX\LaguerrepolyL[$1]{$0}@{$2};LaguerreL($1, $0, $2);;;
 \qMeixner{n}@{x}{b}{c}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf;;
 \qMeixnerPollaczek{n}@{x}{a}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf;;
 \qPochhammer{a}{q}{n};QPochhammer($0, $1, $2);;QDifferenceEquations,QPochhammer;
-\qmultiPochhammersym{a_1,\ldots,a_n}{q}{n};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf;;
+\qmultiPochhammersym{a_1,\ldots,a_n}{q}{n};;;;
 \qpolygamma{n}{q}@{z};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf;;
 \qRacah{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf;;
 \qRacahpolyR{n}@{x}{\alpha}{\beta}{\gamma}{\delta}{q};;But the university of Kassel (Germany) implemented a Maple package for q-Hypergeometric Summation. http://www.mathematik.uni-kassel.de/~koepf/BoeingKoepf.pdf;;

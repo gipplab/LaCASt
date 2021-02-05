@@ -8,14 +8,20 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
+import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
+import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
 
@@ -49,10 +55,13 @@ public class FunctionTranslator extends AbstractListTranslator {
 
     private final BasicFunctionsTranslator basicFT;
 
+    private final Pattern ENDS_ON_MULTIPLY_PATTERN;
+
     public FunctionTranslator(AbstractTranslator superTranslator) {
         super(superTranslator);
         this.localTranslations = new TranslatedExpression();
         this.basicFT = getConfig().getBasicFunctionsTranslator();
+        this.ENDS_ON_MULTIPLY_PATTERN = Pattern.compile("(.*)"+Pattern.quote(getConfig().getMULTIPLY())+"\\s*");
     }
 
     @Override
@@ -116,9 +125,14 @@ public class FunctionTranslator extends AbstractListTranslator {
                     TranslationExceptionReason.UNKNOWN_OR_MISSING_ELEMENT);
         }
 
-        // remove the starting backslash
         String output;
-        if (term.getTermText().startsWith(CHAR_BACKSLASH))
+        if ( MathTermUtility.isGreekLetter(term) ) {
+            GreekLetterTranslator glt = new GreekLetterTranslator(getSuperTranslator());
+            TranslatedExpression ti = glt.translate(exp);
+            getGlobalTranslationList().removeLastNExps(ti.getLength());
+            output = ti.toString();
+        } // remove the starting backslash
+        else if (term.getTermText().startsWith(CHAR_BACKSLASH))
             output = term.getTermText().substring(1);
         else output = term.getTermText();
 
@@ -153,8 +167,11 @@ public class FunctionTranslator extends AbstractListTranslator {
                     TranslationExceptionReason.INVALID_LATEX_INPUT);
         }
 
+        int definitionIndex = getDefinitionIndex(0, following_exp);
+
         // get first expression
         PomTaggedExpression first = following_exp.remove(0);
+        int idxReduction = 1;
 
         // if it starts with a caret, we have a little problem.
         // classical case \cos^b(a). This is typical and easy
@@ -168,25 +185,65 @@ public class FunctionTranslator extends AbstractListTranslator {
                     this, "Unable to retrieve argument of function.",
                     TranslationExceptionReason.INVALID_LATEX_INPUT);
             first = following_exp.remove(0);
+            idxReduction++;
         }
 
         // translate the argument in the general way
-        TranslatedExpression translation = parseGeneralExpression(first, following_exp);
+        List<PomTaggedExpression> nextElements;
+        if ( definitionIndex > 0 ) {
+            nextElements = new LinkedList<>(following_exp.subList(0, definitionIndex-idxReduction));
+            following_exp.subList(0, definitionIndex+2-idxReduction).clear();
+        } else nextElements = following_exp;
+
+        TranslatedExpression translation = parseGeneralExpression(first, nextElements);
+        if ( translation.toString().isBlank() ) {
+            String updatedLastElement = getGlobalTranslationList().getLastExpression();
+            localTranslations.replaceLastExpression(updatedLastElement);
+            if ( nextElements.isEmpty() ) throw TranslationException.buildException(
+                    this, "Unable to retrieve argument of the function " + localTranslations.toString(),
+                    TranslationExceptionReason.INVALID_LATEX_INPUT);
+            translation = parseGeneralExpression(nextElements.remove(0), nextElements);
+        }
 
         // find out if we should wrap parenthesis around or not
         int num = translation.getLength();
-        String arg = Brackets.removeEnclosingBrackets(translation.toString());
-        String translatedExpression = basicFT.translate(new String[]{arg}, Keys.MLP_KEY_FUNCTION_ARGS);
+        Matcher m = ENDS_ON_MULTIPLY_PATTERN.matcher(translation.toString());
+        boolean endedOnMultiply = m.matches();
+        String argTrans = endedOnMultiply ? m.group(1).trim() : translation.toString();
+        String arg = Brackets.removeEnclosingBrackets(argTrans);
+
+        String translatedExpression;
+        if ( definitionIndex > 0 ) {
+            SequenceTranslator sq = new SequenceTranslator(getSuperTranslator());
+            PrintablePomTaggedExpression sequence = FakeMLPGenerator.generateEmptySequencePPTE();
+            sequence.setPrintableComponents(following_exp);
+            TranslatedExpression te = sq.translate(sequence);
+            following_exp.clear();
+            getGlobalTranslationList().removeLastNExps(te.getLength());
+            getGlobalTranslationList().removeLastNExps(num); // the definition symbol
+
+            String[] args = new String[]{
+                    localTranslations.toString(),
+                    normalizeArgumentList(arg),
+                    te.getTranslatedExpression()
+            };
+            localTranslations.clear();
+            translatedExpression = basicFT.translate(args, Keys.MLP_KEY_FUNCTION_DEF);
+        } else {
+            translatedExpression = basicFT.translate(new String[]{arg}, Keys.MLP_KEY_FUNCTION_ARGS);
+        }
 
         // take over the parsed expression
         localTranslations.addTranslatedExpression(translatedExpression);
+        num = localTranslations.getLength();
+        if ( endedOnMultiply ) localTranslations.addTranslatedExpression(getConfig().getMULTIPLY());
         localTranslations.mergeAll();
 
         // update global
         TranslatedExpression global = super.getGlobalTranslationList();
         // remove all variables and put them together as one object
         global.removeLastNExps(num);
-        global.addTranslatedExpression(translatedExpression);
+        global.addTranslatedExpression(localTranslations);
 
         // shit, if there was a caret before the arguments, we need to add
         // these now
@@ -198,5 +255,57 @@ public class FunctionTranslator extends AbstractListTranslator {
         }
 
         return localTranslations;
+    }
+
+    private String normalizeArgumentList(String args) {
+        if ( args == null || args.isBlank() ) return args;
+
+        String[] argElements = args.split("[,;]");
+        boolean isMath = Keys.KEY_MATHEMATICA.equals(getConfig().getTO_LANGUAGE());
+        for ( int i = 0; i < argElements.length; i++ ) {
+            argElements[i] = argElements[i].trim();
+            if ( isMath ) argElements[i] += "_";
+        }
+        return String.join(", ", argElements);
+    }
+
+    /**
+     * Returns true if the right after the following expressions (skipping primes and parenthesis (argument) exprs).
+     * This means, we skip all that stuff and check if := is coming right after the argument.
+     * @param followingExps list of following arguments
+     * @return true if a definition symbol is following the argument
+     */
+    private int getDefinitionIndex(int start, List<PomTaggedExpression> followingExps) {
+        if ( getGlobalTranslationList().getLength() > 1 ) {
+            // otherwise it might be an implicit definition which we do not support by now
+            return -1;
+        }
+        if ( start >= followingExps.size() ) return -1;
+        if ( followingExps.isEmpty() || followingExps.get(start) == null || followingExps.get(start).isEmpty() ) return -1;
+
+        PomTaggedExpression next = followingExps.get(start);
+        LinkedList<Brackets> bracketStack = new LinkedList<>();
+        Brackets bracket = Brackets.ifIsBracketTransform(next.getRoot(), null);
+        int idx = start+1;
+        if ( bracket != null && bracket.opened ) {
+            bracketStack.add(bracket);
+            idx = skipBrackets(idx, followingExps, bracketStack);
+        } else if ( MathTermUtility.equals(next.getRoot(), MathTermTags.primes) ) {
+            return getDefinitionIndex(start + 1, followingExps);
+        } else {
+            // otherwise it is a single argument... so we simply skip it and check if := is following
+            idx++;
+        }
+
+        if ( idx < 0 || idx >= followingExps.size() ) return -1;
+
+        next = followingExps.get(idx);
+        if ( next == null || next.getNextSibling() == null ) return -1;
+
+        PomTaggedExpression nextNext = next.getNextSibling();
+        if (MathTermUtility.equals(next.getRoot(), MathTermTags.colon) &&
+                MathTermUtility.equals(nextNext.getRoot(), MathTermTags.equals)) {
+            return idx;
+        } else return -1;
     }
 }

@@ -356,10 +356,6 @@ public class SequenceTranslator extends AbstractListTranslator {
         super.addPartialTranslation(localTranslations);
     }
 
-    private boolean bracketMatchOrSetMode(Brackets bracket) {
-        return openBracket.counterpart.equals(bracket.symbol) || super.isSetMode();
-    }
-
     /**
      * If this term is a bracket there are three possible options
      *           1) another open bracket
@@ -386,7 +382,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             // translate the following expressions
             localTranslations.addTranslatedExpression(sp.translate(followingExp));
             return null;
-        } else if ( bracketMatchOrSetMode(bracket) ) {
+        } else if ( bracketMatchOrSetMode(openBracket, bracket) ) {
             return handleClosingBracket(exp, followingExp, bracket);
         } else { // otherwise there was an error in the bracket arrangements
             throw TranslationException.buildException(this, "Bracket-Error: open bracket "
@@ -413,20 +409,23 @@ public class SequenceTranslator extends AbstractListTranslator {
         int num = localTranslations.mergeAll();
 
         // now, always wrap brackets around this sequence
-        // if the brackets are |.| for absolute value, translate it as a function
+        // if the brackets are |.| for absolute value or ||.|| for norm, translate it as a function
         String seq;
         if (openBracket.equals(Brackets.left_latex_abs_val) ||
-                openBracket.equals(Brackets.abs_val_open)) {
+                openBracket.equals(Brackets.abs_val_open) ||
+                openBracket.equals(Brackets.fence_open)) {
             String argTranslation = localTranslations.removeLastExpression();
             Matcher m = MULTIPLY_PATTERN.matcher(argTranslation);
             if ( m.matches() ) argTranslation = m.group(1);
 
             BasicFunctionsTranslator bft = getConfig().getBasicFunctionsTranslator();
+            String func = Keys.KEY_ABSOLUTE_VALUE;
+            if ( openBracket.equals(Brackets.fence_open) ) func = Keys.KEY_NORM;
             seq = bft.translate(
                     new String[] {
                             stripMultiParentheses(argTranslation)
                     },
-                    Keys.KEY_ABSOLUTE_VALUE
+                    func
             );
         } else { // otherwise, parenthesis must match each other, so close as it opened
             bracket = openBracket;
