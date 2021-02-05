@@ -52,7 +52,10 @@ public class Statistics {
 
     private int numberOfTranslationsToMathematica;
 
-    private int mapleNumberOfStartedTests;
+    private int mapleNumberOfSkippedTests;
+    private int mapleNumberOfAbortedTests;
+    private int mapleNumberOfStartedSymbolicTests;
+    private int mapleNumberOfStartedNumericTests;
     private int mapleNumberOfSuccessfulSymbolicTests;
     private int mapleNumberOfSuccessfulNumericTests;
     private int mapleNumberOfFailedSymbolicTests;
@@ -60,7 +63,10 @@ public class Statistics {
     private int mapleNumberOfErrorSymbolicTests;
     private int mapleNumberOfErrorNumericTests;
 
-    private int mathematicaNumberOfStartedTests;
+    private int mathematicaNumberOfSkippedTests;
+    private int mathematicaNumberOfAbortedTests;
+    private int mathematicaNumberOfStartedSymbolicTests;
+    private int mathematicaNumberOfStartedNumericTests;
     private int mathematicaNumberOfSuccessfulSymbolicTests;
     private int mathematicaNumberOfSuccessfulNumericTests;
     private int mathematicaNumberOfFailedSymbolicTests;
@@ -174,20 +180,36 @@ public class Statistics {
         this.mathematicaNumberOfSuccessfulNumericTests = mathematicaNumberOfSuccessfulNumericTests;
     }
 
-    public int getMapleNumberOfStartedTests() {
-        return mapleNumberOfStartedTests;
+    public int getMapleNumberOfStartedSymbolicTests() {
+        return mapleNumberOfStartedSymbolicTests;
     }
 
-    public void setMapleNumberOfStartedTests(int mapleNumberOfStartedTests) {
-        this.mapleNumberOfStartedTests = mapleNumberOfStartedTests;
+    public void setMapleNumberOfStartedSymbolicTests(int mapleNumberOfStartedSymbolicTests) {
+        this.mapleNumberOfStartedSymbolicTests = mapleNumberOfStartedSymbolicTests;
     }
 
-    public int getMathematicaNumberOfStartedTests() {
-        return mathematicaNumberOfStartedTests;
+    public int getMapleNumberOfStartedNumericTests() {
+        return mapleNumberOfStartedNumericTests;
     }
 
-    public void setMathematicaNumberOfStartedTests(int mathematicaNumberOfStartedTests) {
-        this.mathematicaNumberOfStartedTests = mathematicaNumberOfStartedTests;
+    public void setMapleNumberOfStartedNumericTests(int mapleNumberOfStartedNumericTests) {
+        this.mapleNumberOfStartedNumericTests = mapleNumberOfStartedNumericTests;
+    }
+
+    public int getMathematicaNumberOfStartedSymbolicTests() {
+        return mathematicaNumberOfStartedSymbolicTests;
+    }
+
+    public void setMathematicaNumberOfStartedSymbolicTests(int mathematicaNumberOfStartedSymbolicTests) {
+        this.mathematicaNumberOfStartedSymbolicTests = mathematicaNumberOfStartedSymbolicTests;
+    }
+
+    public int getMathematicaNumberOfStartedNumericTests() {
+        return mathematicaNumberOfStartedNumericTests;
+    }
+
+    public void setMathematicaNumberOfStartedNumericTests(int mathematicaNumberOfStartedNumericTests) {
+        this.mathematicaNumberOfStartedNumericTests = mathematicaNumberOfStartedNumericTests;
     }
 
     public int getMapleNumberOfFailedSymbolicTests() {
@@ -262,6 +284,38 @@ public class Statistics {
         this.numberOfShouldNotBeEvaluatedExpressions = numberOfShouldNotBeEvaluatedExpressions;
     }
 
+    public int getMapleNumberOfSkippedTests() {
+        return mapleNumberOfSkippedTests;
+    }
+
+    public void setMapleNumberOfSkippedTests(int mapleNumberOfSkippedTests) {
+        this.mapleNumberOfSkippedTests = mapleNumberOfSkippedTests;
+    }
+
+    public int getMapleNumberOfAbortedTests() {
+        return mapleNumberOfAbortedTests;
+    }
+
+    public void setMapleNumberOfAbortedTests(int mapleNumberOfAbortedTests) {
+        this.mapleNumberOfAbortedTests = mapleNumberOfAbortedTests;
+    }
+
+    public int getMathematicaNumberOfSkippedTests() {
+        return mathematicaNumberOfSkippedTests;
+    }
+
+    public void setMathematicaNumberOfSkippedTests(int mathematicaNumberOfSkippedTests) {
+        this.mathematicaNumberOfSkippedTests = mathematicaNumberOfSkippedTests;
+    }
+
+    public int getMathematicaNumberOfAbortedTests() {
+        return mathematicaNumberOfAbortedTests;
+    }
+
+    public void setMathematicaNumberOfAbortedTests(int mathematicaNumberOfAbortedTests) {
+        this.mathematicaNumberOfAbortedTests = mathematicaNumberOfAbortedTests;
+    }
+
     @JsonIgnore
     public void addDocument(SemanticEnhancedDocument sed) {
         if ( sed == null ) return;
@@ -312,41 +366,97 @@ public class Statistics {
 
     @JsonIgnore
     private void updateCasResult(ITestResultCounter sym, ITestResultCounter num, boolean maple) {
-        if ( sym != null || num != null ) {
-            if ( maple ) mapleNumberOfStartedTests++;
-            else mathematicaNumberOfStartedTests++;
-        }
+//        if ( sym != null || num != null ) {
+//            if ( maple ) mapleNumberOfStartedTests++;
+//            else mathematicaNumberOfStartedTests++;
+//        }
 
         if ( sym != null ) {
             switch ( sym.overallResult() ) {
+                case SKIPPED: // nothing happen
+                    break;
                 case SUCCESS:
-                    if ( maple ) mapleNumberOfSuccessfulSymbolicTests++;
-                    else mathematicaNumberOfSuccessfulSymbolicTests++;
+                    if ( maple ) {
+                        mapleNumberOfSuccessfulSymbolicTests++;
+                        mapleNumberOfStartedSymbolicTests++;
+                    }
+                    else {
+                        mathematicaNumberOfSuccessfulSymbolicTests++;
+                        mathematicaNumberOfStartedSymbolicTests++;
+                    }
                     break;
                 case FAILURE:
-                    if ( maple ) mapleNumberOfFailedSymbolicTests++;
-                    else mathematicaNumberOfFailedSymbolicTests++;
+                    if ( maple ) {
+                        mapleNumberOfFailedSymbolicTests++;
+                        mapleNumberOfStartedSymbolicTests++;
+                    }
+                    else {
+                        mathematicaNumberOfFailedSymbolicTests++;
+                        mathematicaNumberOfStartedSymbolicTests++;
+                    }
                     break;
                 case ERROR:
-                    if ( maple ) mapleNumberOfErrorSymbolicTests++;
-                    else mathematicaNumberOfErrorSymbolicTests++;
+                    if ( maple ) {
+                        mapleNumberOfErrorSymbolicTests++;
+                        mapleNumberOfStartedSymbolicTests++;
+                    }
+                    else {
+                        mathematicaNumberOfErrorSymbolicTests++;
+                        mathematicaNumberOfStartedSymbolicTests++;
+                    }
                     break;
             }
         }
 
         if ( num != null ) {
             switch ( num.overallResult() ) {
+                case SKIPPED:
+                    if ( num.wasAborted() ) {
+                        if (maple) {
+                            mapleNumberOfAbortedTests++;
+                            mapleNumberOfStartedNumericTests++;
+                        } else {
+                            mathematicaNumberOfAbortedTests++;
+                            mathematicaNumberOfStartedNumericTests++;
+                        }
+                    } else {
+                        if ( maple ) {
+                            mapleNumberOfSkippedTests++;
+                        } else {
+                            mathematicaNumberOfSkippedTests++;
+                        }
+                        // not counting for actual performed test cases
+                    }
+                    break;
                 case SUCCESS:
-                    if ( maple ) mapleNumberOfSuccessfulNumericTests++;
-                    else mathematicaNumberOfSuccessfulNumericTests++;
+                    if ( maple ) {
+                        mapleNumberOfSuccessfulNumericTests++;
+                        mapleNumberOfStartedNumericTests++;
+                    }
+                    else {
+                        mathematicaNumberOfSuccessfulNumericTests++;
+                        mathematicaNumberOfStartedNumericTests++;
+                    }
                     break;
                 case FAILURE:
-                    if ( maple ) mapleNumberOfFailedNumericTests++;
-                    else mathematicaNumberOfFailedNumericTests++;
+                    if ( maple ) {
+                        mapleNumberOfFailedNumericTests++;
+                        mapleNumberOfStartedNumericTests++;
+                    }
+                    else {
+                        mathematicaNumberOfFailedNumericTests++;
+                        mathematicaNumberOfStartedNumericTests++;
+                    }
                     break;
                 case ERROR:
-                    if ( maple ) mapleNumberOfErrorNumericTests++;
-                    else mathematicaNumberOfErrorNumericTests++;
+                    if ( maple ) {
+                        mapleNumberOfStartedNumericTests++;
+                        mapleNumberOfErrorNumericTests++;
+                    }
+                    else {
+                        mathematicaNumberOfErrorNumericTests++;
+                        mathematicaNumberOfStartedNumericTests++;
+                    }
                     break;
             }
         }
@@ -373,7 +483,7 @@ public class Statistics {
 
     @JsonIgnore
     public static void main(String[] args) throws IOException {
-        Statistics stats = analyze(Paths.get("/mnt/share/data/wikipedia/Results/baselinePages"));
+        Statistics stats = analyze(Paths.get("/mnt/share/data/wikipedia/Results/pagesComputed"));
 
         ObjectMapper mapper = SemanticEnhancedDocument.getMapper();
         DefaultPrettyPrinter prettyPrinter = new DefaultPrettyPrinter();

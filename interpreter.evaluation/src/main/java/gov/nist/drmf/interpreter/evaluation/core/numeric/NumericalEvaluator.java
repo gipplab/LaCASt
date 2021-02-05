@@ -79,7 +79,7 @@ public class NumericalEvaluator extends AbstractNumericalEvaluator {//implements
 
     public static final int MAX_LOG_LENGTH = 300;
 
-    private NumericalConfig config = NumericalConfig.config();
+    private NumericalConfig config = new NumericalConfig();
 
     private HashMap<Integer, String> labelLib;
 

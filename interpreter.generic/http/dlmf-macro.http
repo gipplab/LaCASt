@@ -19,7 +19,7 @@ Content-Type: application/json
             "path": "meta",
             "query": {
                 "match": {
-                    "meta.description": "Airy derivative"
+                    "meta.description": "the $q$-Laguerre polynomial"
                 }
             }
         }

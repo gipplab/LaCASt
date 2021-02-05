@@ -10,6 +10,8 @@ import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
+import gov.nist.drmf.interpreter.common.interfaces.TranslationFeature;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -18,7 +20,7 @@ import java.util.Set;
 /**
  * @author Andre Greiner-Petter
  */
-public class DLMFTranslator implements IConstraintTranslator {
+public class DLMFTranslator implements IConstraintTranslator<PrintablePomTaggedExpression> {
     private static final Logger LOG = LogManager.getLogger(DLMFTranslator.class.getName());
 
     private final SemanticLatexTranslator dlmfInterface;
@@ -55,6 +57,11 @@ public class DLMFTranslator implements IConstraintTranslator {
     @Override
     public Set<String> getRequiredPackages() {
         return dlmfInterface.getTranslatedExpressionObject().getRequiredPackages();
+    }
+
+    @Override
+    public TranslationInformation translateToObjectFeatured(String expression, TranslationFeature<PrintablePomTaggedExpression> translationFeatures) {
+        return dlmfInterface.translateToObjectFeatured(expression, translationFeatures);
     }
 
     @Override

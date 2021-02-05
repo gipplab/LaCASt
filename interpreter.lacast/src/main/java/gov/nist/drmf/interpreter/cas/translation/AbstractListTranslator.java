@@ -12,6 +12,8 @@ import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -23,6 +25,8 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.PATTERN_BASIC_OP
  * @author Andre Greiner-Petter
  */
 public abstract class AbstractListTranslator extends AbstractTranslator {
+    private static final Logger LOG = LogManager.getLogger(AbstractListTranslator.class.getName());
+
     protected AbstractListTranslator(AbstractTranslator abstractTranslator) {
         super(abstractTranslator);
     }
@@ -278,5 +282,25 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
     public static boolean upcomingConstraint( PomTaggedExpression exp, List<PomTaggedExpression> expList ) {
         return MathTermTags.is( exp, MathTermTags.comma )
                 && !expList.isEmpty() && PomTaggedExpressionUtility.isLongSpace(expList.get(0));
+    }
+
+    public boolean bracketMatchOrSetMode(Brackets last, Brackets bracket) {
+        return last.counterpart.equals(bracket.symbol) || super.isSetMode();
+    }
+
+    public int skipBrackets(int startIdx, List<PomTaggedExpression> nextElements, LinkedList<Brackets> bracketStack) {
+        for ( int i = startIdx; i < nextElements.size(); i++ ) {
+            PomTaggedExpression next = nextElements.get(i);
+            Brackets nextB = Brackets.ifIsBracketTransform(next.getRoot(), bracketStack.getLast());
+            if ( nextB != null && nextB.opened ) {
+                bracketStack.addLast(nextB);
+            } else if ( nextB != null ) {
+                if ( !bracketStack.getLast().counterpart.equals(nextB.symbol) ) {
+                    LOG.debug("Bracket mismatch after function. Return null");
+                } else bracketStack.removeLast();
+            }
+            if ( bracketStack.isEmpty() ) return i+1;
+        }
+        return -1;
     }
 }

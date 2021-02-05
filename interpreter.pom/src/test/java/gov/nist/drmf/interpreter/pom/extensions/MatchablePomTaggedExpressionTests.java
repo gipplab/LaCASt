@@ -317,6 +317,36 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void commaVsSemicolonReplacementTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "{}_{par1}F_{par2} (var1;var2;var3)", "([pv])ar\\d");
+
+        MatcherConfig matcherConfig = MatcherConfig.getInPlaceMatchConfig();
+        matcherConfig.allowCommaForWildcard("var2");
+        String test = "{}_1 F_2(1 ; \\tfrac{3}{2} , \\alpha + \\tfrac{3}{2} ; - \\tfrac{z^2}{4})";
+        PomMatcher matcher = blueprint.matcher(test, matcherConfig);
+        PrintablePomTaggedExpression ppte = matcher.replacePattern("\\genhyperF{par1}{par2}@{var1}{var2}{var3}");
+        assertEquals(
+                "\\genhyperF{1}{2}@{1}{\\tfrac{3}{2} , \\alpha + \\tfrac{3}{2}}{- \\tfrac{z^2}{4}}",
+                ppte.getTexString()
+        );
+    }
+
+    @Test
+    public void incgammaReplacementTest() throws ParseException {
+        MatchablePomTaggedExpression blueprint =
+                PomMatcherBuilder.compile(mlp, "\\gamma(var1, var2)", "([pv])ar\\d");
+
+        String test = "\\frac{1}{n} i^{(m+1)/n}\\gamma\\left(\\frac{m+1}{n},-ix^n\\right)";
+        PomMatcher matcher = blueprint.matcher(test);
+        PrintablePomTaggedExpression ppte = matcher.replacePattern("\\incgamma@{var1}{var2}");
+        assertEquals(
+                "\\frac{1}{n} i^{(m+1)/n} \\incgamma@{\\frac{m+1}{n}}{- ix^n}",
+                ppte.getTexString()
+        );
+    }
+
+    @Test
     public void noMatchEqualTest() throws ParseException {
         MatchablePomTaggedExpression blueprint =
                 PomMatcherBuilder.compile(mlp, "var1 = var2 = 0", "var\\d+");

@@ -134,6 +134,15 @@ public class MathematicaEngineCallTest {
     }
 
     @Test
+    void returnValueCheck() throws MathLinkException {
+        mi.evaluate("ClearAll[\"Global`*\"]");
+        assertEquals("Equal[x, PlusMinus[1]]", mi.evaluate("x == \\[PlusMinus]1"));
+        assertEquals("Equal[x, PlusMinus[1]]", mi.evaluate("x == \\[PlusMinus]1"));
+        assertEquals("Equal[x, PlusMinus[1]]", mi.evaluate("x == \\[PlusMinus]1"));
+        assertEquals("Equal[x, PlusMinus[1]]", mi.evaluate("x == \\[PlusMinus]1"));
+    }
+
+    @Test
     @Disabled
     public void extractVariableTest() throws MathLinkException {
         Set<String> vars = mi.getVariables(JACOBIP);

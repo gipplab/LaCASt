@@ -12,6 +12,7 @@
 6. [The program structure and important main classes](#program)
 7. [Troubleshooting](#troubleshooting)
 8. [Update vmext-demo endpoints](#deployDkeContainer)
+9. [Useful Commands when working with LaCASt](#commands)
 
 ## Setup Project<a name="start"></a>
 
@@ -376,29 +377,6 @@ engine on the console (without LaCASt). If this works but LaCASt doesn't, contac
 or open an ticket. If the console approach doesn't work either, contact Wolfram to check your license.
 6. **Unable to Activate Mathematica License**: If you had a free license for Wolfram's Engine for Developers and change your machine you need to activate the license again. This sometimes doesn't work for some reasons. A workaround is to do it manually. First, try to get your activation keys from [here](https://www.wolframcloud.com/users/user-current/activationkeys). If this doesn't show your keys, you may not have any activation keys yet. Simply follow the instructions when searching for free Wolfram engine. Once you have an activation key and it doesn't work the normal way, try to activate one of them with `WolframKernel -activate 1234-5678-ABCDEF`. If this doesn't work either, try to follow this [stackexchange discussion](https://mathematica.stackexchange.com/questions/198822/the-wolfram-kernel-must-be-activated-for-wolframscript-to-use-it) to see if it helps. Finally, if it still won't let you activate your free license, you must contact the Wolfram Technical Support. In my case, I had already two activation keys and that seems to be the max number (see stackexchange discussion above). Hence, I was unable to activate the license on another machine and needed to contact the support either via `support@wolfram.com` or the [support website](https://www.wolfram.com/support/contact/). Once they reset the activation keys for me, it worked again.
 
-## Useful Command-Line Counting Methods
-
-Calculate all results per file:
-```shell script
-find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS_SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {success=arr[1]; cases=arr[3]; trans=arr[2]; transavg=arr[2]/arr[3]; succavg=arr[1]/arr[2]; miss=arr[4];}; END {print FILENAME"\t"cases"\t"trans"\t"transavg"\t"miss"\t"success"\t"succavg}'
-find . -type f | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS: ([0-9]+),.*FAILURE: ([0-9]+),.*TESTED: ([0-9]+),.*/, arr) {success=arr[1]; fail=arr[2]; tested=arr[3]; avg=arr[1]/arr[3]}; END {print FILENAME"\t"tested"\t"success"\t"avg"\t"fail}'
-find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS_SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {success=arr[1]; cases=arr[3]; trans=arr[2]; transavg=arr[2]*100/arr[3]; succavg=arr[1]/arr[2]; miss=arr[4];}; END {printf("%3d & (%.1f%)\n", trans, transavg)}'
-
-find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*MISSING: ([0-9]+),.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+),.*SUCCESS_UNDER_EXTRA_CONDITION: ([0-9]+),.*/, arr) {success=arr[4]+arr[5]; cases=arr[1]; trans=arr[3]; miss=arr[2]; transavg=trans/cases; succavg=success/trans;}; END {print FILENAME"\t"cases"\t"trans"\t"transavg"\t"miss"\t"success"\t"succavg}'
-
-```
-
-Count total number of test cases:
-```shell script
-find . -name "*symbolic*" | xargs -n 1 gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*/, arr) {sum = arr[1]}; END {print sum}' | paste -sd+ - | bc
-
-```
-
-Group and count all missing macros:
-```shell script
-awk -F, '{arr[$1] += $2;} END {for (a in arr) print arr[a]", "a}' *missing* | sort -n -r >> ../maple-missing.txt
-```
-
 ## Update vmext-demo endpoints on DKE01<a name="deployDkeContainer"></a>
 
 This is what you need to update the vmext-demo endpoints that provide access to LaCASt. Note, that this requires
@@ -463,3 +441,29 @@ andreg-p@dke01:~$ cd ../git/srv-dke01/docker
 andreg-p@dke01:~$ docker-compose up -d --remove-orphans --force-recreate vmext-demo >> ../../srv-dke01_last.log
 ```
 5. Wait a few seconds and check https://vmext-demo.formulasearchengine.com/swagger-ui.html
+
+## Useful Command-Line Tweaks<a name="commands"></a>
+
+Calculate all results per file:
+```shell script
+find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS_SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {success=arr[1]; cases=arr[3]; trans=arr[2]; transavg=arr[2]/arr[3]; succavg=arr[1]/arr[2]; miss=arr[4];}; END {print FILENAME"\t"cases"\t"trans"\t"transavg"\t"miss"\t"success"\t"succavg}'
+find . -type f | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS: ([0-9]+),.*FAILURE: ([0-9]+),.*TESTED: ([0-9]+),.*/, arr) {success=arr[1]; fail=arr[2]; tested=arr[3]; avg=arr[1]/arr[3]}; END {print FILENAME"\t"tested"\t"success"\t"avg"\t"fail}'
+find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*SUCCESS_SYMB: ([0-9]+),.*TRANS: ([0-9]+),.*CASES: ([0-9]+),.*MISSING: ([0-9]+),.*/, arr) {success=arr[1]; cases=arr[3]; trans=arr[2]; transavg=arr[2]*100/arr[3]; succavg=arr[1]/arr[2]; miss=arr[4];}; END {printf("%3d & (%.1f%)\n", trans, transavg)}'
+
+find . -name "*symbolic*" | sort | xargs -n 1 gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*MISSING: ([0-9]+),.*SUCCESS_TRANS: ([0-9]+),.*SUCCESS_SYMB: ([0-9]+),.*SUCCESS_UNDER_EXTRA_CONDITION: ([0-9]+),.*/, arr) {success=arr[4]+arr[5]; cases=arr[1]; trans=arr[3]; miss=arr[2]; transavg=trans/cases; succavg=success/trans;}; END {print FILENAME"\t"cases"\t"trans"\t"transavg"\t"miss"\t"success"\t"succavg}'
+```
+
+Count total number of test cases:
+```shell script
+find . -name "*symbolic*" | xargs -n 1 gawk 'match($0, /.*STARTED_TEST_CASES: ([0-9]+),.*/, arr) {sum = arr[1]}; END {print sum}' | paste -sd+ - | bc
+```
+
+Group and count all missing macros:
+```shell script
+awk -F, '{arr[$1] += $2;} END {for (a in arr) print arr[a]", "a}' *missing* | sort -n -r >> ../maple-missing.txt
+```
+
+Hanging on Maple? Kill it:
+```shell script
+ps aux | grep MapleRmiServer | grep -v grep | awk '{print $2}' | xargs kill
+```

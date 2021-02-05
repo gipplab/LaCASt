@@ -1,0 +1,7 @@
+\textbf{Math\_import}		& $0.34$ & $0.47$ & $0.11$ & $0.37$ \\
+\textbf{\LaCASt\_straight}	& $0.29$ & $0.52$ & $0.14$ & $0.38$ \\
+\textbf{\LaCASt\_rules}	& $0.22$ & $0.59$ & $0.22$ & $0.37$ \\
+\textbf{\LaCASt\_full}	& $0.29$ & $0.52$ & $0.28$ & $0.23$ \\
+\textbf{Human}			& - & - & $0.81$ & $0.19$ \\
+
+Number of total entries with semantic: 77

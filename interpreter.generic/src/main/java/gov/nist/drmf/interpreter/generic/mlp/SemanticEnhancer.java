@@ -243,11 +243,6 @@ public class SemanticEnhancer implements IPartialEnhancer {
         Set<String> replacementPerformed = new HashSet<>();
         LOG.debug("Start replacements on MOI: " + pte.getTexString());
 
-        if ( retrievedMacros.containedEulerMascheroniEvidence() ) {
-            LOG.debug("The hit contained an evidence on Euler-Mascheroni constant. Hence we replace all \\gamma by \\EulerConstant");
-            GenericConstantReplacer.replaceGammaAsEulerMascheroniConstant(pte);
-        }
-
         GenericReplacementTool genericReplacementTool = new GenericReplacementTool(pte);
         pte = genericReplacementTool.getSemanticallyEnhancedExpression();
         LOG.debug("Replaced general patterns: " + pte.getTexString());
@@ -277,6 +272,11 @@ public class SemanticEnhancer implements IPartialEnhancer {
                 counter++;
                 score += semanticReplacementRule.getScore();
             }
+        }
+
+        if ( retrievedMacros.containedEulerMascheroniEvidence() ) {
+            LOG.debug("The hit contained an evidence on Euler-Mascheroni constant. Hence we replace all \\gamma by \\EulerConstant");
+            GenericConstantReplacer.replaceGammaAsEulerMascheroniConstant(pte);
         }
 
         score = counter > 0 ? score/(double)counter : 0;
