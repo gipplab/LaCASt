@@ -23,7 +23,7 @@ public class ElasticSearchConnectorTests {
 
     @Test
     void searchLeviCivitaTest() throws IOException {
-        List<MacroResult> results = es.searchMacroDescription("Levi Civita Symbol");
+        List<MacroResult> results = es.searchMacroDescription("Levi Civita Symbol", 5);
         assertNotNull(results);
         assertTrue( results.size() > 1 );
         assertEquals( "LeviCivitasym", results.get(0).getMacro().getName() );

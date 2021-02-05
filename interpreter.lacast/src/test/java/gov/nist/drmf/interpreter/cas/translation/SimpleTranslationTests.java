@@ -2,26 +2,23 @@ package gov.nist.drmf.interpreter.cas.translation;
 
 import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
-import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
 import gov.nist.drmf.interpreter.common.latex.Relations;
-import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
-import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
-import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.pom.MLPWrapper;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
+import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -158,6 +155,27 @@ class SimpleTranslationTests {
         String eout = "int((1)/(x), x = 0..1)";
         String out = slt.translate(in);
         assertEquals(eout, out);
+    }
+
+    @Test
+    void sumTest() {
+        String in = "\\sum_{n \\geqslant 0} n";
+        String out = slt.translate(in);
+        assertEquals("sum(n, n = 0..infinity)", out);
+    }
+
+    @Test
+    void equationTest() {
+        String in = "c = a + 1";
+        String out = sltMathematica.translate(in);
+        assertEquals("c == a + 1", out);
+    }
+
+    @Test
+    void underscoreTest() {
+        String in = "c_{mn}";
+        assertEquals("c[m, n]", slt.translate(in));
+        assertEquals("Subscript[c, m, n]", sltMathematica.translate(in));
     }
 
     @Test
@@ -593,6 +611,13 @@ class SimpleTranslationTests {
     }
 
     @Test
+    public void balancedAbsTest() {
+        String input = "\\| x \\|";
+        String trans = sltMathematica.translate(input);
+        assertEquals("Norm[x]", trans);
+    }
+
+    @Test
     public void unknownFunctionTranslator() throws ParseException {
         String input = "\\cos(x)";
         // manually delete the information that \cos is a semantic macro
@@ -621,6 +646,39 @@ class SimpleTranslationTests {
     }
 
     @Test
+    public void functionDefinitionTranslation() throws ParseException {
+        String input = "f(x) := x^2";
+        SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+        PrintablePomTaggedExpression pte = mlp.parse(input);
+        PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(0));
+        assertEquals( "f := (x) -> (x)^(2)", slt.translate(pte).getTranslatedExpression() );
+        assertEquals( "f[x_] := (x)^(2)", sltMathematica.translate(pte).getTranslatedExpression() );
+    }
+
+    @Test
+    public void longerDefinitionTranslation() throws ParseException {
+        String input = "\\psi(x) : = \\sum_{n=1}^\\infty \\expe^{- n^2 \\cpi x}";
+        SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+        PrintablePomTaggedExpression pte = mlp.parse(input);
+        PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(0));
+        assertEquals( "psi := (x) -> sum(exp(- (n)^(2)* Pi*x), n = 1..infinity)", slt.translate(pte).getTranslatedExpression() );
+        assertEquals( "\\[Psi][x_] := Sum[Exp[- (n)^(2)* Pi*x], {n, 1, Infinity}, GenerateConditions->None]", sltMathematica.translate(pte).getTranslatedExpression() );
+    }
+
+    @Test
+    public void multiArgDefinitionTranslation() throws ParseException {
+        String input = "E(x , y ; u) : = \\sum_{n=0}^\\infty u^n \\psi_n(x) \\psi_n(y) = \\frac{1}{\\sqrt{\\cpi(1 - u^2)}} \\exp(- \\frac{1 - u}{1 + u} \\frac{(x + y)^2}{4} - \\frac{1 + u}{1 - u} \\frac{(x - y)^2}{4})";
+        SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+        PrintablePomTaggedExpression pte = mlp.parse(input);
+        PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(0));
+        PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(14));
+        PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(19));
+
+        assertEquals( "Epsilon := (x, y, u) -> sum((u)^(n)* psi[n](x)* psi[n](y), n = 0..infinity) = (1)/(sqrt(Pi*(1 - (u)^(2))))*exp(-(1 - u)/(1 + u)*((x + y)^(2))/(4)-(1 + u)/(1 - u)*((x - y)^(2))/(4))", slt.translate(pte).getTranslatedExpression() );
+        assertEquals( "\\[CapitalEpsilon][x_, y_, u_] := Sum[(u)^(n)* Subscript[\\[Psi], n][x]* Subscript[\\[Psi], n][y], {n, 0, Infinity}, GenerateConditions->None] == Divide[1,Sqrt[Pi*(1 - (u)^(2))]]*Exp[-Divide[1 - u,1 + u]*Divide[(x + y)^(2),4]-Divide[1 + u,1 - u]*Divide[(x - y)^(2),4]]", sltMathematica.translate(pte).getTranslatedExpression() );
+    }
+
+    @Test
     public void forceFunctionCaretTranslation() throws ParseException {
         String input = "f^2(x)";
         assertEquals( "(f)^(2)*(x)", slt.translate(input) );
@@ -628,8 +686,8 @@ class SimpleTranslationTests {
         SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
         PrintablePomTaggedExpression pte = mlp.parse(input);
         PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(0));
-        assertEquals( "f(x)^(2)", slt.translate(pte).getTranslatedExpression() );
-        assertEquals( "f[x]^(2)", sltMathematica.translate(pte).getTranslatedExpression() );
+        assertEquals( "(f(x))^(2)", slt.translate(pte).getTranslatedExpression() );
+        assertEquals( "(f[x])^(2)", sltMathematica.translate(pte).getTranslatedExpression() );
     }
 
     @Test

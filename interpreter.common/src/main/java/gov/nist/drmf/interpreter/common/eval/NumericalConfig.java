@@ -27,9 +27,7 @@ public class NumericalConfig implements EvaluationConfig {
 
     public static final String ENTRY_SPLITTER = ",";
 
-    private static final NumericalConfig config = new NumericalConfig();
-
-    private NumericalConfig () {
+    public NumericalConfig () {
         try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_NUMERICAL_SETUP.toFile()) ){
             Properties props = new Properties();
             props.load(in);
@@ -42,10 +40,6 @@ public class NumericalConfig implements EvaluationConfig {
         } catch ( IOException ioe ){
             LOG.fatal("Cannot load the numerical test config from " + GlobalPaths.PATH_NUMERICAL_SETUP.getFileName(), ioe);
         }
-    }
-
-    public static NumericalConfig config(){
-        return config;
     }
 
     public Path getDataset(){

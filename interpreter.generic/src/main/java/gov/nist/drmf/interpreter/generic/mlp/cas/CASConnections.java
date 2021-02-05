@@ -59,7 +59,7 @@ public final class CASConnections {
 
             connectionsMap.put(cas.getLanguageKey(), cas);
 
-            NumericalConfig numConfig = NumericalConfig.config();
+            NumericalConfig numConfig = new NumericalConfig();
             cas.getNumericEvaluator().setTimeout(numConfig.getTimeout());
             cas.loadNumericProcedures();
             numericalConfigMap.put(cas.getLanguageKey(), numConfig);

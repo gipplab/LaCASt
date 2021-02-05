@@ -93,7 +93,7 @@ public class MacroDefinitionStyleFileParser {
         int numOfParameter = Objects.nonNull(numberOfParameterStr) ? Integers.parseInt(numberOfParameterStr) : 0;
         if ( args.isEmpty() )
             throw new IllegalArgumentException("Generic LaTeX is mandatory but was null for " + currentBean.getName());
-        List<String> genericLaTeX = cleanIfx(args.removeFirst());
+        LinkedList<String> genericLaTeX = cleanIfx(args.removeFirst());
 
         if ( genericLaTeX.size() == 2 && hasOptionalArgument(defLine) ) {
             String genericLaTeXOpt;
@@ -106,7 +106,7 @@ public class MacroDefinitionStyleFileParser {
             genericLaTeXOpt = reduceNumbers(genericLaTeXOpt);
             currentBean.setGenericLaTeXParametersWithOptionalParameter(numOfParameter, genericLaTeXOpt);
         } else {
-            currentBean.setGenericLaTeXParametersWithoutOptionalParameter(numOfParameter, genericLaTeX.get(0));
+            currentBean.setGenericLaTeXParametersWithoutOptionalParameter(numOfParameter, genericLaTeX.getLast());
         }
 
         return currentBean;
@@ -201,8 +201,8 @@ public class MacroDefinitionStyleFileParser {
         }
     }
 
-    private List<String> cleanIfx(String in) {
-        List<String> ifxList = new LinkedList<>();
+    private LinkedList<String> cleanIfx(String in) {
+        LinkedList<String> ifxList = new LinkedList<>();
 
         StringBuilder prefix = new StringBuilder();
         StringBuilder postfix = new StringBuilder();

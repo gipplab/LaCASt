@@ -2,8 +2,6 @@ package gov.nist.drmf.interpreter.common.interfaces;
 
 import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.interfaces.IDLMFTranslator;
-import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.common.text.TextUtility;
 
 import java.util.Arrays;
@@ -13,7 +11,7 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public interface IConstraintTranslator extends IDLMFTranslator {
+public interface IConstraintTranslator<T> extends IDLMFTranslator<T> {
     static final Pattern NUM_PATTERN = Pattern.compile("(\\d+)\\s*\\\\[cl]?dots");
 
     Set<String> getRequiredPackages();

@@ -13,6 +13,7 @@ public enum MathTermTags {
     symbol("symbol"),
     constant("mathematical constant"),
     command("latex-command"),
+    colon("colon"),
     function("function"),
     letter("letter"),
     digit("digit"),
@@ -56,7 +57,8 @@ public enum MathTermTags {
     modulo("modulo"),
     vbar("vertical-bar"),
     probability_dist("probability distribution"),
-    newline("newline");
+    newline("newline"),
+    negated_equals("negated equals");
 
     public static final String OPEN_PARENTHESIS_PATTERN =
             "(left)[-\\s](parenthesis|bracket|brace|delimiter)|vertical-bar";

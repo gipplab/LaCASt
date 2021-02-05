@@ -291,7 +291,8 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];;
 \deltaDistribution;;;
 ;;;
 \DirichletL@{s}{\chi};;;
-\Dirichletchar@@{n}{k};;;
+\Dirichletchar@{n}{k};DirichletCharacter[1, $1, $0];;
+X1:\DirichletcharX\Dirichletchar[r]@{n}{k};DirichletCharacter[$0, $2, $1];;
 ;;;
 \DiscriminantDelta@{\tau};;;
 ;;;
@@ -619,8 +620,8 @@ X1:\DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;;
 \BesselPolyIIparam{n}@{x}{a}{b};;;
 \BesselPolyTheta{n}@{x}{a}{b};;;
 ;;;
-\Charlier{n}@{x}{a};;;
-\CharlierpolyC{n}@{x}{a};;;
+\Charlier{n}@{x}{a};;;HypergeometricPFQ[{-($0), -($1)}, {}, -Divide[1,$2]]
+\CharlierpolyC{n}@{x}{a};;;HypergeometricPFQ[{-($0), -($1)}, {}, -Divide[1,$2]]
 ;;;
 \ChebyshevpolyT{n}@{x};ChebyshevT[$0, $1];;
 \ChebyshevpolyU{n}@{x};ChebyshevU[$0, $1];;
@@ -649,7 +650,7 @@ X1:\DunsterQX\DunsterQ[-\mu]{-\frac{1}{2}+i\tau}@{x};;;
 \dualHahnpolyR{n}@{x}{\gamma}{\delta}{N};;;
 \dualHahn{n}@@{\lambda(x)}{\gamma}{\delta}{N};;;
 \contdualHahnpolyS{n}@{x}{a}{b}{c};;;
-\contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};;;
+\contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}};;;I^($0)*Divide[Pochhammer[$2 + $4, $0]*Pochhammer[$2 + $5, $0], ($0)!] * HypergeometricPFQ[{-($0), $0 + 2*Re[$2 + $3] - 1, $2 + I*($1)}, {$2 + $4, $2 + $5}, 1]
 ;;;
 \Hermite{n}@{x};HermiteH[$0, $1];;
 \HermitepolyH{n}@{x};HermiteH[$0, $1];;

@@ -62,7 +62,16 @@ public class MacroRetriever {
     ) throws IOException {
         // if we are more deep than defined in the settings, we stop here...
         if ( dependencyList.isEmpty() ||
-                (depth > config.getMaxDepth() && config.getMaxDepth() > 0) ) return;
+                (depth > config.getMaxDepth() && config.getMaxDepth() >= 0) ) return;
+
+        List<String> supports = config.getSupportDescriptions();
+        for ( String s : supports ) {
+            if ( retrievedMacros.containsDefinition(s) ) continue;
+            Relation rel = new Relation();
+            rel.setDefinition(s);
+            rel.setScore(0.1); // default low score
+            retrieveFromDefinition(esClient, retrievedMacros, rel);
+        }
 
         // iterate through the current depth and generate a new depth list of nodes that must be checked
         List<MOINode<MOIAnnotation>> nextDepthList = new LinkedList<>();
@@ -82,7 +91,8 @@ public class MacroRetriever {
                     node.getNode().getOriginalLaTeX());
             Collections.sort(definiensList);
 
-            for ( int i = 0; i < definiensList.size() && i < config.getMaxRelations(); i++ ) {
+            int max = config.getMaxRelations() > 0 ? config.getMaxRelations() : definiensList.size();
+            for ( int i = 0; i < definiensList.size() && i < max; i++ ) {
                 retrieveFromDefinition( esClient, retrievedMacros, definiensList.get(i) );
             }
         }
@@ -122,14 +132,15 @@ public class MacroRetriever {
         if ( retrievedMacros.containsDefinition(definition) ) return;
         retrievedMacros.addDefinition(definition);
 
-        LinkedList<MacroResult> macros = esClient.searchMacroDescription(definition);
+        LinkedList<MacroResult> macros = esClient.searchMacroDescription(definition, config.getMaxMacros());
         LOG.debug("For definition " + definition + ": retrieved " + macros.size() + " semantic macros " + macros);
 
         double maxMacroScore = macros.isEmpty() ? 0 : macros.get(0).getScore();
         MLPLacastScorer scorer = new MLPLacastScorer(maxMacroScore);
         scorer.setMlpScore(definiensScore);
 
-        for ( int j = 0; j < macros.size() && j < config.getMaxMacros(); j++ ) {
+//        int max = config.getMaxMacros() > 0 ? config.getMaxMacros() : macros.size();
+        for ( int j = 0; j < macros.size(); j++ ) {
             retrieveFromMacros( macros.get(j), retrievedMacros, scorer );
         }
     }

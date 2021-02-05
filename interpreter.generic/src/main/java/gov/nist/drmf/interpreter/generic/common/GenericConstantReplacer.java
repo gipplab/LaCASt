@@ -11,6 +11,8 @@ import mlp.PomTaggedExpression;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -31,8 +33,9 @@ public class GenericConstantReplacer {
     }
 
     public PrintablePomTaggedExpression fixConstants() {
-        replaceInternal(referencePTE);
+        replaceInternal(List.of(referencePTE));
         fixImReOperatorInternal(List.of(referencePTE));
+        fixNotEquals(List.of(referencePTE));
         return referencePTE;
     }
 
@@ -78,36 +81,116 @@ public class GenericConstantReplacer {
         operator.setRoot(operator.getRoot());
     }
 
-    private void replaceInternal(PrintablePomTaggedExpression pte) {
-        if ( pte == null ) return;
-
-        if ( !pte.hasNoChildren() ) {
-            for ( PrintablePomTaggedExpression p : pte.getPrintableComponents() ) {
-                replaceInternal(p);
+    private void fixNotEquals(List<PrintablePomTaggedExpression> expr) {
+        if ( expr == null || expr.isEmpty() ) return;
+        for (PrintablePomTaggedExpression pte : expr) {
+            if (MathTermUtility.equals(pte.getRoot(), MathTermTags.negated_equals)) {
+                MathTerm term = pte.getRoot();
+                term.setTermText("\\neq");
+                term.setTag(MathTermTags.relation.tag());
+                mlp.loadFeatures(term);
+                pte.setRoot(term);
             }
-            return;
+            fixNotEquals(pte.getPrintableComponents());
+        }
+    }
+
+    private void replaceInternal(List<PrintablePomTaggedExpression> comps) {
+        if ( comps == null || comps.isEmpty() ) return;
+
+        LinkedList<PrintablePomTaggedExpression> newElements = new LinkedList<>();
+        boolean listChange = false;
+        PrintablePomTaggedExpression parent = (PrintablePomTaggedExpression) comps.get(0).getParent();
+        for ( PrintablePomTaggedExpression pte : comps ) {
+            if ( !pte.hasNoChildren() ) {
+                replaceInternal(pte.getPrintableComponents());
+                newElements.add( pte );
+                continue;
+            }
+
+            MathTerm term = pte.getRoot();
+            MathTermTags tag = MathTermTags.getTagByMathTerm(term);
+            String tex = term.getTermText();
+            boolean updated = false;
+            boolean addedElements = false;
+            if ( "i".equals(tex) && replaceI ) {
+                term.setTermText("\\iunit");
+                updated = true;
+            } else if ( "e".equals(tex) && replaceE ) {
+                term.setTermText("\\expe");
+                updated = true;
+            } else if ( "\\pi".equals(tex) && replacePi ) {
+                term.setTermText("\\cpi");
+                updated = true;
+            } else if ( replaceString(pte, tag, tex, "i") && replaceI ) {
+                listChange = true;
+                addedElements = true;
+                newElements.addAll(replaceInPlaceI(pte, "i", "\\iunit"));
+            } else if ( replaceString(pte, tag, tex, "e") && replaceE ) {
+                listChange = true;
+                addedElements = true;
+                newElements.addAll(replaceInPlaceI(pte, "e", "\\expe"));
+            } else if ( replaceString(pte, tag, tex, "pi") && replacePi ) {
+                listChange = true;
+                addedElements = true;
+                newElements.addAll(replaceInPlaceI(pte, "pi", "\\cpi"));
+            }
+
+            if ( updated ) {
+                term.setTag(MathTermTags.constant.tag());
+                term.getNamedFeatures().clear();
+                mlp.loadFeatures(term);
+                pte.setRoot(term);
+            }
+
+            if ( !addedElements ) newElements.add(pte);
         }
 
-        MathTerm term = pte.getRoot();
-        String tex = term.getTermText();
-        boolean updated = false;
-        if ( "i".equals(tex) && replaceI ) {
-            term.setTermText("\\iunit");
-            updated = true;
-        } else if ( "e".equals(tex) && replaceE ) {
-            term.setTermText("\\expe");
-            updated = true;
-        } else if ( "\\pi".equals(tex) && replacePi ) {
-            term.setTermText("\\cpi");
-            updated = true;
+        if ( listChange && parent != null ) {
+            parent.setPrintableComponents(newElements);
         }
+    }
 
-        if ( updated ) {
-            term.setTag(MathTermTags.constant.tag());
-            term.getNamedFeatures().clear();
+    public boolean replaceString(PomTaggedExpression pte, MathTermTags tag, String tex, String sym) {
+        if ( pte.getPreviousSibling() != null && PomTaggedExpressionUtility.isOperatorname(pte.getPreviousSibling()) )
+            return false;
+        return MathTermTags.alphanumeric.equals(tag) && tex.contains(sym);
+    }
+
+    private List<PrintablePomTaggedExpression> replaceInPlaceI(PrintablePomTaggedExpression pte, String tex, String replacement) {
+        String txt = pte.getRoot().getTermText();
+        StringBuilder sb = new StringBuilder();
+        List<PrintablePomTaggedExpression> elements = new LinkedList<>();
+        Matcher m = Pattern.compile(tex).matcher(txt);
+        while ( m.find() ) {
+            m.appendReplacement(sb, "");
+            String s = sb.toString();
+            if ( s.length() >= 1 ) elements.add(createAlphanumeric(s));
+
+            MathTerm term = new MathTerm(replacement, MathTermTags.constant.tag());
             mlp.loadFeatures(term);
-            pte.setRoot(term);
+            elements.add(new PrintablePomTaggedExpression(term));
+            sb = new StringBuilder();
         }
+
+        m.appendTail(sb);
+        String s = sb.toString();
+        if ( s.length() >= 1 ) elements.add(createAlphanumeric(s));
+
+        return elements;
+    }
+
+    private PrintablePomTaggedExpression createAlphanumeric(String s) {
+        if ( s.length() == 1 ) {
+            MathTerm term = new MathTerm(s, MathTermTags.letter.tag());
+            mlp.loadFeatures(term);
+            return new PrintablePomTaggedExpression(term);
+        } else if ( s.length() > 1 ) {
+            MathTerm term = new MathTerm(s, MathTermTags.alphanumeric.tag());
+            mlp.loadFeatures(term);
+            return new PrintablePomTaggedExpression(term);
+        }
+        return null;
     }
 
     private boolean analyzeE(PrintablePomTaggedExpression pte) {

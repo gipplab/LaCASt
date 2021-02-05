@@ -455,11 +455,11 @@
     "numberOfOptionalParameters" : 0,
     "numberOfArguments" : 2,
     "TeX" : [ {
-      "genericTeX" : "L_{par2} (var1;var2)",
+      "genericTeX" : "L^{(par1)}_{par2} (var1;var2)",
       "semanticTeX" : "\\qLaguerrepolyL{par1}{par2}@{var1}{var2}",
       "score" : 1.0
     }, {
-      "genericTeX" : "L_{par2}",
+      "genericTeX" : "L^{(par1)}_{par2}",
       "semanticTeX" : "\\qLaguerrepolyL{par1}{par2}@{x}{q}",
       "score" : 0.0
     } ]

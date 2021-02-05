@@ -5,6 +5,7 @@ import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpressionHelper;
 import gov.nist.drmf.interpreter.common.InformationLogger;
+import gov.nist.drmf.interpreter.common.interfaces.TranslationFeature;
 import gov.nist.drmf.interpreter.common.latex.RelationalComponents;
 import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
@@ -54,7 +55,7 @@ import java.util.LinkedList;
  * @see mlp.PomParser
  * @author Andre Greiner-Petter
  */
-public class SemanticLatexTranslator extends AbstractTranslator implements IDLMFTranslator {
+public class SemanticLatexTranslator extends AbstractTranslator implements IDLMFTranslator<PrintablePomTaggedExpression> {
     private static final Logger LOG = LogManager.getLogger(SemanticLatexTranslator.class.getName());
 
     /**
@@ -170,7 +171,7 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
             return "";
         }
 
-        return innerTranslate(expression, label);
+        return innerTranslate(expression, label, null);
     }
 
     /**
@@ -191,7 +192,20 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
             return new TranslationInformation();
         }
 
-        innerTranslate(expression, label);
+        innerTranslate(expression, label, null);
+        return getTranslationInformationObject();
+    }
+
+    @Override
+    public TranslationInformation translateToObjectFeatured(
+            String expression,
+            TranslationFeature<PrintablePomTaggedExpression> translationFeatures) {
+        if ( expression == null || expression.isEmpty() ) {
+            LOG.warn("Tried to translate an empty expression");
+            return new TranslationInformation();
+        }
+
+        innerTranslate(expression, null, translationFeatures);
         return getTranslationInformationObject();
     }
 
@@ -199,9 +213,12 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
         return super.getTranslationInformation();
     }
 
-    private String innerTranslate( String expression, String label ) throws TranslationException {
+    private String innerTranslate( String expression, String label, TranslationFeature<PrintablePomTaggedExpression> translationFeatures ) throws TranslationException {
         try {
-            PomTaggedExpression exp = parser.parse(expression, label);
+            PrintablePomTaggedExpression exp = parser.parse(expression, label);
+            if ( translationFeatures != null ) {
+                exp = translationFeatures.preProcess(exp);
+            }
             translate(exp);
             if ( !super.getInfoLogger().isEmpty() && !config.shortenedOutput() ) {
                 LOG.info(super.getInfoLogger().toString());

@@ -101,6 +101,18 @@ public class SemanticEnhancerTests {
     }
 
     @Test
+    void hahnTest() throws ParseException {
+        String genericLaTeXExample = "\\HahnpolyQ{n}@{x}{\\alpha}{\\beta}{N} = \\genhyperF{3}{2}@{- n , - x , n + \\alpha + \\beta + 1}{\\alpha + 1 , - N + 1}{1}";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample, "Hahn polynomial", "hypergeometric function");
+        MOIPresentations moi = new MOIPresentations(node);
+
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\HahnpolyQ{n}@{x}{\\alpha}{\\beta}{N} = \\genhyperF{3}{2}@{- n , - x , n + \\alpha + \\beta + 1}{\\alpha + 1 , - N + 1}{1}", moi.getSemanticLatex());
+    }
+
+    @Test
     void lommelSTest() throws ParseException {
         String genericLaTeXExample = "S_{\\mu,\\nu}(z) = s_{\\mu,\\nu}(z) + 2^{\\mu-1} \\Gamma\\left(\\frac{\\mu + \\nu + 1}{2}\\right) \\Gamma\\left(\\frac{\\mu - \\nu + 1}{2}\\right)\\left(\\sin \\left[(\\mu - \\nu)\\frac{\\pi}{2}\\right] J_\\nu(z) - \\cos \\left[(\\mu - \\nu)\\frac{\\pi}{2}\\right] Y_\\nu(z)\\right)";
         MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample,
@@ -234,6 +246,51 @@ public class SemanticEnhancerTests {
         semanticEnhancer.appendSemanticLatex(moi, node);
         assertNotNull(moi.getSemanticLatex());
         assertEquals("\\sum_{n=0}^\\infty \\frac{n! \\EulerGamma@{\\alpha + 1}}{\\EulerGamma@{n + \\alpha + 1}} \\LaguerrepolyL[\\alpha]{n}@{x} \\LaguerrepolyL[\\alpha]{n}@{y} t^n", moi.getSemanticLatex());
+    }
+
+    @Test
+    void qLaguerrePolyTest() throws ParseException {
+        String genericLaTeXExample = "L_n^{(\\alpha)}(x ; q)";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample,
+                "Laguerre polynomial"
+        );
+        MOIPresentations moi = new MOIPresentations(node);
+
+        // this node has no further dependencies. Simply "Levi Civita Symbol" is attached and should be performed.
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\qLaguerrepolyL{\\alpha}{n}@{x}{q}", moi.getSemanticLatex());
+    }
+
+    @Test
+    void incompleteTest() throws ParseException {
+        String genericLaTeXExample = "\\begin{align}\\int x^m \\exp(ix^n)\\,dx & =\\frac{x^{m+1}}{m+1}\\,_1F_1\\left(\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array}\\mid ix^n\\right) \\\\& =\\frac{1}{n} i^{(m+1)/n}\\gamma\\left(\\frac{m+1}{n},-ix^n\\right),\\end{align}";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample,
+                "incomplete gamma function"
+        );
+        MOIPresentations moi = new MOIPresentations(node);
+
+        // this node has no further dependencies. Simply "Levi Civita Symbol" is attached and should be performed.
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\begin{align}\\int x^m \\exp(\\iunit x^n) \\diff{x} &= \\frac{x^{m+1}}{m+1}_1 F_1(\\begin{array}{c} \\frac{m+1}{n}\\\\1+\\frac{m+1}{n}\\end{array} \\mid \\iunit x^n) \\\\ &= \\frac{1}{n} \\iunit^{(m+1)/n} \\incgamma@{\\frac{m+1}{n}}{- \\iunit x^n} ,\\end{align}", moi.getSemanticLatex());
+    }
+
+    @Test
+    void struveHTest() throws ParseException {
+        String genericLaTeXExample = "\\mathbf{H}_{\\alpha}(z) = \\frac{z^{\\alpha+1}}{2^{\\alpha}\\sqrt{\\pi} \\Gamma \\left (\\alpha+\\tfrac{3}{2} \\right )} {}_1F_2 \\left (1;\\tfrac{3}{2}, \\alpha+\\tfrac{3}{2};-\\tfrac{z^2}{4} \\right )";
+        MOINode<MOIAnnotation> node = buildNode("1", genericLaTeXExample,
+                "hypergeometric function", "Struve function", "Euler gamma function"
+        );
+        MOIPresentations moi = new MOIPresentations(node);
+
+        // this node has no further dependencies. Simply "Levi Civita Symbol" is attached and should be performed.
+        SemanticEnhancer semanticEnhancer = new SemanticEnhancer();
+        semanticEnhancer.appendSemanticLatex(moi, node);
+        assertNotNull(moi.getSemanticLatex());
+        assertEquals("\\StruveH{\\alpha}@{z} = \\frac{z^{\\alpha+1}}{2^{\\alpha} \\sqrt{\\cpi} \\EulerGamma@{\\alpha + \\tfrac{3}{2}}} \\genhyperF{1}{2}@{1}{\\tfrac{3}{2} , \\alpha + \\tfrac{3}{2}}{- \\tfrac{z^2}{4}}", moi.getSemanticLatex());
     }
 
     @Resource("ErrorFunctionMOI.json")

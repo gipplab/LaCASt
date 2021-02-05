@@ -78,6 +78,10 @@ public final class GlobalPaths {
     public static final Path PATH_SEMANTIC_MACROS_DISTRIBUTIONS =
             PATH_REFERENCE_DATA_MACROS.resolve("DLMFMacroDistributions.json");
 
+    // macro replacement file
+    public static final Path PATH_MACROS_REPLACEMENT_PATTERNS =
+            PATH_REFERENCE_DATA_MACROS.resolve("DLMFMacroReplacementDB.json");
+
     // the name of the lexicon file
     public static final Path DLMF_MACROS_LEXICON =
             PATH_LEXICONS.resolve("DLMF-macros-lexicon.txt");

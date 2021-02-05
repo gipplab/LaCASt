@@ -94,6 +94,22 @@ public class MacroDefinitionTests {
     }
 
     @Test
+    public void qLaguerrepolyLTest() {
+        MacroBean ferrerBean = loadedMacros.get("qLaguerrepolyL");
+        assertNotNull(ferrerBean);
+        assertEquals("qLaguerrepolyL", ferrerBean.getName());
+
+        List<MacroGenericSemanticEntry> tex = ferrerBean.getTex();
+        assertEquals(2, tex.size(), tex.toString());
+
+        assertEquals("L^{(par1)}_{par2} (var1;var2)", tex.get(0).getGenericTex());
+        assertEquals("\\qLaguerrepolyL{par1}{par2}@{var1}{var2}", tex.get(0).getSemanticTex());
+
+        assertEquals("L^{(par1)}_{par2}", tex.get(1).getGenericTex());
+        assertEquals("\\qLaguerrepolyL{par1}{par2}@{x}{q}", tex.get(1).getSemanticTex());
+    }
+
+    @Test
     public void multinomialTest() {
         MacroBean multiNBean = loadedMacros.get("multinomial");
         assertNotNull(multiNBean);

@@ -68,8 +68,27 @@ public class PrintablePomTaggedExpressionRangeCalculator {
     private String generatePattern(String input) {
         if ( input.matches("[A-Za-z]+") ) {
             return "(?<![A-Za-z])"+input+"(?![A-Za-z])";
-        } else if ( !input.isBlank() ) return Pattern.quote(input);
+        } else if ( !input.isBlank() ) return generatePatternOptionalBrackets(input);
         else return "";
+    }
+
+    private static final Pattern BRACKET_PATTERN = Pattern.compile("[{}]");
+
+    private String generatePatternOptionalBrackets(String input) {
+        StringBuilder sb = new StringBuilder();
+        StringBuilder out = new StringBuilder();
+        Matcher m = BRACKET_PATTERN.matcher(input);
+        while ( m.find() ) {
+            String br = m.group(0);
+            m.appendReplacement(sb, "");
+            out.append( Pattern.quote(sb.toString()) );
+            out.append("\\s*[\\s").append(br).append("]");
+            sb = new StringBuilder();
+        }
+
+        m.appendTail(sb);
+        out.append(Pattern.quote(sb.toString()));
+        return out.toString();
     }
 
     private String getStartingStringPattern(PomTaggedExpression pte) {
@@ -102,7 +121,8 @@ public class PrintablePomTaggedExpressionRangeCalculator {
     private String getEndingStringPattern(PomTaggedExpression pte) {
         if ( PomTaggedExpressionUtility.isEmptyEquationElement(pte) ) return "[^&]*";
         String envEndString = getEndEnvironmentPattern(pte);
-        if ( envEndString != null ) return envEndString;
+        if ( envEndString != null )
+            return ".*?" + envEndString;
 
         List<PomTaggedExpression> components = pte.getComponents();
         if (components.isEmpty()) {

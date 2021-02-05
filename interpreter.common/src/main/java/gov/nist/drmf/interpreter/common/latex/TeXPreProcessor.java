@@ -120,13 +120,13 @@ public class TeXPreProcessor {
 
         String envTitleString = Pattern.quote(envTitle.group(1));
         Pattern envContentPattern = Pattern.compile(
-                "\\\\begin\\{" + envTitleString + "}" +
+                "\\\\begin\\{" + envTitleString + "}(?:\\{.*?})*" +
                         "(.*?)" +
                 "\\\\end\\{" + envTitleString + "}"
         );
         Matcher envContentMatcher = envContentPattern.matcher(in);
         if ( !envContentMatcher.find() ) return in;
-        return envContentMatcher.group(1);
+        return envContentMatcher.group(1).trim();
     }
 
     public static String normalizeGenFrac(String in) {
