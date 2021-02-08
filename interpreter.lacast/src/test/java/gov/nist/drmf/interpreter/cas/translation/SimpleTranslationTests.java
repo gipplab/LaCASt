@@ -187,6 +187,14 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void paraMultiplyMathematicaTest() {
+        String in = "\\cos(x)(2+x)";
+        String eout = "Cos[x]*(2 + x)";
+        String out = sltMathematica.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
     void plusMinusMultiplyTest() {
         String in = "(t+\\frac{1}{2}-(n+1))";
         String eout = "(t +(1)/(2)-(n + 1))";

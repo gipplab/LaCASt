@@ -83,7 +83,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         super(superTranslator);
         localTranslations = new TranslatedExpression();
         MULTIPLY = getConfig().getMULTIPLY();
-        MULTIPLY_PATTERN = Pattern.compile("(.*)"+Pattern.quote(MULTIPLY)+"\\s*");
+        MULTIPLY_PATTERN = getEndOnMultiplyPattern();
         this.openBracket = openBracket;
         this.hasPassedPunctuation = false;
         this.sequenceHelper = new SequenceHelper(this, this::isSetMode);

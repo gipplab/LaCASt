@@ -387,6 +387,7 @@ public class MacroTranslator extends AbstractListTranslator {
         // every argument must be self-contained, i.e., in \macro{arg1}{arg2} arg1 cannot access information from
         // arg2 because {arg1} is self-contained. If not, there is something wrong and an error should be thrown.
         Brackets b = Brackets.getBracket(exp);
+        Pattern endOnMultiplyPattern = getEndOnMultiplyPattern();
         if ( b != null && b.opened ) {
             LOG.warn("The arguments of " + macro + " was not given in curly brackets but parenthesis. " +
                     "This is will be rejected in future releases.");
@@ -394,7 +395,11 @@ public class MacroTranslator extends AbstractListTranslator {
             SequenceTranslator sp = new SequenceTranslator(this, b);
             TranslatedExpression te = sp.translate(null, followingExps);
             getGlobalTranslationList().removeLastNExps(te.getLength());
-            arguments.addLast(te.toString());
+
+            String newArgument = te.toString();
+            Matcher m = endOnMultiplyPattern.matcher(newArgument);
+            if ( m.matches() ) newArgument = m.group(1);
+            arguments.addLast(newArgument);
 
             // we are more forgiving now, but maybe we want to change that later again.
 //                throw throwMacroException("The arguments of semantic macros must be wrapped in curly brackets! " +

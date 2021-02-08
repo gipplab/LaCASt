@@ -70,7 +70,7 @@ public class MacroRetriever {
             Relation rel = new Relation();
             rel.setDefinition(s);
             rel.setScore(0.1); // default low score
-            retrieveFromDefinition(esClient, retrievedMacros, rel);
+            retrieveFromDefinition(esClient, retrievedMacros, rel, depth);
         }
 
         // iterate through the current depth and generate a new depth list of nodes that must be checked
@@ -93,7 +93,7 @@ public class MacroRetriever {
 
             int max = config.getMaxRelations() > 0 ? config.getMaxRelations() : definiensList.size();
             for ( int i = 0; i < definiensList.size() && i < max; i++ ) {
-                retrieveFromDefinition( esClient, retrievedMacros, definiensList.get(i) );
+                retrieveFromDefinition( esClient, retrievedMacros, definiensList.get(i), depth );
             }
         }
 
@@ -124,7 +124,7 @@ public class MacroRetriever {
         return sb.toString();
     }
 
-    private void retrieveFromDefinition(DLMFElasticSearchClient esClient, RetrievedMacros retrievedMacros, Relation definitionRelation) throws IOException {
+    private void retrieveFromDefinition(DLMFElasticSearchClient esClient, RetrievedMacros retrievedMacros, Relation definitionRelation, int depth) throws IOException {
         double definiensScore = definitionRelation.getScore();
         String definition = definitionRelation.getDefinition();
         definition = preprocessDefinition(definition);
@@ -138,6 +138,7 @@ public class MacroRetriever {
         double maxMacroScore = macros.isEmpty() ? 0 : macros.get(0).getScore();
         MLPLacastScorer scorer = new MLPLacastScorer(maxMacroScore);
         scorer.setMlpScore(definiensScore);
+        scorer.setDepth(depth);
 
 //        int max = config.getMaxMacros() > 0 ? config.getMaxMacros() : macros.size();
         for ( int j = 0; j < macros.size(); j++ ) {
