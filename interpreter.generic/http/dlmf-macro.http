@@ -19,7 +19,7 @@ Content-Type: application/json
             "path": "meta",
             "query": {
                 "match": {
-                    "meta.description": "the $q$-Laguerre polynomial"
+                    "meta.description": "ordinary sine"
                 }
             }
         }

@@ -250,10 +250,10 @@
         "confidence" : 0.8896531556938116,
         "translations" : {
           "Mathematica" : {
-            "translation" : "EllipticE[(e)^2] == Integrate[Sqrt[1 - (e)^(2)*(Sin[\\[Theta]])^(2)], {\\[Theta], 0, Pi/2}, GenerateConditions->None]",
+            "translation" : "EllipticE[(e)^2] == Integrate[Sqrt[1 - (e)^(2)*(Sin[\\[Theta]])^(2)], {\\[Theta], 0, Pi/2}]",
             "translationInformation" : {
               "subEquations" : [
-                "EllipticE[(e)^2] = Integrate[Sqrt[1 - (e)^(2)*(Sin[\\[Theta]])^(2)], {\\[Theta], 0, Pi/2}, GenerateConditions->None]"
+                "EllipticE[(e)^2] = Integrate[Sqrt[1 - (e)^(2)*(Sin[\\[Theta]])^(2)], {\\[Theta], 0, Pi/2}]"
               ],
               "freeVariables" : [ ],
               "constraints" : [ ],
@@ -523,7 +523,7 @@
   {
     "id": 5,
     "pid": 55,
-    "eid": "",
+    "eid": "math.55.18-1",
     "title" : "Logarithm",
     "formulae" : [
       {
@@ -666,10 +666,10 @@
         "confidence" : 0.8728566391293461,
         "translations" : {
           "Mathematica" : {
-            "translation" : "LogIntegral[x] == Limit[Integrate[Divide[1,Log[t]], {t, 0, 1 - \\[CurlyEpsilon]}, GenerateConditions->None]+ Integrate[Divide[1,Log[t]], {t, 1 + \\[CurlyEpsilon], x}, GenerateConditions->None], \\[CurlyEpsilon] -> 0, Direction -> \"FromAbove\", GenerateConditions->None]",
+            "translation" : "LogIntegral[x] == Limit[Integrate[Divide[1,Log[t]], {t, 0, 1 - \\[CurlyEpsilon]}]+ Integrate[Divide[1,Log[t]], {t, 1 + \\[CurlyEpsilon], x}], \\[CurlyEpsilon] -> 0, Direction -> \"FromAbove\"]",
             "translationInformation" : {
               "subEquations" : [
-                "LogIntegral[x] = Limit[Integrate[Divide[1,Log[t]], {t, 0, 1 - \\[CurlyEpsilon]}, GenerateConditions->None]+ Integrate[Divide[1,Log[t]], {t, 1 + \\[CurlyEpsilon], x}, GenerateConditions->None], \\[CurlyEpsilon] -> 0, Direction -> \"FromAbove\", GenerateConditions->None]"
+                "LogIntegral[x] = Limit[Integrate[Divide[1,Log[t]], {t, 0, 1 - \\[CurlyEpsilon]}]+ Integrate[Divide[1,Log[t]], {t, 1 + \\[CurlyEpsilon], x}], \\[CurlyEpsilon] -> 0, Direction -> \"FromAbove\"]"
               ],
               "freeVariables" : [
                 "x"
@@ -1199,7 +1199,7 @@
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "\\[CapitalEpsilon][x_, y_, u_] := Sum[(u)^(n)* Subscript[\\[Psi], n][x]* Subscript[\\[Psi], n][y], {n, 0, Infinity}, GenerateConditions->None] == Divide[1,Sqrt[Pi*(1 - (u)^(2))]]*Exp[-Divide[1 - u,1 + u]*Divide[(x + y)^(2),4]-Divide[1 + u,1 - u]*Divide[(x - y)^(2),4]]"
+            "translation" : "\\[CapitalEpsilon][x_, y_, u_] := Sum[(u)^(n)* Subscript[\\[Psi], n][x]* Subscript[\\[Psi], n][y], {n, 0, Infinity}] == Divide[1,Sqrt[Pi*(1 - (u)^(2))]]*Exp[-Divide[1 - u,1 + u]*Divide[(x + y)^(2),4]-Divide[1 + u,1 - u]*Divide[(x - y)^(2),4]]"
           },
           "Maple" : {
             "translation" : "Epsilon := (x, y, u) -> sum((u)^(n)* psi[n](x)* psi[n](y), n = 0..infinity) = (1)/(sqrt(Pi*(1 - (u)^(2))))*exp(-(1 - u)/(1 + u)*((x + y)^(2))/(4)-(1 + u)/(1 - u)*((x - y)^(2))/(4))"
@@ -1533,7 +1533,7 @@
         "confidence" : 0.869061849326977,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Integrate[(x)^(m)* Exp[I*(x)^(n)], x, GenerateConditions->None] == Divide[(x)^(m + 1),m + 1]*HypergeometricPFQ[{Divide[m + 1,n]}, {1 +Divide[m + 1,n]}, I*(x)^(n)] == Divide[1,n]*(I)^((m + 1)/n)* Gamma[Divide[m + 1,n], 0, - I*(x)^(n)]"
+            "translation" : "Integrate[(x)^(m)* Exp[I*(x)^(n)], x] == Divide[(x)^(m + 1),m + 1]*HypergeometricPFQ[{Divide[m + 1,n]}, {1 +Divide[m + 1,n]}, I*(x)^(n)] == Divide[1,n]*(I)^((m + 1)/n)* Gamma[Divide[m + 1,n], 0, - I*(x)^(n)]"
           },
           "Maple" : {
             "translation" : "int((x)^(m)* exp(I*(x)^(n)), x) = ((x)^(m + 1))/(m + 1)*hypergeom([(m + 1)/(n)], [1 +(m + 1)/(n)], I*(x)^(n)) = (1)/(n)*(I)^((m + 1)/n)* GAMMA((m + 1)/(n))-GAMMA((m + 1)/(n), - I*(x)^(n))"
@@ -1656,7 +1656,7 @@
         "confidence" : 0.0,
         "translations" : {
           "Mathematica": {
-            "translation": "HypergeometricPFQ[{1}, {}, z] == Sum[(z)^(n), {n, 0, Infinity}, GenerateConditions->None] == (1 - z)^(- 1)"
+            "translation": "HypergeometricPFQ[{1}, {}, z] == Sum[(z)^(n), {n, 0, Infinity}] == (1 - z)^(- 1)"
           },
           "Maple": {
             "translation": "hypergeom([1], [], z) = sum((z)^(n), n = 0..infinity) = (1 - z)^(- 1)"
@@ -2031,7 +2031,7 @@
         "confidence" : 0.8121295595054496,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Integrate[Divide[Gamma[Divide[s,2], 0, (z)^(2)* Pi],((z)^(2)* Pi)^(Divide[s,2])]*Exp[- 2*Pi*I*k*z], {z, - Infinity, Infinity}, GenerateConditions->None] == Divide[Gamma[Divide[1 - s,2], (k)^(2)* Pi],((k)^(2)* Pi)^(Divide[1 - s,2])]"
+            "translation" : "Integrate[Divide[Gamma[Divide[s,2], 0, (z)^(2)* Pi],((z)^(2)* Pi)^(Divide[s,2])]*Exp[- 2*Pi*I*k*z], {z, - Infinity, Infinity}] == Divide[Gamma[Divide[1 - s,2], (k)^(2)* Pi],((k)^(2)* Pi)^(Divide[1 - s,2])]"
           },
           "Maple" : {
             "translation" : "int((GAMMA((s)/(2))-GAMMA((s)/(2), (z)^(2)* Pi))/(((z)^(2)* Pi)^((s)/(2)))*exp(- 2*Pi*I*k*z), z = - infinity..infinity) = (GAMMA((1 - s)/(2), (k)^(2)* Pi))/(((k)^(2)* Pi)^((1 - s)/(2)))"
@@ -2154,7 +2154,7 @@
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Integrate[sinc[(t)]*Exp[- I*2*Pi*f*t], {t, - Infinity, Infinity}, GenerateConditions->None] == rect[f]"
+            "translation" : "Integrate[sinc[(t)]*Exp[- I*2*Pi*f*t], {t, - Infinity, Infinity}] == rect[f]"
           },
           "Maple" : {
             "translation" : "int(sinc((t))*exp(- I*2*Pi*f*t), t = - infinity..infinity) = rect(f)"
@@ -2254,7 +2254,7 @@
         "confidence" : 0.8953028732079359,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Sum[Divide[(n)!*Gamma[\\[Alpha]+ 1],Gamma[n + \\[Alpha]+ 1]]*LaguerreL[n, \\[Alpha], x]*LaguerreL[n, \\[Alpha], x]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None] == Divide[1,(1 - t)^(\\[Alpha]+ 1)]*Exp[-(x + y)*t/(1 - t)]*HypergeometricPFQ[{}, {\\[Alpha]+ 1}, Divide[x*y*t,(1 - t)^(2)]]"
+            "translation" : "Sum[Divide[(n)!*Gamma[\\[Alpha]+ 1],Gamma[n + \\[Alpha]+ 1]]*LaguerreL[n, \\[Alpha], x]*LaguerreL[n, \\[Alpha], x]*(t)^(n), {n, 0, Infinity}] == Divide[1,(1 - t)^(\\[Alpha]+ 1)]*Exp[-(x + y)*t/(1 - t)]*HypergeometricPFQ[{}, {\\[Alpha]+ 1}, Divide[x*y*t,(1 - t)^(2)]]"
           },
           "Maple" : {
             "translation" : "sum((factorial(n)*GAMMA(alpha + 1))/(GAMMA(n + alpha + 1))*LaguerreL(n, alpha, x)*LaguerreL(n, alpha, x)*(t)^(n), n = 0..infinity) = (1)/((1 - t)^(alpha + 1))*exp(-(x + y)*t/(1 - t))*hypergeom([], [alpha + 1], (x*y*t)/((1 - t)^(2)))"
@@ -2353,10 +2353,10 @@
         "confidence" : 0.7929614010341081,
         "translations" : {
           "Mathematica" : {
-            "translation" : "ScorerGi[x] == Divide[1,Pi]*Integrate[Sin[Divide[(t)^(3),3]+ x*t], {t, 0, Infinity}, GenerateConditions->None]",
+            "translation" : "ScorerGi[x] == Divide[1,Pi]*Integrate[Sin[Divide[(t)^(3),3]+ x*t], {t, 0, Infinity}]",
             "translationInformation" : {
               "subEquations" : [
-                "ScorerGi[x] = Divide[1,Pi]*Integrate[Sin[Divide[(t)^(3),3]+ x*t], {t, 0, Infinity}, GenerateConditions->None]"
+                "ScorerGi[x] = Divide[1,Pi]*Integrate[Sin[Divide[(t)^(3),3]+ x*t], {t, 0, Infinity}]"
               ],
               "freeVariables" : [
                 "x"
@@ -2485,7 +2485,7 @@
         "confidence" : 0.8662724998444776,
         "translations" : {
           "Mathematica" : {
-            "translation" : "\\[CapitalPhi][z, s, a] == Divide[1,1 - z]*Divide[1,(a)^(s)]+ Sum[Divide[(- 1)^(n)* PolyLog[-n, z],(n)!]*Divide[Pochhammer[s, n],(a)^(n + s)], {n, 1, N - 1}, GenerateConditions->None]+ O[a]^(- N - s)"
+            "translation" : "\\[CapitalPhi][z, s, a] == Divide[1,1 - z]*Divide[1,(a)^(s)]+ Sum[Divide[(- 1)^(n)* PolyLog[-n, z],(n)!]*Divide[Pochhammer[s, n],(a)^(n + s)], {n, 1, N - 1}]+ O[a]^(- N - s)"
           }
         },
         "positions" : [
@@ -2803,10 +2803,10 @@
         "confidence" : 0.8614665289982916,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Divide[1,Gamma[z]] == z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}, GenerateConditions->None]",
+            "translation" : "Divide[1,Gamma[z]] == z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}]",
             "translationInformation" : {
               "subEquations" : [
-                "Divide[1,Gamma[z]] = z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}, GenerateConditions->None]"
+                "Divide[1,Gamma[z]] = z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}]"
               ],
               "freeVariables" : [
                 "z"
@@ -3460,7 +3460,7 @@
         "confidence" : 0.0,
         "translations" : {
           "Mathematica": {
-            "translation": "K[k_, x_, n_, q_] := Sum[(- q)^(j)*(q - 1)^(k - j)*Binomial[n - j,k - j]*Binomial[x,j], {j, 0, k}, GenerateConditions->None]"
+            "translation": "K[k_, x_, n_, q_] := Sum[(- q)^(j)*(q - 1)^(k - j)*Binomial[n - j,k - j]*Binomial[x,j], {j, 0, k}]"
           }
         },
         "positions" : [
@@ -3501,7 +3501,7 @@
         "confidence" : 0.0,
         "translations" : {
           "Mathematica" : {
-            "translation" : "Subscript[g, 1][x_] := Sum[Divide[Sin[k*Pi/4],(k)!*(8*x)^(k)]*Product[(2*l - 1)^(2), {l, 1, k}, GenerateConditions->None], {k, 1, Infinity}, GenerateConditions->None]"
+            "translation" : "Subscript[g, 1][x_] := Sum[Divide[Sin[k*Pi/4],(k)!*(8*x)^(k)]*Product[(2*l - 1)^(2), {l, 1, k}], {k, 1, Infinity}]"
           },
           "Maple" : {
             "translation" : "g[1] := (x) -> sum((sin(k*Pi/4))/(factorial(k)*(8*x)^(k))*product((2*l - 1)^(2), l = 1..k), k = 1..infinity)"
@@ -3554,7 +3554,7 @@
         "confidence" : 0.8775479393290169,
         "translations" : {
           "Mathematica": {
-            "translation": "S[\\[Mu]_, \\[Nu]_, z_] := Divide[Pi,2]*(BesselY[\\[Nu], z]*Integrate[(x)^\\[Mu]* BesselJ[\\[Nu], x], {x, 0, z}, GenerateConditions->None]- BesselJ[\\[Nu], z]*Integrate[(x)^\\[Mu]* BesselY[\\[Nu], x], {x, 0, z}, GenerateConditions->None]) + (2)^(\\[Mu]- 1)* Gamma[Divide[\\[Mu]+ \\[Nu]+ 1,2]]*Gamma[Divide[\\[Mu]- \\[Nu]+ 1,2]]*(Sin[((\\[Mu]- \\[Nu])*Divide[Pi,2])*]*BesselJ[\\[Nu], z]- Cos[((\\[Mu]- \\[Nu])*Divide[Pi,2])*]*BesselY[\\[Nu], z])"
+            "translation": "S[\\[Mu]_, \\[Nu]_, z_] := Divide[Pi,2]*(BesselY[\\[Nu], z]*Integrate[(x)^\\[Mu]* BesselJ[\\[Nu], x], {x, 0, z}]- BesselJ[\\[Nu], z]*Integrate[(x)^\\[Mu]* BesselY[\\[Nu], x], {x, 0, z}]) + (2)^(\\[Mu]- 1)* Gamma[Divide[\\[Mu]+ \\[Nu]+ 1,2]]*Gamma[Divide[\\[Mu]- \\[Nu]+ 1,2]]*(Sin[((\\[Mu]- \\[Nu])*Divide[Pi,2])*]*BesselJ[\\[Nu], z]- Cos[((\\[Mu]- \\[Nu])*Divide[Pi,2])*]*BesselY[\\[Nu], z])"
           },
           "Maple": {
             "translation": "LommelS1(mu, nu, z) = (Pi)/(2)*(BesselY(nu, z)*int((x)^(mu)* BesselJ(nu, x), x = 0..z)- BesselJ(nu, z)*int((x)^(mu)* BesselY(nu, x), x = 0..z))"
@@ -3711,7 +3711,7 @@
         "confidence" : 0.8648813564530858,
         "translations" : {
           "Mathematica" : {
-            "translation" : "AngerJ[\\[Nu], z] == Cos[Divide[Pi*\\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k),(4)^(k)* Gamma[k +Divide[\\[Nu],2]+ 1]*Gamma[k -Divide[\\[Nu],2]+ 1]], {k, 0, Infinity}, GenerateConditions->None]+ Sin[Divide[Pi*\\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k + 1),(2)^(2*k + 1)* Gamma[k +Divide[\\[Nu],2]+Divide[3,2]]*Gamma[k -Divide[\\[Nu],2]+Divide[3,2]]], {k, 0, Infinity}, GenerateConditions->None]"
+            "translation" : "AngerJ[\\[Nu], z] == Cos[Divide[Pi*\\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k),(4)^(k)* Gamma[k +Divide[\\[Nu],2]+ 1]*Gamma[k -Divide[\\[Nu],2]+ 1]], {k, 0, Infinity}]+ Sin[Divide[Pi*\\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k + 1),(2)^(2*k + 1)* Gamma[k +Divide[\\[Nu],2]+Divide[3,2]]*Gamma[k -Divide[\\[Nu],2]+Divide[3,2]]], {k, 0, Infinity}]"
           },
           "Maple" : {
             "translation" : "AngerJ(nu, z) = cos((Pi*nu)/(2))*sum(((- 1)^(k)* (z)^(2*k))/((4)^(k)* GAMMA(k +(nu)/(2)+ 1)*GAMMA(k -(nu)/(2)+ 1)), k = 0..infinity)+ sin((Pi*nu)/(2))*sum(((- 1)^(k)* (z)^(2*k + 1))/((2)^(2*k + 1)* GAMMA(k +(nu)/(2)+(3)/(2))*GAMMA(k -(nu)/(2)+(3)/(2))), k = 0..infinity)"
@@ -4041,7 +4041,7 @@
         "confidence" : 0.8953028732079359,
         "translations" : {
           "Mathematica": {
-            "translation": "M[n_, x_, \\[Beta]_, \\[Gamma]_] := Sum[(- 1)^(k)*Binomial[n,k]*Binomial[x,k]*(k)!*Pochhammer[x + \\[Beta], n - k]*\\[Gamma]^(- k), {k, 0, n}, GenerateConditions->None]"
+            "translation": "M[n_, x_, \\[Beta]_, \\[Gamma]_] := Sum[(- 1)^(k)*Binomial[n,k]*Binomial[x,k]*(k)!*Pochhammer[x + \\[Beta], n - k]*\\[Gamma]^(- k), {k, 0, n}]"
           }
         },
         "positions" : [
@@ -4496,7 +4496,7 @@
         "confidence" : 0.9041995034970904,
         "translations" : {
           "Mathematica": {
-            "translation": "JacobiP[n, \\[Alpha], \\[Beta], x] == Limit[(t)^(- n)* I^(n)*Divide[Pochhammer[Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Alpha]+ 1 + I*t), n]*Pochhammer[Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Beta]+ 1 - I*t), n], (n)!] * HypergeometricPFQ[{-(n), n + 2*Re[Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Beta]+ 1 + I*t)] - 1, Divide[1,2]*(\\[Alpha]+ 1 - I*t) + I*(Divide[1,2]*x*t)}, {Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Alpha]+ 1 + I*t), Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Beta]+ 1 - I*t)}, 1], t -> Infinity, GenerateConditions->None]"
+            "translation": "JacobiP[n, \\[Alpha], \\[Beta], x] == Limit[(t)^(- n)* I^(n)*Divide[Pochhammer[Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Alpha]+ 1 + I*t), n]*Pochhammer[Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Beta]+ 1 - I*t), n], (n)!] * HypergeometricPFQ[{-(n), n + 2*Re[Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Beta]+ 1 + I*t)] - 1, Divide[1,2]*(\\[Alpha]+ 1 - I*t) + I*(Divide[1,2]*x*t)}, {Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Alpha]+ 1 + I*t), Divide[1,2]*(\\[Alpha]+ 1 - I*t) + Divide[1,2]*(\\[Beta]+ 1 - I*t)}, 1], t -> Infinity]"
           }
         },
         "positions" : [
@@ -4622,11 +4622,11 @@
       {
         "id" : "FORMULA_95daf919f18506606090e49a38d1c1a6",
         "formula" : "p_n(x;a,b,c\\mid q)=\\frac{(ab,ac;q)_n}{a^n}\\cdot {_3\\Phi_2}(q^-n,ae^{i\\theta},ae^{-i\\theta}; ab, ac \\mid q;q)",
-        "semanticFormula" : "p_n(x ; a , b , c \\mid q) = \\frac{\\qmultiPochhammersym{ab , ac}{q}{n}}{a^n} \\cdot \\qgenhyperphi{3}{2}@{q^- n , ae^{\\iunit \\theta} , ae^{- \\iunit \\theta}}{ab , ac}{q}{q}",
+        "semanticFormula" : "p_n(x ; a , b , c \\mid q) = \\frac{\\qmultiPochhammersym{ab , ac}{q}{n}}{a^n} \\cdot \\qgenhyperphi{3}{2}@{q^{- n} , a\\expe^{\\iunit \\theta} , a\\expe^{- \\iunit \\theta}}{ab , ac}{q}{q}",
         "confidence" : 0.8662724998444776,
         "translations" : {
           "Mathematica": {
-            "translation": "p[n_, x_, a_, b_, c_, q_] := Divide[Product[QPochhammer[Part[{a*b , a*c},i],q,n],{i,1,Length[{a*b , a*c}]}],(a)^(n)] * QHypergeometricPFQ[{(q)^(-)* n , a*(e)^(I*\\[Theta]), a*(e)^(- I*\\[Theta])},{a*b , a*c},q,q]"
+            "translation": "p[n_, x_, a_, b_, c_, q_] := Divide[Product[QPochhammer[Part[{a*b , a*c},i],q,n],{i,1,Length[{a*b , a*c}]}],(a)^(n)] * QHypergeometricPFQ[{(q)^(- n), a*Exp[I*\\[Theta]], a*Exp[- I*\\[Theta]]},{a*b , a*c},q,q]"
           }
         },
         "positions" : [
@@ -5423,10 +5423,10 @@
         "confidence" : 0.8133162393162393,
         "translations" : {
           "Mathematica" : {
-            "translation" : "LegendreQ[v, \\[Mu], x] == Cos[(\\[Mu]*Pi)*]*(Divide[1 + x,1 - x])^(\\[Mu]/2)*Divide[Hypergeometric2F1[v + 1, - v, 1 - \\[Mu], 1/2 - 2/x],Gamma[1 - \\[Mu]]]"
+            "translation" : "LegendreQ[v, \\[Mu], x] == Cos[(\\[Mu]*Pi)]*(Divide[1 + x,1 - x])^(\\[Mu]/2)*Divide[Hypergeometric2F1[v + 1, - v, 1 - \\[Mu], 1/2 - 2/x],Gamma[1 - \\[Mu]]]"
           },
           "Maple" : {
-            "translation" : "LegendreQ(v, mu, x) = cos((mu*Pi)*)*((1 + x)/(1 - x))^(mu/2)*(hypergeom([v + 1, - v], [1 - mu], 1/2 - 2/x))/(GAMMA(1 - mu))"
+            "translation" : "LegendreQ(v, mu, x) = cos((mu*Pi))*((1 + x)/(1 - x))^(mu/2)*(hypergeom([v + 1, - v], [1 - mu], 1/2 - 2/x))/(GAMMA(1 - mu))"
           }
         },
         "positions" : [
@@ -5506,7 +5506,7 @@
         "confidence" : 0.0,
         "translations" : {
           "Mathematica": {
-            "translation": "K[v_, x_, y_] := Integrate[Divide[Exp[- x*t -Divide[y,t]],(t)^(v + 1)], {t, 1, Infinity}, GenerateConditions->None]"
+            "translation": "K[v_, x_, y_] := Integrate[Divide[Exp[- x*t -Divide[y,t]],(t)^(v + 1)], {t, 1, Infinity}]"
           }
         },
         "positions" : [
