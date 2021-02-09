@@ -13,7 +13,7 @@ public class CASLinkBuilderMathematica {
 
     public static String build(String functionName) {
         if ( functionName == null || functionName.isBlank() ) return "";
-        return "reference.wolfram.com/language/ref/" + functionName + ".html";
+        return "https://reference.wolfram.com/language/ref/" + functionName + ".html";
     }
 
     public static String extractFunctionNameFromPattern(String pattern) {
