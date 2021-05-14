@@ -27,8 +27,27 @@ public interface IDLMFTranslator<T> extends ITranslator {
      * @return all information about the translation process
      * @throws TranslationException if an error due translation occurs.
      */
-    TranslationInformation translateToObject( String expression, String label ) throws TranslationException;
+    default TranslationInformation translateToObject( String expression, String label ) throws TranslationException {
+        return translateToObject(expression, label, null);
+    }
 
+    /**
+     * Equivalent to {@link #translateToObject(String, String)} but triggers given translation features in addition.
+     * @param expression expression
+     * @param label a dlmf label such as '1.1.E2'
+     * @param translationFeatures a translation feature
+     * @return all information about the translation process
+     * @throws TranslationException if an error occurred due translating the expression
+     */
+    TranslationInformation translateToObject( String expression, String label, TranslationFeature<T> translationFeatures ) throws TranslationException;
 
-    TranslationInformation translateToObjectFeatured( String expression, TranslationFeature<T> translationFeatures );
+    /**
+     * Equivalent to {@link #translateToObject(String, String, TranslationFeature)} but without a given label
+     * @param expression expression
+     * @param translationFeatures a translation feature
+     * @return the translation information
+     */
+    default TranslationInformation translateToObjectFeatured( String expression, TranslationFeature<T> translationFeatures ) {
+        return translateToObject(expression, null, translationFeatures);
+    }
 }

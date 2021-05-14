@@ -323,6 +323,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         if ( symbMaple == null && symbMath == null ) return;
 
         try {
+            // new GenericFunctionAnnotator()
             maple = mapleTranslator.translate(expr, label);
         } catch ( Exception e ){
             maple = "Error";

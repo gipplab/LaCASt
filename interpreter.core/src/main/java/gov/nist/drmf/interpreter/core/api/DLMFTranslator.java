@@ -55,6 +55,11 @@ public class DLMFTranslator implements IConstraintTranslator<PrintablePomTaggedE
     }
 
     @Override
+    public TranslationInformation translateToObject(String expression, String label, TranslationFeature<PrintablePomTaggedExpression> translationFeatures) throws TranslationException {
+        return dlmfInterface.translateToObject(expression, label, translationFeatures);
+    }
+
+    @Override
     public Set<String> getRequiredPackages() {
         return dlmfInterface.getTranslatedExpressionObject().getRequiredPackages();
     }
