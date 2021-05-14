@@ -13,7 +13,7 @@ public class CASLinkBuilderMaple {
 
     public static String build(String functionName) {
         if ( functionName == null || functionName.isBlank() ) return "";
-        return "en.maplesoft.com/support/help/Maple/view.aspx?path=" + functionName;
+        return "https://en.maplesoft.com/support/help/Maple/view.aspx?path=" + functionName;
     }
 
     public static String extractFunctionNameFromPattern(String pattern) {
