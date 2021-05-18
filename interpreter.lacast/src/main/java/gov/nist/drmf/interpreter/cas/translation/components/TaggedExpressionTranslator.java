@@ -57,8 +57,12 @@ public class TaggedExpressionTranslator extends AbstractTranslator {
             case sub_super_script:
                 // in case of sub-super scripts, we first normalize the order, subscript first!
                 PomTaggedExpressionNormalizer.normalizeSubSuperScript(expression);
-                // than we fake it as a sequence, since there is no difference to a sequence anymore
-                expression.setTag( ExpressionTags.sequence.tag() );
+                SubSuperScriptTranslator sst = new SubSuperScriptTranslator(super.getSuperTranslator());
+                // we know its a sub-superscript and those are self-contained. Nonetheless, SubSuperScriptTranslator
+                // is a list translator. To force self-contained translations we mimic no following expressions by
+                // setting the second argument to null
+                localTranslations.addTranslatedExpression( sst.translate( expression, null ) );
+                break;
             case sequence: // in that case use the SequenceTranslator
                 // this don't write into global_exp!
                 // it only delegates the parsing process to the SequenceTranslator

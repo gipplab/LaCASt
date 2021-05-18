@@ -89,7 +89,7 @@ public class MLP {
             eq = "\\begin{align} x &= y \\\\ &= z.,; \\end{align}";
             eq = "x = < \\leq \\neq y";
             eq = "\\operatorname{li} (x)";
-            eq = "a_{mn} b^{ab}_{mn}";
+            eq = "x_{1}^2 x^2_{2}";
 
             System.out.println();
             System.out.println("Input: " + eq);

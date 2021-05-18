@@ -17,12 +17,11 @@ import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.pojo.SemanticEnhancedAnnotationStatus;
 import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
 import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
-import gov.nist.drmf.interpreter.generic.common.GenericConstantReplacer;
-import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
+import gov.nist.drmf.interpreter.pom.generic.GenericConstantReplacer;
+import gov.nist.drmf.interpreter.pom.generic.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.interfaces.IPartialEnhancer;
 import gov.nist.drmf.interpreter.generic.macro.*;
 import gov.nist.drmf.interpreter.generic.mlp.cas.CASConnections;
-import gov.nist.drmf.interpreter.generic.mlp.cas.CASTranslators;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.*;
 import gov.nist.drmf.interpreter.pom.common.DefaultNumericTestCase;
 import gov.nist.drmf.interpreter.pom.extensions.*;
@@ -36,7 +35,6 @@ import org.apache.logging.log4j.Logger;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
-import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter

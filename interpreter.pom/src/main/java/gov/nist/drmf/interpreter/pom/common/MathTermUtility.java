@@ -64,6 +64,8 @@ public final class MathTermUtility {
         String expr = term.getTermText();
         if ( expr == null || expr.isBlank() ) return false;
 
+        if ( term.getSecondaryTags().contains(Keys.FEATURE_VALUE_LATIN) ) return false;
+
         initGreekLetters();
         String translation = greekLettersMappings.translate(expr);
         if ( translation == null ) translation = greekLettersMappings.translate("\\"+expr);

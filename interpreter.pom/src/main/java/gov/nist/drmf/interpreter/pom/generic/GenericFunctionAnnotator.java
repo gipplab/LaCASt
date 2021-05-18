@@ -1,6 +1,7 @@
-package gov.nist.drmf.interpreter.generic.common;
+package gov.nist.drmf.interpreter.pom.generic;
 
 import gov.nist.drmf.interpreter.common.interfaces.TranslationFeature;
+import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
@@ -35,7 +36,9 @@ public class GenericFunctionAnnotator implements TranslationFeature<PrintablePom
 
     private PrintablePomTaggedExpression annotateFunctions() {
         Set<String> mem = new HashSet<>();
-        findFunctionsRecursive(pte, mem);
+        Set<String> antiMem = new HashSet<>();
+        findFunctionsRecursive(pte, mem, antiMem);
+        mem.removeAll(antiMem);
         tagMemoryElementsAsFunction(pte, mem);
         return pte;
     }
@@ -55,17 +58,22 @@ public class GenericFunctionAnnotator implements TranslationFeature<PrintablePom
         }
     }
 
-    private void findFunctionsRecursive(PomTaggedExpression pte, Set<String> funcMemory) {
+    private void findFunctionsRecursive(PomTaggedExpression pte, Set<String> funcMemory, Set<String> antiFuncMemory) {
         if ( pte == null || pte.isEmpty() ) return;
         if ( !pte.getComponents().isEmpty() ) {
-            for ( PomTaggedExpression child : pte.getComponents() ) findFunctionsRecursive(child, funcMemory);
+            for ( PomTaggedExpression child : pte.getComponents() ) findFunctionsRecursive(child, funcMemory, antiFuncMemory);
             return;
         }
 
         MathTerm term = pte.getRoot();
-        if (isFunctionLetter(term) && isFunction(pte)) {
+        if ( nextIsEqual(pte) ) antiFuncMemory.add(term.getTermText());
+        else if (isFunctionLetter(term) && isFunction(pte) && isNotClosedExpression(pte)) {
             funcMemory.add(term.getTermText());
         }
+    }
+
+    private boolean nextIsEqual(PomTaggedExpression pte) {
+        return pte != null && pte.getNextSibling() != null && MathTermUtility.isRelationSymbol( pte.getNextSibling().getRoot() );
     }
 
     private boolean isFunctionLetter(MathTerm term) {
@@ -78,12 +86,24 @@ public class GenericFunctionAnnotator implements TranslationFeature<PrintablePom
         return isFunctionFollowing(next);
     }
 
+    private boolean isNotClosedExpression(PomTaggedExpression pte) {
+        if ( pte instanceof PrintablePomTaggedExpression ) {
+            PrintablePomTaggedExpression ppte = (PrintablePomTaggedExpression) pte;
+            String expr = ppte.getTexString();
+            return !TeXPreProcessor.wrappedInCurlyBrackets(expr);
+        } else return true; // we probably should be more precise...
+    }
+
     private boolean isFunctionFollowing(PomTaggedExpression next) {
         if ( next == null || next.isEmpty() ) return false;
         MathTerm term = next.getRoot();
         Brackets bracket = Brackets.getBracket(term);
         LinkedList<Brackets> bracketStack = new LinkedList<>();
         if ( bracket != null && bracket.opened ) {
+            if ( Brackets.fence_open.equals(bracket) || Brackets.abs_val_open.equals(bracket) ) {
+                // we do not recognize function arguments if they are given in |...| or \|...\|
+                return false;
+            }
             bracketStack.add(bracket);
             return !isArithmeticInside(next.getNextSibling(), bracketStack);
         } else if (MathTermUtility.equalsOr(term,
@@ -97,18 +117,20 @@ public class GenericFunctionAnnotator implements TranslationFeature<PrintablePom
 
     private boolean isArithmeticInside(PomTaggedExpression next, LinkedList<Brackets> bracketStack) {
         boolean arithmetic = false;
+        boolean firstElement = true;
         while ( next != null ) {
             Brackets bracket = Brackets.getBracket(next);
             if ( bracket != null && bracket.opened ) bracketStack.addLast(bracket);
             else if ( bracket != null && !bracketStack.isEmpty() ) bracketStack.removeLast();
             else if ( isArgumentDelimiter(next) ) return false;
             else if ( PomTaggedExpressionUtility.isTeXEnvironment(next) ) return false;
-            else {
+            else if ( !firstElement ){
                 arithmetic |= isArithmetic(next);
             }
 
             if ( bracketStack.isEmpty() ) return arithmetic;
 
+            firstElement = false;
             next = next.getNextSibling();
         }
         return arithmetic;
