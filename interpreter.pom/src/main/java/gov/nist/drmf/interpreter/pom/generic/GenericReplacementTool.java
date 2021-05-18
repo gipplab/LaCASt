@@ -1,8 +1,8 @@
-package gov.nist.drmf.interpreter.generic.common;
+package gov.nist.drmf.interpreter.pom.generic;
 
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * @author Andre Greiner-Petter

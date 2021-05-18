@@ -150,7 +150,7 @@ public class LimitedTranslator extends AbstractListTranslator {
         for ( PomTaggedExpression pte : potentialArguments ) topPTE.addComponent(pte);
 
         // next, we translate the expressions to search for the variables
-        SequenceTranslator p = new SequenceTranslator(getSuperTranslator());
+        SequenceTranslator p = new SequenceTranslator(this);
         return p.translate( topPTE );
     }
 

@@ -1,14 +1,11 @@
-package gov.nist.drmf.interpreter.generic.common;
+package gov.nist.drmf.interpreter.pom.generic;
 
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import gov.nist.drmf.interpreter.pom.generic.GenericDifferentialDFixer;
 import mlp.ParseException;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -8,6 +8,7 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
@@ -17,6 +18,7 @@ import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -37,6 +39,11 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
     public TranslatedExpression translate(PomTaggedExpression exp, List<PomTaggedExpression> following_exp) {
         MathTerm term = exp.getRoot();
         String termTag = term.getTag();
+
+        if ( ExpressionTags.sub_super_script.equalsPTE(exp) ) {
+            return translateSubSuperScripts(exp);
+        }
+
         MathTermTags tag = MathTermTags.getTagByKey(termTag);
 
         switch (tag) {
@@ -56,6 +63,14 @@ public class SubSuperScriptTranslator extends AbstractListTranslator {
     @Override
     public TranslatedExpression getTranslatedExpressionObject() {
         return localTranslations;
+    }
+
+    private TranslatedExpression translateSubSuperScripts(PomTaggedExpression exp) {
+        LinkedList<PomTaggedExpression> components = new LinkedList<>(exp.getComponents());
+
+        translate(components.removeFirst(), components);
+        localTranslations.clear();
+        return translate(components.removeFirst(), components);
     }
 
     /**

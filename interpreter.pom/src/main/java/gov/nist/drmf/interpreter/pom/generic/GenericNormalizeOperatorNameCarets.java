@@ -1,4 +1,4 @@
-package gov.nist.drmf.interpreter.generic.common;
+package gov.nist.drmf.interpreter.pom.generic;
 
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;

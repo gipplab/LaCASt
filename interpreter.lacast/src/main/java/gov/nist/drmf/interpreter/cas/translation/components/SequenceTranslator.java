@@ -203,7 +203,7 @@ public class SequenceTranslator extends AbstractListTranslator {
             perform(TranslatedExpression::replaceLastExpression, lastPart);
         }
 
-        SequenceTranslator st = new SequenceTranslator(super.getSuperTranslator(), bracket);
+        SequenceTranslator st = new SequenceTranslator(this, bracket);
         localTranslations.addTranslatedExpression(st.translate(expList));
     }
 
@@ -378,7 +378,7 @@ public class SequenceTranslator extends AbstractListTranslator {
         // bracket cannot be null, because we checked the tag of the term before
         if (bracket.opened) {
             // create a new SequenceTranslator (2nd kind)
-            SequenceTranslator sp = new SequenceTranslator(super.getSuperTranslator(), bracket);
+            SequenceTranslator sp = new SequenceTranslator(this, bracket);
             // translate the following expressions
             localTranslations.addTranslatedExpression(sp.translate(followingExp));
             return null;
@@ -427,6 +427,12 @@ public class SequenceTranslator extends AbstractListTranslator {
                     },
                     func
             );
+            if ( seq == null || seq.isEmpty() )
+                throw TranslationException.buildExceptionObj(
+                        this, func,
+                        TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION,
+                        openBracket.symbol + argTranslation + openBracket.symbol
+                );
         } else { // otherwise, parenthesis must match each other, so close as it opened
             bracket = openBracket;
             if ( normalizeBracket() ) {

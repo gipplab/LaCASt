@@ -1,6 +1,5 @@
-package gov.nist.drmf.interpreter.generic.common;
+package gov.nist.drmf.interpreter.pom.generic;
 
-import com.esotericsoftware.minlog.Log;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
@@ -13,6 +12,8 @@ import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -23,6 +24,8 @@ import java.util.regex.Pattern;
  * @author Andre Greiner-Petter
  */
 public class GenericDifferentialDFixer {
+    private static final Logger LOG = LogManager.getLogger(GenericDifferentialDFixer.class.getName());
+
     private final PrintablePomTaggedExpression referencePTE;
 
     private static final SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
@@ -134,10 +137,10 @@ public class GenericDifferentialDFixer {
     private void updateBracketStack(LinkedList<Brackets> bracketStack, Brackets bracket, PomTaggedExpression node) {
         if ( bracket.opened ) bracketStack.add(bracket);
         else if ( bracketStack.isEmpty() )
-            Log.warn("Encountered closing bracket but no bracket was opened before: " + node.getRoot().getTermText());
+            LOG.warn("Encountered closing bracket but no bracket was opened before: " + node.getRoot().getTermText());
         else {
             if ( !bracketStack.getLast().isCounterPart(bracket) )
-                Log.warn("Non-Matching closing bracket encountered. Last opened " + bracketStack.getLast() + " but encountered " + bracket);
+                LOG.warn("Non-Matching closing bracket encountered. Last opened " + bracketStack.getLast() + " but encountered " + bracket);
             bracketStack.removeLast();
         }
     }

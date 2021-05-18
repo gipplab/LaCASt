@@ -1,5 +1,5 @@
 {| class="wikitable sortable"
 |-
-! DLMF !! Formula !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica
+! DLMF !! Formula !! Constraints !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica
 |-
 |}
