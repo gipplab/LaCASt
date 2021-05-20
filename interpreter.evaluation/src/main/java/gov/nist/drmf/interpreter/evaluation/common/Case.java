@@ -10,10 +10,7 @@ import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
 import gov.nist.drmf.interpreter.pom.common.SymbolTag;
-import gov.nist.drmf.interpreter.pom.extensions.MatchablePomTaggedExpression;
-import gov.nist.drmf.interpreter.pom.extensions.PomMatcher;
-import gov.nist.drmf.interpreter.pom.extensions.PomMatcherBuilder;
-import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import gov.nist.drmf.interpreter.pom.extensions.*;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.ParseException;
@@ -279,13 +276,16 @@ public class Case implements INumericTestCase {
 
         m.appendTail(sb);
 
+        MatcherConfig config = MatcherConfig.getInPlaceMatchConfig();
+        config.ignoreNumberOfAts(true);
+        config.semanticMacroIgnoreTokenRule(true);
         MatchablePomTaggedExpression matchPOML = PomMatcherBuilder.compile(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
-        PomMatcher matcherL = matchPOML.matcher(ppteLHS);
+        PomMatcher matcherL = matchPOML.matcher(ppteLHS, config);
         if ( counter == 0 && !isSemantic )
             updateLR(matcherL, def, true);
 
         MatchablePomTaggedExpression matchPOMR = PomMatcherBuilder.compile(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
-        PomMatcher matcherR = matchPOMR.matcher(ppteRHS);
+        PomMatcher matcherR = matchPOMR.matcher(ppteRHS, config);
         if ( counter == 0 && !isSemantic )
             updateLR(matcherR, def, false);
 

@@ -90,6 +90,7 @@ public class MLP {
             eq = "x = < \\leq \\neq y";
             eq = "\\operatorname{li} (x)";
             eq = "x_{1}^2 x^2_{2}";
+            eq = "x^2 + \\macro\\prime2";
 
             System.out.println();
             System.out.println("Input: " + eq);

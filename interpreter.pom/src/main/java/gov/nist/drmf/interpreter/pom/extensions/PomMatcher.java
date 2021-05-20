@@ -239,8 +239,9 @@ public class PomMatcher {
         // if the first worked, we can move forward
         boolean innerTmpMatch = m.match(first, elements, config);
         while ( innerTmpMatch && !elements.isEmpty() && m.getNextSibling() != null ) {
-            first = elements.remove(0);
             m = (MatchablePomTaggedExpression)m.getNextSibling();
+            first = elements.remove(0);
+            m.skipOptionalTokens(first, elements, config);
             if ( config.ignoreNumberOfAts() && PomTaggedExpressionUtility.isAt(m) ) {
                 continue;
             } else if ( config.ignoreOperatorName() && PomTaggedExpressionUtility.isOperatorname(m) ) {
