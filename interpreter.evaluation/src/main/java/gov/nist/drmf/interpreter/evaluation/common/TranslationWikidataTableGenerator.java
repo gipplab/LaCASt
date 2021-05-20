@@ -48,18 +48,29 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
             "^(\\d+(?:-[a-z])?)(?: \\[.*?])?: (Skip.*|Successful.*|Error.*|Failed.*|Aborted|Manual Skip)$"
     );
 
-    private String COLLAPSE_ELEMENT = "<div class=\"toccolours mw-collapsible mw-collapsed\">%s<div class=\"mw-collapsible-content\">%s</div></div>";
+    private static final String COLLAPSE_ELEMENT = "<div class=\"toccolours mw-collapsible mw-collapsed\">%s<div class=\"mw-collapsible-content\">%s</div></div>";
 
-    private String TABLE_LINE =
-            "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]] || <math>%s</math> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || " +
+    private static final String TABLE_LINE =
+            "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]]<br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%;\" inline>%s</syntaxhighlight> || <math>%s</math> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || " +
                     "%s || %s || " +
                     "%s || %s\n";
 
-    //TODO new version once we are allowed to upload semantic latex
-//    private String TABLE_LINE =
-//            "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]]<br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%;\" inline>%s</syntaxhighlight> || <math>%s</math> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || " +
-//                    "%s || %s || " +
-//                    "%s || %s\n";
+    private static final String TABLE_HEADER = "<div style=\"width: 100%; height: 75vh; overflow: auto;\">\n" +
+            "{| class=\"wikitable sortable\" style=\"margin: 0;\"\n" +
+            "|-\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | DLMF \n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Formula \n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Constraints \n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Maple\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Mathematica\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Symbolic<br>Maple\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Symbolic<br>Mathematica\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Numeric<br>Maple\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Numeric<br>Mathematica\n" +
+            "|-\n";
+
+    private static final String TABLE_FOOTER = "|}\n" +
+            "</div>";
 
     private Path dataset, symbolicMaple, numericMaple, symbolicMath, numericMath, numericMathSymbSuc, qidmapping;
 
@@ -272,8 +283,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(filePath.toFile()));
-            writer.write("{| class=\"wikitable sortable\"\n|-\n");
-            writer.write("! DLMF !! Formula !! Constraints !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica\n|-\n");
+            writer.write(TABLE_HEADER);
 
             HashMap<Integer, Integer> caseNumberLib = new HashMap<>();
 
@@ -297,13 +307,12 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
                 }
 
                 if ( split ) {
-                    writer.write("|}");
+                    writer.write(TABLE_FOOTER);
                     writer.close();
                     fileID = currentSec;
                     filePath = appendSplit ? outputFile.resolve(fileID + "_2.txt") : outputFile.resolve(fileID+".txt");
                     writer = new BufferedWriter(new FileWriter(filePath.toFile()));
-                    writer.write("{| class=\"wikitable sortable\"\n|-\n");
-                    writer.write("! DLMF !! Formula !! Constraints !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica\n|-\n");
+                    writer.write(TABLE_HEADER);
                 }
 
                 String id = ""+c.getLine();
@@ -317,7 +326,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
                 singleCase(id, c, writer);
             }
 
-            writer.write("|}");
+            writer.write(TABLE_FOOTER);
         } catch ( IOException ioe ) {
             LOG.error("Unable to write file.", ioe);
         } finally {
@@ -372,7 +381,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         String line = String.format(
                 TABLE_LINE,
                 label, label,
-                qid, originalExpression, //originalExpression,
+                qid, originalExpression, originalExpression,
                 constraints,
                 maple, mathematica,
                 symbMaple, symbMath,
@@ -414,7 +423,10 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
                     list.append("... skip entries to safe data");
                     break;
                 }
-                list.append("<syntaxhighlight lang=mathematica>Result: ").append(m.group(1)).append("\nTest Values: {").append(m.group(2)).append("}</syntaxhighlight><br>");
+                StringBuilder singleCase = new StringBuilder();
+                singleCase.append(m.group(1)).append("\nTest Values: {").append(m.group(2));
+                list.setLength( Math.min(CHAR_LIMIT, list.length()) );
+                list.append("<syntaxhighlight lang=mathematica>Result: ").append(singleCase).append("}</syntaxhighlight><br>");
                 counter++;
             }
 
@@ -425,7 +437,6 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
             }
 
             String failedStr = "Failed [" + pFailed + " / " + tFailed + "]";
-            list.setLength( Math.min(CHAR_LIMIT, list.length()) );
             return String.format(COLLAPSE_ELEMENT, failedStr, list.toString());
         } else {
             if ( result.contains("Error") ) return "Error";

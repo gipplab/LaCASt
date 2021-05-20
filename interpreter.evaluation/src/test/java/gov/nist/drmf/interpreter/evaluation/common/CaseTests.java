@@ -3,6 +3,7 @@ package gov.nist.drmf.interpreter.evaluation.common;
 import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.common.eval.Label;
 import gov.nist.drmf.interpreter.common.latex.Relations;
+import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
 import gov.nist.drmf.interpreter.pom.common.SymbolTag;
@@ -88,8 +89,44 @@ public class CaseTests {
         assertEquals("\\int_{0}^{\\infty}(\\ln@@{t})^{n}\\expe ^{-t}t^{z-1}\\diff{t}", c.getRHS());
 
         Constraints con = c.getConstraintObject();
-        assertEquals(2, con.getTexConstraints().length);
+        assertEquals(2, con.getTexConstraints().length, con.toString());
         assertEquals("n \\geq 0", con.getTexConstraints()[0]);
         assertEquals("\\realpart@@{z} > 0", con.getTexConstraints()[1]);
+    }
+
+    @Resource("struve-11-5-2.txt")
+    @DLMF("11.5.2")
+    void struveConstraintsTest(String testCasesStr) {
+        SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
+        String[] lines = testCasesStr.split("\n");
+        int i = 0;
+        LinkedList<Case> cases = null;
+        for ( String line : lines ) {
+            if ( cases != null && cases.size() > 0 ) {
+                cases.get(0).replaceSymbolsUsed(lib);
+            }
+            cases = CaseAnalyzer.analyzeLine(line, i++, lib);
+        }
+
+        // the last list contains our struve test case
+        assertNotNull(cases);
+        assertEquals(1, cases.size());
+
+        Case c = cases.get(0);
+        assertEquals("\\StruveK{\\nu}@{z}", c.getLHS());
+        assertEquals("\\frac{2(\\tfrac{1}{2}z)^{\\nu}}{\\sqrt{\\pi}\\EulerGamma@{\\nu+\\tfrac{1}{2}}}\\int_{0}^{\\infty}e^{-zt}(1+t^{2})^{\\nu-\\frac{1}{2}}\\diff{t}", c.getRHS());
+        Constraints con = c.getConstraintObject();
+        assertNotNull(con);
+        assertEquals(1, con.getTexConstraints().length, con.toString());
+        assertEquals("\\realpart@@{z} > 0", con.getTexConstraints()[0]);
+
+        c = c.replaceSymbolsUsed(lib);
+        con = c.getConstraintObject();
+        assertEquals(5, con.getTexConstraints().length, con.toString());
+        assertEquals("\\realpart@@{z} > 0", con.getTexConstraints()[0]);
+        assertEquals("\\realpart@@{(\\nu+\\tfrac{1}{2})} > 0", con.getTexConstraints()[1]);
+        assertEquals("\\realpart@@{(\\nu+k+1)} > 0", con.getTexConstraints()[2]);
+        assertEquals("\\realpart@@{((-\\nu)+k+1)} > 0", con.getTexConstraints()[3]);
+        assertEquals("\\realpart@@{(n+\\nu+\\tfrac{3}{2})} > 0", con.getTexConstraints()[4]);
     }
 }
