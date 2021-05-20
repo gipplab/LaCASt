@@ -363,6 +363,11 @@ public class Case implements INumericTestCase {
                     repl = repl.replace("\\", "\\\\");
 
                     while ( m.find() ) {
+                        String match = m.group(0);
+                        match = match.substring(0, match.length()-1);
+                        if ( !match.matches(repl) && repl.length() > 1 ) {
+                            repl = "("+repl+")";
+                        }
                         m.appendReplacement(sb, repl + m.group(1));
                     }
 
