@@ -10,6 +10,5 @@
 ! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
-|-
 |}
 </div>
