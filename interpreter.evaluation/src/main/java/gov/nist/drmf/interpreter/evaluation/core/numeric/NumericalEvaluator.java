@@ -9,6 +9,7 @@ import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
+import gov.nist.drmf.interpreter.common.text.TextUtility;
 import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.common.Case;
 import gov.nist.drmf.interpreter.evaluation.common.CaseAnalyzer;
@@ -349,6 +350,9 @@ public class NumericalEvaluator extends AbstractNumericalEvaluator {//implements
                     lineResult[c.getLine()].add("Skip - No test values generated");
                     Status.NO_TEST_VALUES.add();
                 } else {
+                    List<NumericCalculationGroup> calcGroups = results.getTestCalculationsGroups();
+                    List<NumericCalculation> calcs = calcGroups.get(0).getTestCalculations();
+                    String resultStr = "";
                     switch (resType) {
                         case SUCCESS:
                             lineResult[c.getLine()].add("Successful [Tested: " + tested + "]");
@@ -356,13 +360,15 @@ public class NumericalEvaluator extends AbstractNumericalEvaluator {//implements
                             break;
                         case FAILURE:
                             LOG.info("Test was NOT successful.");
-                            evaluation = LogManipulator.shortenOutput(results.toString(), 2);
+                            resultStr = TextUtility.join(", ", calcs, NumericCalculation::toString, 5, "...");
+                            evaluation = "{" + resultStr + "}"; //LogManipulator.shortenOutput(results.toString(), 2);
                             lineResult[c.getLine()].add("Failed ["+failed+"/"+tested+"]: " + evaluation);
                             Status.FAILURE.add();
                             break;
                         case ERROR:
                             LOG.info("Test was NOT successful.");
-                            evaluation = LogManipulator.shortenOutput(results.toString(), 2);
+                            resultStr = TextUtility.join(", ", calcs, NumericCalculation::toString, 5, "...");
+                            evaluation = "{" + resultStr + "}"; //LogManipulator.shortenOutput(results.toString(), 2);
                             lineResult[c.getLine()].add("Error [" + evaluation + "]");
                             Status.ERROR.add();
                             break;

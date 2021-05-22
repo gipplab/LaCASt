@@ -51,9 +51,18 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
     private static final String COLLAPSE_ELEMENT = "<div class=\"toccolours mw-collapsible mw-collapsed\">%s<div class=\"mw-collapsible-content\">%s</div></div>";
 
     private static final String TABLE_LINE =
+            "|- \n" +
             "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]]<br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%;\" inline>%s</syntaxhighlight> || <math>%s</math> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || " +
-                    "%s || %s || " +
-                    "%s || %s\n";
+            "%s || %s || " +
+            "%s || %s\n";
+
+    private static final String TABLE_LINE_SKIPPED =
+            "|- style=\"background: #dfe6e9;\"\n" +
+            "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]]<br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%; background: inherit;\" inline>%s</syntaxhighlight> || <math>%s</math> || " +
+                    "<div class=\"mw-highlight mw-highlight-lang-mathematica mw-content-ltr\" dir=\"ltr\"><pre style=\"background: inherit;\">%s</pre></div> || " +
+                    "<div class=\"mw-highlight mw-highlight-lang-mathematica mw-content-ltr\" dir=\"ltr\"><pre style=\"background: inherit;\">%s</pre></div> || " +
+            "%s || %s || " +
+            "%s || %s\n";
 
     private static final String TABLE_HEADER = "<div style=\"width: 100%; height: 75vh; overflow: auto;\">\n" +
             "{| class=\"wikitable sortable\" style=\"margin: 0;\"\n" +
@@ -66,8 +75,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
             "! scope=\"col\" style=\"position: sticky; top: 0;\" | Symbolic<br>Maple\n" +
             "! scope=\"col\" style=\"position: sticky; top: 0;\" | Symbolic<br>Mathematica\n" +
             "! scope=\"col\" style=\"position: sticky; top: 0;\" | Numeric<br>Maple\n" +
-            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Numeric<br>Mathematica\n" +
-            "|-\n";
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Numeric<br>Mathematica\n";
 
     private static final String TABLE_FOOTER = "|}\n" +
             "</div>";
@@ -289,6 +297,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
 
 //            for ( LinkedList<Case> lineCase : allCases ) {
 //                Case c = lineCase.get(0);
+            int appendSplitCounter = 2;
             for ( Case c : allCases ) {
                 int number = caseNumberLib.computeIfAbsent( c.getLine(), lineNumber -> 1 );
 
@@ -298,10 +307,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
                 boolean split = currentSec > fileID;
                 boolean appendSplit = false;
 
-                if ( currentSec == 10 && c.getEquationLabel().matches("10\\.34\\.E1") && !split ) {
-                    split = true;
-                    appendSplit = true;
-                } else if ( currentSec == 19 && c.getEquationLabel().matches("19\\.22\\.E1")  && !split ) {
+                if ( appendSplit(currentSec, split, c) ) {
                     split = true;
                     appendSplit = true;
                 }
@@ -310,7 +316,9 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
                     writer.write(TABLE_FOOTER);
                     writer.close();
                     fileID = currentSec;
-                    filePath = appendSplit ? outputFile.resolve(fileID + "_2.txt") : outputFile.resolve(fileID+".txt");
+                    filePath = appendSplit ? outputFile.resolve(fileID + "_"+appendSplitCounter+".txt") : outputFile.resolve(fileID+".txt");
+                    if ( appendSplit ) appendSplitCounter++;
+                    else appendSplitCounter = 2;
                     writer = new BufferedWriter(new FileWriter(filePath.toFile()));
                     writer.write(TABLE_HEADER);
                 }
@@ -332,6 +340,32 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         } finally {
             if ( writer != null ) writer.close();
         }
+    }
+
+    /**
+     * Check if there must be an intermediate split because the files are too long
+     */
+    private boolean appendSplit(int currentSec, boolean split, Case c) {
+        String label = c.getEquationLabel();
+        return !split && (
+                        currentSec == 4 ||
+                                currentSec == 10 ||
+                                currentSec == 13 ||
+                                currentSec == 14 ||
+                                currentSec == 15 ||
+                                currentSec == 18 ||
+                                currentSec == 19
+                ) && (
+                        label.matches(
+                                "4\\.24\\.E2|" +
+                                "10\\.22\\.E38|10\\.45\\.E1|" +
+                                "13\\.14\\.E1|" +
+                                "14\\.12\\.E1|" +
+                                "15\\.10\\.E1|" +
+                                "18\\.17\\.E1|" +
+                                "19\\.22\\.E1"
+                        )
+                );
     }
 
     private void singleCase( String id, Case c, BufferedWriter writer ) throws IOException {
@@ -378,8 +412,10 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
             constraints = String.join(", ", c.getConstraintObject().getTexConstraints());
         }
 
+        boolean skipped = /*symbMaple.contains("no semantic math") ||*/ symbMath.contains("no semantic math");
+
         String line = String.format(
-                TABLE_LINE,
+                skipped ? TABLE_LINE_SKIPPED : TABLE_LINE,
                 label, label,
                 qid, originalExpression, originalExpression,
                 constraints,
@@ -390,7 +426,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
 
         LOG.info(line);
         writer.write(line);
-        writer.write("|-\n");
+//        writer.write("|-\n");
     }
 
     private String getNumericResultString( boolean mapleMode, String id ) {

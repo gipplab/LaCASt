@@ -136,10 +136,13 @@ print("Received CSRF token. Start updating")
 for i, name in enumerate(pageNames):
     page_title="Results_of_" + name.replace(" ", "_")
     file_path=file_path_base + str(i+1) + ".txt"
-    if i == 9 or i == 18:
+    if i == 3 or i == 9 or i == 12 or i == 13 or i == 14 or i == 17 or i == 18:
         uploadFile(i, file_path, page_title+"_I")
         file_path=file_path_base + str(i+1) + "_2.txt"
         uploadFile(i, file_path, page_title+"_II")
+        if i == 9:
+            file_path=file_path_base + str(i+1) + "_3.txt"
+            uploadFile(i, file_path, page_title+"_III")
     else:
         uploadFile(i, file_path, page_title)
 

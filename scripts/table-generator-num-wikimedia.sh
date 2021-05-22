@@ -129,8 +129,18 @@ for FILEMATH in $FILES; do
 
 
   link="[[Results of ${pageNames[FILECOUNTER]}|${id}]]"
-  if (( $FILECOUNTER == 9 )); then
-    link="BS [[Results of Bessel Functions I|I]] & [[Results of Bessel Functions II|II]]"
+  if (( $FILECOUNTER == 3 )); then
+    link="EF [[Results of Elementary Functions I|I]] & [[Results of Elementary Functions II|II]]"
+  elif (( $FILECOUNTER == 9 )); then
+    link="BS [[Results of Bessel Functions I|I]] & [[Results of Bessel Functions II|II]] & [[Results of Bessel Functions III|III]]"
+  elif (( $FILECOUNTER == 12 )); then
+    link="CH [[Results of Confluent Hypergeometric Functions I|I]] & [[Results of Confluent Hypergeometric Functions II|II]]"
+  elif (( $FILECOUNTER == 13 )); then
+    link="LE [[Results of Legendre and Related Functions I|I]] & [[Results of Legendre and Related Functions II|II]]"
+  elif (( $FILECOUNTER == 14 )); then
+    link="HY [[Results of Hypergeometric Function I|I]] & [[Results of Hypergeometric Function II|II]]"
+  elif (( $FILECOUNTER == 17 )); then
+    link="OP [[Results of Orthogonal Polynomials I|I]] & [[Results of Orthogonal Polynomials II|II]]"
   elif (( $FILECOUNTER == 18 )); then
     link="EL [[Results of Elliptic Integrals I|I]] & [[Results of Elliptic Integrals II|II]]"
   fi
