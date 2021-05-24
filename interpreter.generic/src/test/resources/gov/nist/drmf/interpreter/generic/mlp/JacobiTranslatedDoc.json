@@ -446,9 +446,9 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: HypergeometricPFQ[{$2}, {$3}, $4]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/16.2#E1\nMathematica:  reference.wolfram.com/language/ref/HypergeometricPFQ.html",
+              "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: HypergeometricPFQ[{$2}, {$3}, $4]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/16.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/HypergeometricPFQ.html",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  reference.wolfram.com/language/ref/Pochhammer.html"
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://reference.wolfram.com/language/ref/Pochhammer.html"
             }
           }
         },
@@ -531,7 +531,7 @@
             ],
             "tokenTranslations" : {
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  reference.wolfram.com/language/ref/Pochhammer.html"
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://reference.wolfram.com/language/ref/Pochhammer.html"
             }
           }
         },
@@ -694,7 +694,7 @@
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html"
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html"
             }
           }
         },
@@ -842,7 +842,7 @@
             ],
             "tokenTranslations" : {
               "\\LegendrepolyP" : "Legendre polynomial; Example: \\LegendrepolyP{n}@{x}\nWill be translated to: LegendreP[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r10\nMathematica:  https://reference.wolfram.com/language/ref/LegendreP.html",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html"
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html"
             }
           }
         },
@@ -1360,10 +1360,7 @@
             "freeVariables" : [
               "n",
               "z"
-            ],
-            "tokenTranslations" : {
-              "n" : "Was tagged as a function but it does not look like it and there are no arguments. Hence, we interpret it as a string, rather than an actual function. Use '\\operatorname' to forcefully translate it as a function."
-            }
+            ]
           }
         },
         "SymPy" : {
@@ -1372,10 +1369,7 @@
             "freeVariables" : [
               "n",
               "z"
-            ],
-            "tokenTranslations" : {
-              "n" : "Was tagged as a function but it does not look like it and there are no arguments. Hence, we interpret it as a string, rather than an actual function. Use '\\operatorname' to forcefully translate it as a function."
-            }
+            ]
           }
         },
         "Maple" : {
@@ -1384,10 +1378,7 @@
             "freeVariables" : [
               "n",
               "z"
-            ],
-            "tokenTranslations" : {
-              "n" : "Was tagged as a function but it does not look like it and there are no arguments. Hence, we interpret it as a string, rather than an actual function. Use '\\operatorname' to forcefully translate it as a function."
-            }
+            ]
           }
         }
       },
@@ -2606,7 +2597,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
             }
@@ -3362,19 +3353,18 @@
       "confidence" : 0.7033788159095824,
       "translations" : {
         "Mathematica" : {
-          "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) == n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) == (1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta])) == (\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta]) == Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] == Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))",
+          "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) == n*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) == (1 + \\[Alpha]+ \\[Beta]+ n)*((Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- (Subscript[P, n])^(\\[Alpha], \\[Beta])) == (\\[Alpha]+ n)*(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*(Subscript[P, n])^(\\[Alpha], \\[Beta]) == Divide[2*(n + 1)*(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] == Divide[(2*\\[Beta]+ n + n*z)*(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))",
           "translationInformation" : {
             "subEquations" : [
-              "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] = Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1)",
-              "Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) = n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1)",
-              "n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) = (1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta]))",
-              "(1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta])) = (\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])",
-              "(\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta]) = Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z]",
-              "Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] = Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z]",
-              "Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] = Divide[1 - z,1 + z]*(\\[Beta]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))"
+              "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] = Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1)",
+              "Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) = n*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1)",
+              "n*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) = (1 + \\[Alpha]+ \\[Beta]+ n)*((Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- (Subscript[P, n])^(\\[Alpha], \\[Beta]))",
+              "(1 + \\[Alpha]+ \\[Beta]+ n)*((Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- (Subscript[P, n])^(\\[Alpha], \\[Beta])) = (\\[Alpha]+ n)*(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*(Subscript[P, n])^(\\[Alpha], \\[Beta])",
+              "(\\[Alpha]+ n)*(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*(Subscript[P, n])^(\\[Alpha], \\[Beta]) = Divide[2*(n + 1)*(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z]",
+              "Divide[2*(n + 1)*(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] = Divide[(2*\\[Beta]+ n + n*z)*(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z]",
+              "Divide[(2*\\[Beta]+ n + n*z)*(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] = Divide[1 - z,1 + z]*(\\[Beta]*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))"
             ],
             "freeVariables" : [
-              "P",
               "Subscript[P, n + 1]",
               "Subscript[P, n - 1]",
               "Subscript[P, n]",
@@ -3386,7 +3376,7 @@
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html"
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html"
             }
           }
         },
@@ -3399,19 +3389,18 @@
           }
         },
         "Maple" : {
-          "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1) = n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta)) = (alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta) = (2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*P(P[n])^(alpha , beta)-(beta + n)*P(P[n])^(alpha + 1 , beta - 1))",
+          "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*(P[n - 1])^(alpha + 1 , beta + 1) = n*(P[n])^(alpha , beta)-(alpha + n)*(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*((P[n])^(alpha , beta + 1)- (P[n])^(alpha , beta)) = (alpha + n)*(P[n])^(alpha - 1 , beta + 1)- alpha*(P[n])^(alpha , beta) = (2*(n + 1)*(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*(P[n])^(alpha , beta)- 2*(beta + n)*(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*(P[n])^(alpha , beta)-(beta + n)*(P[n])^(alpha + 1 , beta - 1))",
           "translationInformation" : {
             "subEquations" : [
-              "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1)",
-              "(1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1) = n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1)",
-              "n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta))",
-              "(1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta)) = (alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta)",
-              "(alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta) = (2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z)",
-              "(2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z)",
-              "((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*P(P[n])^(alpha , beta)-(beta + n)*P(P[n])^(alpha + 1 , beta - 1))"
+              "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*(P[n - 1])^(alpha + 1 , beta + 1)",
+              "(1)/(2)*(z - 1)*(1 + alpha + beta + n)*(P[n - 1])^(alpha + 1 , beta + 1) = n*(P[n])^(alpha , beta)-(alpha + n)*(P[n - 1])^(alpha , beta + 1)",
+              "n*(P[n])^(alpha , beta)-(alpha + n)*(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*((P[n])^(alpha , beta + 1)- (P[n])^(alpha , beta))",
+              "(1 + alpha + beta + n)*((P[n])^(alpha , beta + 1)- (P[n])^(alpha , beta)) = (alpha + n)*(P[n])^(alpha - 1 , beta + 1)- alpha*(P[n])^(alpha , beta)",
+              "(alpha + n)*(P[n])^(alpha - 1 , beta + 1)- alpha*(P[n])^(alpha , beta) = (2*(n + 1)*(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*(P[n])^(alpha , beta))/(1 + z)",
+              "(2*(n + 1)*(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*(P[n])^(alpha , beta)- 2*(beta + n)*(P[n])^(alpha , beta - 1))/(1 + z)",
+              "((2*beta + n + n*z)*(P[n])^(alpha , beta)- 2*(beta + n)*(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*(P[n])^(alpha , beta)-(beta + n)*(P[n])^(alpha + 1 , beta - 1))"
             ],
             "freeVariables" : [
-              "P",
               "P[n + 1]",
               "P[n - 1]",
               "P[n]",
@@ -3542,48 +3531,45 @@
       "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "R[==]*R[z , t] == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
+          "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
           "translationInformation" : {
             "subEquations" : [
-              "R[==]*R[z , t] = (1 - 2*z*t + (t)^(2))^(Divide[1,2])"
+              "R = R*(z , t)",
+              "R*(z , t) = (1 - 2*z*t + (t)^(2))^(Divide[1,2])"
             ],
             "freeVariables" : [
+              "R",
               "t",
               "z"
-            ],
-            "tokenTranslations" : {
-              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
-            }
+            ]
           }
         },
         "SymPy" : {
-          "translation" : "R(==)*R(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))",
+          "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))",
           "translationInformation" : {
             "subEquations" : [
-              "R(==)*R(z , t) = (1 - 2*z*t + (t)**(2))**((1)/(2))"
+              "R = R*(z , t)",
+              "R*(z , t) = (1 - 2*z*t + (t)**(2))**((1)/(2))"
             ],
             "freeVariables" : [
+              "R",
               "t",
               "z"
-            ],
-            "tokenTranslations" : {
-              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
-            }
+            ]
           }
         },
         "Maple" : {
-          "translation" : "R(=)*R(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))",
+          "translation" : "R = R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))",
           "translationInformation" : {
             "subEquations" : [
-              "R(=)*R(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))"
+              "R = R*(z , t)",
+              "R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))"
             ],
             "freeVariables" : [
+              "R",
               "t",
               "z"
-            ],
-            "tokenTranslations" : {
-              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
-            }
+            ]
           }
         }
       },
@@ -3687,16 +3673,15 @@
       "confidence" : 0.7033788159095824,
       "translations" : {
         "Mathematica" : {
-          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ \\[CapitalOmicron][(n)^(-Divide[3,2])]",
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ O[(n)^(-Divide[3,2])]",
           "translationInformation" : {
             "subEquations" : [
-              "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] = (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ \\[CapitalOmicron][(n)^(-Divide[3,2])]"
+              "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] = (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ O[(n)^(-Divide[3,2])]"
             ],
             "freeVariables" : [
               "N",
               "\\[Alpha]",
               "\\[Beta]",
-              "\\[CapitalOmicron]",
               "\\[Gamma]",
               "\\[Theta]",
               "n"
@@ -3720,14 +3705,13 @@
           }
         },
         "Maple" : {
-          "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ Omicron((n)^(-(3)/(2)))",
+          "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ O((n)^(-(3)/(2)))",
           "translationInformation" : {
             "subEquations" : [
-              "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ Omicron((n)^(-(3)/(2)))"
+              "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ O((n)^(-(3)/(2)))"
             ],
             "freeVariables" : [
               "N",
-              "Omicron",
               "alpha",
               "beta",
               "gamma",

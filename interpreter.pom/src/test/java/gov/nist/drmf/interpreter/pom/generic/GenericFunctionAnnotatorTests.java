@@ -166,6 +166,17 @@ public class GenericFunctionAnnotatorTests {
     }
 
     @Test
+    void noArgumentNoAnnotationTest() throws ParseException {
+        PrintablePomTaggedExpression ppte = mlp.parse("P_n^{(\\alpha,\\beta)}{1+z}");
+        GenericFunctionAnnotator replacementTool = new GenericFunctionAnnotator();
+        replacementTool.preProcess(ppte);
+
+        // looks like a weird test but x is actually followed by (...) and, therefore, may look like a function...
+        PomTaggedExpression x = ppte.getComponents().get(0);
+        assertFalse(MathTermUtility.isFunction(x.getRoot()));
+    }
+
+    @Test
     void localVariableTest() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("\\sum_{n=1}^{\\infty}\\frac{(-1)^{n}2^{2n-1}\\BernoullinumberB{2n}}{n(2n)!}z^{2n}");
         GenericFunctionAnnotator replacementTool = new GenericFunctionAnnotator();
