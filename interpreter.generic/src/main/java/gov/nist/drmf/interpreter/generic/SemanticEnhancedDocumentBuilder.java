@@ -9,6 +9,8 @@ import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import net.sourceforge.jwbf.core.actions.HttpActionClient;
 import net.sourceforge.jwbf.core.contentRep.Article;
 import net.sourceforge.jwbf.mediawiki.bots.MediaWikiBot;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.wikidata.wdtk.datamodel.interfaces.EntityDocument;
 import org.wikidata.wdtk.datamodel.interfaces.ItemDocument;
 import org.wikidata.wdtk.datamodel.interfaces.SiteLink;
@@ -25,6 +27,8 @@ import java.util.concurrent.TimeUnit;
  * @author Andre Greiner-Petter
  */
 public final class SemanticEnhancedDocumentBuilder {
+    private static final Logger LOG = LogManager.getLogger(SemanticEnhancedDocumentBuilder.class.getName());
+
     private final MediaWikiBot wikipediaBot;
 
     private final WikibaseDataFetcher wikidataFetcher;
@@ -83,21 +87,24 @@ public final class SemanticEnhancedDocumentBuilder {
      */
     public SemanticEnhancedDocument getDocumentFromWikidataItem(String qid)
             throws MediaWikiApiErrorException, IOException, IllegalArgumentException {
+        LOG.debug("Try loading QID " + qid + " from Wikidata");
         EntityDocument entityDocument = wikidataFetcher.getEntityDocument(qid);
         if (!(entityDocument instanceof ItemDocument)) {
+            LOG.error("Found an entity but it is not an item");
             throw new IllegalArgumentException("Given ID '"+qid+"' is not a Wikidata item");
         }
 
         ItemDocument iDoc = (ItemDocument) entityDocument;
+        LOG.debug("Loaded Wikidata item " + qid + ". Search for enwiki links");
         Map<String, SiteLink> linkMap = iDoc.getSiteLinks();
         if ( linkMap == null || !linkMap.containsKey("enwiki") ) {
+            LOG.error("Given QID " + qid + " does not contain an english wikipedia link");
             String errorMessage = String.format(
                     "The given QID '%s' with title '%s' is not linked to an English Wikipedia article",
                     qid, iDoc.getLabels().get("enwiki")
             );
             throw new IllegalArgumentException(errorMessage);
         }
-
         return getDocument(linkMap.get("enwiki"));
     }
 }
