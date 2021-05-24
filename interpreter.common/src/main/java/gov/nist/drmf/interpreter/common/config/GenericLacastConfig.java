@@ -38,7 +38,7 @@ public class GenericLacastConfig {
         this.esPort = copy.esPort;
         this.macroIndex = copy.macroIndex;
         this.mathoidUrl = copy.mathoidUrl;
-        this.settings = copy.settings;
+        this.settings = new Settings(copy.settings);
         this.mapleSubprocessInfo = copy.mapleSubprocessInfo;
     }
 
@@ -151,5 +151,13 @@ public class GenericLacastConfig {
         private List<String> supportDescriptions = new LinkedList<>();
 
         public Settings() {}
+
+        public Settings(Settings copy) {
+            maxRelations = copy.maxRelations;
+            maxMacros = copy.maxMacros;
+            maxDepth = copy.maxDepth;
+            suppressedMacros = new LinkedList<>(copy.suppressedMacros);
+            supportDescriptions = new LinkedList<>(copy.supportDescriptions);
+        }
     }
 }
