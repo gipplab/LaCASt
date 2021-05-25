@@ -67,8 +67,9 @@ public class CaseTests {
         assertEquals("-\\EulerConstant", c.getRHS());
 
         con = c.getConstraintObject();
-        assertEquals(1, con.getTexConstraints().length);
-        assertEquals("\\realpart@@{1} > 0", con.getTexConstraints()[0]);
+        assertNull(con);
+        // the new version of LaCASt directly deletes constraints that do not contain any variable
+        // here, it would be \realpart@@{1} > 0, which can be directly deleted.
     }
 
     @Resource("gammaConstraintTest.txt")
@@ -92,6 +93,25 @@ public class CaseTests {
         assertEquals(2, con.getTexConstraints().length, con.toString());
         assertEquals("n \\geq 0", con.getTexConstraints()[0]);
         assertEquals("\\realpart@@{z} > 0", con.getTexConstraints()[1]);
+    }
+
+    @Resource("gammaConstraintTest.txt")
+    void ignoreNoVarConstraintsTest(String testCasesStr) {
+        SymbolDefinedLibrary lib = new SymbolDefinedLibrary();
+        String[] lines = testCasesStr.split("\n");
+        CaseAnalyzer.analyzeLine(lines[0], 0, lib);
+        LinkedList<Case> cases = CaseAnalyzer.analyzeLine(lines[3], 1, lib);
+        assertNotNull(cases);
+        assertEquals(2, cases.size(), cases.toString());
+
+        Case c = cases.get(0);
+        assertEquals("\\EulerGamma@{\\tfrac{1}{2}}", c.getLHS());
+
+        c = c.replaceSymbolsUsed(lib);
+        assertEquals("\\EulerGamma@{\\tfrac{1}{2}}", c.getLHS());
+
+        Constraints con = c.getConstraintObject();
+        assertNull(con);
     }
 
     @Resource("struve-11-5-2.txt")

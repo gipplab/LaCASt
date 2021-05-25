@@ -1,8 +1,12 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.common.eval.INumericTestCase;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.latex.Relations;
@@ -35,11 +39,19 @@ public class Case implements INumericTestCase {
 
     private CaseMetaData metaData;
 
+    private SemanticLatexTranslator slt;
+
     public Case( String LHS, String RHS, Relations relation, CaseMetaData metaData ){
         this.LHS = LHS;
         this.RHS = RHS;
         this.relation = relation;
         this.metaData = metaData;
+        try {
+            this.slt = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
+        } catch (InitTranslatorException e) {
+            this.slt = null;
+            LOG.error("Unable to initiate translator for test cases");
+        }
     }
 
     public void setOriginalLaTeXInput(String formula) {
@@ -372,7 +384,8 @@ public class Case implements INumericTestCase {
                     }
 
                     m.appendTail(sb);
-                    newConstraints.add(sb.toString());
+                    addConstraintCheck(sb.toString(), newConstraints);
+//                    newConstraints.add(sb.toString());
                 }
             }
         }
@@ -386,5 +399,22 @@ public class Case implements INumericTestCase {
         );
 
         this.metaData.addConstraints(newMetaData.getConstraints());
+    }
+
+    private void addConstraintCheck(String constraint, LinkedList<String> newConstraints) {
+        if ( slt == null ) {
+            newConstraints.add(constraint);
+            return;
+        }
+
+        try {
+            TranslationInformation ti = slt.translateToObject(constraint);
+            FreeVariables vars = ti.getFreeVariables();
+            if ( !vars.getFreeVariables().isEmpty() )
+                newConstraints.add(constraint);
+        } catch (Exception | Error e) {
+            // just ignore it and proceed as usual
+            newConstraints.add(constraint);
+        }
     }
 }

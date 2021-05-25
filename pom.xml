@@ -91,6 +91,17 @@
         <wikidatatoolkit.version>0.12.1</wikidatatoolkit.version>
     </properties>
 
+    <repositories>
+        <!-- Enable snapshot repository, essentially for wikipedia bot framework jwbf -->
+        <repository>
+            <id>snapshots-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
