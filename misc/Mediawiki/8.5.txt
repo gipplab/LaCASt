@@ -1,0 +1,34 @@
+{{DISPLAYTITLE:Incomplete Gamma and Related Functions - 8.5 Confluent Hypergeometric Representations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/8.5.E1 8.5.E1] || [[Item:Q2510|<math>\incgamma@{a}{z} = a^{-1}z^{a}e^{-z}\KummerconfhyperM@{1}{1+a}{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\incgamma@{a}{z} = a^{-1}z^{a}e^{-z}\KummerconfhyperM@{1}{1+a}{z}</syntaxhighlight> || <math>\realpart@@{a} > 0</math> || <syntaxhighlight lang=mathematica>GAMMA(a)-GAMMA(a, z) = (a)^(- 1)* (z)^(a)* exp(- z)*KummerM(1, 1 + a, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Gamma[a, 0, z] == (a)^(- 1)* (z)^(a)* Exp[- z]*Hypergeometric1F1[1, 1 + a, z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/8.5.E1 8.5.E1] || [[Item:Q2510|<math>a^{-1}z^{a}e^{-z}\KummerconfhyperM@{1}{1+a}{z} = a^{-1}z^{a}\KummerconfhyperM@{a}{1+a}{-z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>a^{-1}z^{a}e^{-z}\KummerconfhyperM@{1}{1+a}{z} = a^{-1}z^{a}\KummerconfhyperM@{a}{1+a}{-z}</syntaxhighlight> || <math>\realpart@@{a} > 0</math> || <syntaxhighlight lang=mathematica>(a)^(- 1)* (z)^(a)* exp(- z)*KummerM(1, 1 + a, z) = (a)^(- 1)* (z)^(a)* KummerM(a, 1 + a, - z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(a)^(- 1)* (z)^(a)* Exp[- z]*Hypergeometric1F1[1, 1 + a, z] == (a)^(- 1)* (z)^(a)* Hypergeometric1F1[a, 1 + a, - z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/8.5.E2 8.5.E2] || [[Item:Q2511|<math>\scincgamma@{a}{z} = e^{-z}\OlverconfhyperM@{1}{1+a}{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\scincgamma@{a}{z} = e^{-z}\OlverconfhyperM@{1}{1+a}{z}</syntaxhighlight> || <math>\realpart@@{a} > 0</math> || <syntaxhighlight lang=mathematica>(z)^(-(a))*(GAMMA(a)-GAMMA(a, z))/GAMMA(a) = exp(- z)*KummerM(1, 1 + a, z)/GAMMA(1 + a)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Successful || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/8.5.E2 8.5.E2] || [[Item:Q2511|<math>e^{-z}\OlverconfhyperM@{1}{1+a}{z} = \OlverconfhyperM@{a}{1+a}{-z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>e^{-z}\OlverconfhyperM@{1}{1+a}{z} = \OlverconfhyperM@{a}{1+a}{-z}</syntaxhighlight> || <math>\realpart@@{a} > 0</math> || <syntaxhighlight lang=mathematica>exp(- z)*KummerM(1, 1 + a, z)/GAMMA(1 + a) = KummerM(a, 1 + a, - z)/GAMMA(1 + a)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Exp[- z]*Hypergeometric1F1Regularized[1, 1 + a, z] == Hypergeometric1F1Regularized[a, 1 + a, - z]</syntaxhighlight> || Successful || Successful || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 42]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[a, -2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[a, -2], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/8.5.E3 8.5.E3] || [[Item:Q2512|<math>\incGamma@{a}{z} = e^{-z}\KummerconfhyperU@{1-a}{1-a}{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\incGamma@{a}{z} = e^{-z}\KummerconfhyperU@{1-a}{1-a}{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>GAMMA(a, z) = exp(- z)*KummerU(1 - a, 1 - a, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Gamma[a, z] == Exp[- z]*HypergeometricU[1 - a, 1 - a, z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 42]
+|- 
+| [https://dlmf.nist.gov/8.5.E3 8.5.E3] || [[Item:Q2512|<math>e^{-z}\KummerconfhyperU@{1-a}{1-a}{z} = z^{a}e^{-z}\KummerconfhyperU@{1}{1+a}{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>e^{-z}\KummerconfhyperU@{1-a}{1-a}{z} = z^{a}e^{-z}\KummerconfhyperU@{1}{1+a}{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>exp(- z)*KummerU(1 - a, 1 - a, z) = (z)^(a)* exp(- z)*KummerU(1, 1 + a, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Exp[- z]*HypergeometricU[1 - a, 1 - a, z] == (z)^(a)* Exp[- z]*HypergeometricU[1, 1 + a, z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 42]
+|- 
+| [https://dlmf.nist.gov/8.5.E4 8.5.E4] || [[Item:Q2513|<math>\incgamma@{a}{z} = a^{-1}z^{\frac{1}{2}a-\frac{1}{2}}e^{-\frac{1}{2}z}\WhittakerconfhyperM{\frac{1}{2}a-\frac{1}{2}}{\frac{1}{2}a}@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\incgamma@{a}{z} = a^{-1}z^{\frac{1}{2}a-\frac{1}{2}}e^{-\frac{1}{2}z}\WhittakerconfhyperM{\frac{1}{2}a-\frac{1}{2}}{\frac{1}{2}a}@{z}</syntaxhighlight> || <math>\realpart@@{a} > 0</math> || <syntaxhighlight lang=mathematica>GAMMA(a)-GAMMA(a, z) = (a)^(- 1)* (z)^((1)/(2)*a -(1)/(2))* exp(-(1)/(2)*z)*WhittakerM((1)/(2)*a -(1)/(2), (1)/(2)*a, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Gamma[a, 0, z] == (a)^(- 1)* (z)^(Divide[1,2]*a -Divide[1,2])* Exp[-Divide[1,2]*z]*WhittakerM[Divide[1,2]*a -Divide[1,2], Divide[1,2]*a, z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 21]
+|- 
+| [https://dlmf.nist.gov/8.5.E5 8.5.E5] || [[Item:Q2514|<math>\incGamma@{a}{z} = e^{-\frac{1}{2}z}z^{\frac{1}{2}a-\frac{1}{2}}\WhittakerconfhyperW{\frac{1}{2}a-\frac{1}{2}}{\frac{1}{2}a}@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\incGamma@{a}{z} = e^{-\frac{1}{2}z}z^{\frac{1}{2}a-\frac{1}{2}}\WhittakerconfhyperW{\frac{1}{2}a-\frac{1}{2}}{\frac{1}{2}a}@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>GAMMA(a, z) = exp(-(1)/(2)*z)*(z)^((1)/(2)*a -(1)/(2))* WhittakerW((1)/(2)*a -(1)/(2), (1)/(2)*a, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Gamma[a, z] == Exp[-Divide[1,2]*z]*(z)^(Divide[1,2]*a -Divide[1,2])* WhittakerW[Divide[1,2]*a -Divide[1,2], Divide[1,2]*a, z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 42]
+|}
+</div>

@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Legendre and Related Functions - 14.29 Generalizations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/14.29.E1 14.29.E1] || [[Item:Q4962|<math>\left(1-z^{2}\right)\deriv[2]{w}{z}-2z\deriv{w}{z}+{\left(\nu(\nu+1)-\frac{\mu_{1}^{2}}{2(1-z)}-\frac{\mu_{2}^{2}}{2(1+z)}\right)w} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\left(1-z^{2}\right)\deriv[2]{w}{z}-2z\deriv{w}{z}+{\left(\nu(\nu+1)-\frac{\mu_{1}^{2}}{2(1-z)}-\frac{\mu_{2}^{2}}{2(1+z)}\right)w} = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(1 - (z)^(2))*diff(w, [z$(2)])- 2*z*diff(w, z)+(nu*(nu + 1)-((mu[1])^(2))/(2*(1 - z))-((mu[2])^(2))/(2*(1 + z)))*w = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>(1 - (z)^(2))*D[w, {z, 2}]- 2*z*D[w, z]+(\[Nu]*(\[Nu]+ 1)-Divide[(Subscript[\[Mu], 1])^(2),2*(1 - z)]-Divide[(Subscript[\[Mu], 2])^(2),2*(1 + z)])*w == 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.000000001-3.732050810*I
+Test Values: {mu = 1/2*3^(1/2)+1/2*I, nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, mu[1] = 1/2*3^(1/2)+1/2*I, mu[2] = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -1.000000001-3.732050810*I
+Test Values: {mu = 1/2*3^(1/2)+1/2*I, nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, mu[1] = 1/2*3^(1/2)+1/2*I, mu[2] = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [296 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-0.7320508075688783, -4.732050807568878]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[μ, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[μ, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-1.3322676295501878*^-15, -5.464101615137755]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[μ, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[μ, 2], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

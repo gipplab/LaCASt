@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Bessel Functions - 10.57 Uniform Asymptotic Expansions for Large Order}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/10.57.E1 10.57.E1] || [[Item:Q3770|<math>\sphBesselJ{n}'@{(n+\tfrac{1}{2})z} = \frac{\pi^{\frac{1}{2}}}{((2n+1)z)^{\frac{1}{2}}}\BesselJ{n+\frac{1}{2}}'@{(n+\tfrac{1}{2})z}-\frac{\pi^{\frac{1}{2}}}{((2n+1)z)^{\frac{3}{2}}}\BesselJ{n+\frac{1}{2}}@{(n+\tfrac{1}{2})z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sphBesselJ{n}'@{(n+\tfrac{1}{2})z} = \frac{\pi^{\frac{1}{2}}}{((2n+1)z)^{\frac{1}{2}}}\BesselJ{n+\frac{1}{2}}'@{(n+\tfrac{1}{2})z}-\frac{\pi^{\frac{1}{2}}}{((2n+1)z)^{\frac{3}{2}}}\BesselJ{n+\frac{1}{2}}@{(n+\tfrac{1}{2})z}</syntaxhighlight> || <math>\realpart@@{((n+\frac{1}{2})+k+1)} > 0, \realpart@@{((-n-\frac{1}{2})+k+1)} > 0, \realpart@@{((-(-n-\frac{1}{2}))+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[SphericalBesselJ[n, (n +Divide[1,2])*z], {(n +Divide[1,2])*z, 1}] == Divide[(Pi)^(Divide[1,2]),((2*n + 1)*z)^(Divide[1,2])]*D[BesselJ[n +Divide[1,2], (n +Divide[1,2])*z], {(n +Divide[1,2])*z, 1}]-Divide[(Pi)^(Divide[1,2]),((2*n + 1)*z)^(Divide[3,2])]*BesselJ[n +Divide[1,2], (n +Divide[1,2])*z]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [21 / 21]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.14653389603833195, -0.029869009956249915], Times[Complex[-0.988457695936884, 0.2648564413786163], D[Complex[0.36567703182522004, 0.24184221354059504]
+Test Values: {Complex[1.299038105676658, 0.7499999999999999], 1.0}]], D[Complex[0.425509744388485, 0.14219887983348967], {Complex[1.299038105676658, 0.7499999999999999], 1.0}]], {Rule[n, 1], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.06710374092328811, 0.007963502819859997], Times[Complex[-0.7656560389588212, 0.20515691731902835], D[Complex[0.2637838125883578, 0.3348231997381719]
+Test Values: {Complex[2.165063509461097, 1.2499999999999998], 1.0}]], D[Complex[0.27065896459303473, 0.20224233103375913], {Complex[2.165063509461097, 1.2499999999999998], 1.0}]], {Rule[n, 2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

@@ -1,7 +1,17 @@
 #!/usr/bin/python3
+
+# this mediawiki uploader is based on the example from
+# https://www.mediawiki.org/wiki/API:Edit
+
 import requests
 import sys, getopt
 from git import Repo
+import os
+import re
+import progressbar
+import time
+
+progressbar.streams.wrap_stderr()
 
 repo = Repo("..")
 
@@ -46,25 +56,41 @@ pageNames = [
   "Integrals with Coalescing Saddles",
 ]
 
+file_pattern = re.compile('(\\d+\.\\d+|C\\d+)\\.txt')
 file_path_base="../misc/Mediawiki/"
+files=os.listdir(file_path_base)
+
+numPattern = re.compile('C?(\\d+)(?:\\.(\\d+))?\\.txt')
+def sortHelper(element):
+    temp = numPattern.match(element)
+    if temp.group(2):
+        return int(temp.group(1))*100+int(temp.group(2))
+    else:
+        return int(temp.group(1))*100
+
+files.sort(key = lambda element : sortHelper(element))
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], 'hu:p:')
+    opts, args = getopt.getopt(sys.argv[1:], 'hu:p:', ["help", "user=", "password=", "purge"])
 except getopt.GetoptError:
     print("You need to specify username and password to edit the wiki\n\t update-mediawiki-results.py -u <bot-username> -p <bot-password>")
     sys.exit(2)
 
 username=""
 password=""
+purge_mode=False
 
 for opt, arg in opts:
-    if opt == '-h':
+    if opt in ('-h', "--help"):
         print("You need to specify username and password to edit the wiki\n\t update-mediawiki-results.py -u <bot-username> -p <bot-password>")
         sys.exit()
     elif opt in ("-u", "--user", "--username"):
         username = str(arg)
     elif opt in ("-p", "-pw", "--password"):
         password = str(arg)
+    elif opt in ("--purge"):
+        purge_mode=True
+
 
 if username == "" or password == "":
     print("You need to specify username and password to edit the wiki\n\t update-mediawiki-results.py -u <bot-username> -p <bot-password>")
@@ -120,39 +146,78 @@ response_data = response.json()
 csrf_token = response_data['query']['tokens']['csrftoken']
 
 def uploadFile(i, file_path, page_title):
-    print("Start uploading file " + str(i) + ": " + page_title + " [Path: " + file_path + "]")
-    if file_path[3:] not in updatedFilePaths:
-        print("This page has not been updated locally according to Git, so no need to push changes")
-        return
+#     print("Start uploading file " + str(i) + ": " + page_title + " [Path: " + file_path + "]")
+#     if file_path[3:] not in updatedFilePaths:
+#         print("This page has not been updated locally according to Git, so no need to push changes")
+#         return
 
     file = open(file_path, "r")
     edit_request = {
         "action": "edit",
+        "recreate": True,
         "title": page_title,
         "token": csrf_token,
         "format": "json",
         "text": file.read()
     }
     response = session.post(URL, data=edit_request)
-    if response.status_code == 200:
-        print("Successfully uploaded file " + str(i))
-    else:
-        print("Received error code: " + str(response.status_code))
+    if response.status_code != 200:
+        print("[ERROR] Unable to upload " + file_path + ": " + str(response.status_code))
         response_data = response.json()
         print(response_data)
 
-print("Received CSRF token. Start updating")
-for i, name in enumerate(pageNames):
-    page_title="Results_of_" + name.replace(" ", "_")
-    file_path=file_path_base + str(i+1) + ".txt"
-    if i == 3 or i == 9 or i == 12 or i == 13 or i == 14 or i == 17 or i == 18:
-        uploadFile(i, file_path, page_title+"_I")
-        file_path=file_path_base + str(i+1) + "_2.txt"
-        uploadFile(i, file_path, page_title+"_II")
-        if i == 9:
-            file_path=file_path_base + str(i+1) + "_3.txt"
-            uploadFile(i, file_path, page_title+"_III")
+def purge(page_titles):
+    purge_request = {
+        "action": "purge",
+        "titles": '|'.join(page_titles),
+        "token": csrf_token,
+        "format": "json"
+    }
+    response = session.post(URL, data=purge_request)
+    if response.status_code != 200:
+        print("[ERROR] Unable to upload error code: " + str(response.status_code))
+        response_data = response.json()
+        print(response_data)
     else:
-        uploadFile(i, file_path, page_title)
+        print("Successfully purged all sites")
+
+widgets=[
+    progressbar.Variable('file_name', width=9),
+    progressbar.Counter(format='%(percentage)3d%%'),
+    ' (',
+    progressbar.Counter(format='%(value)d of %(max_value)d'),
+    ') ',
+    progressbar.Bar(), ' ',
+    progressbar.Timer(),
+    ' (', progressbar.ETA(), ') ',
+]
+
+print("Received CSRF token. Start updating")
+with progressbar.ProgressBar(max_value=len(files), redirect_stdout=True, widgets=widgets) as bar:
+    chapters=[]
+    for i, file_name in enumerate(files):
+        matcher = file_pattern.match(file_name)
+        if not matcher:
+            print("[ERROR] Cannot read file with name " + file_name)
+            continue
+
+        if matcher.group(1).startswith("C"):
+            chapterNumber=matcher.group(1)[1:]
+            idx=int(chapterNumber)-1
+            page_title="Results_of_" + pageNames[idx].replace(" ", "_")
+            chapters.append(page_title)
+            if not purge_mode:
+                print("Start uploading chapter " + chapterNumber + ": " + page_title)
+        else:
+            page_title=matcher.group(1)
+#         print(file_name)
+        if not purge_mode:
+            uploadFile(i, file_path_base + file_name, page_title)
+        bar.update(i, file_name=file_name)
+
+    if purge_mode:
+        print("Done, requesting purge on all chapter pages:")
+        print(str(chapters))
+        purge(chapters)
 
 print("Finished uploading all files. Wiki updated")

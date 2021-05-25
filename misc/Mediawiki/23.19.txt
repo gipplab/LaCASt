@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Weierstrass Elliptic and Modular Functions - 23.19 Interrelations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/23.19.E1 23.19.E1] || [[Item:Q7368|<math>\modularlambdatau@{\tau} = 16\left(\frac{\Dedekindeta^{2}@{2\tau}\Dedekindeta@{\tfrac{1}{2}\tau}}{\Dedekindeta^{3}@{\tau}}\right)^{8}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\modularlambdatau@{\tau} = 16\left(\frac{\Dedekindeta^{2}@{2\tau}\Dedekindeta@{\tfrac{1}{2}\tau}}{\Dedekindeta^{3}@{\tau}}\right)^{8}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ModularLambda[\[Tau]] == 16*(Divide[(DedekindEta[2*\[Tau]])^(2)* DedekindEta[Divide[1,2]*\[Tau]],(DedekindEta[\[Tau]])^(3)])^(8)</syntaxhighlight> || Missing Macro Error || Failure || - || Successful [Tested: 10]
+|- 
+| [https://dlmf.nist.gov/23.19.E2 23.19.E2] || [[Item:Q7369|<math>\KleincompinvarJtau@{\tau} = \frac{4}{27}\frac{\left(1-\modularlambdatau@{\tau}+\modularlambdatau^{2}@{\tau}\right)^{3}}{\left(\modularlambdatau@{\tau}\left(1-\modularlambdatau@{\tau}\right)\right)^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\KleincompinvarJtau@{\tau} = \frac{4}{27}\frac{\left(1-\modularlambdatau@{\tau}+\modularlambdatau^{2}@{\tau}\right)^{3}}{\left(\modularlambdatau@{\tau}\left(1-\modularlambdatau@{\tau}\right)\right)^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>KleinInvariantJ[\[Tau]] == Divide[4,27]*Divide[(1 - ModularLambda[\[Tau]]+ (ModularLambda[\[Tau]])^(2))^(3),(ModularLambda[\[Tau]]*(1 - ModularLambda[\[Tau]]))^(2)]</syntaxhighlight> || Missing Macro Error || Failure || - || Successful [Tested: 10]
+|- 
+| [https://dlmf.nist.gov/23.19.E4 23.19.E4] || [[Item:Q7371|<math>\Delta = (2\pi)^{12}\Dedekindeta^{24}@{\tau}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Delta = (2\pi)^{12}\Dedekindeta^{24}@{\tau}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>\[CapitalDelta] == (2*Pi)^(12)* (DedekindEta[\[Tau]])^(24)</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [20 / 100]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-8.27953934969212*^7, 0.49999990438754693]
+Test Values: {Rule[Δ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[τ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[1.8191325291713696*^7, 0.49999997450648886]
+Test Values: {Rule[Δ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[τ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

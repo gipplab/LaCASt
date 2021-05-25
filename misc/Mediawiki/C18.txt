@@ -1,0 +1,10 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[18.1|18.1 Notation]]<br>
+; General Orthogonal Polynomials : [[18.2|18.2 General Orthogonal Polynomials]]<br>
+; Classical Orthogonal Polynomials : [[18.3|18.3 Definitions]]<br>[[18.4|18.4 Graphics]]<br>[[18.5|18.5 Explicit Representations]]<br>[[18.6|18.6 Symmetry, Special Values, and Limits to Monomials]]<br>[[18.7|18.7 Interrelations and Limit Relations]]<br>[[18.8|18.8 Differential Equations]]<br>[[18.9|18.9 Recurrence Relations and Derivatives]]<br>[[18.10|18.10 Integral Representations]]<br>[[18.11|18.11 Relations to Other Functions]]<br>[[18.12|18.12 Generating Functions]]<br>[[18.13|18.13 Continued Fractions]]<br>[[18.14|18.14 Inequalities]]<br>[[18.15|18.15 Asymptotic Approximations]]<br>[[18.16|18.16 Zeros]]<br>[[18.17|18.17 Integrals]]<br>[[18.18|18.18 Sums]]<br>
+; Askey Scheme : [[18.19|18.19 Hahn Class: Definitions]]<br>[[18.20|18.20 Hahn Class: Explicit Representations]]<br>[[18.21|18.21 Hahn Class: Interrelations]]<br>[[18.22|18.22 Hahn Class: Recurrence Relations and
+Differences]]<br>[[18.23|18.23 Hahn Class: Generating Functions]]<br>[[18.24|18.24 Hahn Class: Asymptotic Approximations]]<br>[[18.25|18.25 Wilson Class: Definitions]]<br>[[18.26|18.26 Wilson Class: Continued]]<br>
+; Other Orthogonal Polynomials : [[18.27|18.27 <math>q</math> -Hahn Class]]<br>[[18.28|18.28 Askey–Wilson Class]]<br>[[18.29|18.29 Asymptotic Approximations for <math>q</math> -Hahn and Askey–Wilson Classes]]<br>[[18.30|18.30 Associated OP’s]]<br>[[18.31|18.31 Bernstein–Szegő Polynomials]]<br>[[18.32|18.32 OP’s with Respect to Freud Weights]]<br>[[18.33|18.33 Polynomials Orthogonal on the Unit Circle]]<br>[[18.34|18.34 Bessel Polynomials]]<br>[[18.35|18.35 Pollaczek Polynomials]]<br>[[18.36|18.36 Miscellaneous Polynomials]]<br>[[18.37|18.37 Classical OP’s in Two or More Variables]]<br>
+; Applications : [[18.38|18.38 Mathematical Applications]]<br>[[18.39|18.39 Physical Applications]]<br>
+; Computation : [[18.40|18.40 Methods of Computation]]<br>[[18.41|18.41 Tables]]<br>[[18.42|18.42 Software]]<br>
+</div>

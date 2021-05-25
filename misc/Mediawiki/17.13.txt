@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:q -Hypergeometric and Related Functions - 17.13 Integrals}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/17.13.E3 17.13.E3] || [[Item:Q5468|<math>\int_{0}^{\infty}t^{\alpha-1}\frac{\qPochhammer{-tq^{\alpha+\beta}}{q}{\infty}}{\qPochhammer{-t}{q}{\infty}}\diff{t} = \frac{\EulerGamma@{\alpha}\EulerGamma@{1-\alpha}\qGamma{q}@{\beta}}{\qGamma{q}@{1-\alpha}\qGamma{q}@{\alpha+\beta}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\infty}t^{\alpha-1}\frac{\qPochhammer{-tq^{\alpha+\beta}}{q}{\infty}}{\qPochhammer{-t}{q}{\infty}}\diff{t} = \frac{\EulerGamma@{\alpha}\EulerGamma@{1-\alpha}\qGamma{q}@{\beta}}{\qGamma{q}@{1-\alpha}\qGamma{q}@{\alpha+\beta}}</syntaxhighlight> || <math>\realpart@@{(\alpha)} > 0, \realpart@@{(1-\alpha)} > 0</math> || <syntaxhighlight lang=mathematica>int((t)^(alpha - 1)*(QPochhammer(- t*(q)^(alpha + beta), q, infinity))/(QPochhammer(- t, q, infinity)), t = 0..infinity) = (GAMMA(alpha)*GAMMA(1 - alpha)*QGAMMA(q, beta))/(QGAMMA(q, 1 - alpha)*QGAMMA(q, alpha + beta))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[(t)^(\[Alpha]- 1)*Divide[QPochhammer[- t*(q)^(\[Alpha]+ \[Beta]), q, Infinity],QPochhammer[- t, q, Infinity]], {t, 0, Infinity}, GenerateConditions->None] == Divide[Gamma[\[Alpha]]*Gamma[1 - \[Alpha]]*QGamma[\[Beta],q],QGamma[1 - \[Alpha],q]*QGamma[\[Alpha]+ \[Beta],q]]</syntaxhighlight> || Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [26 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[NIntegrate[Times[Power[t, -0.5], Power[QPochhammer[Times[-1, t], Power[E, Times[Complex[0, Rational[1, 6]], Pi]], DirectedInfinity[1]], -1], QPochhammer[Times[Complex[-0.5000000000000001, -0.8660254037844386], t], Power[E, Times[Complex[0, Rational[1, 6]], Pi]], DirectedInfinity[1]]]
+Test Values: {t, 0, DirectedInfinity[1]}], Times[-3.1415926535897936, Power[QGamma[0.5, Complex[0.8660254037844387, 0.49999999999999994]], -1], QGamma[1.5, Complex[0.8660254037844387, 0.49999999999999994]]]], {Rule[q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[α, 0.5], Rule[β, 1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[-3.1415926535897936, NIntegrate[Times[Power[t, -0.5], Power[QPochhammer[Times[-1, t], Power[E, Times[Complex[0, Rational[1, 6]], Pi]], DirectedInfinity[1]], -1], QPochhammer[Times[Complex[-0.8660254037844387, -0.49999999999999994], t], Power[E, Times[Complex[0, Rational[1, 6]], Pi]], DirectedInfinity[1]]]
+Test Values: {t, 0, DirectedInfinity[1]}]], {Rule[q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[α, 0.5], Rule[β, 0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

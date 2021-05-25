@@ -1,0 +1,30 @@
+{{DISPLAYTITLE:Zeta and Related Functions - 25.14 Lerch’s Transcendent}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/25.14.E2 25.14.E2] || [[Item:Q7741|<math>\Hurwitzzeta@{s}{a} = \LerchPhi@{1}{s}{a}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Hurwitzzeta@{s}{a} = \LerchPhi@{1}{s}{a}</syntaxhighlight> || <math>\realpart@@{s} > 1</math> || <syntaxhighlight lang=mathematica>Zeta(0, s, a) = LerchPhi(1, s, a)</syntaxhighlight> || <syntaxhighlight lang=mathematica>HurwitzZeta[s, a] == LerchPhi[1, s, a]</syntaxhighlight> || Successful || Failure || - || Successful [Tested: 2]
+|- 
+| [https://dlmf.nist.gov/25.14.E3 25.14.E3] || [[Item:Q7742|<math>\polylog{s}@{z} = z\LerchPhi@{z}{s}{1}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\polylog{s}@{z} = z\LerchPhi@{z}{s}{1}</syntaxhighlight> || <math>\realpart@@{s} > 1, |z| \leq 1</math> || <syntaxhighlight lang=mathematica>polylog(s, z) = z*LerchPhi(z, s, 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>PolyLog[s, z] == z*LerchPhi[z, s, 1]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 10]
+|- 
+| [https://dlmf.nist.gov/25.14.E4 25.14.E4] || [[Item:Q7743|<math>\LerchPhi@{z}{s}{a} = z^{m}\LerchPhi@{z}{s}{a+m}+\sum_{n=0}^{m-1}\frac{z^{n}}{(a+n)^{s}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\LerchPhi@{z}{s}{a} = z^{m}\LerchPhi@{z}{s}{a+m}+\sum_{n=0}^{m-1}\frac{z^{n}}{(a+n)^{s}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>LerchPhi(z, s, a) = (z)^(m)* LerchPhi(z, s, a + m)+ sum(((z)^(n))/((a + n)^(s)), n = 0..m - 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>LerchPhi[z, s, a] == (z)^(m)* LerchPhi[z, s, a + m]+ Sum[Divide[(z)^(n),(a + n)^(s)], {n, 0, m - 1}, GenerateConditions->None]</syntaxhighlight> || Failure || Successful || <div class="toccolours mw-collapsible mw-collapsed">Failed [6 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .27656730e-2-.27656730e-2*I
+Test Values: {a = -3/2, s = -2, z = 1/2*3^(1/2)+1/2*I, m = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 0.+.228647547e-1*I
+Test Values: {a = -3/2, s = -2, z = -1/2+1/2*I*3^(1/2), m = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || Successful [Tested: 300]
+|- 
+| [https://dlmf.nist.gov/25.14.E5 25.14.E5] || [[Item:Q7744|<math>\LerchPhi@{z}{s}{a} = \frac{1}{\EulerGamma@{s}}\int_{0}^{\infty}\frac{x^{s-1}e^{-ax}}{1-ze^{-x}}\diff{x}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\LerchPhi@{z}{s}{a} = \frac{1}{\EulerGamma@{s}}\int_{0}^{\infty}\frac{x^{s-1}e^{-ax}}{1-ze^{-x}}\diff{x}</syntaxhighlight> || <math>\realpart@@{s} > 0, \realpart@@{a} > 0</math> || <syntaxhighlight lang=mathematica>LerchPhi(x + y*I, s, a) = (1)/(GAMMA(s))*int(((x)^(s - 1)* exp(- a*x))/(1 -(x + y*I)*exp(- x)), x = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>LerchPhi[x + y*I, s, a] == Divide[1,Gamma[s]]*Integrate[Divide[(x)^(s - 1)* Exp[- a*x],1 -(x + y*I)*Exp[- x]], {x, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Aborted || Skipped - Because timed out || <div class="toccolours mw-collapsible mw-collapsed">Failed [162 / 162]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.29818646299224294, -0.45270555517796296], Times[-1.1283791670955126, NIntegrate[Complex[0.15484016278663867, -0.07789552790412994]
+Test Values: {1.5, 0, DirectedInfinity[1]}]]], {Rule[a, 1.5], Rule[s, 1.5], Rule[x, 1.5], Rule[y, -1.5], Rule[z, Rational[1, 2]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.29818646299224244, 0.45270555517796246], Times[-1.1283791670955126, NIntegrate[Complex[0.15484016278663867, 0.07789552790412994]
+Test Values: {1.5, 0, DirectedInfinity[1]}]]], {Rule[a, 1.5], Rule[s, 1.5], Rule[x, 1.5], Rule[y, 1.5], Rule[z, Rational[1, 2]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/25.14.E6 25.14.E6] || [[Item:Q7745|<math>\LerchPhi@{z}{s}{a} = \frac{1}{2}a^{-s}+\int_{0}^{\infty}\frac{z^{x}}{(a+x)^{s}}\diff{x}-2\int_{0}^{\infty}\frac{\sin@{x\ln@@{z}-s\atan@{x/a}}}{(a^{2}+x^{2})^{s/2}(e^{2\pi x}-1)}\diff{x}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\LerchPhi@{z}{s}{a} = \frac{1}{2}a^{-s}+\int_{0}^{\infty}\frac{z^{x}}{(a+x)^{s}}\diff{x}-2\int_{0}^{\infty}\frac{\sin@{x\ln@@{z}-s\atan@{x/a}}}{(a^{2}+x^{2})^{s/2}(e^{2\pi x}-1)}\diff{x}</syntaxhighlight> || <math>\realpart@@{s} > 0, |z| < 1, \realpart@@{s} > 1, |z| = 1, \realpart@@{a} > 0</math> || <syntaxhighlight lang=mathematica>LerchPhi(x + y*I, s, a) = (1)/(2)*(a)^(- s)+ int(((x + y*I)^(x))/((a + x)^(s)), x = 0..infinity)- 2*int((sin(x*ln(x + y*I)- s*arctan(x/a)))/(((a)^(2)+ (x)^(2))^(s/2)*(exp(2*Pi*x)- 1)), x = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>LerchPhi[x + y*I, s, a] == Divide[1,2]*(a)^(- s)+ Integrate[Divide[(x + y*I)^(x),(a + x)^(s)], {x, 0, Infinity}, GenerateConditions->None]- 2*Integrate[Divide[Sin[x*Log[x + y*I]- s*ArcTan[x/a]],((a)^(2)+ (x)^(2))^(s/2)*(Exp[2*Pi*x]- 1)], {x, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Error || Aborted || - || Skipped - Because timed out
+|}
+</div>

@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Painlevé Transcendents - 32.3 Graphics}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/32.3.E2 32.3.E2] || [[Item:Q9214|<math>\deriv[2]{u}{x} = 3u^{5}+2xu^{3}+\left(\tfrac{1}{4}x^{2}-\nu-\tfrac{1}{2}\right)u</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv[2]{u}{x} = 3u^{5}+2xu^{3}+\left(\tfrac{1}{4}x^{2}-\nu-\tfrac{1}{2}\right)u</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(u, [x$(2)]) = 3*(u)^(5)+ 2*x*(u)^(3)+((1)/(4)*(x)^(2)- nu -(1)/(2))*u</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[u, {x, 2}] == 3*(u)^(5)+ 2*x*(u)^(3)+(Divide[1,4]*(x)^(2)- \[Nu]-Divide[1,2])*u</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 3.043949625-3.665224602*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, u = 1/2*3^(1/2)+1/2*I, x = 3/2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 3.476962328-1.415224600*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, u = 1/2*3^(1/2)+1/2*I, x = 1/2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[3.043949623616789, -3.6652245962155616]
+Test Values: {Rule[u, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[1.67792421983235, -4.031249999999999]
+Test Values: {Rule[u, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5], Rule[ν, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/32.3.E4 32.3.E4] || [[Item:Q9216|<math>w(x) = 2\sqrt{2}u_{k}^{2}(\sqrt{2}x,\nu)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>w(x) = 2\sqrt{2}u_{k}^{2}(\sqrt{2}x,\nu)</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">w(x) = 2*sqrt(2)*(u[k])^(2)(sqrt(2)*x , nu)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">w[x] == 2*Sqrt[2]*(Subscript[u, k])^(2)[Sqrt[2]*x , \[Nu]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/32.3.E6 32.3.E6] || [[Item:Q9218|<math>u^{2} = -\tfrac{1}{3}x+\tfrac{1}{6}\sqrt{x^{2}+12\nu+6}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>u^{2} = -\tfrac{1}{3}x+\tfrac{1}{6}\sqrt{x^{2}+12\nu+6}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(u)^(2) = -(1)/(3)*x +(1)/(6)*sqrt((x)^(2)+ 12*nu + 6)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(u)^(2) == -Divide[1,3]*x +Divide[1,6]*Sqrt[(x)^(2)+ 12*\[Nu]+ 6]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

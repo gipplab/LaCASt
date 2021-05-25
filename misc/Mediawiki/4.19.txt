@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Elementary Functions - 4.19 Maclaurin Series and Laurent Series}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.19.E7 4.19.E7] || [[Item:Q1686|<math>\ln@{\frac{\sin@@{z}}{z}} = \sum_{n=1}^{\infty}\frac{(-1)^{n}2^{2n-1}\BernoullinumberB{2n}}{n(2n)!}z^{2n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ln@{\frac{\sin@@{z}}{z}} = \sum_{n=1}^{\infty}\frac{(-1)^{n}2^{2n-1}\BernoullinumberB{2n}}{n(2n)!}z^{2n}</syntaxhighlight> || <math>|z| < \pi</math> || <syntaxhighlight lang=mathematica>ln((sin(z))/(z)) = sum(((- 1)^(n)* (2)^(2*n - 1)* bernoulli(2*n))/(n*factorial(2*n))*(z)^(2*n), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Log[Divide[Sin[z],z]] == Sum[Divide[(- 1)^(n)* (2)^(2*n - 1)* BernoulliB[2*n],n*(2*n)!]*(z)^(2*n), {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Successful [Tested: 7] || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.19.E8 4.19.E8] || [[Item:Q1687|<math>\ln@{\cos@@{z}} = \sum_{n=1}^{\infty}\frac{(-1)^{n}2^{2n-1}(2^{2n}-1)\BernoullinumberB{2n}}{n(2n)!}z^{2n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ln@{\cos@@{z}} = \sum_{n=1}^{\infty}\frac{(-1)^{n}2^{2n-1}(2^{2n}-1)\BernoullinumberB{2n}}{n(2n)!}z^{2n}</syntaxhighlight> || <math>|z| < \frac{1}{2}\pi</math> || <syntaxhighlight lang=mathematica>ln(cos(z)) = sum(((- 1)^(n)* (2)^(2*n - 1)*((2)^(2*n)- 1)*bernoulli(2*n))/(n*factorial(2*n))*(z)^(2*n), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Log[Cos[z]] == Sum[Divide[(- 1)^(n)* (2)^(2*n - 1)*((2)^(2*n)- 1)*BernoulliB[2*n],n*(2*n)!]*(z)^(2*n), {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Manual Skip! || Successful [Tested: 6]
+|- 
+| [https://dlmf.nist.gov/4.19.E9 4.19.E9] || [[Item:Q1688|<math>\ln@{\frac{\tan@@{z}}{z}} = \sum_{n=1}^{\infty}\frac{(-1)^{n-1}2^{2n}(2^{2n-1}-1)\BernoullinumberB{2n}}{n(2n)!}z^{2n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ln@{\frac{\tan@@{z}}{z}} = \sum_{n=1}^{\infty}\frac{(-1)^{n-1}2^{2n}(2^{2n-1}-1)\BernoullinumberB{2n}}{n(2n)!}z^{2n}</syntaxhighlight> || <math>|z| < \frac{1}{2}\pi</math> || <syntaxhighlight lang=mathematica>ln((tan(z))/(z)) = sum(((- 1)^(n - 1)* (2)^(2*n)*((2)^(2*n - 1)- 1)*bernoulli(2*n))/(n*factorial(2*n))*(z)^(2*n), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Log[Divide[Tan[z],z]] == Sum[Divide[(- 1)^(n - 1)* (2)^(2*n)*((2)^(2*n - 1)- 1)*BernoulliB[2*n],n*(2*n)!]*(z)^(2*n), {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Manual Skip! || Successful [Tested: 6]
+|}
+</div>

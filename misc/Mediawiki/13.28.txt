@@ -1,0 +1,28 @@
+{{DISPLAYTITLE:Confluent Hypergeometric Functions - 13.28 Physical Applications}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/13.28#Ex1 13.28#Ex1] || [[Item:Q4666|<math>f_{1}(\xi) = \xi^{-\frac{1}{2}}V_{\kappa,\frac{1}{2}p}^{(1)}(2\iunit k\xi)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>f_{1}(\xi) = \xi^{-\frac{1}{2}}V_{\kappa,\frac{1}{2}p}^{(1)}(2\iunit k\xi)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>f[1](xi) = (xi)^(-(1)/(2))* (V[kappa ,(1)/(2)*p])^(1)(2*I*k*xi)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Subscript[f, 1][\[Xi]] == \[Xi]^(-Divide[1,2])* (Subscript[V, \[Kappa],Divide[1,2]*p])^(1)[2*I*k*\[Xi]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.914213563-.5481881590*I
+Test Values: {kappa = 1/2*3^(1/2)+1/2*I, p = 1/2*3^(1/2)+1/2*I, xi = 1/2*3^(1/2)+1/2*I, V[kappa,1/2*p] = 1/2*3^(1/2)+1/2*I, f[1] = 1/2*3^(1/2)+1/2*I, k = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 3.328427125-1.962401722*I
+Test Values: {kappa = 1/2*3^(1/2)+1/2*I, p = 1/2*3^(1/2)+1/2*I, xi = 1/2*3^(1/2)+1/2*I, V[kappa,1/2*p] = 1/2*3^(1/2)+1/2*I, f[1] = 1/2*3^(1/2)+1/2*I, k = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[1.914213562373095, -0.5481881585886565]
+Test Values: {Rule[k, 1], Rule[p, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[κ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ξ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[f, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[V, κ, Times[Rational[1, 2], p]], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[3.32842712474619, -1.9624017209617517]
+Test Values: {Rule[k, 2], Rule[p, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[κ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ξ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[f, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[V, κ, Times[Rational[1, 2], p]], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/13.28#Ex2 13.28#Ex2] || [[Item:Q4667|<math>f_{2}(\eta) = \eta^{-\frac{1}{2}}V_{\kappa,\frac{1}{2}p}^{(2)}(-2\iunit k\eta)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>f_{2}(\eta) = \eta^{-\frac{1}{2}}V_{\kappa,\frac{1}{2}p}^{(2)}(-2\iunit k\eta)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>f[2](eta) = (eta)^(-(1)/(2))* (V[kappa ,(1)/(2)*p])^(2)(- 2*I*k*eta)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Subscript[f, 2][\[Eta]] == \[Eta]^(-Divide[1,2])* (Subscript[V, \[Kappa],Divide[1,2]*p])^(2)[- 2*I*k*\[Eta]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.431851653+1.383663495*I
+Test Values: {eta = 1/2*3^(1/2)+1/2*I, kappa = 1/2*3^(1/2)+1/2*I, p = 1/2*3^(1/2)+1/2*I, V[kappa,1/2*p] = 1/2*3^(1/2)+1/2*I, f[2] = 1/2*3^(1/2)+1/2*I, k = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -3.363703307+1.901301586*I
+Test Values: {eta = 1/2*3^(1/2)+1/2*I, kappa = 1/2*3^(1/2)+1/2*I, p = 1/2*3^(1/2)+1/2*I, V[kappa,1/2*p] = 1/2*3^(1/2)+1/2*I, f[2] = 1/2*3^(1/2)+1/2*I, k = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-1.4318516525781364, 1.3836634939894803]
+Test Values: {Rule[k, 1], Rule[p, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[η, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[κ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[f, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[V, κ, Times[Rational[1, 2], p]], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-3.363703305156273, 1.9013015841945222]
+Test Values: {Rule[k, 2], Rule[p, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[η, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[κ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[f, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[V, κ, Times[Rational[1, 2], p]], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[31.1|31.1 Special Notation]]<br>
+; Properties : [[31.2|31.2 Differential Equations]]<br>[[31.3|31.3 Basic Solutions]]<br>[[31.4|31.4 Solutions Analytic at Two Singularities: Heun Functions]]<br>[[31.5|31.5 Solutions Analytic at Three Singularities: Heun Polynomials]]<br>[[31.6|31.6 Path-Multiplicative Solutions]]<br>[[31.7|31.7 Relations to Other Functions]]<br>[[31.8|31.8 Solutions via Quadratures]]<br>[[31.9|31.9 Orthogonality]]<br>[[31.10|31.10 Integral Equations and Representations]]<br>[[31.11|31.11 Expansions in Series of Hypergeometric Functions]]<br>[[31.12|31.12 Confluent Forms of Heun’s Equation]]<br>[[31.13|31.13 Asymptotic Approximations]]<br>[[31.14|31.14 General Fuchsian Equation]]<br>[[31.15|31.15 Stieltjes Polynomials]]<br>
+; Applications : [[31.16|31.16 Mathematical Applications]]<br>[[31.17|31.17 Physical Applications]]<br>
+; Computation : [[31.18|31.18 Methods of Computation]]<br>
+</div>

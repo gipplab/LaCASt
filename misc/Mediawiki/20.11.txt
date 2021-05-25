@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Theta Functions - 20.11 Generalizations and Analogs}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/20.11.E5 20.11.E5] || [[Item:Q6846|<math>\genhyperF{2}{1}@{\tfrac{1}{2},\tfrac{1}{2}}{1}{k^{2}} = \Jacobithetatau{3}^{2}@{0}{\tau}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\genhyperF{2}{1}@{\tfrac{1}{2},\tfrac{1}{2}}{1}{k^{2}} = \Jacobithetatau{3}^{2}@{0}{\tau}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>hypergeom([(1)/(2),(1)/(2)], [1], ((JacobiTheta2(0,exp(I*Pi*tau)))^(2)/(JacobiTheta3(0,exp(I*Pi*tau)))^(2))^(2)) = (JacobiTheta3(0,exp(I*Pi*tau)))^(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>HypergeometricPFQ[{Divide[1,2],Divide[1,2]}, {1}, ((EllipticTheta[2, 0, Exp[I*Pi*(\[Tau])]])^(2)/(EllipticTheta[3, 0, Exp[I*Pi*(\[Tau])]])^(2))^(2)] == (EllipticTheta[3, 0, Exp[I*Pi*(\[Tau])]])^(2)</syntaxhighlight> || Failure || Failure || Error || Successful [Tested: 10]
+|}
+</div>

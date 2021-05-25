@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Painlevé Transcendents - 32.4 Isomonodromy Problems}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/32.4#Ex1 32.4#Ex1] || [[Item:Q9219|<math>\pderiv{\boldsymbol{{\Psi}}}{\lambda} = \mathbf{A}(z,\lambda)\boldsymbol{{\Psi}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\pderiv{\boldsymbol{{\Psi}}}{\lambda} = \mathbf{A}(z,\lambda)\boldsymbol{{\Psi}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(Psi, lambda) = A(z , lambda)* Psi</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[\[CapitalPsi], \[Lambda]] == A[z , \[Lambda]]* \[CapitalPsi]</syntaxhighlight> || Failure || Failure || Error || Error
+|- 
+| [https://dlmf.nist.gov/32.4#Ex2 32.4#Ex2] || [[Item:Q9220|<math>\pderiv{\boldsymbol{{\Psi}}}{z} = \mathbf{B}(z,\lambda)\boldsymbol{{\Psi}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\pderiv{\boldsymbol{{\Psi}}}{z} = \mathbf{B}(z,\lambda)\boldsymbol{{\Psi}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(Psi, z) = B(z , lambda)* Psi</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[\[CapitalPsi], z] == B[z , \[Lambda]]* \[CapitalPsi]</syntaxhighlight> || Failure || Failure || Error || Error
+|- 
+| [https://dlmf.nist.gov/32.4.E3 32.4.E3] || [[Item:Q9222|<math>\pderiv{\mathbf{A}}{z}-\pderiv{\mathbf{B}}{\lambda}+\mathbf{A}\mathbf{B}-\mathbf{B}\mathbf{A} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\pderiv{\mathbf{A}}{z}-\pderiv{\mathbf{B}}{\lambda}+\mathbf{A}\mathbf{B}-\mathbf{B}\mathbf{A} = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(A, z)- diff(B, lambda)+ A*B - B*A = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[A, z]- D[B, \[Lambda]]+ A*B - B*A == 0</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 300]
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/32.4.E15 32.4.E15] || [[Item:Q9234|<math>(\alpha,\beta,\gamma,\delta) = \left(2\theta_{0},2(1-\theta_{\infty}),1,-1\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>(\alpha,\beta,\gamma,\delta) = \left(2\theta_{0},2(1-\theta_{\infty}),1,-1\right)</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(alpha , beta , gamma , delta) = (2*theta[0], 2*(1 - theta[infinity]), 1 , - 1)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(\[Alpha], \[Beta], \[Gamma], \[Delta]) == (2*Subscript[\[Theta], 0], 2*(1 - Subscript[\[Theta], Infinity]), 1 , - 1)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/32.4.E16 32.4.E16] || [[Item:Q9235|<math>\theta_{0} = \frac{4v_{0}}{z}\left(\theta_{\infty}\left(1-\frac{z}{4v_{0}}\right)+\frac{z-2v_{0}}{2v_{0}v_{1}}u_{0}+u_{1}v_{1}\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\theta_{0} = \frac{4v_{0}}{z}\left(\theta_{\infty}\left(1-\frac{z}{4v_{0}}\right)+\frac{z-2v_{0}}{2v_{0}v_{1}}u_{0}+u_{1}v_{1}\right)</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">theta[0] = (4*v[0])/(z)*(theta[infinity]*(1 -(z)/(4*v[0]))+(z - 2*v[0])/(2*v[0]*v[1])*u[0]+ u[1]*v[1])</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[\[Theta], 0] == Divide[4*Subscript[v, 0],z]*(Subscript[\[Theta], Infinity]*(1 -Divide[z,4*Subscript[v, 0]])+Divide[z - 2*Subscript[v, 0],2*Subscript[v, 0]*Subscript[v, 1]]*Subscript[u, 0]+ Subscript[u, 1]*Subscript[v, 1])</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

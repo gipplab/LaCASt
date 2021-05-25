@@ -45,7 +45,8 @@ public class TextUtilityTests {
         testList.add("b");
         testList.add("c");
 
-        String output = TextUtility.join(", ", testList, (a) -> a, 2, "and so on");
+        JoinConfig<String> conf = new JoinConfig<>(", ", testList, (a) -> a).setMax(2).setMaxMessage("and so on");
+        String output = TextUtility.join(conf);
         assertEquals("a, b, and so on", output);
     }
 }

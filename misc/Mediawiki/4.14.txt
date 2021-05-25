@@ -1,0 +1,40 @@
+{{DISPLAYTITLE:Elementary Functions - 4.14 Definitions and Periodicity}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.14.E1 4.14.E1] || [[Item:Q1653|<math>\sin@@{z} = \frac{e^{\iunit z}-e^{-\iunit z}}{2\iunit}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sin@@{z} = \frac{e^{\iunit z}-e^{-\iunit z}}{2\iunit}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sin(z) = (exp(I*z)- exp(- I*z))/(2*I)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sin[z] == Divide[Exp[I*z]- Exp[- I*z],2*I]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.14.E2 4.14.E2] || [[Item:Q1654|<math>\cos@@{z} = \frac{e^{\iunit z}+e^{-\iunit z}}{2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cos@@{z} = \frac{e^{\iunit z}+e^{-\iunit z}}{2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cos(z) = (exp(I*z)+ exp(- I*z))/(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cos[z] == Divide[Exp[I*z]+ Exp[- I*z],2]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.14.E3 4.14.E3] || [[Item:Q1655|<math>\cos@@{z}+ i\sin@@{z} = e^{+ iz}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cos@@{z}+ i\sin@@{z} = e^{+ iz}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cos(z)+ I*sin(z) = exp(+ I*z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cos[z]+ I*Sin[z] == Exp[+ I*z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.14.E3 4.14.E3] || [[Item:Q1655|<math>\cos@@{z}- i\sin@@{z} = e^{- iz}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cos@@{z}- i\sin@@{z} = e^{- iz}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cos(z)- I*sin(z) = exp(- I*z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cos[z]- I*Sin[z] == Exp[- I*z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.14.E4 4.14.E4] || [[Item:Q1656|<math>\tan@@{z} = \frac{\sin@@{z}}{\cos@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\tan@@{z} = \frac{\sin@@{z}}{\cos@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>tan(z) = (sin(z))/(cos(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Tan[z] == Divide[Sin[z],Cos[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.14.E5 4.14.E5] || [[Item:Q1657|<math>\csc@@{z} = \frac{1}{\sin@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\csc@@{z} = \frac{1}{\sin@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>csc(z) = (1)/(sin(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Csc[z] == Divide[1,Sin[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.14.E6 4.14.E6] || [[Item:Q1658|<math>\sec@@{z} = \frac{1}{\cos@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sec@@{z} = \frac{1}{\cos@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sec(z) = (1)/(cos(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sec[z] == Divide[1,Cos[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.14.E7 4.14.E7] || [[Item:Q1659|<math>\cot@@{z} = \frac{\cos@@{z}}{\sin@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cot@@{z} = \frac{\cos@@{z}}{\sin@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cot(z) = (cos(z))/(sin(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cot[z] == Divide[Cos[z],Sin[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.14.E7 4.14.E7] || [[Item:Q1659|<math>\frac{\cos@@{z}}{\sin@@{z}} = \frac{1}{\tan@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{\cos@@{z}}{\sin@@{z}} = \frac{1}{\tan@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(cos(z))/(sin(z)) = (1)/(tan(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[Cos[z],Sin[z]] == Divide[1,Tan[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.14.E8 4.14.E8] || [[Item:Q1660|<math>\sin@{z+2k\pi} = \sin@@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sin@{z+2k\pi} = \sin@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sin(z + 2*k*Pi) = sin(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sin[z + 2*k*Pi] == Sin[z]</syntaxhighlight> || Successful || Failure || - || Successful [Tested: 21]
+|- 
+| [https://dlmf.nist.gov/4.14.E9 4.14.E9] || [[Item:Q1661|<math>\cos@{z+2k\pi} = \cos@@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cos@{z+2k\pi} = \cos@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cos(z + 2*k*Pi) = cos(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cos[z + 2*k*Pi] == Cos[z]</syntaxhighlight> || Successful || Failure || - || Successful [Tested: 21]
+|- 
+| [https://dlmf.nist.gov/4.14.E10 4.14.E10] || [[Item:Q1662|<math>\tan@{z+k\pi} = \tan@@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\tan@{z+k\pi} = \tan@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>tan(z + k*Pi) = tan(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Tan[z + k*Pi] == Tan[z]</syntaxhighlight> || Successful || Failure || - || Successful [Tested: 21]
+|}
+</div>

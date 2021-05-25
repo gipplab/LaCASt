@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[17.1|17.1 Special Notation]]<br>
+; Properties : [[17.2|17.2 Calculus]]<br>[[17.3|17.3 <math>q</math> -Elementary and <math>q</math> -Special Functions]]<br>[[17.4|17.4 Basic Hypergeometric Functions]]<br>[[17.5|17.5 <math>\qgenhyperphi{0}{0},\qgenhyperphi{1}{0},\qgenhyperphi{1}{1}</math> Functions]]<br>[[17.6|17.6 <math>\qgenhyperphi{2}{1}</math> Function]]<br>[[17.7|17.7 Special Cases of Higher <math>\qgenhyperphi{r}{s}</math> Functions]]<br>[[17.8|17.8 Special Cases of <math>\qgenhyperpsi{r}{r}</math> Functions]]<br>[[17.9|17.9 Further Transformations of <math>\qgenhyperphi{r+1}{r}</math> Functions]]<br>[[17.10|17.10 Transformations of <math>\qgenhyperpsi{r}{r}</math> Functions]]<br>[[17.11|17.11 Transformations of <math>q</math> -Appell Functions]]<br>[[17.12|17.12 Bailey Pairs]]<br>[[17.13|17.13 Integrals]]<br>[[17.14|17.14 Constant Term Identities]]<br>[[17.15|17.15 Generalizations]]<br>
+; Applications : [[17.16|17.16 Mathematical Applications]]<br>[[17.17|17.17 Physical Applications]]<br>
+; Computation : [[17.18|17.18 Methods of Computation]]<br>[[17.19|17.19 Software]]<br>
+</div>

@@ -1,0 +1,23 @@
+{{DISPLAYTITLE:Coulomb Functions - 33.5 Limiting Forms for Small <math>\rho</math> , Small <math>|\eta|</math> , or Large <math>\ell</math>}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/33.5#Ex7 33.5#Ex7] || [[Item:Q9523|<math>\regCoulombF{\ell}@{0}{\rho} = (\pi\rho/2)^{1/2}\BesselJ{\ell+\frac{1}{2}}@{\rho}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\regCoulombF{\ell}@{0}{\rho} = (\pi\rho/2)^{1/2}\BesselJ{\ell+\frac{1}{2}}@{\rho}</syntaxhighlight> || <math>\realpart@@{((\ell+\frac{1}{2})+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>CoulombF(ell, 0, rho) = (Pi*rho/2)^(1/2)* BesselJ(ell +(1)/(2), rho)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Failure || Missing Macro Error || Error || -
+|- 
+| [https://dlmf.nist.gov/33.5#Ex9 33.5#Ex9] || [[Item:Q9525|<math>\regCoulombF{0}@{0}{\rho} = \sin@@{\rho}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\regCoulombF{0}@{0}{\rho} = \sin@@{\rho}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>CoulombF(0, 0, rho) = sin(rho)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Successful || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/33.5.E6 33.5.E6] || [[Item:Q9528|<math>\frac{2^{\ell}\ell!}{(2\ell+1)!} = \frac{1}{(2\ell+1)!!}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{2^{\ell}\ell!}{(2\ell+1)!} = \frac{1}{(2\ell+1)!!}</syntaxhighlight> || <math>\realpart@@{(\ell+1+\iunit\eta)} > 0</math> || <syntaxhighlight lang=mathematica>((2)^(ell)* factorial(ell))/(factorial(2*ell + 1)) = (1)/(doublefactorial(2*ell + 1))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[(2)^\[ScriptL]* (\[ScriptL])!,(2*\[ScriptL]+ 1)!] == Divide[1,(2*\[ScriptL]+ 1)!!]</syntaxhighlight> || Failure || Failure || Error || <div class="toccolours mw-collapsible mw-collapsed">Failed [1 / 1]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Times[Power[2.0, ℓ], Factorial[ℓ], Power[Factorial[Plus[1.0, Times[2.0, ℓ]]], -1]], Times[-1.0, Power[Factorial2[Plus[1.0, Times[2.0, ℓ]]], -1]]]
+Test Values: {}</syntaxhighlight><br></div></div>
+|}
+</div>

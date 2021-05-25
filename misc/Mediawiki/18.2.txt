@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Orthogonal Polynomials - 18.2 General Orthogonal Polynomials}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/18.2.E1 18.2.E1] || [[Item:Q5490|<math>\int_{a}^{b}p_{n}(x)p_{m}(x)w(x)\diff{x} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{a}^{b}p_{n}(x)p_{m}(x)w(x)\diff{x} = 0</syntaxhighlight> || <math>n \neq m</math> || <syntaxhighlight lang=mathematica>int(p[n](x)* p[m](x)* w(x), x = a..b) = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Subscript[p, n][x]* Subscript[p, m][x]* w[x], {x, a, b}, GenerateConditions->None] == 0</syntaxhighlight> || Failure || Failure || Successful [Tested: 300] || Successful [Tested: 300]
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/18.2.E2 18.2.E2] || [[Item:Q5491|<math>\sum_{x\in X}p_{n}(x)p_{m}(x)w_{x} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\sum_{x\in X}p_{n}(x)p_{m}(x)w_{x} = 0</syntaxhighlight> || <math>n \neq m</math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">sum(p[n](x)* p[m](x)* w[x], x in X) = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Sum[Subscript[p, n][x]* Subscript[p, m][x]* Subscript[w, x], {x, X}, GenerateConditions->None] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/18.2.E3 18.2.E3] || [[Item:Q5492|<math>\sum_{x\in X}p_{n}(x)p_{m}(x)w_{x} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\sum_{x\in X}p_{n}(x)p_{m}(x)w_{x} = 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">sum(p[n](x)* p[m](x)* w[x], x in X) = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Sum[Subscript[p, n][x]* Subscript[p, m][x]* Subscript[w, x], {x, X}, GenerateConditions->None] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/18.2.E4 18.2.E4] || [[Item:Q5493|<math>\sum_{x\in X}x^{2n}w_{x} < \infty</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\sum_{x\in X}x^{2n}w_{x} < \infty</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">sum((x)^(2*n)* w[x](<)*infinity, x in X)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Sum[(x)^(2*n)* Subscript[w, x][<]*Infinity, {x, X}, GenerateConditions->None]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/18.2.E8 18.2.E8] || [[Item:Q5497|<math>p_{n+1}(x) = (A_{n}x+B_{n})p_{n}(x)-C_{n}p_{n-1}(x)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>p_{n+1}(x) = (A_{n}x+B_{n})p_{n}(x)-C_{n}p_{n-1}(x)</syntaxhighlight> || <math>n \geq 0</math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">p[n + 1](x) = (((k[n + 1])/(k[n]))*x + B[n])*p[n](x)- C[n]*p[n - 1](x)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[p, n + 1][x] == ((Divide[Subscript[k, n + 1],Subscript[k, n]])*x + Subscript[B, n])*Subscript[p, n][x]- Subscript[C, n]*Subscript[p, n - 1][x]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[30.1|30.1 Special Notation]]<br>
+; Properties : [[30.2|30.2 Differential Equations]]<br>[[30.3|30.3 Eigenvalues]]<br>[[30.4|30.4 Functions of the First Kind]]<br>[[30.5|30.5 Functions of the Second Kind]]<br>[[30.6|30.6 Functions of Complex Argument]]<br>[[30.7|30.7 Graphics]]<br>[[30.8|30.8 Expansions in Series of Ferrers Functions]]<br>[[30.9|30.9 Asymptotic Approximations and Expansions]]<br>[[30.10|30.10 Series and Integrals]]<br>[[30.11|30.11 Radial Spheroidal Wave Functions]]<br>[[30.12|30.12 Generalized and Coulomb Spheroidal Functions]]<br>
+; Applications : [[30.13|30.13 Wave Equation in Prolate Spheroidal Coordinates]]<br>[[30.14|30.14 Wave Equation in Oblate Spheroidal Coordinates]]<br>[[30.15|30.15 Signal Analysis]]<br>
+; Computation : [[30.16|30.16 Methods of Computation]]<br>[[30.17|30.17 Tables]]<br>[[30.18|30.18 Software]]<br>
+</div>

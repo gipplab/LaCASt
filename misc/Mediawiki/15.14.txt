@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Hypergeometric Function - 15.14 Integrals}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/15.14.E1 15.14.E1] || [[Item:Q5176|<math>\int_{0}^{\infty}x^{s-1}\hyperOlverF@@{a}{b}{c}{-x}\diff{x} = \frac{\EulerGamma@{s}\EulerGamma@{a-s}\EulerGamma@{b-s}}{\EulerGamma@{a}\EulerGamma@{b}\EulerGamma@{c-s}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\infty}x^{s-1}\hyperOlverF@@{a}{b}{c}{-x}\diff{x} = \frac{\EulerGamma@{s}\EulerGamma@{a-s}\EulerGamma@{b-s}}{\EulerGamma@{a}\EulerGamma@{b}\EulerGamma@{c-s}}</syntaxhighlight> || <math>\min(\realpart@@{a} > \realpart@@{s}, \realpart@@{b}) > \realpart@@{s}, \realpart@@{s} > 0, \realpart@@{(a-s)} > 0, \realpart@@{(b-s)} > 0, \realpart@@{a} > 0, \realpart@@{b} > 0, \realpart@@{(c-s)} > 0, |(-x)| < 1, \realpart@@{(c+s)} > 0</math> || <syntaxhighlight lang=mathematica>int((x)^(s - 1)* hypergeom([a, b], [c], - x)/GAMMA(c), x = 0..infinity) = (GAMMA(s)*GAMMA(a - s)*GAMMA(b - s))/(GAMMA(a)*GAMMA(b)*GAMMA(c - s))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[(x)^(s - 1)* Hypergeometric2F1Regularized[a, b, c, - x], {x, 0, Infinity}, GenerateConditions->None] == Divide[Gamma[s]*Gamma[a - s]*Gamma[b - s],Gamma[a]*Gamma[b]*Gamma[c - s]]</syntaxhighlight> || Successful || Aborted || - || Skipped - Because timed out
+|}
+</div>

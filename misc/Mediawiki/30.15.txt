@@ -1,0 +1,28 @@
+{{DISPLAYTITLE:Spheroidal Wave Functions - 30.15 Signal Analysis}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/30.15.E11 30.15.E11] || [[Item:Q8954|<math>\acos@@{\sqrt{\mathrm{B}}}+\acos@@{\sqrt{\alpha}} = \acos@@{\sqrt{\Lambda_{0}}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\acos@@{\sqrt{\mathrm{B}}}+\acos@@{\sqrt{\alpha}} = \acos@@{\sqrt{\Lambda_{0}}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>arccos(sqrt(B))+ arccos(sqrt(alpha)) = arccos(sqrt(Lambda[0]))</syntaxhighlight> || <syntaxhighlight lang=mathematica>ArcCos[Sqrt[B]]+ ArcCos[Sqrt[\[Alpha]]] == ArcCos[Sqrt[Subscript[\[CapitalLambda], 0]]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .6584789493*I
+Test Values: {B = 1/2*3^(1/2)+1/2*I, Lambda = 1/2*3^(1/2)+1/2*I, alpha = 3/2, Lambda[0] = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.6623382543+1.000904144*I
+Test Values: {B = 1/2*3^(1/2)+1/2*I, Lambda = 1/2*3^(1/2)+1/2*I, alpha = 3/2, Lambda[0] = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, 0.6584789484624083]
+Test Values: {Rule[B, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[α, 1.5], Rule[Λ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[Λ, 0], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-0.6623382542357523, 1.0009041434383552]
+Test Values: {Rule[B, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[α, 1.5], Rule[Λ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[Λ, 0], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/30.15.E12 30.15.E12] || [[Item:Q8955|<math>\mathrm{B} = \left(\sqrt{\Lambda_{0}\alpha}+\sqrt{1-\Lambda_{0}}\sqrt{1-\alpha}\right)^{2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\mathrm{B} = \left(\sqrt{\Lambda_{0}\alpha}+\sqrt{1-\Lambda_{0}}\sqrt{1-\alpha}\right)^{2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">B = (sqrt(Lambda[0]*alpha)+sqrt(1 - Lambda[0])*sqrt(1 - alpha))^(2)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">B == (Sqrt[Subscript[\[CapitalLambda], 0]*\[Alpha]]+Sqrt[1 - Subscript[\[CapitalLambda], 0]]*Sqrt[1 - \[Alpha]])^(2)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/30.15#Ex4 30.15#Ex4] || [[Item:Q8957|<math>a = \sqrt{\frac{\alpha}{\Lambda_{0}}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>a = \sqrt{\frac{\alpha}{\Lambda_{0}}}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a = sqrt((alpha)/(Lambda[0]))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a == Sqrt[Divide[\[Alpha],Subscript[\[CapitalLambda], 0]]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/30.15#Ex5 30.15#Ex5] || [[Item:Q8958|<math>b = \sqrt{\frac{1-\alpha}{1-\Lambda_{0}}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>b = \sqrt{\frac{1-\alpha}{1-\Lambda_{0}}}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">b = sqrt((1 - alpha)/(1 - Lambda[0]))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">b == Sqrt[Divide[1 - \[Alpha],1 - Subscript[\[CapitalLambda], 0]]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

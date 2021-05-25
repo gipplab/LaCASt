@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[34.1|34.1 Special Notation]]<br>
+; Properties : [[34.2|34.2 Definition: <math>3j</math> Symbol]]<br>[[34.3|34.3 Basic Properties: <math>3j</math> Symbol]]<br>[[34.4|34.4 Definition: <math>6j</math> Symbol]]<br>[[34.5|34.5 Basic Properties: <math>6j</math> Symbol]]<br>[[34.6|34.6 Definition: <math>9j</math> Symbol]]<br>[[34.7|34.7 Basic Properties: <math>9j</math> Symbol]]<br>[[34.8|34.8 Approximations for Large Parameters]]<br>[[34.9|34.9 Graphical Method]]<br>[[34.10|34.10 Zeros]]<br>[[34.11|34.11 Higher-Order <math>3nj</math> Symbols]]<br>
+; Applications : [[34.12|34.12 Physical Applications]]<br>
+; Computation : [[34.13|34.13 Methods of Computation]]<br>[[34.14|34.14 Tables]]<br>[[34.15|34.15 Software]]<br>
+</div>

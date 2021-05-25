@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Theta Functions - 20.8 Watson’s Expansions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/20.8.E1 20.8.E1] || [[Item:Q6830|<math>\frac{\Jacobithetaq{2}@{0}{q}\Jacobithetaq{3}@{z}{q}\Jacobithetaq{4}@{z}{q}}{\Jacobithetaq{2}@{z}{q}} = 2\sum_{n=-\infty}^{\infty}\frac{(-1)^{n}q^{n^{2}}e^{i2nz}}{q^{-n}e^{-iz}+q^{n}e^{iz}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{\Jacobithetaq{2}@{0}{q}\Jacobithetaq{3}@{z}{q}\Jacobithetaq{4}@{z}{q}}{\Jacobithetaq{2}@{z}{q}} = 2\sum_{n=-\infty}^{\infty}\frac{(-1)^{n}q^{n^{2}}e^{i2nz}}{q^{-n}e^{-iz}+q^{n}e^{iz}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(JacobiTheta2(0, q)*JacobiTheta3(z, q)*JacobiTheta4(z, q))/(JacobiTheta2(z, q)) = 2*sum(((- 1)^(n)* (q)^((n)^(2))* exp(I*2*n*z))/((q)^(- n)* exp(- I*z)+ (q)^(n)* exp(I*z)), n = - infinity..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[EllipticTheta[2, 0, q]*EllipticTheta[3, z, q]*EllipticTheta[4, z, q],EllipticTheta[2, z, q]] == 2*Sum[Divide[(- 1)^(n)* (q)^((n)^(2))* Exp[I*2*n*z],(q)^(- n)* Exp[- I*z]+ (q)^(n)* Exp[I*z]], {n, - Infinity, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Aborted || Skipped - Because timed out || Skipped - Because timed out
+|}
+</div>

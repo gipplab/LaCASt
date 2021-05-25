@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Orthogonal Polynomials - 18.38 Mathematical Applications}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/18.38.E1 18.38.E1] || [[Item:Q6057|<math>V_{n}(x) = \ifrac{2n\HermitepolyH{n+1}@{x}\HermitepolyH{n-1}@{x}}{(\HermitepolyH{n}@{x})^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>V_{n}(x) = \ifrac{2n\HermitepolyH{n+1}@{x}\HermitepolyH{n-1}@{x}}{(\HermitepolyH{n}@{x})^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>V[n](x) = (2*n*HermiteH(n + 1, x)*HermiteH(n - 1, x))/((HermiteH(n, x))^(2))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Subscript[V, n][x] == Divide[2*n*HermiteH[n + 1, x]*HermiteH[n - 1, x],(HermiteH[n, x])^(2)]</syntaxhighlight> || Failure || Aborted || <div class="toccolours mw-collapsible mw-collapsed">Failed [90 / 90]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -.256517449+.7500000000*I
+Test Values: {x = 3/2, V[n] = 1/2*3^(1/2)+1/2*I, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.905043527+.7500000000*I
+Test Values: {x = 3/2, V[n] = 1/2*3^(1/2)+1/2*I, n = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [90 / 90]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-0.25651744987889735, 0.7499999999999999]
+Test Values: {Rule[n, 1], Rule[x, 1.5], Rule[Subscript[V, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-0.905043526976403, 0.7499999999999999]
+Test Values: {Rule[n, 2], Rule[x, 1.5], Rule[Subscript[V, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/18.38.E3 18.38.E3] || [[Item:Q6059|<math>\sum_{m=0}^{n}\JacobipolyP{\alpha}{0}{m}@{x} \geq 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{m=0}^{n}\JacobipolyP{\alpha}{0}{m}@{x} \geq 0</syntaxhighlight> || <math>-1 \leq x, x \leq 1, \alpha > -1</math> || <syntaxhighlight lang=mathematica>sum(JacobiP(m, alpha, 0, x), m = 0..n) >= 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[JacobiP[m, \[Alpha], 0, x], {m, 0, n}, GenerateConditions->None] >= 0</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 27]
+|}
+</div>

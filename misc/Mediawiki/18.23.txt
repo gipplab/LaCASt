@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Orthogonal Polynomials - 18.23 Hahn Class: Generating Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/18.23.E5 18.23.E5] || [[Item:Q5906|<math>e^{z}\left(1-\frac{z}{a}\right)^{x} = \sum_{n=0}^{\infty}\frac{\CharlierpolyC{n}@{x}{a}}{n!}z^{n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>e^{z}\left(1-\frac{z}{a}\right)^{x} = \sum_{n=0}^{\infty}\frac{\CharlierpolyC{n}@{x}{a}}{n!}z^{n}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Exp[x + y*I]*(1 -Divide[x + y*I,a])^(x) == Sum[Divide[HypergeometricPFQ[{-(n), -(x)}, {}, -Divide[1,a]],(n)!]*(x + y*I)^(n), {n, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/18.23.E6 18.23.E6] || [[Item:Q5907|<math>\genhyperF{1}{1}@@{a+\iunit x}{2\realpart@@{a}}{-\iunit z}\genhyperF{1}{1}@@{\conj{b}-\iunit x}{2\realpart@@{b}}{\iunit z} = \sum_{n=0}^{\infty}\frac{\contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}}}{\Pochhammersym{2\realpart@@{a}}{n}\Pochhammersym{2\realpart@@{b}}{n}}z^{n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\genhyperF{1}{1}@@{a+\iunit x}{2\realpart@@{a}}{-\iunit z}\genhyperF{1}{1}@@{\conj{b}-\iunit x}{2\realpart@@{b}}{\iunit z} = \sum_{n=0}^{\infty}\frac{\contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}}}{\Pochhammersym{2\realpart@@{a}}{n}\Pochhammersym{2\realpart@@{b}}{n}}z^{n}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>HypergeometricPFQ[{a + I*x}, {2*Re[a]}, - I*(x + y*I)]*HypergeometricPFQ[{Conjugate[b]- I*x}, {2*Re[b]}, I*(x + y*I)] == Sum[Divide[I^(n)*Divide[Pochhammer[a + Conjugate[a], n]*Pochhammer[a + Conjugate[b], n], (n)!] * HypergeometricPFQ[{-(n), n + 2*Re[a + b] - 1, a + I*(x)}, {a + Conjugate[a], a + Conjugate[b]}, 1],Pochhammer[2*Re[a], n]*Pochhammer[2*Re[b], n]]*(x + y*I)^(n), {n, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|}
+</div>

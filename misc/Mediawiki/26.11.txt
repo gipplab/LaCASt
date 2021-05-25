@@ -1,0 +1,30 @@
+{{DISPLAYTITLE:Combinatorial Analysis - 26.11 Integer Partitions: Compositions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/26.11.E2 26.11.E2] || [[Item:Q7905|<math>\ncompositions[m]@{0} = \Kroneckerdelta{0}{m}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ncompositions[m]@{0} = \Kroneckerdelta{0}{m}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>numbcomp(0, m) = KroneckerDelta[0, m]</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/26.11.E3 26.11.E3] || [[Item:Q7906|<math>\ncompositions[m]@{n} = \binom{n-1}{m-1}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ncompositions[m]@{n} = \binom{n-1}{m-1}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>numbcomp(n, m) = binomial(n - 1,m - 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/26.11.E4 26.11.E4] || [[Item:Q7907|<math>\sum_{n=0}^{\infty}\ncompositions[m]@{n}q^{n} = \frac{q^{m}}{(1-q)^{m}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=0}^{\infty}\ncompositions[m]@{n}q^{n} = \frac{q^{m}}{(1-q)^{m}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum(numbcomp(n, m)*(q)^(n), n = 0..infinity) = ((q)^(m))/((1 - q)^(m))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Error || Missing Macro Error || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/26.11#Ex1 26.11#Ex1] || [[Item:Q7908|<math>F_{0} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>F_{0} = 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">F[0] = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[F, 0] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/26.11#Ex2 26.11#Ex2] || [[Item:Q7909|<math>F_{1} = 1</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>F_{1} = 1</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">F[1] = 1</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[F, 1] == 1</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/26.11#Ex3 26.11#Ex3] || [[Item:Q7910|<math>F_{n} = F_{n-1}+F_{n-2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>F_{n} = F_{n-1}+F_{n-2}</syntaxhighlight> || <math>n \geq 2</math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">F[n] = F[n - 1]+ F[n - 2]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[F, n] == Subscript[F, n - 1]+ Subscript[F, n - 2]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/26.11.E7 26.11.E7] || [[Item:Q7912|<math>F_{n} = \frac{(1+\sqrt{5})^{n}-(1-\sqrt{5})^{n}}{2^{n}\,\sqrt{5}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>F_{n} = \frac{(1+\sqrt{5})^{n}-(1-\sqrt{5})^{n}}{2^{n}\,\sqrt{5}}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">F[n] = ((1 +sqrt(5))^(n)-(1 -sqrt(5))^(n))/((2)^(n)*sqrt(5))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[F, n] == Divide[(1 +Sqrt[5])^(n)-(1 -Sqrt[5])^(n),(2)^(n)*Sqrt[5]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

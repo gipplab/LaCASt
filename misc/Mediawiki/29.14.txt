@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Lamé Functions - 29.14 Orthogonality}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/29.14.E3 29.14.E3] || [[Item:Q8737|<math>w(s,t) = \Jacobiellsnk^{2}@{\compellintKk@@{k}+\iunit t}{k}-\Jacobiellsnk^{2}@{s}{k}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>w(s,t) = \Jacobiellsnk^{2}@{\compellintKk@@{k}+\iunit t}{k}-\Jacobiellsnk^{2}@{s}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>w(s , t) = (JacobiSN(EllipticK(k)+ I*t, k))^(2)- (JacobiSN(s, k))^(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>w[s , t] == (JacobiSN[EllipticK[(k)^2]+ I*t, (k)^2])^(2)- (JacobiSN[s, (k)^2])^(2)</syntaxhighlight> || Failure || Failure || Error || Error
+|}
+</div>

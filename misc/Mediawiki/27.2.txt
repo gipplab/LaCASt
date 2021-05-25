@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Combinatorial Analysis - 27.2 Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/27.2.E1 27.2.E1] || [[Item:Q7988|<math>n = \prod_{r=1}^{\nprimesdiv@{n}}p^{a_{r}}_{r}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>n = \prod_{r=1}^{\nprimesdiv@{n}}p^{a_{r}}_{r}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>n = product((p[r])^(a[r]), r = 1..ifactor(n))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Error || Translation Error || - || -
+|- 
+| [https://dlmf.nist.gov/27.2.E7 27.2.E7] || [[Item:Q7994|<math>\Eulertotientphi[]@{n} = \Eulertotientphi[0]@{n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Eulertotientphi[]@{n} = \Eulertotientphi[0]@{n}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>EulerPhi[n] == Sum[If[CoprimeQ[n, m], m^(0), 0], {m, 1, n}]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [3 / 3]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.0
+Test Values: {Rule[n, 1]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.0
+Test Values: {Rule[n, 2]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/27.2.E9 27.2.E9] || [[Item:Q7996|<math>\ndivisors[]@{n} = \sum_{d\divides n}1</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ndivisors[]@{n} = \sum_{d\divides n}1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>numelems(Divisors(n)) = sum(1, d**n in - infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Translation Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/27.2.E10 27.2.E10] || [[Item:Q7997|<math>\sumdivisors{\alpha}@{n} = \sum_{d\divides n}d^{\alpha}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sumdivisors{\alpha}@{n} = \sum_{d\divides n}d^{\alpha}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>add(divisors(alpha)) = sum((d)^(alpha), d**n in - infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Translation Error || Missing Macro Error || - || -
+|}
+</div>

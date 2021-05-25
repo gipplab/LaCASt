@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Mathieu Functions and Hill’s Equation - 28.19 Expansions in Series of <math>\Mathieume{\nu+2n}</math> Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/28.19.E4 28.19.E4] || [[Item:Q8332|<math>e^{\iunit\nu z} = \sum_{n=-\infty}^{\infty}c^{\nu+2n}_{-2n}(q)\Mathieume{\nu+2n}@{z}{q}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>e^{\iunit\nu z} = \sum_{n=-\infty}^{\infty}c^{\nu+2n}_{-2n}(q)\Mathieume{\nu+2n}@{z}{q}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Exp[I*\[Nu]*z] == Sum[(Subscript[c, - 2*n])^(\[Nu]+ 2*n)[q]* Sqrt[2]*MathieuC[\[Nu]+ 2*n, q, z], {n, - Infinity, Infinity}, GenerateConditions->None]</syntaxhighlight> || Missing Macro Error || Failure || - || Skipped - Because timed out
+|}
+</div>

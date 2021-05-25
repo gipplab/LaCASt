@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Algebraic and Analytic Methods - 1.8 Fourier Series}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/1.8.E16 1.8.E16] || [[Item:Q270|<math>\sum_{n=-\infty}^{\infty}e^{-(n+x)^{2}\omega} = {\sqrt{\frac{\pi}{\omega}}\*\left(1+2\sum_{n=1}^{\infty}e^{-n^{2}\pi^{2}/\omega}\cos@{2n\pi x}\right)}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=-\infty}^{\infty}e^{-(n+x)^{2}\omega} = {\sqrt{\frac{\pi}{\omega}}\*\left(1+2\sum_{n=1}^{\infty}e^{-n^{2}\pi^{2}/\omega}\cos@{2n\pi x}\right)}</syntaxhighlight> || <math>\realpart@@{\omega} > 0</math> || <syntaxhighlight lang=mathematica>sum(exp(-(n + x)^(2)* omega), n = - infinity..infinity) = sqrt((Pi)/(omega))*(1 + 2*sum(exp(- (n)^(2)* (Pi)^(2)/omega)*cos(2*n*Pi*x), n = 1..infinity))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[Exp[-(n + x)^(2)* \[Omega]], {n, - Infinity, Infinity}, GenerateConditions->None] == Sqrt[Divide[Pi,\[Omega]]]*(1 + 2*Sum[Exp[- (n)^(2)* (Pi)^(2)/\[Omega]]*Cos[2*n*Pi*x], {n, 1, Infinity}, GenerateConditions->None])</syntaxhighlight> || Failure || Successful || Successful [Tested: 15] || Successful [Tested: 15]
+|}
+</div>

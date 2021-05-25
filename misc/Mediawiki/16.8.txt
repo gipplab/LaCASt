@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Generalized Hypergeometric Functions & Meijer G -Function - 16.8 Differential Equations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/16.8.E4 16.8.E4] || [[Item:Q5222|<math>z^{q}D^{q+1}w+\sum_{j=1}^{q}z^{j-1}(\alpha_{j}z+\beta_{j})D^{j}w+\alpha_{0}w = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>z^{q}D^{q+1}w+\sum_{j=1}^{q}z^{j-1}(\alpha_{j}z+\beta_{j})D^{j}w+\alpha_{0}w = 0</syntaxhighlight> || <math>p \leq q</math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(z)^(q)* (D)^(q + 1)* w + sum((z)^(j - 1)*(alpha[j]*z + beta[j])*(D)^(j)* w , j = 1..q)+ alpha[0]*w = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(z)^(q)* (D)^(q + 1)* w + Sum[(z)^(j - 1)*(Subscript[\[Alpha], j]*z + Subscript[\[Beta], j])*(D)^(j)* w , {j, 1, q}, GenerateConditions->None]+ Subscript[\[Alpha], 0]*w == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/16.8.E5 16.8.E5] || [[Item:Q5223|<math>z^{q}(1-z)D^{q+1}w+\sum_{j=1}^{q}z^{j-1}(\alpha_{j}z+\beta_{j})D^{j}w+\alpha_{0}w = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>z^{q}(1-z)D^{q+1}w+\sum_{j=1}^{q}z^{j-1}(\alpha_{j}z+\beta_{j})D^{j}w+\alpha_{0}w = 0</syntaxhighlight> || <math>p = q+1</math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(z)^(q)*(1 - z)*(D)^(q + 1)* w + sum((z)^(j - 1)*(alpha[j]*z + beta[j])*(D)^(j)* w , j = 1..q)+ alpha[0]*w = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(z)^(q)*(1 - z)*(D)^(q + 1)* w + Sum[(z)^(j - 1)*(Subscript[\[Alpha], j]*z + Subscript[\[Beta], j])*(D)^(j)* w , {j, 1, q}, GenerateConditions->None]+ Subscript[\[Alpha], 0]*w == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

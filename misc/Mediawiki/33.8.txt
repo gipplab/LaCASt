@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Coulomb Functions - 33.8 Continued Fractions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/33.8#Ex4 33.8#Ex4] || [[Item:Q9547|<math>\regCoulombF{\ell} = +(q^{-1}(u-p)^{2}+q)^{-1/2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\regCoulombF{\ell} = +(q^{-1}(u-p)^{2}+q)^{-1/2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>CoulombF(ell, =, +)*((q)^(- 1)*(u - p)^(2)+ q)^(- 1/2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Translation Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/33.8#Ex4 33.8#Ex4] || [[Item:Q9547|<math>\regCoulombF{\ell} = -(q^{-1}(u-p)^{2}+q)^{-1/2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\regCoulombF{\ell} = -(q^{-1}(u-p)^{2}+q)^{-1/2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>CoulombF(ell, =, -)*((q)^(- 1)*(u - p)^(2)+ q)^(- 1/2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Translation Error || Missing Macro Error || - || -
+|}
+</div>

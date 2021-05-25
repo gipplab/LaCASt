@@ -1,0 +1,19 @@
+{{DISPLAYTITLE:Algebraic and Analytic Methods - 2.1 Definitions and Elementary Properties}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/2.1.E12 2.1.E12] || [[Item:Q697|<math>-1,\\ \ln@@{x},&\phantom{\realpart@@}\nu = -1,\\ x^{\nu+1}/(\nu+1),&\realpart@@{\nu}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>-1,\\ \ln@@{x},&\phantom{\realpart@@}\nu = -1,\\ x^{\nu+1}/(\nu+1),&\realpart@@{\nu}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>- 1 , ;*ln(x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>- 1 , 
+*Log[x]</syntaxhighlight> || Error || Failure || - || Error
+|}
+</div>

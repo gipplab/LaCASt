@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Heun Functions - 31.15 Stieltjes Polynomials}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/31.15.E1 31.15.E1] || [[Item:Q9119|<math>\deriv[2]{w}{z}+\left(\sum_{j=1}^{N}\frac{\gamma_{j}}{z-a_{j}}\right)\deriv{w}{z}+\frac{\Phi(z)}{\prod_{j=1}^{N}(z-a_{j})}w = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv[2]{w}{z}+\left(\sum_{j=1}^{N}\frac{\gamma_{j}}{z-a_{j}}\right)\deriv{w}{z}+\frac{\Phi(z)}{\prod_{j=1}^{N}(z-a_{j})}w = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(w, [z$(2)])+(sum((gamma[j])/(z - a[j]), j = 1..N))*diff(w, z)+(Phi(z))/(product(z - a[j], j = 1..N))*w = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[w, {z, 2}]+(Sum[Divide[Subscript[\[Gamma], j],z - Subscript[a, j]], {j, 1, N}, GenerateConditions->None])*D[w, z]+Divide[\[CapitalPhi][z],Product[z - Subscript[a, j], {j, 1, N}, GenerateConditions->None]]*w == 0</syntaxhighlight> || Failure || Failure || Error || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Times[Complex[0.0, 1.0], Power[NProduct[0
+Test Values: {j, 1, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]}, Rule[GenerateConditions, None]], -1]], {Rule[N, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[γ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Φ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[a, j], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[γ, j], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Times[Complex[0.0, 1.0], Power[NProduct[0
+Test Values: {j, 1, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]}, Rule[GenerateConditions, None]], -1]], {Rule[N, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[γ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Φ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[a, j], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[γ, j], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/31.15#Ex1 31.15#Ex1] || [[Item:Q9123|<math>\gamma_{j} > 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\gamma_{j} > 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">gamma[j] > 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[\[Gamma], j] > 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/31.15.E7 31.15.E7] || [[Item:Q9126|<math>q_{j} = \gamma_{j}\sum_{k=1}^{n}\frac{1}{z_{k}-a_{j}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>q_{j} = \gamma_{j}\sum_{k=1}^{n}\frac{1}{z_{k}-a_{j}}</syntaxhighlight> || <math>j = 1</math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">q[j] = gamma[j]*sum((1)/(z[k]- a[j]), k = 1..n)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[q, j] == Subscript[\[Gamma], j]*Sum[Divide[1,Subscript[z, k]- Subscript[a, j]], {k, 1, n}, GenerateConditions->None]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

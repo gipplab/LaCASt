@@ -1,0 +1,28 @@
+{{DISPLAYTITLE:Exponential, Logarithmic, Sine, and Cosine Integrals - 6.15 Sums}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/6.15.E1 6.15.E1] || [[Item:Q2306|<math>\sum_{n=1}^{\infty}\cosint@{\pi n} = \tfrac{1}{2}(\ln@@{2}-\EulerConstant)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=1}^{\infty}\cosint@{\pi n} = \tfrac{1}{2}(\ln@@{2}-\EulerConstant)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum(Ci(Pi*n), n = 1..infinity) = (1)/(2)*(ln(2)- gamma)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[CosIntegral[Pi*n], {n, 1, Infinity}, GenerateConditions->None] == Divide[1,2]*(Log[2]- EulerGamma)</syntaxhighlight> || Failure || Failure || Successful [Tested: 0] || <div class="toccolours mw-collapsible mw-collapsed">Failed [1 / 1]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[-0.05796575782920621, NSum[CosIntegral[Times[n, Pi]]
+Test Values: {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {}</syntaxhighlight><br></div></div>
+|- 
+| [https://dlmf.nist.gov/6.15.E2 6.15.E2] || [[Item:Q2307|<math>\sum_{n=1}^{\infty}\frac{\shiftsinint@{\pi n}}{n} = \tfrac{1}{2}\pi(\ln@@{\pi}-1)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=1}^{\infty}\frac{\shiftsinint@{\pi n}}{n} = \tfrac{1}{2}\pi(\ln@@{\pi}-1)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum((Ssi(Pi*n))/(n), n = 1..infinity) = (1)/(2)*Pi*(ln(Pi)- 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[Divide[SinIntegral[Pi*n] - Pi/2,n], {n, 1, Infinity}, GenerateConditions->None] == Divide[1,2]*Pi*(Log[Pi]- 1)</syntaxhighlight> || Failure || Failure || Successful [Tested: 0] || <div class="toccolours mw-collapsible mw-collapsed">Failed [1 / 1]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[-0.22734117306968246, NSum[Times[Power[n, -1], Plus[Times[Rational[-1, 2], Pi], SinIntegral[Times[n, Pi]]]]
+Test Values: {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {}</syntaxhighlight><br></div></div>
+|- 
+| [https://dlmf.nist.gov/6.15.E3 6.15.E3] || [[Item:Q2308|<math>\sum_{n=1}^{\infty}(-1)^{n}\cosint@{2\pi n} = 1-\ln@@{2}-\tfrac{1}{2}\EulerConstant</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=1}^{\infty}(-1)^{n}\cosint@{2\pi n} = 1-\ln@@{2}-\tfrac{1}{2}\EulerConstant</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum((- 1)^(n)* Ci(2*Pi*n), n = 1..infinity) = 1 - ln(2)-(1)/(2)*gamma</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[(- 1)^(n)* CosIntegral[2*Pi*n], {n, 1, Infinity}, GenerateConditions->None] == 1 - Log[2]-Divide[1,2]*EulerGamma</syntaxhighlight> || Failure || Failure || Successful [Tested: 0] || <div class="toccolours mw-collapsible mw-collapsed">Failed [1 / 1]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[-0.018244986989288337, NSum[Times[Power[-1, n], CosIntegral[Times[2, n, Pi]]]
+Test Values: {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {}</syntaxhighlight><br></div></div>
+|- 
+| [https://dlmf.nist.gov/6.15.E4 6.15.E4] || [[Item:Q2309|<math>\sum_{n=1}^{\infty}(-1)^{n}\frac{\shiftsinint@{2\pi n}}{n} = \pi(\tfrac{3}{2}\ln@@{2}-1)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=1}^{\infty}(-1)^{n}\frac{\shiftsinint@{2\pi n}}{n} = \pi(\tfrac{3}{2}\ln@@{2}-1)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum((- 1)^(n)*(Ssi(2*Pi*n))/(n), n = 1..infinity) = Pi*((3)/(2)*ln(2)- 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[(- 1)^(n)*Divide[SinIntegral[2*Pi*n] - Pi/2,n], {n, 1, Infinity}, GenerateConditions->None] == Pi*(Divide[3,2]*Log[2]- 1)</syntaxhighlight> || Failure || Failure || Successful [Tested: 0] || <div class="toccolours mw-collapsible mw-collapsed">Failed [1 / 1]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[-0.12478648186560967, NSum[Times[Power[-1, n], Power[n, -1], Plus[Times[Rational[-1, 2], Pi], SinIntegral[Times[2, n, Pi]]]]
+Test Values: {n, 1, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {}</syntaxhighlight><br></div></div>
+|}
+</div>

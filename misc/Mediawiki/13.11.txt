@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Confluent Hypergeometric Functions - 13.11 Series}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/13.11.E1 13.11.E1] || [[Item:Q4476|<math>\KummerconfhyperM@{a}{b}{z} = \EulerGamma@{a-\tfrac{1}{2}}e^{\frac{1}{2}z}\left(\tfrac{1}{4}z\right)^{\frac{1}{2}-a}\*\sum_{s=0}^{\infty}\frac{\Pochhammersym{2a-1}{s}\Pochhammersym{2a-b}{s}}{\Pochhammersym{b}{s}s!}\*\left(a-\tfrac{1}{2}+s\right)\*\modBesselI{a-\frac{1}{2}+s}@{\tfrac{1}{2}z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\KummerconfhyperM@{a}{b}{z} = \EulerGamma@{a-\tfrac{1}{2}}e^{\frac{1}{2}z}\left(\tfrac{1}{4}z\right)^{\frac{1}{2}-a}\*\sum_{s=0}^{\infty}\frac{\Pochhammersym{2a-1}{s}\Pochhammersym{2a-b}{s}}{\Pochhammersym{b}{s}s!}\*\left(a-\tfrac{1}{2}+s\right)\*\modBesselI{a-\frac{1}{2}+s}@{\tfrac{1}{2}z}</syntaxhighlight> || <math>\realpart@@{(a-\tfrac{1}{2})} > 0, \realpart@@{((a-\frac{1}{2}+s)+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>KummerM(a, b, z) = GAMMA(a -(1)/(2))*exp((1)/(2)*z)*((1)/(4)*z)^((1)/(2)- a)* sum((pochhammer(2*a - 1, s)*pochhammer(2*a - b, s))/(pochhammer(b, s)*factorial(s))*(a -(1)/(2)+ s)* BesselI(a -(1)/(2)+ s, (1)/(2)*z), s = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Hypergeometric1F1[a, b, z] == Gamma[a -Divide[1,2]]*Exp[Divide[1,2]*z]*(Divide[1,4]*z)^(Divide[1,2]- a)* Sum[Divide[Pochhammer[2*a - 1, s]*Pochhammer[2*a - b, s],Pochhammer[b, s]*(s)!]*(a -Divide[1,2]+ s)* BesselI[a -Divide[1,2]+ s, Divide[1,2]*z], {s, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Manual Skip! || <div class="toccolours mw-collapsible mw-collapsed">Failed [84 / 84]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[-3.202632216430895, 12.150063432924489], Times[Complex[-5.9381784278055925, 1.66646925063829], NSum[Times[Plus[1.0, s], BesselI[Plus[1.0, s], Times[Rational[1, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]], Power[Factorial[s], -1], Power[Pochhammer[-1.5, s], -1], Pochhammer[2.0, s], Pochhammer[4.5, s]]
+Test Values: {s, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[a, 1.5], Rule[b, -1.5], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[3.448639860241066, -0.8097281072366314], Times[Complex[0.28180823919021325, 3.102430445912792], NSum[Times[Plus[1.0, s], BesselI[Plus[1.0, s], Times[Rational[1, 2], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]], Power[Factorial[s], -1], Power[Pochhammer[-1.5, s], -1], Pochhammer[2.0, s], Pochhammer[4.5, s]]
+Test Values: {s, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[a, 1.5], Rule[b, -1.5], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

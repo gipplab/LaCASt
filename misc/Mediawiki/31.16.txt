@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Heun Functions - 31.16 Mathematical Applications}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/31.16.E4 31.16.E4] || [[Item:Q9137|<math>P_{j}A_{j-1}+Q_{j}A_{j}+R_{j}A_{j+1} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>P_{j}A_{j-1}+Q_{j}A_{j}+R_{j}A_{j+1} = 0</syntaxhighlight> || <math>j = 1</math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(((epsilon - j + n)*j*(beta + j - 1)*(gamma + delta + j - 2))/((gamma + delta + 2*j - 3)*(gamma + delta + 2*j - 2)))*A[j - 1]+(- a*j*(j + gamma + delta - 1)- q +((j - n)*(j + beta)*(j + gamma)*(j + gamma + delta - 1))/((2*j + gamma + delta)*(2*j + gamma + delta - 1))+((j + n + gamma + delta - 1)*j*(j + delta - 1)*(j - beta + gamma + delta - 1))/((2*j + gamma + delta - 1)*(2*j + gamma + delta - 2)))*A[j]+(((n - j)*(j + n + gamma + delta)*(j + gamma)*(j + delta))/((gamma + delta + 2*j)*(gamma + delta + 2*j + 1)))*A[j + 1] = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(Divide[(\[Epsilon]- j + n)*j*(\[Beta]+ j - 1)*(\[Gamma]+ \[Delta]+ j - 2),(\[Gamma]+ \[Delta]+ 2*j - 3)*(\[Gamma]+ \[Delta]+ 2*j - 2)])*Subscript[A, j - 1]+(- a*j*(j + \[Gamma]+ \[Delta]- 1)- q +Divide[(j - n)*(j + \[Beta])*(j + \[Gamma])*(j + \[Gamma]+ \[Delta]- 1),(2*j + \[Gamma]+ \[Delta])*(2*j + \[Gamma]+ \[Delta]- 1)]+Divide[(j + n + \[Gamma]+ \[Delta]- 1)*j*(j + \[Delta]- 1)*(j - \[Beta]+ \[Gamma]+ \[Delta]- 1),(2*j + \[Gamma]+ \[Delta]- 1)*(2*j + \[Gamma]+ \[Delta]- 2)])*Subscript[A, j]+(Divide[(n - j)*(j + n + \[Gamma]+ \[Delta])*(j + \[Gamma])*(j + \[Delta]),(\[Gamma]+ \[Delta]+ 2*j)*(\[Gamma]+ \[Delta]+ 2*j + 1)])*Subscript[A, j + 1] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

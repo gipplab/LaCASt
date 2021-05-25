@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Elementary Functions - 4.17 Special Values and Limits}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.17.E1 4.17.E1] || [[Item:Q1666|<math>\lim_{z\to 0}\frac{\sin@@{z}}{z} = 1</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\lim_{z\to 0}\frac{\sin@@{z}}{z} = 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>limit((sin(z))/(z), z = 0) = 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>Limit[Divide[Sin[z],z], z -> 0, GenerateConditions->None] == 1</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.17.E2 4.17.E2] || [[Item:Q1667|<math>\lim_{z\to 0}\frac{\tan@@{z}}{z} = 1</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\lim_{z\to 0}\frac{\tan@@{z}}{z} = 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>limit((tan(z))/(z), z = 0) = 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>Limit[Divide[Tan[z],z], z -> 0, GenerateConditions->None] == 1</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.17.E3 4.17.E3] || [[Item:Q1668|<math>\lim_{z\to 0}\frac{1-\cos@@{z}}{z^{2}} = \frac{1}{2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\lim_{z\to 0}\frac{1-\cos@@{z}}{z^{2}} = \frac{1}{2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>limit((1 - cos(z))/((z)^(2)), z = 0) = (1)/(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Limit[Divide[1 - Cos[z],(z)^(2)], z -> 0, GenerateConditions->None] == Divide[1,2]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|}
+</div>

@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Generalized Hypergeometric Functions & Meijer G -Function - 16.23 Mathematical Applications}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/16.23.E1 16.23.E1] || [[Item:Q5289|<math>\genhyperF{3}{2}@@{-n,n+\alpha+2,\frac{1}{2}(\alpha+1)}{\alpha+1,\frac{1}{2}(\alpha+3)}{x} > 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\genhyperF{3}{2}@@{-n,n+\alpha+2,\frac{1}{2}(\alpha+1)}{\alpha+1,\frac{1}{2}(\alpha+3)}{x} > 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>hypergeom([- n , n + alpha + 2 ,(1)/(2)*(alpha + 1)], [alpha + 1 ,(1)/(2)*(alpha + 3)], x) > 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>HypergeometricPFQ[{- n , n + \[Alpha]+ 2 ,Divide[1,2]*(\[Alpha]+ 1)}, {\[Alpha]+ 1 ,Divide[1,2]*(\[Alpha]+ 3)}, x] > 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [12 / 27]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 0. < -.5000000000
+Test Values: {alpha = 3/2, x = 3/2, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 0. < -1.482142857
+Test Values: {alpha = 3/2, x = 3/2, n = 3}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [12 / 27]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: False
+Test Values: {Rule[n, 1], Rule[x, 1.5], Rule[α, 1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: False
+Test Values: {Rule[n, 3], Rule[x, 1.5], Rule[α, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

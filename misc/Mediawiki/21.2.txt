@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Theta Functions - 21.2 Definitions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/21.2.E1 21.2.E1] || [[Item:Q6857|<math>\Riemanntheta@{\mathbf{z}}{\boldsymbol{{\Omega}}} = \sum_{\mathbf{n}\in\Integers^{g}}e^{2\pi i\left(\frac{1}{2}\mathbf{n}\cdot\boldsymbol{{\Omega}}\cdot\mathbf{n}+\mathbf{n}\cdot\mathbf{z}\right)}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Riemanntheta@{\mathbf{z}}{\boldsymbol{{\Omega}}} = \sum_{\mathbf{n}\in\Integers^{g}}e^{2\pi i\left(\frac{1}{2}\mathbf{n}\cdot\boldsymbol{{\Omega}}\cdot\mathbf{n}+\mathbf{n}\cdot\mathbf{z}\right)}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>RiemannTheta(z, Omega) = sum(exp(2*Pi*I*((1)/(2)*n * Omega * n + n * z)),  = ..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/21.2.E8 21.2.E8] || [[Item:Q6864|<math>\Riemanntheta@{z}{\Omega} = \Jacobithetatau{3}@{\pi z}{\Omega}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Riemanntheta@{z}{\Omega} = \Jacobithetatau{3}@{\pi z}{\Omega}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>RiemannTheta(z, Omega) = JacobiTheta3(Pi*z,exp(I*Pi*Omega))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|}
+</div>

@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Multidimensional Theta Functions - 21.9 Integrable Equations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/21.9.E1 21.9.E1] || [[Item:Q6917|<math>4u_{t} = 6uu_{x}+u_{xxx}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>4u_{t} = 6uu_{x}+u_{xxx}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">4*u[t] = 6*u*u[x]+ u[x, x, x]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">4*Subscript[u, t] == 6*u*Subscript[u, x]+ Subscript[u, x, x, x]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/21.9.E2 21.9.E2] || [[Item:Q6918|<math>iu_{t} = -\tfrac{1}{2}u_{xx}+|u|^{2}u</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>iu_{t} = -\tfrac{1}{2}u_{xx}+|u|^{2}u</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">I*u[t] = -(1)/(2)*u[x, x]+(abs(u))^(2)* u</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">I*Subscript[u, t] == -Divide[1,2]*Subscript[u, x, x]+(Abs[u])^(2)* u</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/21.9.E3 21.9.E3] || [[Item:Q6919|<math>(-4u_{t}+6uu_{x}+u_{xxx})_{x}+3u_{yy} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>(-4u_{t}+6uu_{x}+u_{xxx})_{x}+3u_{yy} = 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">- 4*u[t]+ 6*u*u[x]+ u[x, x, x][x]+ 3*u[y, y] = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[- 4*Subscript[u, t]+ 6*u*Subscript[u, x]+ Subscript[u, x, x, x], x]+ 3*Subscript[u, y, y] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- 
+| [https://dlmf.nist.gov/21.9.E4 21.9.E4] || [[Item:Q6920|<math>u(x,y,t) = c+2\pderiv[2]{}{x}\ln@{\Riemanntheta@{\mathbf{k}x+\mathbf{l}y+\boldsymbol{{\omega}}t+\boldsymbol{{\phi}}}{\boldsymbol{{\Omega}}}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>u(x,y,t) = c+2\pderiv[2]{}{x}\ln@{\Riemanntheta@{\mathbf{k}x+\mathbf{l}y+\boldsymbol{{\omega}}t+\boldsymbol{{\phi}}}{\boldsymbol{{\Omega}}}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>u(x , y , t) = c + 2*diff(ln(RiemannTheta(k*x + l*y + omega*t + phi, Omega)), [x$(2)])</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|}
+</div>
