@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 import requests
 import sys, getopt
+from git import Repo
+
+repo = Repo("..")
+
+updatedFilePaths=[file.a_path for file in repo.index.diff(None)]
 
 pageNames = [
   "Algebraic and Analytic Methods",
@@ -116,6 +121,10 @@ csrf_token = response_data['query']['tokens']['csrftoken']
 
 def uploadFile(i, file_path, page_title):
     print("Start uploading file " + str(i) + ": " + page_title + " [Path: " + file_path + "]")
+    if file_path[3:] not in updatedFilePaths:
+        print("This page has not been updated locally according to Git, so no need to push changes")
+        return
+
     file = open(file_path, "r")
     edit_request = {
         "action": "edit",
