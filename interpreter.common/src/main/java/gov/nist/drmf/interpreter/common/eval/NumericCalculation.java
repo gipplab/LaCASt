@@ -2,6 +2,7 @@ package gov.nist.drmf.interpreter.common.eval;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import gov.nist.drmf.interpreter.common.text.JoinConfig;
 import gov.nist.drmf.interpreter.common.text.TextUtility;
 
 import java.io.Serializable;
@@ -66,7 +67,7 @@ public class NumericCalculation implements Serializable {
         StringBuilder sb = new StringBuilder("{");
         sb.append(resultExpression);
         sb.append(", {")
-                .append(TextUtility.join( ", ", testValues.entrySet(), (e) -> e.getKey() + " := " + e.getValue(), max, msg))
+                .append(TextUtility.join(new JoinConfig<>(", ", testValues.entrySet(), (e) -> e.getKey() + " := " + e.getValue()).setMax(max).setMaxMessage(msg)))
                 .append("}");
         return sb.append("}").toString();
     }

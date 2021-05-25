@@ -1,0 +1,32 @@
+{{DISPLAYTITLE:Asymptotic Approximations - 2.2 Transcendental Equations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/2.2.E3 2.2.E3] || [[Item:Q710|<math>t^{2}-\ln@@{t} = y</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>t^{2}-\ln@@{t} = y</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(t)^(2)- ln(t) = y</syntaxhighlight> || <syntaxhighlight lang=mathematica>(t)^(2)- Log[t] == y</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [36 / 36]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 3.344534892-3.141592654*I
+Test Values: {t = -1.5, y = -1.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .344534892-3.141592654*I
+Test Values: {t = -1.5, y = 1.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 2.344534892-3.141592654*I
+Test Values: {t = -1.5, y = -.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.344534892-3.141592654*I
+Test Values: {t = -1.5, y = .5}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [36 / 36]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[3.3445348918918354, -3.141592653589793]
+Test Values: {Rule[t, -1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.3445348918918356, -3.141592653589793]
+Test Values: {Rule[t, -1.5], Rule[y, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/2.2.E5 2.2.E5] || [[Item:Q712|<math>t^{2} = y+\ln@@{t}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>t^{2} = y+\ln@@{t}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(t)^(2) = y + ln(t)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(t)^(2) == y + Log[t]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [36 / 36]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 3.344534892-3.141592654*I
+Test Values: {t = -1.5, y = -1.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .344534892-3.141592654*I
+Test Values: {t = -1.5, y = 1.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 2.344534892-3.141592654*I
+Test Values: {t = -1.5, y = -.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.344534892-3.141592654*I
+Test Values: {t = -1.5, y = .5}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [36 / 36]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[3.3445348918918354, -3.141592653589793]
+Test Values: {Rule[t, -1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.3445348918918356, -3.141592653589793]
+Test Values: {Rule[t, -1.5], Rule[y, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

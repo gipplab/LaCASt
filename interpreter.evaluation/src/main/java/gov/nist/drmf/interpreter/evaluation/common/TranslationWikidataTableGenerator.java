@@ -18,9 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -90,6 +88,8 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
 
     private int[] range = new int[]{0,1};
 
+    private Map<String, String> displayTitleMap;
+
     public TranslationWikidataTableGenerator(
             Path datasetPath,
             Path symbolicResultsMaple,
@@ -117,6 +117,17 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         this.mapleNum = new HashMap<>();
         this.mathSym = new HashMap<>();
         this.mathNum = new HashMap<>();
+
+        this.displayTitleMap = new HashMap<>();
+    }
+
+    public void initDisplayTitles(Path p) throws IOException {
+        Pattern pattern = Pattern.compile("(\\d+\\.\\d+|\\d+) (.*)");
+        Files.readAllLines(p).stream().forEach(l -> {
+            Matcher m = pattern.matcher(l);
+            if ( !m.matches() ) return;
+            displayTitleMap.put(m.group(1), m.group(2));
+        });
     }
 
     public void init() throws IOException {
@@ -285,42 +296,46 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
 //                });
 
         LOG.info("Start analyzing the data...");
-        int fileID = 1;
+        int chapter = 1;
+        int section = 1;
+
+        String fileID = "1.1";
         Path filePath = outputFile.resolve(fileID+".txt");
 
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(filePath.toFile()));
+            if ( displayTitleMap.containsKey(fileID) ) {
+                String chapterTitle = displayTitleMap.get(chapter+"");
+                writer.write("{{DISPLAYTITLE:" + chapterTitle + " - " + fileID + " " + displayTitleMap.get(fileID) + "}}\n\n");
+            }
             writer.write(TABLE_HEADER);
 
             HashMap<Integer, Integer> caseNumberLib = new HashMap<>();
 
-//            for ( LinkedList<Case> lineCase : allCases ) {
-//                Case c = lineCase.get(0);
-            int appendSplitCounter = 2;
             for ( Case c : allCases ) {
                 int number = caseNumberLib.computeIfAbsent( c.getLine(), lineNumber -> 1 );
 
                 String[] equationLabelParts = c.getEquationLabel().split("\\.");
-                int currentSec = Integer.parseInt(equationLabelParts[0]);
+                int currentCh = Integer.parseInt(equationLabelParts[0]);
+                int currentSec = (equationLabelParts[1] != null && equationLabelParts[1].matches("\\d+")) ?
+                        Integer.parseInt(equationLabelParts[1]) :
+                        Integer.parseInt(equationLabelParts[1].split("#")[0]);
 
-                boolean split = currentSec > fileID;
-                boolean appendSplit = false;
-
-                if ( appendSplit(currentSec, split, c) ) {
-                    split = true;
-                    appendSplit = true;
-                }
-
-                if ( split ) {
+                if ( currentCh > chapter || currentSec > section ) {
                     writer.write(TABLE_FOOTER);
                     writer.close();
-                    fileID = currentSec;
-                    filePath = appendSplit ? outputFile.resolve(fileID + "_"+appendSplitCounter+".txt") : outputFile.resolve(fileID+".txt");
-                    if ( appendSplit ) appendSplitCounter++;
-                    else appendSplitCounter = 2;
+                    fileID = currentCh + "." + currentSec;
+                    filePath = outputFile.resolve(fileID + ".txt");
                     writer = new BufferedWriter(new FileWriter(filePath.toFile()));
+                    if ( displayTitleMap.containsKey(fileID) ) {
+                        String chapterTitle = displayTitleMap.get(chapter+"");
+                        writer.write("{{DISPLAYTITLE:" + chapterTitle + " - " + fileID + " " + displayTitleMap.get(fileID) + "}}\n\n");
+                    }
                     writer.write(TABLE_HEADER);
+
+                    chapter = currentCh;
+                    section = currentSec;
                 }
 
                 String id = ""+c.getLine();
@@ -490,6 +505,8 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
                 Paths.get("misc/Results/MathematicaNumericSymbolicSuccessful"),
                 Paths.get("/home/andreg-p/data/Howard/formulaQ.csv")
         );
+
+        t.initDisplayTitles(Paths.get("scripts/xquery/dlmf-section.mapping.txt"));
 
 //        t.setRange(0, 650);
         t.setRange(0, 9978);

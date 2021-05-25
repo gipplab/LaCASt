@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Generalized Hypergeometric Functions & Meijer G -Function - 16.16 Transformations of Variables}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/16.16.E5 16.16.E5] || [[Item:Q5271|<math>\AppellF{3}@{\alpha}{\gamma-\alpha}{\beta}{\gamma-\beta}{\gamma}{x}{y} = (1-y)^{\alpha+\beta-\gamma}\genhyperF{2}{1}@@{\alpha,\beta}{\gamma}{x+y-xy}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\AppellF{3}@{\alpha}{\gamma-\alpha}{\beta}{\gamma-\beta}{\gamma}{x}{y} = (1-y)^{\alpha+\beta-\gamma}\genhyperF{2}{1}@@{\alpha,\beta}{\gamma}{x+y-xy}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>AppellF[3, , \[Alpha], \[Gamma]- \[Alpha], \[Beta], \[Gamma]- \[Beta]]*\[Gamma]*x*y == (1 - y)^(\[Alpha]+ \[Beta]- \[Gamma])* HypergeometricPFQ[{\[Alpha], \[Beta]}, {\[Gamma]}, x + y - x*y]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.33907796278424684, 2.1694931088262193], Times[Complex[-1.948557158514987, -1.1249999999999998], AppellF[3.0, Null, 1.5, Complex[-0.6339745962155613, 0.49999999999999994], 1.5, Complex[-0.6339745962155613, 0.49999999999999994]]]]
+Test Values: {Rule[x, 1.5], Rule[y, -1.5], Rule[α, 1.5], Rule[β, 1.5], Rule[γ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[3.1592684418872854, 2.774129956365469], Times[Complex[1.1249999999999996, -1.948557158514987], AppellF[3.0, Null, 1.5, Complex[-1.9999999999999998, 0.8660254037844387], 1.5, Complex[-1.9999999999999998, 0.8660254037844387]]]]
+Test Values: {Rule[x, 1.5], Rule[y, -1.5], Rule[α, 1.5], Rule[β, 1.5], Rule[γ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/16.16.E6 16.16.E6] || [[Item:Q5272|<math>\AppellF{4}@{\alpha}{\beta}{\gamma}{\alpha+\beta-\gamma+1}{x(1-y)}{y(1-x)} = \genhyperF{2}{1}@@{\alpha,\beta}{\gamma}{x}\genhyperF{2}{1}@@{\alpha,\beta}{\alpha+\beta-\gamma+1}{y}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\AppellF{4}@{\alpha}{\beta}{\gamma}{\alpha+\beta-\gamma+1}{x(1-y)}{y(1-x)} = \genhyperF{2}{1}@@{\alpha,\beta}{\gamma}{x}\genhyperF{2}{1}@@{\alpha,\beta}{\alpha+\beta-\gamma+1}{y}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>AppellF[4, , \[Alpha], \[Beta], \[Gamma], \[Alpha]+ \[Beta]- \[Gamma]+ 1]*x*(1 - y)*y*(1 - x) == HypergeometricPFQ[{\[Alpha], \[Beta]}, {\[Gamma]}, x]*HypergeometricPFQ[{\[Alpha], \[Beta]}, {\[Alpha]+ \[Beta]- \[Gamma]+ 1}, y]</syntaxhighlight> || Missing Macro Error || Failure || - || Skip - No test values generated
+|}
+</div>

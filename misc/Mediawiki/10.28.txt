@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Bessel Functions - 10.28 Wronskians and Cross-Products}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/10.28.E1 10.28.E1] || [[Item:Q3502|<math>\Wronskian@{\modBesselI{\nu}@{z},\modBesselI{-\nu}@{z}} = \modBesselI{\nu}@{z}\modBesselI{-\nu-1}@{z}-\modBesselI{\nu+1}@{z}\modBesselI{-\nu}@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Wronskian@{\modBesselI{\nu}@{z},\modBesselI{-\nu}@{z}} = \modBesselI{\nu}@{z}\modBesselI{-\nu-1}@{z}-\modBesselI{\nu+1}@{z}\modBesselI{-\nu}@{z}</syntaxhighlight> || <math>\realpart@@{(\nu+k+1)} > 0, \realpart@@{((-\nu)+k+1)} > 0, \realpart@@{((-\nu-1)+k+1)} > 0, \realpart@@{((\nu+1)+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>(BesselI(nu, z))*diff(BesselI(- nu, z), z)-diff(BesselI(nu, z), z)*(BesselI(- nu, z)) = BesselI(nu, z)*BesselI(- nu - 1, z)- BesselI(nu + 1, z)*BesselI(- nu, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Wronskian[{BesselI[\[Nu], z], BesselI[- \[Nu], z]}, z] == BesselI[\[Nu], z]*BesselI[- \[Nu]- 1, z]- BesselI[\[Nu]+ 1, z]*BesselI[- \[Nu], z]</syntaxhighlight> || Successful || Successful || Skip - symbolical successful subtest || Successful [Tested: 70]
+|- 
+| [https://dlmf.nist.gov/10.28.E1 10.28.E1] || [[Item:Q3502|<math>\modBesselI{\nu}@{z}\modBesselI{-\nu-1}@{z}-\modBesselI{\nu+1}@{z}\modBesselI{-\nu}@{z} = -2\sin@{\nu\pi}/(\pi z)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\modBesselI{\nu}@{z}\modBesselI{-\nu-1}@{z}-\modBesselI{\nu+1}@{z}\modBesselI{-\nu}@{z} = -2\sin@{\nu\pi}/(\pi z)</syntaxhighlight> || <math>\realpart@@{(\nu+k+1)} > 0, \realpart@@{((-\nu)+k+1)} > 0, \realpart@@{((-\nu-1)+k+1)} > 0, \realpart@@{((\nu+1)+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>BesselI(nu, z)*BesselI(- nu - 1, z)- BesselI(nu + 1, z)*BesselI(- nu, z) = - 2*sin(nu*Pi)/(Pi*z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>BesselI[\[Nu], z]*BesselI[- \[Nu]- 1, z]- BesselI[\[Nu]+ 1, z]*BesselI[- \[Nu], z] == - 2*Sin[\[Nu]*Pi]/(Pi*z)</syntaxhighlight> || Failure || Successful || Successful [Tested: 70] || Successful [Tested: 70]
+|- 
+| [https://dlmf.nist.gov/10.28.E2 10.28.E2] || [[Item:Q3503|<math>\Wronskian@{\modBesselK{\nu}@{z},\modBesselI{\nu}@{z}} = \modBesselI{\nu}@{z}\modBesselK{\nu+1}@{z}+\modBesselI{\nu+1}@{z}\modBesselK{\nu}@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Wronskian@{\modBesselK{\nu}@{z},\modBesselI{\nu}@{z}} = \modBesselI{\nu}@{z}\modBesselK{\nu+1}@{z}+\modBesselI{\nu+1}@{z}\modBesselK{\nu}@{z}</syntaxhighlight> || <math>\realpart@@{(\nu+k+1)} > 0, \realpart@@{((\nu+1)+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>(BesselK(nu, z))*diff(BesselI(nu, z), z)-diff(BesselK(nu, z), z)*(BesselI(nu, z)) = BesselI(nu, z)*BesselK(nu + 1, z)+ BesselI(nu + 1, z)*BesselK(nu, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Wronskian[{BesselK[\[Nu], z], BesselI[\[Nu], z]}, z] == BesselI[\[Nu], z]*BesselK[\[Nu]+ 1, z]+ BesselI[\[Nu]+ 1, z]*BesselK[\[Nu], z]</syntaxhighlight> || Successful || Successful || Skip - symbolical successful subtest || Successful [Tested: 70]
+|- 
+| [https://dlmf.nist.gov/10.28.E2 10.28.E2] || [[Item:Q3503|<math>\modBesselI{\nu}@{z}\modBesselK{\nu+1}@{z}+\modBesselI{\nu+1}@{z}\modBesselK{\nu}@{z} = 1/z</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\modBesselI{\nu}@{z}\modBesselK{\nu+1}@{z}+\modBesselI{\nu+1}@{z}\modBesselK{\nu}@{z} = 1/z</syntaxhighlight> || <math>\realpart@@{(\nu+k+1)} > 0, \realpart@@{((\nu+1)+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>BesselI(nu, z)*BesselK(nu + 1, z)+ BesselI(nu + 1, z)*BesselK(nu, z) = 1/z</syntaxhighlight> || <syntaxhighlight lang=mathematica>BesselI[\[Nu], z]*BesselK[\[Nu]+ 1, z]+ BesselI[\[Nu]+ 1, z]*BesselK[\[Nu], z] == 1/z</syntaxhighlight> || Failure || Successful || Successful [Tested: 70] || Successful [Tested: 70]
+|}
+</div>

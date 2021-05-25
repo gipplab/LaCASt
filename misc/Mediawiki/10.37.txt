@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Bessel Functions - 10.37 Inequalities; Monotonicity}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/10.37.E1 10.37.E1] || [[Item:Q3559|<math>|\modBesselK{\nu}@{z}| < |\modBesselK{\mu}@{z}|</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\modBesselK{\nu}@{z}| < |\modBesselK{\mu}@{z}|</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>abs(BesselK(nu, z)) < abs(BesselK(mu, z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[BesselK[\[Nu], z]] < Abs[BesselK[\[Mu], z]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [204 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .6496143723 < .6496143723
+Test Values: {mu = 1/2*3^(1/2)+1/2*I, nu = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 3.110500858 < 3.110500858
+Test Values: {mu = 1/2*3^(1/2)+1/2*I, nu = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [184 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: False
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: False
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

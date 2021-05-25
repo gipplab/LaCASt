@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Painlevé Transcendents - 32.6 Hamiltonian Structure}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/32.6#Ex1 32.6#Ex1] || [[Item:Q9239|<math>\deriv{q}{z} = \pderiv{\mathrm{H}}{p}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv{q}{z} = \pderiv{\mathrm{H}}{p}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(q, z) = diff(H, p)</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[q, z] == D[H, p]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 300]
+|- 
+| [https://dlmf.nist.gov/32.6#Ex2 32.6#Ex2] || [[Item:Q9240|<math>\deriv{p}{z} = -\pderiv{\mathrm{H}}{q}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv{p}{z} = -\pderiv{\mathrm{H}}{q}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(p, z) = - diff(H, q)</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[p, z] == - D[H, q]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 300]
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/32.6.E19 32.6.E19] || [[Item:Q9258|<math>(\alpha,\beta,\gamma,\delta) = \left(-2\kappa_{\infty}\theta_{\infty},2\kappa_{0}(\theta_{0}+1),\kappa_{\infty}^{2},-\kappa_{0}^{2}\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>(\alpha,\beta,\gamma,\delta) = \left(-2\kappa_{\infty}\theta_{\infty},2\kappa_{0}(\theta_{0}+1),\kappa_{\infty}^{2},-\kappa_{0}^{2}\right)</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(alpha , beta , gamma , delta) = (- 2*kappa[infinity]*theta[infinity], 2*kappa[0]*(theta[0]+ 1), (kappa[infinity])^(2), - (kappa[0])^(2))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(\[Alpha], \[Beta], \[Gamma], \[Delta]) == (- 2*Subscript[\[Kappa], Infinity]*Subscript[\[Theta], Infinity], 2*Subscript[\[Kappa], 0]*(Subscript[\[Theta], 0]+ 1), (Subscript[\[Kappa], Infinity])^(2), - (Subscript[\[Kappa], 0])^(2))</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/32.6.E27 32.6.E27] || [[Item:Q9266|<math>(\alpha,\beta,\gamma,\delta) = \left(-4\eta_{\infty}\theta_{\infty},4\eta_{0}(\theta_{0}+1),4\eta_{\infty}^{2},-4\eta_{0}^{2}\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>(\alpha,\beta,\gamma,\delta) = \left(-4\eta_{\infty}\theta_{\infty},4\eta_{0}(\theta_{0}+1),4\eta_{\infty}^{2},-4\eta_{0}^{2}\right)</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(alpha , beta , gamma , delta) = (- 4*eta[infinity]*theta[infinity], 4*eta[0]*(theta[0]+ 1), 4*(eta[infinity])^(2), - 4*(eta[0])^(2))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(\[Alpha], \[Beta], \[Gamma], \[Delta]) == (- 4*Subscript[\[Eta], Infinity]*Subscript[\[Theta], Infinity], 4*Subscript[\[Eta], 0]*(Subscript[\[Theta], 0]+ 1), 4*(Subscript[\[Eta], Infinity])^(2), - 4*(Subscript[\[Eta], 0])^(2))</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/32.6.E35 32.6.E35] || [[Item:Q9274|<math>(\alpha,\beta,\gamma,\delta) = \left(2\kappa_{\infty},\kappa_{0}(\theta-1),0,-\kappa_{0}^{2}\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>(\alpha,\beta,\gamma,\delta) = \left(2\kappa_{\infty},\kappa_{0}(\theta-1),0,-\kappa_{0}^{2}\right)</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(alpha , beta , gamma , delta) = (2*kappa[infinity], kappa[0]*(theta - 1), 0 , - (kappa[0])^(2))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(\[Alpha], \[Beta], \[Gamma], \[Delta]) == (2*Subscript[\[Kappa], Infinity], Subscript[\[Kappa], 0]*(\[Theta]- 1), 0 , - (Subscript[\[Kappa], 0])^(2))</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[12.1|12.1 Special Notation]]<br>
+; Properties : [[12.2|12.2 Differential Equations]]<br>[[12.3|12.3 Graphics]]<br>[[12.4|12.4 Power-Series Expansions]]<br>[[12.5|12.5 Integral Representations]]<br>[[12.6|12.6 Continued Fraction]]<br>[[12.7|12.7 Relations to Other Functions]]<br>[[12.8|12.8 Recurrence Relations and Derivatives]]<br>[[12.9|12.9 Asymptotic Expansions for Large Variable]]<br>[[12.10|12.10 Uniform Asymptotic Expansions for Large Parameter]]<br>[[12.11|12.11 Zeros]]<br>[[12.12|12.12 Integrals]]<br>[[12.13|12.13 Sums]]<br>[[12.14|12.14 The Function <math>\paraW@{a}{x}</math>]]<br>[[12.15|12.15 Generalized Parabolic Cylinder Functions]]<br>
+; Applications : [[12.16|12.16 Mathematical Applications]]<br>[[12.17|12.17 Physical Applications]]<br>
+; Computation : [[12.18|12.18 Methods of Computation]]<br>[[12.19|12.19 Tables]]<br>[[12.20|12.20 Approximations]]<br>[[12.21|12.21 Software]]<br>
+</div>

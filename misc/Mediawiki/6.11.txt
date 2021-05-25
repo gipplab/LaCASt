@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Exponential, Logarithmic, Sine, and Cosine Integrals - 6.11 Relations to Other Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/6.11.E1 6.11.E1] || [[Item:Q2286|<math>\expintE@{z} = \incGamma@{0}{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{z} = \incGamma@{0}{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Ei(z) = GAMMA(0, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, z] == Gamma[0, z]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.393548628+1.498247032*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .8944744989+3.773814377*I
+Test Values: {z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/6.11.E2 6.11.E2] || [[Item:Q2287|<math>\expintE@{z} = e^{-z}\KummerconfhyperU@{1}{1}{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{z} = e^{-z}\KummerconfhyperU@{1}{1}{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Ei(z) = exp(- z)*KummerU(1, 1, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, z] == Exp[- z]*HypergeometricU[1, 1, z]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.393548628+1.498247032*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .8944744991+3.773814377*I
+Test Values: {z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || Successful [Tested: 7]
+|}
+</div>

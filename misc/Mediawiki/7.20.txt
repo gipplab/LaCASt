@@ -1,0 +1,34 @@
+{{DISPLAYTITLE:Error Functions, Dawson’s and Fresnel Integrals - 7.20 Mathematical Applications}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/7.20.E1 7.20.E1] || [[Item:Q2479|<math>\frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^{x}e^{-(t-m)^{2}/(2\sigma^{2})}\diff{t} = \frac{1}{2}\erfc@{\frac{m-x}{\sigma\sqrt{2}}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^{x}e^{-(t-m)^{2}/(2\sigma^{2})}\diff{t} = \frac{1}{2}\erfc@{\frac{m-x}{\sigma\sqrt{2}}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(1)/(sigma*sqrt(2*Pi))*int(exp(-(t - m)^(2)/(2*(sigma)^(2))), t = - infinity..x) = (1)/(2)*erfc((m - x)/(sigma*sqrt(2)))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[1,\[Sigma]*Sqrt[2*Pi]]*Integrate[Exp[-(t - m)^(2)/(2*\[Sigma]^(2))], {t, - Infinity, x}, GenerateConditions->None] == Divide[1,2]*Erfc[Divide[m - x,\[Sigma]*Sqrt[2]]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [54 / 90]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Float(undefined)+Float(undefined)*I
+Test Values: {sigma = -1/2+1/2*I*3^(1/2), x = 1.5, m = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Float(undefined)+Float(undefined)*I
+Test Values: {sigma = -1/2+1/2*I*3^(1/2), x = 1.5, m = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [45 / 90]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-1.0, -1.942890293094024*^-16]
+Test Values: {Rule[m, 1], Rule[x, 1.5], Rule[σ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-1.0, -1.6653345369377348*^-16]
+Test Values: {Rule[m, 2], Rule[x, 1.5], Rule[σ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/7.20.E1 7.20.E1] || [[Item:Q2479|<math>\frac{1}{2}\erfc@{\frac{m-x}{\sigma\sqrt{2}}} = Q\left(\frac{m-x}{\sigma}\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{1}{2}\erfc@{\frac{m-x}{\sigma\sqrt{2}}} = Q\left(\frac{m-x}{\sigma}\right)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(1)/(2)*erfc((m - x)/(sigma*sqrt(2))) = Q((m - x)/(sigma))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[1,2]*Erfc[Divide[m - x,\[Sigma]*Sqrt[2]]] == Q[Divide[m - x,\[Sigma]]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.172485186-.9158452425e-1*I
+Test Values: {Q = 1/2*3^(1/2)+1/2*I, sigma = 1/2*3^(1/2)+1/2*I, x = 1.5, m = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.1724851867+.9158452425e-1*I
+Test Values: {Q = 1/2*3^(1/2)+1/2*I, sigma = 1/2*3^(1/2)+1/2*I, x = 1.5, m = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[1.1724851867610806, -0.09158452430796671]
+Test Values: {Rule[m, 1], Rule[Q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5], Rule[σ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-0.1724851867610806, 0.09158452430796671]
+Test Values: {Rule[m, 2], Rule[Q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5], Rule[σ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/7.20.E1 7.20.E1] || [[Item:Q2479|<math>Q\left(\frac{m-x}{\sigma}\right) = P\left(\frac{x-m}{\sigma}\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>Q\left(\frac{m-x}{\sigma}\right) = P\left(\frac{x-m}{\sigma}\right)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Q((m - x)/(sigma)) = P((x - m)/(sigma))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Q[Divide[m - x,\[Sigma]]] == P[Divide[x - m,\[Sigma]]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [240 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.0
+Test Values: {P = 1/2*3^(1/2)+1/2*I, Q = 1/2*3^(1/2)+1/2*I, sigma = 1/2*3^(1/2)+1/2*I, x = 1.5, m = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.0
+Test Values: {P = 1/2*3^(1/2)+1/2*I, Q = 1/2*3^(1/2)+1/2*I, sigma = 1/2*3^(1/2)+1/2*I, x = 1.5, m = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [240 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-1.0, 0.0]
+Test Values: {Rule[m, 1], Rule[P, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5], Rule[σ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[1.0, 0.0]
+Test Values: {Rule[m, 2], Rule[P, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5], Rule[σ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

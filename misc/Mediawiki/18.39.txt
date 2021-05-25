@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Orthogonal Polynomials - 18.39 Physical Applications}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/18.39.E3 18.39.E3] || [[Item:Q6062|<math>V(x) = \tfrac{1}{2}m\omega^{2}x^{2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>V(x) = \tfrac{1}{2}m\omega^{2}x^{2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">V(x) = (1)/(2)*m*(omega)^(2)* (x)^(2)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">V[x] == Divide[1,2]*m*\[Omega]^(2)* (x)^(2)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- 
+| [https://dlmf.nist.gov/18.39.E5 18.39.E5] || [[Item:Q6064|<math>\eta_{n}(x) = \pi^{-\frac{1}{4}}2^{-\frac{1}{2}n}(n!\,b)^{-\frac{1}{2}}\HermitepolyH{n}@{x/b}e^{-x^{2}/2b^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\eta_{n}(x) = \pi^{-\frac{1}{4}}2^{-\frac{1}{2}n}(n!\,b)^{-\frac{1}{2}}\HermitepolyH{n}@{x/b}e^{-x^{2}/2b^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>eta[n](x) = (Pi)^(-(1)/(4))* (2)^(-(1)/(2)*n)*(factorial(n)*b)^(-(1)/(2))* HermiteH(n, x/b)*exp(- (x)^(2)/2*(b)^(2))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Subscript[\[Eta], n][x] == (Pi)^(-Divide[1,4])* (2)^(-Divide[1,2]*n)*((n)!*b)^(-Divide[1,2])* HermiteH[n, x/b]*Exp[- (x)^(2)/2*(b)^(2)]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.299038106+.6809960435*I
+Test Values: {b = -3/2, eta = 1/2*3^(1/2)+1/2*I, x = 3/2, eta[n] = 1/2*3^(1/2)+1/2*I, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.299038106+.7845019783*I
+Test Values: {b = -3/2, eta = 1/2*3^(1/2)+1/2*I, x = 3/2, eta[n] = 1/2*3^(1/2)+1/2*I, n = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[1.299038105676658, 0.6809960434853285]
+Test Values: {Rule[b, -1.5], Rule[n, 1], Rule[x, 1.5], Rule[η, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[η, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[1.299038105676658, 0.7845019782573356]
+Test Values: {Rule[b, -1.5], Rule[n, 2], Rule[x, 1.5], Rule[η, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[η, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

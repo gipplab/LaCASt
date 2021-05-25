@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Incomplete Gamma and Related Functions - 8.15 Sums}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/8.15.E1 8.15.E1] || [[Item:Q2640|<math>\incgamma@{a}{\lambda x} = \lambda^{a}\sum_{k=0}^{\infty}\incgamma@{a+k}{x}\frac{(1-\lambda)^{k}}{k!}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\incgamma@{a}{\lambda x} = \lambda^{a}\sum_{k=0}^{\infty}\incgamma@{a+k}{x}\frac{(1-\lambda)^{k}}{k!}</syntaxhighlight> || <math>\realpart@@{a} > 0, \realpart@@{(a+k)} > 0</math> || <syntaxhighlight lang=mathematica>GAMMA(a)-GAMMA(a, lambda*x) = (lambda)^(a)* sum(GAMMA(a + k)-GAMMA(a + k, x)*((1 - lambda)^(k))/(factorial(k)), k = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Gamma[a, 0, \[Lambda]*x] == \[Lambda]^(a)* Sum[Gamma[a + k, 0, x]*Divide[(1 - \[Lambda])^(k),(k)!], {k, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [90 / 90]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Float(infinity)+Float(infinity)*I
+Test Values: {a = 1.5, lambda = 1/2*3^(1/2)+1/2*I, x = 1.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Float(infinity)+Float(infinity)*I
+Test Values: {a = 1.5, lambda = 1/2*3^(1/2)+1/2*I, x = .5}</syntaxhighlight><br>... skip entries to safe data</div></div> || Skipped - Because timed out
+|}
+</div>

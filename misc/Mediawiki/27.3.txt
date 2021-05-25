@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Functions of Number Theory - 27.3 Multiplicative Properties}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/27.3.E3 27.3.E3] || [[Item:Q8004|<math>\Eulertotientphi[]@{n} = n\prod_{p\divides n}(1-p^{-1})</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Eulertotientphi[]@{n} = n\prod_{p\divides n}(1-p^{-1})</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>phi(n) = n*product(1 - (p)^(- 1), p**n in - infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>EulerPhi[n] == n*Product[1 - (p)^(- 1), {p**n, - Infinity}, GenerateConditions->None]</syntaxhighlight> || Translation Error || Translation Error || - || -
+|- 
+| [https://dlmf.nist.gov/27.3.E5 27.3.E5] || [[Item:Q8006|<math>\ndivisors[]@{n} = \prod_{r=1}^{\nprimesdiv@{n}}(1+a_{r})</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ndivisors[]@{n} = \prod_{r=1}^{\nprimesdiv@{n}}(1+a_{r})</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>numelems(Divisors(n)) = product(1 + a[r], r = 1..ifactor(n))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/27.3.E6 27.3.E6] || [[Item:Q8007|<math>\sumdivisors{\alpha}@{n} = \prod_{r=1}^{\nprimesdiv@{n}}\frac{p^{\alpha(1+a_{r})}_{r}-1}{p^{\alpha}_{r}-1}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sumdivisors{\alpha}@{n} = \prod_{r=1}^{\nprimesdiv@{n}}\frac{p^{\alpha(1+a_{r})}_{r}-1}{p^{\alpha}_{r}-1}</syntaxhighlight> || <math>\alpha \neq 0</math> || <syntaxhighlight lang=mathematica>add(divisors(alpha)) = product(((p[r])^(alpha*(1 + a[r]))- 1)/((p[r])^(alpha)- 1), r = 1..ifactor(n))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Failure || Missing Macro Error || Error || -
+|- 
+| [https://dlmf.nist.gov/27.3.E8 27.3.E8] || [[Item:Q8009|<math>\Eulertotientphi[]@{m}\Eulertotientphi[]@{n} = \Eulertotientphi[]@{mn}\Eulertotientphi[]@{\pgcd{m,n}}/\pgcd{m,n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Eulertotientphi[]@{m}\Eulertotientphi[]@{n} = \Eulertotientphi[]@{mn}\Eulertotientphi[]@{\pgcd{m,n}}/\pgcd{m,n}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>phi(m)*phi(n) = phi(m*n)*phi(gcd(m , n))/gcd(m , n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>EulerPhi[m]*EulerPhi[n] == EulerPhi[m*n]*EulerPhi[GCD[m , n]]/GCD[m , n]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 9]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.
+Test Values: {m = 2, n = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -2.
+Test Values: {m = 3, n = 3}</syntaxhighlight><br></div></div> || Successful [Tested: 9]
+|}
+</div>

@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Gamma Function - 5.8 Infinite Products}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/5.8.E2 5.8.E2] || [[Item:Q2086|<math>\frac{1}{\EulerGamma@{z}} = ze^{\EulerConstant z}\prod_{k=1}^{\infty}\left(1+\frac{z}{k}\right)e^{-z/k}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{1}{\EulerGamma@{z}} = ze^{\EulerConstant z}\prod_{k=1}^{\infty}\left(1+\frac{z}{k}\right)e^{-z/k}</syntaxhighlight> || <math>\realpart@@{z} > 0</math> || <syntaxhighlight lang=mathematica>(1)/(GAMMA(z)) = z*exp(gamma*z)*product((1 +(z)/(k))*exp(- z/k), k = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[1,Gamma[z]] == z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 5]
+|- 
+| [https://dlmf.nist.gov/5.8.E3 5.8.E3] || [[Item:Q2087|<math>\left|\frac{\EulerGamma@{x}}{\EulerGamma@{x+\iunit y}}\right|^{2} = \prod_{k=0}^{\infty}\left(1+\frac{y^{2}}{(x+k)^{2}}\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\left|\frac{\EulerGamma@{x}}{\EulerGamma@{x+\iunit y}}\right|^{2} = \prod_{k=0}^{\infty}\left(1+\frac{y^{2}}{(x+k)^{2}}\right)</syntaxhighlight> || <math>\realpart@@{x} > 0, \realpart@@{(x+\iunit y)} > 0</math> || <syntaxhighlight lang=mathematica>(abs((GAMMA(x))/(GAMMA(x + I*y))))^(2) = product(1 +((y)^(2))/((x + k)^(2)), k = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(Abs[Divide[Gamma[x],Gamma[x + I*y]]])^(2) == Product[1 +Divide[(y)^(2),(x + k)^(2)], {k, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [18 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -6.243891895+0.*I
+Test Values: {x = 1.5, y = -1.5, x = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -6.243891895+0.*I
+Test Values: {x = 1.5, y = 1.5, x = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.210463144+0.*I
+Test Values: {x = 1.5, y = -.5, x = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.210463144+0.*I
+Test Values: {x = 1.5, y = .5, x = 1}</syntaxhighlight><br>... skip entries to safe data</div></div> || Successful [Tested: 18]
+|}
+</div>

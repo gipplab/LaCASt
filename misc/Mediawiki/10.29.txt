@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Bessel Functions - 10.29 Recurrence Relations and Derivatives}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/10.29#Ex5 10.29#Ex5] || [[Item:Q3508|<math>\modBesselI{0}'@{z} = \modBesselI{1}@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\modBesselI{0}'@{z} = \modBesselI{1}@{z}</syntaxhighlight> || <math>\realpart@@{(0+k+1)} > 0, \realpart@@{(1+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>diff( BesselI(0, z), z$(1) ) = BesselI(1, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[BesselI[0, z], {z, 1}] == BesselI[1, z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/10.29#Ex6 10.29#Ex6] || [[Item:Q3509|<math>\modBesselK{0}'@{z} = -\modBesselK{1}@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\modBesselK{0}'@{z} = -\modBesselK{1}@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff( BesselK(0, z), z$(1) ) = - BesselK(1, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[BesselK[0, z], {z, 1}] == - BesselK[1, z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|}
+</div>

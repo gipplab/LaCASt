@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Parabolic Cylinder Functions - 12.4 Power-Series Expansions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/12.4.E1 12.4.E1] || [[Item:Q4109|<math>\paraU@{a}{z} = \paraU@{a}{0}u_{1}(a,z)+\paraU'@{a}{0}u_{2}(a,z)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\paraU@{a}{z} = \paraU@{a}{0}u_{1}(a,z)+\paraU'@{a}{0}u_{2}(a,z)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>CylinderU(a, z) = CylinderU(a, 0)*(exp(-(1)/(4)*(z)^(2))*(1 +(a +(1)/(2))*((z)^(2))/(factorial(2))+(a +(1)/(2))*(a +(5)/(2))*((z)^(4))/(factorial(4))+ ..))+ subs( temp=0, diff( CylinderU(a, temp), temp$(1) ) )*(exp(-(1)/(4)*(z)^(2))*(z +(a +(3)/(2))*((z)^(3))/(factorial(3))+(a +(3)/(2))*(a +(7)/(2))*((z)^(5))/(factorial(5))+ ..))</syntaxhighlight> || <syntaxhighlight lang=mathematica>ParabolicCylinderD[- 1/2 -(a), z] == ParabolicCylinderD[- 1/2 -(a), 0]*(Exp[-Divide[1,4]*(z)^(2)]*(1 +(a +Divide[1,2])*Divide[(z)^(2),(2)!]+(a +Divide[1,2])*(a +Divide[5,2])*Divide[(z)^(4),(4)!]+ \[Ellipsis]))+ (D[ParabolicCylinderD[- 1/2 -(a), temp], {temp, 1}]/.temp-> 0)*(Exp[-Divide[1,4]*(z)^(2)]*(z +(a +Divide[3,2])*Divide[(z)^(3),(3)!]+(a +Divide[3,2])*(a +Divide[7,2])*Divide[(z)^(5),(5)!]+ \[Ellipsis]))</syntaxhighlight> || Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [42 / 42]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.8412106300093095, 0.2667685495532514], Times[Complex[-0.8618940502981999, 0.18957697416081104], Plus[Complex[0.8660254037844387, 0.49999999999999994], …]]]
+Test Values: {Rule[a, -1.5], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[-0.7641562690755331, 0.8367141764786244], Times[Complex[-1.1066938670748312, -0.24342165324123666], Plus[Complex[-0.4999999999999998, 0.8660254037844387], …]]]
+Test Values: {Rule[a, -1.5], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/12.4.E2 12.4.E2] || [[Item:Q4110|<math>\paraV@{a}{z} = \paraV@{a}{0}u_{1}(a,z)+\paraV'@{a}{0}u_{2}(a,z)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\paraV@{a}{z} = \paraV@{a}{0}u_{1}(a,z)+\paraV'@{a}{0}u_{2}(a,z)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>CylinderV(a, z) = CylinderV(a, 0)*(exp(-(1)/(4)*(z)^(2))*(1 +(a +(1)/(2))*((z)^(2))/(factorial(2))+(a +(1)/(2))*(a +(5)/(2))*((z)^(4))/(factorial(4))+ ..))+ subs( temp=0, diff( CylinderV(a, temp), temp$(1) ) )*(exp(-(1)/(4)*(z)^(2))*(z +(a +(3)/(2))*((z)^(3))/(factorial(3))+(a +(3)/(2))*(a +(7)/(2))*((z)^(5))/(factorial(5))+ ..))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[GAMMA[1/2 + a], Pi]*(Sin[Pi*(a)] * ParabolicCylinderD[-(a) - 1/2, z] + ParabolicCylinderD[-(a) - 1/2, -(z)]) == Divide[GAMMA[1/2 + a], Pi]*(Sin[Pi*(a)] * ParabolicCylinderD[-(a) - 1/2, 0] + ParabolicCylinderD[-(a) - 1/2, -(0)])*(Exp[-Divide[1,4]*(z)^(2)]*(1 +(a +Divide[1,2])*Divide[(z)^(2),(2)!]+(a +Divide[1,2])*(a +Divide[5,2])*Divide[(z)^(4),(4)!]+ \[Ellipsis]))+ (D[Divide[GAMMA[1/2 + a], Pi]*(Sin[Pi*(a)] * ParabolicCylinderD[-(a) - 1/2, temp] + ParabolicCylinderD[-(a) - 1/2, -(temp)]), {temp, 1}]/.temp-> 0)*(Exp[-Divide[1,4]*(z)^(2)]*(z +(a +Divide[3,2])*Divide[(z)^(3),(3)!]+(a +Divide[3,2])*(a +Divide[7,2])*Divide[(z)^(5),(5)!]+ \[Ellipsis]))</syntaxhighlight> || Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [40 / 42]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[0.0, Times[Complex[3.533949646070574*^-17, 0.0], GAMMA[-1.0]]]
+Test Values: {Rule[a, -1.5], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[0.0, Times[Complex[1.0601848938211722*^-16, 3.533949646070574*^-17], GAMMA[-1.0]]]
+Test Values: {Rule[a, -1.5], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

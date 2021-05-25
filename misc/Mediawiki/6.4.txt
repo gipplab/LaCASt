@@ -1,0 +1,58 @@
+{{DISPLAYTITLE:Exponential, Logarithmic, Sine, and Cosine Integrals - 6.4 Analytic Continuation}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/6.4.E1 6.4.E1] || [[Item:Q2234|<math>\expintE@{z} = \expintEin@{z}-\Ln@@{z}-\EulerConstant</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{z} = \expintEin@{z}-\Ln@@{z}-\EulerConstant</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, z] == ExpIntegralE[1, z] + Ln[z] + EulerGamma - Log[z]- EulerGamma</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.0, 0.5235987755982988], Times[-1.0, Ln[Complex[0.8660254037844387, 0.49999999999999994]]]]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.0, 2.0943951023931953], Times[-1.0, Ln[Complex[-0.4999999999999998, 0.8660254037844387]]]]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/6.4.E2 6.4.E2] || [[Item:Q2235|<math>\expintE@{ze^{2m\pi i}} = \expintE@{z}-2m\pi i</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{ze^{2m\pi i}} = \expintE@{z}-2m\pi i</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Ei(z*exp(2*m*Pi*I)) = Ei(z)- 2*m*Pi*I</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, z*Exp[2*m*Pi*I]] == ExpIntegralE[1, z]- 2*m*Pi*I</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [21 / 21]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -.1e-8+6.283185310*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I, m = 1, m = 3}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.6e-8+12.56637063*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I, m = 2, m = 3}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, 18.84955592153876]
+Test Values: {Rule[m, 3], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.0, 18.84955592153876]
+Test Values: {Rule[m, 3], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/6.4.E3 6.4.E3] || [[Item:Q2236|<math>\expintE@{ze^{+\pi i}} = \expintEin@{-z}-\ln@@{z}-\EulerConstant-\pi i</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{ze^{+\pi i}} = \expintEin@{-z}-\ln@@{z}-\EulerConstant-\pi i</syntaxhighlight> || <math>|\phase@@{z}| \leq \pi</math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, z*Exp[+ Pi*I]] == ExpIntegralE[1, - z] + Ln[- z] + EulerGamma - Log[z]- EulerGamma - Pi*I</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.0, 3.6651914291880923], Times[-1.0, Ln[Complex[-0.8660254037844387, -0.49999999999999994]]]]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.0, 5.235987755982989], Times[-1.0, Ln[Complex[0.4999999999999998, -0.8660254037844387]]]]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/6.4.E3 6.4.E3] || [[Item:Q2236|<math>\expintE@{ze^{-\pi i}} = \expintEin@{-z}-\ln@@{z}-\EulerConstant+\pi i</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{ze^{-\pi i}} = \expintEin@{-z}-\ln@@{z}-\EulerConstant+\pi i</syntaxhighlight> || <math>|\phase@@{z}| \leq \pi</math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, z*Exp[- Pi*I]] == ExpIntegralE[1, - z] + Ln[- z] + EulerGamma - Log[z]- EulerGamma + Pi*I</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.0, -2.6179938779914944], Times[-1.0, Ln[Complex[-0.8660254037844387, -0.49999999999999994]]]]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.0, -1.0471975511965976], Times[-1.0, Ln[Complex[0.4999999999999998, -0.8660254037844387]]]]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/6.4.E4 6.4.E4] || [[Item:Q2237|<math>\cosint@{ze^{+\pi i}} = +\pi i+\cosint@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cosint@{ze^{+\pi i}} = +\pi i+\cosint@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Ci(z*exp(+ Pi*I)) = + Pi*I + Ci(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>CosIntegral[z*Exp[+ Pi*I]] == + Pi*I + CosIntegral[z]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 0.-6.283185308*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 0.-6.283185308*I
+Test Values: {z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br></div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, -6.283185307179586]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.0, -6.283185307179586]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br></div></div>
+|- 
+| [https://dlmf.nist.gov/6.4.E4 6.4.E4] || [[Item:Q2237|<math>\cosint@{ze^{-\pi i}} = -\pi i+\cosint@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cosint@{ze^{-\pi i}} = -\pi i+\cosint@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Ci(z*exp(- Pi*I)) = - Pi*I + Ci(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>CosIntegral[z*Exp[- Pi*I]] == - Pi*I + CosIntegral[z]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [5 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 0.+6.283185308*I
+Test Values: {z = 1/2-1/2*I*3^(1/2)}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 0.+6.283185308*I
+Test Values: {z = -1/2*3^(1/2)-1/2*I}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [5 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, 6.283185307179585]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[-1, 3]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.0, 6.283185307179586]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/6.4.E5 6.4.E5] || [[Item:Q2238|<math>\coshint@{ze^{+\pi i}} = +\pi i+\coshint@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\coshint@{ze^{+\pi i}} = +\pi i+\coshint@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Chi(z*exp(+ Pi*I)) = + Pi*I + Chi(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>CoshIntegral[z*Exp[+ Pi*I]] == + Pi*I + CoshIntegral[z]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 0.-6.283185308*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 0.-6.283185307*I
+Test Values: {z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br></div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, -6.283185307179586]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.0, -6.283185307179586]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br></div></div>
+|- 
+| [https://dlmf.nist.gov/6.4.E5 6.4.E5] || [[Item:Q2238|<math>\coshint@{ze^{-\pi i}} = -\pi i+\coshint@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\coshint@{ze^{-\pi i}} = -\pi i+\coshint@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Chi(z*exp(- Pi*I)) = - Pi*I + Chi(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>CoshIntegral[z*Exp[- Pi*I]] == - Pi*I + CoshIntegral[z]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [5 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 0.+6.283185307*I
+Test Values: {z = 1/2-1/2*I*3^(1/2)}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 0.+6.283185308*I
+Test Values: {z = -1/2*3^(1/2)-1/2*I}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [5 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, 6.283185307179586]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[-1, 3]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.0, 6.283185307179586]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

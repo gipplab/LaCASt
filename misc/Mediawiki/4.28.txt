@@ -1,0 +1,44 @@
+{{DISPLAYTITLE:Elementary Functions - 4.28 Definitions and Periodicity}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.28.E1 4.28.E1] || [[Item:Q1838|<math>\sinh@@{z} = \frac{e^{z}-e^{-z}}{2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sinh@@{z} = \frac{e^{z}-e^{-z}}{2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sinh(z) = (exp(z)- exp(- z))/(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sinh[z] == Divide[Exp[z]- Exp[- z],2]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E2 4.28.E2] || [[Item:Q1839|<math>\cosh@@{z} = \frac{e^{z}+e^{-z}}{2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cosh@@{z} = \frac{e^{z}+e^{-z}}{2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cosh(z) = (exp(z)+ exp(- z))/(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cosh[z] == Divide[Exp[z]+ Exp[- z],2]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E3 4.28.E3] || [[Item:Q1840|<math>\cosh@@{z}+\sinh@@{z} = e^{+ z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cosh@@{z}+\sinh@@{z} = e^{+ z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cosh(z)+ sinh(z) = exp(+ z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cosh[z]+ Sinh[z] == Exp[+ z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E3 4.28.E3] || [[Item:Q1840|<math>\cosh@@{z}-\sinh@@{z} = e^{- z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cosh@@{z}-\sinh@@{z} = e^{- z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cosh(z)- sinh(z) = exp(- z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cosh[z]- Sinh[z] == Exp[- z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E4 4.28.E4] || [[Item:Q1841|<math>\tanh@@{z} = \frac{\sinh@@{z}}{\cosh@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\tanh@@{z} = \frac{\sinh@@{z}}{\cosh@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>tanh(z) = (sinh(z))/(cosh(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Tanh[z] == Divide[Sinh[z],Cosh[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E5 4.28.E5] || [[Item:Q1842|<math>\csch@@{z} = \frac{1}{\sinh@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\csch@@{z} = \frac{1}{\sinh@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>csch(z) = (1)/(sinh(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Csch[z] == Divide[1,Sinh[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E6 4.28.E6] || [[Item:Q1843|<math>\sech@@{z} = \frac{1}{\cosh@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sech@@{z} = \frac{1}{\cosh@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sech(z) = (1)/(cosh(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sech[z] == Divide[1,Cosh[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E7 4.28.E7] || [[Item:Q1844|<math>\coth@@{z} = \frac{1}{\tanh@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\coth@@{z} = \frac{1}{\tanh@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>coth(z) = (1)/(tanh(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Coth[z] == Divide[1,Tanh[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E8 4.28.E8] || [[Item:Q1845|<math>\sin@{iz} = i\sinh@@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sin@{iz} = i\sinh@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sin(I*z) = I*sinh(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sin[I*z] == I*Sinh[z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E9 4.28.E9] || [[Item:Q1846|<math>\cos@{iz} = \cosh@@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cos@{iz} = \cosh@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cos(I*z) = cosh(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cos[I*z] == Cosh[z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E10 4.28.E10] || [[Item:Q1847|<math>\tan@{iz} = i\tanh@@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\tan@{iz} = i\tanh@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>tan(I*z) = I*tanh(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Tan[I*z] == I*Tanh[z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E11 4.28.E11] || [[Item:Q1848|<math>\csc@{iz} = -i\csch@@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\csc@{iz} = -i\csch@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>csc(I*z) = - I*csch(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Csc[I*z] == - I*Csch[z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E12 4.28.E12] || [[Item:Q1849|<math>\sec@{iz} = \sech@@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sec@{iz} = \sech@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sec(I*z) = sech(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sec[I*z] == Sech[z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.28.E13 4.28.E13] || [[Item:Q1850|<math>\cot@{iz} = -i\coth@@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cot@{iz} = -i\coth@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cot(I*z) = - I*coth(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cot[I*z] == - I*Coth[z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|}
+</div>

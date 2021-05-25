@@ -1,0 +1,36 @@
+{{DISPLAYTITLE:Bessel Functions - 10.45 Functions of Imaginary Order}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/10.45.E1 10.45.E1] || [[Item:Q3655|<math>x^{2}\deriv[2]{w}{x}+x\deriv{w}{x}+(\nu^{2}-x^{2})w = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>x^{2}\deriv[2]{w}{x}+x\deriv{w}{x}+(\nu^{2}-x^{2})w = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(x)^(2)* diff(w, [x$(2)])+ x*diff(w, x)+((nu)^(2)- (x)^(2))*w = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>(x)^(2)* D[w, {x, 2}]+ x*D[w, x]+(\[Nu]^(2)- (x)^(2))*w == 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [240 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.948557159-.1249999996*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, x = 3/2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.2165063507+.8750000006*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, x = 1/2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [240 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-1.948557158514987, -0.12499999999999989]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-1.9485571585149875, -2.125]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5], Rule[ν, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/10.45.E2 10.45.E2] || [[Item:Q3657|<math>\displaystyle\modBesselIimag{\nu}@{x} = \realpart@{\modBesselI{i\nu}@{x}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\displaystyle\modBesselIimag{\nu}@{x} = \realpart@{\modBesselI{i\nu}@{x}}</syntaxhighlight> || <math>\realpart@@{((\iunit \nu)+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>Re(BesselI(I*(nu), x)) = Re(BesselI(I*nu, x))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Re[BesselI[I*\[Nu], x]] == Re[BesselI[I*\[Nu], x]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 30]
+|- 
+| [https://dlmf.nist.gov/10.45.E2 10.45.E2] || [[Item:Q3657|<math>\displaystyle\modBesselKimag{\nu}@{x} = \modBesselK{i\nu}@{x}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\displaystyle\modBesselKimag{\nu}@{x} = \modBesselK{i\nu}@{x}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>BesselK(I*(nu), x) = BesselK(I*nu, x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>BesselK[I*\[Nu], x] == BesselK[I*\[Nu], x]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 30]
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/10.45.E3 10.45.E3] || [[Item:Q3659|<math>\displaystyle\modBesselIimag{-\nu}@{x} = \modBesselIimag{\nu}@{x}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\displaystyle\modBesselIimag{-\nu}@{x} = \modBesselIimag{\nu}@{x}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Re(BesselI(I*(- nu), x)) = Re(BesselI(I*(nu), x))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Re[BesselI[I*- \[Nu], x]] == Re[BesselI[I*\[Nu], x]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/10.45.E3 10.45.E3] || [[Item:Q3659|<math>\displaystyle\modBesselKimag{-\nu}@{x} = \modBesselKimag{\nu}@{x}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\displaystyle\modBesselKimag{-\nu}@{x} = \modBesselKimag{\nu}@{x}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">BesselK(I*(- nu), x) = BesselK(I*(nu), x)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">BesselK[I*- \[Nu], x] == BesselK[I*\[Nu], x]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- 
+| [https://dlmf.nist.gov/10.45.E4 10.45.E4] || [[Item:Q3660|<math>\Wronskian@{\modBesselKimag{\nu}@{x},\modBesselIimag{\nu}@{x}} = 1/x</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Wronskian@{\modBesselKimag{\nu}@{x},\modBesselIimag{\nu}@{x}} = 1/x</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(BesselK(I*(nu), x))*diff(Re(BesselI(I*(nu), x)), x)-diff(BesselK(I*(nu), x), x)*(Re(BesselI(I*(nu), x))) = 1/x</syntaxhighlight> || <syntaxhighlight lang=mathematica>Wronskian[{BesselK[I*\[Nu], x], Re[BesselI[I*\[Nu], x]]}, x] == 1/x</syntaxhighlight> || Failure || Failure || Error || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[-0.6666666666666666, Times[0.5, Plus[Complex[1.0700115379721733, -0.3754447148158467], Times[Complex[0.1636629185333998, 0.09141848176750039], Derivative[1][Re][Complex[2.445786867824693, 0.6492150843755028]]]]]]
+Test Values: {Rule[x, 1.5], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[-0.6666666666666666, Times[0.5, Plus[Complex[0.8415452902387464, 0.2726729041814867], Times[Complex[0.3412924192180222, 0.19179892830603273], Derivative[1][Re][Complex[1.3137906770541619, -0.7251169608509622]]]]]]
+Test Values: {Rule[x, 1.5], Rule[ν, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/10.45.E8 10.45.E8] || [[Item:Q3665|<math>\modBesselKimag{0}@{x} = \modBesselK{0}@{x}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\modBesselKimag{0}@{x} = \modBesselK{0}@{x}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>BesselK(I*(0), x) = BesselK(0, x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>BesselK[I*0, x] == BesselK[0, x]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 3]
+|}
+</div>

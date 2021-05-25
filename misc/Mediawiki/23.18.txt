@@ -1,0 +1,32 @@
+{{DISPLAYTITLE:Weierstrass Elliptic and Modular Functions - 23.18 Modular Transformations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/23.18.E3 23.18.E3] || [[Item:Q7363|<math>\modularlambdatau@{\mathcal{A}\tau} = \modularlambdatau@{\tau}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\modularlambdatau@{\mathcal{A}\tau} = \modularlambdatau@{\tau}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ModularLambda[A*\[Tau]] == ModularLambda[\[Tau]]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [10 / 100]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-5.551115123125783*^-17, -21.100969873679457]
+Test Values: {Rule[A, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[τ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-4.440892098500626*^-16, -21.100969873679432]
+Test Values: {Rule[A, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[τ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/23.18.E4 23.18.E4] || [[Item:Q7364|<math>\KleincompinvarJtau@{\mathcal{A}\tau} = \KleincompinvarJtau@{\tau}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\KleincompinvarJtau@{\mathcal{A}\tau} = \KleincompinvarJtau@{\tau}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>KleinInvariantJ[A*\[Tau]] == KleinInvariantJ[\[Tau]]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [8 / 100]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[71.08223570333668, 2.1851275073468844*^-14]
+Test Values: {Rule[A, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[τ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-71.08223570333656, -1.2998925520285436*^-13]
+Test Values: {Rule[A, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[τ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/23.18.E5 23.18.E5] || [[Item:Q7365|<math>\Dedekindeta@{\mathcal{A}\tau} = \varepsilon(\mathcal{A})\left(-i(c\tau+d)\right)^{1/2}\Dedekindeta@{\tau}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Dedekindeta@{\mathcal{A}\tau} = \varepsilon(\mathcal{A})\left(-i(c\tau+d)\right)^{1/2}\Dedekindeta@{\tau}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>DedekindEta[A*\[Tau]] == \[CurlyEpsilon][A]*(- I*(c*\[Tau]+ d))^(1/2)* DedekindEta[\[Tau]]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [180 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.11245781368984653, 0.4581664384510718]
+Test Values: {Rule[A, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[c, -1.5], Rule[d, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ε, 1], Rule[τ, Complex[0, 1]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-0.5688147076679476, 1.020829457922046]
+Test Values: {Rule[A, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[c, -1.5], Rule[d, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ε, 2], Rule[τ, Complex[0, 1]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/23.18.E6 23.18.E6] || [[Item:Q7366|<math>\varepsilon(\mathcal{A}) = \exp@{\pi i\left(\frac{a+d}{12c}+s(-d,c)\right)}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\varepsilon(\mathcal{A}) = \exp@{\pi i\left(\frac{a+d}{12c}+s(-d,c)\right)}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>varepsilon(A) = exp(Pi*I*((a + d)/(12*c)+ s(- d , c)))</syntaxhighlight> || <syntaxhighlight lang=mathematica>\[CurlyEpsilon][A] == Exp[Pi*I*(Divide[a + d,12*c]+ s[- d , c])]</syntaxhighlight> || Failure || Failure || Error || Error
+|- 
+| [https://dlmf.nist.gov/23.18.E7 23.18.E7] || [[Item:Q7367|<math>s(d,c) = \sum_{r=1}^{c-1}\frac{r}{c}\left(\frac{dr}{c}-\floor{\frac{dr}{c}}-\frac{1}{2}\right),</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>s(d,c) = \sum_{r=1}^{c-1}\frac{r}{c}\left(\frac{dr}{c}-\floor{\frac{dr}{c}}-\frac{1}{2}\right),</syntaxhighlight> || <math>c > 0</math> || <syntaxhighlight lang=mathematica>s(d , c) = sum((r)/(c)*((d*r)/(c)- floor((d*r)/(c))-(1)/(2)), r = 1..c - 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>s[d , c] == Sum[Divide[r,c]*(Divide[d*r,c]- Floor[Divide[d*r,c]]-Divide[1,2]), {r, 1, c - 1}, GenerateConditions->None]</syntaxhighlight> || Skipped - Unable to analyze test case: Null || Skipped - Unable to analyze test case: Null || - || -
+|}
+</div>

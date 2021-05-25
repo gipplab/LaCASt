@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Weierstrass Elliptic and Modular Functions - 24.1 Special Notation}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/24.1#Ex1 24.1#Ex1] || [[Item:Q7394|<math>B_{1} = \tfrac{1}{6}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>B_{1} = \tfrac{1}{6}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">B[1] = (1)/(6)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[B, 1] == Divide[1,6]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/24.1#Ex2 24.1#Ex2] || [[Item:Q7395|<math>B_{2} = \tfrac{1}{30}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>B_{2} = \tfrac{1}{30}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">B[2] = (1)/(30)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[B, 2] == Divide[1,30]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/24.1#Ex3 24.1#Ex3] || [[Item:Q7396|<math>B_{3} = \tfrac{1}{42}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>B_{3} = \tfrac{1}{42}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">B[3] = (1)/(42)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[B, 3] == Divide[1,42]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

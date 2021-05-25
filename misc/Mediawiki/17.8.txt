@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:q -Hypergeometric and Related Functions - 17.8 Special Cases of <math>\qgenhyperpsi{r}{r}</math> Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/17.8.E1 17.8.E1] || [[Item:Q5420|<math>\sum_{n=-\infty}^{\infty}(-z)^{n}q^{n(n-1)/2} = \qmultiPochhammersym{q,z,q/z}{q}{\infty}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=-\infty}^{\infty}(-z)^{n}q^{n(n-1)/2} = \qmultiPochhammersym{q,z,q/z}{q}{\infty}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[(- z)^(n)* (q)^(n*(n - 1)/2), {n, - Infinity, Infinity}, GenerateConditions->None] == Product[QPochhammer[Part[{q , z , q/z},i],q,Infinity],{i,1,Length[{q , z , q/z}]}]</syntaxhighlight> || Missing Macro Error || Aborted || - || Skipped - Because timed out
+|- 
+| [https://dlmf.nist.gov/17.8.E3 17.8.E3] || [[Item:Q5422|<math>\sum_{n=-\infty}^{\infty}(-1)^{n}q^{n(3n-1)/2}z^{3n}(1+zq^{n}) = \qmultiPochhammersym{q,-z,-q/z}{q}{\infty}\qmultiPochhammersym{qz^{2},q/{z^{2}}}{q^{2}}{\infty}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=-\infty}^{\infty}(-1)^{n}q^{n(3n-1)/2}z^{3n}(1+zq^{n}) = \qmultiPochhammersym{q,-z,-q/z}{q}{\infty}\qmultiPochhammersym{qz^{2},q/{z^{2}}}{q^{2}}{\infty}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[(- 1)^(n)* (q)^(n*(3*n - 1)/2)* (z)^(3*n)*(1 + z*(q)^(n)), {n, - Infinity, Infinity}, GenerateConditions->None] == Product[QPochhammer[Part[{q , - z , - q/z},i],q,Infinity],{i,1,Length[{q , - z , - q/z}]}]*Product[QPochhammer[Part[{q*(z)^(2), q/(z)^(2)},i],(q)^(2),Infinity],{i,1,Length[{q*(z)^(2), q/(z)^(2)}]}]</syntaxhighlight> || Missing Macro Error || Aborted || - || Skipped - Because timed out
+|}
+</div>

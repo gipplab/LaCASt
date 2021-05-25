@@ -1,0 +1,46 @@
+{{DISPLAYTITLE:Elliptic Integrals - 19.10 Relations to Other Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/19.10#Ex1 19.10#Ex1] || [[Item:Q6263|<math>\ln@{x/y} = (x-y)\CarlsonellintRC@{\tfrac{1}{4}(x+y)^{2}}{xy}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ln@{x/y} = (x-y)\CarlsonellintRC@{\tfrac{1}{4}(x+y)^{2}}{xy}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Log[x/y] == (x - y)*1/Sqrt[x*y]*Hypergeometric2F1[1/2,1/2,3/2,1-(Divide[1,4]*(x + y)^(2))/(x*y)]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [12 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, 6.283185307179586]
+Test Values: {Rule[x, 1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[x, 1.5], Rule[y, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/19.10#Ex2 19.10#Ex2] || [[Item:Q6264|<math>\atan@{x/y} = x\CarlsonellintRC@{y^{2}}{y^{2}+x^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\atan@{x/y} = x\CarlsonellintRC@{y^{2}}{y^{2}+x^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ArcTan[x/y] == x*1/Sqrt[(y)^(2)+ (x)^(2)]*Hypergeometric2F1[1/2,1/2,3/2,1-((y)^(2))/((y)^(2)+ (x)^(2))]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [9 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.5707963267948966
+Test Values: {Rule[x, 1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -2.498091544796509
+Test Values: {Rule[x, 1.5], Rule[y, -0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/19.10#Ex3 19.10#Ex3] || [[Item:Q6265|<math>\atanh@{x/y} = x\CarlsonellintRC@{y^{2}}{y^{2}-x^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\atanh@{x/y} = x\CarlsonellintRC@{y^{2}}{y^{2}-x^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ArcTanh[x/y] == x*1/Sqrt[(y)^(2)- (x)^(2)]*Hypergeometric2F1[1/2,1/2,3/2,1-((y)^(2))/((y)^(2)- (x)^(2))]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [15 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[x, 1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[x, 1.5], Rule[y, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/19.10#Ex4 19.10#Ex4] || [[Item:Q6266|<math>\asin@{x/y} = x\CarlsonellintRC@{y^{2}-x^{2}}{y^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\asin@{x/y} = x\CarlsonellintRC@{y^{2}-x^{2}}{y^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ArcSin[x/y] == x*1/Sqrt[(y)^(2)]*Hypergeometric2F1[1/2,1/2,3/2,1-((y)^(2)- (x)^(2))/((y)^(2))]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [9 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -3.141592653589793
+Test Values: {Rule[x, 1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-3.141592653589793, 3.525494348078172]
+Test Values: {Rule[x, 1.5], Rule[y, -0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/19.10#Ex5 19.10#Ex5] || [[Item:Q6267|<math>\asinh@{x/y} = x\CarlsonellintRC@{y^{2}+x^{2}}{y^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\asinh@{x/y} = x\CarlsonellintRC@{y^{2}+x^{2}}{y^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ArcSinh[x/y] == x*1/Sqrt[(y)^(2)]*Hypergeometric2F1[1/2,1/2,3/2,1-((y)^(2)+ (x)^(2))/((y)^(2))]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [9 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-1.7627471740390859, 0.0]
+Test Values: {Rule[x, 1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-3.6368929184641337, 0.0]
+Test Values: {Rule[x, 1.5], Rule[y, -0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/19.10#Ex6 19.10#Ex6] || [[Item:Q6268|<math>\acos@{x/y} = (y^{2}-x^{2})^{1/2}\CarlsonellintRC@{x^{2}}{y^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\acos@{x/y} = (y^{2}-x^{2})^{1/2}\CarlsonellintRC@{x^{2}}{y^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ArcCos[x/y] == ((y)^(2)- (x)^(2))^(1/2)* 1/Sqrt[(y)^(2)]*Hypergeometric2F1[1/2,1/2,3/2,1-((x)^(2))/((y)^(2))]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [12 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[x, 1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[x, 1.5], Rule[y, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/19.10#Ex7 19.10#Ex7] || [[Item:Q6269|<math>\acosh@{x/y} = (x^{2}-y^{2})^{1/2}\CarlsonellintRC@{x^{2}}{y^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\acosh@{x/y} = (x^{2}-y^{2})^{1/2}\CarlsonellintRC@{x^{2}}{y^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ArcCosh[x/y] == ((x)^(2)- (y)^(2))^(1/2)* 1/Sqrt[(y)^(2)]*Hypergeometric2F1[1/2,1/2,3/2,1-((x)^(2))/((y)^(2))]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [12 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[x, 1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[x, 1.5], Rule[y, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/19.10.E2 19.10.E2] || [[Item:Q6270|<math>(\sinh@@{\phi})\CarlsonellintRC@{1}{\cosh^{2}@@{\phi}} = \Gudermannian@{\phi}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>(\sinh@@{\phi})\CarlsonellintRC@{1}{\cosh^{2}@@{\phi}} = \Gudermannian@{\phi}</syntaxhighlight> || <math>-\infty < (\phi), (\phi) < \infty</math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>(Sinh[\[Phi]])*1/Sqrt[(Cosh[\[Phi]])^(2)]*Hypergeometric2F1[1/2,1/2,3/2,1-(1)/((Cosh[\[Phi]])^(2))] == Gudermannian[\[Phi]]</syntaxhighlight> || Missing Macro Error || Failure || - || Successful [Tested: 6]
+|}
+</div>

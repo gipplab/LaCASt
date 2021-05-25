@@ -40,24 +40,24 @@ public final class TextUtility {
     }
 
     public static <V> String join(String joiner, Iterable<V> iter, Function<V, String> elementMapper) {
-        return join(joiner, iter, elementMapper, -1, "");
+        return join(new JoinConfig<>(joiner, iter, elementMapper));
     }
 
-    public static <V> String join(String joiner, Iterable<V> iter, Function<V, String> elementMapper, int max, String maxMessage) {
+    public static <V> String join(JoinConfig<V> config) {
         StringBuilder sb = new StringBuilder();
-        Iterator<V> iterator = iter.iterator();
+        Iterator<V> iterator = config.getIter().iterator();
 
         if (!iterator.hasNext()) return "";
 
         int number = 1;
         V last = iterator.next();
-        sb.append(elementMapper.apply(last));
+        sb.append(config.getMapper().apply(last));
         while (iterator.hasNext()) {
             V next = iterator.next();
-            if ( number >= max && max > 0 ) {
-                sb.append( joiner ).append( maxMessage );
+            if ( number >= config.getMax() && config.getMax() > 0 ) {
+                sb.append( config.getJoiner() ).append( config.getMaxMessage() );
                 break;
-            } else sb.append( joiner ).append( elementMapper.apply(next) );
+            } else sb.append( config.getJoiner() ).append( config.getMapper().apply(next) );
             number++;
         }
         return sb.toString();

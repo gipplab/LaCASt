@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Mathieu Functions and Hill’s Equation - 28.26 Asymptotic Approximations for Large <math>q</math>}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/28.26.E3 28.26.E3] || [[Item:Q8419|<math>\phi = 2h\sinh@@{z}-\left(m+\tfrac{1}{2}\right)\atan@{\sinh@@{z}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\phi = 2h\sinh@@{z}-\left(m+\tfrac{1}{2}\right)\atan@{\sinh@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>phi = 2*h*sinh(z)-(m +(1)/(2))*arctan(sinh(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>\[Phi] == 2*h*Sinh[z]-(m +Divide[1,2])*ArcTan[Sinh[z]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.309060595-.9846819085*I
+Test Values: {h = 1/2*3^(1/2)+1/2*I, phi = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 2.148731429-.6275515075*I
+Test Values: {h = 1/2*3^(1/2)+1/2*I, phi = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, m = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[1.3090605953108105, -0.9846819068983852]
+Test Values: {Rule[h, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[m, 1], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ϕ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[2.1487314296378672, -0.6275515058300114]
+Test Values: {Rule[h, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[m, 2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ϕ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

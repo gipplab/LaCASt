@@ -1,0 +1,28 @@
+{{DISPLAYTITLE:Bessel Functions - 10.15 Derivatives with Respect to Order}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/10.15.E1 10.15.E1] || [[Item:Q3147|<math>\pderiv{\BesselJ{+\nu}@{z}}{\nu} = +\BesselJ{+\nu}@{z}\ln@{\tfrac{1}{2}z}-(\tfrac{1}{2}z)^{+\nu}\sum_{k=0}^{\infty}(-1)^{k}\frac{\digamma@{k+1+\nu}}{\EulerGamma@{k+1+\nu}}\frac{(\tfrac{1}{4}z^{2})^{k}}{k!}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\pderiv{\BesselJ{+\nu}@{z}}{\nu} = +\BesselJ{+\nu}@{z}\ln@{\tfrac{1}{2}z}-(\tfrac{1}{2}z)^{+\nu}\sum_{k=0}^{\infty}(-1)^{k}\frac{\digamma@{k+1+\nu}}{\EulerGamma@{k+1+\nu}}\frac{(\tfrac{1}{4}z^{2})^{k}}{k!}</syntaxhighlight> || <math>\realpart@@{(k+1+\nu)} > 0</math> || <syntaxhighlight lang=mathematica>diff(BesselJ(+ nu, z), nu) = + BesselJ(+ nu, z)*ln((1)/(2)*z)-((1)/(2)*z)^(+ nu)* sum((- 1)^(k)*(Psi(k + 1 + nu))/(GAMMA(k + 1 + nu))*(((1)/(4)*(z)^(2))^(k))/(factorial(k)), k = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[BesselJ[+ \[Nu], z], \[Nu]] == + BesselJ[+ \[Nu], z]*Log[Divide[1,2]*z]-(Divide[1,2]*z)^(+ \[Nu])* Sum[(- 1)^(k)*Divide[PolyGamma[k + 1 + \[Nu]],Gamma[k + 1 + \[Nu]]]*Divide[(Divide[1,4]*(z)^(2))^(k),(k)!], {k, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Skipped - Because timed out || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 70]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, -2]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]], Rule[ν, -2]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/10.15.E1 10.15.E1] || [[Item:Q3147|<math>\pderiv{\BesselJ{-\nu}@{z}}{\nu} = -\BesselJ{-\nu}@{z}\ln@{\tfrac{1}{2}z}+(\tfrac{1}{2}z)^{-\nu}\sum_{k=0}^{\infty}(-1)^{k}\frac{\digamma@{k+1-\nu}}{\EulerGamma@{k+1-\nu}}\frac{(\tfrac{1}{4}z^{2})^{k}}{k!}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\pderiv{\BesselJ{-\nu}@{z}}{\nu} = -\BesselJ{-\nu}@{z}\ln@{\tfrac{1}{2}z}+(\tfrac{1}{2}z)^{-\nu}\sum_{k=0}^{\infty}(-1)^{k}\frac{\digamma@{k+1-\nu}}{\EulerGamma@{k+1-\nu}}\frac{(\tfrac{1}{4}z^{2})^{k}}{k!}</syntaxhighlight> || <math>\realpart@@{(k+1+\nu)} > 0, \realpart@@{((-\nu)+k+1)} > 0, \realpart@@{(k+1-\nu)} > 0</math> || <syntaxhighlight lang=mathematica>diff(BesselJ(- nu, z), nu) = - BesselJ(- nu, z)*ln((1)/(2)*z)+((1)/(2)*z)^(- nu)* sum((- 1)^(k)*(Psi(k + 1 - nu))/(GAMMA(k + 1 - nu))*(((1)/(4)*(z)^(2))^(k))/(factorial(k)), k = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[BesselJ[- \[Nu], z], \[Nu]] == - BesselJ[- \[Nu], z]*Log[Divide[1,2]*z]+(Divide[1,2]*z)^(- \[Nu])* Sum[(- 1)^(k)*Divide[PolyGamma[k + 1 - \[Nu]],Gamma[k + 1 - \[Nu]]]*Divide[(Divide[1,4]*(z)^(2))^(k),(k)!], {k, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Skipped - Because timed out || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 70]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, 2]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]], Rule[ν, 2]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/10.15.E2 10.15.E2] || [[Item:Q3148|<math>\pderiv{\BesselY{\nu}@{z}}{\nu} = \cot@{\nu\pi}\left(\pderiv{\BesselJ{\nu}@{z}}{\nu}-\pi\BesselY{\nu}@{z}\right)-\csc@{\nu\pi}\pderiv{\BesselJ{-\nu}@{z}}{\nu}-\pi\BesselJ{\nu}@{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\pderiv{\BesselY{\nu}@{z}}{\nu} = \cot@{\nu\pi}\left(\pderiv{\BesselJ{\nu}@{z}}{\nu}-\pi\BesselY{\nu}@{z}\right)-\csc@{\nu\pi}\pderiv{\BesselJ{-\nu}@{z}}{\nu}-\pi\BesselJ{\nu}@{z}</syntaxhighlight> || <math>\realpart@@{(\nu+k+1)} > 0, \realpart@@{((-\nu)+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>diff(BesselY(nu, z), nu) = cot(nu*Pi)*(diff(BesselJ(nu, z), nu)- Pi*BesselY(nu, z))- csc(nu*Pi)*diff(BesselJ(- nu, z), nu)- Pi*BesselJ(nu, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[BesselY[\[Nu], z], \[Nu]] == Cot[\[Nu]*Pi]*(D[BesselJ[\[Nu], z], \[Nu]]- Pi*BesselY[\[Nu], z])- Csc[\[Nu]*Pi]*D[BesselJ[- \[Nu], z], \[Nu]]- Pi*BesselJ[\[Nu], z]</syntaxhighlight> || Successful || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [14 / 70]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, -2]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, 2]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

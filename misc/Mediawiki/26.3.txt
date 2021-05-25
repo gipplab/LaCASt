@@ -1,0 +1,44 @@
+{{DISPLAYTITLE:Zeta and Related Functions - 26.3 Lattice Paths: Binomial Coefficients}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/26.3.E1 26.3.E1] || [[Item:Q7774|<math>\binom{m}{n} = \binom{m}{m-n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{m}{n} = \binom{m}{m-n}</syntaxhighlight> || <math>m \geq n</math> || <syntaxhighlight lang=mathematica>binomial(m,n) = binomial(m,m - n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[m,n] == Binomial[m,m - n]</syntaxhighlight> || Failure || Successful || Successful [Tested: 6] || Successful [Tested: 6]
+|- 
+| [https://dlmf.nist.gov/26.3.E1 26.3.E1] || [[Item:Q7774|<math>\binom{m}{m-n} = \frac{m!}{(m-n)!\,n!}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{m}{m-n} = \frac{m!}{(m-n)!\,n!}</syntaxhighlight> || <math>m \geq n</math> || <syntaxhighlight lang=mathematica>binomial(m,m - n) = (factorial(m))/(factorial(m - n)*factorial(n))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[m,m - n] == Divide[(m)!,(m - n)!*(n)!]</syntaxhighlight> || Successful || Successful || Skip - symbolical successful subtest || Successful [Tested: 6]
+|- 
+| [https://dlmf.nist.gov/26.3.E2 26.3.E2] || [[Item:Q7775|<math>\binom{m}{n} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{m}{n} = 0</syntaxhighlight> || <math>n > m</math> || <syntaxhighlight lang=mathematica>binomial(m,n) = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[m,n] == 0</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.3.E3 26.3.E3] || [[Item:Q7776|<math>\sum_{n=0}^{m}\binom{m}{n}x^{n} = (1+x)^{m}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=0}^{m}\binom{m}{n}x^{n} = (1+x)^{m}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum(binomial(m,n)*(x)^(n), n = 0..m) = (1 + x)^(m)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[Binomial[m,n]*(x)^(n), {n, 0, m}, GenerateConditions->None] == (1 + x)^(m)</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 0]
+|- 
+| [https://dlmf.nist.gov/26.3.E4 26.3.E4] || [[Item:Q7777|<math>\sum_{m=0}^{\infty}\binom{m+n}{m}x^{m} = \frac{1}{(1-x)^{n+1}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{m=0}^{\infty}\binom{m+n}{m}x^{m} = \frac{1}{(1-x)^{n+1}}</syntaxhighlight> || <math>|x| < 1</math> || <syntaxhighlight lang=mathematica>sum(binomial(m + n,m)*(x)^(m), m = 0..infinity) = (1)/((1 - x)^(n + 1))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[Binomial[m + n,m]*(x)^(m), {m, 0, Infinity}, GenerateConditions->None] == Divide[1,(1 - x)^(n + 1)]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.3.E5 26.3.E5] || [[Item:Q7778|<math>\binom{m}{n} = \binom{m-1}{n}+\binom{m-1}{n-1}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{m}{n} = \binom{m-1}{n}+\binom{m-1}{n-1}</syntaxhighlight> || <math>m \geq n, n \geq 1</math> || <syntaxhighlight lang=mathematica>binomial(m,n) = binomial(m - 1,n)+binomial(m - 1,n - 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[m,n] == Binomial[m - 1,n]+Binomial[m - 1,n - 1]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 6]
+|- 
+| [https://dlmf.nist.gov/26.3.E6 26.3.E6] || [[Item:Q7779|<math>\binom{m}{n} = \frac{m}{n}\binom{m-1}{n-1}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{m}{n} = \frac{m}{n}\binom{m-1}{n-1}</syntaxhighlight> || <math>m \geq n, n \geq 1</math> || <syntaxhighlight lang=mathematica>binomial(m,n) = (m)/(n)*binomial(m - 1,n - 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[m,n] == Divide[m,n]*Binomial[m - 1,n - 1]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 6]
+|- 
+| [https://dlmf.nist.gov/26.3.E6 26.3.E6] || [[Item:Q7779|<math>\frac{m}{n}\binom{m-1}{n-1} = \frac{m-n+1}{n}\binom{m}{n-1}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{m}{n}\binom{m-1}{n-1} = \frac{m-n+1}{n}\binom{m}{n-1}</syntaxhighlight> || <math>m \geq n, n \geq 1</math> || <syntaxhighlight lang=mathematica>(m)/(n)*binomial(m - 1,n - 1) = (m - n + 1)/(n)*binomial(m,n - 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[m,n]*Binomial[m - 1,n - 1] == Divide[m - n + 1,n]*Binomial[m,n - 1]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 6]
+|- 
+| [https://dlmf.nist.gov/26.3.E7 26.3.E7] || [[Item:Q7780|<math>\binom{m+1}{n+1} = \sum_{k=n}^{m}\binom{k}{n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{m+1}{n+1} = \sum_{k=n}^{m}\binom{k}{n}</syntaxhighlight> || <math>m \geq n, n \geq 0</math> || <syntaxhighlight lang=mathematica>binomial(m + 1,n + 1) = sum(binomial(k,n), k = n..m)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[m + 1,n + 1] == Sum[Binomial[k,n], {k, n, m}, GenerateConditions->None]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 6]
+|- 
+| [https://dlmf.nist.gov/26.3.E8 26.3.E8] || [[Item:Q7781|<math>\binom{m}{n} = \sum_{k=0}^{n}\binom{m-n-1+k}{k}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{m}{n} = \sum_{k=0}^{n}\binom{m-n-1+k}{k}</syntaxhighlight> || <math>m \geq n, n \geq 0</math> || <syntaxhighlight lang=mathematica>binomial(m,n) = sum(binomial(m - n - 1 + k,k), k = 0..n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[m,n] == Sum[Binomial[m - n - 1 + k,k], {k, 0, n}, GenerateConditions->None]</syntaxhighlight> || Successful || Successful || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [3 / 6]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[m, 1], Rule[n, 1]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[m, 2], Rule[n, 2]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/26.3.E9 26.3.E9] || [[Item:Q7782|<math>\binom{n}{0} = \binom{n}{n}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{n}{0} = \binom{n}{n}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>binomial(n,0) = binomial(n,n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[n,0] == Binomial[n,n]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.3.E9 26.3.E9] || [[Item:Q7782|<math>\binom{n}{n} = 1</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{n}{n} = 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>binomial(n,n) = 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[n,n] == 1</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.3.E10 26.3.E10] || [[Item:Q7783|<math>\binom{m}{n} = \sum_{k=0}^{n}(-1)^{n-k}\binom{m+1}{k}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{m}{n} = \sum_{k=0}^{n}(-1)^{n-k}\binom{m+1}{k}</syntaxhighlight> || <math>m \geq n, n \geq 0</math> || <syntaxhighlight lang=mathematica>binomial(m,n) = sum((- 1)^(n - k)*binomial(m + 1,k), k = 0..n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[m,n] == Sum[(- 1)^(n - k)*Binomial[m + 1,k], {k, 0, n}, GenerateConditions->None]</syntaxhighlight> || Successful || Failure || - || Successful [Tested: 6]
+|}
+</div>

@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Elementary Functions - 4.36 Infinite Products and Partial Fractions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.36.E1 4.36.E1] || [[Item:Q1915|<math>\sinh@@{z} = z\prod_{n=1}^{\infty}\left(1+\frac{z^{2}}{n^{2}\pi^{2}}\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sinh@@{z} = z\prod_{n=1}^{\infty}\left(1+\frac{z^{2}}{n^{2}\pi^{2}}\right)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sinh(z) = z*product(1 +((z)^(2))/((n)^(2)* (Pi)^(2)), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sinh[z] == z*Product[1 +Divide[(z)^(2),(n)^(2)* (Pi)^(2)], {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.36.E2 4.36.E2] || [[Item:Q1916|<math>\cosh@@{z} = \prod_{n=1}^{\infty}\left(1+\frac{4z^{2}}{(2n-1)^{2}\pi^{2}}\right)</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cosh@@{z} = \prod_{n=1}^{\infty}\left(1+\frac{4z^{2}}{(2n-1)^{2}\pi^{2}}\right)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cosh(z) = product(1 +(4*(z)^(2))/((2*n - 1)^(2)* (Pi)^(2)), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cosh[z] == Product[1 +Divide[4*(z)^(2),(2*n - 1)^(2)* (Pi)^(2)], {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.36.E3 4.36.E3] || [[Item:Q1917|<math>\coth@@{z} = \frac{1}{z}+2z\sum_{n=1}^{\infty}\frac{1}{z^{2}+n^{2}\pi^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\coth@@{z} = \frac{1}{z}+2z\sum_{n=1}^{\infty}\frac{1}{z^{2}+n^{2}\pi^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>coth(z) = (1)/(z)+ 2*z*sum((1)/((z)^(2)+ (n)^(2)* (Pi)^(2)), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Coth[z] == Divide[1,z]+ 2*z*Sum[Divide[1,(z)^(2)+ (n)^(2)* (Pi)^(2)], {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Successful || Successful [Tested: 7] || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.36.E4 4.36.E4] || [[Item:Q1918|<math>\csch^{2}@@{z} = \sum_{n=-\infty}^{\infty}\frac{1}{(z-n\pi i)^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\csch^{2}@@{z} = \sum_{n=-\infty}^{\infty}\frac{1}{(z-n\pi i)^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(csch(z))^(2) = sum((1)/((z - n*Pi*I)^(2)), n = - infinity..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(Csch[z])^(2) == Sum[Divide[1,(z - n*Pi*I)^(2)], {n, - Infinity, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Successful || Successful [Tested: 7] || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.36.E5 4.36.E5] || [[Item:Q1919|<math>\csch@@{z} = \frac{1}{z}+2z\sum_{n=1}^{\infty}\frac{(-1)^{n}}{z^{2}+n^{2}\pi^{2}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\csch@@{z} = \frac{1}{z}+2z\sum_{n=1}^{\infty}\frac{(-1)^{n}}{z^{2}+n^{2}\pi^{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>csch(z) = (1)/(z)+ 2*z*sum(((- 1)^(n))/((z)^(2)+ (n)^(2)* (Pi)^(2)), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Csch[z] == Divide[1,z]+ 2*z*Sum[Divide[(- 1)^(n),(z)^(2)+ (n)^(2)* (Pi)^(2)], {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Successful || Successful [Tested: 7] || Successful [Tested: 7]
+|}
+</div>

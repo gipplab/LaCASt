@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Bessel Functions - 10.25 Definitions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/10.25.E1 10.25.E1] || [[Item:Q3488|<math>z^{2}\deriv[2]{w}{z}+z\deriv{w}{z}-(z^{2}+\nu^{2})w = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>z^{2}\deriv[2]{w}{z}+z\deriv{w}{z}-(z^{2}+\nu^{2})w = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(z)^(2)* diff(w, [z$(2)])+ z*diff(w, z)-((z)^(2)+ (nu)^(2))*w = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>(z)^(2)* D[w, {z, 2}]+ z*D[w, z]-((z)^(2)+ \[Nu]^(2))*w == 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [220 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -.6467477718e-9-2.000000002*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.8660254040e-9-2.000000001*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2*3^(1/2)-1/2*I}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [264 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, -2.0]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.0, -2.0]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/10.25.E2 10.25.E2] || [[Item:Q3489|<math>\modBesselI{\nu}@{z} = (\tfrac{1}{2}z)^{\nu}\sum_{k=0}^{\infty}\frac{(\tfrac{1}{4}z^{2})^{k}}{k!\EulerGamma@{\nu+k+1}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\modBesselI{\nu}@{z} = (\tfrac{1}{2}z)^{\nu}\sum_{k=0}^{\infty}\frac{(\tfrac{1}{4}z^{2})^{k}}{k!\EulerGamma@{\nu+k+1}}</syntaxhighlight> || <math>\realpart@@{(\nu+k+1)} > 0</math> || <syntaxhighlight lang=mathematica>BesselI(nu, z) = ((1)/(2)*z)^(nu)* sum((((1)/(4)*(z)^(2))^(k))/(factorial(k)*GAMMA(nu + k + 1)), k = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>BesselI[\[Nu], z] == (Divide[1,2]*z)^\[Nu]* Sum[Divide[(Divide[1,4]*(z)^(2))^(k),(k)!*Gamma[\[Nu]+ k + 1]], {k, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 70]
+|}
+</div>

@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[36.1|36.1 Special Notation]]<br>
+; Properties : [[36.2|36.2 Catastrophes and Canonical Integrals]]<br>[[36.3|36.3 Visualizations of Canonical Integrals]]<br>[[36.4|36.4 Bifurcation Sets]]<br>[[36.5|36.5 Stokes Sets]]<br>[[36.6|36.6 Scaling Relations]]<br>[[36.7|36.7 Zeros]]<br>[[36.8|36.8 Convergent Series Expansions]]<br>[[36.9|36.9 Integral Identities]]<br>[[36.10|36.10 Differential Equations]]<br>[[36.11|36.11 Leading-Order Asymptotics]]<br>
+; Applications : [[36.12|36.12 Uniform Approximation of Integrals]]<br>[[36.13|36.13 Kelvin’s Ship-Wave Pattern]]<br>[[36.14|36.14 Other Physical Applications]]<br>
+; Computation : [[36.15|36.15 Methods of Computation]]<br>
+</div>

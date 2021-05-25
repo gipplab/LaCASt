@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Heun Functions - 31.3 Basic Solutions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/31.3.E1 31.3.E1] || [[Item:Q9003|<math>\HeunHl@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z} = \sum_{j=0}^{\infty}c_{j}z^{j}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\HeunHl@{a}{q}{\alpha}{\beta}{\gamma}{\delta}{z} = \sum_{j=0}^{\infty}c_{j}z^{j}</syntaxhighlight> || <math>|z| < 1</math> || <syntaxhighlight lang=mathematica>HeunG(a, q, alpha, beta, gamma, delta, z) = sum(c[j]*(z)^(j), j = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Failure || Missing Macro Error || Manual Skip! || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/31.3.E2 31.3.E2] || [[Item:Q9004|<math>a\gamma c_{1}-qc_{0} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>a\gamma c_{1}-qc_{0} = 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a*gamma*c[1]- q*c[0] = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a*\[Gamma]*Subscript[c, 1]- q*Subscript[c, 0] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/31.3.E3 31.3.E3] || [[Item:Q9005|<math>R_{j}c_{j+1}-(Q_{j}+q)c_{j}+P_{j}c_{j-1} = 0</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>R_{j}c_{j+1}-(Q_{j}+q)c_{j}+P_{j}c_{j-1} = 0</syntaxhighlight> || <math>j \geq 1</math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(a*(j + 1)*(j + gamma))*c[j + 1]-(Q[j]+ q)*c[j]+ P[j]*c[j - 1] = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(a*(j + 1)*(j + \[Gamma]))*Subscript[c, j + 1]-(Subscript[Q, j]+ q)*Subscript[c, j]+ Subscript[P, j]*Subscript[c, j - 1] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Weierstrass Elliptic and Modular Functions - 23.10 Addition Theorems and Other Identities}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/23.10.E15 23.10.E15] || [[Item:Q7313|<math>A_{n} = \left(\frac{\pi^{2}G^{2}}{\omega_{1}}\right)^{n^{2}-1}\frac{q^{n(n-1)/2}}{i^{n-1}}\exp@{-\frac{(n-1)\eta_{1}}{3\omega_{1}}\left((2n-1)(\omega_{1}^{2}+\omega_{3}^{2})+3(n-1)\omega_{1}\omega_{3}\right)}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>A_{n} = \left(\frac{\pi^{2}G^{2}}{\omega_{1}}\right)^{n^{2}-1}\frac{q^{n(n-1)/2}}{i^{n-1}}\exp@{-\frac{(n-1)\eta_{1}}{3\omega_{1}}\left((2n-1)(\omega_{1}^{2}+\omega_{3}^{2})+3(n-1)\omega_{1}\omega_{3}\right)}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>A[n] = (((Pi)^(2)* (G)^(2))/(omega[1]))^((n)^(2)- 1)*((q)^(n*(n - 1)/2))/((I)^(n - 1))*exp(-((n - 1)*eta[1])/(3*omega[1])*((2*n - 1)*((omega[1])^(2)+ (omega[3])^(2))+ 3*(n - 1)*omega[1]*omega[3]))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Subscript[A, n] == (Divide[(Pi)^(2)* (G)^(2),Subscript[\[Omega], 1]])^((n)^(2)- 1)*Divide[(q)^(n*(n - 1)/2),(I)^(n - 1)]*Exp[-Divide[(n - 1)*Subscript[\[Eta], 1],3*Subscript[\[Omega], 1]]*((2*n - 1)*((Subscript[\[Omega], 1])^(2)+ (Subscript[\[Omega], 3])^(2))+ 3*(n - 1)*Subscript[\[Omega], 1]*Subscript[\[Omega], 3])]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -.1339745960+.5000000000*I
+Test Values: {G = 1/2*3^(1/2)+1/2*I, eta = 1/2*3^(1/2)+1/2*I, omega = 1/2*3^(1/2)+1/2*I, q = 1/2*3^(1/2)+1/2*I, A[n] = 1/2*3^(1/2)+1/2*I, eta[1] = 1/2*3^(1/2)+1/2*I, omega[1] = 1/2*3^(1/2)+1/2*I, omega[3] = 1/2*3^(1/2)+1/2*I, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.057001493+.6153915143*I
+Test Values: {G = 1/2*3^(1/2)+1/2*I, eta = 1/2*3^(1/2)+1/2*I, omega = 1/2*3^(1/2)+1/2*I, q = 1/2*3^(1/2)+1/2*I, A[n] = 1/2*3^(1/2)+1/2*I, eta[1] = 1/2*3^(1/2)+1/2*I, omega[1] = 1/2*3^(1/2)+1/2*I, omega[3] = 1/2*3^(1/2)+1/2*I, n = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || Skipped - Because timed out
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/23.10#Ex1 23.10#Ex1] || [[Item:Q7314|<math>q = e^{\pi i\omega_{3}/\omega_{1}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>q = e^{\pi i\omega_{3}/\omega_{1}}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">q = exp(Pi*I*omega[3]/omega[1])</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">q == Exp[Pi*I*Subscript[\[Omega], 3]/Subscript[\[Omega], 1]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/23.10#Ex2 23.10#Ex2] || [[Item:Q7315|<math>G = \prod_{n=1}^{\infty}(1-q^{2n})</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>G = \prod_{n=1}^{\infty}(1-q^{2n})</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">G = product(1 - (q)^(2*n), n = 1..infinity)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">G == Product[1 - (q)^(2*n), {n, 1, Infinity}, GenerateConditions->None]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

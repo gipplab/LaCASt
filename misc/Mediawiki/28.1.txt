@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Functions of Number Theory - 28.1 Special Notation}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/28.1#Ex15 28.1#Ex15] || [[Item:Q8138|<math>\mathrm{Se}_{n}(s,z) = \dfrac{\Mathieuce{n}@{z}{q}}{\Mathieuce{n}@{0}{q}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\mathrm{Se}_{n}(s,z) = \dfrac{\Mathieuce{n}@{z}{q}}{\Mathieuce{n}@{0}{q}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>S*exp(1)[n]*(s , z) = (MathieuCE(n, q, z))/(MathieuCE(n, q, 0))</syntaxhighlight> || <syntaxhighlight lang=mathematica>S*Subscript[E, n]*(s , z) == Divide[MathieuC[n, q, z],MathieuC[n, q, 0]]</syntaxhighlight> || Failure || Failure || Error || Error
+|- 
+| [https://dlmf.nist.gov/28.1#Ex16 28.1#Ex16] || [[Item:Q8139|<math>\mathrm{So}_{n}(s,z) = \dfrac{\Mathieuse{n}@{z}{q}}{\Mathieuse{n}'@{0}{q}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\mathrm{So}_{n}(s,z) = \dfrac{\Mathieuse{n}@{z}{q}}{\Mathieuse{n}'@{0}{q}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>So[n](s , z) = (MathieuSE(n, q, z))/(diff( MathieuSE(n, q, 0), 0$(1) ))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Subscript[So, n][s , z] == Divide[MathieuS[n, q, z],D[MathieuS[n, q, 0], {0, 1}]]</syntaxhighlight> || Error || Failure || - || Error
+|- 
+| [https://dlmf.nist.gov/28.1#Ex17 28.1#Ex17] || [[Item:Q8140|<math>\mathrm{Se}_{n}(c,z) = \dfrac{\Mathieuce{n}@{z}{q}}{\Mathieuce{n}@{0}{q}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\mathrm{Se}_{n}(c,z) = \dfrac{\Mathieuce{n}@{z}{q}}{\Mathieuce{n}@{0}{q}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>S*exp(1)[n]*(c , z) = (MathieuCE(n, q, z))/(MathieuCE(n, q, 0))</syntaxhighlight> || <syntaxhighlight lang=mathematica>S*Subscript[E, n]*(c , z) == Divide[MathieuC[n, q, z],MathieuC[n, q, 0]]</syntaxhighlight> || Failure || Failure || Error || Error
+|- 
+| [https://dlmf.nist.gov/28.1#Ex18 28.1#Ex18] || [[Item:Q8141|<math>\mathrm{So}_{n}(c,z) = \dfrac{\Mathieuse{n}@{z}{q}}{\Mathieuse{n}'@{0}{q}}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\mathrm{So}_{n}(c,z) = \dfrac{\Mathieuse{n}@{z}{q}}{\Mathieuse{n}'@{0}{q}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>So[n](c , z) = (MathieuSE(n, q, z))/(diff( MathieuSE(n, q, 0), 0$(1) ))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Subscript[So, n][c , z] == Divide[MathieuS[n, q, z],D[MathieuS[n, q, 0], {0, 1}]]</syntaxhighlight> || Error || Failure || - || Error
+|}
+</div>

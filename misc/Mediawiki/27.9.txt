@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Functions of Number Theory - 27.9 Quadratic Characters}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/27.9.E1 27.9.E1] || [[Item:Q8055|<math>\Legendresym{-1}{p} = (-1)^{(p-1)/2}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Legendresym{-1}{p} = (-1)^{(p-1)/2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>LegendreSymbol(- 1, p) = (- 1)^((p - 1)/2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Failure || Missing Macro Error || Error || -
+|- 
+| [https://dlmf.nist.gov/27.9.E2 27.9.E2] || [[Item:Q8056|<math>\Legendresym{2}{p} = (-1)^{(p^{2}-1)/8}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Legendresym{2}{p} = (-1)^{(p^{2}-1)/8}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>LegendreSymbol(2, p) = (- 1)^(((p)^(2)- 1)/8)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Failure || Missing Macro Error || Error || -
+|- 
+| [https://dlmf.nist.gov/27.9.E3 27.9.E3] || [[Item:Q8057|<math>\Legendresym{p}{q}\Legendresym{q}{p} = (-1)^{(p-1)(q-1)/4}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Legendresym{p}{q}\Legendresym{q}{p} = (-1)^{(p-1)(q-1)/4}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>LegendreSymbol(p, q)*LegendreSymbol(q, p) = (- 1)^((p - 1)*(q - 1)/4)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Failure || Missing Macro Error || Error || -
+|}
+</div>
