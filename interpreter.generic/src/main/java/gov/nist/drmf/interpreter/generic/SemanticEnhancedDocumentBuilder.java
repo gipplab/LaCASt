@@ -1,24 +1,30 @@
 package gov.nist.drmf.interpreter.generic;
 
 import com.formulasearchengine.mathosphere.mlp.pojos.RawWikiDocument;
+import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
+import gov.nist.drmf.interpreter.generic.mediawiki.DefiningFormula;
+import gov.nist.drmf.interpreter.generic.mediawiki.MediaWikiHelper;
 import gov.nist.drmf.interpreter.generic.mlp.ContextAnalyzer;
 import gov.nist.drmf.interpreter.generic.mlp.Document;
 import gov.nist.drmf.interpreter.generic.mlp.WikitextDocument;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MLPDependencyGraph;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import net.sourceforge.jwbf.core.actions.HttpActionClient;
 import net.sourceforge.jwbf.core.contentRep.Article;
 import net.sourceforge.jwbf.mediawiki.bots.MediaWikiBot;
+import org.apache.commons.text.similarity.LevenshteinDistance;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.wikidata.wdtk.datamodel.interfaces.EntityDocument;
 import org.wikidata.wdtk.datamodel.interfaces.ItemDocument;
 import org.wikidata.wdtk.datamodel.interfaces.SiteLink;
+import org.wikidata.wdtk.datamodel.interfaces.StatementGroup;
 import org.wikidata.wdtk.wikibaseapi.WikibaseDataFetcher;
 import org.wikidata.wdtk.wikibaseapi.apierrors.MediaWikiApiErrorException;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -29,20 +35,12 @@ import java.util.concurrent.TimeUnit;
 public final class SemanticEnhancedDocumentBuilder {
     private static final Logger LOG = LogManager.getLogger(SemanticEnhancedDocumentBuilder.class.getName());
 
-    private final MediaWikiBot wikipediaBot;
-
-    private final WikibaseDataFetcher wikidataFetcher;
+    private final MediaWikiHelper mwHelper;
 
     private static SemanticEnhancedDocumentBuilder builderInstance;
 
     private SemanticEnhancedDocumentBuilder() {
-        HttpActionClient client = HttpActionClient.builder()
-                .withUrl("https://en.wikipedia.org/w/")
-                .withUserAgent("DKEWuppertalUniversityBot", "1.0", "andre.greiner-petter@t-online.de")
-                .withRequestsPerUnit(1, TimeUnit.MINUTES)
-                .build();
-        wikipediaBot = new MediaWikiBot(client);
-        wikidataFetcher = WikibaseDataFetcher.getWikidataDataFetcher();
+        mwHelper = new MediaWikiHelper();
     }
 
     public static SemanticEnhancedDocumentBuilder getDefaultBuilder() {
@@ -73,8 +71,7 @@ public final class SemanticEnhancedDocumentBuilder {
     }
 
     public SemanticEnhancedDocument getDocument(SiteLink wikiDataSiteLink) {
-        String enPageTitle = wikiDataSiteLink.getPageTitle();
-        return getDocument(wikipediaBot.getArticle(enPageTitle));
+        return getDocument(mwHelper.getArticle(wikiDataSiteLink));
     }
 
     /**
@@ -87,24 +84,60 @@ public final class SemanticEnhancedDocumentBuilder {
      */
     public SemanticEnhancedDocument getDocumentFromWikidataItem(String qid)
             throws MediaWikiApiErrorException, IOException, IllegalArgumentException {
-        LOG.debug("Try loading QID " + qid + " from Wikidata");
-        EntityDocument entityDocument = wikidataFetcher.getEntityDocument(qid);
-        if (!(entityDocument instanceof ItemDocument)) {
-            LOG.error("Found an entity but it is not an item");
-            throw new IllegalArgumentException("Given ID '"+qid+"' is not a Wikidata item");
+        ItemDocument iDoc = mwHelper.getItemDocument(qid);
+        SiteLink siteLink = mwHelper.getEnglishWikiSiteLink(iDoc);
+        return getDocument(siteLink);
+    }
+
+    /**
+     * Returns suggested defining formulae and has parts for a given QID. The result list might be empty.
+     * @param qid given QID
+     * @return suggested scored list of defining formulae and its elements
+     * @throws MediaWikiApiErrorException cannot establish connection to mediawiki api
+     * @throws IOException cannot read from mediawiki
+     * @throws IllegalArgumentException given ID was not an item ID
+     */
+    public List<DefiningFormula> enhanceWikidataItem(String qid)
+            throws MediaWikiApiErrorException, IOException, IllegalArgumentException {
+        ItemDocument iDoc = mwHelper.getItemDocument(qid);
+        String englishLabel = iDoc.getLabels().get("en").getText();
+
+        SiteLink siteLink = mwHelper.getEnglishWikiSiteLink(iDoc);
+        SemanticEnhancedDocument sed = getDocument(siteLink);
+
+        List<DefiningFormula> defFormulae = new LinkedList<>();
+        LevenshteinDistance distance = LevenshteinDistance.getDefaultInstance();
+
+        List<MOIPresentations> mois = sed.getFormulae();
+        for ( MOIPresentations moi : mois ) {
+            List<FormulaDefinition> defs = moi.getDefiniens();
+            double moiScore = 0;
+
+            for ( FormulaDefinition def : defs ) {
+                if ( def.getScore() < 0.8 ) break;
+                String defStr = def.getDefinition();
+                Integer levDistance = distance.apply(englishLabel, defStr);
+                double score = def.getScore();
+                if ( levDistance > 0 ) {
+                    score *= 1./levDistance;
+                }
+                if ( score > moiScore ) moiScore = score;
+            }
+
+            DefiningFormula defMoi = new DefiningFormula(moiScore, moi);
+            defFormulae.add(defMoi);
         }
 
-        ItemDocument iDoc = (ItemDocument) entityDocument;
-        LOG.debug("Loaded Wikidata item " + qid + ". Search for enwiki links");
-        Map<String, SiteLink> linkMap = iDoc.getSiteLinks();
-        if ( linkMap == null || !linkMap.containsKey("enwiki") ) {
-            LOG.error("Given QID " + qid + " does not contain an english wikipedia link");
-            String errorMessage = String.format(
-                    "The given QID '%s' with title '%s' is not linked to an English Wikipedia article",
-                    qid, iDoc.getLabels().get("enwiki")
-            );
-            throw new IllegalArgumentException(errorMessage);
+        defFormulae.sort( Comparator.comparingDouble( DefiningFormula::getScore ) );
+        Collections.reverse(defFormulae);
+
+        List<DefiningFormula> results = new LinkedList<>();
+
+        for (DefiningFormula moi : defFormulae) {
+            if ( moi.getScore() == 0 ) break;
+            results.add(moi);
         }
-        return getDocument(linkMap.get("enwiki"));
+
+        return results;
     }
 }
