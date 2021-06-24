@@ -7,6 +7,8 @@ Accept: text/plain
 GET http://localhost:9200/_cat/indices?v
 Accept: text/plain
 ###
+GET localhost:9200/arxiv-moi/_doc/okbFpXNoPCdHP06riJ9Ulg==
+###
 DELETE localhost:9200/dlmf-macros
 ###
 # Simple search test

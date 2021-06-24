@@ -32,19 +32,19 @@ public final class MacroTranslatorUtility {
         MacroTranslationInformation translationInfo = info.getTranslationInformation();
         String extraInformation = metaInfo.getMeaningDescriptionString();
 
-        extraInformation += "; Example: " + metaInfo.getExample() + System.lineSeparator();
-        extraInformation += "Will be translated to: " + translationInfo.getTranslationPattern() + System.lineSeparator();
+        extraInformation += "; Example: " + metaInfo.getExample() + "\n";
+        extraInformation += "Will be translated to: " + translationInfo.getTranslationPattern() + "\n";
 
         if (!metaInfo.getCasComment().isEmpty()) {
-            extraInformation += "Translation Information: " + metaInfo.getCasComment() + System.lineSeparator();
+            extraInformation += "Translation Information: " + metaInfo.getCasComment() + "\n";
         }
 
         StringBuilder sb = new StringBuilder(extraInformation);
         translationInfo.appendNonEssentialInfo(sb, cas);
 
         String currTab = generalTab.substring(0, generalTab.length() - ("DLMF: ").length());
-        sb.append("Relevant links to definitions:").append(System.lineSeparator());
-        sb.append("DLMF: ").append(currTab).append(translationInfo.getDefDlmf()).append(System.lineSeparator());
+        sb.append("Relevant links to definitions:\n");
+        sb.append("DLMF: ").append(currTab).append(translationInfo.getDefDlmf()).append("\n");
         currTab = generalTab.substring(0,
                 ((cas + ": ").length() >= generalTab.length() ?
                         0 : (generalTab.length() - (cas + ": ").length()))
