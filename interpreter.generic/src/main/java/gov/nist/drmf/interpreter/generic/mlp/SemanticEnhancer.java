@@ -241,8 +241,8 @@ public class SemanticEnhancer implements IPartialEnhancer {
         Set<String> replacementPerformed = new HashSet<>();
         LOG.debug("Start replacements on MOI: " + pte.getTexString());
 
-        GenericReplacementTool genericReplacementTool = new GenericReplacementTool(pte);
-        pte = genericReplacementTool.getSemanticallyEnhancedExpression();
+        GenericReplacementTool genericReplacementTool = new GenericReplacementTool();
+        pte = genericReplacementTool.getSemanticallyEnhancedExpression(pte);
         LOG.debug("Replaced general patterns: " + pte.getTexString());
 
         List<SemanticReplacementRule> macroPatterns = retrievedMacros.getPatterns();

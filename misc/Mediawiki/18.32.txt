@@ -13,6 +13,6 @@
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
 |- 
-| [https://dlmf.nist.gov/18.32.E1 18.32.E1] || [[Item:Q6006|<math>w(x) = \exp@{-Q(x)}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>w(x) = \exp@{-Q(x)}</syntaxhighlight> || <math>-\infty < x, x < \infty</math> || <syntaxhighlight lang=mathematica>w(x) = exp(- Q(x))</syntaxhighlight> || <syntaxhighlight lang=mathematica>w[x] == Exp[- Q[x]]</syntaxhighlight> || Skipped - Unable to analyze test case: Null || Skipped - Unable to analyze test case: Null || - || -
+| [https://dlmf.nist.gov/18.32.E1 18.32.E1] || <math qid="Q6006">w(x) = \exp@{-Q(x)}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>w(x) = \exp@{-Q(x)}</syntaxhighlight> || <math>-\infty < x, x < \infty</math> || <syntaxhighlight lang=mathematica>w(x) = exp(- Q(x))</syntaxhighlight> || <syntaxhighlight lang=mathematica>w[x] == Exp[- Q[x]]</syntaxhighlight> || Skipped - Unable to analyze test case: Null || Skipped - Unable to analyze test case: Null || - || -
 |}
 </div>

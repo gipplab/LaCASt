@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.pom.generic;
 
+import gov.nist.drmf.interpreter.common.interfaces.TranslationFeature;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
@@ -17,22 +18,28 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public class GenericConstantReplacer {
+public class GenericConstantReplacer implements TranslationFeature<PrintablePomTaggedExpression> {
 
     private static final SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
 
-    private final PrintablePomTaggedExpression referencePTE;
+    private PrintablePomTaggedExpression referencePTE;
 
     private boolean replacePi, replaceE, replaceI;
 
-    public GenericConstantReplacer(PrintablePomTaggedExpression pte) {
+    public GenericConstantReplacer() {}
+
+    @Override
+    public PrintablePomTaggedExpression preProcess(PrintablePomTaggedExpression pte) {
+        GenericConstantReplacer fixer = new GenericConstantReplacer();
+        return fixer.fixConstants(pte);
+    }
+
+    public PrintablePomTaggedExpression fixConstants(PrintablePomTaggedExpression pte) {
         this.referencePTE = pte;
         this.replacePi = true;
         this.replaceE = analyzeE(pte);
         this.replaceI = analyzeI(pte);
-    }
 
-    public PrintablePomTaggedExpression fixConstants() {
         replaceInternal(List.of(referencePTE));
         fixImReOperatorInternal(List.of(referencePTE));
         fixNotEquals(List.of(referencePTE));

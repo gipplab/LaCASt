@@ -331,8 +331,8 @@ public class EvaluationHelper {
                     newTranslatedSeds.add(newDoc);
                 } else if (preProcessing) {
                     PrintablePomTaggedExpression pte = mlp.parse(semanticlatex);
-                    GenericReplacementTool grt = new GenericReplacementTool(pte);
-                    pte = grt.getSemanticallyEnhancedExpression();
+                    GenericReplacementTool grt = new GenericReplacementTool();
+                    pte = grt.getSemanticallyEnhancedExpression(pte);
                     MatchablePomTaggedExpression goldM = goldMoi.get(key);
                     if (semanticlatex == null || !goldM.match(pte)) {
                         nonMatching++;
@@ -489,8 +489,8 @@ public class EvaluationHelper {
             try { // lacast pre-process
                 LOG.debug("Translate pre-processed: " + genericLatex);
                 PrintablePomTaggedExpression pte = mlp.parse(genericLatex);
-                GenericReplacementTool grt = new GenericReplacementTool(pte);
-                pte = grt.getSemanticallyEnhancedExpression();
+                GenericReplacementTool grt = new GenericReplacementTool();
+                pte = grt.getSemanticallyEnhancedExpression(pte);
                 TranslatedExpression lacastMathE = slt.translate(pte);
                 String lacastMath = lacastMathE.getTranslatedExpression();
                 LOG.debug("Enter lacast pre-processed trans: " + lacastMath);

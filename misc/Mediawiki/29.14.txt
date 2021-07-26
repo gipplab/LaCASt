@@ -13,6 +13,6 @@
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
 |- 
-| [https://dlmf.nist.gov/29.14.E3 29.14.E3] || [[Item:Q8737|<math>w(s,t) = \Jacobiellsnk^{2}@{\compellintKk@@{k}+\iunit t}{k}-\Jacobiellsnk^{2}@{s}{k}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>w(s,t) = \Jacobiellsnk^{2}@{\compellintKk@@{k}+\iunit t}{k}-\Jacobiellsnk^{2}@{s}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>w(s , t) = (JacobiSN(EllipticK(k)+ I*t, k))^(2)- (JacobiSN(s, k))^(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>w[s , t] == (JacobiSN[EllipticK[(k)^2]+ I*t, (k)^2])^(2)- (JacobiSN[s, (k)^2])^(2)</syntaxhighlight> || Failure || Failure || Error || Error
+| [https://dlmf.nist.gov/29.14.E3 29.14.E3] || <math qid="Q8737">w(s,t) = \Jacobiellsnk^{2}@{\compellintKk@@{k}+\iunit t}{k}-\Jacobiellsnk^{2}@{s}{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>w(s,t) = \Jacobiellsnk^{2}@{\compellintKk@@{k}+\iunit t}{k}-\Jacobiellsnk^{2}@{s}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>w(s , t) = (JacobiSN(EllipticK(k)+ I*t, k))^(2)- (JacobiSN(s, k))^(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>w[s , t] == (JacobiSN[EllipticK[(k)^2]+ I*t, (k)^2])^(2)- (JacobiSN[s, (k)^2])^(2)</syntaxhighlight> || Failure || Failure || Error || Error
 |}
 </div>

@@ -156,7 +156,7 @@ public class MacroTranslator extends AbstractListTranslator {
     ) {
         // in case there are parameters, we parse them first
         // empty if none
-        LinkedList<String> parameters = parseParameters(followingExps, info.getTranslationInformation().getNumOfParams());
+        LinkedList<String> parameters = parseParameters(followingExps, info);
 
         // parse derivatives, lagrange notation or primes
         MacroDerivativesTranslator derivativesTranslator = new MacroDerivativesTranslator(this);
@@ -192,6 +192,8 @@ public class MacroTranslator extends AbstractListTranslator {
     }
 
     private void postTranslation(String infoKey, MacroInfoHolder info, MacroDerivativesTranslator derivativesTranslator) {
+        localTranslations.getFreeVariables().addFreeVariables( info.getFreeVariables() );
+
         // put all information to the info log
         getInfoLogger().addMacroInfo(
                 infoKey,
@@ -303,7 +305,8 @@ public class MacroTranslator extends AbstractListTranslator {
         return fset != null;
     }
 
-    private LinkedList<String> parseParameters(List<PomTaggedExpression> followingExps, int numberOfParameters) {
+    private LinkedList<String> parseParameters(List<PomTaggedExpression> followingExps, MacroInfoHolder info) {
+        int numberOfParameters = info.getTranslationInformation().getNumOfParams();
         LinkedList<String> parameters = new LinkedList<>();
         for (int i = 0; i < numberOfParameters && !followingExps.isEmpty(); i++) {
             PomTaggedExpression exp = followingExps.remove(0);
@@ -321,7 +324,9 @@ public class MacroTranslator extends AbstractListTranslator {
             }
 
             // ok, everything's valid, lets move on
-            String translatedPara = translateInnerExp(exp, followingExps).toString();
+            TranslatedExpression te = translateInnerExp(exp, followingExps);
+            info.addFreeVariables( te.getFreeVariables() );
+            String translatedPara = te.toString();
             parameters.addLast(translatedPara);
         }
 
@@ -377,13 +382,16 @@ public class MacroTranslator extends AbstractListTranslator {
                 diffPowerHolder.setComplexDerivativeVar(!PomTaggedExpressionUtility.isSingleVariable(exp));
             }
 
-            addArguments(arguments, exp, followingExps);
+            addArguments(arguments, exp, followingExps, holder);
         }
 
         return arguments;
     }
 
-    private void addArguments(LinkedList<String> arguments, PomTaggedExpression exp, List<PomTaggedExpression> followingExps) {
+    private void addArguments(LinkedList<String> arguments,
+                              PomTaggedExpression exp,
+                              List<PomTaggedExpression> followingExps,
+                              MacroInfoHolder info) {
         // every argument must be self-contained, i.e., in \macro{arg1}{arg2} arg1 cannot access information from
         // arg2 because {arg1} is self-contained. If not, there is something wrong and an error should be thrown.
         Brackets b = Brackets.getBracket(exp);
@@ -396,6 +404,7 @@ public class MacroTranslator extends AbstractListTranslator {
             TranslatedExpression te = sp.translate(null, followingExps);
             getGlobalTranslationList().removeLastNExps(te.getLength());
 
+            info.addFreeVariables( te.getFreeVariables() );
             String newArgument = te.toString();
             Matcher m = endOnMultiplyPattern.matcher(newArgument);
             if ( m.matches() ) newArgument = m.group(1);
@@ -405,7 +414,9 @@ public class MacroTranslator extends AbstractListTranslator {
 //                throw throwMacroException("The arguments of semantic macros must be wrapped in curly brackets! " +
 //                        "It seems you wrote "+ macro + "(...) instead of " + macro + "{...}");
         } else {
-            String translation = translateInnerExp(exp, new LinkedList<>()).toString();
+            TranslatedExpression te = translateInnerExp(exp, new LinkedList<>());
+            info.addFreeVariables( te.getFreeVariables() );
+            String translation = te.toString();
             arguments.addLast(translation);
         }
     }

@@ -13,6 +13,6 @@
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
 |- 
-| [https://dlmf.nist.gov/28.19.E4 28.19.E4] || [[Item:Q8332|<math>e^{\iunit\nu z} = \sum_{n=-\infty}^{\infty}c^{\nu+2n}_{-2n}(q)\Mathieume{\nu+2n}@{z}{q}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>e^{\iunit\nu z} = \sum_{n=-\infty}^{\infty}c^{\nu+2n}_{-2n}(q)\Mathieume{\nu+2n}@{z}{q}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Exp[I*\[Nu]*z] == Sum[(Subscript[c, - 2*n])^(\[Nu]+ 2*n)[q]* Sqrt[2]*MathieuC[\[Nu]+ 2*n, q, z], {n, - Infinity, Infinity}, GenerateConditions->None]</syntaxhighlight> || Missing Macro Error || Failure || - || Skipped - Because timed out
+| [https://dlmf.nist.gov/28.19.E4 28.19.E4] || <math qid="Q8332">e^{\iunit\nu z} = \sum_{n=-\infty}^{\infty}c^{\nu+2n}_{-2n}(q)\Mathieume{\nu+2n}@{z}{q}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>e^{\iunit\nu z} = \sum_{n=-\infty}^{\infty}c^{\nu+2n}_{-2n}(q)\Mathieume{\nu+2n}@{z}{q}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Exp[I*\[Nu]*z] == Sum[(Subscript[c, - 2*n])^(\[Nu]+ 2*n)[q]* Sqrt[2]*MathieuC[\[Nu]+ 2*n, q, z], {n, - Infinity, Infinity}, GenerateConditions->None]</syntaxhighlight> || Missing Macro Error || Failure || - || Skipped - Because timed out
 |}
 </div>

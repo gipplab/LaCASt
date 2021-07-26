@@ -20,8 +20,8 @@ public class NormalizeOperatorNameCaretTests {
     @Test
     void normalizeOperatorCaretEndTests() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("\\operatorname{def}^x a");
-        GenericNormalizeOperatorNameCarets fixer = new GenericNormalizeOperatorNameCarets(ppte);
-        PrintablePomTaggedExpression newPPTE = fixer.normalize();
+        GenericNormalizeOperatorNameCarets fixer = new GenericNormalizeOperatorNameCarets();
+        PrintablePomTaggedExpression newPPTE = fixer.normalize(ppte);
 
         assertEquals(ppte, newPPTE);
         assertEquals("\\operatorname{def} a^x", newPPTE.getTexString());
@@ -30,8 +30,8 @@ public class NormalizeOperatorNameCaretTests {
     @Test
     void normalizeOperatorCaretTests() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("\\operatorname{def}^x a + 2");
-        GenericNormalizeOperatorNameCarets fixer = new GenericNormalizeOperatorNameCarets(ppte);
-        PrintablePomTaggedExpression newPPTE = fixer.normalize();
+        GenericNormalizeOperatorNameCarets fixer = new GenericNormalizeOperatorNameCarets();
+        PrintablePomTaggedExpression newPPTE = fixer.normalize(ppte);
 
         assertEquals(ppte, newPPTE);
         assertEquals("\\operatorname{def} a^x + 2", newPPTE.getTexString());
@@ -40,8 +40,8 @@ public class NormalizeOperatorNameCaretTests {
     @Test
     void normalizeOperatorCaretBracketTests() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("\\operatorname{erf}^{(k)}(z) + 2");
-        GenericNormalizeOperatorNameCarets fixer = new GenericNormalizeOperatorNameCarets(ppte);
-        PrintablePomTaggedExpression newPPTE = fixer.normalize();
+        GenericNormalizeOperatorNameCarets fixer = new GenericNormalizeOperatorNameCarets();
+        PrintablePomTaggedExpression newPPTE = fixer.normalize(ppte);
 
         assertEquals(ppte, newPPTE);
         assertEquals("\\operatorname{erf}(z)^{(k)} + 2", newPPTE.getTexString());

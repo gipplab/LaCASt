@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.pom.generic;
 
+import gov.nist.drmf.interpreter.common.interfaces.TranslationFeature;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
@@ -22,7 +23,7 @@ import java.util.Map;
 /**
  * @author Andre Greiner-Petter
  */
-public class GenericFractionDerivFixer {
+public class GenericFractionDerivFixer implements TranslationFeature<PrintablePomTaggedExpression> {
     private static final Logger LOG = LogManager.getLogger(GenericFractionDerivFixer.class.getName());
 
     private static class DerivArguments {
@@ -41,6 +42,12 @@ public class GenericFractionDerivFixer {
         }
     }
 
+    @Override
+    public PrintablePomTaggedExpression preProcess(PrintablePomTaggedExpression pte) {
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        return fixer.fixGenericDeriv(pte);
+    }
+
     private static class NumeratorInformation {
         private PrintablePomTaggedExpression degree;
         private List<PrintablePomTaggedExpression> arguments;
@@ -51,19 +58,21 @@ public class GenericFractionDerivFixer {
         }
     }
 
-    private final PrintablePomTaggedExpression referencePTE;
+    private PrintablePomTaggedExpression referencePTE;
 
-    private final Map<PomTaggedExpression, DerivArguments> matchMemory;
+    private Map<PomTaggedExpression, DerivArguments> matchMemory;
 
     private boolean wasFixed;
 
-    public GenericFractionDerivFixer(PrintablePomTaggedExpression pte) {
-        this.referencePTE = pte;
-        this.wasFixed = false;
+    public GenericFractionDerivFixer() {
         this.matchMemory = new HashMap<>();
     }
 
-    public PrintablePomTaggedExpression fixGenericDeriv() {
+    public PrintablePomTaggedExpression fixGenericDeriv(PrintablePomTaggedExpression orig) {
+        this.referencePTE = orig;
+        this.wasFixed = false;
+        this.matchMemory.clear();
+
         if ( wasFixed ) return referencePTE;
 
         List<PrintablePomTaggedExpression> derivs = PomTaggedExpressionUtility
