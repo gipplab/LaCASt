@@ -21,7 +21,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -47,7 +47,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -271,7 +271,7 @@
               "x"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -287,7 +287,7 @@
               "x"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -303,7 +303,7 @@
               "x"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -447,7 +447,7 @@
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: HypergeometricPFQ[{$2}, {$3}, $4]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/16.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/HypergeometricPFQ.html",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://reference.wolfram.com/language/ref/Pochhammer.html"
             }
           }
@@ -475,7 +475,7 @@
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
               "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: hypergeom([$2], [$3], $4)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/16.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: pochhammer($0, $1)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#iii\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer"
             }
           }
@@ -530,7 +530,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://reference.wolfram.com/language/ref/Pochhammer.html"
             }
           }
@@ -554,7 +554,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: pochhammer($0, $1)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#iii\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer"
             }
           }
@@ -608,7 +608,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
             }
           }
@@ -635,7 +635,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
             }
           }
@@ -693,7 +693,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html"
             }
           }
@@ -720,7 +720,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff"
             }
           }
@@ -771,7 +771,7 @@
               "\\[Beta]"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -787,7 +787,7 @@
               "Symbol('beta')"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -803,7 +803,7 @@
               "beta"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1034,7 +1034,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1060,7 +1060,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1518,7 +1518,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1534,7 +1534,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1550,7 +1550,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1604,7 +1604,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1620,7 +1620,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1636,7 +1636,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1743,7 +1743,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1769,7 +1769,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1911,7 +1911,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1936,7 +1936,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1976,7 +1976,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2001,7 +2001,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2041,7 +2041,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2066,7 +2066,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2111,8 +2111,8 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\delta" : "Could be the first Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\delta" : "Could be the first Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
             }
           }
@@ -2143,8 +2143,8 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\delta" : "Could be the first Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\delta" : "Could be the first Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
             }
           }
@@ -2278,7 +2278,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2303,7 +2303,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2357,7 +2357,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2383,7 +2383,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2437,7 +2437,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2462,7 +2462,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2598,7 +2598,7 @@
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
             }
           }
@@ -2627,7 +2627,7 @@
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
             }
           }
@@ -2677,7 +2677,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2694,7 +2694,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2711,7 +2711,7 @@
               "n"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2997,7 +2997,7 @@
               "\\[Beta]"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -3012,7 +3012,7 @@
               "Symbol('beta')"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -3027,7 +3027,7 @@
               "beta"
             ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -3242,7 +3242,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -3268,7 +3268,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -3375,7 +3375,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html"
             }
           }
@@ -3411,7 +3411,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff"
             }
           }
@@ -3465,7 +3465,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -3492,7 +3492,7 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -3690,8 +3690,8 @@
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "O" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
           }
@@ -3722,8 +3722,8 @@
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "O" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
           }
@@ -3794,8 +3794,8 @@
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: Sin[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E1\nMathematica:  https://reference.wolfram.com/language/ref/Sin.html"
             }
           }
@@ -3820,8 +3820,8 @@
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nSymPy: https://docs.sympy.org/latest/modules/functions/elementary.html#cos",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: pi",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: sin($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E1\nSymPy: https://docs.sympy.org/latest/modules/functions/elementary.html#sin"
             }
           }
@@ -3846,8 +3846,8 @@
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: sin($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=sin"
             }
           }
@@ -4213,7 +4213,7 @@
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "J" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -4242,7 +4242,7 @@
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
               "J" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }

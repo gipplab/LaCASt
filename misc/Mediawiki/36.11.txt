@@ -13,6 +13,6 @@
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
 |- style="background: #dfe6e9;"
-| [https://dlmf.nist.gov/36.11.E1 36.11.E1] || [[Item:Q9984|<math>t_{1}(\mathbf{x}) < t_{2}(\mathbf{x})</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>t_{1}(\mathbf{x}) < t_{2}(\mathbf{x})</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">t[1](x) < t[2](x)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[t, 1][x] < Subscript[t, 2][x]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+| [https://dlmf.nist.gov/36.11.E1 36.11.E1] || <math qid="Q9984">t_{1}(\mathbf{x}) < t_{2}(\mathbf{x})</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>t_{1}(\mathbf{x}) < t_{2}(\mathbf{x})</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">t[1](x) < t[2](x)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[t, 1][x] < Subscript[t, 2][x]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
 |}
 </div>

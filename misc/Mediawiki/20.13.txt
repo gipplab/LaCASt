@@ -13,6 +13,6 @@
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
 |- 
-| [https://dlmf.nist.gov/20.13.E2 20.13.E2] || [[Item:Q6852|<math>\ipderiv{\theta}{t} = \alpha\ipderiv[2]{\theta}{z}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ipderiv{\theta}{t} = \alpha\ipderiv[2]{\theta}{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(theta, t) = alpha*diff(theta, [z$(2)])</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[\[Theta], t] == \[Alpha]*D[\[Theta], {z, 2}]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 300]
+| [https://dlmf.nist.gov/20.13.E2 20.13.E2] || <math qid="Q6852">\ipderiv{\theta}{t} = \alpha\ipderiv[2]{\theta}{z}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ipderiv{\theta}{t} = \alpha\ipderiv[2]{\theta}{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(theta, t) = alpha*diff(theta, [z$(2)])</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[\[Theta], t] == \[Alpha]*D[\[Theta], {z, 2}]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 300]
 |}
 </div>

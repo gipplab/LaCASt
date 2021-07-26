@@ -25,8 +25,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void partialTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{\\partial}{\\partial z}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [1]{ }{z}", fixedPTE.getTexString());
@@ -38,8 +38,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void simpleDerivTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{d}{dz}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [1]{ }{z}", fixedPTE.getTexString());
@@ -53,8 +53,8 @@ public class GenericFractionDerivFixerTests {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{\\mathrm{d}}{\\mathrm{d}z}");
         assertTrue(ExpressionTags.fraction.equalsPTE(derivPTE));
 
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [1]{ }{z}", fixedPTE.getTexString());
         checkList( fixedPTE.getPrintableComponents(),
@@ -67,8 +67,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void alphaDerivTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{d}{d\\alpha}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [1]{ }{\\alpha}", fixedPTE.getTexString());
@@ -77,8 +77,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void simpleDegreeTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{d^n}{dz^n}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [n]{ }{z}", fixedPTE.getTexString());
@@ -87,8 +87,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void simpleDegreePartialTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{\\partial^n}{\\partial z^n}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [n]{ }{z}", fixedPTE.getTexString());
@@ -97,8 +97,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void alphaDegreeTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{d^n}{d\\alpha^n}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\deriv [n]{ }{\\alpha}", fixedPTE.getTexString());
@@ -107,8 +107,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void wrongDegreeMatchTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{d^n}{d\\alpha^m}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\frac{d^n}{d\\alpha^m}", fixedPTE.getTexString());
@@ -117,8 +117,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void halfDegreeMatchTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("\\frac{d}{d\\alpha^n}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("\\frac{d}{d\\alpha^n}", fixedPTE.getTexString());
@@ -127,8 +127,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void balancedCurlyBracketsTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("x + \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha \\left (1 - z \\right )^n \\right\\}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("x + \\deriv [n]{ }{z} \\left\\{(1 - z)^\\alpha \\left (1 - z \\right )^n \\right\\}", fixedPTE.getTexString());
@@ -137,8 +137,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void balancedCurlyBracketsPartialTest() throws ParseException {
         PrintablePomTaggedExpression derivPTE = mlp.parse("x + \\frac{\\partial^n}{\\partial z^n} \\left\\{ (1-z)^\\alpha \\left (1 - z \\right )^n \\right\\}");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(derivPTE);
-        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression fixedPTE = fixer.fixGenericDeriv(derivPTE);
 
         assertEquals(derivPTE, fixedPTE);
         assertEquals("x + \\deriv [n]{ }{z} \\left\\{(1 - z)^\\alpha \\left (1 - z \\right )^n \\right\\}", fixedPTE.getTexString());
@@ -147,8 +147,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void derivArgTest() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("x + \\frac{d^n }{ d z^n }  ( z^2 - 1 )^n");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(ppte);
-        PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv(ppte);
 
         assertEquals(ppte, newPPTE);
         assertEquals("x + \\deriv [n]{ }{z}(z^2 - 1)^n", newPPTE.getTexString());
@@ -161,8 +161,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void derivArgPartialTest() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("x + \\frac{\\partial^n }{ \\partial z^n }  ( z^2 - 1 )^n");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(ppte);
-        PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv(ppte);
 
         assertEquals(ppte, newPPTE);
         assertEquals("x + \\deriv [n]{ }{z}(z^2 - 1)^n", newPPTE.getTexString());
@@ -175,8 +175,8 @@ public class GenericFractionDerivFixerTests {
     @Test
     void derivNonEmptyArgTest() throws ParseException {
         PrintablePomTaggedExpression ppte = mlp.parse("x + \\frac{d^n z^2}{ d z^n } ");
-        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer(ppte);
-        PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv();
+        GenericFractionDerivFixer fixer = new GenericFractionDerivFixer();
+        PrintablePomTaggedExpression newPPTE = fixer.fixGenericDeriv(ppte);
 
         assertEquals(ppte, newPPTE);
         assertEquals("x + \\deriv [n]{z^2}{z}", newPPTE.getTexString());

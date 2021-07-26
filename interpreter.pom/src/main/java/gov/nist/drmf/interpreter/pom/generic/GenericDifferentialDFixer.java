@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.pom.generic;
 
+import gov.nist.drmf.interpreter.common.interfaces.TranslationFeature;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
@@ -23,10 +24,10 @@ import java.util.regex.Pattern;
 /**
  * @author Andre Greiner-Petter
  */
-public class GenericDifferentialDFixer {
+public class GenericDifferentialDFixer implements TranslationFeature<PrintablePomTaggedExpression> {
     private static final Logger LOG = LogManager.getLogger(GenericDifferentialDFixer.class.getName());
 
-    private final PrintablePomTaggedExpression referencePTE;
+    private PrintablePomTaggedExpression referencePTE;
 
     private static final SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
 
@@ -44,12 +45,18 @@ public class GenericDifferentialDFixer {
         }
     }
 
-    public GenericDifferentialDFixer(PrintablePomTaggedExpression ppte){
-        this.referencePTE = ppte;
-        this.wasFixed = !referencePTE.getRootTexString().matches(".*\\\\i{1,4}nt[^a-zA-Z].*");
+    public GenericDifferentialDFixer() {}
+
+    @Override
+    public PrintablePomTaggedExpression preProcess(PrintablePomTaggedExpression obj) {
+        GenericDifferentialDFixer fixer = new GenericDifferentialDFixer();
+        return fixer.fixDifferentialD(obj);
     }
 
-    public PrintablePomTaggedExpression fixDifferentialD() {
+    public PrintablePomTaggedExpression fixDifferentialD(PrintablePomTaggedExpression obj) {
+        this.referencePTE = obj;
+        this.wasFixed = !referencePTE.getRootTexString().matches(".*\\\\i{1,4}nt[^a-zA-Z].*");
+
         if ( wasFixed ) return referencePTE;
 
         List<PomTaggedExpression> components = referencePTE.getComponents();

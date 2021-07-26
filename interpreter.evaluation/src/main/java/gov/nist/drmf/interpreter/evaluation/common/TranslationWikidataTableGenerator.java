@@ -50,13 +50,13 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
 
     private static final String TABLE_LINE =
             "|- \n" +
-            "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]]<br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%;\" inline>%s</syntaxhighlight> || <math>%s</math> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || " +
+            "| [https://dlmf.nist.gov/%s %s] || <math qid=\"%s\">%s</math><br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%;\" inline>%s</syntaxhighlight> || <math>%s</math> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || " +
             "%s || %s || " +
             "%s || %s\n";
 
     private static final String TABLE_LINE_SKIPPED =
             "|- style=\"background: #dfe6e9;\"\n" +
-            "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]]<br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%; background: inherit;\" inline>%s</syntaxhighlight> || <math>%s</math> || " +
+            "| [https://dlmf.nist.gov/%s %s] || <math qid=\"%s\">%s</math><br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%; background: inherit;\" inline>%s</syntaxhighlight> || <math>%s</math> || " +
                     "<div class=\"mw-highlight mw-highlight-lang-mathematica mw-content-ltr\" dir=\"ltr\"><pre style=\"background: inherit;\">%s</pre></div> || " +
                     "<div class=\"mw-highlight mw-highlight-lang-mathematica mw-content-ltr\" dir=\"ltr\"><pre style=\"background: inherit;\">%s</pre></div> || " +
             "%s || %s || " +

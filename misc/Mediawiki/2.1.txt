@@ -13,7 +13,7 @@
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
 ! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
 |- 
-| [https://dlmf.nist.gov/2.1.E12 2.1.E12] || [[Item:Q697|<math>-1,\\ \ln@@{x},&\phantom{\realpart@@}\nu = -1,\\ x^{\nu+1}/(\nu+1),&\realpart@@{\nu}</math>]]<br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>-1,\\ \ln@@{x},&\phantom{\realpart@@}\nu = -1,\\ x^{\nu+1}/(\nu+1),&\realpart@@{\nu}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>- 1 , ;*ln(x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>- 1 , 
+| [https://dlmf.nist.gov/2.1.E12 2.1.E12] || <math qid="Q697">-1,\\ \ln@@{x},&\phantom{\realpart@@}\nu = -1,\\ x^{\nu+1}/(\nu+1),&\realpart@@{\nu}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>-1,\\ \ln@@{x},&\phantom{\realpart@@}\nu = -1,\\ x^{\nu+1}/(\nu+1),&\realpart@@{\nu}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>- 1 , ;*ln(x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>- 1 , 
 *Log[x]</syntaxhighlight> || Error || Failure || - || Error
 |}
 </div>

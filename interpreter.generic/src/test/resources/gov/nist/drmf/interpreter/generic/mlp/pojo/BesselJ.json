@@ -1,0 +1,250 @@
+{
+    "id" : "FORMULA_0f521573a47e7fd187dafed615b0ecce",
+    "formula" : "\\begin{align}J_{-(m+\\frac{1}{2})}(x) &= (-1)^{m+1} Y_{m+\\frac{1}{2}}(x), \\\\Y_{-(m+\\frac{1}{2})}(x) &= (-1)^m J_{m+\\frac{1}{2}}(x).\\end{align}",
+    "semanticFormula" : "\\begin{align}\\BesselJ{-(m+\\frac{1}{2})}@{x} &=(- 1)^{m+1} \\BesselY{m+\\frac{1}{2}}@{x} , \\\\ \\BesselY{-(m+\\frac{1}{2})}@{x} &=(- 1)^m \\BesselJ{m+\\frac{1}{2}}@{x} .\\end{align}",
+    "confidence" : 0.9120392534878752,
+    "translations" : {
+        "Mathematica" : {
+            "translation" : "BesselJ[-(m +Divide[1,2]), x] == (- 1)^(m + 1)* BesselY[m +Divide[1,2], x]\nBesselY[-(m +Divide[1,2]), x] == (- 1)^(m)* BesselJ[m +Divide[1,2], x]",
+            "translationInformation" : {
+                "subEquations" : [
+                    "BesselJ[-(m +Divide[1,2]), x] = (- 1)^(m + 1)* BesselY[m +Divide[1,2], x]",
+                    "BesselY[-(m +Divide[1,2]), x] = (- 1)^(m)* BesselJ[m +Divide[1,2], x]"
+                ],
+                "freeVariables" : [
+                    "m",
+                    "x"
+                ],
+                "constraints" : [ ],
+                "tokenTranslations" : {
+                    "\\BesselY" : "Bessel function second kind; Example: \\BesselY{v}@{z}\nWill be translated to: BesselY[$0, $1]\nBranch Cuts: (-\\infty, 0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/10.2#E3\nMathematica:  reference.wolfram.com/language/ref/BesselY.html",
+                    "\\BesselJ" : "Bessel function first kind; Example: \\BesselJ{v}@{z}\nWill be translated to: BesselJ[$0, $1]\nBranch Cuts: if v \\notin \\Integers: (-\\infty, 0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/10.2#E2\nMathematica:  https://reference.wolfram.com/language/ref/BesselJ.html"
+                }
+            },
+            "numericResults" : {
+                "overallResult" : "FAILURE",
+                "numberOfTests" : 2,
+                "numberOfFailedTests" : 2,
+                "numberOfSuccessfulTests" : 0,
+                "numberOfSkippedTests" : 0,
+                "numberOfErrorTests" : 0,
+                "wasAborted" : false,
+                "crashed" : false,
+                "testCalculationsGroups" : [
+                    {
+                        "lhs" : "BesselJ[-(m +Divide[1,2]), x]",
+                        "rhs" : "(- 1)^(m + 1)* BesselY[m +Divide[1,2], x]",
+                        "testExpression" : "(BesselJ[-(m +Divide[1,2]), x])-((- 1)^(m + 1)* BesselY[m +Divide[1,2], x])",
+                        "activeConstraints" : [ ],
+                        "testCalculations" : [
+                            {
+                                "result" : "FAILURE",
+                                "resultExpression" : "BesselJ[-0.5 - 1.*m, x] + (-1.)^(2. + m)*BesselY[0.5 + m, x]",
+                                "testValues" : { }
+                            }
+                        ]
+                    },
+                    {
+                        "lhs" : "BesselY[-(m +Divide[1,2]), x]",
+                        "rhs" : "(- 1)^(m)* BesselJ[m +Divide[1,2], x]",
+                        "testExpression" : "(BesselY[-(m +Divide[1,2]), x])-((- 1)^(m)* BesselJ[m +Divide[1,2], x])",
+                        "activeConstraints" : [ ],
+                        "testCalculations" : [
+                            {
+                                "result" : "FAILURE",
+                                "resultExpression" : "(-1.)^(1. + m)*BesselJ[0.5 + m, x] + BesselY[-0.5 - 1.*m, x]",
+                                "testValues" : { }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "symbolicResults" : {
+                "overallResult" : "FAILURE",
+                "numberOfTests" : 2,
+                "numberOfFailedTests" : 2,
+                "numberOfSuccessfulTests" : 0,
+                "numberOfSkippedTests" : 0,
+                "numberOfErrorTests" : 0,
+                "crashed" : false,
+                "testCalculationsGroup" : [
+                    {
+                        "lhs" : "BesselJ[-(m +Divide[1,2]), x]",
+                        "rhs" : "(- 1)^(m + 1)* BesselY[m +Divide[1,2], x]",
+                        "testExpression" : "(BesselJ[-(m +Divide[1,2]), x])-((- 1)^(m + 1)* BesselY[m +Divide[1,2], x])",
+                        "testCalculations" : [
+                            {
+                                "result" : "FAILURE",
+                                "testTitle" : "Simple",
+                                "testExpression" : "FullSimplify[(BesselJ[-(m +Divide[1,2]), x])-((- 1)^(m + 1)* BesselY[m +Divide[1,2], x])]",
+                                "resultExpression" : "Plus[BesselJ[Plus[Rational[-1, 2], Times[-1, m]], x], Times[Power[-1, m], BesselY[Plus[Rational[1, 2], m], x]]]",
+                                "wasAborted" : false,
+                                "conditionallySuccessful" : false
+                            }
+                        ]
+                    },
+                    {
+                        "lhs" : "BesselY[-(m +Divide[1,2]), x]",
+                        "rhs" : "(- 1)^(m)* BesselJ[m +Divide[1,2], x]",
+                        "testExpression" : "(BesselY[-(m +Divide[1,2]), x])-((- 1)^(m)* BesselJ[m +Divide[1,2], x])",
+                        "testCalculations" : [
+                            {
+                                "result" : "FAILURE",
+                                "testTitle" : "Simple",
+                                "testExpression" : "FullSimplify[(BesselY[-(m +Divide[1,2]), x])-((- 1)^(m)* BesselJ[m +Divide[1,2], x])]",
+                                "resultExpression" : "Plus[Times[Power[-1, Plus[1, m]], BesselJ[Plus[Rational[1, 2], m], x]], BesselY[Plus[Rational[-1, 2], Times[-1, m]], x]]",
+                                "wasAborted" : false,
+                                "conditionallySuccessful" : false
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        "Maple" : {
+            "translation" : "BesselJ(-(m +(1)/(2)), x) = (- 1)^(m + 1)* BesselY(m +(1)/(2), x); BesselY(-(m +(1)/(2)), x) = (- 1)^(m)* BesselJ(m +(1)/(2), x)",
+            "translationInformation" : {
+                "subEquations" : [
+                    "BesselJ(-(m +(1)/(2)), x) = (- 1)^(m + 1)* BesselY(m +(1)/(2), x)",
+                    "BesselY(-(m +(1)/(2)), x) = (- 1)^(m)* BesselJ(m +(1)/(2), x)"
+                ],
+                "freeVariables" : [
+                    "m",
+                    "x"
+                ],
+                "constraints" : [ ],
+                "tokenTranslations" : {
+                    "\\BesselY" : "Bessel function second kind; Example: \\BesselY{v}@{z}\nWill be translated to: BesselY($0, $1)\nBranch Cuts: (-\\infty, 0]\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/10.2#E3\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel",
+                    "\\BesselJ" : "Bessel function first kind; Example: \\BesselJ{v}@{z}\nWill be translated to: BesselJ($0, $1)\nBranch Cuts: if v \\notin \\Integers: (-\\infty, 0]\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/10.2#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=Bessel"
+                }
+            },
+            "numericResults" : {
+                "overallResult" : "ERROR",
+                "numberOfTests" : 2,
+                "numberOfFailedTests" : 0,
+                "numberOfSuccessfulTests" : 0,
+                "numberOfSkippedTests" : 0,
+                "numberOfErrorTests" : 2,
+                "wasAborted" : false,
+                "crashed" : false,
+                "testCalculationsGroups" : [
+                    {
+                        "lhs" : "BesselJ(-(m +(1)/(2)), x)",
+                        "rhs" : "(- 1)^(m + 1)* BesselY(m +(1)/(2), x)",
+                        "testExpression" : "evalf((BesselJ(-(m +(1)/(2)), x))-((- 1)^(m + 1)* BesselY(m +(1)/(2), x)))",
+                        "activeConstraints" : [ ],
+                        "testCalculations" : [
+                            {
+                                "result" : "ERROR",
+                                "resultExpression" : "BesselJ(-1.*m-.5000000000,x)-1.*(-1.)^(m+1.)*BesselY(m+.5000000000,x)",
+                                "testValues" : { }
+                            }
+                        ]
+                    },
+                    {
+                        "lhs" : "BesselY(-(m +(1)/(2)), x)",
+                        "rhs" : "(- 1)^(m)* BesselJ(m +(1)/(2), x)",
+                        "testExpression" : "evalf((BesselY(-(m +(1)/(2)), x))-((- 1)^(m)* BesselJ(m +(1)/(2), x)))",
+                        "activeConstraints" : [ ],
+                        "testCalculations" : [
+                            {
+                                "result" : "ERROR",
+                                "resultExpression" : "BesselY(-1.*m-.5000000000,x)-1.*(-1.)^m*BesselJ(m+.5000000000,x)",
+                                "testValues" : { }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "symbolicResults" : {
+                "overallResult" : "FAILURE",
+                "numberOfTests" : 2,
+                "numberOfFailedTests" : 2,
+                "numberOfSuccessfulTests" : 0,
+                "numberOfSkippedTests" : 0,
+                "numberOfErrorTests" : 0,
+                "crashed" : false,
+                "testCalculationsGroup" : [
+                    {
+                        "lhs" : "BesselJ(-(m +(1)/(2)), x)",
+                        "rhs" : "(- 1)^(m + 1)* BesselY(m +(1)/(2), x)",
+                        "testExpression" : "(BesselJ(-(m +(1)/(2)), x))-((- 1)^(m + 1)* BesselY(m +(1)/(2), x))",
+                        "testCalculations" : [
+                            {
+                                "result" : "FAILURE",
+                                "testTitle" : "Simple",
+                                "testExpression" : "simplify((BesselJ(-(m +(1)/(2)), x))-((- 1)^(m + 1)* BesselY(m +(1)/(2), x)))",
+                                "resultExpression" : "BesselJ(-m-1/2,x)+(-1)^m*BesselY(m+1/2,x)",
+                                "wasAborted" : false,
+                                "conditionallySuccessful" : false
+                            }
+                        ]
+                    },
+                    {
+                        "lhs" : "BesselY(-(m +(1)/(2)), x)",
+                        "rhs" : "(- 1)^(m)* BesselJ(m +(1)/(2), x)",
+                        "testExpression" : "(BesselY(-(m +(1)/(2)), x))-((- 1)^(m)* BesselJ(m +(1)/(2), x))",
+                        "testCalculations" : [
+                            {
+                                "result" : "FAILURE",
+                                "testTitle" : "Simple",
+                                "testExpression" : "simplify((BesselY(-(m +(1)/(2)), x))-((- 1)^(m)* BesselJ(m +(1)/(2), x)))",
+                                "resultExpression" : "BesselY(-m-1/2,x)-(-1)^m*BesselJ(m+1/2,x)",
+                                "wasAborted" : false,
+                                "conditionallySuccessful" : false
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    },
+    "positions" : [
+        {
+            "section" : 8,
+            "sentence" : 8,
+            "word" : 32
+        }
+    ],
+    "includes" : [
+        "Y_{\\alpha}",
+        "J_{-\\alpha}(x)",
+        "J",
+        "J_{\\alpha}(x)",
+        "Y_{n}",
+        "J_{n}(x)",
+        "m",
+        "Y_{\\alpha}(x)",
+        "J_{\\alpha}",
+        "x",
+        "(-1)^{m}",
+        "J_{n}",
+        "J_{\\alpha}(z)",
+        "J_{\\alpha}(k)",
+        "Y",
+        "J_{n + m}(x)"
+    ],
+    "isPartOf" : [ ],
+    "definiens" : [
+        {
+            "definition" : "above relation",
+            "score" : 0.6460746792928004
+        },
+        {
+            "definition" : "spherical Bessel",
+            "score" : 0.6460746792928004
+        },
+        {
+            "definition" : "integer",
+            "score" : 0.5988174995334326
+        },
+        {
+            "definition" : "nonnegative integer",
+            "score" : 0.5988174995334326
+        },
+        {
+            "definition" : "relationship",
+            "score" : 0.5988174995334326
+        }
+    ]
+}

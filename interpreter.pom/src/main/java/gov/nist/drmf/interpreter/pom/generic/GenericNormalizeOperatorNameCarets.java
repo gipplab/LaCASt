@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.pom.generic;
 
+import gov.nist.drmf.interpreter.common.interfaces.TranslationFeature;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
@@ -14,14 +15,19 @@ import java.util.List;
 /**
  * @author Andre Greiner-Petter
  */
-public class GenericNormalizeOperatorNameCarets {
-    private final PrintablePomTaggedExpression refPte;
+public class GenericNormalizeOperatorNameCarets implements TranslationFeature<PrintablePomTaggedExpression> {
+    private PrintablePomTaggedExpression refPte;
 
-    public GenericNormalizeOperatorNameCarets(PrintablePomTaggedExpression pte) {
-        this.refPte = pte;
+    public GenericNormalizeOperatorNameCarets() {}
+
+    @Override
+    public PrintablePomTaggedExpression preProcess(PrintablePomTaggedExpression obj) {
+        GenericNormalizeOperatorNameCarets fixer = new GenericNormalizeOperatorNameCarets();
+        return fixer.normalize(obj);
     }
 
-    public PrintablePomTaggedExpression normalize() {
+    public PrintablePomTaggedExpression normalize(PrintablePomTaggedExpression pte) {
+        this.refPte = pte;
         normalizeInternally(List.of(refPte));
         return refPte;
     }

@@ -50,7 +50,7 @@ public class TranslationWikidataTableGeneratorTest {
     public void writeWikiTableTest(@TempDir Path tempDir) throws IOException, URISyntaxException {
         t.generateTable(tempDir);
 
-        Path outputFile = tempDir.resolve("1.txt");
+        Path outputFile = tempDir.resolve("1.2.txt");
         assertTrue(Files.exists(outputFile));
 
         URL expectedOutputURL = TranslationWikidataTableGeneratorTest.class

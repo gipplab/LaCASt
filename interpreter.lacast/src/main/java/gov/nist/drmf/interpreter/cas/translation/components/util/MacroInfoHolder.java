@@ -4,6 +4,7 @@ import gov.nist.drmf.interpreter.cas.common.DLMFPatterns;
 import gov.nist.drmf.interpreter.cas.common.IForwardTranslator;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
 import mlp.FeatureSet;
 import org.apache.logging.log4j.LogManager;
@@ -25,6 +26,8 @@ public class MacroInfoHolder {
 
     private MacroMetaInformation metaInformation;
 
+    private FreeVariables freeVariables;
+
     /**
      * Store information about the macro from an feature set.
      * @param fset future set
@@ -41,6 +44,7 @@ public class MacroInfoHolder {
         this.macro = macro;
         this.checkFeatureSetValidity(translator, fset);
         this.storeInfosValidityCheck(translator, fset, cas);
+        this.freeVariables = new FreeVariables();
     }
 
     private void checkFeatureSetValidity(IForwardTranslator translator, FeatureSet fset)
@@ -85,6 +89,14 @@ public class MacroInfoHolder {
         }
 
         metaInformation = new MacroMetaInformation(fset, cas);
+    }
+
+    public FreeVariables getFreeVariables() {
+        return freeVariables;
+    }
+
+    public void addFreeVariables( FreeVariables others ) {
+        this.freeVariables.addFreeVariables(others);
     }
 
     public boolean isWronskian() {
