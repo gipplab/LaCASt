@@ -16,6 +16,9 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.meta.ListExtender;
 import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
+import gov.nist.drmf.interpreter.generic.eval.TexTableEntry;
+import gov.nist.drmf.interpreter.generic.eval.TexTableGenerator;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedGoldDocument;
 import gov.nist.drmf.interpreter.pom.generic.GenericFunctionAnnotator;
 import gov.nist.drmf.interpreter.pom.generic.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
@@ -579,9 +582,21 @@ public class EvaluationHelper {
     }
 
     public static void main(String[] args) throws IOException, ParseException, InitTranslatorException {
-        List<SemanticEnhancedDocument> generatedDocs = SemanticEnhancedDocument.deserialize(Paths.get("./misc/Results/Wikipedia/gold-data-TRANSLATED.json"));
-        EvaluationHelper helper = new EvaluationHelper(null);
-        helper.compareMathematicaTranslation(generatedDocs);
+//        List<SemanticEnhancedDocument> generatedDocs = SemanticEnhancedDocument.deserialize(Paths.get("./misc/Results/Wikipedia/gold-data-TRANSLATED-ORDERED.json"));
+        List<SemanticEnhancedGoldDocument> generatedDocs = SemanticEnhancedGoldDocument.deserializeGold(goldPath);
+        TexTableGenerator tableGenerator = new TexTableGenerator(Paths.get("./misc/Results/Wikipedia/tex/"));
+
+        for ( int i = 1; i < generatedDocs.size()+1; i++ ) {
+            SemanticEnhancedGoldDocument sed = generatedDocs.get(i-1);
+            TexTableEntry entry = TexTableEntry.generate(sed);
+            tableGenerator.addEntry(entry);
+        }
+
+        tableGenerator.flush();
+        tableGenerator.write();
+
+//        EvaluationHelper helper = new EvaluationHelper(null);
+//        helper.compareMathematicaTranslation(generatedDocs);
 
 //        List<SemanticEnhancedDocument> docs = SemanticEnhancedDocument.deserialize(Paths.get("./misc/Results/Wikipedia/gold-data-TRANSLATED.json"));
 
