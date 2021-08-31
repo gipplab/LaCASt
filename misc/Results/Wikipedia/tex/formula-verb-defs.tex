@@ -1,0 +1,2375 @@
+%%%%%%%%%%%%%%%%%%1: Bessel function%%%%%%%%%%%%%%%%%%
+\newsavebox\ABT
+\begin{lrbox}{\ABT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\begin{align}J_{-(m+\frac{1}{2})}(x) &= (-1)^{m+1} Y_{m+\frac{1}{2}}(x), \\Y_{-(m+\frac{1}{2})}(x) &= (-1)^m J_{m+\frac{1}{2}}(x).\end{align}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ABST
+\begin{lrbox}{\ABST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\begin{align}\BesselJ{- (m + \frac{1}{2})}@{x} &= (- 1)^{m+1} \BesselY{m+\frac{1}{2}}@{x} , \\ \BesselY{- (m + \frac{1}{2})}@{x} &= (-1)^m \BesselJ{m+\frac{1}{2}}@{x} .\end{align}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ABMM
+\begin{lrbox}{\ABMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"BesselJ[- (m +Divide[1,2]), x] == (- 1)^(m + 1)* BesselY[m +Divide[1,2], x] BesselY[- (m +Divide[1,2]), x] == (- 1)^(m)* BesselJ[m +Divide[1,2], x]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ABMA
+\begin{lrbox}{\ABMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"BesselJ(- (m +(1)/(2)), x) = (- 1)^(m + 1)* BesselY(m +(1)/(2), x); BesselY(- (m +(1)/(2)), x) = (- 1)^(m)* BesselJ(m +(1)/(2), x)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%2: Ellipse%%%%%%%%%%%%%%%%%%
+\newsavebox\ACT
+\begin{lrbox}{\ACT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"E(e) \,=\, \int_0^{\pi/2}\sqrt {1 - e^2 \sin^2\theta}\ d\theta"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ACST
+\begin{lrbox}{\ACST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\compellintEk@{e} = \int_0^{\cpi / 2} \sqrt{1 - e^2 \sin^2 \theta} \diff{\theta}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ACMM
+\begin{lrbox}{\ACMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"EllipticE[(e)^2] == Integrate[Sqrt[1 - (e)^(2)*(Sin[\[Theta]])^(2)], {\[Theta], 0, Pi/2}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ACMA
+\begin{lrbox}{\ACMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"EllipticE(e) = int(sqrt(1 - (e)^(2)*(sin(theta))^(2)), theta = 0..Pi/2)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%3: Elliptic integral%%%%%%%%%%%%%%%%%%
+\newsavebox\ADT
+\begin{lrbox}{\ADT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"F(x;k) = u"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ADST
+\begin{lrbox}{\ADST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\incellintFk@{\asin@{\Jacobiellsnk@@{u}{k}}}{k} = u"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ADMM
+\begin{lrbox}{\ADMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"EllipticF[ArcSin[JacobiSN[u, (k)^2]], (k)^2] == u"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ADMA
+\begin{lrbox}{\ADMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"EllipticF(JacobiSN(u, k), k) = u"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%4: Gamma function%%%%%%%%%%%%%%%%%%
+\newsavebox\AET
+\begin{lrbox}{\AET}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{1}{\Gamma(z)} = \frac{i}{2\pi}\int_C (-t)^{-z}e^{-t}\,dt"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AEST
+\begin{lrbox}{\AEST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{1}{\EulerGamma@{z}} = \frac{\iunit}{2 \cpi} \int_C(- t)^{-z} \expe^{-t} \diff{t}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AEMM
+\begin{lrbox}{\AEMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AEMA
+\begin{lrbox}{\AEMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%5: Logarithm%%%%%%%%%%%%%%%%%%
+\newsavebox\AFT
+\begin{lrbox}{\AFT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"2^{4} = 2 \times2 \times 2 \times 2 = 16"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AFST
+\begin{lrbox}{\AFST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"2^{4} = 2 \times2 \times 2 \times 2 = 16"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AFMM
+\begin{lrbox}{\AFMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"(2)^(4) == 2 * 2 * 2 * 2 == 16"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AFMA
+\begin{lrbox}{\AFMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"(2)^(4) = 2 * 2 * 2 * 2 = 16"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%6: Riemann zeta function%%%%%%%%%%%%%%%%%%
+\newsavebox\AGT
+\begin{lrbox}{\AGT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\psi(x) := \sum_{n=1}^\infty e^{-n^2 \pi x}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AGST
+\begin{lrbox}{\AGST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\psi(x) : = \sum_{n=1}^\infty \expe^{- n^2 \cpi x}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AGMM
+\begin{lrbox}{\AGMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\[Psi][x_] := Sum[Exp[-(n)^(2)*Pi*x], {n, 1, Infinity}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AGMA
+\begin{lrbox}{\AGMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"psi := (x) -> sum(exp(-(n)^(2)*Pi*x), n=1..infinity)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%7: Logarithmic integral function%%%%%%%%%%%%%%%%%%
+\newsavebox\AHT
+\begin{lrbox}{\AHT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\operatorname{li}(x) = \lim_{\varepsilon \to 0+} \left( \int_0^{1-\varepsilon} \frac{dt}{\ln t} + \int_{1+\varepsilon}^x \frac{dt}{\ln t} \right)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AHST
+\begin{lrbox}{\AHST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\logint@{x} = \lim_{\varepsilon \to 0+}(\int_0^{1-\varepsilon} \frac{\diff{t}}{\ln t} + \int_{1+\varepsilon}^x \frac{\diff{t}}{\ln t})"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AHMM
+\begin{lrbox}{\AHMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"LogIntegral[x] == Limit[Integrate[Divide[1,Log[t]], {t, 0, 1 - \[CurlyEpsilon]}]+ Integrate[Divide[1,Log[t]], {t, 1 + \[CurlyEpsilon], x}], \[CurlyEpsilon] -> 0, Direction -> "FromAbove"]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AHMA
+\begin{lrbox}{\AHMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Li(x) = limit(int((1)/(ln(t)), t = 0..1 - varepsilon)+ int((1)/(ln(t)), t = 1 + varepsilon..x), varepsilon = 0, right)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%8: Gaussian quadrature%%%%%%%%%%%%%%%%%%
+\newsavebox\AIT
+\begin{lrbox}{\AIT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"w_{i} = \frac{1}{p'_{n}(x_{i})}\int_{a}^{b}\omega(x)\frac{p_{n}(x)}{x-x_{i}}dx"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AIST
+\begin{lrbox}{\AIST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"w_{i} = \frac{1}{p'_{n}(x_{i})} \int_{a}^{b} \omega(x) \frac{p_{n}(x)}{x-x_{i}} \diff{x}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AIMM
+\begin{lrbox}{\AIMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Subscript[w, i] = Divide[1, Subscript[p\[Prime], n][Subscript[x, i]]]*Integrate[\[Omega][x]*Divide[Subscript[p,n][x], x-Subscript[x,i]], {x, a, b}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AIMA
+\begin{lrbox}{\AIMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%9: Lambert W function%%%%%%%%%%%%%%%%%%
+\newsavebox\AJT
+\begin{lrbox}{\AJT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\begin{align}x & =ue^u, \\[5pt]\frac{dx}{du} & =(u+1)e^u.\end{align}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AJST
+\begin{lrbox}{\AJST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\begin{align}x & =\LambertW@{x}\expe^{\LambertW@{x}}, \\ \deriv{x}{\LambertW@{x}} &=(\LambertW@{x} + 1) \expe^{\LambertW@{x}} .\end{align}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AJMM
+\begin{lrbox}{\AJMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x == ProductLog[x]*(E)^(ProductLog[x]) D[x,ProductLog[x]] = (ProductLog[x] + 1)*Exp[ProductLog[x]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AJMA
+\begin{lrbox}{\AJMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x = LambertW(x)*exp(u); diff(x, [LambertW(x)$\$$1]) = (LambertW(x) + 1)*exp(LambertW(x))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%10: Legendre polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\AKT
+\begin{lrbox}{\AKT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{1}{\left| \mathbf{x}-\mathbf{x}' \right|} = \frac{1}{\sqrt{r^2+{r'}^2-2r{r'}\cos\gamma}} = \sum_{\ell=0}^\infty \frac{{r'}^\ell}{r^{\ell+1}} P_\ell(\cos \gamma)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AKST
+\begin{lrbox}{\AKST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{1}{|\mathbf{x} - \mathbf{x} '|} = \frac{1}{\sqrt{r^2+{r'}^2-2r{r'}\cos\gamma}} = \sum_{\ell=0}^\infty \frac{{r'}^\ell}{r^{\ell+1}} \LegendrepolyP{\ell}@{\cos \gamma}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AKMM
+\begin{lrbox}{\AKMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Divide[1, Abs[x - x\[Prime]]] == Divide[1, Sqrt[r^2+(r\[Prime])^(2)-2*r*r\[Prime] Cos[\[Gamma]]]] == Sum[Divide[(r\[Prime])^(\[ScriptL]), r^(\[ScriptL]+1)]*LegendreP[\[ScriptL], Cos[\[Gamma]]], {\[ScriptL], 0, Infinity}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AKMA
+\begin{lrbox}{\AKMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%11: Error function%%%%%%%%%%%%%%%%%%
+\newsavebox\ALT
+\begin{lrbox}{\ALT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\operatorname{erf}^{(k)}(z) = \frac{2 (-1)^{k-1}}{\sqrt{\pi}} \mathit{H}_{k-1}(z) e^{-z^2} = \frac{2}{\sqrt{\pi}}  \frac{d^{k-1}}{dz^{k-1}} \left(e^{-z^2}\right),\qquad k=1, 2, \dots"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ALST
+\begin{lrbox}{\ALST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\erf@@{(z)}^{(k)} = \frac{2 (-1)^{k-1}}{\sqrt{\cpi}} \HermitepolyH{k-1}@{z} \expe^{-z^2} = \frac{2}{\sqrt{\cpi}} \deriv [{k-1}]{ }{z}(\expe^{-z^2}) , \qquad k = 1 , 2 , \dots"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ALMM
+\begin{lrbox}{\ALMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"D[Erf[z], {z, k}] == Divide[2*(- 1)^(k - 1),Sqrt[Pi]]*HermiteH[k - 1, z]*Exp[- (z)^(2)] == Divide[2,Sqrt[Pi]]*D[Exp[- (z)^(2)], {z, k - 1}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ALMA
+\begin{lrbox}{\ALMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"diff(erf(z), [z$\$$k]) = (2*(- 1)^(k - 1))/(sqrt(Pi))*HermiteH(k - 1, z)*exp(- (z)^(2)) = (2)/(sqrt(Pi))*diff(exp(- (z)^(2)), [z$\$$(k - 1)])"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%12: Chebyshev polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\AMT
+\begin{lrbox}{\AMT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x_k = \cos\left(\frac{\pi(k+1/2)}{n}\right),\quad k=0,\ldots,n-1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AMST
+\begin{lrbox}{\AMST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x_k = \cos(\frac{\cpi(k + 1 / 2)}{n}) , \quad k = 0 , \ldots , n - 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AMMM
+\begin{lrbox}{\AMMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Subscript[x, k] == Cos[Divide[Pi*(k + 1/2),n]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AMMA
+\begin{lrbox}{\AMMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x[k] = cos((Pi*(k + 1/2))/(n))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%13: Hermite polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\ANT
+\begin{lrbox}{\ANT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"E(x, y; u) := \sum_{n=0}^\infty u^n \, \psi_n (x) \, \psi_n (y) = \frac{1}{\sqrt{\pi (1 - u^2)}} \, \exp\left(-\frac{1 - u}{1 + u} \, \frac{(x + y)^2}{4} - \frac{1 + u}{1 - u} \, \frac{(x - y)^2}{4}\right)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ANST
+\begin{lrbox}{\ANST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"E(x , y ; u) : = \sum_{n=0}^\infty u^n \psi_n(x) \psi_n(y) = \frac{1}{\sqrt{\cpi(1 - u^2)}} \exp(- \frac{1 - u}{1 + u} \frac{(x + y)^2}{4} - \frac{1 + u}{1 - u} \frac{(x - y)^2}{4})"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ANMM
+\begin{lrbox}{\ANMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\[CapitalEpsilon][x_, y_, u_] := Sum[(u)^(n)* Subscript[\[Psi], n][x]* Subscript[\[Psi], n][y], {n, 0, Infinity}] == Divide[1,Sqrt[Pi*(1 - (u)^(2))]]*Exp[-Divide[1 - u,1 + u]*Divide[(x + y)^(2),4]-Divide[1 + u,1 - u]*Divide[(x - y)^(2),4]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ANMA
+\begin{lrbox}{\ANMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Epsilon := (x, y, u) -> sum((u)^(n)* psi[n](x)* psi[n](y), n = 0..infinity) = (1)/(sqrt(Pi*(1 - (u)^(2))))*exp(-(1 - u)/(1 + u)*((x + y)^(2))/(4)-(1 + u)/(1 - u)*((x - y)^(2))/(4))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%14: Legendre function%%%%%%%%%%%%%%%%%%
+\newsavebox\AOT
+\begin{lrbox}{\AOT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x = \pm 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AOST
+\begin{lrbox}{\AOST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x = \pm 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AOMM
+\begin{lrbox}{\AOMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x == \[PlusMinus]1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AOMA
+\begin{lrbox}{\AOMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x = &+- 1"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%15: Bernoulli polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\APT
+\begin{lrbox}{\APT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"E_n=2^nE_n(\tfrac{1}{2})"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\APST
+\begin{lrbox}{\APST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\EulernumberE{n} = 2^n\EulerpolyE{n}@{\tfrac{1}{2}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\APMM
+\begin{lrbox}{\APMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"EulerE[n] == (2)^(n)* EulerE[n, Divide[1,2]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\APMA
+\begin{lrbox}{\APMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"euler(n) = (2)^(n)* euler(n, (1)/(2))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%16: Trigonometric integral%%%%%%%%%%%%%%%%%%
+\newsavebox\AQT
+\begin{lrbox}{\AQT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\operatorname{Si}(ix) = i\operatorname{Shi}(x)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AQST
+\begin{lrbox}{\AQST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sinint@{\iunit x} = \iunit \sinhint@{x}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AQMM
+\begin{lrbox}{\AQMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"SinIntegral[I*x] == I*SinhIntegral[x]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AQMA
+\begin{lrbox}{\AQMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Si(I*x) = I*Shi(x)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%17: Beta function%%%%%%%%%%%%%%%%%%
+\newsavebox\ART
+\begin{lrbox}{\ART}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"f(z)=\frac{1}{\Beta(x,y)}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ARST
+\begin{lrbox}{\ARST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"f(x, y) = \frac{1}{\EulerBeta@{x}{y}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ARMM
+\begin{lrbox}{\ARMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"f[x_, y_] := Divide[1,Beta[x, y]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ARMA
+\begin{lrbox}{\ARMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"f := (x,y) -> (1)/(Beta(x, y))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%18: Fresnel integral%%%%%%%%%%%%%%%%%%
+\newsavebox\AST
+\begin{lrbox}{\AST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\begin{align}\int x^m e^{ix^n}\,dx & =\frac{x^{m+1}}{m+1}\,_1F_1\left(\begin{array}{c} \frac{m+1}{n}\\1+\frac{m+1}{n}\end{array}\mid ix^n\right) \\[6px]& =\frac{1}{n} i^\frac{m+1}{n}\gamma\left(\frac{m+1}{n},-ix^n\right),\end{align}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ASST
+\begin{lrbox}{\ASST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\begin{align}\int x^m \exp(\iunit x^n) \diff{x} &= \frac{x^{m+1}}{m+1}\genhyperF{1}{1}@{\frac{m+1}{n}}{1+\frac{m+1}{n}}{\iunit x^n}\\ &=\frac{1}{n} \iunit^{(m+1)/n} \incgamma@{\frac{m+1}{n}}{-\iunit x^n}\end{align}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ASMM
+\begin{lrbox}{\ASMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Integrate[(x)^(m)* Exp[I*(x)^(n)], x] == Divide[(x)^(m + 1),m + 1]*HypergeometricPFQ[{Divide[m + 1,n]}, {1 +Divide[m + 1,n]}, I*(x)^(n)] == Divide[1,n]*(I)^((m + 1)/n)* Gamma[Divide[m + 1,n], 0, - I*(x)^(n)]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ASMA
+\begin{lrbox}{\ASMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"int((x)^(m)* exp(I*(x)^(n)), x) = ((x)^(m + 1))/(m + 1)*hypergeom([(m + 1)/(n)], [1 +(m + 1)/(n)], I*(x)^(n)) = (1)/(n)*(I)^((m + 1)/n)* GAMMA((m + 1)/(n))-GAMMA((m + 1)/(n), - I*(x)^(n))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%19: Classical orthogonal polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\ATT
+\begin{lrbox}{\ATT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"T_n(x) = \frac{\Gamma(1/2)\sqrt{1-x^2}}{(-2)^n\,\Gamma(n+1/2)} \  \frac{d^n}{dx^n}\left([1-x^2]^{n-1/2}\right)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ATST
+\begin{lrbox}{\ATST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\ChebyshevpolyT{n}@{x} = \frac{\EulerGamma{1/2}\sqrt{1-x^2}}{(-2)^n\EulerGamma{n+1/2}} \deriv [n]{ }{x}([1 - x^2]^{n-1/2})"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ATMM
+\begin{lrbox}{\ATMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"ChebyshevT[n, x] == Divide[Gamma[1/2]*Sqrt[1 - (x)^(2)],(- 2)^(n)* Gamma[n + 1/2]]*D[(1 - (x)^(2))^(n - 1/2), {x, n}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\ATMA
+\begin{lrbox}{\ATMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"ChebyshevT(n, x) = (GAMMA(1/2)*sqrt(1 - (x)^(2)))/((- 2)^(n)* GAMMA(n + 1/2))*diff((1 - (x)^(2))^(n - 1/2), [x$\$$(n)])"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%20: Generalized hypergeometric function%%%%%%%%%%%%%%%%%%
+\newsavebox\AUT
+\begin{lrbox}{\AUT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"{}_1F_0(1;;z) = \sum_{n \geqslant 0} z^n = (1-z)^{-1}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AUST
+\begin{lrbox}{\AUST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\genhyperF{1}{0}@{1}{}{z} = \sum_{n \geqslant 0} z^n = (1-z)^{-1}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AUMM
+\begin{lrbox}{\AUMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"HypergeometricPFQ[{1}, {}, z] == Sum[(z)^(n), {n, 0, Infinity}] == (1 - z)^(- 1)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AUMA
+\begin{lrbox}{\AUMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"hypergeom([1], [], z) = sum((z)^(n), n = 0..infinity) = (1 - z)^(- 1)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%21: Dirichlet L-function%%%%%%%%%%%%%%%%%%
+\newsavebox\AVT
+\begin{lrbox}{\AVT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\chi(-1) = 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AVST
+\begin{lrbox}{\AVST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\Dirichletchar@@{- 1}{k} = 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AVMM
+\begin{lrbox}{\AVMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"DirichletCharacter[1, 1, -1] == 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AVMA
+\begin{lrbox}{\AVMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%22: Airy function%%%%%%%%%%%%%%%%%%
+\newsavebox\AWT
+\begin{lrbox}{\AWT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\operatorname{Bi}'(z)\sim \frac{z^{\frac{1}{4}}e^{\frac{2}{3}z^{\frac{3}{2}}}}{\sqrt\pi\,}\left[ \sum_{n=0}^{\infty}\frac{1+6n}{1-6n} \dfrac{ \Gamma(n+\frac{5}{6})\Gamma(n+\frac{1}{6})\left(\frac{3}{4}\right)^n}{2\pi n! z^{3n/2}} \right]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AWST
+\begin{lrbox}{\AWST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\AiryBi'@{z} \sim \frac{z^{\frac{1}{4}} \expe^{\frac{2}{3}z^{\frac{3}{2}}}}{\sqrt{\cpi}} [\sum_{n=0}^{\infty} \frac{1+6n}{1-6n} \frac{\EulerGamma@{n + \frac{5}{6}} \EulerGamma@{n + \frac{1}{6}}(\frac{3}{4})^n{2 \cpi n! z^{3n/2}}}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AWMM
+\begin{lrbox}{\AWMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AWMA
+\begin{lrbox}{\AWMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%23: Dawson function%%%%%%%%%%%%%%%%%%
+\newsavebox\AXT
+\begin{lrbox}{\AXT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"F'(y)=1-2yF(y)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AXST
+\begin{lrbox}{\AXST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\DawsonsintF'@{y}=1-2y\DawsonsintF@{y}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AXMM
+\begin{lrbox}{\AXMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"D[DawsonF[y], {y, 1}] == 1 - 2*y*DawsonF[y]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AXMA
+\begin{lrbox}{\AXMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"diff( dawson(y), y$\$$(1) ) = 1 - 2*y*dawson(y)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%24: Hurwitz zeta function%%%%%%%%%%%%%%%%%%
+\newsavebox\AYT
+\begin{lrbox}{\AYT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"s\not =1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AYST
+\begin{lrbox}{\AYST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"s \neq 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AYMM
+\begin{lrbox}{\AYMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"s \[NotEqual] 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AYMA
+\begin{lrbox}{\AYMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%25: Theta function%%%%%%%%%%%%%%%%%%
+\newsavebox\AZT
+\begin{lrbox}{\AZT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"q = e^{i\pi\tau}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AZST
+\begin{lrbox}{\AZST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"q = \expe^{\iunit \cpi \tau}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AZMM
+\begin{lrbox}{\AZMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"q == Exp[I*Pi*\[Tau]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\AZMA
+\begin{lrbox}{\AZMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"q = exp(I*Pi*tau)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%26: Jacobi elliptic functions%%%%%%%%%%%%%%%%%%
+\newsavebox\BAT
+\begin{lrbox}{\BAT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{\mathrm{d}}{\mathrm{d}z} \operatorname{dn}(z) = - k^2 \operatorname{sn}(z) \operatorname{cn}(z)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BAST
+\begin{lrbox}{\BAST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\deriv [1]{ }{z} \Jacobielldnk@@{(z)}{k} = - k^2 \Jacobiellsnk@@{(z)}{k} \Jacobiellcnk@@{(z)}{k}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BAMM
+\begin{lrbox}{\BAMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"D[JacobiDN[z, (k)^2], {z, 1}] == - (k)^(2)* JacobiSN[z, (k)^2]*JacobiCN[z, (k)^2]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BAMA
+\begin{lrbox}{\BAMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"diff(JacobiDN(z, k), [z$\$$(1)]) = - (k)^(2)* JacobiSN(z, k)*JacobiCN(z, k)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%27: Incomplete gamma function%%%%%%%%%%%%%%%%%%
+\newsavebox\BBT
+\begin{lrbox}{\BBT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\int_{-\infty}^\infty \frac {\gamma\left(\frac s 2, z^2 \pi \right)} {(z^2 \pi)^\frac s 2} e^{-2 \pi i k z} \mathrm d z = \frac {\Gamma\left(\frac {1-s} 2, k^2 \pi \right)} {(k^2 \pi)^\frac {1-s} 2}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BBST
+\begin{lrbox}{\BBST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\int_{-\infty}^\infty \frac{\incgamma@{\frac s 2}{z^2 \cpi}}{(z^2 \cpi)^\frac s 2} \expe^{- 2 \cpi \iunit k z} \diff{z} = \frac{\incGamma@{\frac {1-s} 2}{k^2 \cpi}}{(k^2 \cpi)^\frac {1-s} 2}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BBMM
+\begin{lrbox}{\BBMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Integrate[Divide[Gamma[Divide[s,2], 0, (z)^(2)* Pi],((z)^(2)* Pi)^(Divide[s,2])]*Exp[- 2*Pi*I*k*z], {z, - Infinity, Infinity}] == Divide[Gamma[Divide[1 - s,2], (k)^(2)* Pi],((k)^(2)* Pi)^(Divide[1 - s,2])]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BBMA
+\begin{lrbox}{\BBMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"int((GAMMA((s)/(2))-GAMMA((s)/(2), (z)^(2)* Pi))/(((z)^(2)* Pi)^((s)/(2)))*exp(- 2*Pi*I*k*z), z = - infinity..infinity) = (GAMMA((1 - s)/(2), (k)^(2)* Pi))/(((k)^(2)* Pi)^((1 - s)/(2)))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%28: Polylogarithm%%%%%%%%%%%%%%%%%%
+\newsavebox\BCT
+\begin{lrbox}{\BCT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"_{1}(z) ="
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BCST
+\begin{lrbox}{\BCST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\polylog{1}@{z} = -\ln@{1-z}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BCMM
+\begin{lrbox}{\BCMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"PolyLog[1, z] = -Log[1 - z]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BCMA
+\begin{lrbox}{\BCMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"polylog(1, z) = -ln(1 - z)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%29: Sinc function%%%%%%%%%%%%%%%%%%
+\newsavebox\BDT
+\begin{lrbox}{\BDT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\int_{-\infty}^\infty \operatorname{sinc}(t) \, e^{-i 2 \pi f t}\,dt = \operatorname{rect}(f)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BDST
+\begin{lrbox}{\BDST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\int_{-\infty}^\infty \operatorname{sinc}(t) \expe^{- \iunit 2 \cpi f t} \diff{t} = \operatorname{rect}(f)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BDMM
+\begin{lrbox}{\BDMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Integrate[sinc[(t)]*Exp[- I*2*Pi*f*t], {t, - Infinity, Infinity}] == rect[f]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BDMA
+\begin{lrbox}{\BDMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"int(sinc((t))*exp(- I*2*Pi*f*t), t = - infinity..infinity) = rect(f)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%30: Exponential integral%%%%%%%%%%%%%%%%%%
+\newsavebox\BET
+\begin{lrbox}{\BET}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"N=1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BEST
+\begin{lrbox}{\BEST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"N=1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BEMM
+\begin{lrbox}{\BEMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"N == 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BEMA
+\begin{lrbox}{\BEMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"N = 1"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%31: Laguerre polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\BFT
+\begin{lrbox}{\BFT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum_{n=0}^\infty \frac{n!\,\Gamma\left(\alpha + 1\right)}{\Gamma\left(n+\alpha+1\right)}L_n^{(\alpha)}(x)L_n^{(\alpha)}(y)t^n=\frac{1}{(1-t)^{\alpha + 1}}e^{-(x+y)t/(1-t)}\,_0F_1\left(;\alpha + 1;\frac{xyt}{(1-t)^2}\right)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BFST
+\begin{lrbox}{\BFST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum_{n=0}^\infty \frac{n! \EulerGamma@{\alpha + 1}}{\EulerGamma@{n + \alpha + 1}} \LaguerrepolyL[\alpha]{n}@{x} \LaguerrepolyL[\alpha]{n}@{x} t^n = \frac{1}{(1-t)^{\alpha + 1}} \expe^{-(x+y)t/(1-t)} \genhyperF{0}{1}@{}{\alpha + 1}{\frac{xyt}{(1-t)^2}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BFMM
+\begin{lrbox}{\BFMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Sum[Divide[(n)!*Gamma[\[Alpha]+ 1],Gamma[n + \[Alpha]+ 1]]*LaguerreL[n, \[Alpha], x]*LaguerreL[n, \[Alpha], x]*(t)^(n), {n, 0, Infinity}] == Divide[1,(1 - t)^(\[Alpha]+ 1)]*Exp[-(x + y)*t/(1 - t)]*HypergeometricPFQ[{}, {\[Alpha]+ 1}, Divide[x*y*t,(1 - t)^(2)]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BFMA
+\begin{lrbox}{\BFMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"sum((factorial(n)*GAMMA(alpha + 1))/(GAMMA(n + alpha + 1))*LaguerreL(n, alpha, x)*LaguerreL(n, alpha, x)*(t)^(n), n = 0..infinity) = (1)/((1 - t)^(alpha + 1))*exp(-(x + y)*t/(1 - t))*hypergeom([], [alpha + 1], (x*y*t)/((1 - t)^(2)))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%32: Associated Legendre polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\BGT
+\begin{lrbox}{\BGT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c_{lm} = (-1)^m \frac{(\ell-m)!}{(\ell+m)!}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BGST
+\begin{lrbox}{\BGST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c_{lm} = (-1)^m \frac{(\ell-m)!}{(\ell+m)!}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BGMM
+\begin{lrbox}{\BGMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Subscript[c, l, m] == (- 1)^(m)*Divide[(\[ScriptL]- m)!,(\[ScriptL]+ m)!]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BGMA
+\begin{lrbox}{\BGMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c[l, m] = (- 1)^(m)*(factorial(ell - m))/(factorial(ell + m))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%33: Scorer's function%%%%%%%%%%%%%%%%%%
+\newsavebox\BHT
+\begin{lrbox}{\BHT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\mathrm{Gi}(x) = \frac{1}{\pi} \int_0^\infty \sin\left(\frac{t^3}{3} + xt\right)\, dt"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BHST
+\begin{lrbox}{\BHST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\ScorerGi@{x} = \frac{1}{\cpi} \int_0^\infty \sin(\frac{t^3}{3} + xt) \diff{t}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BHMM
+\begin{lrbox}{\BHMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"ScorerGi[x] == Divide[1,Pi]*Integrate[Sin[Divide[(t)^(3),3]+ x*t], {t, 0, Infinity}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BHMA
+\begin{lrbox}{\BHMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"AiryBi(x)*(int(AiryAi(t), t = (x) .. infinity))+AiryAi(x)*(int(AiryBi(t), t = 0 .. (x))) = (1)/(Pi)*int(sin(((t)^(3))/(3)+ x*t), t = 0..infinity)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%34: Voigt profile%%%%%%%%%%%%%%%%%%
+\newsavebox\BIT
+\begin{lrbox}{\BIT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{\partial^2}{\partial x^2} V(x;\sigma,\gamma)= \frac{x^2-\gamma^2-\sigma^2}{\sigma^4} \frac{\operatorname{Re}[w(z)]}{\sigma\sqrt{2 \pi}}-\frac{2 x \gamma}{\sigma^4} \frac{\operatorname{Im}[w(z)]}{\sigma\sqrt{2 \pi}}+\frac{\gamma}{\sigma^4}\frac{1}{\pi}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BIST
+\begin{lrbox}{\BIST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\deriv[2]{}{x} V(x ; \sigma , \gamma) = \frac{x^2-\gamma^2-\sigma^2}{\sigma^4} \frac{\realpart [\Faddeevaw@{z}]}{\sigma \sqrt{2 \cpi}} - \frac{2 x \gamma}{\sigma^4} \frac{\imagpart [\Faddeevaw@{z}]}{\sigma \sqrt{2 \cpi}} + \frac{\gamma}{\sigma^4} \frac{1}{\cpi}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BIMM
+\begin{lrbox}{\BIMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"D[PDF[VoigtDistribution[\[Gamma], \[Sigma]], x], {x, 2}] == Divide[x^2 - \[Gamma]^2 - \[Sigma]^2, \[Sigma]^4] * Divide[ Re[ Exp[-(Divide[x+I*y,\[Sigma]*Sqrt[2]])^2]*Erfc[-I*(Divide[x+I*y,\[Sigma]*Sqrt[2]])] ], \[Sigma]*Sqrt[2*Pi]] - Divide[2*x*y, \[Sigma]^4] * Divide[Im[Exp[-(Divide[x+I*y,\[Sigma]*Sqrt[2]])^2]*Erfc[-I*(Divide[x+I*y,\[Sigma]*Sqrt[2]])]], \[Sigma]*Sqrt[2*Pi]] + Divide[\[Gamma],\[Sigma]^4]*Divide[1,Pi]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BIMA
+\begin{lrbox}{\BIMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%35: Lerch zeta function%%%%%%%%%%%%%%%%%%
+\newsavebox\BJT
+\begin{lrbox}{\BJT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\Phi(z,s,a) = \frac{1}{1-z} \frac{1}{a^{s}}    +    \sum_{n=1}^{N-1} \frac{(-1)^{n} \mathrm{Li}_{-n}(z)}{n!} \frac{(s)_{n}}{a^{n+s}}    +O(a^{-N-s})"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BJST
+\begin{lrbox}{\BJST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\Phi(z , s , a) = \frac{1}{1-z} \frac{1}{a^{s}} + \sum_{n=1}^{N-1} \frac{(-1)^{n} \polylog{-n}@{z}}{n!} \frac{\Pochhammersym{s}{n}}{a^{n+s}} + \bigO{a^{-N-s}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BJMM
+\begin{lrbox}{\BJMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\[CapitalPhi][z, s, a] == Divide[1,1 - z]*Divide[1,(a)^(s)]+ Sum[Divide[(- 1)^(n)* PolyLog[-n, z],(n)!]*Divide[Pochhammer[s, n],(a)^(n + s)], {n, 1, N - 1}]+ O[a]^(- N - s)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BJMA
+\begin{lrbox}{\BJMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%36: Confluent hypergeometric function%%%%%%%%%%%%%%%%%%
+\newsavebox\BKT
+\begin{lrbox}{\BKT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"M(1,2,z)=(e^z-1)/z,\ \ M(1,3,z)=2!(e^z-1-z)/z^2"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BKST
+\begin{lrbox}{\BKST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\KummerconfhyperM@{1}{2}{z} = (\expe^z - 1) / z , \KummerconfhyperM@{1}{3}{z} = 2! (\expe^z - 1 - z) / z^2"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BKMM
+\begin{lrbox}{\BKMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Hypergeometric1F1[1, 2, z] == (Exp[z]- 1)/z  Hypergeometric1F1[1, 3, z] == (2)!*(Exp[z]- 1 - z)/(z)^(2)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BKMA
+\begin{lrbox}{\BKMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"KummerM(1, 2, z) = (exp(z)- 1)/z; KummerM(1, 3, z) = factorial(2)*(exp(z)- 1 - z)/(z)^(2)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%37: Mathieu function%%%%%%%%%%%%%%%%%%
+\newsavebox\BLT
+\begin{lrbox}{\BLT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sigma = \pm 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BLST
+\begin{lrbox}{\BLST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sigma = \pm 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BLMM
+\begin{lrbox}{\BLMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\[Sigma] == \[PlusMinus]1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BLMA
+\begin{lrbox}{\BLMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"sigma = &+- 1"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%38: Parabolic cylinder function%%%%%%%%%%%%%%%%%%
+\newsavebox\BMT
+\begin{lrbox}{\BMT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{d^2f}{dz^2} + \left(\tilde{a}z^2+\tilde{b}z+\tilde{c}\right)f=0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BMST
+\begin{lrbox}{\BMST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\deriv [2]{f}{z} +(\tilde{a} z^2 + \tilde{b} z + \tilde{c}) f = 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BMMM
+\begin{lrbox}{\BMMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"D[f[z], {z, 2}] + (a*z^2 + b*z + c)*f[z] == 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BMMA
+\begin{lrbox}{\BMMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%39: Painlevé transcendents%%%%%%%%%%%%%%%%%%
+\newsavebox\BNT
+\begin{lrbox}{\BNT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c=\infty"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BNST
+\begin{lrbox}{\BNST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c=\infty"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BNMM
+\begin{lrbox}{\BNMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c == Infinity"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BNMA
+\begin{lrbox}{\BNMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c = infinity"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%40: Hypergeometric function%%%%%%%%%%%%%%%%%%
+\newsavebox\BOT
+\begin{lrbox}{\BOT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c = a + 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BOST
+\begin{lrbox}{\BOST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c = a + 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BOMM
+\begin{lrbox}{\BOMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c == a + 1"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BOMA
+\begin{lrbox}{\BOMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c := a + 1"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%41: Barnes G-function%%%%%%%%%%%%%%%%%%
+\newsavebox\BPT
+\begin{lrbox}{\BPT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{1}{\Gamma(z)}= z e^{\gamma z} \prod_{k=1}^\infty \left\{ \left(1+\frac{z}{k}\right)e^{-z/k} \right\}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BPST
+\begin{lrbox}{\BPST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{1}{\EulerGamma@{z}} = z \expe^{\EulerConstant z} \prod_{k=1}^\infty \{(1 + \frac{z}{k}) \expe^{-z/k} \}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BPMM
+\begin{lrbox}{\BPMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Divide[1,Gamma[z]] == z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BPMA
+\begin{lrbox}{\BPMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"(1)/(GAMMA(z)) = z*exp(gamma*z)*product((1 +(z)/(k))*exp(- z/k), k = 1..infinity)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%42: Heun function%%%%%%%%%%%%%%%%%%
+\newsavebox\BQT
+\begin{lrbox}{\BQT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"192/24 = 8 = 2 \times 4"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BQST
+\begin{lrbox}{\BQST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"192/24 = 8 = 2 \times 4"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BQMM
+\begin{lrbox}{\BQMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"192/24 == 8 == 2 * 4"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BQMA
+\begin{lrbox}{\BQMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"192/24 = 8 = 2 * 4"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%43: Gegenbauer polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\BRT
+\begin{lrbox}{\BRT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"=2"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BRST
+\begin{lrbox}{\BRST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\alpha = 2"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BRMM
+\begin{lrbox}{\BRMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\[Alpha] = 2"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BRMA
+\begin{lrbox}{\BRMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"alpha = 2"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%44: Basic hypergeometric series%%%%%%%%%%%%%%%%%%
+\newsavebox\BST
+\begin{lrbox}{\BST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\lim_{q\to 1}\;_{j}\phi_k \left[\begin{matrix} q^{a_1} & q^{a_2} & \ldots & q^{a_j} \\ q^{b_1} & q^{b_2} & \ldots & q^{b_k} \end{matrix} ; q,(q-1)^{1+k-j} z \right]=\;_{j}F_k \left[\begin{matrix} a_1 & a_2 & \ldots & a_j \\ b_1 & b_2 & \ldots & b_k \end{matrix} ;z \right]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BSST
+\begin{lrbox}{\BSST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\lim_{q\to 1} \qgenhyperphi{j}{k}@{q^{a_1} , q^{a_2} , \ldots , q^{a_j}}{q^{b_1} , q^{b_2} , \ldots , q^{b_k}}{q}{(q - 1)^{1+k-j} z} = \genhyperF{j}{k}@{a_1 , a_2 , \ldots , a_j}{b_1 , b_2 , \ldots , b_k}{z}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BSMM
+\begin{lrbox}{\BSMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BSMA
+\begin{lrbox}{\BSMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%45: Whittaker function%%%%%%%%%%%%%%%%%%
+\newsavebox\BTT
+\begin{lrbox}{\BTT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{d^2w}{dz^2}+\left(-\frac{1}{4}+\frac{\kappa}{z}+\frac{1/4-\mu^2}{z^2}\right)w=0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BTST
+\begin{lrbox}{\BTST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\deriv [2]{w}{z} +(- \frac{1}{4} + \frac{\kappa}{z} + \frac{1/4-\mu^2}{z^2}) w = 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BTMM
+\begin{lrbox}{\BTMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"D[w, {z, 2}]+(-Divide[1,4]+Divide[\[Kappa],z]+Divide[1/4 - \[Mu]^(2),(z)^(2)])*w == 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BTMA
+\begin{lrbox}{\BTMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"diff(w, [z$\$$(2)])+(-(1)/(4)+(kappa)/(z)+(1/4 - (mu)^(2))/((z)^(2)))*w = 0"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%46: Lemniscatic elliptic function%%%%%%%%%%%%%%%%%%
+\newsavebox\BUT
+\begin{lrbox}{\BUT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"e_1=\tfrac12,\qquad e_2=0,\qquad e_3=-\tfrac12"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BUST
+\begin{lrbox}{\BUST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"e_1=\tfrac12,\qquad e_2=0,\qquad e_3=-\tfrac12"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BUMM
+\begin{lrbox}{\BUMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Subscript[e, 1] == Divide[1,2]  Subscript[e, 2] = 0  Subscript[e, 3] = -Divide[1,2]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BUMA
+\begin{lrbox}{\BUMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"e[1] := (1)/(2); e[2] := 0; e[3] := -(1)/(2)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%47: Meijer G-function%%%%%%%%%%%%%%%%%%
+\newsavebox\BVT
+\begin{lrbox}{\BVT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\gamma> 0,n-p=m-q> 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BVST
+\begin{lrbox}{\BVST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\gamma> 0,n-p=m-q> 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BVMM
+\begin{lrbox}{\BVMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\[Gamma] > 0  n - p == m - q > 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BVMA
+\begin{lrbox}{\BVMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"gamma > 0; n - p = m - q > 0"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%48: 3-j symbol%%%%%%%%%%%%%%%%%%
+\newsavebox\BWT
+\begin{lrbox}{\BWT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\begin{pmatrix}  j \\  m \quad m'\end{pmatrix}:= \sqrt{2 j + 1}\begin{pmatrix}  j & 0 & j \\  m & 0 & m'\end{pmatrix}= (-1)^{j - m'} \delta_{m, -m'}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BWST
+\begin{lrbox}{\BWST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\begin{pmatrix}  j \\  m \quad m'\end{pmatrix}:= \sqrt{2 j + 1}\begin{pmatrix}  j & 0 & j \\  m & 0 & m'\end{pmatrix}= (-1)^{j - m'} \delta_{m, -m'}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BWMM
+\begin{lrbox}{\BWMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Wigner[j_, m_, m\[Prime]_] := Sqrt[2*j+1] * {{j, 0, j}, {m, 0, m\[Prime]}} = (-1)^(j-m\[Prime])*Subscript[\[Delta], m, -m\[Prime]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BWMA
+\begin{lrbox}{\BWMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%49: 6-j symbol%%%%%%%%%%%%%%%%%%
+\newsavebox\BXT
+\begin{lrbox}{\BXT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\begin{Bmatrix}    i & j & \ell\\    k & m & n  \end{Bmatrix}= (\Phi_{i,j}^{k,m})_{\ell,n}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BXST
+\begin{lrbox}{\BXST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\Wignersixjsym{i}{j}{\ell}{k}{m}{n} = (\Phi_{i,j}^{k,m})_{\ell,n}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BXMM
+\begin{lrbox}{\BXMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BXMA
+\begin{lrbox}{\BXMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%50: 9-j symbol%%%%%%%%%%%%%%%%%%
+\newsavebox\BYT
+\begin{lrbox}{\BYT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum_{j_7 j_8} (2j_7+1)(2j_8+1)  \begin{Bmatrix}    j_1 & j_2 & j_3\\    j_4 & j_5 & j_6\\    j_7 & j_8 & j_9  \end{Bmatrix} \begin{Bmatrix}    j_1 & j_2 & j_3'\\    j_4 & j_5 & j_6'\\    j_7 & j_8 & j_9  \end{Bmatrix}  = \frac{\delta_{j_3j_3'}\delta_{j_6j_6'} \begin{Bmatrix} j_1 & j_2 & j_3 \end{Bmatrix} \begin{Bmatrix} j_4 & j_5 & j_6\end{Bmatrix} \begin{Bmatrix} j_3 & j_6 & j_9 \end{Bmatrix}}         {(2j_3+1)(2j_6+1)}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BYST
+\begin{lrbox}{\BYST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum_{j_7 j_8} (2j_7+1)(2j_8+1)  \Wignerninejsym{j_1}{j_2}{j_3}{j_4}{j_5}{j_6}{j_7}{j_8}{j_9} \Wignerninejsym{j_1}{j_2}{j_3'}{j_4}{j_5}{j_6'}{j_7}{j_8}{j_9} = \frac{\delta_{j_3j_3'}\delta_{j_6j_6'} \begin{Bmatrix} j_1 & j_2 & j_3 \end{Bmatrix} \begin{Bmatrix} j_4 & j_5 & j_6\end{Bmatrix} \begin{Bmatrix} j_3 & j_6 & j_9 \end{Bmatrix}}{(2j_3+1)(2j_6+1)}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BYMM
+\begin{lrbox}{\BYMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BYMA
+\begin{lrbox}{\BYMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%51: Kravchuk polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\BZT
+\begin{lrbox}{\BZT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\mathcal{K}_k(x; n,q) = \sum_{j=0}^{k}(-q)^j (q-1)^{k-j} \binom {n-j}{k-j} \binom{x}{j}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BZST
+\begin{lrbox}{\BZST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\KrawtchoukpolyK{k}@{x}{n}{q} = \sum_{j=0}^{k}(-q)^j (q-1)^{k-j} \binom {n-j}{k-j} \binom{x}{j}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BZMM
+\begin{lrbox}{\BZMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"K[k_, x_, n_, q_] := Sum[(- q)^(j)*(q - 1)^(k - j)*Binomial[n - j,k - j]*Binomial[x,j], {j, 0, k}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\BZMA
+\begin{lrbox}{\BZMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%52: Kelvin functions%%%%%%%%%%%%%%%%%%
+\newsavebox\CAT
+\begin{lrbox}{\CAT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"g_1(x) = \sum_{k \geq 1} \frac{\sin(k \pi / 4)}{k! (8x)^k} \prod_{l = 1}^k (2l - 1)^2"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CAST
+\begin{lrbox}{\CAST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"g_1(x) = \sum_{k \geq 1} \frac{\sin(k \cpi / 4)}{k! (8x)^k} \prod_{l = 1}^k(2 l - 1)^2"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CAMM
+\begin{lrbox}{\CAMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Subscript[g, 1][x_] := Sum[Divide[Sin[k*Pi/4],(k)!*(8*x)^(k)]*Product[(2*l - 1)^(2), {l, 1, k}], {k, 1, Infinity}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CAMA
+\begin{lrbox}{\CAMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"g[1] := (x) -> sum((sin(k*Pi/4))/(factorial(k)*(8*x)^(k))*product((2*l - 1)^(2), l = 1..k), k = 1..infinity)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%53: Lommel function%%%%%%%%%%%%%%%%%%
+\newsavebox\CBT
+\begin{lrbox}{\CBT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"S_{\mu,\nu}(z) = s_{\mu,\nu}(z) + 2^{\mu-1} \Gamma\left(\frac{\mu + \nu + 1}{2}\right) \Gamma\left(\frac{\mu - \nu + 1}{2}\right)\left(\sin \left[(\mu - \nu)\frac{\pi}{2}\right] J_\nu(z) - \cos \left[(\mu - \nu)\frac{\pi}{2}\right] Y_\nu(z)\right)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CBST
+\begin{lrbox}{\CBST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\LommelS{\mu}{\nu}@{z} = \Lommels{\mu}{\nu}@{z} + 2^{\mu-1} \EulerGamma@{\frac{\mu + \nu + 1}{2}} \EulerGamma@{\frac{\mu - \nu + 1}{2}}(\sin [(\mu - \nu) \frac{\cpi}{2}] \BesselJ{\nu}@{z} - \cos [(\mu - \nu) \frac{\cpi}{2}] \BesselY{\nu}@{z})"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CBMM
+\begin{lrbox}{\CBMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"S[\[Mu]_, \[Nu]_, z_] := Divide[Pi,2]*(BesselY[\[Nu], z]*Integrate[(x)^\[Mu]* BesselJ[\[Nu], x], {x, 0, z}]- BesselJ[\[Nu], z]*Integrate[(x)^\[Mu]* BesselY[\[Nu], x], {x, 0, z}]) + (2)^(\[Mu]- 1)* Gamma[Divide[\[Mu]+ \[Nu]+ 1,2]]*Gamma[Divide[\[Mu]- \[Nu]+ 1,2]]*(Sin[((\[Mu]- \[Nu])*Divide[Pi,2])*]*BesselJ[\[Nu], z]- Cos[((\[Mu]- \[Nu])*Divide[Pi,2])*]*BesselY[\[Nu], z])"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CBMA
+\begin{lrbox}{\CBMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"LommelS1(mu, nu, z) = (Pi)/(2)*(BesselY(nu, z)*int((x)^(mu)* BesselJ(nu, x), x = 0..z)- BesselJ(nu, z)*int((x)^(mu)* BesselY(nu, x), x = 0..z))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%54: Struve function%%%%%%%%%%%%%%%%%%
+\newsavebox\CCT
+\begin{lrbox}{\CCT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\mathbf{H}_{\alpha}(z) = \frac{z^{\alpha+1}}{2^{\alpha}\sqrt{\pi} \Gamma \left (\alpha+\tfrac{3}{2} \right )} {}_1F_2 \left (1,\tfrac{3}{2}, \alpha+\tfrac{3}{2},-\tfrac{z^2}{4} \right )"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CCST
+\begin{lrbox}{\CCST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\StruveH{\alpha}@{z} = \frac{z^{\alpha+1}}{2^{\alpha} \sqrt{\cpi} \EulerGamma@{\alpha + \tfrac{3}{2}}} \genhyperF{1}{2}@{1}{\tfrac{3}{2}, \alpha + \tfrac{3}{2}}{- \tfrac{z^2}{4}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CCMM
+\begin{lrbox}{\CCMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"StruveH[\[Alpha], z] == Divide[(z)^(\[Alpha]+ 1),(2)^\[Alpha]*Sqrt[Pi]*Gamma[\[Alpha]+Divide[3,2]]]*HypergeometricPFQ[{1}, {Divide[3,2], \[Alpha]+Divide[3,2]}, -Divide[(z)^(2),4]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CCMA
+\begin{lrbox}{\CCMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"StruveH(alpha, z) = ((z)^(alpha + 1))/((2)^(alpha)*sqrt(Pi)*GAMMA(alpha +(3)/(2)))*hypergeom([1], [(3)/(2), alpha +(3)/(2)], -((z)^(2))/(4))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%55: Hill differential equation%%%%%%%%%%%%%%%%%%
+\newsavebox\CDT
+\begin{lrbox}{\CDT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"f(t+p) = f(t)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CDST
+\begin{lrbox}{\CDST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"f(t+p) = f(t)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CDMM
+\begin{lrbox}{\CDMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"f[t + p] == f[t]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CDMA
+\begin{lrbox}{\CDMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"f(t + p) = f(t)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%56: Anger function%%%%%%%%%%%%%%%%%%
+\newsavebox\CET
+\begin{lrbox}{\CET}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\mathbf{J}_\nu(z)=\cos\frac{\pi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^kz^{2k}}{4^k\Gamma\left(k+\frac{\nu}{2}+1\right)\Gamma\left(k-\frac{\nu}{2}+1\right)}+\sin\frac{\pi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^kz^{2k+1}}{2^{2k+1}\Gamma\left(k+\frac{\nu}{2}+\frac{3}{2}\right)\Gamma\left(k-\frac{\nu}{2}+\frac{3}{2}\right)}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CEST
+\begin{lrbox}{\CEST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\AngerJ{\nu}@{z} = \cos \frac{\cpi\nu}{2} \sum_{k=0}^\infty \frac{(-1)^k z^{2k}}{4^k\EulerGamma@{k+\frac{\nu}{2}+1}\EulerGamma@{k-\frac{\nu}{2}+1}}+\sin\frac{\cpi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^k z^{2k+1}}{2^{2k+1}\EulerGamma@{k+\frac{\nu}{2}+\frac{3}{2}}\EulerGamma@{k-\frac{\nu}{2}+\frac{3}{2}}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CEMM
+\begin{lrbox}{\CEMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"AngerJ[\[Nu], z] == Cos[Divide[Pi*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k),(4)^(k)* Gamma[k +Divide[\[Nu],2]+ 1]*Gamma[k -Divide[\[Nu],2]+ 1]], {k, 0, Infinity}]+ Sin[Divide[Pi*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k + 1),(2)^(2*k + 1)* Gamma[k +Divide[\[Nu],2]+Divide[3,2]]*Gamma[k -Divide[\[Nu],2]+Divide[3,2]]], {k, 0, Infinity}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CEMA
+\begin{lrbox}{\CEMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"AngerJ(nu, z) = cos((Pi*nu)/(2))*sum(((- 1)^(k)* (z)^(2*k))/((4)^(k)* GAMMA(k +(nu)/(2)+ 1)*GAMMA(k -(nu)/(2)+ 1)), k = 0..infinity)+ sin((Pi*nu)/(2))*sum(((- 1)^(k)* (z)^(2*k + 1))/((2)^(2*k + 1)* GAMMA(k +(nu)/(2)+(3)/(2))*GAMMA(k -(nu)/(2)+(3)/(2))), k = 0..infinity)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%57: Lamé function%%%%%%%%%%%%%%%%%%
+\newsavebox\CFT
+\begin{lrbox}{\CFT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"(\operatorname{Ec})^'_{2K} = (\operatorname{Ec})^'_0 = 0, \;\; (\operatorname{Es})^'_{2K} = (\operatorname{Es})^'_0 = 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CFST
+\begin{lrbox}{\CFST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"(\operatorname{Ec})_{2K}^' =(\operatorname{Ec})_0^' = 0 ,(\operatorname{Es})_{2K}^' =(\operatorname{Es})_0^' = 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CFMM
+\begin{lrbox}{\CFMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CFMA
+\begin{lrbox}{\CFMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%58: Gauss–Hermite quadrature%%%%%%%%%%%%%%%%%%
+\newsavebox\CGT
+\begin{lrbox}{\CGT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\int_{-\infty}^{+\infty} e^{-x^2} f(x)\,dx \approx \sum_{i=1}^n w_i f(x_i)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CGST
+\begin{lrbox}{\CGST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\int_{-\infty}^{+\infty} \expe^{-x^2} f(x) \diff{x} \approx \sum_{i=1}^n w_i f(x_i)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CGMM
+\begin{lrbox}{\CGMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CGMA
+\begin{lrbox}{\CGMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%59: Askey–Wilson polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CHT
+\begin{lrbox}{\CHT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p_n(x;a,b,c,d|q) =(ab,ac,ad;q)_na^{-n}\;_{4}\phi_3 \left[\begin{matrix} q^{-n}&abcdq^{n-1}&ae^{i\theta}&ae^{-i\theta} \\ ab&ac&ad \end{matrix} ; q,q \right]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CHST
+\begin{lrbox}{\CHST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\AskeyWilsonpolyp{n}@{x}{a}{b}{c}{d}{q} = \qmultiPochhammersym{ab , ac , ad}{q}{n} a^{-n} \qgenhyperphi{4}{3}@{q^{-n} , abcdq^{n-1} , a\expe^{\iunit\theta} , a\expe^{-\iunit\theta}}{ab , ac , ad}{q}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CHMM
+\begin{lrbox}{\CHMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p[n_, x_, a_, b_, c_, d_, q_] := Product[QPochhammer[Part[{a*b , a*c , a*d},i],q,n],{i,1,Length[{a*b , a*c , a*d}]}]*(a)^(- n)* QHypergeometricPFQ[{(q)^(- n), a*b*c*d*(q)^(n - 1), a*Exp[I*\[Theta]], a*Exp[- I*\[Theta]]},{a*b , a*c , a*d},q,q]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CHMA
+\begin{lrbox}{\CHMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%60: Hahn polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CIT
+\begin{lrbox}{\CIT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Q_n(x;\alpha,\beta,N)= {}_3F_2(-n,-x,n+\alpha+\beta+1;\alpha+1,-N+1;1)."
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CIST
+\begin{lrbox}{\CIST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\HahnpolyQ{n}@{x}{\alpha}{\beta}{N} = \genhyperF{3}{2}@{- n , - x , n + \alpha + \beta + 1}{\alpha + 1 , - N + 1}{1}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CIMM
+\begin{lrbox}{\CIMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Q[n_, x_, \[Alpha]_, \[Beta]_, N_] := HypergeometricPFQ[{- n , - x , n + \[Alpha]+ \[Beta]+ 1}, {\[Alpha]+ 1 , - N + 1}, 1]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CIMA
+\begin{lrbox}{\CIMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%61: Charlier polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CJT
+\begin{lrbox}{\CJT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum_{x=0}^\infty \frac{\mu^x}{x!} C_n(x; \mu)C_m(x; \mu)=\mu^{-n} e^\mu n! \delta_{nm}, \quad \mu>0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CJST
+\begin{lrbox}{\CJST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum_{x=0}^\infty \frac{\mu^x}{x!} \CharlierpolyC{n}@{x}{\mu} \CharlierpolyC{m}@{x}{\mu} = \mu^{-n} \expe^\mu n! \delta_{nm} , \quad \mu > 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CJMM
+\begin{lrbox}{\CJMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Sum[Divide[\[Mu]^x, x!] * HypergeometricPFQ[{-n, -x}, {}, -Divide[1,\[Mu]]] * HypergeometricPFQ[{-m, -x}, {}, -Divide[1,\[Mu]]], {x, 0, Infinity}] == \[Mu]^(-n)*Exp[\[Mu]]*n!*Subscript[\[Delta], n, m]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CJMA
+\begin{lrbox}{\CJMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%62: Q-Racah polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CKT
+\begin{lrbox}{\CKT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p_n(q^{-x}+q^{x+1}cd;a,b,c,d;q) = {}_4\phi_3\left[\begin{matrix} q^{-n} &abq^{n+1}&q^{-x}&q^{x+1}cd\\aq&bdq&cq\\ \end{matrix};q;q\right]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CKST
+\begin{lrbox}{\CKST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\qRacahpolyR{n}@{q^{-x} + q^{x+1} cd}{a}{b}{c}{d}{q} = \qgenhyperphi{4}{3}@{q^{-n}, abq^{n+1}, q^{-x}, q^{x+1}cd}{aq , bdq , cq}{q}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CKMM
+\begin{lrbox}{\CKMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CKMA
+\begin{lrbox}{\CKMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%63: Q-Charlier polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CLT
+\begin{lrbox}{\CLT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\displaystyle c_n(q^{-x};a;q) = {}_2\phi_1(q^{-n},q^{-x};0;q,-q^{n+1}/a)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CLST
+\begin{lrbox}{\CLST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"c_n(q^{-x} ; a ; q) = \qgenhyperphi{2}{1}@{q^{-n} , q^{-x}}{0}{q}{- q^{n+1} / a}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CLMM
+\begin{lrbox}{\CLMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CLMA
+\begin{lrbox}{\CLMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%64: Meixner polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CMT
+\begin{lrbox}{\CMT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"M_n(x,\beta,\gamma) = \sum_{k=0}^n (-1)^k{n \choose k}{x\choose k}k!(x+\beta)_{n-k}\gamma^{-k}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CMST
+\begin{lrbox}{\CMST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\MeixnerpolyM{n}@{x}{\beta}{\gamma} = \sum_{k=0}^n(- 1)^k{n \choose k}{x\choose k} k! \Pochhammersym{x + \beta}{n-k} \gamma^{-k}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CMMM
+\begin{lrbox}{\CMMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"M[n_, x_, \[Beta]_, \[Gamma]_] := Sum[(- 1)^(k)*Binomial[n,k]*Binomial[x,k]*(k)!*Pochhammer[x + \[Beta], n - k]*\[Gamma]^(- k), {k, 0, n}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CMMA
+\begin{lrbox}{\CMMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%65: Appell series%%%%%%%%%%%%%%%%%%
+\newsavebox\CNT
+\begin{lrbox}{\CNT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x(1-x) \frac {\partial^2F_1(x,y)} {\partial x^2} + y(1-x) \frac {\partial^2F_1(x,y)} {\partial x \partial y} + [c - (a+b_1+1) x] \frac {\partial F_1(x,y)} {\partial x} - b_1 y \frac {\partial F_1(x,y)} {\partial y} - a b_1 F_1(x,y) = 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CNST
+\begin{lrbox}{\CNST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x(1-x) \deriv[2]{\AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y}}{x} + y(1-x) \frac{\pdiff[2]{\AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y}}}{\pdiff{x}\pdiff{y}} + [c - (a+b_1+1) x] \deriv[1]{\AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y}}{x} - b_1 y \deriv[1]{\AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y}}{y} - a b_1 \AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y} = 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CNMM
+\begin{lrbox}{\CNMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x*(1-x) * D[AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y], {x,2}] + y*(1-x) * D[AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y], x, y] + (c - (a+Subscript[b, 1]+1)*x) * D[AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y], x] - Subscript[b,1] * y * D[AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y], y] - a*Subscript[b,1]*AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y] == 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CNMA
+\begin{lrbox}{\CNMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%66: Theta function of a lattice%%%%%%%%%%%%%%%%%%
+\newsavebox\COT
+\begin{lrbox}{\COT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\Theta_\Lambda(\tau) = \sum_{x\in\Lambda}e^{i\pi\tau\|x\|^2}\qquad\mathrm{Im}\,\tau > 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\COST
+\begin{lrbox}{\COST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\Theta_\Lambda(\tau) = \sum_{x\in\Lambda} \expe^{\iunit \cpi \tau \|x \|^2} \qquad \imagpart \tau > 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\COMM
+\begin{lrbox}{\COMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\[CapitalTheta][\[CapitalLambda]_, \[Tau]_] := Sum[Exp[I*Pi*\[Tau]*(Norm[x])^(2)], {x, \[CapitalLambda]}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\COMA
+\begin{lrbox}{\COMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%67: Heine–Stieltjes polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CPT
+\begin{lrbox}{\CPT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\frac{d^2 S}{dz^2}+\left(\sum _{j=1}^N \frac{\gamma _j}{z - a_j} \right) \frac{dS}{dz} + \frac{V(z)}{\prod _{j=1}^N (z - a_j)}S = 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CPST
+\begin{lrbox}{\CPST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\deriv [2]{S}{z} +(\sum_{j=1}^N \frac{\gamma _j}{z - a_j}) \deriv[]{S}{z} + \frac{V(z)}{\prod _{j=1}^N (z - a_j)} S = 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CPMM
+\begin{lrbox}{\CPMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CPMA
+\begin{lrbox}{\CPMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%68: Stieltjes–Wigert polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CQT
+\begin{lrbox}{\CQT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"w(x) = \frac{k}{\sqrt{\pi}} x^{-1/2} \exp(-k^2\log^2 x)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CQST
+\begin{lrbox}{\CQST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"w(x) = \frac{k}{\sqrt{\cpi}} x^{-1/2} \exp(- k^2 \log^2 x)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CQMM
+\begin{lrbox}{\CQMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"w[x_] := Divide[k,Sqrt[Pi]]*(x)^(- 1/2)* Exp[- (k)^(2)* (Log[x])^(2)]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CQMA
+\begin{lrbox}{\CQMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"w := (x) -> (k)/(sqrt(Pi))*(x)^(- 1/2)* exp(- (k)^(2)* (log(x))^(2))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%69: Modular lambda function%%%%%%%%%%%%%%%%%%
+\newsavebox\CRT
+\begin{lrbox}{\CRT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"y^2=x(x-1)(x-\lambda)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CRST
+\begin{lrbox}{\CRST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"y^2=x(x-1)(x-\lambda)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CRMM
+\begin{lrbox}{\CRMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"(y)^(2) == x*(x - 1)*(x - \[Lambda])"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CRMA
+\begin{lrbox}{\CRMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"(y)^(2) = x*(x - 1)*(x - lambda)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%70: Meixner–Pollaczek polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CST
+\begin{lrbox}{\CST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_1^{(\lambda)}(x;\phi)=2(\lambda\cos\phi + x\sin\phi)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CSST
+\begin{lrbox}{\CSST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\MeixnerPollaczekpolyP{\lambda}{1}@{x}{\phi} = 2(\lambda \cos \phi + x \sin \phi)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CSMM
+\begin{lrbox}{\CSMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CSMA
+\begin{lrbox}{\CSMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%71: Jacobi polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CTT
+\begin{lrbox}{\CTT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_n^{(\alpha,\beta)}(z)=\frac{(\alpha+1)_n}{n!}\,{}_2F_1\left(-n,1+\alpha+\beta+n;\alpha+1;\tfrac{1}{2}(1-z)\right)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CTST
+\begin{lrbox}{\CTST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\JacobipolyP{\alpha}{\beta}{n}@{z} = \frac{\Pochhammersym{\alpha + 1}{n}}{n!} \genhyperF{2}{1}@{- n , 1 + \alpha + \beta + n}{\alpha + 1}{\tfrac{1}{2}(1 - z)}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CTMM
+\begin{lrbox}{\CTMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"JacobiP[n, \[Alpha], \[Beta], z] == Divide[Pochhammer[\[Alpha]+ 1, n],(n)!]*HypergeometricPFQ[{- n , 1 + \[Alpha]+ \[Beta]+ n}, {\[Alpha]+ 1}, Divide[1,2]*(1 - z)]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CTMA
+\begin{lrbox}{\CTMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"JacobiP(n, alpha, beta, z) = (pochhammer(alpha + 1, n))/(factorial(n))*hypergeom([- n , 1 + alpha + beta + n], [alpha + 1], (1)/(2)*(1 - z))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%72: Continuous dual Hahn polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CUT
+\begin{lrbox}{\CUT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"S_n(x^2;a,b,c)= {}_3F_2(-n,a+ix,a-ix;a+b,a+c;1)."
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CUST
+\begin{lrbox}{\CUST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\contdualHahnpolyS{n}@{x^2}{a}{b}{c} = \genhyperF{3}{2}@{- n , a + \iunit x , a - \iunit x}{a + b , a + c}{1}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CUMM
+\begin{lrbox}{\CUMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CUMA
+\begin{lrbox}{\CUMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%73: Continuous Hahn polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CVT
+\begin{lrbox}{\CVT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_n^{(\alpha,\beta)}=\lim_{t\to\infty}t^{-n}p_n\left(\tfrac12xt; \tfrac12(\alpha+1-it), \tfrac12(\beta+1+it), \tfrac12(\alpha+1+it), \tfrac12(\beta+1-it)\right)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CVST
+\begin{lrbox}{\CVST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\JacobipolyP{\alpha}{\beta}{n}@{x} = \lim_{t\to\infty} t^{-n} \contHahnpolyp{n}@{\tfrac12 xt}{\tfrac12(\alpha + 1 - \iunit t)}{\tfrac12(\beta + 1 + \iunit t)}{\tfrac12(\alpha + 1 + \iunit t)}{\tfrac12(\beta + 1 - \iunit t)}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CVMM
+\begin{lrbox}{\CVMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"JacobiP[n, \[Alpha], \[Beta], x] == Limit[(t)^(- n)* I^(n)*Divide[Pochhammer[Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Alpha]+ 1 + I*t), n]*Pochhammer[Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Beta]+ 1 - I*t), n], (n)!] * HypergeometricPFQ[{-(n), n + 2*Re[Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Beta]+ 1 + I*t)] - 1, Divide[1,2]*(\[Alpha]+ 1 - I*t) + I*(Divide[1,2]*x*t)}, {Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Alpha]+ 1 + I*t), Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Beta]+ 1 - I*t)}, 1], t -> Infinity]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CVMA
+\begin{lrbox}{\CVMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%74: Dual Hahn polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CWT
+\begin{lrbox}{\CWT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum^{b-1}_{s=a}w_n^{(c)}(s,a,b)w_m^{(c)}(s,a,b)\rho(s)[\Delta x(s-\frac{1}{2}) ]=\delta_{nm}d_n^2"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CWST
+\begin{lrbox}{\CWST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum_{s=a}^{b-1} \dualHahnpolyR{n}@{c}{s}{a}{b} \dualHahnpolyR{m}@{c}{s}{a}{b} \rho(s) [\Delta x(s - \frac{1}{2})] = \delta_{nm} d_n^2"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CWMM
+\begin{lrbox}{\CWMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CWMA
+\begin{lrbox}{\CWMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%75: Continuous q-Hahn polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CXT
+\begin{lrbox}{\CXT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p_n(x;a,b,c|q)=a^{-n}e^{-inu}(abe^{2iu},ac,ad;q)_n*_4\Phi_3(q^{-n},abcdq^{n-1},ae^{i{(t+2u)}},ae^{-it};abe^{2iu},ac,ad;q;q)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CXST
+\begin{lrbox}{\CXST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p_n(x ; a , b , c|q) = a^{-n} \expe^{-\iunit nu} \qmultiPochhammersym{ab\expe^{2\iunit u} , ac , ad}{q}{n} * \qgenhyperphi{4}{3}@{q^{-n} , abcdq^{n-1} , a\expe^{\iunit{(t+2u)}} , a\expe^{-\iunit t}}{ab\expe^{2\iunit u} , ac , ad}{q}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CXMM
+\begin{lrbox}{\CXMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p[n_, x_, a_, b_, c_, q_] := (a)^(- n)* Exp[- I*\[Nu]]*Product[QPochhammer[Part[{a*b*Exp[2*I*u], a*c , a*d},i],q,n],{i,1,Length[{a*b*Exp[2*I*u], a*c , a*d}]}]* QHypergeometricPFQ[{(q)^(- n), a*b*c*d*(q)^(n - 1), a*Exp[I*(t + 2*u)], a*Exp[- I*t]},{a*b*Exp[2*I*u], a*c , a*d},q,q]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CXMA
+\begin{lrbox}{\CXMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%76: Continuous dual q-Hahn polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CYT
+\begin{lrbox}{\CYT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p_n(x;a,b,c\mid q)=\frac{(ab,ac;q)_n}{a^n}\cdot {_3\Phi_2}(q^-n,ae^{i\theta},ae^{-i\theta}; ab, ac \mid q;q)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CYST
+\begin{lrbox}{\CYST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p_n(x ; a , b , c \mid q) = \frac{\qmultiPochhammersym{ab , ac}{q}{n}}{a^n} \cdot \qgenhyperphi{3}{2}@{q^{- n} , a\expe^{\iunit \theta} , a\expe^{- \iunit \theta}}{ab , ac}{q}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CYMM
+\begin{lrbox}{\CYMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p[n_, x_, a_, b_, c_, q_] := Divide[Product[QPochhammer[Part[{a*b , a*c},i],q,n],{i,1,Length[{a*b , a*c}]}],(a)^(n)] * QHypergeometricPFQ[{(q)^(- n), a*Exp[I*\[Theta]], a*Exp[- I*\[Theta]]},{a*b , a*c},q,q]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CYMA
+\begin{lrbox}{\CYMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%77: Q-Hahn polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\CZT
+\begin{lrbox}{\CZT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Q_n(x;a,b,N;q)=\;_{3}\phi_2\left[\begin{matrix} q^-n & abq^n+1 &  x \\ aq & q^-N  \end{matrix} ; q,q \right]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CZST
+\begin{lrbox}{\CZST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\qHahnpolyQ{n}@{x}{a}{b}{N}{q} = \qgenhyperphi{3}{2}@{q^-n , abq^n+1 , x}{aq , q^-N}{q}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CZMM
+\begin{lrbox}{\CZMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Q[n_, x_, a_, b_, N_, q_] := QHypergeometricPFQ[{(q)^(-)* n , a*b*(q)^(n)+ 1 , x},{a*q , (q)^(-)* N},q,q]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\CZMA
+\begin{lrbox}{\CZMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%78: Al-Salam–Chihara polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DAT
+\begin{lrbox}{\DAT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x="
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DAST
+\begin{lrbox}{\DAST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x=\cos@{\theta}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DAMM
+\begin{lrbox}{\DAMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x = Cos[\[Theta]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DAMA
+\begin{lrbox}{\DAMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"x = cos(theta)"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%79: Orthogonal polynomials on the unit circle%%%%%%%%%%%%%%%%%%
+\newsavebox\DBT
+\begin{lrbox}{\DBT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\Phi_n^*(z)=z^n\overline{\Phi_n(1/\overline{z})}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DBST
+\begin{lrbox}{\DBST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\Phi_n^*(z) = z^n{\conj{\Phi_n(1 / \conj{z})}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DBMM
+\begin{lrbox}{\DBMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\[CapitalPhi]\[Prima][n_, z_] := z^n*Conjugate[\[CapitalPhi][n, Divide[1, Conjugate[z]]]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DBMA
+\begin{lrbox}{\DBMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%80: Orthogonal polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DCT
+\begin{lrbox}{\DCT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_n(x) = c_n \, \det \begin{bmatrix}m_0 & m_1 &  m_2 &\cdots & m_n \\m_1 & m_2 &  m_3 &\cdots & m_{n+1} \\&&\vdots&& \vdots \\m_{n-1} &m_n& m_{n+1} &\cdots &m_{2n-1}\\1 & x & x^2 & \cdots & x^n\end{bmatrix}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DCST
+\begin{lrbox}{\DCST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_n(x) = c_n  \det \begin{bmatrix}m_0 & m_1 &  m_2 &\cdots & m_n \\m_1 & m_2 &  m_3 &\cdots & m_{n+1} \\&&\vdots&& \vdots \\m_{n-1} &m_n& m_{n+1} &\cdots &m_{2n-1}\\1 & x & x^2 & \cdots & x^n\end{bmatrix}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DCMM
+\begin{lrbox}{\DCMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DCMA
+\begin{lrbox}{\DCMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%81: Little q-Jacobi polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DDT
+\begin{lrbox}{\DDT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\displaystyle  p_n(x;a,b;q) = {}_2\phi_1(q^{-n},abq^{n+1};aq;q,xq)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DDST
+\begin{lrbox}{\DDST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\littleqJacobipolyp{n}@{x}{a}{b}{q} = \qgenhyperphi{2}{1}@{q^{-n} , abq^{n+1}}{aq}{q}{xq}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DDMM
+\begin{lrbox}{\DDMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p[n_, x_, a_, b_, q_] := QHypergeometricPFQ[{(q)^(- n), a*b*(q)^(n + 1)},{a*q},q,x*q]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DDMA
+\begin{lrbox}{\DDMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%82: Big q-Jacobi polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DET
+\begin{lrbox}{\DET}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\displaystyle   P_n(x;a,b,c;q)={}_3\phi_2(q^{-n},abq^{n+1},x;aq,cq;q,q)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DEST
+\begin{lrbox}{\DEST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\bigqJacobipolyP{n}@{x}{a}{b}{c}{q} = \qgenhyperphi{3}{2}@{q^{-n} , abq^{n+1} , x}{aq , cq}{q}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DEMM
+\begin{lrbox}{\DEMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p[n_, x_, a_, b_, c_, q_] := QHypergeometricPFQ[{(q)^(- n), a*b*(q)^(n + 1), x},{a*q , c*q},q,q]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DEMA
+\begin{lrbox}{\DEMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%83: Big q-Laguerre polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DFT
+\begin{lrbox}{\DFT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_n(x;a,b;q)=\frac{1}{(b^{-1}*q^{-n};q,n)}*_2\Phi_1(q^{-n},aqx^{-1};aq|q;\frac{x}{b})"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DFST
+\begin{lrbox}{\DFST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_n(x;a,b;q) =\frac{1}{\qmultiPochhammersym{b^{-1}*q^{-n}}{q}{n}} * \qgenhyperphi{2}{1}@{q^{-n},aqx^{-1}}{aq}{q}{\frac{x}{b}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DFMM
+\begin{lrbox}{\DFMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P[n_, x_, a_, b_, q_] := Divide[1,Product[QPochhammer[Part[{(b)^(- 1)* (q)^(- n)},i],q,n],{i,1,Length[{(b)^(- 1)* (q)^(- n)}]}]]* QHypergeometricPFQ[{(q)^(- n), a*q*(x)^(- 1)},{a*q},q,Divide[x,b]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DFMA
+\begin{lrbox}{\DFMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%84: Dual q-Krawtchouk polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DGT
+\begin{lrbox}{\DGT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"K_n(\lambda(x);c,N|q)=_3\Phi_2(q^{-n},q^{-x},cq^{x-N};q^{-N},0|q;q)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DGST
+\begin{lrbox}{\DGST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"K_n(\lambda(x);c,N|q) = \qgenhyperphi{3}{2}@{q^{-n},q^{-x},cq^{x-N}}{q^{-N},0}{q}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DGMM
+\begin{lrbox}{\DGMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DGMA
+\begin{lrbox}{\DGMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%85: Continuous q-Laguerre polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DHT
+\begin{lrbox}{\DHT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_{n}^{(\alpha)}(x|q)=\frac{(q^\alpha+1;q)_{n}}{(q;q)_{n}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DHST
+\begin{lrbox}{\DHST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_{n}^{(\alpha)}(x|q) = \frac{\qmultiPochhammersym{q^\alpha+1}{q}{n}}{\qPochhammer{q}{q}{n}} \qgenhyperphi{3}{2}@{q^{-n},q^{\alpha/2+1/4}\expe^{\iunit\theta},q^{\alpha/2+1/4}*\expe^{-\iunit\theta}}{q^{\alpha+1},0}{q}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DHMM
+\begin{lrbox}{\DHMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P[n_, \[Alpha]_, x_, q_] := Divide[Product[QPochhammer[Part[{(q)^\[Alpha]+ 1},i],q,n],{i,1,Length[{(q)^\[Alpha]+ 1}]}],QPochhammer[q, q, n]]*QHypergeometricPFQ[{(q)^(- n), (q)^(\[Alpha]/2 + 1/4)* Exp[I*\[Theta]], (q)^(\[Alpha]/2 + 1/4)* Exp[- I*\[Theta]]},{(q)^(\[Alpha]+ 1), 0},q,q]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DHMA
+\begin{lrbox}{\DHMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%86: Little q-Laguerre polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DIT
+\begin{lrbox}{\DIT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\displaystyle  p_n(x;a|q) = {}_2\phi_1(q^{-n},0;aq;q,qx) = \frac{1}{(a^{-1}q^{-n};q)_n}{}_2\phi_0(q^{-n},x^{-1};;q,x/a)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DIST
+\begin{lrbox}{\DIST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p_n(x ; a|q) = \qgenhyperphi{2}{1}@{q^{-n} , 0}{aq}{q}{qx} = \frac{1}{\qmultiPochhammersym{a^{-1} q^{-n}}{q}{n}} \qgenhyperphi{2}{0}@{q^{-n} , x^{-1}}{}{q}{x/a}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DIMM
+\begin{lrbox}{\DIMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"p[n_, x_, a_, q_] := QHypergeometricPFQ[{(q)^(- n), 0},{a*q},q,q*x] == Divide[1,Product[QPochhammer[Part[{(a)^(- 1)* (q)^(- n)},i],q,n],{i,1,Length[{(a)^(- 1)* (q)^(- n)}]}]]*QHypergeometricPFQ[{(q)^(- n), (x)^(- 1)},{},q,x/a]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DIMA
+\begin{lrbox}{\DIMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%87: Q-Bessel polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DJT
+\begin{lrbox}{\DJT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"y_{n}(x;a;q)=\;_{2}\phi_1 \left(\begin{matrix} q^{-N} & -aq^{n} \\ 0  \end{matrix} ; q,qx \right)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DJST
+\begin{lrbox}{\DJST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"y_{n}(x;a;q) = \qgenhyperphi{2}{1}@{q^{-N} , -aq^{n}}{0}{q}{qx}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DJMM
+\begin{lrbox}{\DJMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"y[n_, x_, a_, q_] := QHypergeometricPFQ[{(q)^(- N), - a*(q)^(n)},{0},q,q*x]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DJMA
+\begin{lrbox}{\DJMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%88: Discrete q-Hermite polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DKT
+\begin{lrbox}{\DKT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"h_n(ix;q^{-1}) = i^n\hat h_n(x;q)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DKST
+\begin{lrbox}{\DKST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\discqHermitepolyhI{n}@{\iunit x}{q^{-1}} = \iunit^n \discqHermitepolyhII{n}@{x}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DKMM
+\begin{lrbox}{\DKMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DKMA
+\begin{lrbox}{\DKMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%89: Q-Meixner–Pollaczek polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DLT
+\begin{lrbox}{\DLT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_{n}(x;a\mid q) = a^{-n} e^{in\phi} \frac{a^2;q_n}{(q;q)_n} {_3}\Phi_2(q^-n, ae^{i(\theta+2\phi)}, ae^{-i\theta}; a^2, 0 \mid q; q)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DLST
+\begin{lrbox}{\DLST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P_{n}(x ; a \mid q) = a^{-n} \expe^{\iunit n\phi} \frac{\qmultiPochhammersym{a^2}{q}{n}}{\qmultiPochhammersym{q}{q}{n}} \qgenhyperphi{3}{2}@{q^- n , a\expe^{\iunit(\theta + 2 \phi)} , a\expe^{- \iunit \theta}}{a^2, 0}{q}{q}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DLMM
+\begin{lrbox}{\DLMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"P[n_, x_, a_, q_] := (a)^(- n)* Exp[I*n*\[Phi]]*Divide[Product[QPochhammer[Part[{(a)^(2)},i],q,n],{i,1,Length[{(a)^(2)}]}],Product[QPochhammer[Part[{q},i],q,n],{i,1,Length[{q}]}]]*QHypergeometricPFQ[{(q)^(-)* n , a*Exp[I*(\[Theta]+ 2*\[Phi])], a*Exp[- I*\[Theta]]},{(a)^(2), 0},q,q]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DLMA
+\begin{lrbox}{\DLMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%90: Q-Laguerre polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DMT
+\begin{lrbox}{\DMT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\displaystyle  L_n^{(\alpha)}(x;q) = \frac{(q^{\alpha+1};q)_n}{(q;q)_n} {}_1\phi_1(q^{-n};q^{\alpha+1};q,-q^{n+\alpha+1}x)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DMST
+\begin{lrbox}{\DMST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\qLaguerrepolyL{\alpha}{n}@{x}{q} = \frac{\qmultiPochhammersym{q^{\alpha+1}}{q}{n}}{\qmultiPochhammersym{q}{q}{n}} \qgenhyperphi{1}{1}@{q^{-n}}{q^{\alpha+1}}{q}{- q^{n+\alpha+1} x}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DMMM
+\begin{lrbox}{\DMMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"L[n_, \[Alpha]_, x_, q_] := Divide[Product[QPochhammer[Part[{(q)^(\[Alpha]+ 1)},i],q,n],{i,1,Length[{(q)^(\[Alpha]+ 1)}]}],Product[QPochhammer[Part[{q},i],q,n],{i,1,Length[{q}]}]]*QHypergeometricPFQ[{(q)^(- n)},{(q)^(\[Alpha]+ 1)},q,- (q)^(n + \[Alpha]+ 1)* x]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DMMA
+\begin{lrbox}{\DMMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%91: Continuous q-Hermite polynomials%%%%%%%%%%%%%%%%%%
+\newsavebox\DNT
+\begin{lrbox}{\DNT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum_{n=0}^\infty H_n(x \mid q) \frac{t^n}{(q;q)_n} = \frac{1}{\left( t e^{i \theta},t e^{-i \theta};q \right)_\infty}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DNST
+\begin{lrbox}{\DNST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\sum_{n=0}^\infty \contqHermitepolyH{n}@{x}{q} \frac{t^n}{\qmultiPochhammersym{q}{q}{n}} = \frac{1}{\qmultiPochhammersym{t \expe^{\iunit \theta} , t \expe^{- \iunit \theta}}{q}{\infty}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DNMM
+\begin{lrbox}{\DNMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DNMA
+\begin{lrbox}{\DNMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%92: Ince equation%%%%%%%%%%%%%%%%%%
+\newsavebox\DOT
+\begin{lrbox}{\DOT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"w^{\prime\prime}+\xi\sin(2z)w^{\prime}+(\eta-p\xi\cos(2z))w=0. "
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DOST
+\begin{lrbox}{\DOST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"w^{\prime\prime}+\xi\sin(2z)w^{\prime}+(\eta-p\xi\cos(2z))w=0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DOMM
+\begin{lrbox}{\DOMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"D[w[z], {z, 2}] + \[Xi]*Sin[2*z]*D[w[z], {z, 1}] + (\[Eta]-p*\[Xi]*Cos[2*z])*w[z] == 0"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DOMA
+\begin{lrbox}{\DOMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%93: Ferrers function%%%%%%%%%%%%%%%%%%
+\newsavebox\DPT
+\begin{lrbox}{\DPT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"Q_v^\mu(x)= \cos(\mu\pi)\left(\frac{1+x}{1-x}\right)^{\mu/2}\frac{F(v+1,-v;1-\mu;1/2-2/x)}  {\Gamma(1-\mu ) }"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DPST
+\begin{lrbox}{\DPST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"\FerrersQ[\mu]{v}@{x} = \cos(\mu \cpi)(\frac{1+x}{1-x})^{\mu/2} \frac{\hyperF@{v+1}{-v}{1-\mu}{1/2-2/x}}{\EulerGamma@{1-\mu}}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DPMM
+\begin{lrbox}{\DPMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"LegendreQ[v, \[Mu], x] == Cos[(\[Mu]*Pi)]*(Divide[1 + x,1 - x])^(\[Mu]/2)*Divide[Hypergeometric2F1[v + 1, - v, 1 - \[Mu], 1/2 - 2/x],Gamma[1 - \[Mu]]]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DPMA
+\begin{lrbox}{\DPMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"LegendreQ(v, mu, x) = cos((mu*Pi))*((1 + x)/(1 - x))^(mu/2)*(hypergeom([v + 1, - v], [1 - mu], 1/2 - 2/x))/(GAMMA(1 - mu))"
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%94: Incomplete Bessel functions%%%%%%%%%%%%%%%%%%
+\newsavebox\DQT
+\begin{lrbox}{\DQT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"H_{-v}^{(1)}(z,w)=e^{v\pi i}H_v^{(1)}(z,w)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DQST
+\begin{lrbox}{\DQST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"H_{-v}^{(1)}(z,w) = \expe^{v \cpi \iunit} H_v^{(1)}(z , w)"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DQMM
+\begin{lrbox}{\DQMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DQMA
+\begin{lrbox}{\DQMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
+%%%%%%%%%%%%%%%%%%95: Incomplete Bessel K function/generalized incomplete gamma function%%%%%%%%%%%%%%%%%%
+\newsavebox\DRT
+\begin{lrbox}{\DRT}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"K_v(x,y)=\int_1^\infty\frac{e^{-xt-\frac{y}{t}}}{t^{v+1}}dt"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DRST
+\begin{lrbox}{\DRST}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"K_v(x , y) = \int_1^\infty \frac{\expe^{-xt-\frac{y}{t}}}{t^{v+1}} \diff{t}"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DRMM
+\begin{lrbox}{\DRMM}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]"K[v_, x_, y_] := Integrate[Divide[Exp[- x*t -Divide[y,t]],(t)^(v + 1)], {t, 1, Infinity}]"
+ \end{minipage}
+\end{lrbox}
+\newsavebox\DRMA
+\begin{lrbox}{\DRMA}
+ \begin{minipage}[t]{0.82\textwidth}
+  \lstinline[language={[latex]TeX},mathescape,breaklines=true]""
+ \end{minipage}
+\end{lrbox}
