@@ -1,0 +1,35 @@
+__NOTOC__
+== Generalized hypergeometric function ==
+
+; Gold ID : 20
+; Link : https://sigir21.wmflabs.org/wiki/Generalized_hypergeometric_function#math.70.58
+; Formula : <math>{}_1F_0(1;;z) = \sum_{n \geqslant 0} z^n = (1-z)^{-1}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>{}_1F_0(1;;z) = \sum_{n \geqslant 0} z^n = (1-z)^{-1}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>{}_1 \AppellF{0}(1 ; ; z) = \sum_{n \geqslant 0} z^n =(1 - z)^{-1}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\genhyperF{1}{0}@{1}{}{z} = \sum_{n \geqslant 0} z^n = (1-z)^{-1}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>HypergeometricPFQ[{1}, {}, z] == Sum[(z)^(n), {n, 0, Infinity}] == (1 - z)^(- 1)</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>hypergeom([1], [], z) = sum((z)^(n), n = 0..infinity) = (1 - z)^(- 1)</syntaxhighlight>

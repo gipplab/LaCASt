@@ -1,0 +1,35 @@
+__NOTOC__
+== Orthogonal polynomials ==
+
+; Gold ID : 80
+; Link : https://sigir21.wmflabs.org/wiki/Orthogonal_polynomials#math.133.8
+; Formula : <math>P_n(x) = c_n \, \det \begin{bmatrix}m_0 & m_1 &  m_2 &\cdots & m_n \\m_1 & m_2 &  m_3 &\cdots & m_{n+1} \\&&\vdots&& \vdots \\m_{n-1} &m_n& m_{n+1} &\cdots &m_{2n-1}\\1 & x & x^2 & \cdots & x^n\end{bmatrix}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>P_n(x) = c_n \, \det \begin{bmatrix}m_0 & m_1 &  m_2 &\cdots & m_n \\m_1 & m_2 &  m_3 &\cdots & m_{n+1} \\&&\vdots&& \vdots \\m_{n-1} &m_n& m_{n+1} &\cdots &m_{2n-1}\\1 & x & x^2 & \cdots & x^n\end{bmatrix}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>P_n(x) = c_n  \det \begin{bmatrix}m_0 & m_1 &  m_2 &\cdots & m_n \\m_1 & m_2 &  m_3 &\cdots & m_{n+1} \\&&\vdots&& \vdots \\m_{n-1} &m_n& m_{n+1} &\cdots &m_{2n-1}\\1 & x & x^2 & \cdots & x^n\end{bmatrix}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>P_n(x) = c_n  \det \begin{bmatrix}m_0 & m_1 &  m_2 &\cdots & m_n \\m_1 & m_2 &  m_3 &\cdots & m_{n+1} \\&&\vdots&& \vdots \\m_{n-1} &m_n& m_{n+1} &\cdots &m_{2n-1}\\1 & x & x^2 & \cdots & x^n\end{bmatrix}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

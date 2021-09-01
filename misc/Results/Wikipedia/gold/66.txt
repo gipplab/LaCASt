@@ -1,0 +1,35 @@
+__NOTOC__
+== Theta function of a lattice ==
+
+; Gold ID : 66
+; Link : https://sigir21.wmflabs.org/wiki/Theta_function_of_a_lattice#math.118.0
+; Formula : <math>\Theta_\Lambda(\tau) = \sum_{x\in\Lambda}e^{i\pi\tau\|x\|^2}\qquad\mathrm{Im}\,\tau > 0</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\Theta_\Lambda(\tau) = \sum_{x\in\Lambda}e^{i\pi\tau\|x\|^2}\qquad\mathrm{Im}\,\tau > 0</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\Theta_\Lambda(\tau) = \sum_{x\in\Lambda} \expe^{\iunit \cpi \tau \|x \|^2} \qquad \mathrm{Im} \tau > 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\Theta_\Lambda(\tau) = \sum_{x\in\Lambda} \expe^{\iunit \cpi \tau \|x \|^2} \qquad \imagpart \tau > 0</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>\[CapitalTheta][\[CapitalLambda]_, \[Tau]_] := Sum[Exp[I*Pi*\[Tau]*(Norm[x])^(2)], {x, \[CapitalLambda]}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

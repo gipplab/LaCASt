@@ -1,0 +1,35 @@
+__NOTOC__
+== Gamma function ==
+
+; Gold ID : 4
+; Link : https://sigir21.wmflabs.org/wiki/Gamma_function#math.54.195
+; Formula : <math>\frac{1}{\Gamma(z)} = \frac{i}{2\pi}\int_C (-t)^{-z}e^{-t}\,dt</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\frac{1}{\Gamma(z)} = \frac{i}{2\pi}\int_C (-t)^{-z}e^{-t}\,dt</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\frac{1}{\EulerGamma@{z}} = \frac{\iunit}{2 \cpi} \int_C(- t)^{-z} \expe^{-t} \diff{t}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\frac{1}{\EulerGamma@{z}} = \frac{\iunit}{2 \cpi} \int_C(- t)^{-z} \expe^{-t} \diff{t}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

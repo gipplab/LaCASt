@@ -1,0 +1,35 @@
+__NOTOC__
+== Legendre polynomials ==
+
+; Gold ID : 10
+; Link : https://sigir21.wmflabs.org/wiki/Legendre_polynomials#math.60.57
+; Formula : <math>\frac{1}{\left| \mathbf{x}-\mathbf{x}' \right|} = \frac{1}{\sqrt{r^2+{r'}^2-2r{r'}\cos\gamma}} = \sum_{\ell=0}^\infty \frac{{r'}^\ell}{r^{\ell+1}} P_\ell(\cos \gamma)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\frac{1}{\left| \mathbf{x}-\mathbf{x}' \right|} = \frac{1}{\sqrt{r^2+{r'}^2-2r{r'}\cos\gamma}} = \sum_{\ell=0}^\infty \frac{{r'}^\ell}{r^{\ell+1}} P_\ell(\cos \gamma)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\frac{1}{|\mathbf{x} - \mathbf{x} '|} = \frac{1}{\sqrt{r^2+{r'}^2-2r{r'}\cos\gamma}} = \sum_{\ell=0}^\infty \frac{{r'}^\ell}{r^{\ell+1}} \LegendrepolyP{\ell}@{\cos \gamma}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\frac{1}{|\mathbf{x} - \mathbf{x} '|} = \frac{1}{\sqrt{r^2+{r'}^2-2r{r'}\cos\gamma}} = \sum_{\ell=0}^\infty \frac{{r'}^\ell}{r^{\ell+1}} \LegendrepolyP{\ell}@{\cos \gamma}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Divide[1, Abs[x - x\[Prime]]] == Divide[1, Sqrt[r^2+(r\[Prime])^(2)-2*r*r\[Prime] Cos[\[Gamma]]]] == Sum[Divide[(r\[Prime])^(\[ScriptL]), r^(\[ScriptL]+1)]*LegendreP[\[ScriptL], Cos[\[Gamma]]], {\[ScriptL], 0, Infinity}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

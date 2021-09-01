@@ -1,0 +1,35 @@
+__NOTOC__
+== Charlier polynomials ==
+
+; Gold ID : 61
+; Link : https://sigir21.wmflabs.org/wiki/Charlier_polynomials#math.113.2
+; Formula : <math>\sum_{x=0}^\infty \frac{\mu^x}{x!} C_n(x; \mu)C_m(x; \mu)=\mu^{-n} e^\mu n! \delta_{nm}, \quad \mu>0</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\sum_{x=0}^\infty \frac{\mu^x}{x!} C_n(x; \mu)C_m(x; \mu)=\mu^{-n} e^\mu n! \delta_{nm}, \quad \mu>0</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\sum_{x=0}^\infty \frac{\mu^x}{x!} C_n(x ; \mu) C_m(x ; \mu) = \mu^{-n} \expe^\mu n! \delta_{nm} , \quad \mu > 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\sum_{x=0}^\infty \frac{\mu^x}{x!} \CharlierpolyC{n}@{x}{\mu} \CharlierpolyC{m}@{x}{\mu} = \mu^{-n} \expe^\mu n! \delta_{nm} , \quad \mu > 0</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Sum[Divide[\[Mu]^(x),(x)!]*Subscript[C, n][x ; \[Mu]]* Subscript[C, m][x ; \[Mu]], {x, 0, Infinity}, GenerateConditions->None] == \[Mu]^(- n)* Exp[\[Mu]]*(n)!*Subscript[\[Delta], n, m]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Sum[Divide[\[Mu]^x, x!] * HypergeometricPFQ[{-n, -x}, {}, -Divide[1,\[Mu]]] * HypergeometricPFQ[{-m, -x}, {}, -Divide[1,\[Mu]]], {x, 0, Infinity}] == \[Mu]^(-n)*Exp[\[Mu]]*n!*Subscript[\[Delta], n, m]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>sum(((mu)^(x))/(factorial(x))*C[n](x ; mu)* C[m](x ; mu), x = 0..infinity) = (mu)^(- n)* exp(mu)*factorial(n)*delta[n, m]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

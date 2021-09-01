@@ -1,0 +1,35 @@
+__NOTOC__
+== Beta function ==
+
+; Gold ID : 17
+; Link : https://sigir21.wmflabs.org/wiki/Beta_function#math.67.29
+; Formula : <math>f(z)=\frac{1}{\Beta(x,y)}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>f(z)=\frac{1}{\Beta(x,y)}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\EulerPhi@{z} = \frac{1}{\Beta(x,y)}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>f(x, y) = \frac{1}{\EulerBeta@{x}{y}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>f[x_, y_] := Divide[1,Beta[x, y]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>f := (x,y) -> (1)/(Beta(x, y))</syntaxhighlight>

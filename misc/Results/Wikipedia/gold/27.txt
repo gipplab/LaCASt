@@ -1,0 +1,35 @@
+__NOTOC__
+== Incomplete gamma function ==
+
+; Gold ID : 27
+; Link : https://sigir21.wmflabs.org/wiki/Incomplete_gamma_function#math.77.118
+; Formula : <math>\int_{-\infty}^\infty \frac {\gamma\left(\frac s 2, z^2 \pi \right)} {(z^2 \pi)^\frac s 2} e^{-2 \pi i k z} \mathrm d z = \frac {\Gamma\left(\frac {1-s} 2, k^2 \pi \right)} {(k^2 \pi)^\frac {1-s} 2}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\int_{-\infty}^\infty \frac {\gamma\left(\frac s 2, z^2 \pi \right)} {(z^2 \pi)^\frac s 2} e^{-2 \pi i k z} \mathrm d z = \frac {\Gamma\left(\frac {1-s} 2, k^2 \pi \right)} {(k^2 \pi)^\frac {1-s} 2}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\int_{-\infty}^\infty \frac{\incgamma@{\frac s 2}{z^2 \cpi}}{(z^2 \cpi)^\frac s 2} \expe^{- 2 \cpi \iunit k z} \diff{z} = \frac{\incGamma@{\frac {1-s} 2}{k^2 \cpi}}{(k^2 \cpi)^\frac {1-s} 2}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\int_{-\infty}^\infty \frac{\incgamma@{\frac s 2}{z^2 \cpi}}{(z^2 \cpi)^\frac s 2} \expe^{- 2 \cpi \iunit k z} \diff{z} = \frac{\incGamma@{\frac {1-s} 2}{k^2 \cpi}}{(k^2 \cpi)^\frac {1-s} 2}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Integrate[Divide[Gamma[Divide[s,2], 0, (z)^(2)* Pi],((z)^(2)* Pi)^(Divide[s,2])]*Exp[- 2*Pi*I*k*z], {z, - Infinity, Infinity}, GenerateConditions->None] == Divide[Gamma[Divide[1 - s,2], (k)^(2)* Pi],((k)^(2)* Pi)^(Divide[1 - s,2])]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Integrate[Divide[Gamma[Divide[s,2], 0, (z)^(2)* Pi],((z)^(2)* Pi)^(Divide[s,2])]*Exp[- 2*Pi*I*k*z], {z, - Infinity, Infinity}] == Divide[Gamma[Divide[1 - s,2], (k)^(2)* Pi],((k)^(2)* Pi)^(Divide[1 - s,2])]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>int((GAMMA((s)/(2))-GAMMA((s)/(2), (z)^(2)* Pi))/(((z)^(2)* Pi)^((s)/(2)))*exp(- 2*Pi*I*k*z), z = - infinity..infinity) = (GAMMA((1 - s)/(2), (k)^(2)* Pi))/(((k)^(2)* Pi)^((1 - s)/(2)))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>int((GAMMA((s)/(2))-GAMMA((s)/(2), (z)^(2)* Pi))/(((z)^(2)* Pi)^((s)/(2)))*exp(- 2*Pi*I*k*z), z = - infinity..infinity) = (GAMMA((1 - s)/(2), (k)^(2)* Pi))/(((k)^(2)* Pi)^((1 - s)/(2)))</syntaxhighlight>

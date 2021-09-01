@@ -1,0 +1,35 @@
+__NOTOC__
+== Q-Hahn polynomials ==
+
+; Gold ID : 77
+; Link : https://sigir21.wmflabs.org/wiki/Q-Hahn_polynomials#math.129.0
+; Formula : <math>Q_n(x;a,b,N;q)=\;_{3}\phi_2\left[\begin{matrix} q^-n & abq^n+1 &  x \\ aq & q^-N  \end{matrix} ; q,q \right]</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>Q_n(x;a,b,N;q)=\;_{3}\phi_2\left[\begin{matrix} q^-n & abq^n+1 &  x \\ aq & q^-N  \end{matrix} ; q,q \right]</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>Q_n(x ; a , b , N ; q) =_{3} \phi_2 [\begin{matrix} q^-n & abq^n+1 &  x \\ aq & q^-N  \end{matrix} ; q , q]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\qHahnpolyQ{n}@{x}{a}{b}{N}{q} = \qgenhyperphi{3}{2}@{q^-n , abq^n+1 , x}{aq , q^-N}{q}{q}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Q[n_, x_, a_, b_, N_, q_] := QHypergeometricPFQ[{(q)^(-)* n , a*b*(q)^(n)+ 1 , x},{a*q , (q)^(-)* N},q,q]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

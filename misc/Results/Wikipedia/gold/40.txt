@@ -1,0 +1,35 @@
+__NOTOC__
+== Hypergeometric function ==
+
+; Gold ID : 40
+; Link : https://sigir21.wmflabs.org/wiki/Hypergeometric_function#math.90.7
+; Formula : <math>c = a + 1</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>c = a + 1</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>c = a + 1</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>c = a + 1</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>c == a + 1</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>c == a + 1</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>c = a + 1</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>c := a + 1</syntaxhighlight>

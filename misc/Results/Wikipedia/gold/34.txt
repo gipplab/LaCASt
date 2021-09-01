@@ -1,0 +1,35 @@
+__NOTOC__
+== Voigt profile ==
+
+; Gold ID : 34
+; Link : https://sigir21.wmflabs.org/wiki/Voigt_profile#math.84.31
+; Formula : <math>\frac{\partial^2}{\partial x^2} V(x;\sigma,\gamma)= \frac{x^2-\gamma^2-\sigma^2}{\sigma^4} \frac{\operatorname{Re}[w(z)]}{\sigma\sqrt{2 \pi}}-\frac{2 x \gamma}{\sigma^4} \frac{\operatorname{Im}[w(z)]}{\sigma\sqrt{2 \pi}}+\frac{\gamma}{\sigma^4}\frac{1}{\pi}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\frac{\partial^2}{\partial x^2} V(x;\sigma,\gamma)= \frac{x^2-\gamma^2-\sigma^2}{\sigma^4} \frac{\operatorname{Re}[w(z)]}{\sigma\sqrt{2 \pi}}-\frac{2 x \gamma}{\sigma^4} \frac{\operatorname{Im}[w(z)]}{\sigma\sqrt{2 \pi}}+\frac{\gamma}{\sigma^4}\frac{1}{\pi}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\deriv [2]{ }{x} V(x ; \sigma , \gamma) = \frac{x^2-\gamma^2-\sigma^2}{\sigma^4} \frac{\realpart@@{[\Faddeevaw@{z}]}}{\sigma \sqrt{2 \cpi}} - \frac{2 x \gamma}{\sigma^4} \frac{\imagpart [\Faddeevaw@{z}]}{\sigma \sqrt{2 \cpi}} + \frac{\gamma}{\sigma^4} \frac{1}{\cpi}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\deriv[2]{}{x} V(x ; \sigma , \gamma) = \frac{x^2-\gamma^2-\sigma^2}{\sigma^4} \frac{\realpart [\Faddeevaw@{z}]}{\sigma \sqrt{2 \cpi}} - \frac{2 x \gamma}{\sigma^4} \frac{\imagpart [\Faddeevaw@{z}]}{\sigma \sqrt{2 \cpi}} + \frac{\gamma}{\sigma^4} \frac{1}{\cpi}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>D[PDF[VoigtDistribution[\[Gamma], \[Sigma]], x], {x, 2}] == Divide[x^2 - \[Gamma]^2 - \[Sigma]^2, \[Sigma]^4] * Divide[ Re[ Exp[-(Divide[x+I*y,\[Sigma]*Sqrt[2]])^2]*Erfc[-I*(Divide[x+I*y,\[Sigma]*Sqrt[2]])] ], \[Sigma]*Sqrt[2*Pi]] - Divide[2*x*y, \[Sigma]^4] * Divide[Im[Exp[-(Divide[x+I*y,\[Sigma]*Sqrt[2]])^2]*Erfc[-I*(Divide[x+I*y,\[Sigma]*Sqrt[2]])]], \[Sigma]*Sqrt[2*Pi]] + Divide[\[Gamma],\[Sigma]^4]*Divide[1,Pi]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

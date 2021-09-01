@@ -1,0 +1,35 @@
+__NOTOC__
+== 6-j symbol ==
+
+; Gold ID : 49
+; Link : https://sigir21.wmflabs.org/wiki/6-j_symbol#math.100.14
+; Formula : <math>\begin{Bmatrix}    i & j & \ell\\    k & m & n  \end{Bmatrix}= (\Phi_{i,j}^{k,m})_{\ell,n}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\begin{Bmatrix}    i & j & \ell\\    k & m & n  \end{Bmatrix}= (\Phi_{i,j}^{k,m})_{\ell,n}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\Wignersixjsym{i}{j}{\ell}{k}{m}{n} = \Pochhammersym{\Phi_{i,j}^{k,m}}{\ell,n}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\Wignersixjsym{i}{j}{\ell}{k}{m}{n} = (\Phi_{i,j}^{k,m})_{\ell,n}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>SixJSymbol[{i, j, \[ScriptL]}, {k, m, n}] Pochhammer[\[CapitalPhi](Subscript[\[CapitalPhi], i , j])^(k , m), \[ScriptL], n]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

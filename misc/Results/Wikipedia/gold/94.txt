@@ -1,0 +1,35 @@
+__NOTOC__
+== Incomplete Bessel functions ==
+
+; Gold ID : 94
+; Link : https://sigir21.wmflabs.org/wiki/Incomplete_Bessel_functions#math.153.27
+; Formula : <math>H_{-v}^{(1)}(z,w)=e^{v\pi i}H_v^{(1)}(z,w)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>H_{-v}^{(1)}(z,w)=e^{v\pi i}H_v^{(1)}(z,w)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>H_{-v}^{(1)}(z , w) = \expe^{v \cpi \iunit} H_v^{(1)}(z , w)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>H_{-v}^{(1)}(z,w) = \expe^{v \cpi \iunit} H_v^{(1)}(z , w)</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>\[CapitalEta][(Subscript[\[CapitalEta], - v])^(1)]*(z , w) == \[CapitalEta][(Subscript[\[CapitalEta], v])^(1)]*(z , w)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Eta((Eta[- v])^(1))*(z , w) = Eta((Eta[v])^(1))*(z , w)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

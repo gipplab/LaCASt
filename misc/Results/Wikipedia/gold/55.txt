@@ -1,0 +1,35 @@
+__NOTOC__
+== Hill differential equation ==
+
+; Gold ID : 55
+; Link : https://sigir21.wmflabs.org/wiki/Hill_differential_equation#math.106.7
+; Formula : <math>f(t+p) = f(t)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>f(t+p) = f(t)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>f(t+p) = f(t)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>f(t+p) = f(t)</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>f[t + p] == f[t]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>f[t + p] == f[t]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>f(t + p) = f(t)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>f(t + p) = f(t)</syntaxhighlight>

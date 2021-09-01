@@ -1,0 +1,35 @@
+__NOTOC__
+== Continuous dual Hahn polynomials ==
+
+; Gold ID : 72
+; Link : https://sigir21.wmflabs.org/wiki/Continuous_dual_Hahn_polynomials#math.124.0
+; Formula : <math>S_n(x^2;a,b,c)= {}_3F_2(-n,a+ix,a-ix;a+b,a+c;1).</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>S_n(x^2;a,b,c)= {}_3F_2(-n,a+ix,a-ix;a+b,a+c;1).</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\contdualHahnpolyS{n}@{x^2}{a}{b}{c} = \genhyperF{3}{2}@{- n , a + \iunit x , a - \iunit x}{a + b , a + c}{1}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\contdualHahnpolyS{n}@{x^2}{a}{b}{c} = \genhyperF{3}{2}@{- n , a + \iunit x , a - \iunit x}{a + b , a + c}{1}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

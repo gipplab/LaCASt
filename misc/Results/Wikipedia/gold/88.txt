@@ -1,0 +1,35 @@
+__NOTOC__
+== Discrete q-Hermite polynomials ==
+
+; Gold ID : 88
+; Link : https://sigir21.wmflabs.org/wiki/Discrete_q-Hermite_polynomials#math.144.2
+; Formula : <math>h_n(ix;q^{-1}) = i^n\hat h_n(x;q)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>h_n(ix;q^{-1}) = i^n\hat h_n(x;q)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\discqHermitepolyhI{n}@{\iunit x}{q^{-1}} = \iunit^n \discqHermitepolyhI{}@{}{}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\discqHermitepolyhI{n}@{\iunit x}{q^{-1}} = \iunit^n \discqHermitepolyhII{n}@{x}{q}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
