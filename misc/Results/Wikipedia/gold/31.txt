@@ -1,0 +1,35 @@
+__NOTOC__
+== Laguerre polynomials ==
+
+; Gold ID : 31
+; Link : https://sigir21.wmflabs.org/wiki/Laguerre_polynomials#math.81.84
+; Formula : <math>\sum_{n=0}^\infty \frac{n!\,\Gamma\left(\alpha + 1\right)}{\Gamma\left(n+\alpha+1\right)}L_n^{(\alpha)}(x)L_n^{(\alpha)}(y)t^n=\frac{1}{(1-t)^{\alpha + 1}}e^{-(x+y)t/(1-t)}\,_0F_1\left(;\alpha + 1;\frac{xyt}{(1-t)^2}\right)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\sum_{n=0}^\infty \frac{n!\,\Gamma\left(\alpha + 1\right)}{\Gamma\left(n+\alpha+1\right)}L_n^{(\alpha)}(x)L_n^{(\alpha)}(y)t^n=\frac{1}{(1-t)^{\alpha + 1}}e^{-(x+y)t/(1-t)}\,_0F_1\left(;\alpha + 1;\frac{xyt}{(1-t)^2}\right)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\sum_{n=0}^\infty \frac{n! \Gamma(\alpha + 1)}{\Gamma(n + \alpha + 1)} \LaguerrepolyL[\alpha]{n}@{x} \LaguerrepolyL[\alpha]{n}@{y} t^n = \frac{1}{(1-t)^{\alpha + 1}} e_0^{-(x+y)t/(1-t)} F_1(; \alpha + 1 ; \frac{xyt}{(1-t)^2})</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\sum_{n=0}^\infty \frac{n! \EulerGamma@{\alpha + 1}}{\EulerGamma@{n + \alpha + 1}} \LaguerrepolyL[\alpha]{n}@{x} \LaguerrepolyL[\alpha]{n}@{x} t^n = \frac{1}{(1-t)^{\alpha + 1}} \expe^{-(x+y)t/(1-t)} \genhyperF{0}{1}@{}{\alpha + 1}{\frac{xyt}{(1-t)^2}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Sum[Divide[(n)!*\[CapitalGamma]*(\[Alpha]+ 1),\[CapitalGamma]*(n + \[Alpha]+ 1)]*LaguerreL[n, \[Alpha], x]*LaguerreL[n, \[Alpha], y]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None] == Divide[1,(1 - t)^(\[Alpha]+ 1)]*(Subscript[e, 0])^(-(x + y)*t/(1 - t))*Subscript[F, 1][; \[Alpha]+ 1 ;Divide[x*y*t,(1 - t)^(2)]]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Sum[Divide[(n)!*Gamma[\[Alpha]+ 1],Gamma[n + \[Alpha]+ 1]]*LaguerreL[n, \[Alpha], x]*LaguerreL[n, \[Alpha], x]*(t)^(n), {n, 0, Infinity}] == Divide[1,(1 - t)^(\[Alpha]+ 1)]*Exp[-(x + y)*t/(1 - t)]*HypergeometricPFQ[{}, {\[Alpha]+ 1}, Divide[x*y*t,(1 - t)^(2)]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>sum((factorial(n)*Gamma*(alpha + 1))/(Gamma*(n + alpha + 1))*LaguerreL(n, alpha, x)*LaguerreL(n, alpha, y)*(t)^(n), n = 0..infinity) = (1)/((1 - t)^(alpha + 1))*(e[0])^(-(x + y)*t/(1 - t))*F[1](; alpha + 1 ;(x*y*t)/((1 - t)^(2)))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>sum((factorial(n)*GAMMA(alpha + 1))/(GAMMA(n + alpha + 1))*LaguerreL(n, alpha, x)*LaguerreL(n, alpha, x)*(t)^(n), n = 0..infinity) = (1)/((1 - t)^(alpha + 1))*exp(-(x + y)*t/(1 - t))*hypergeom([], [alpha + 1], (x*y*t)/((1 - t)^(2)))</syntaxhighlight>

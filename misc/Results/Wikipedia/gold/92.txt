@@ -1,0 +1,35 @@
+__NOTOC__
+== Ince equation ==
+
+; Gold ID : 92
+; Link : https://sigir21.wmflabs.org/wiki/Ince_equation#math.151.0
+; Formula : <math>w^{\prime\prime}+\xi\sin(2z)w^{\prime}+(\eta-p\xi\cos(2z))w=0. </math>
+; TeX Source : <syntaxhighlight lang="tex" inline>w^{\prime\prime}+\xi\sin(2z)w^{\prime}+(\eta-p\xi\cos(2z))w=0. </syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>w^{\prime\prime}+\xi\sin(2z)w^{\prime}+(\eta-p\xi\cos(2z))w=0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>w^{\prime\prime}+\xi\sin(2z)w^{\prime}+(\eta-p\xi\cos(2z))w=0</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>D[w[z], {z, 2}] + \[Xi]*Sin[2*z]*D[w[z], {z, 1}] + (\[Eta]-p*\[Xi]*Cos[2*z])*w[z] == 0</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

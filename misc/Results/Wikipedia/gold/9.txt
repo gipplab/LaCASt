@@ -1,0 +1,36 @@
+__NOTOC__
+== Lambert W function ==
+
+; Gold ID : 9
+; Link : https://sigir21.wmflabs.org/wiki/Lambert_W_function#math.59.52
+; Formula : <math>\begin{align}x & =ue^u, \\[5pt]\frac{dx}{du} & =(u+1)e^u.\end{align}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\begin{align}x & =ue^u, \\[5pt]\frac{dx}{du} & =(u+1)e^u.\end{align}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\begin{align}x &= u \expe^u , \\ \frac{dx}{du} &=(u + 1) \expe^u .\end{align}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\begin{align}x & =\LambertW@{x}\expe^{\LambertW@{x}}, \\ \deriv{x}{\LambertW@{x}} &=(\LambertW@{x} + 1) \expe^{\LambertW@{x}} .\end{align}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>x == u*Exp[u]
+Divide[d*x,d*u] == (u + 1)*Exp[u]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>x == ProductLog[x]*(E)^(ProductLog[x]) D[x,ProductLog[x]] = (ProductLog[x] + 1)*Exp[ProductLog[x]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>x = u*exp(u); (d*x)/(d*u) = (u + 1)*exp(u)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>x = LambertW(x)*exp(u); diff(x, [LambertW(x)$\$$1]) = (LambertW(x) + 1)*exp(LambertW(x))</syntaxhighlight>

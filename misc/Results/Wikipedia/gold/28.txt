@@ -1,0 +1,35 @@
+__NOTOC__
+== Polylogarithm ==
+
+; Gold ID : 28
+; Link : https://sigir21.wmflabs.org/wiki/Polylogarithm#math.78.0-1
+; Formula : <math>_{1}(z) =</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>_{1}(z) =</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>_{1}(z) =</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\polylog{1}@{z} = -\ln@{1-z}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Subscript[$0, 1]*(z) ==</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>PolyLog[1, z] = -Log[1 - z]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>$0[1]*(z) =</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>polylog(1, z) = -ln(1 - z)</syntaxhighlight>

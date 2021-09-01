@@ -1883,6 +1883,9 @@
         "translations" : {
           "Mathematica": {
             "translation": "s \\[NotEqual] 1"
+          },
+          "Maple": {
+            "translation": "s <> 1"
           }
         },
         "positions" : [

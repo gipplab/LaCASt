@@ -1,0 +1,35 @@
+__NOTOC__
+== Appell series ==
+
+; Gold ID : 65
+; Link : https://sigir21.wmflabs.org/wiki/Appell_series#math.117.19
+; Formula : <math>x(1-x) \frac {\partial^2F_1(x,y)} {\partial x^2} + y(1-x) \frac {\partial^2F_1(x,y)} {\partial x \partial y} + [c - (a+b_1+1) x] \frac {\partial F_1(x,y)} {\partial x} - b_1 y \frac {\partial F_1(x,y)} {\partial y} - a b_1 F_1(x,y) = 0</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>x(1-x) \frac {\partial^2F_1(x,y)} {\partial x^2} + y(1-x) \frac {\partial^2F_1(x,y)} {\partial x \partial y} + [c - (a+b_1+1) x] \frac {\partial F_1(x,y)} {\partial x} - b_1 y \frac {\partial F_1(x,y)} {\partial y} - a b_1 F_1(x,y) = 0</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>x(1 - x) \deriv [2]{F_1(x , y)}{x} + y(1 - x) \frac {\partial^2F_1(x,y)} {\partial x \partial y} + [c -(a + b_1 + 1) x] \deriv [1]{F_1(x , y)}{x} - b_1 y \deriv [1]{F_1(x , y)}{y} - a b_1 F_1(x , y) = 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>x(1-x) \deriv[2]{\AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y}}{x} + y(1-x) \frac{\pdiff[2]{\AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y}}}{\pdiff{x}\pdiff{y}} + [c - (a+b_1+1) x] \deriv[1]{\AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y}}{x} - b_1 y \deriv[1]{\AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y}}{y} - a b_1 \AppellF{1}@{a}{b_1}{b_2}{\gamma}{x}{y} = 0</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>x*(1-x) * D[AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y], {x,2}] + y*(1-x) * D[AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y], x, y] + (c - (a+Subscript[b, 1]+1)*x) * D[AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y], x] - Subscript[b,1] * y * D[AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y], y] - a*Subscript[b,1]*AppellF[a, Subscript[b, 1], Subscript[b, 2], \[Gamma], x, y] == 0</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

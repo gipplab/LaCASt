@@ -1,0 +1,36 @@
+__NOTOC__
+== Meijer G-function ==
+
+; Gold ID : 47
+; Link : https://sigir21.wmflabs.org/wiki/Meijer_G-function#math.98.53-1
+; Formula : <math>\gamma> 0,n-p=m-q> 0</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\gamma> 0,n-p=m-q> 0</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\gamma> 0,n-p=m-q> 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\gamma> 0,n-p=m-q> 0</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>\[Gamma] > 0
+ n - p == m - q > 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>\[Gamma] > 0  n - p == m - q > 0</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>gamma > 0; n - p = m - q > 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>gamma > 0; n - p = m - q > 0</syntaxhighlight>

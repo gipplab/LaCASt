@@ -1,0 +1,35 @@
+__NOTOC__
+== Gegenbauer polynomials ==
+
+; Gold ID : 43
+; Link : https://sigir21.wmflabs.org/wiki/Gegenbauer_polynomials#math.93.0-1
+; Formula : <math>=2</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>=2</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>=2</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\alpha = 2</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>== 2</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>\[Alpha] = 2</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>= 2</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>alpha = 2</syntaxhighlight>

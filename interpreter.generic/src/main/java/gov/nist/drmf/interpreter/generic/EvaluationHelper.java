@@ -18,6 +18,7 @@ import gov.nist.drmf.interpreter.common.meta.ListExtender;
 import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
 import gov.nist.drmf.interpreter.generic.eval.TexTableEntry;
 import gov.nist.drmf.interpreter.generic.eval.TexTableGenerator;
+import gov.nist.drmf.interpreter.generic.eval.WikiResultGenerator;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedGoldDocument;
 import gov.nist.drmf.interpreter.pom.generic.GenericFunctionAnnotator;
 import gov.nist.drmf.interpreter.pom.generic.GenericReplacementTool;
@@ -572,7 +573,7 @@ public class EvaluationHelper {
         System.out.println("Number of total entries with semantic: " + goldEntriesInTotal);
     }
 
-    private static void clearCache(MathematicaInterface mi) {
+    public static void clearCache(MathematicaInterface mi) {
         try {
             mi.evaluate("ClearAll[\"Global`*\"]");
         } catch (MathLinkException e) {
@@ -581,17 +582,56 @@ public class EvaluationHelper {
         }
     }
 
+    private static String buildStr(TexTableEntry entry) {
+        String tmm = entry.isCorrectTMM() ?
+                "✔" :
+                (entry.getMathematica().isBlank() ? "-" : "✘");
+        String tma = entry.isCorrectTMA() ?
+                "✔" :
+                (entry.getMaple().isBlank() ? "-" : "✘");
+
+        return String.format("%02d: %s %s %s",
+                entry.getNum(),
+                entry.isCorrectTST() ? "✔" : "✘",
+                tmm,
+                tma
+        );
+    }
+
     public static void main(String[] args) throws IOException, ParseException, InitTranslatorException {
-//        List<SemanticEnhancedDocument> generatedDocs = SemanticEnhancedDocument.deserialize(Paths.get("./misc/Results/Wikipedia/gold-data-TRANSLATED-ORDERED.json"));
+        List<SemanticEnhancedDocument> translatedDocs = SemanticEnhancedDocument.deserialize(Paths.get("./misc/Results/Wikipedia/gold-data-TRANSLATED-ORDERED.json"));
         List<SemanticEnhancedGoldDocument> generatedDocs = SemanticEnhancedGoldDocument.deserializeGold(goldPath);
-        TexTableGenerator tableGenerator = new TexTableGenerator(Paths.get("./misc/Results/Wikipedia/tex/"));
+
+        Map<String, SemanticEnhancedDocument> map = new HashMap<>();
+        for ( SemanticEnhancedDocument sed : translatedDocs ) {
+            map.put(sed.getTitle(), sed);
+        }
+
+        LinkedList<TexTableEntry> entries = new LinkedList<>();
+        LinkedList<String> list = new LinkedList<>();
 
         for ( int i = 1; i < generatedDocs.size()+1; i++ ) {
             SemanticEnhancedGoldDocument sed = generatedDocs.get(i-1);
+            LOG.info("Working on Entry: " + i + " (" + sed.getTitle() + ")");
             TexTableEntry entry = TexTableEntry.generate(sed);
-            tableGenerator.addEntry(entry);
+            SemanticEnhancedDocument translatedSed = map.get(sed.getTitle());
+//            entry.addTranslations(translatedSed);
+            entries.addLast(entry);
+
+//            String str = buildStr(entry);
+//            System.out.println(str);
+//            list.addLast(str);
         }
 
+//        for ( String s : list ) System.out.println(s);
+
+        // Writes Wikitext Result Pages for Supplementary Materials TPAMI Journal
+//        WikiResultGenerator generator = new WikiResultGenerator(Paths.get("./misc/Results/Wikipedia/gold/"));
+//        for ( TexTableEntry entry : entries ) generator.addResult(entry);
+
+        // Writes the TeX Result Tables for Supplementary Materials TPAMI Journal
+        TexTableGenerator tableGenerator = new TexTableGenerator(Paths.get("./misc/Results/Wikipedia/tex/"));
+        for ( TexTableEntry entry : entries ) tableGenerator.addEntry(entry);
         tableGenerator.flush();
         tableGenerator.write();
 

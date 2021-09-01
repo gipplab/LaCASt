@@ -1,0 +1,35 @@
+__NOTOC__
+== Elliptic integral ==
+
+; Gold ID : 3
+; Link : https://sigir21.wmflabs.org/wiki/Elliptic_integral#math.53.6
+; Formula : <math>F(x;k) = u</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>F(x;k) = u</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>F(x;k) = u</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\incellintFk@{\asin@{\Jacobiellsnk@@{u}{k}}}{k} = u</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>F[x ; k] == u</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>EllipticF[ArcSin[JacobiSN[u, (k)^2]], (k)^2] == u</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>F(x ; k) = u</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>EllipticF(JacobiSN(u, k), k) = u</syntaxhighlight>

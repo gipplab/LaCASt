@@ -1,0 +1,35 @@
+__NOTOC__
+== Kelvin functions ==
+
+; Gold ID : 52
+; Link : https://sigir21.wmflabs.org/wiki/Kelvin_functions#math.103.8
+; Formula : <math>g_1(x) = \sum_{k \geq 1} \frac{\sin(k \pi / 4)}{k! (8x)^k} \prod_{l = 1}^k (2l - 1)^2</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>g_1(x) = \sum_{k \geq 1} \frac{\sin(k \pi / 4)}{k! (8x)^k} \prod_{l = 1}^k (2l - 1)^2</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>g_1(x) = \sum_{k \geq 1} \frac{\sin(k \cpi / 4)}{k! (8x)^k} \prod_{l = 1}^k(2 l - 1)^2</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>g_1(x) = \sum_{k \geq 1} \frac{\sin(k \cpi / 4)}{k! (8x)^k} \prod_{l = 1}^k(2 l - 1)^2</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Subscript[g, 1][x] == Sum[Divide[Sin[k*Pi/4],(k)!*(8*x)^(k)]*Product[(2*l - 1)^(2), {l, 1, k}, GenerateConditions->None], {k, 1, Infinity}, GenerateConditions->None]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Subscript[g, 1][x_] := Sum[Divide[Sin[k*Pi/4],(k)!*(8*x)^(k)]*Product[(2*l - 1)^(2), {l, 1, k}], {k, 1, Infinity}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>g[1](x) = sum((sin(k*Pi/4))/(factorial(k)*(8*x)^(k))*product((2*l - 1)^(2), l = 1..k), k = 1..infinity)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>g[1] := (x) -> sum((sin(k*Pi/4))/(factorial(k)*(8*x)^(k))*product((2*l - 1)^(2), l = 1..k), k = 1..infinity)</syntaxhighlight>

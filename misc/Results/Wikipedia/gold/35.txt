@@ -1,0 +1,35 @@
+__NOTOC__
+== Lerch zeta function ==
+
+; Gold ID : 35
+; Link : https://sigir21.wmflabs.org/wiki/Lerch_zeta_function#math.85.57
+; Formula : <math>\Phi(z,s,a) = \frac{1}{1-z} \frac{1}{a^{s}}    +    \sum_{n=1}^{N-1} \frac{(-1)^{n} \mathrm{Li}_{-n}(z)}{n!} \frac{(s)_{n}}{a^{n+s}}    +O(a^{-N-s})</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\Phi(z,s,a) = \frac{1}{1-z} \frac{1}{a^{s}}    +    \sum_{n=1}^{N-1} \frac{(-1)^{n} \mathrm{Li}_{-n}(z)}{n!} \frac{(s)_{n}}{a^{n+s}}    +O(a^{-N-s})</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\Phi(z , s , a) = \frac{1}{1-z} \frac{1}{a^{s}} + \sum_{n=1}^{N-1} \frac{(- 1)^{n} L \iunit_{-n}(z)}{n!} \frac{\Pochhammersym{s}{n}}{a^{n+s}} + O(a^{-N-s})</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\Phi(z , s , a) = \frac{1}{1-z} \frac{1}{a^{s}} + \sum_{n=1}^{N-1} \frac{(-1)^{n} \polylog{-n}@{z}}{n!} \frac{\Pochhammersym{s}{n}}{a^{n+s}} + \bigO{a^{-N-s}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>\[CapitalPhi][z , s , a] == Divide[1,1 - z]*Divide[1,(a)^(s)]+ Sum[Divide[(- 1)^(n)* L*Subscript[I, - n]*(z),(n)!]*Divide[Pochhammer[s, n],(a)^(n + s)], {n, 1, N - 1}, GenerateConditions->None]+ \[CapitalOmicron][(a)^(- N - s)]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>\[CapitalPhi][z, s, a] == Divide[1,1 - z]*Divide[1,(a)^(s)]+ Sum[Divide[(- 1)^(n)* PolyLog[-n, z],(n)!]*Divide[Pochhammer[s, n],(a)^(n + s)], {n, 1, N - 1}]+ O[a]^(- N - s)</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Phi(z , s , a) = (1)/(1 - z)*(1)/((a)^(s))+ sum(((- 1)^(n)* L*I[- n]*(z))/(factorial(n))*(pochhammer(s, n))/((a)^(n + s)), n = 1..N - 1)+ Omicron((a)^(- N - s))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

@@ -1,0 +1,35 @@
+__NOTOC__
+== Jacobi elliptic functions ==
+
+; Gold ID : 26
+; Link : https://sigir21.wmflabs.org/wiki/Jacobi_elliptic_functions#math.76.155
+; Formula : <math>\frac{\mathrm{d}}{\mathrm{d}z} \operatorname{dn}(z) = - k^2 \operatorname{sn}(z) \operatorname{cn}(z)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\frac{\mathrm{d}}{\mathrm{d}z} \operatorname{dn}(z) = - k^2 \operatorname{sn}(z) \operatorname{cn}(z)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\deriv [1]{ }{z} \Jacobielldnk@@{(z)}{k} = - k^2 \Jacobiellsnk@@{(z)}{k} \Jacobiellcnk@@{(z)}{k}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\deriv [1]{ }{z} \Jacobielldnk@@{(z)}{k} = - k^2 \Jacobiellsnk@@{(z)}{k} \Jacobiellcnk@@{(z)}{k}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>D[JacobiDN[z, (k)^2], {z, 1}] == - (k)^(2)* JacobiSN[z, (k)^2]*JacobiCN[z, (k)^2]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>D[JacobiDN[z, (k)^2], {z, 1}] == - (k)^(2)* JacobiSN[z, (k)^2]*JacobiCN[z, (k)^2]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>diff(JacobiDN(z, k), [z$(1)]) = - (k)^(2)* JacobiSN(z, k)*JacobiCN(z, k)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>diff(JacobiDN(z, k), [z$\$$(1)]) = - (k)^(2)* JacobiSN(z, k)*JacobiCN(z, k)</syntaxhighlight>

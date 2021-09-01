@@ -1,0 +1,35 @@
+__NOTOC__
+== Orthogonal polynomials on the unit circle ==
+
+; Gold ID : 79
+; Link : https://sigir21.wmflabs.org/wiki/Orthogonal_polynomials_on_the_unit_circle#math.132.7
+; Formula : <math>\Phi_n^*(z)=z^n\overline{\Phi_n(1/\overline{z})}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\Phi_n^*(z)=z^n\overline{\Phi_n(1/\overline{z})}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\Phi_n^*(z) = z^n{\conj{\Phi_n(1 / \overline{z})}}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\Phi_n^*(z) = z^n{\conj{\Phi_n(1 / \conj{z})}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>\[CapitalPhi]\[Prima][n_, z_] := z^n*Conjugate[\[CapitalPhi][n, Divide[1, Conjugate[z]]]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

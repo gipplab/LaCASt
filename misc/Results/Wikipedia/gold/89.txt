@@ -1,0 +1,35 @@
+__NOTOC__
+== Q-Meixner–Pollaczek polynomials ==
+
+; Gold ID : 89
+; Link : https://sigir21.wmflabs.org/wiki/Q-Meixner–Pollaczek_polynomials#math.145.0
+; Formula : <math>P_{n}(x;a\mid q) = a^{-n} e^{in\phi} \frac{a^2;q_n}{(q;q)_n} {_3}\Phi_2(q^-n, ae^{i(\theta+2\phi)}, ae^{-i\theta}; a^2, 0 \mid q; q)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>P_{n}(x;a\mid q) = a^{-n} e^{in\phi} \frac{a^2;q_n}{(q;q)_n} {_3}\Phi_2(q^-n, ae^{i(\theta+2\phi)}, ae^{-i\theta}; a^2, 0 \mid q; q)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>P_{n}(x ; a \mid q) = a^{-n} \expe^{in\phi} \frac{a^2;q_n}{\qmultiPochhammersym{q}{q}{n}}{_3} \Phi_2(q^- n , a \expe^{\iunit(\theta + 2 \phi)} , a \expe^{- \iunit \theta} ; a^2 , 0 \mid q ; q)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>P_{n}(x ; a \mid q) = a^{-n} \expe^{\iunit n\phi} \frac{\qmultiPochhammersym{a^2}{q}{n}}{\qmultiPochhammersym{q}{q}{n}} \qgenhyperphi{3}{2}@{q^- n , a\expe^{\iunit(\theta + 2 \phi)} , a\expe^{- \iunit \theta}}{a^2, 0}{q}{q}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>P[n_, x_, a_, q_] := (a)^(- n)* Exp[I*n*\[Phi]]*Divide[Product[QPochhammer[Part[{(a)^(2)},i],q,n],{i,1,Length[{(a)^(2)}]}],Product[QPochhammer[Part[{q},i],q,n],{i,1,Length[{q}]}]]*QHypergeometricPFQ[{(q)^(-)* n , a*Exp[I*(\[Theta]+ 2*\[Phi])], a*Exp[- I*\[Theta]]},{(a)^(2), 0},q,q]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

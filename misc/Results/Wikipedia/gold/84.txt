@@ -1,0 +1,35 @@
+__NOTOC__
+== Dual q-Krawtchouk polynomials ==
+
+; Gold ID : 84
+; Link : https://sigir21.wmflabs.org/wiki/Dual_q-Krawtchouk_polynomials#math.138.0
+; Formula : <math>K_n(\lambda(x);c,N|q)=_3\Phi_2(q^{-n},q^{-x},cq^{x-N};q^{-N},0|q;q)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>K_n(\lambda(x);c,N|q)=_3\Phi_2(q^{-n},q^{-x},cq^{x-N};q^{-N},0|q;q)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>K_n(\lambda(x);c,N|q)=_3\Phi_2(q^{-n},q^{-x},cq^{x-N};q^{-N},0|q;q)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>K_n(\lambda(x);c,N|q) = \qgenhyperphi{3}{2}@{q^{-n},q^{-x},cq^{x-N}}{q^{-N},0}{q}{q}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

@@ -1,0 +1,35 @@
+__NOTOC__
+== Fresnel integral ==
+
+; Gold ID : 18
+; Link : https://sigir21.wmflabs.org/wiki/Fresnel_integral#math.68.51
+; Formula : <math>\begin{align}\int x^m e^{ix^n}\,dx & =\frac{x^{m+1}}{m+1}\,_1F_1\left(\begin{array}{c} \frac{m+1}{n}\\1+\frac{m+1}{n}\end{array}\mid ix^n\right) \\[6px]& =\frac{1}{n} i^\frac{m+1}{n}\gamma\left(\frac{m+1}{n},-ix^n\right),\end{align}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\begin{align}\int x^m e^{ix^n}\,dx & =\frac{x^{m+1}}{m+1}\,_1F_1\left(\begin{array}{c} \frac{m+1}{n}\\1+\frac{m+1}{n}\end{array}\mid ix^n\right) \\[6px]& =\frac{1}{n} i^\frac{m+1}{n}\gamma\left(\frac{m+1}{n},-ix^n\right),\end{align}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\begin{align}\int x^m \expe^{\iunit x^n} \diff{x} &= \frac{x^{m+1}}{m+1}_1 F_1(\begin{array}{c} \frac{m+1}{n}\\1+\frac{m+1}{n}\end{array} \mid \iunit x^n) \\ &= \frac{1}{n} \iunit^\frac{m+1}{n} \incgamma@{\frac{m+1}{n}}{- \iunit x^n} ,\end{align}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\begin{align}\int x^m \exp(\iunit x^n) \diff{x} &= \frac{x^{m+1}}{m+1}\genhyperF{1}{1}@{\frac{m+1}{n}}{1+\frac{m+1}{n}}{\iunit x^n}\\ &=\frac{1}{n} \iunit^{(m+1)/n} \incgamma@{\frac{m+1}{n}}{-\iunit x^n}\end{align}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Integrate[(x)^(m)* Exp[I*(x)^(n)], x] == Divide[(x)^(m + 1),m + 1]*HypergeometricPFQ[{Divide[m + 1,n]}, {1 +Divide[m + 1,n]}, I*(x)^(n)] == Divide[1,n]*(I)^((m + 1)/n)* Gamma[Divide[m + 1,n], 0, - I*(x)^(n)]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>int((x)^(m)* exp(I*(x)^(n)), x) = ((x)^(m + 1))/(m + 1)*hypergeom([(m + 1)/(n)], [1 +(m + 1)/(n)], I*(x)^(n)) = (1)/(n)*(I)^((m + 1)/n)* GAMMA((m + 1)/(n))-GAMMA((m + 1)/(n), - I*(x)^(n))</syntaxhighlight>

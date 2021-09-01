@@ -1,0 +1,35 @@
+__NOTOC__
+== Little q-Laguerre polynomials ==
+
+; Gold ID : 86
+; Link : https://sigir21.wmflabs.org/wiki/Little_q-Laguerre_polynomials#math.142.0
+; Formula : <math>\displaystyle  p_n(x;a|q) = {}_2\phi_1(q^{-n},0;aq;q,qx) = \frac{1}{(a^{-1}q^{-n};q)_n}{}_2\phi_0(q^{-n},x^{-1};;q,x/a)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\displaystyle  p_n(x;a|q) = {}_2\phi_1(q^{-n},0;aq;q,qx) = \frac{1}{(a^{-1}q^{-n};q)_n}{}_2\phi_0(q^{-n},x^{-1};;q,x/a)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>p_n(x ; a|q) = \qgenhyperphi{2}{1}@{q^{-n} , 0}{aq}{q}{qx} = \frac{1}{\qmultiPochhammersym{a^{-1} q^{-n}}{q}{n}}{}_2 \phi_0(q^{-n} , x^{-1} ; ; q , x / a)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>p_n(x ; a|q) = \qgenhyperphi{2}{1}@{q^{-n} , 0}{aq}{q}{qx} = \frac{1}{\qmultiPochhammersym{a^{-1} q^{-n}}{q}{n}} \qgenhyperphi{2}{0}@{q^{-n} , x^{-1}}{}{q}{x/a}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>p[n_, x_, a_, q_] := QHypergeometricPFQ[{(q)^(- n), 0},{a*q},q,q*x] == Divide[1,Product[QPochhammer[Part[{(a)^(- 1)* (q)^(- n)},i],q,n],{i,1,Length[{(a)^(- 1)* (q)^(- n)}]}]]*QHypergeometricPFQ[{(q)^(- n), (x)^(- 1)},{},q,x/a]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

@@ -105,7 +105,7 @@ public class TexTableGenerator {
         String tableEntry = String.format(TABLE_ENTRY,
                 tex,
                 entry.getNum(),
-                entry.getUrl(),
+                entry.getGoldURL(),
                 entry.getUrlName(),
                 entry.buildID("T"),
                 entry.buildID("ST"),

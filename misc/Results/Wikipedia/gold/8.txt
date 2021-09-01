@@ -1,0 +1,35 @@
+__NOTOC__
+== Gaussian quadrature ==
+
+; Gold ID : 8
+; Link : https://sigir21.wmflabs.org/wiki/Gaussian_quadrature#math.58.61
+; Formula : <math>w_{i} = \frac{1}{p'_{n}(x_{i})}\int_{a}^{b}\omega(x)\frac{p_{n}(x)}{x-x_{i}}dx</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>w_{i} = \frac{1}{p'_{n}(x_{i})}\int_{a}^{b}\omega(x)\frac{p_{n}(x)}{x-x_{i}}dx</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>w_{i} = \frac{1}{p'_{n}(x_{i})} \int_{a}^{b} \omega(x) \frac{p_{n}(x)}{x-x_{i}} \diff{x}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>w_{i} = \frac{1}{p'_{n}(x_{i})} \int_{a}^{b} \omega(x) \frac{p_{n}(x)}{x-x_{i}} \diff{x}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Subscript[w, i] = Divide[1, Subscript[p\[Prime], n][Subscript[x, i]]]*Integrate[\[Omega][x]*Divide[Subscript[p,n][x], x-Subscript[x,i]], {x, a, b}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

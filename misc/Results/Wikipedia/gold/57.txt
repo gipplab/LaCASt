@@ -1,0 +1,35 @@
+__NOTOC__
+== Lamé function ==
+
+; Gold ID : 57
+; Link : https://sigir21.wmflabs.org/wiki/Lamé_function#math.109.27
+; Formula : <math>(\operatorname{Ec})^'_{2K} = (\operatorname{Ec})^'_0 = 0, \;\; (\operatorname{Es})^'_{2K} = (\operatorname{Es})^'_0 = 0</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>(\operatorname{Ec})^'_{2K} = (\operatorname{Ec})^'_0 = 0, \;\; (\operatorname{Es})^'_{2K} = (\operatorname{Es})^'_0 = 0</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>(\operatorname{Ec})_{2K}^' =(\operatorname{Ec})_0^' = 0 ,(\operatorname{Es})_{2K}^' =(\operatorname{Es})_0^' = 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>(\operatorname{Ec})_{2K}^' =(\operatorname{Ec})_0^' = 0 ,(\operatorname{Es})_{2K}^' =(\operatorname{Es})_0^' = 0</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
