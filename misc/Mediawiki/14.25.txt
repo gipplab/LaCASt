@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Legendre and Related Functions - 14.25 Integral Representations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/14.25.E1 14.25.E1] || <math qid="Q4958">\assLegendreP[-\mu]{\nu}@{z} = \frac{\left(z^{2}-1\right)^{\mu/2}}{2^{\nu}\EulerGamma@{\mu-\nu}\EulerGamma@{\nu+1}}\int_{0}^{\infty}\frac{(\sinh@@{t})^{2\nu+1}}{(z+\cosh@@{t})^{\nu+\mu+1}}\diff{t}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\assLegendreP[-\mu]{\nu}@{z} = \frac{\left(z^{2}-1\right)^{\mu/2}}{2^{\nu}\EulerGamma@{\mu-\nu}\EulerGamma@{\nu+1}}\int_{0}^{\infty}\frac{(\sinh@@{t})^{2\nu+1}}{(z+\cosh@@{t})^{\nu+\mu+1}}\diff{t}</syntaxhighlight> || <math>\realpart@@{\mu} > \realpart@@{\nu}, \realpart@@{\nu} > -1, \realpart@@{(\mu-\nu)} > 0, \realpart@@{(\nu+1)} > 0</math> || <syntaxhighlight lang=mathematica>LegendreP(nu, - mu, z) = (((z)^(2)- 1)^(mu/2))/((2)^(nu)* GAMMA(mu - nu)*GAMMA(nu + 1))*int(((sinh(t))^(2*nu + 1))/((z + cosh(t))^(nu + mu + 1)), t = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>LegendreP[\[Nu], - \[Mu], 3, z] == Divide[((z)^(2)- 1)^(\[Mu]/2),(2)^\[Nu]* Gamma[\[Mu]- \[Nu]]*Gamma[\[Nu]+ 1]]*Integrate[Divide[(Sinh[t])^(2*\[Nu]+ 1),(z + Cosh[t])^(\[Nu]+ \[Mu]+ 1)], {t, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Error || Aborted || - || Skipped - Because timed out
+|- 
+| [https://dlmf.nist.gov/14.25.E2 14.25.E2] || <math qid="Q4959">\assLegendreOlverQ[\mu]{\nu}@{z} = \frac{\pi^{1/2}\left(z^{2}-1\right)^{\mu/2}}{2^{\mu}\EulerGamma@{\mu+\frac{1}{2}}\EulerGamma@{\nu-\mu+1}}\*\int_{0}^{\infty}\frac{(\sinh@@{t})^{2\mu}}{\left(z+(z^{2}-1)^{1/2}\cosh@@{t}\right)^{\nu+\mu+1}}\diff{t}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\assLegendreOlverQ[\mu]{\nu}@{z} = \frac{\pi^{1/2}\left(z^{2}-1\right)^{\mu/2}}{2^{\mu}\EulerGamma@{\mu+\frac{1}{2}}\EulerGamma@{\nu-\mu+1}}\*\int_{0}^{\infty}\frac{(\sinh@@{t})^{2\mu}}{\left(z+(z^{2}-1)^{1/2}\cosh@@{t}\right)^{\nu+\mu+1}}\diff{t}</syntaxhighlight> || <math>\realpart@{\nu+1} > \realpart@@{\mu}, \realpart@@{\mu} > -\tfrac{1}{2}, \realpart@@{(\mu+\frac{1}{2})} > 0, \realpart@@{(\nu-\mu+1)} > 0</math> || <syntaxhighlight lang=mathematica>exp(-(mu)*Pi*I)*LegendreQ(nu,mu,z)/GAMMA(nu+mu+1) = ((Pi)^(1/2)*((z)^(2)- 1)^(mu/2))/((2)^(mu)* GAMMA(mu +(1)/(2))*GAMMA(nu - mu + 1))* int(((sinh(t))^(2*mu))/((z +((z)^(2)- 1)^(1/2)* cosh(t))^(nu + mu + 1)), t = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Exp[-(\[Mu]) Pi I] LegendreQ[\[Nu], \[Mu], 3, z]/Gamma[\[Nu] + \[Mu] + 1] == Divide[(Pi)^(1/2)*((z)^(2)- 1)^(\[Mu]/2),(2)^\[Mu]* Gamma[\[Mu]+Divide[1,2]]*Gamma[\[Nu]- \[Mu]+ 1]]* Integrate[Divide[(Sinh[t])^(2*\[Mu]),(z +((z)^(2)- 1)^(1/2)* Cosh[t])^(\[Nu]+ \[Mu]+ 1)], {t, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Error || Aborted || - || Skipped - Because timed out
+|}
+</div>

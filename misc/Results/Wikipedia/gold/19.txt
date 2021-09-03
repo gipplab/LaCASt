@@ -1,0 +1,35 @@
+__NOTOC__
+== Classical orthogonal polynomials ==
+
+; Gold ID : 19
+; Link : https://sigir21.wmflabs.org/wiki/Classical_orthogonal_polynomials#math.69.117
+; Formula : <math>T_n(x) = \frac{\Gamma(1/2)\sqrt{1-x^2}}{(-2)^n\,\Gamma(n+1/2)} \  \frac{d^n}{dx^n}\left([1-x^2]^{n-1/2}\right)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>T_n(x) = \frac{\Gamma(1/2)\sqrt{1-x^2}}{(-2)^n\,\Gamma(n+1/2)} \  \frac{d^n}{dx^n}\left([1-x^2]^{n-1/2}\right)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\ChebyshevpolyT{n}@{x} = \frac{\Gamma(1/2)\sqrt{1-x^2}}{(-2)^n\Gamma(n+1/2)} \deriv [n]{ }{x}([1 - x^2]^{n-1/2})</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\ChebyshevpolyT{n}@{x} = \frac{\EulerGamma{1/2}\sqrt{1-x^2}}{(-2)^n\EulerGamma{n+1/2}} \deriv [n]{ }{x}([1 - x^2]^{n-1/2})</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>ChebyshevT[n, x] == Divide[\[CapitalGamma]*(1/2)*Sqrt[1 - (x)^(2)],(- 2)^(n)* \[CapitalGamma]*(n + 1/2)]*D[(1 - (x)^(2))^(n - 1/2), {x, n}]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>ChebyshevT[n, x] == Divide[Gamma[1/2]*Sqrt[1 - (x)^(2)],(- 2)^(n)* Gamma[n + 1/2]]*D[(1 - (x)^(2))^(n - 1/2), {x, n}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>ChebyshevT(n, x) = (Gamma*(1/2)*sqrt(1 - (x)^(2)))/((- 2)^(n)* Gamma*(n + 1/2))*diff((1 - (x)^(2))^(n - 1/2), [x$(n)])</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>ChebyshevT(n, x) = (GAMMA(1/2)*sqrt(1 - (x)^(2)))/((- 2)^(n)* GAMMA(n + 1/2))*diff((1 - (x)^(2))^(n - 1/2), [x$\$$(n)])</syntaxhighlight>

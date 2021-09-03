@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Legendre and Related Functions - 14.28 Sums}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/14.28.E1 14.28.E1] || <math qid="Q4960">\assLegendreP[]{\nu}@{z_{1}z_{2}-\left(z_{1}^{2}-1\right)^{1/2}\left(z_{2}^{2}-1\right)^{1/2}\cos@@{\phi}} = \assLegendreP[]{\nu}@{z_{1}}\assLegendreP[]{\nu}@{z_{2}}+2\sum_{m=1}^{\infty}(-1)^{m}\frac{\EulerGamma@{\nu-m+1}}{\EulerGamma@{\nu+m+1}}\*\assLegendreP[m]{\nu}@{z_{1}}\assLegendreP[m]{\nu}(z_{2})\cos@{m\phi}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\assLegendreP[]{\nu}@{z_{1}z_{2}-\left(z_{1}^{2}-1\right)^{1/2}\left(z_{2}^{2}-1\right)^{1/2}\cos@@{\phi}} = \assLegendreP[]{\nu}@{z_{1}}\assLegendreP[]{\nu}@{z_{2}}+2\sum_{m=1}^{\infty}(-1)^{m}\frac{\EulerGamma@{\nu-m+1}}{\EulerGamma@{\nu+m+1}}\*\assLegendreP[m]{\nu}@{z_{1}}\assLegendreP[m]{\nu}(z_{2})\cos@{m\phi}</syntaxhighlight> || <math>\realpart@@{(\nu-m+1)} > 0, \realpart@@{(\nu+m+1)} > 0</math> || <syntaxhighlight lang=mathematica>LegendreP(nu, z[1]*z[2]-((z[1])^(2)- 1)^(1/2)*((z[2])^(2)- 1)^(1/2)* cos(phi)) = LegendreP(nu, z[1])*LegendreP(nu, z[2])+ 2*sum((- 1)^(m)*(GAMMA(nu - m + 1))/(GAMMA(nu + m + 1))* LegendreP(nu, m, z[1])*LegendreP(nu, m, z[2])*cos(m*phi), m = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>LegendreP[\[Nu], 0, 3, Subscript[z, 1]*Subscript[z, 2]-((Subscript[z, 1])^(2)- 1)^(1/2)*((Subscript[z, 2])^(2)- 1)^(1/2)* Cos[\[Phi]]] == LegendreP[\[Nu], 0, 3, Subscript[z, 1]]*LegendreP[\[Nu], 0, 3, Subscript[z, 2]]+ 2*Sum[(- 1)^(m)*Divide[Gamma[\[Nu]- m + 1],Gamma[\[Nu]+ m + 1]]* LegendreP[\[Nu], m, 3, Subscript[z, 1]]*LegendreP[\[Nu], m, 3, Subscript[z, 2]]*Cos[m*\[Phi]], {m, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Translation Error || Translation Error || - || -
+|- 
+| [https://dlmf.nist.gov/14.28.E2 14.28.E2] || <math qid="Q4961">\sum_{n=0}^{\infty}(2n+1)\assLegendreQ[]{n}@{z_{1}}\assLegendreP[]{n}@{z_{2}} = \frac{1}{z_{1}-z_{2}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=0}^{\infty}(2n+1)\assLegendreQ[]{n}@{z_{1}}\assLegendreP[]{n}@{z_{2}} = \frac{1}{z_{1}-z_{2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum((2*n + 1)*LegendreQ(n, z[1])*LegendreP(n, z[2]), n = 0..infinity) = (1)/(z[1]- z[2])</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[(2*n + 1)*LegendreQ[n, 0, 3, Subscript[z, 1]]*LegendreP[n, 0, 3, Subscript[z, 2]], {n, 0, Infinity}, GenerateConditions->None] == Divide[1,Subscript[z, 1]- Subscript[z, 2]]</syntaxhighlight> || Failure || Failure || Skipped - Because timed out || <div class="toccolours mw-collapsible mw-collapsed">Failed [100 / 100]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[DirectedInfinity[], NSum[Times[Plus[1, Times[2, n]], LegendreP[n, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], LegendreQ[n, 0, 3, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]]
+Test Values: {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[Subscript[z, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[z, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[-0.6830127018922194, -0.18301270189221946], NSum[Times[Plus[1, Times[2, n]], LegendreP[n, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]], LegendreQ[n, 0, 3, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]]
+Test Values: {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]], {Rule[Subscript[z, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[z, 2], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

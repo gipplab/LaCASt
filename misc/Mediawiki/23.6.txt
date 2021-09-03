@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Weierstrass Elliptic and Modular Functions - 23.6 Relations to Other Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/23.6#Ex1 23.6#Ex1] || <math qid="Q7241">q = e^{i\pi\tau}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>q = e^{i\pi\tau}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">q = exp(I*Pi*tau)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">q == Exp[I*Pi*\[Tau]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/23.6#Ex2 23.6#Ex2] || <math qid="Q7242">\tau = \omega_{3}/\omega_{1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\tau = \omega_{3}/\omega_{1}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">tau = omega[3]/omega[1]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">\[Tau] == Subscript[\[Omega], 3]/Subscript[\[Omega], 1]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- 
+| [https://dlmf.nist.gov/23.6.E8 23.6.E8] || <math qid="Q7249">\eta_{1} = -\frac{\pi^{2}}{12\omega_{1}}\frac{\Jacobithetaq{1}'''@{0}{q}}{\Jacobithetaq{1}'@{0}{q}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\eta_{1} = -\frac{\pi^{2}}{12\omega_{1}}\frac{\Jacobithetaq{1}'''@{0}{q}}{\Jacobithetaq{1}'@{0}{q}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>eta[1] = -((Pi)^(2))/(12*omega[1])*(diff( JacobiTheta1(0, q), 0$(3) ))/(diff( JacobiTheta1(0, q), 0$(1) ))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Subscript[\[Eta], 1] == -Divide[(Pi)^(2),12*Subscript[\[Omega], 1]]*Divide[D[EllipticTheta[1, 0, q], {0, 3}],D[EllipticTheta[1, 0, q], {0, 1}]]</syntaxhighlight> || Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.8660254037844387, 0.49999999999999994], Times[Complex[0.712277344720507, -0.4112335167120565], Power[D[0.0
+Test Values: {0.0, 1.0}], -1], D[0.0, {0.0, 3.0}]]], {Rule[q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[η, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ω, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[η, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[ω, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.8660254037844387, 0.49999999999999994], Times[Complex[-0.4112335167120564, -0.712277344720507], Power[D[0.0
+Test Values: {0.0, 1.0}], -1], D[0.0, {0.0, 3.0}]]], {Rule[q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[η, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ω, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[η, 1], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[ω, 1], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/23.6#Ex5 23.6#Ex5] || <math qid="Q7259">\compellintKk^{2}@@{k} = (\compellintKk@{k})^{2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\compellintKk^{2}@@{k} = (\compellintKk@{k})^{2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(EllipticK(k))^(2) = (EllipticK(k))^(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(EllipticK[(k)^2])^(2) == (EllipticK[(k)^2])^(2)</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 3]
+|}
+</div>

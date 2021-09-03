@@ -1,0 +1,35 @@
+__NOTOC__
+== Big q-Laguerre polynomials ==
+
+; Gold ID : 83
+; Link : https://sigir21.wmflabs.org/wiki/Big_q-Laguerre_polynomials#math.137.0
+; Formula : <math>P_n(x;a,b;q)=\frac{1}{(b^{-1}*q^{-n};q,n)}*_2\Phi_1(q^{-n},aqx^{-1};aq|q;\frac{x}{b})</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>P_n(x;a,b;q)=\frac{1}{(b^{-1}*q^{-n};q,n)}*_2\Phi_1(q^{-n},aqx^{-1};aq|q;\frac{x}{b})</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>P_n(x;a,b;q)=\frac{1}{(b^{-1}*q^{-n};q,n)}*_2\Phi_1(q^{-n},aqx^{-1};aq|q;\frac{x}{b})</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>P_n(x;a,b;q) =\frac{1}{\qmultiPochhammersym{b^{-1}*q^{-n}}{q}{n}} * \qgenhyperphi{2}{1}@{q^{-n},aqx^{-1}}{aq}{q}{\frac{x}{b}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>P[n_, x_, a_, b_, q_] := Divide[1,Product[QPochhammer[Part[{(b)^(- 1)* (q)^(- n)},i],q,n],{i,1,Length[{(b)^(- 1)* (q)^(- n)}]}]]* QHypergeometricPFQ[{(q)^(- n), a*q*(x)^(- 1)},{a*q},q,Divide[x,b]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

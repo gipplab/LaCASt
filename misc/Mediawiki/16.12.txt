@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Generalized Hypergeometric Functions & Meijer G -Function - 16.12 Products}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/16.12.E1 16.12.E1] || <math qid="Q5246">\genhyperF{0}{1}@{-}{a}{z}\genhyperF{0}{1}@{-}{b}{z} = \genhyperF{2}{3}@@{\frac{1}{2}(a+b),\frac{1}{2}(a+b-1)}{a,b,a+b-1}{4z}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\genhyperF{0}{1}@{-}{a}{z}\genhyperF{0}{1}@{-}{b}{z} = \genhyperF{2}{3}@@{\frac{1}{2}(a+b),\frac{1}{2}(a+b-1)}{a,b,a+b-1}{4z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>hypergeom([-], [a], z)*hypergeom([-], [b], z) = hypergeom([(1)/(2)*(a + b),(1)/(2)*(a + b - 1)], [a , b , a + b - 1], 4*z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>HypergeometricPFQ[{-}, {a}, z]*HypergeometricPFQ[{-}, {b}, z] == HypergeometricPFQ[{Divide[1,2]*(a + b),Divide[1,2]*(a + b - 1)}, {a , b , a + b - 1}, 4*z]</syntaxhighlight> || Error || Failure || - || Error
+|- 
+| [https://dlmf.nist.gov/16.12.E2 16.12.E2] || <math qid="Q5247">\left(\genhyperF{2}{1}@@{a,b}{a+b+\frac{1}{2}}{z}\right)^{2} = \genhyperF{3}{2}@@{2a,2b,a+b}{a+b+\frac{1}{2},2a+2b}{z}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\left(\genhyperF{2}{1}@@{a,b}{a+b+\frac{1}{2}}{z}\right)^{2} = \genhyperF{3}{2}@@{2a,2b,a+b}{a+b+\frac{1}{2},2a+2b}{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(hypergeom([a , b], [a + b +(1)/(2)], z))^(2) = hypergeom([2*a , 2*b , a + b], [a + b +(1)/(2), 2*a + 2*b], z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(HypergeometricPFQ[{a , b}, {a + b +Divide[1,2]}, z])^(2) == HypergeometricPFQ[{2*a , 2*b , a + b}, {a + b +Divide[1,2], 2*a + 2*b}, z]</syntaxhighlight> || Failure || Failure || Manual Skip! || <div class="toccolours mw-collapsible mw-collapsed">Failed [108 / 252]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[4.205771365940054, 0.2846096908265261]
+Test Values: {Rule[a, -1.5], Rule[b, 1.5], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-23.50000000000001, -28.578838324886455]
+Test Values: {Rule[a, -1.5], Rule[b, 1.5], Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/16.12.E3 16.12.E3] || <math qid="Q5248">\left(\genhyperF{2}{1}@@{a,b}{c}{z}\right)^{2} = \sum_{k=0}^{\infty}\frac{\Pochhammersym{2a}{k}\Pochhammersym{2b}{k}\Pochhammersym{c-\frac{1}{2}}{k}}{\Pochhammersym{c}{k}\Pochhammersym{2c-1}{k}k!}\genhyperF{4}{3}@@{-\frac{1}{2}k,\frac{1}{2}(1-k),a+b-c+\frac{1}{2},\frac{1}{2}}{a+\frac{1}{2},b+\frac{1}{2},\frac{3}{2}-k-c}{1}z^{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\left(\genhyperF{2}{1}@@{a,b}{c}{z}\right)^{2} = \sum_{k=0}^{\infty}\frac{\Pochhammersym{2a}{k}\Pochhammersym{2b}{k}\Pochhammersym{c-\frac{1}{2}}{k}}{\Pochhammersym{c}{k}\Pochhammersym{2c-1}{k}k!}\genhyperF{4}{3}@@{-\frac{1}{2}k,\frac{1}{2}(1-k),a+b-c+\frac{1}{2},\frac{1}{2}}{a+\frac{1}{2},b+\frac{1}{2},\frac{3}{2}-k-c}{1}z^{k}</syntaxhighlight> || <math>|z| < 1</math> || <syntaxhighlight lang=mathematica>(hypergeom([a , b], [c], z))^(2) = sum((pochhammer(2*a, k)*pochhammer(2*b, k)*pochhammer(c -(1)/(2), k))/(pochhammer(c, k)*pochhammer(2*c - 1, k)*factorial(k))*hypergeom([-(1)/(2)*k ,(1)/(2)*(1 - k), a + b - c +(1)/(2),(1)/(2)], [a +(1)/(2), b +(1)/(2),(3)/(2)- k - c], 1)*(z)^(k), k = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(HypergeometricPFQ[{a , b}, {c}, z])^(2) == Sum[Divide[Pochhammer[2*a, k]*Pochhammer[2*b, k]*Pochhammer[c -Divide[1,2], k],Pochhammer[c, k]*Pochhammer[2*c - 1, k]*(k)!]*HypergeometricPFQ[{-Divide[1,2]*k ,Divide[1,2]*(1 - k), a + b - c +Divide[1,2],Divide[1,2]}, {a +Divide[1,2], b +Divide[1,2],Divide[3,2]- k - c}, 1]*(z)^(k), {k, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [159 / 216]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -.1250000000
+Test Values: {a = -3/2, b = -3/2, c = -3/2, z = 1/2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 5.872053804
+Test Values: {a = -3/2, b = -3/2, c = -1/2, z = 1/2}</syntaxhighlight><br>... skip entries to safe data</div></div> || Skipped - Because timed out
+|}
+</div>

@@ -70,6 +70,20 @@
             <artifactId>mathosphere-core</artifactId>
             <version>3.0.0-SNAPSHOT</version>
         </dependency>
+
+        <dependency> <!-- Wikidata Toolkit -->
+            <groupId>org.wikidata.wdtk</groupId>
+            <artifactId>wdtk-dumpfiles</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.wikidata.wdtk</groupId>
+            <artifactId>wdtk-wikibaseapi</artifactId>
+        </dependency>
+
+        <dependency> <!-- Wikipedia (Wiki Bot Framework) -->
+            <groupId>net.sourceforge</groupId>
+            <artifactId>jwbf</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

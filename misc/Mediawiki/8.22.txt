@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Incomplete Gamma and Related Functions - 8.22 Mathematical Applications}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/8.22.E1 8.22.E1] || <math qid="Q2750">\frac{\EulerGamma@{p}}{2\pi}z^{1-p}\genexpintE{p}@{z} = \frac{\EulerGamma@{p}}{2\pi}\incGamma@{1-p}{z}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{\EulerGamma@{p}}{2\pi}z^{1-p}\genexpintE{p}@{z} = \frac{\EulerGamma@{p}}{2\pi}\incGamma@{1-p}{z}</syntaxhighlight> || <math>\realpart@@{p} > 0, \realpart@@{(n+p)} > 0</math> || <syntaxhighlight lang=mathematica>(GAMMA(p))/(2*Pi)*(z)^(1 - p)* Ei(p, z) = (GAMMA(p))/(2*Pi)*GAMMA(1 - p, z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[Gamma[p],2*Pi]*(z)^(1 - p)* ExpIntegralE[p, z] == Divide[Gamma[p],2*Pi]*Gamma[1 - p, z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 35]
+|- 
+| [https://dlmf.nist.gov/8.22.E3 8.22.E3] || <math qid="Q2752">\zeta_{x}(s) = \sum_{k=1}^{\infty}k^{-s}\normincGammaP@{s}{kx}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\zeta_{x}(s) = \sum_{k=1}^{\infty}k^{-s}\normincGammaP@{s}{kx}</syntaxhighlight> || <math>\realpart@@{s} > 1</math> || <syntaxhighlight lang=mathematica>((1)/(GAMMA(s))*int(((t)^(s - 1))/(exp(t)- 1), t = 0..x)) = sum((k)^(- s)* (GAMMA(s)-GAMMA(s, k*x))/GAMMA(s), k = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(Divide[1,Gamma[s]]*Integrate[Divide[(t)^(s - 1),Exp[t]- 1], {t, 0, x}, GenerateConditions->None]) == Sum[(k)^(- s)* GammaRegularized[s, 0, k*x], {k, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Aborted || Manual Skip! || Skipped - Because timed out
+|}
+</div>

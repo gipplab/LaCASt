@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Parabolic Cylinder Functions - 12.15 Generalized Parabolic Cylinder Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/12.15.E1 12.15.E1] || <math qid="Q4281">\deriv[2]{w}{z}+\left(\nu+\lambda^{-1}-\lambda^{-2}z^{\lambda}\right)w = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv[2]{w}{z}+\left(\nu+\lambda^{-1}-\lambda^{-2}z^{\lambda}\right)w = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(w, [z$(2)])+(nu + (lambda)^(- 1)- (lambda)^(- 2)* (z)^(lambda))*w = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[w, {z, 2}]+(\[Nu]+ \[Lambda]^(- 1)- \[Lambda]^(- 2)* (z)^\[Lambda])*w == 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .7322275248+.9199723429*I
+Test Values: {lambda = 1/2*3^(1/2)+1/2*I, nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.402820433+.5288298490*I
+Test Values: {lambda = 1/2*3^(1/2)+1/2*I, nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.7322275239543282, 0.91997234266967]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[λ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-0.6337978798301105, 0.5539469388852316]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[λ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

@@ -1,0 +1,35 @@
+__NOTOC__
+== Incomplete Bessel K function/generalized incomplete gamma function ==
+
+; Gold ID : 95
+; Link : https://sigir21.wmflabs.org/wiki/Incomplete_Bessel_K_function/generalized_incomplete_gamma_function#math.154.0
+; Formula : <math>K_v(x,y)=\int_1^\infty\frac{e^{-xt-\frac{y}{t}}}{t^{v+1}}dt</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>K_v(x,y)=\int_1^\infty\frac{e^{-xt-\frac{y}{t}}}{t^{v+1}}dt</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>K_v(x , y) = \int_1^\infty \frac{\expe^{-xt-\frac{y}{t}}}{t^{v+1}} \diff{t}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>K_v(x , y) = \int_1^\infty \frac{\expe^{-xt-\frac{y}{t}}}{t^{v+1}} \diff{t}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Subscript[\[CapitalKappa], v][x , y] == Integrate[Divide[Exp[- x*t -Divide[y,t]],(t)^(v + 1)], {t, 1, Infinity}, GenerateConditions->None]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>K[v_, x_, y_] := Integrate[Divide[Exp[- x*t -Divide[y,t]],(t)^(v + 1)], {t, 1, Infinity}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Kappa[v](x , y) = int((exp(- x*t -(y)/(t)))/((t)^(v + 1)), t = 1..infinity)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

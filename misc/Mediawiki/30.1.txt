@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Lamé Functions - 30.1 Special Notation}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/30.1#Ex3 30.1#Ex3] || <math qid="Q8817">S^{(1)}_{mn}(\gamma,0) = (-1)^{m}\FerrersP[m]{n}@{0}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>S^{(1)}_{mn}(\gamma,0) = (-1)^{m}\FerrersP[m]{n}@{0}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(S[m, n])^(1)(gamma , 0) = (- 1)^(m)* LegendreP(n, m, 0)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(Subscript[S, m, n])^(1)[\[Gamma], 0] == (- 1)^(m)* LegendreP[n, m, 0]</syntaxhighlight> || Error || Failure || - || Error
+|}
+</div>

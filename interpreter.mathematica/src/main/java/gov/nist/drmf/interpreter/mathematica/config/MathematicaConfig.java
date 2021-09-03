@@ -42,6 +42,13 @@ public class MathematicaConfig {
         return baseInstallPath.resolve("Executables/math");
     }
 
+    public static String loadMathematicaLicense() {
+        Config config = ConfigDiscovery.getConfig();
+        CASConfig mathConfig = config.getCasConfigs().get(Keys.KEY_MATHEMATICA);
+        if ( mathConfig == null ) return null;
+        return mathConfig.getLicenseKey();
+    }
+
     public static void setCharacterEncoding(KernelLink engine){
         try {
             engine.evaluate("$CharacterEncoding = \"ASCII\"");

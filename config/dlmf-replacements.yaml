@@ -15,7 +15,7 @@
 # These are used to trigger i, pi, and e replacement specifically and without the use of DLMF labels.
 # =================================================================================================
 dlmfReplacementRules:
-  - pattern: (?<!\\[A-Za-z]{0,30})i(.|$)
+  - pattern: (?<!\\[A-Za-z]{0,30}|\\math(?:bf|bb|cal|it|frak)\{)i(.|$)
     replacement: \\iunit $1
     groups: 1
     condition: [1-12, 14, 17-25, 30, 31, 32, 36, 101]
@@ -23,7 +23,7 @@ dlmfReplacementRules:
     replacement: \\cpi$1
     groups: 1
     condition: [1, 2, 4-25, 28-36, 102]
-  - pattern: (?<!\\[A-Za-z]{0,30})e(.|$)
+  - pattern: (?<!\\[A-Za-z]{0,30}|\\math(?:bf|bb|cal|it|frak)\{)e(.|$)
     replacement: \\expe $1
     groups: 1
     condition: [1-15, 18, 20-25, 27, 28, 30, 32, 33, 103]

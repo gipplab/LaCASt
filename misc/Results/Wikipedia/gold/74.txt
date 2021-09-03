@@ -1,0 +1,35 @@
+__NOTOC__
+== Dual Hahn polynomials ==
+
+; Gold ID : 74
+; Link : https://sigir21.wmflabs.org/wiki/Dual_Hahn_polynomials#math.126.7
+; Formula : <math>\sum^{b-1}_{s=a}w_n^{(c)}(s,a,b)w_m^{(c)}(s,a,b)\rho(s)[\Delta x(s-\frac{1}{2}) ]=\delta_{nm}d_n^2</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\sum^{b-1}_{s=a}w_n^{(c)}(s,a,b)w_m^{(c)}(s,a,b)\rho(s)[\Delta x(s-\frac{1}{2}) ]=\delta_{nm}d_n^2</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\sum_{s=a}^{b-1} w_n^{(c)}(s , a , b) w_m^{(c)}(s , a , b) \rho(s) [\Delta x(s - \frac{1}{2})] = \delta_{nm} d_n^2</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\sum_{s=a}^{b-1} \dualHahnpolyR{n}@{c}{s}{a}{b} \dualHahnpolyR{m}@{c}{s}{a}{b} \rho(s) [\Delta x(s - \frac{1}{2})] = \delta_{nm} d_n^2</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Sum[w[(Subscript[w, n])^(c)]*(s , a , b)*w[(Subscript[w, m])^(c)]*(s , a , b)*\[Rho][s]*(\[CapitalDelta]*x*(s -Divide[1,2])), {s, a, b - 1}, GenerateConditions->None] == Subscript[\[Delta], n, m]*(Subscript[d, n])^(2)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>sum(w((w[n])^(c))*(s , a , b)*w((w[m])^(c))*(s , a , b)*rho(s)*(Delta*x*(s -(1)/(2))), s = a..b - 1) = delta[n, m]*(d[n])^(2)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

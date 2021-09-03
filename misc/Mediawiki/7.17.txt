@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Error Functions, Dawson’s and Fresnel Integrals - 7.17 Inverse Error Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/7.17#Ex1 7.17#Ex1] || <math qid="Q2441">y = \inverf@@{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>y = \inverf@@{x}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>y == InverseErf[x]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [6 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.9769362762044698
+Test Values: {Rule[x, 0.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.0230637237955302
+Test Values: {Rule[x, 0.5], Rule[y, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/7.17#Ex2 7.17#Ex2] || <math qid="Q2442">y = \inverfc@@{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>y = \inverfc@@{x}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>y == InverseErfc[x]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [18 / 18]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.02306372379553
+Test Values: {Rule[x, 1.5], Rule[y, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.97693627620447
+Test Values: {Rule[x, 1.5], Rule[y, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Struve and Related Functions - 11.6 Asymptotic Expansions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/11.6#Ex1 11.6#Ex1] || <math qid="Q3984">c_{0}(\lambda) = 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>c_{0}(\lambda) = 1</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">c[0](lambda) = 1</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[c, 0][\[Lambda]] == 1</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/11.6#Ex2 11.6#Ex2] || <math qid="Q3985">c_{1}(\lambda) = 2\lambda^{-2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>c_{1}(\lambda) = 2\lambda^{-2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">c[1](lambda) = 2*(lambda)^(- 2)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[c, 1][\[Lambda]] == 2*\[Lambda]^(- 2)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/11.6#Ex3 11.6#Ex3] || <math qid="Q3986">c_{2}(\lambda) = 6\lambda^{-4}-\tfrac{1}{2}\lambda^{-2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>c_{2}(\lambda) = 6\lambda^{-4}-\tfrac{1}{2}\lambda^{-2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">c[2](lambda) = 6*(lambda)^(- 4)-(1)/(2)*(lambda)^(- 2)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[c, 2][\[Lambda]] == 6*\[Lambda]^(- 4)-Divide[1,2]*\[Lambda]^(- 2)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/11.6#Ex4 11.6#Ex4] || <math qid="Q3987">c_{3}(\lambda) = 20\lambda^{-6}-4\lambda^{-4}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>c_{3}(\lambda) = 20\lambda^{-6}-4\lambda^{-4}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">c[3](lambda) = 20*(lambda)^(- 6)- 4*(lambda)^(- 4)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[c, 3][\[Lambda]] == 20*\[Lambda]^(- 6)- 4*\[Lambda]^(- 4)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/11.6#Ex5 11.6#Ex5] || <math qid="Q3988">c_{4}(\lambda) = 70\lambda^{-8}-\tfrac{45}{2}\lambda^{-6}+\tfrac{3}{8}\lambda^{-4}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>c_{4}(\lambda) = 70\lambda^{-8}-\tfrac{45}{2}\lambda^{-6}+\tfrac{3}{8}\lambda^{-4}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">c[4](lambda) = 70*(lambda)^(- 8)-(45)/(2)*(lambda)^(- 6)+(3)/(8)*(lambda)^(- 4)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[c, 4][\[Lambda]] == 70*\[Lambda]^(- 8)-Divide[45,2]*\[Lambda]^(- 6)+Divide[3,8]*\[Lambda]^(- 4)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

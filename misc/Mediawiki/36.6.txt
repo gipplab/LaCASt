@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Integrals with Coalescing Saddles - 36.6 Scaling Relations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/36.6#Ex9 36.6#Ex9] || <math qid="Q9928">\gamma_{y}^{(\mathrm{U})} = \tfrac{2}{3}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\gamma_{y}^{(\mathrm{U})} = \tfrac{2}{3}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(gamma[y])^(U) = (2)/(3)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(Subscript[\[Gamma], y])^(U) == Divide[2,3]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/36.6#Ex10 36.6#Ex10] || <math qid="Q9929">\gamma_{z}^{(\mathrm{U})} = \tfrac{1}{3}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\gamma_{z}^{(\mathrm{U})} = \tfrac{1}{3}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(gamma[z])^(U) = (1)/(3)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(Subscript[\[Gamma], z])^(U) == Divide[1,3]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

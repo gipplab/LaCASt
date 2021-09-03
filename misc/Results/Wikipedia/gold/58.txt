@@ -1,0 +1,35 @@
+__NOTOC__
+== Gauss–Hermite quadrature ==
+
+; Gold ID : 58
+; Link : https://sigir21.wmflabs.org/wiki/Gauss–Hermite_quadrature#math.110.1
+; Formula : <math>\int_{-\infty}^{+\infty} e^{-x^2} f(x)\,dx \approx \sum_{i=1}^n w_i f(x_i)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\int_{-\infty}^{+\infty} e^{-x^2} f(x)\,dx \approx \sum_{i=1}^n w_i f(x_i)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\int_{-\infty}^{+\infty} \expe^{-x^2} f(x) \diff{x} \approx \sum_{i=1}^n w_i f(x_i)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\int_{-\infty}^{+\infty} \expe^{-x^2} f(x) \diff{x} \approx \sum_{i=1}^n w_i f(x_i)</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

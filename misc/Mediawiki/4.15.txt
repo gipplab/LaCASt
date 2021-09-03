@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Elementary Functions - 4.15 Graphics}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.15.E1 4.15.E1] || <math qid="Q1663">\cos@{x+iy} = \sin@{x+\tfrac{1}{2}\pi+iy}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cos@{x+iy} = \sin@{x+\tfrac{1}{2}\pi+iy}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cos(x + I*y) = sin(x +(1)/(2)*Pi + I*y)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cos[x + I*y] == Sin[x +Divide[1,2]*Pi + I*y]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 18]
+|- 
+| [https://dlmf.nist.gov/4.15.E2 4.15.E2] || <math qid="Q1664">\cot@{x+iy} = -\tan@{x+\tfrac{1}{2}\pi+iy}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cot@{x+iy} = -\tan@{x+\tfrac{1}{2}\pi+iy}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cot(x + I*y) = - tan(x +(1)/(2)*Pi + I*y)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cot[x + I*y] == - Tan[x +Divide[1,2]*Pi + I*y]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 18]
+|- 
+| [https://dlmf.nist.gov/4.15.E3 4.15.E3] || <math qid="Q1665">\sec@{x+iy} = \csc@{x+\tfrac{1}{2}\pi+iy}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sec@{x+iy} = \csc@{x+\tfrac{1}{2}\pi+iy}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sec(x + I*y) = csc(x +(1)/(2)*Pi + I*y)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sec[x + I*y] == Csc[x +Divide[1,2]*Pi + I*y]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 18]
+|}
+</div>

@@ -1,13 +1,16 @@
 package gov.nist.drmf.interpreter.pom.extensions;
 
+import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.NotMatchableException;
 import gov.nist.drmf.interpreter.pom.common.FakeMLPGenerator;
 import gov.nist.drmf.interpreter.pom.common.FeatureSetUtility;
 import gov.nist.drmf.interpreter.pom.common.MathTermUtility;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
+import gov.nist.drmf.interpreter.pom.common.grammar.DLMFFeatureValues;
 import gov.nist.drmf.interpreter.pom.common.grammar.ExpressionTags;
 import gov.nist.drmf.interpreter.pom.common.grammar.MathTermTags;
+import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.PomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
@@ -44,6 +47,25 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
      * The wildcard ID
      */
     private final String wildcardID;
+
+    /**
+     * This flag indicates that this current node is linked to a semantic macro earlier in the sequence (prev siblings).
+     * This is only the case if this node is part of an optional parameter or parameter directly following a semantic
+     * macro and if that semantic macro verifies this number of arguments. For example:
+     * <pre>
+     *     \JacobipolyP{var0}{var1}{var2}@{var3}
+     *           ^       ^     ^     ^
+     *        macro      J     J     J
+     * </pre>
+     * Where the nodes with J have this flag set to the previous macro, here {@code \JacobipolyP}. All other nodes do
+     * not have this flag (so its null).
+     */
+    private String linkedToPreviousMacro = null;
+
+    /**
+     * This element is a semantic macro or not
+     */
+    private boolean isMacro = false;
 
     /**
      * Next sibling, if any
@@ -110,14 +132,18 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         }
 
         List<PomTaggedExpression> comps = refRoot.getComponents();
+        LinkedList<MatchablePomTaggedExpression> tempMatchComponents = new LinkedList<>();
 
         MatchablePomTaggedExpression prevNode = null;
         for (PomTaggedExpression pte : comps) {
             MatchablePomTaggedExpression cpte = new MatchablePomTaggedExpression(config, pte);
             this.getChildrenMatcher().add(cpte);
-            setupSibling(config, prevNode, cpte);
+            this.setupSibling(config, prevNode, cpte);
+            tempMatchComponents.addLast(cpte);
             prevNode = cpte;
         }
+
+        annotateMacroFlags(tempMatchComponents);
     }
 
     private void setupSibling(
@@ -144,6 +170,68 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
                 PomTaggedExpression referencePTE = prevNode.getReferenceNode();
                 referencePTE.setRoot(mathTerm);
                 prevNode.isSingleSequenceWildcard = true;
+            }
+        }
+    }
+
+    /**
+     * Annotates the elements in the given sequence with link to previous macro if applicable. See
+     * {@link #linkedToPreviousMacro} for an example.
+     * @param comps the components to check. The given list will be changed!
+     */
+    private void annotateMacroFlags(LinkedList<MatchablePomTaggedExpression> comps) {
+        while ( !comps.isEmpty() ) {
+            MatchablePomTaggedExpression mpte = comps.remove(0);
+            if ( !MathTermUtility.isDLMFMacro(mpte.getRoot()) ) continue;
+
+            mpte.isMacro = true;
+            String macro = mpte.getRoot().getTermText();
+
+            FeatureSet macroFeatureSet = this.getRoot().getNamedFeatureSet(Keys.KEY_DLMF_MACRO);
+            if ( macroFeatureSet == null ) continue; // continue because we cannot extract the info we looking for
+
+            String optParasStr = DLMFFeatureValues.NUMBER_OF_OPTIONAL_PARAMETERS.getFeatureValue(macroFeatureSet, null);
+            String parasStr = DLMFFeatureValues.NUMBER_OF_PARAMETERS.getFeatureValue(macroFeatureSet, null);
+
+            int optParas = optParasStr.isBlank() ? 0 : Integer.parseInt(optParasStr);
+            int paras = parasStr.isBlank() ? 0 : Integer.parseInt(parasStr);
+
+            if ( optParas > 0 ) {
+                annotateOptParasSequence(macro, comps);
+            }
+
+            for ( int i = 0; i < paras; i++ ) {
+                MatchablePomTaggedExpression next = comps.removeFirst();
+                next.linkedToPreviousMacro = macro;
+            }
+        }
+    }
+
+    private void annotateOptParasSequence(String macro, LinkedList<MatchablePomTaggedExpression> comps) {
+        MatchablePomTaggedExpression first = comps.getFirst();
+        Brackets br = Brackets.getBracket(first);
+        if ( Brackets.left_brackets.equals(br) ) {
+            LinkedList<Brackets> bracketStack = new LinkedList<>();
+            bracketStack.add(br);
+            first.linkedToPreviousMacro = macro;
+            comps.removeFirst();
+            iterateOverOptParaSequences(macro, comps, bracketStack);
+        }
+    }
+
+    private void iterateOverOptParaSequences(String macro, LinkedList<MatchablePomTaggedExpression> comps, LinkedList<Brackets> bracketStack) {
+        while ( !bracketStack.isEmpty() && !comps.isEmpty() ) {
+            MatchablePomTaggedExpression next = comps.removeFirst();
+            next.linkedToPreviousMacro = macro;
+            Brackets br = Brackets.getBracket(next);
+            if ( br == null ) continue;
+            if ( br.opened ) bracketStack.addLast(br);
+            else {
+                Brackets lastOpened = bracketStack.removeLast();
+                if ( !lastOpened.isCounterPart(br) ) {
+                    LOG.debug("Bracket stack mismatch in initialization of matchable expression. Expected closing " + lastOpened + " but encountered " + br);
+                    return;
+                }
             }
         }
     }
@@ -233,6 +321,8 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
             List<PrintablePomTaggedExpression> followingExpressions,
             MatcherConfig config
     ){
+        skipOptionalTokens(expression, followingExpressions, config);
+
         MathTerm otherRoot = expression.getRoot();
         if ( config.ignoreOperatorName() && MathTermUtility.isOperatorname(otherRoot) ) {
             expression = followingExpressions.remove(0);
@@ -270,6 +360,53 @@ public class MatchablePomTaggedExpression extends AbstractMatchablePomTaggedExpr
         LinkedList<PrintablePomTaggedExpression> refComponents =
                 new LinkedList<>(expression.getPrintableComponents());
         return getChildrenMatcher().matchNonWildCardChildren(refComponents, config);
+    }
+
+    public boolean skipOptionalTokens(
+            PrintablePomTaggedExpression expression,
+            List<PrintablePomTaggedExpression> followingExpressions,
+            MatcherConfig config
+    ) {
+        if ( checkOptionalToken() && config.isSemanticMacroIgnoreTokenRule() ) {
+            LinkedList<PrintablePomTaggedExpression> optionalSkip = new LinkedList<>();
+            while ( PomTaggedExpressionUtility.isOptionalTokenBehindSemanticMacro(expression) && !followingExpressions.isEmpty() ) {
+                optionalSkip.addLast(expression);
+                expression = followingExpressions.remove(0);
+            }
+            if ( !optionalSkip.isEmpty() ) {
+                // only if it is not empty, we actually skipped some nodes and registered them as
+                // optional captured groups behind a macro. So we need to recall matchNonWildCard
+                // but with the updated list of elements
+                String linkedToMacro = previousSibling.linkedToPreviousMacro;
+                // if the previous node was a macro itself, we use that
+                if ( linkedToMacro == null ) linkedToMacro = previousSibling.getRoot().getTermText();
+                getCaptures().setOptionalSemanticCapturedGroup(linkedToMacro, optionalSkip);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks whether this match must check optional token behind a semantic macro.
+     * The rule is the following, this matching node must not be ' or ^ (otherwise just continue normal
+     * exact match procedures) and it must be the first node not linked to a macro directly following
+     * a node that is linked to a macro. Consider the following example:
+     * <pre>
+     *     \JacobipolyP{l}{s}{t}@{x}
+     *          ^       ^  ^  ^ ^
+     *        macro     L  L  L N
+     * </pre>
+     * The nodes annotated with L are linked to the macro {@code \JacobipolyP} while the
+     * {@code @} is the first node that is not linked to the macro and not a prime nor caret.
+     * Hence, only the {@code @} node return true with this method.
+     * @return if now we must check for optional tokens
+     */
+    private boolean checkOptionalToken() {
+        return !PomTaggedExpressionUtility.isOptionalTokenBehindSemanticMacro(this) &&
+                previousSibling != null &&
+                (previousSibling.linkedToPreviousMacro != null || previousSibling.isMacro) &&
+                this.linkedToPreviousMacro == null;
     }
 
     private boolean matchWildCard(

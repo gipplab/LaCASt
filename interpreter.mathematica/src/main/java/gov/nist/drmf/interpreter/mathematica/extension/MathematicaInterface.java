@@ -14,6 +14,7 @@ import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
@@ -39,10 +40,13 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
 
     private static MathematicaInterface mathematicaInterface;
 
-    private SymbolicEquivalenceChecker evalChecker;
+    private final SymbolicEquivalenceChecker evalChecker;
+
+    private Path mathPath;
 
     private MathematicaInterface() throws MathLinkException {
         init();
+        this.evalChecker = new SymbolicEquivalenceChecker(this);
     }
 
     /**
@@ -54,18 +58,43 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         if ( mathematicaInterface != null ) return; // already instantiated
 
         LOG.info("Instantiating mathematica interface");
-        Path mathPath = MathematicaConfig.loadMathematicaPath();
+        mathPath = MathematicaConfig.loadMathematicaPath();
         String[] args = getDefaultArguments(mathPath);
 
-        KernelLink mathKernel = MathLinkFactory.createKernelLink(args);
-        // we don't care about the answer for instantiation, so skip it
-        mathKernel.discardAnswer();
+        KernelLink mathKernel = null;
+        try {
+            mathKernel = MathLinkFactory.createKernelLink(args);
+            // we don't care about the answer for instantiation, so skip it
+            mathKernel.discardAnswer();
+        } catch (MathLinkException mle) {
+            LOG.warn("Unable to connect with Wolfram kernel. Try to recover and activate license first.");
+            try {
+                initLicense(mathPath, MathematicaConfig.loadMathematicaLicense());
+                mathKernel = MathLinkFactory.createKernelLink(args);
+                // we don't care about the answer for instantiation, so skip it
+                mathKernel.discardAnswer();
+            } catch ( IOException | InterruptedException e ) {
+                LOG.warn("Unable to activate Wolfram license.", e);
+                throw mle;
+            }
+        }
 
         // set encoding to avoid UTF-8 chars of greek letters
         MathematicaConfig.setCharacterEncoding(mathKernel);
         this.mathKernel = mathKernel;
-        this.evalChecker = new SymbolicEquivalenceChecker(this);
         LOG.info("Successfully instantiated mathematica interface");
+    }
+
+    private void initLicense(Path mathPath, String license) throws IOException, InterruptedException {
+        LOG.info("Try to activate Wolfram license.");
+        ProcessBuilder procBuilder = new ProcessBuilder(mathPath.toAbsolutePath().toString(), "-activate", license);
+        Process proc = procBuilder.start();
+        proc.waitFor();
+        if ( proc.exitValue() != 0 ) {
+            LOG.error("Unable to activate Wolfram license.");
+        } else {
+            LOG.info("Successfully activated Wolfram license. Ready to initiate.");
+        }
     }
 
     private static String[] getDefaultArguments(Path mathPath) {
@@ -122,9 +151,21 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
     }
 
     public Expr evaluateToExpression(String input) throws MathLinkException {
-        mathKernel.evaluate(input);
-        mathKernel.waitForAnswer();
-        return mathKernel.getExpr();
+        try {
+            mathKernel.evaluate(input);
+            mathKernel.waitForAnswer();
+            return mathKernel.getExpr();
+        } catch (MathLinkException mle) {
+            String msg = mle.getMessage();
+            if ( msg != null && msg.toLowerCase().contains("lost") ) {
+                LOG.error("Lost mathematica kernel connection. Try to recover by re-initiating kernel.");
+                shutdown();
+                init();
+            }
+            mathKernel.evaluate(input);
+            mathKernel.waitForAnswer();
+            return mathKernel.getExpr();
+        }
     }
 
     public Expr evaluateToExpression(String input, Duration timeout) throws MathLinkException {
@@ -141,7 +182,13 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         return input;
     }
 
-    public String convertToFullForm(String input) {
+    /**
+     * This method isn't fail-safe. Use {@link #evaluateToExpression(String)} in combination of
+     * {@link Commands#build(String...)} instead.
+     * @param input command
+     * @return returns the full output form of the input
+     */
+    protected String convertToFullForm(String input) {
         String fullf = Commands.FULL_FORM.build(input);
         return mathKernel.evaluateToOutputForm(fullf, 0);
     }
@@ -173,7 +220,6 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
 
     public void shutdown() {
         mathKernel.close();
-        this.evalChecker = null;
         MathematicaInterface.mathematicaInterface = null;
     }
 

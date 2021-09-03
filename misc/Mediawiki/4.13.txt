@@ -1,0 +1,73 @@
+{{DISPLAYTITLE:Elementary Functions - 4.13 Lambert <math>\LambertW</math> -Function}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.13.E1 4.13.E1] || <math qid="Q1639">We^{W} = x</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>We^{W} = x</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>W*exp(W) = x</syntaxhighlight> || <syntaxhighlight lang=mathematica>W*Exp[W] == x</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -.263026030+2.030302705*I
+Test Values: {W = 1/2*3^(1/2)+1/2*I, x = 1.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .736973970+2.030302705*I
+Test Values: {W = 1/2*3^(1/2)+1/2*I, x = .5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.763026030+2.030302705*I
+Test Values: {W = 1/2*3^(1/2)+1/2*I, x = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -2.096603674+.1092863076*I
+Test Values: {W = -1/2+1/2*I*3^(1/2), x = 1.5}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-0.2630260306572938, 2.0303027048207967]
+Test Values: {Rule[W, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.7369739693427062, 2.0303027048207967]
+Test Values: {Rule[W, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/4.13#Ex1 4.13#Ex1] || <math qid="Q1640">\LambertWp@{-1/e} = \LambertWm@{-1/e}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\LambertWp@{-1/e} = \LambertWm@{-1/e}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>LambertW(0, - 1/exp(1)) = LambertW(-1, - 1/exp(1))</syntaxhighlight> || <syntaxhighlight lang=mathematica>ProductLog[0, - 1/E] == ProductLog[-1, - 1/E]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.13#Ex1 4.13#Ex1] || <math qid="Q1640">\LambertWm@{-1/e} = -1</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\LambertWm@{-1/e} = -1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>LambertW(-1, - 1/exp(1)) = - 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>ProductLog[-1, - 1/E] == - 1</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.13#Ex2 4.13#Ex2] || <math qid="Q1641">\LambertWp@{0} = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\LambertWp@{0} = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>LambertW(0, 0) = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>ProductLog[0, 0] == 0</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.13#Ex3 4.13#Ex3] || <math qid="Q1642">\LambertWp@{e} = 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\LambertWp@{e} = 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>LambertW(0, exp(1)) = 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>ProductLog[0, E] == 1</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.13#Ex4 4.13#Ex4] || <math qid="Q1643">U+\ln@@{U} = x</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>U+\ln@@{U} = x</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>U + ln(U) = x</syntaxhighlight> || <syntaxhighlight lang=mathematica>U + Log[U] == x</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -.6339745958+1.023598776*I
+Test Values: {U = 1/2*3^(1/2)+1/2*I, x = 1.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .3660254042+1.023598776*I
+Test Values: {U = 1/2*3^(1/2)+1/2*I, x = .5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -1.133974596+1.023598776*I
+Test Values: {U = 1/2*3^(1/2)+1/2*I, x = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -2.000000000+2.960420506*I
+Test Values: {U = -1/2+1/2*I*3^(1/2), x = 1.5}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-0.6339745962155613, 1.0235987755982987]
+Test Values: {Rule[U, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.3660254037844387, 1.0235987755982987]
+Test Values: {Rule[U, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/4.13#Ex5 4.13#Ex5] || <math qid="Q1644">U = U(x)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>U = U(x)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>U = U*(x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>U == U*(x)</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -.4330127020-.2500000000*I
+Test Values: {U = 1/2*3^(1/2)+1/2*I, x = 1.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .4330127020+.2500000000*I
+Test Values: {U = 1/2*3^(1/2)+1/2*I, x = .5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.8660254040-.5000000000*I
+Test Values: {U = 1/2*3^(1/2)+1/2*I, x = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .2500000000-.4330127020*I
+Test Values: {U = -1/2+1/2*I*3^(1/2), x = 1.5}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-0.4330127018922193, -0.24999999999999994]
+Test Values: {Rule[U, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.43301270189221935, 0.24999999999999997]
+Test Values: {Rule[U, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/4.13#Ex5 4.13#Ex5] || <math qid="Q1644">U(x) = \LambertW@{e^{x}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>U(x) = \LambertW@{e^{x}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>U(x) = LambertW(exp(x))</syntaxhighlight> || <syntaxhighlight lang=mathematica>U[x] == ProductLog[Exp[x]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .34078386e-1+.7500000000*I
+Test Values: {U = 1/2*3^(1/2)+1/2*I, x = 1.5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.3332359062+.2500000000*I
+Test Values: {U = 1/2*3^(1/2)+1/2*I, x = .5}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .174905209+1.*I
+Test Values: {U = 1/2*3^(1/2)+1/2*I, x = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -2.014959720+1.299038106*I
+Test Values: {U = -1/2+1/2*I*3^(1/2), x = 1.5}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0340783855511575, 0.7499999999999999]
+Test Values: {Rule[U, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-0.333235906269531, 0.24999999999999997]
+Test Values: {Rule[U, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[x, 0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/4.13.E5 4.13.E5] || <math qid="Q1646">\LambertWp@{x} = \sum_{n=1}^{\infty}(-1)^{n-1}\frac{n^{n-2}}{(n-1)!}x^{n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\LambertWp@{x} = \sum_{n=1}^{\infty}(-1)^{n-1}\frac{n^{n-2}}{(n-1)!}x^{n}</syntaxhighlight> || <math>|x| < \dfrac{1}{e}</math> || <syntaxhighlight lang=mathematica>LambertW(0, x) = sum((- 1)^(n - 1)*((n)^(n - 2))/(factorial(n - 1))*(x)^(n), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>ProductLog[0, x] == Sum[(- 1)^(n - 1)*Divide[(n)^(n - 2),(n - 1)!]*(x)^(n), {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Successful || Error || Successful [Tested: 0]
+|- 
+| [https://dlmf.nist.gov/4.13.E6 4.13.E6] || <math qid="Q1647">\LambertW@{-e^{-1-(t^{2}/2)}} = \sum_{n=0}^{\infty}(-1)^{n-1}c_{n}t^{n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\LambertW@{-e^{-1-(t^{2}/2)}} = \sum_{n=0}^{\infty}(-1)^{n-1}c_{n}t^{n}</syntaxhighlight> || <math>|t| < 2\sqrt{\pi}</math> || <syntaxhighlight lang=mathematica>LambertW(- exp(- 1 -((t)^(2)/2))) = sum((- 1)^(n - 1)* c[n]*(t)^(n), n = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>ProductLog[- Exp[- 1 -((t)^(2)/2)]] == Sum[(- 1)^(n - 1)* Subscript[c, n]*(t)^(n), {n, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [60 / 60]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Float(infinity)+Float(infinity)*I
+Test Values: {t = -1.5, c[n] = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Float(infinity)+Float(infinity)*I
+Test Values: {t = -1.5, c[n] = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Float(infinity)+Float(infinity)*I
+Test Values: {t = -1.5, c[n] = 1/2-1/2*I*3^(1/2)}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Float(infinity)+Float(infinity)*I
+Test Values: {t = -1.5, c[n] = -1/2*3^(1/2)-1/2*I}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [60 / 60]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[-0.13696418431579768, Times[-1.0, NSum[Times[Power[-1.5, n], Power[-1, Plus[-1, n]], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]
+Test Values: {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[t, -1.5], Rule[Subscript[c, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[-0.13696418431579768, Times[-1.0, NSum[Times[Power[-1.5, n], Power[-1, Plus[-1, n]], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]
+Test Values: {n, 0, DirectedInfinity[1]}, Rule[GenerateConditions, None]]]], {Rule[t, -1.5], Rule[Subscript[c, n], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/4.13.E7 4.13.E7] || <math qid="Q1648">c_{0} = 1,c_{1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>c_{0} = 1,c_{1}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">c[0] = 1; c[1]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[c, 0] == 1
+ Subscript[c, 1]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/4.13.E8 4.13.E8] || <math qid="Q1649">c_{n} = \frac{1}{n+1}\left(c_{n-1}-\sum_{k=2}^{n-1}kc_{k}c_{n+1-k}\right)</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>c_{n} = \frac{1}{n+1}\left(c_{n-1}-\sum_{k=2}^{n-1}kc_{k}c_{n+1-k}\right)</syntaxhighlight> || <math>n \geq 2</math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">c[n] = (1)/(n + 1)*(c[n - 1]- sum(k*c[k]*c[n + 1 - k], k = 2..n - 1))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[c, n] == Divide[1,n + 1]*(Subscript[c, n - 1]- Sum[k*Subscript[c, k]*Subscript[c, n + 1 - k], {k, 2, n - 1}, GenerateConditions->None])</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/4.13.E9 4.13.E9] || <math qid="Q1650">1\cdot 3\cdot 5\cdots(2n+1)c_{2n+1} = g_{n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>1\cdot 3\cdot 5\cdots(2n+1)c_{2n+1} = g_{n}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">1 * 3 * 5*(2*n + 1)*c[2*n + 1] = g[n]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">1 * 3 * 5*(2*n + 1)*Subscript[c, 2*n + 1] == Subscript[g, n]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

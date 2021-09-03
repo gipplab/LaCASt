@@ -14,6 +14,7 @@ import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
 import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import gov.nist.drmf.interpreter.pom.generic.GenericFunctionAnnotator;
 import mlp.ParseException;
 import mlp.PomTaggedExpression;
 import org.junit.jupiter.api.BeforeAll;
@@ -187,6 +188,14 @@ class SimpleTranslationTests {
     }
 
     @Test
+    void paraMultiplyMathematicaTest() {
+        String in = "\\cos(x)(2+x)";
+        String eout = "Cos[x]*(2 + x)";
+        String out = sltMathematica.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
     void plusMinusMultiplyTest() {
         String in = "(t+\\frac{1}{2}-(n+1))";
         String eout = "(t +(1)/(2)-(n + 1))";
@@ -198,6 +207,14 @@ class SimpleTranslationTests {
     void derivTest() {
         String in = "\\deriv[2]{w}{z}";
         String eout = "diff(w, [z$(2)])";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void derivFTest() {
+        String in = "\\deriv[2]{f}{x} = \\deriv{}{x}\\left(\\deriv{f}{x}\\right)";
+        String eout = "diff(f, [x$(2)]) = diff(diff(f, x), x)";
         String out = slt.translate(in);
         assertEquals(eout, out);
     }
@@ -239,6 +256,41 @@ class SimpleTranslationTests {
     void absoluteValueInvalidTest() {
         String in = "\\left| x |";
         assertThrows(TranslationException.class, () -> slt.translate(in));
+    }
+
+    @Test
+    void absoluteArgumentTest() {
+        String in = "\\ln@{x+\\iunit 0} = \\ln@@{|x|}+ \\iunit \\cpi";
+        String eout = "ln(x + I*0) = ln(abs(x))+ I*Pi";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void functionAnnotatorTest() {
+        String in = "\\sum_{n=1}^{\\infty}\\frac{(-1)^{n}2^{2n-1}\\BernoullinumberB{2n}}{n(2n)!}z^{2n}";
+        String eout = "sum(((- 1)^(n)* (2)^(2*n - 1)* bernoulli(2*n))/(n*factorial(2*n))*(z)^(2*n), n = 1..infinity)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+
+        String secondOut = slt.translateToObjectFeatured(in, new GenericFunctionAnnotator()).getTranslatedExpression();
+        assertEquals(out, secondOut);
+    }
+
+    @Test
+    void doubleParaSumTest() {
+        String in = "\\sum^{n}_{j=1}a_{j}^{2}";
+        String eout = "sum((a[j])^(2), j = 1..n)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
+    }
+
+    @Test
+    void subSuperScriptTest() {
+        String in = "a_{j}^{2}";
+        String eout = "(a[j])^(2)";
+        String out = slt.translate(in);
+        assertEquals(eout, out);
     }
 
     @Test
@@ -646,6 +698,30 @@ class SimpleTranslationTests {
     }
 
     @Test
+    public void forceFunctionMTranslation() throws ParseException {
+        String input = "M(x)";
+        assertEquals( "M*(x)", slt.translate(input) );
+
+        SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+        PrintablePomTaggedExpression pte = mlp.parse(input);
+        PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(0));
+        assertEquals( "M(x)", slt.translate(pte).getTranslatedExpression() );
+        assertEquals( "M[x]", sltMathematica.translate(pte).getTranslatedExpression() );
+    }
+
+    @Test
+    public void mathFontIReplacementTest() {
+        String input = "i";
+        assertEquals( "I", slt.translate(input, "1.1.E1") );
+
+        input = "\\mathbf{i}";
+        assertEquals( "i", slt.translate(input, "1.1.E1") );
+
+        input = "\\mathcal{i}";
+        assertEquals( "i", slt.translate(input, "1.1.E1") );
+    }
+
+    @Test
     public void functionDefinitionTranslation() throws ParseException {
         String input = "f(x) := x^2";
         SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
@@ -674,8 +750,8 @@ class SimpleTranslationTests {
         PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(14));
         PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(19));
 
-        assertEquals( "Epsilon := (x, y, u) -> sum((u)^(n)* psi[n](x)* psi[n](y), n = 0..infinity) = (1)/(sqrt(Pi*(1 - (u)^(2))))*exp(-(1 - u)/(1 + u)*((x + y)^(2))/(4)-(1 + u)/(1 - u)*((x - y)^(2))/(4))", slt.translate(pte).getTranslatedExpression() );
-        assertEquals( "\\[CapitalEpsilon][x_, y_, u_] := Sum[(u)^(n)* Subscript[\\[Psi], n][x]* Subscript[\\[Psi], n][y], {n, 0, Infinity}, GenerateConditions->None] == Divide[1,Sqrt[Pi*(1 - (u)^(2))]]*Exp[-Divide[1 - u,1 + u]*Divide[(x + y)^(2),4]-Divide[1 + u,1 - u]*Divide[(x - y)^(2),4]]", sltMathematica.translate(pte).getTranslatedExpression() );
+        assertEquals( "E := (x, y, u) -> sum((u)^(n)* psi[n](x)* psi[n](y), n = 0..infinity) = (1)/(sqrt(Pi*(1 - (u)^(2))))*exp(-(1 - u)/(1 + u)*((x + y)^(2))/(4)-(1 + u)/(1 - u)*((x - y)^(2))/(4))", slt.translate(pte).getTranslatedExpression() );
+        assertEquals( "E[x_, y_, u_] := Sum[(u)^(n)* Subscript[\\[Psi], n][x]* Subscript[\\[Psi], n][y], {n, 0, Infinity}, GenerateConditions->None] == Divide[1,Sqrt[Pi*(1 - (u)^(2))]]*Exp[-Divide[1 - u,1 + u]*Divide[(x + y)^(2),4]-Divide[1 + u,1 - u]*Divide[(x - y)^(2),4]]", sltMathematica.translate(pte).getTranslatedExpression() );
     }
 
     @Test

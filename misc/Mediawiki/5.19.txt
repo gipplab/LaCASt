@@ -1,0 +1,56 @@
+{{DISPLAYTITLE:Gamma Function - 5.19 Mathematical Applications}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/5.19#Ex1 5.19#Ex1] || <math qid="Q2200">S = \sum_{k=0}^{\infty}a_{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>S = \sum_{k=0}^{\infty}a_{k}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">S = sum(a[k], k = 0..infinity)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">S == Sum[Subscript[a, k], {k, 0, Infinity}, GenerateConditions->None]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/5.19#Ex2 5.19#Ex2] || <math qid="Q2201">a_{k} = \frac{k}{(3k+2)(2k+1)(k+1)}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>a_{k} = \frac{k}{(3k+2)(2k+1)(k+1)}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a[k] = (k)/((3*k + 2)*(2*k + 1)*(k + 1))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[a, k] == Divide[k,(3*k + 2)*(2*k + 1)*(k + 1)]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/5.19.E2 5.19.E2] || <math qid="Q2202">a_{k} = \frac{2}{k+\frac{2}{3}}-\frac{1}{k+\frac{1}{2}}-\frac{1}{k+1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>a_{k} = \frac{2}{k+\frac{2}{3}}-\frac{1}{k+\frac{1}{2}}-\frac{1}{k+1}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a[k] = (2)/(k +(2)/(3))-(1)/(k +(1)/(2))-(1)/(k + 1)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[a, k] == Divide[2,k +Divide[2,3]]-Divide[1,k +Divide[1,2]]-Divide[1,k + 1]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- 
+| [https://dlmf.nist.gov/5.19.E3 5.19.E3] || <math qid="Q2203">S = \digamma@{\tfrac{1}{2}}-2\digamma@{\tfrac{2}{3}}-\EulerConstant</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>S = \digamma@{\tfrac{1}{2}}-2\digamma@{\tfrac{2}{3}}-\EulerConstant</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>S = Psi((1)/(2))- 2*Psi((2)/(3))- gamma</syntaxhighlight> || <syntaxhighlight lang=mathematica>S == PolyGamma[Divide[1,2]]- 2*PolyGamma[Divide[2,3]]- EulerGamma</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [10 / 10]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .7702822630+.5000000000*I
+Test Values: {S = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.5957431410+.8660254040*I
+Test Values: {S = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .4042568590-.8660254040*I
+Test Values: {S = 1/2-1/2*I*3^(1/2)}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.9617685450-.5000000000*I
+Test Values: {S = -1/2*3^(1/2)-1/2*I}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [10 / 10]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.7702822631342183, 0.49999999999999994]
+Test Values: {Rule[S, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-0.5957431406502202, 0.8660254037844387]
+Test Values: {Rule[S, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/5.19.E3 5.19.E3] || <math qid="Q2203">\digamma@{\tfrac{1}{2}}-2\digamma@{\tfrac{2}{3}}-\EulerConstant = 3\ln@@{3}-2\ln@@{2}-\tfrac{1}{3}\pi\sqrt{3}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\digamma@{\tfrac{1}{2}}-2\digamma@{\tfrac{2}{3}}-\EulerConstant = 3\ln@@{3}-2\ln@@{2}-\tfrac{1}{3}\pi\sqrt{3}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Psi((1)/(2))- 2*Psi((2)/(3))- gamma = 3*ln(3)- 2*ln(2)-(1)/(3)*Pi*sqrt(3)</syntaxhighlight> || <syntaxhighlight lang=mathematica>PolyGamma[Divide[1,2]]- 2*PolyGamma[Divide[2,3]]- EulerGamma == 3*Log[3]- 2*Log[2]-Divide[1,3]*Pi*Sqrt[3]</syntaxhighlight> || Successful || Successful || Skip - symbolical successful subtest || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/5.19#Ex3 5.19#Ex3] || <math qid="Q2204">V = \frac{\pi^{\frac{1}{2}n}r^{n}}{\EulerGamma@{\frac{1}{2}n+1}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>V = \frac{\pi^{\frac{1}{2}n}r^{n}}{\EulerGamma@{\frac{1}{2}n+1}}</syntaxhighlight> || <math>\realpart@@{(\frac{1}{2}n+1)} > 0</math> || <syntaxhighlight lang=mathematica>V = ((Pi)^((1)/(2)*n)* (r)^(n))/(GAMMA((1)/(2)*n + 1))</syntaxhighlight> || <syntaxhighlight lang=mathematica>V == Divide[(Pi)^(Divide[1,2]*n)* (r)^(n),Gamma[Divide[1,2]*n + 1]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [180 / 180]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 3.866025403+.5000000000*I
+Test Values: {V = 1/2*3^(1/2)+1/2*I, r = -1.5, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -6.202558068+.5000000000*I
+Test Values: {V = 1/2*3^(1/2)+1/2*I, r = -1.5, n = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 15.00319234+.5000000000*I
+Test Values: {V = 1/2*3^(1/2)+1/2*I, r = -1.5, n = 3}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -2.133974595+.5000000000*I
+Test Values: {V = 1/2*3^(1/2)+1/2*I, r = 1.5, n = 1}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [180 / 180]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[3.866025403784439, 0.49999999999999994]
+Test Values: {Rule[n, 1], Rule[r, -1.5], Rule[V, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-6.202558066792596, 0.49999999999999994]
+Test Values: {Rule[n, 2], Rule[r, -1.5], Rule[V, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/5.19#Ex4 5.19#Ex4] || <math qid="Q2205">S = \frac{2\pi^{\frac{1}{2}n}r^{n-1}}{\EulerGamma@{\frac{1}{2}n}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>S = \frac{2\pi^{\frac{1}{2}n}r^{n-1}}{\EulerGamma@{\frac{1}{2}n}}</syntaxhighlight> || <math>\realpart@@{(\frac{1}{2}n)} > 0</math> || <syntaxhighlight lang=mathematica>S = (2*(Pi)^((1)/(2)*n)* (r)^(n - 1))/(GAMMA((1)/(2)*n))</syntaxhighlight> || <syntaxhighlight lang=mathematica>S == Divide[2*(Pi)^(Divide[1,2]*n)* (r)^(n - 1),Gamma[Divide[1,2]*n]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [174 / 180]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.133974596+.5000000000*I
+Test Values: {S = 1/2*3^(1/2)+1/2*I, r = -1.5, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 10.29080337+.5000000000*I
+Test Values: {S = 1/2*3^(1/2)+1/2*I, r = -1.5, n = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -27.40830850+.5000000000*I
+Test Values: {S = 1/2*3^(1/2)+1/2*I, r = -1.5, n = 3}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -1.133974596+.5000000000*I
+Test Values: {S = 1/2*3^(1/2)+1/2*I, r = 1.5, n = 1}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [174 / 180]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-1.1339745962155612, 0.49999999999999994]
+Test Values: {Rule[n, 1], Rule[r, -1.5], Rule[S, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[10.290803364553819, 0.49999999999999994]
+Test Values: {Rule[n, 2], Rule[r, -1.5], Rule[S, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/5.19#Ex4 5.19#Ex4] || <math qid="Q2205">\frac{2\pi^{\frac{1}{2}n}r^{n-1}}{\EulerGamma@{\frac{1}{2}n}} = \frac{n}{r}V</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{2\pi^{\frac{1}{2}n}r^{n-1}}{\EulerGamma@{\frac{1}{2}n}} = \frac{n}{r}V</syntaxhighlight> || <math>\realpart@@{(\frac{1}{2}n)} > 0</math> || <syntaxhighlight lang=mathematica>(2*(Pi)^((1)/(2)*n)* (r)^(n - 1))/(GAMMA((1)/(2)*n)) = (n)/(r)*V</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[2*(Pi)^(Divide[1,2]*n)* (r)^(n - 1),Gamma[Divide[1,2]*n]] == Divide[n,r]*V</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [180 / 180]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 2.577350269+.3333333334*I
+Test Values: {V = 1/2*3^(1/2)+1/2*I, r = -1.5, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -8.270077424+.6666666665*I
+Test Values: {V = 1/2*3^(1/2)+1/2*I, r = -1.5, n = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 30.00638471+1.000000000*I
+Test Values: {V = 1/2*3^(1/2)+1/2*I, r = -1.5, n = 3}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.422649731-.3333333334*I
+Test Values: {V = 1/2*3^(1/2)+1/2*I, r = 1.5, n = 1}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [180 / 180]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[2.5773502691896253, 0.33333333333333326]
+Test Values: {Rule[n, 1], Rule[r, -1.5], Rule[V, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-8.270077422390127, 0.6666666666666665]
+Test Values: {Rule[n, 2], Rule[r, -1.5], Rule[V, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[6.1|6.1 Special Notation]]<br>
+; Properties : [[6.2|6.2 Definitions and Interrelations]]<br>[[6.3|6.3 Graphics]]<br>[[6.4|6.4 Analytic Continuation]]<br>[[6.5|6.5 Further Interrelations]]<br>[[6.6|6.6 Power Series]]<br>[[6.7|6.7 Integral Representations]]<br>[[6.8|6.8 Inequalities]]<br>[[6.9|6.9 Continued Fraction]]<br>[[6.10|6.10 Other Series Expansions]]<br>[[6.11|6.11 Relations to Other Functions]]<br>[[6.12|6.12 Asymptotic Expansions]]<br>[[6.13|6.13 Zeros]]<br>[[6.14|6.14 Integrals]]<br>[[6.15|6.15 Sums]]<br>
+; Applications : [[6.16|6.16 Mathematical Applications]]<br>[[6.17|6.17 Physical Applications]]<br>
+; Computation : [[6.18|6.18 Methods of Computation]]<br>[[6.19|6.19 Tables]]<br>[[6.20|6.20 Approximations]]<br>[[6.21|6.21 Software]]<br>
+</div>

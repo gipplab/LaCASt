@@ -1,0 +1,28 @@
+{{DISPLAYTITLE:Coulomb Functions - 33.14 Definitions and Basic Properties}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/33.14.E1 33.14.E1] || <math qid="Q9609">\deriv[2]{w}{r}+\left(\epsilon+\frac{2}{r}-\frac{\ell(\ell+1)}{r^{2}}\right)w = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv[2]{w}{r}+\left(\epsilon+\frac{2}{r}-\frac{\ell(\ell+1)}{r^{2}}\right)w = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(w, [r$(2)])+(epsilon +(2)/(r)-(ell*(ell + 1))/((r)^(2)))*w = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[w, {r, 2}]+(\[Epsilon]+Divide[2,r]-Divide[\[ScriptL]*(\[ScriptL]+ 1),(r)^(2)])*w == 0</syntaxhighlight> || Failure || Failure || Error || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-1.0584754935143141, -0.611111111111111]
+Test Values: {Rule[r, Rational[-3, 2]], Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ℓ, 1], Rule[ϵ, 1]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-0.19245008972987526, -0.11111111111111109]
+Test Values: {Rule[r, Rational[-3, 2]], Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ℓ, 1], Rule[ϵ, 2]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/33.14#Ex1 33.14#Ex1] || <math qid="Q9610">r = -\eta\rho</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>r = -\eta\rho</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">r = - eta*rho</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">r == - \[Eta]*\[Rho]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/33.14#Ex2 33.14#Ex2] || <math qid="Q9611">\epsilon = 1/\eta^{2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\epsilon = 1/\eta^{2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">epsilon = 1/(eta)^(2)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">\[Epsilon] == 1/\[Eta]^(2)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- 
+| [https://dlmf.nist.gov/33.14.E12 33.14.E12] || <math qid="Q9622">A(\epsilon,\ell) = \frac{\EulerGamma@{1+\ell+\kappa}}{\EulerGamma@{\kappa-\ell}}\kappa^{-2\ell-1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>A(\epsilon,\ell) = \frac{\EulerGamma@{1+\ell+\kappa}}{\EulerGamma@{\kappa-\ell}}\kappa^{-2\ell-1}</syntaxhighlight> || <math>\realpart@@{(1+\ell+\kappa)} > 0, \realpart@@{(\kappa-\ell)} > 0</math> || <syntaxhighlight lang=mathematica>(product(1 + epsilon*(k)^(2), k = 0..ell)) = (GAMMA(1 + ell + kappa))/(GAMMA(kappa - ell))*(kappa)^(- 2*ell - 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(Product[1 + \[Epsilon]*(k)^(2), {k, 0, \[ScriptL]}, GenerateConditions->None]) == Divide[Gamma[1 + \[ScriptL]+ \[Kappa]],Gamma[\[Kappa]- \[ScriptL]]]*\[Kappa]^(- 2*\[ScriptL]- 1)</syntaxhighlight> || Failure || Failure || Error || <div class="toccolours mw-collapsible mw-collapsed">Failed [6 / 6]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.4444444444444444
+Test Values: {Rule[ℓ, 1], Rule[ϵ, 1], Rule[κ, Rational[3, 2]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[2.4444444444444446, 0.0]
+Test Values: {Rule[ℓ, 1], Rule[ϵ, 2], Rule[κ, Rational[3, 2]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

@@ -1,0 +1,35 @@
+__NOTOC__
+== Stieltjes–Wigert polynomials ==
+
+; Gold ID : 68
+; Link : https://sigir21.wmflabs.org/wiki/Stieltjes–Wigert_polynomials#math.120.0
+; Formula : <math>w(x) = \frac{k}{\sqrt{\pi}} x^{-1/2} \exp(-k^2\log^2 x)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>w(x) = \frac{k}{\sqrt{\pi}} x^{-1/2} \exp(-k^2\log^2 x)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>w(x) = \frac{k}{\sqrt{\cpi}} x^{-1/2} \exp(- k^2 \log^2 x)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>w(x) = \frac{k}{\sqrt{\cpi}} x^{-1/2} \exp(- k^2 \log^2 x)</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>w[x] == Divide[k,Sqrt[Pi]]*(x)^(- 1/2)* Exp[- (k)^(2)* (Log[x])^(2)]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>w[x_] := Divide[k,Sqrt[Pi]]*(x)^(- 1/2)* Exp[- (k)^(2)* (Log[x])^(2)]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>w(x) = (k)/(sqrt(Pi))*(x)^(- 1/2)* exp(- (k)^(2)* (log(x))^(2))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>w := (x) -> (k)/(sqrt(Pi))*(x)^(- 1/2)* exp(- (k)^(2)* (log(x))^(2))</syntaxhighlight>

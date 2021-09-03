@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Painlevé Transcendents - 33.2 Definitions and Basic Properties}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/33.2.E1 33.2.E1] || <math qid="Q9496">\deriv[2]{w}{\rho}+\left(1-\frac{2\eta}{\rho}-\frac{\ell(\ell+1)}{\rho^{2}}\right)w = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv[2]{w}{\rho}+\left(1-\frac{2\eta}{\rho}-\frac{\ell(\ell+1)}{\rho^{2}}\right)w = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(w, [rho$(2)])+(1 -(2*eta)/(rho)-(ell*(ell + 1))/((rho)^(2)))*w = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[w, {\[Rho], 2}]+(1 -Divide[2*\[Eta],\[Rho]]-Divide[\[ScriptL]*(\[ScriptL]+ 1),\[Rho]^(2)])*w == 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -11.25833025+5.499999998*I
+Test Values: {eta = 1/2*3^(1/2)+1/2*I, rho = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, ell = 3}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -5.499999998-11.25833025*I
+Test Values: {eta = 1/2*3^(1/2)+1/2*I, rho = 1/2*3^(1/2)+1/2*I, w = -1/2+1/2*I*3^(1/2), ell = 3}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [294 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-11.258330249197703, 5.5]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ℓ, 3], Rule[η, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ρ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[10.2583302491977, -3.767949192431125]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ℓ, 3], Rule[η, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ρ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

@@ -151,7 +151,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
                 );
             } else {
                 followingExps.remove(0);
-                parseLagrangeNotation(exp.getComponents(), holder);
+                parseLagrangeNotation(exp.getComponents(), holder, info);
             }
         } else {
             // found a normal power. So move it to the end
@@ -240,7 +240,8 @@ public class MacroDerivativesTranslator extends MacroTranslator {
      */
     private void parseLagrangeNotation(
             List<PomTaggedExpression> followingExps,
-            DerivativeAndPowerHolder holder
+            DerivativeAndPowerHolder holder,
+            MacroInfoHolder info
     ) {
         // translate the order
         followingExps = new LinkedList<>(followingExps);
@@ -250,6 +251,7 @@ public class MacroDerivativesTranslator extends MacroTranslator {
         TranslatedExpression global = getGlobalTranslationList();
         global.removeLastNExps(lagrangeExpr.getLength());
 
+        info.addFreeVariables(lagrangeExpr.getFreeVariables() );
         String diff = stripMultiParentheses(lagrangeExpr.toString());
 
         // update info holder

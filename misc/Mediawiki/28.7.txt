@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Mathieu Functions and Hill’s Equation - 28.7 Analytic Continuation of Eigenvalues}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/28.7.E1 28.7.E1] || <math qid="Q8261">\sum_{n=0}^{\infty}\left(\Mathieueigvala{2n}@{q}-(2n)^{2}\right) = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=0}^{\infty}\left(\Mathieueigvala{2n}@{q}-(2n)^{2}\right) = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum(MathieuA(2*n, q)-(2*n)^(2), n = 0..infinity) = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[MathieuCharacteristicA[2*n, q]-(2*n)^(2), {n, 0, Infinity}, GenerateConditions->None] == 0</syntaxhighlight> || Failure || Failure || Skipped - Because timed out || Skipped - Because timed out
+|- 
+| [https://dlmf.nist.gov/28.7.E2 28.7.E2] || <math qid="Q8262">\sum_{n=0}^{\infty}\left(\Mathieueigvala{2n+1}@{q}-(2n+1)^{2}\right) = q</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=0}^{\infty}\left(\Mathieueigvala{2n+1}@{q}-(2n+1)^{2}\right) = q</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum(MathieuA(2*n + 1, q)-(2*n + 1)^(2), n = 0..infinity) = q</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[MathieuCharacteristicA[2*n + 1, q]-(2*n + 1)^(2), {n, 0, Infinity}, GenerateConditions->None] == q</syntaxhighlight> || Failure || Failure || Skipped - Because timed out || Skipped - Because timed out
+|- 
+| [https://dlmf.nist.gov/28.7.E3 28.7.E3] || <math qid="Q8263">\sum_{n=0}^{\infty}\left(\Mathieueigvalb{2n+1}@{q}-(2n+1)^{2}\right) = -q</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=0}^{\infty}\left(\Mathieueigvalb{2n+1}@{q}-(2n+1)^{2}\right) = -q</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum(MathieuB(2*n + 1, q)-(2*n + 1)^(2), n = 0..infinity) = - q</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[MathieuCharacteristicB[2*n + 1, q]-(2*n + 1)^(2), {n, 0, Infinity}, GenerateConditions->None] == - q</syntaxhighlight> || Failure || Failure || Skipped - Because timed out || Skipped - Because timed out
+|- 
+| [https://dlmf.nist.gov/28.7.E4 28.7.E4] || <math qid="Q8264">\sum_{n=0}^{\infty}\left(\Mathieueigvalb{2n+2}@{q}-(2n+2)^{2}\right) = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=0}^{\infty}\left(\Mathieueigvalb{2n+2}@{q}-(2n+2)^{2}\right) = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum(MathieuB(2*n + 2, q)-(2*n + 2)^(2), n = 0..infinity) = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[MathieuCharacteristicB[2*n + 2, q]-(2*n + 2)^(2), {n, 0, Infinity}, GenerateConditions->None] == 0</syntaxhighlight> || Failure || Failure || Skipped - Because timed out || Skipped - Because timed out
+|}
+</div>

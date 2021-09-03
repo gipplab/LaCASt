@@ -1,0 +1,35 @@
+__NOTOC__
+== Hurwitz zeta function ==
+
+; Gold ID : 24
+; Link : https://sigir21.wmflabs.org/wiki/Hurwitz_zeta_function#math.74.0-1
+; Formula : <math>s\not =1</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>s\not =1</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>s \neq 1</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>s \neq 1</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>s \[NotEqual]1</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>s \[NotEqual] 1</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>s <> 1</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>s <> 1</syntaxhighlight>

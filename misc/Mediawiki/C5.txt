@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[5.1|5.1 Special Notation]]<br>
+; Properties : [[5.2|5.2 Definitions]]<br>[[5.3|5.3 Graphics]]<br>[[5.4|5.4 Special Values and Extrema]]<br>[[5.5|5.5 Functional Relations]]<br>[[5.6|5.6 Inequalities]]<br>[[5.7|5.7 Series Expansions]]<br>[[5.8|5.8 Infinite Products]]<br>[[5.9|5.9 Integral Representations]]<br>[[5.10|5.10 Continued Fractions]]<br>[[5.11|5.11 Asymptotic Expansions]]<br>[[5.12|5.12 Beta Function]]<br>[[5.13|5.13 Integrals]]<br>[[5.14|5.14 Multidimensional Integrals]]<br>[[5.15|5.15 Polygamma Functions]]<br>[[5.16|5.16 Sums]]<br>[[5.17|5.17 Barnes’ <math>\BarnesG</math> -Function (Double Gamma Function)]]<br>[[5.18|5.18 <math>q</math> -Gamma and <math>q</math> -Beta Functions]]<br>
+; Applications : [[5.19|5.19 Mathematical Applications]]<br>[[5.20|5.20 Physical Applications]]<br>
+; Computation : [[5.21|5.21 Methods of Computation]]<br>[[5.22|5.22 Tables]]<br>[[5.23|5.23 Approximations]]<br>[[5.24|5.24 Software]]<br>
+</div>

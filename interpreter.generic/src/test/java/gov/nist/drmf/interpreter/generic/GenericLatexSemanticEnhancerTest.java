@@ -92,6 +92,6 @@ public class GenericLatexSemanticEnhancerTest {
         SemanticEnhancedDocument sed = SemanticEnhancedDocument.deserialize(annotatedDoc);
         GenericLatexSemanticEnhancer enhancer = new GenericLatexSemanticEnhancer();
         enhancer.appendTranslationsToDocument(sed);
-        assertEquals( translatedDoc, sed.serialize() );
+        assertEquals( translatedDoc, sed.serialize(), "Translation does not match mlp/JacobiTranslatedDoc.json" );
     }
 }

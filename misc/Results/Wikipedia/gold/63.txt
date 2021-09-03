@@ -1,0 +1,35 @@
+__NOTOC__
+== Q-Charlier polynomials ==
+
+; Gold ID : 63
+; Link : https://sigir21.wmflabs.org/wiki/Q-Charlier_polynomials#math.115.0
+; Formula : <math>\displaystyle c_n(q^{-x};a;q) = {}_2\phi_1(q^{-n},q^{-x};0;q,-q^{n+1}/a)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\displaystyle c_n(q^{-x};a;q) = {}_2\phi_1(q^{-n},q^{-x};0;q,-q^{n+1}/a)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>c_n(q^{-x} ; a ; q) = \qgenhyperphi{2}{1}@{q^{-n} , q^{-x}}{0}{q}{- q^{n+1} / a}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>c_n(q^{-x} ; a ; q) = \qgenhyperphi{2}{1}@{q^{-n} , q^{-x}}{0}{q}{- q^{n+1} / a}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Subscript[c, n][(q)^(- x); a ; q] == QHypergeometricPFQ[{(q)^(- n), (q)^(- x)},{0},q,- (q)^(n + 1)/a]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Bessel Functions - 10.73 Physical Applications}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/10.73.E1 10.73.E1] || <math qid="Q3912">\frac{1}{r}\pderiv{}{r}\left(r\pderiv{V}{r}\right)+\frac{1}{r^{2}}\pderiv[2]{V}{\phi}+\pderiv[2]{V}{z} = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{1}{r}\pderiv{}{r}\left(r\pderiv{V}{r}\right)+\frac{1}{r^{2}}\pderiv[2]{V}{\phi}+\pderiv[2]{V}{z} = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(1)/(r)*diff((r*diff(V, r))+(1)/((r)^(2))*diff(V, [phi$(2)]), r)+ diff(V, [z$(2)]) = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[1,r]*D[(r*D[V, r])+Divide[1,(r)^(2)]*D[V, {\[Phi], 2}], r]+ D[V, {z, 2}] == 0</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 300]
+|}
+</div>

@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Functions of Number Theory - 27.13 Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/27.13.E4 27.13.E4] || <math qid="Q8096">\AThetaFunction@{x} = 1+2\sum_{m=1}^{\infty}x^{m^{2}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\AThetaFunction@{x} = 1+2\sum_{m=1}^{\infty}x^{m^{2}}</syntaxhighlight> || <math>|x| < 1</math> || <syntaxhighlight lang=mathematica>1+2*(sum((x)^(m^2), m = 1 .. infinity)) = 1 + 2*sum((x)^((m)^(2)), m = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Successful || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/27.13.E6 27.13.E6] || <math qid="Q8098">(\AThetaFunction@{x})^{2} = 1+4\sum_{n=1}^{\infty}\left(\delta_{1}(n)-\delta_{3}(n)\right)x^{n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>(\AThetaFunction@{x})^{2} = 1+4\sum_{n=1}^{\infty}\left(\delta_{1}(n)-\delta_{3}(n)\right)x^{n}</syntaxhighlight> || <math>|x| < 1</math> || <syntaxhighlight lang=mathematica>(1+2*(sum((x)^(m^2), m = 1 .. infinity)))^(2) = 1 + 4*sum((delta[1](n)- delta[3](n))*(x)^(n), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Failure || Missing Macro Error || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 3.532372013
+Test Values: {delta = 1/2*3^(1/2)+1/2*I, x = 1/2, delta[1] = 1/2*3^(1/2)+1/2*I, delta[3] = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -7.395831219+2.928203232*I
+Test Values: {delta = 1/2*3^(1/2)+1/2*I, x = 1/2, delta[1] = 1/2*3^(1/2)+1/2*I, delta[3] = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || -
+|}
+</div>

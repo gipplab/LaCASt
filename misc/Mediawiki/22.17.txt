@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Jacobian Elliptic Functions - 22.17 Moduli Outside the Interval [0,1]}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/22.17.E1 22.17.E1] || <math qid="Q7155">\genJacobiellk{p}{q}@{z}{k} = \genJacobiellk{p}{q}@{z}{-k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\genJacobiellk{p}{q}@{z}{k} = \genJacobiellk{p}{q}@{z}{-k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>genJacobiellk(p)*q* z*k = genJacobiellk(p)*q* z- k</syntaxhighlight> || <syntaxhighlight lang=mathematica>genJacobiellk[p]*q* z*k == genJacobiellk[p]*q* z- k</syntaxhighlight> || Failure || Failure || Error || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.0
+Test Values: {Rule[k, 1], Rule[p, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[2.0, Times[Complex[0.0, 1.0], genJacobiellk]]
+Test Values: {Rule[k, 2], Rule[p, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/22.17.E2 22.17.E2] || <math qid="Q7156">\Jacobiellsnk@{z}{1/k} = k\Jacobiellsnk@{z/k}{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Jacobiellsnk@{z}{1/k} = k\Jacobiellsnk@{z/k}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>JacobiSN(z, 1/k) = k*JacobiSN(z/k, k)</syntaxhighlight> || <syntaxhighlight lang=mathematica>JacobiSN[z, (1/k)^2] == k*JacobiSN[z/k, (k)^2]</syntaxhighlight> || Failure || Failure || Successful [Tested: 21] || Successful [Tested: 21]
+|- 
+| [https://dlmf.nist.gov/22.17.E3 22.17.E3] || <math qid="Q7157">\Jacobiellcnk@{z}{1/k} = \Jacobielldnk@{z/k}{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Jacobiellcnk@{z}{1/k} = \Jacobielldnk@{z/k}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>JacobiCN(z, 1/k) = JacobiDN(z/k, k)</syntaxhighlight> || <syntaxhighlight lang=mathematica>JacobiCN[z, (1/k)^2] == JacobiDN[z/k, (k)^2]</syntaxhighlight> || Failure || Failure || Successful [Tested: 21] || Successful [Tested: 21]
+|- 
+| [https://dlmf.nist.gov/22.17.E4 22.17.E4] || <math qid="Q7158">\Jacobielldnk@{z}{1/k} = \Jacobiellcnk@{z/k}{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Jacobielldnk@{z}{1/k} = \Jacobiellcnk@{z/k}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>JacobiDN(z, 1/k) = JacobiCN(z/k, k)</syntaxhighlight> || <syntaxhighlight lang=mathematica>JacobiDN[z, (1/k)^2] == JacobiCN[z/k, (k)^2]</syntaxhighlight> || Failure || Failure || Successful [Tested: 21] || Successful [Tested: 21]
+|}
+</div>

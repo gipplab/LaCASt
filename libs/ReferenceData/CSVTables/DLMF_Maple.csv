@@ -285,7 +285,7 @@ X1:\npartitionsX\npartitions[k]@{n};;;;
 \DiscriminantDelta@{\tau};;;;
 ;;;;
 \nprimesdiv@{$0};ifactor($0);;;
-\nprimes@{x};;;;
+\nprimes@{x};pi($0);;NumberTheory;
 \ndivisors@{n};;Maple needs an extra package. with(numtheory) and since Maplesoft 2016 with(NumberTheory);NumberTheory,Divisors;numelems(Divisors($0))
 X1:\ndivisorsX\ndivisors[k]@{n};;;;
 \sumdivisors{\alpha}@{n};;;;

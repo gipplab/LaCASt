@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Bessel Functions - 10.40 Asymptotic Expansions for Large Argument}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/10.40.E10 10.40.E10] || <math qid="Q3588">\modBesselK{\nu}@{z} = \left(\frac{\pi}{2z}\right)^{\frac{1}{2}}e^{-z}\left(\sum_{k=0}^{\ell-1}\frac{a_{k}(\nu)}{z^{k}}+R_{\ell}(\nu,z)\right)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\modBesselK{\nu}@{z} = \left(\frac{\pi}{2z}\right)^{\frac{1}{2}}e^{-z}\left(\sum_{k=0}^{\ell-1}\frac{a_{k}(\nu)}{z^{k}}+R_{\ell}(\nu,z)\right)</syntaxhighlight> || <math>k \geq 1</math> || <syntaxhighlight lang=mathematica>BesselK(nu, z) = ((Pi)/(2*z))^((1)/(2))* exp(- z)*(sum((((4*(nu)^(2)- (1)^(2))*(4*(nu)^(2)- (3)^(2)) .. (4*(nu)^(2)-(2*k - 1)^(2)))/(factorial(k)*(8)^(k)))/((z)^(k)), k = 0..ell - 1)+ R[ell](nu , z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>BesselK[\[Nu], z] == (Divide[Pi,2*z])^(Divide[1,2])* Exp[- z]*(Sum[Divide[Divide[(4*\[Nu]^(2)- (1)^(2))*(4*\[Nu]^(2)- (3)^(2)) \[Ellipsis](4*\[Nu]^(2)-(2*k - 1)^(2)),(k)!*(8)^(k)],(z)^(k)], {k, 0, \[ScriptL]- 1}, GenerateConditions->None]+ Subscript[R, \[ScriptL]][\[Nu], z])</syntaxhighlight> || Failure || Failure || Error || Error
+|}
+</div>

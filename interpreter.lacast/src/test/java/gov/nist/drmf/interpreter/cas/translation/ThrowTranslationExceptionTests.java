@@ -4,7 +4,11 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
+import gov.nist.drmf.interpreter.pom.common.PomTaggedExpressionUtility;
 import gov.nist.drmf.interpreter.pom.common.meta.AssumeMLPAvailability;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import mlp.ParseException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -137,6 +141,34 @@ public class ThrowTranslationExceptionTests {
         );
 
         assertEquals(TranslationExceptionReason.WRONG_PARENTHESIS, te.getReason());
+    }
+
+    @Test
+    void noNormInMapleTest() {
+        String expr = "\\|x\\|";
+        TranslationException te = assertThrows(
+                TranslationException.class,
+                () -> slt.translate(expr)
+        );
+
+        assertEquals(TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION, te.getReason());
+    }
+
+    @Test
+    void noArgumentForcedFunctionTranslation() throws ParseException {
+        String input = "M = x";
+        assertEquals( "M = x", slt.translate(input) );
+
+        SemanticMLPWrapper mlp = SemanticMLPWrapper.getStandardInstance();
+        PrintablePomTaggedExpression pte = mlp.parse(input);
+        PomTaggedExpressionUtility.tagAsFunction(pte.getComponents().get(0));
+
+        TranslationException te = assertThrows(
+                TranslationException.class,
+                () -> slt.translate(pte)
+        );
+
+        assertEquals(TranslationExceptionReason.LATEX_MACRO_ERROR, te.getReason());
     }
 
     /**

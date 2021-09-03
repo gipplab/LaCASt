@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Orthogonal Polynomials - 18.35 Pollaczek Polynomials}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/18.35.E4 18.35.E4] || <math qid="Q6043">\frac{\Pochhammersym{\lambda-\iunit\tau_{a,b}(\theta)}{n}}{n!}e^{\iunit n\theta}\*\genhyperF{2}{1}@@{-n,\lambda+\iunit\tau_{a,b}(\theta)}{-n-\lambda+1+\iunit\tau_{a,b}(\theta)}{e^{-2\iunit\theta}} = \sum_{\ell=0}^{n}\frac{\Pochhammersym{\lambda+\iunit\tau_{a,b}(\theta)}{\ell}}{\ell!}\frac{\Pochhammersym{\lambda-\iunit\tau_{a,b}(\theta)}{n-\ell}}{(n-\ell)!}e^{\iunit(n-2\ell)\theta}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{\Pochhammersym{\lambda-\iunit\tau_{a,b}(\theta)}{n}}{n!}e^{\iunit n\theta}\*\genhyperF{2}{1}@@{-n,\lambda+\iunit\tau_{a,b}(\theta)}{-n-\lambda+1+\iunit\tau_{a,b}(\theta)}{e^{-2\iunit\theta}} = \sum_{\ell=0}^{n}\frac{\Pochhammersym{\lambda+\iunit\tau_{a,b}(\theta)}{\ell}}{\ell!}\frac{\Pochhammersym{\lambda-\iunit\tau_{a,b}(\theta)}{n-\ell}}{(n-\ell)!}e^{\iunit(n-2\ell)\theta}</syntaxhighlight> || <math>0 < \theta, \theta < \pi</math> || <syntaxhighlight lang=mathematica>(pochhammer(lambda - I*((a*cos(theta)+ b)/(sin(theta))), n))/(factorial(n))*exp(I*n*theta)* hypergeom([- n , lambda + I*((a*cos(theta)+ b)/(sin(theta)))], [- n - lambda + 1 + I*((a*cos(theta)+ b)/(sin(theta)))], exp(- 2*I*theta)) = sum((pochhammer(lambda + I*((a*cos(theta)+ b)/(sin(theta))), ell))/(factorial(ell))*(pochhammer(lambda - I*((a*cos(theta)+ b)/(sin(theta))), n - ell))/(factorial(n - ell))*exp(I*(n - 2*ell)*theta), ell = 0..n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[Pochhammer[\[Lambda]- I*(Divide[a*Cos[\[Theta]]+ b,Sin[\[Theta]]]), n],(n)!]*Exp[I*n*\[Theta]]* HypergeometricPFQ[{- n , \[Lambda]+ I*(Divide[a*Cos[\[Theta]]+ b,Sin[\[Theta]]])}, {- n - \[Lambda]+ 1 + I*(Divide[a*Cos[\[Theta]]+ b,Sin[\[Theta]]])}, Exp[- 2*I*\[Theta]]] == Sum[Divide[Pochhammer[\[Lambda]+ I*(Divide[a*Cos[\[Theta]]+ b,Sin[\[Theta]]]), \[ScriptL]],(\[ScriptL])!]*Divide[Pochhammer[\[Lambda]- I*(Divide[a*Cos[\[Theta]]+ b,Sin[\[Theta]]]), n - \[ScriptL]],(n - \[ScriptL])!]*Exp[I*(n - 2*\[ScriptL])*\[Theta]], {\[ScriptL], 0, n}, GenerateConditions->None]</syntaxhighlight> || Error || Successful || - || Successful [Tested: 300]
+|- 
+| [https://dlmf.nist.gov/18.35.E6 18.35.E6] || <math qid="Q6045">w^{(\lambda)}(\cos@@{\theta};a,b) = \pi^{-1}\*2^{2\lambda-1}\*e^{(2\theta-\pi)\*\tau_{a,b}(\theta)}\*(\sin@@{\theta})^{2\lambda-1}\*\abs{\EulerGamma@{\lambda+\iunit\tau_{a,b}(\theta)}}^{2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>w^{(\lambda)}(\cos@@{\theta};a,b) = \pi^{-1}\*2^{2\lambda-1}\*e^{(2\theta-\pi)\*\tau_{a,b}(\theta)}\*(\sin@@{\theta})^{2\lambda-1}\*\abs{\EulerGamma@{\lambda+\iunit\tau_{a,b}(\theta)}}^{2}</syntaxhighlight> || <math>a \geq b, b \geq -a, \lambda > -\frac{1}{2}, 0 < \theta, \theta < \pi</math> || <syntaxhighlight lang=mathematica>(w(cos(theta); a , b))^(lambda) = (Pi)^(- 1)* (2)^(2*lambda - 1)* exp((2*theta - Pi)*((a*cos(theta)+ b)/(sin(theta))))*(sin(theta))^(2*lambda - 1)* (abs(GAMMA(lambda + I*((a*cos(theta)+ b)/(sin(theta))))))^(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(w[Cos[\[Theta]]; a , b])^(\[Lambda]) == (Pi)^(- 1)* (2)^(2*\[Lambda]- 1)* Exp[(2*\[Theta]- Pi)*(Divide[a*Cos[\[Theta]]+ b,Sin[\[Theta]]])]*(Sin[\[Theta]])^(2*\[Lambda]- 1)* (Abs[Gamma[\[Lambda]+ I*(Divide[a*Cos[\[Theta]]+ b,Sin[\[Theta]]])]])^(2)</syntaxhighlight> || Translation Error || Translation Error || - || -
+|}
+</div>

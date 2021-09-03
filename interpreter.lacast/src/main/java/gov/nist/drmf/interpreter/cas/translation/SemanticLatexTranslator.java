@@ -186,26 +186,17 @@ public class SemanticLatexTranslator extends AbstractTranslator implements IDLMF
     }
 
     @Override
-    public synchronized TranslationInformation translateToObject( String expression, String label ) throws TranslationException {
-        if ( expression == null || expression.isEmpty() ) {
-            LOG.warn("Tried to translate an empty expression");
-            return new TranslationInformation();
-        }
-
-        innerTranslate(expression, label, null);
-        return getTranslationInformationObject();
-    }
-
-    @Override
-    public TranslationInformation translateToObjectFeatured(
+    public synchronized TranslationInformation translateToObject(
             String expression,
-            TranslationFeature<PrintablePomTaggedExpression> translationFeatures) {
+            String label,
+            TranslationFeature<PrintablePomTaggedExpression> translationFeatures
+    ) throws TranslationException {
         if ( expression == null || expression.isEmpty() ) {
             LOG.warn("Tried to translate an empty expression");
             return new TranslationInformation();
         }
 
-        innerTranslate(expression, null, translationFeatures);
+        innerTranslate(expression, label, translationFeatures);
         return getTranslationInformationObject();
     }
 

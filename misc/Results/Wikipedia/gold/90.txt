@@ -1,0 +1,35 @@
+__NOTOC__
+== Q-Laguerre polynomials ==
+
+; Gold ID : 90
+; Link : https://sigir21.wmflabs.org/wiki/Q-Laguerre_polynomials#math.149.0
+; Formula : <math>\displaystyle  L_n^{(\alpha)}(x;q) = \frac{(q^{\alpha+1};q)_n}{(q;q)_n} {}_1\phi_1(q^{-n};q^{\alpha+1};q,-q^{n+\alpha+1}x)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\displaystyle  L_n^{(\alpha)}(x;q) = \frac{(q^{\alpha+1};q)_n}{(q;q)_n} {}_1\phi_1(q^{-n};q^{\alpha+1};q,-q^{n+\alpha+1}x)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\qLaguerrepolyL{\alpha}{n}@{x}{q} = \frac{\qmultiPochhammersym{q^{\alpha+1}}{q}{n}}{\qmultiPochhammersym{q}{q}{n}} \qgenhyperphi{1}{1}@{q^{-n}}{q^{\alpha+1}}{q}{- q^{n+\alpha+1} x}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\qLaguerrepolyL{\alpha}{n}@{x}{q} = \frac{\qmultiPochhammersym{q^{\alpha+1}}{q}{n}}{\qmultiPochhammersym{q}{q}{n}} \qgenhyperphi{1}{1}@{q^{-n}}{q^{\alpha+1}}{q}{- q^{n+\alpha+1} x}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>L[n_, \[Alpha]_, x_, q_] := Divide[Product[QPochhammer[Part[{(q)^(\[Alpha]+ 1)},i],q,n],{i,1,Length[{(q)^(\[Alpha]+ 1)}]}],Product[QPochhammer[Part[{q},i],q,n],{i,1,Length[{q}]}]]*QHypergeometricPFQ[{(q)^(- n)},{(q)^(\[Alpha]+ 1)},q,- (q)^(n + \[Alpha]+ 1)* x]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

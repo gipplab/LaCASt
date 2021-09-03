@@ -1,0 +1,35 @@
+__NOTOC__
+== Continuous q-Laguerre polynomials ==
+
+; Gold ID : 85
+; Link : https://sigir21.wmflabs.org/wiki/Continuous_q-Laguerre_polynomials#math.139.0
+; Formula : <math>P_{n}^{(\alpha)}(x|q)=\frac{(q^\alpha+1;q)_{n}}{(q;q)_{n}}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>P_{n}^{(\alpha)}(x|q)=\frac{(q^\alpha+1;q)_{n}}{(q;q)_{n}}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>P_{n}^{(\alpha)}(x|q)=\frac{(q^\alpha+1;q)_{n}}{(q;q)_{n}}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>P_{n}^{(\alpha)}(x|q) = \frac{\qmultiPochhammersym{q^\alpha+1}{q}{n}}{\qPochhammer{q}{q}{n}} \qgenhyperphi{3}{2}@{q^{-n},q^{\alpha/2+1/4}\expe^{\iunit\theta},q^{\alpha/2+1/4}*\expe^{-\iunit\theta}}{q^{\alpha+1},0}{q}{q}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>P[n_, \[Alpha]_, x_, q_] := Divide[Product[QPochhammer[Part[{(q)^\[Alpha]+ 1},i],q,n],{i,1,Length[{(q)^\[Alpha]+ 1}]}],QPochhammer[q, q, n]]*QHypergeometricPFQ[{(q)^(- n), (q)^(\[Alpha]/2 + 1/4)* Exp[I*\[Theta]], (q)^(\[Alpha]/2 + 1/4)* Exp[- I*\[Theta]]},{(q)^(\[Alpha]+ 1), 0},q,q]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

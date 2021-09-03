@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.cas.translation;
 
+import gov.nist.drmf.interpreter.cas.common.ForwardTranslationProcessConfig;
 import gov.nist.drmf.interpreter.cas.logging.TranslatedExpression;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -18,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.PATTERN_BASIC_OPERATIONS;
 
@@ -25,6 +27,7 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.PATTERN_BASIC_OP
  * @author Andre Greiner-Petter
  */
 public abstract class AbstractListTranslator extends AbstractTranslator {
+
     private static final Logger LOG = LogManager.getLogger(AbstractListTranslator.class.getName());
 
     protected AbstractListTranslator(AbstractTranslator abstractTranslator) {
@@ -63,6 +66,10 @@ public abstract class AbstractListTranslator extends AbstractTranslator {
             PomTaggedExpression exp,
             List<PomTaggedExpression> following_exp
     );
+
+    public Pattern getEndOnMultiplyPattern() {
+        return Pattern.compile("(.*)"+Pattern.quote(getConfig().getMULTIPLY())+"\\s*");
+    }
 
     public static boolean addMultiplySpecTreatment(
             PomTaggedExpression currExp,

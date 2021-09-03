@@ -1,0 +1,35 @@
+__NOTOC__
+== Q-Bessel polynomials ==
+
+; Gold ID : 87
+; Link : https://sigir21.wmflabs.org/wiki/Q-Bessel_polynomials#math.143.0
+; Formula : <math>y_{n}(x;a;q)=\;_{2}\phi_1 \left(\begin{matrix} q^{-N} & -aq^{n} \\ 0  \end{matrix} ; q,qx \right)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>y_{n}(x;a;q)=\;_{2}\phi_1 \left(\begin{matrix} q^{-N} & -aq^{n} \\ 0  \end{matrix} ; q,qx \right)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>y_{n}(x ; a ; q) =_{2} \phi_1(\begin{matrix} q^{-N} & -aq^{n} \\ 0  \end{matrix} ; q , qx)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>y_{n}(x;a;q) = \qgenhyperphi{2}{1}@{q^{-N} , -aq^{n}}{0}{q}{qx}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>y[n_, x_, a_, q_] := QHypergeometricPFQ[{(q)^(- N), - a*(q)^(n)},{0},q,q*x]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

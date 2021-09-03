@@ -1,0 +1,35 @@
+__NOTOC__
+== Hahn polynomials ==
+
+; Gold ID : 60
+; Link : https://sigir21.wmflabs.org/wiki/Hahn_polynomials#math.112.0
+; Formula : <math>Q_n(x;\alpha,\beta,N)= {}_3F_2(-n,-x,n+\alpha+\beta+1;\alpha+1,-N+1;1).</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>Q_n(x;\alpha,\beta,N)= {}_3F_2(-n,-x,n+\alpha+\beta+1;\alpha+1,-N+1;1).</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\HahnpolyQ{n}@{x}{\alpha}{\beta}{N} = \genhyperF{3}{2}@{- n , - x , n + \alpha + \beta + 1}{\alpha + 1 , - N + 1}{1}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\HahnpolyQ{n}@{x}{\alpha}{\beta}{N} = \genhyperF{3}{2}@{- n , - x , n + \alpha + \beta + 1}{\alpha + 1 , - N + 1}{1}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Q[n_, x_, \[Alpha]_, \[Beta]_, N_] := HypergeometricPFQ[{- n , - x , n + \[Alpha]+ \[Beta]+ 1}, {\[Alpha]+ 1 , - N + 1}, 1]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

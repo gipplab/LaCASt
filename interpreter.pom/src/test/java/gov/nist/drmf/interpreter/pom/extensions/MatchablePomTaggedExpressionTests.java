@@ -1575,6 +1575,19 @@ public class MatchablePomTaggedExpressionTests {
     }
 
     @Test
+    public void skipValidTokensAfterSemanticMacroTest() throws ParseException {
+        MatchablePomTaggedExpression gammaBlueprint = PomMatcherBuilder.compile(mlp, "\\EulerGamma@{var0}", "var\\d");
+        PomMatcher matcher = gammaBlueprint.matcher("\\EulerGamma'@{z}");
+        assertFalse(matcher.match());
+
+        MatcherConfig config = MatcherConfig.getInPlaceMatchConfig();
+        config.semanticMacroIgnoreTokenRule(true);
+        matcher = gammaBlueprint.matcher("\\EulerGamma'@{z}", config);
+        assertTrue(matcher.find());
+        assertEquals("z", matcher.groups().get("var0"));
+    }
+
+    @Test
     @DLMF("15.9.1")
     public void pomMatcherReplaceJacobiArticleTest() throws ParseException {
         // contains the jacobi polynomial, the pochhammer symbol and the hypergeometric function

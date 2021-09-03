@@ -1,8 +1,12 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
+import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.common.eval.INumericTestCase;
+import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
+import gov.nist.drmf.interpreter.common.latex.FreeVariables;
 import gov.nist.drmf.interpreter.common.latex.TeXPreProcessor;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.latex.Relations;
@@ -10,10 +14,7 @@ import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.pom.SemanticMLPWrapper;
 import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
 import gov.nist.drmf.interpreter.pom.common.SymbolTag;
-import gov.nist.drmf.interpreter.pom.extensions.MatchablePomTaggedExpression;
-import gov.nist.drmf.interpreter.pom.extensions.PomMatcher;
-import gov.nist.drmf.interpreter.pom.extensions.PomMatcherBuilder;
-import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
+import gov.nist.drmf.interpreter.pom.extensions.*;
 import mlp.FeatureSet;
 import mlp.MathTerm;
 import mlp.ParseException;
@@ -38,11 +39,19 @@ public class Case implements INumericTestCase {
 
     private CaseMetaData metaData;
 
+    private SemanticLatexTranslator slt;
+
     public Case( String LHS, String RHS, Relations relation, CaseMetaData metaData ){
         this.LHS = LHS;
         this.RHS = RHS;
         this.relation = relation;
         this.metaData = metaData;
+        try {
+            this.slt = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
+        } catch (InitTranslatorException e) {
+            this.slt = null;
+            LOG.error("Unable to initiate translator for test cases");
+        }
     }
 
     public void setOriginalLaTeXInput(String formula) {
@@ -279,13 +288,16 @@ public class Case implements INumericTestCase {
 
         m.appendTail(sb);
 
+        MatcherConfig config = MatcherConfig.getInPlaceMatchConfig();
+        config.ignoreNumberOfAts(true);
+        config.semanticMacroIgnoreTokenRule(true);
         MatchablePomTaggedExpression matchPOML = PomMatcherBuilder.compile(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
-        PomMatcher matcherL = matchPOML.matcher(ppteLHS);
+        PomMatcher matcherL = matchPOML.matcher(ppteLHS, config);
         if ( counter == 0 && !isSemantic )
             updateLR(matcherL, def, true);
 
         MatchablePomTaggedExpression matchPOMR = PomMatcherBuilder.compile(mlp, TeXPreProcessor.resetNumberOfAtsToOne(sb.toString()), "VAR\\d+");
-        PomMatcher matcherR = matchPOMR.matcher(ppteRHS);
+        PomMatcher matcherR = matchPOMR.matcher(ppteRHS, config);
         if ( counter == 0 && !isSemantic )
             updateLR(matcherR, def, false);
 
@@ -363,11 +375,17 @@ public class Case implements INumericTestCase {
                     repl = repl.replace("\\", "\\\\");
 
                     while ( m.find() ) {
+                        String match = m.group(0);
+                        match = match.substring(0, match.length()-1);
+                        if ( !match.matches(repl) && repl.length() > 1 ) {
+                            repl = "("+repl+")";
+                        }
                         m.appendReplacement(sb, repl + m.group(1));
                     }
 
                     m.appendTail(sb);
-                    newConstraints.add(sb.toString());
+                    addConstraintCheck(sb.toString(), newConstraints);
+//                    newConstraints.add(sb.toString());
                 }
             }
         }
@@ -381,5 +399,22 @@ public class Case implements INumericTestCase {
         );
 
         this.metaData.addConstraints(newMetaData.getConstraints());
+    }
+
+    private void addConstraintCheck(String constraint, LinkedList<String> newConstraints) {
+        if ( slt == null ) {
+            newConstraints.add(constraint);
+            return;
+        }
+
+        try {
+            TranslationInformation ti = slt.translateToObject(constraint);
+            FreeVariables vars = ti.getFreeVariables();
+            if ( !vars.getFreeVariables().isEmpty() )
+                newConstraints.add(constraint);
+        } catch (Exception | Error e) {
+            // just ignore it and proceed as usual
+            newConstraints.add(constraint);
+        }
     }
 }

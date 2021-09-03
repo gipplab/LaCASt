@@ -1,0 +1,35 @@
+__NOTOC__
+== Continuous Hahn polynomials ==
+
+; Gold ID : 73
+; Link : https://sigir21.wmflabs.org/wiki/Continuous_Hahn_polynomials#math.125.15
+; Formula : <math>P_n^{(\alpha,\beta)}=\lim_{t\to\infty}t^{-n}p_n\left(\tfrac12xt; \tfrac12(\alpha+1-it), \tfrac12(\beta+1+it), \tfrac12(\alpha+1+it), \tfrac12(\beta+1-it)\right)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>P_n^{(\alpha,\beta)}=\lim_{t\to\infty}t^{-n}p_n\left(\tfrac12xt; \tfrac12(\alpha+1-it), \tfrac12(\beta+1+it), \tfrac12(\alpha+1+it), \tfrac12(\beta+1-it)\right)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>P_n^{(\alpha,\beta)} = \lim_{t\to\infty} t^{-n} \contHahnpolyp{n}@{\tfrac12 xt}{\tfrac12(\alpha + 1 - \iunit t)}{\tfrac12(\beta + 1 + \iunit t)}{\tfrac12(\alpha + 1 + \iunit t)}{\tfrac12(\beta + 1 - \iunit t)}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\JacobipolyP{\alpha}{\beta}{n}@{x} = \lim_{t\to\infty} t^{-n} \contHahnpolyp{n}@{\tfrac12 xt}{\tfrac12(\alpha + 1 - \iunit t)}{\tfrac12(\beta + 1 + \iunit t)}{\tfrac12(\alpha + 1 + \iunit t)}{\tfrac12(\beta + 1 - \iunit t)}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>(Subscript[P, n])^(\[Alpha], \[Beta]) == Limit[(t)^(- n)* I^(n)*Divide[Pochhammer[Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Alpha]+ 1 + I*t), n]*Pochhammer[Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Beta]+ 1 - I*t), n], (n)!] * HypergeometricPFQ[{-(n), n + 2*Re[Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Beta]+ 1 + I*t)] - 1, Divide[1,2]*(\[Alpha]+ 1 - I*t) + I*(Divide[1,2]*x*t)}, {Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Alpha]+ 1 + I*t), Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Beta]+ 1 - I*t)}, 1], t -> Infinity, GenerateConditions->None]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>JacobiP[n, \[Alpha], \[Beta], x] == Limit[(t)^(- n)* I^(n)*Divide[Pochhammer[Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Alpha]+ 1 + I*t), n]*Pochhammer[Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Beta]+ 1 - I*t), n], (n)!] * HypergeometricPFQ[{-(n), n + 2*Re[Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Beta]+ 1 + I*t)] - 1, Divide[1,2]*(\[Alpha]+ 1 - I*t) + I*(Divide[1,2]*x*t)}, {Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Alpha]+ 1 + I*t), Divide[1,2]*(\[Alpha]+ 1 - I*t) + Divide[1,2]*(\[Beta]+ 1 - I*t)}, 1], t -> Infinity]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

@@ -1,0 +1,30 @@
+{{DISPLAYTITLE:Elliptic Integrals - 19.12 Asymptotic Approximations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/19.12.E1 19.12.E1] || <math qid="Q6298">\compellintKk@{k} = \sum_{m=0}^{\infty}\frac{\Pochhammersym{\tfrac{1}{2}}{m}\Pochhammersym{\tfrac{1}{2}}{m}}{m!\;m!}{k^{\prime}}^{2m}\left(\ln@@{\left(\frac{1}{k^{\prime}}\right)}+d(m)\right)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\compellintKk@{k} = \sum_{m=0}^{\infty}\frac{\Pochhammersym{\tfrac{1}{2}}{m}\Pochhammersym{\tfrac{1}{2}}{m}}{m!\;m!}{k^{\prime}}^{2m}\left(\ln@@{\left(\frac{1}{k^{\prime}}\right)}+d(m)\right)</syntaxhighlight> || <math>0 < |k^{\prime}|, |k^{\prime}| < 1</math> || <syntaxhighlight lang=mathematica>EllipticK(k) = sum((pochhammer((1)/(2), m)*pochhammer((1)/(2), m))/(factorial(m)*factorial(m))*(sqrt(1 - (k)^(2)))^(2*m)*(ln((1)/(sqrt(1 - (k)^(2))))+ d(m)), m = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>EllipticK[(k)^2] == Sum[Divide[Pochhammer[Divide[1,2], m]*Pochhammer[Divide[1,2], m],(m)!*(m)!]*(Sqrt[1 - (k)^(2)])^(2*m)*(Log[Divide[1,Sqrt[1 - (k)^(2)]]]+ d[m]), {m, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Error || Skip - No test values generated
+|- 
+| [https://dlmf.nist.gov/19.12.E2 19.12.E2] || <math qid="Q6299">\compellintEk@{k} = 1+\frac{1}{2}\sum_{m=0}^{\infty}\frac{\Pochhammersym{\tfrac{1}{2}}{m}\Pochhammersym{\tfrac{3}{2}}{m}}{\Pochhammersym{2}{m}m!}{k^{\prime}}^{2m+2}\*\left(\ln@@{\left(\frac{1}{k^{\prime}}\right)}+d(m)-\frac{1}{(2m+1)(2m+2)}\right)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\compellintEk@{k} = 1+\frac{1}{2}\sum_{m=0}^{\infty}\frac{\Pochhammersym{\tfrac{1}{2}}{m}\Pochhammersym{\tfrac{3}{2}}{m}}{\Pochhammersym{2}{m}m!}{k^{\prime}}^{2m+2}\*\left(\ln@@{\left(\frac{1}{k^{\prime}}\right)}+d(m)-\frac{1}{(2m+1)(2m+2)}\right)</syntaxhighlight> || <math>|k^{\prime}| < 1</math> || <syntaxhighlight lang=mathematica>EllipticE(k) = 1 +(1)/(2)*sum((pochhammer((1)/(2), m)*pochhammer((3)/(2), m))/(pochhammer(2, m)*factorial(m))*(sqrt(1 - (k)^(2)))^(2*m + 2)*(ln((1)/(sqrt(1 - (k)^(2))))+ d(m)-(1)/((2*m + 1)*(2*m + 2))), m = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>EllipticE[(k)^2] == 1 +Divide[1,2]*Sum[Divide[Pochhammer[Divide[1,2], m]*Pochhammer[Divide[3,2], m],Pochhammer[2, m]*(m)!]*(Sqrt[1 - (k)^(2)])^(2*m + 2)*(Log[Divide[1,Sqrt[1 - (k)^(2)]]]+ d[m]-Divide[1,(2*m + 1)*(2*m + 2)]), {m, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [10 / 10]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[d, Times[Rational[1, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]], Rule[k, 1]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[d, Times[Rational[1, 2], Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]], Rule[k, 1]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/19.12#Ex1 19.12#Ex1] || <math qid="Q6300">d(m) = \digamma@{1+m}-\digamma@{\tfrac{1}{2}+m}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>d(m) = \digamma@{1+m}-\digamma@{\tfrac{1}{2}+m}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>d(m) = Psi(1 + m)- Psi((1)/(2)+ m)</syntaxhighlight> || <syntaxhighlight lang=mathematica>d[m] == PolyGamma[1 + m]- PolyGamma[Divide[1,2]+ m]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .4797310429+.5000000000*I
+Test Values: {d = 1/2*3^(1/2)+1/2*I, m = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.512423114+1.*I
+Test Values: {d = 1/2*3^(1/2)+1/2*I, m = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.04671834077232884, 0.24999999999999997]
+Test Values: {Rule[d, Times[Rational[1, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]], Rule[m, 1]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.6463977093312149, 0.49999999999999994]
+Test Values: {Rule[d, Times[Rational[1, 2], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]], Rule[m, 2]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/19.12#Ex2 19.12#Ex2] || <math qid="Q6301">d(m+1) = d(m)-\frac{2}{(2m+1)(2m+2)}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>d(m+1) = d(m)-\frac{2}{(2m+1)(2m+2)}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">d(m + 1) = d(m)-(2)/((2*m + 1)*(2*m + 2))</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">d[m + 1] == d[m]-Divide[2,(2*m + 1)*(2*m + 2)]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

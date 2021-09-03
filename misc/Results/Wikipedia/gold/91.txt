@@ -1,0 +1,35 @@
+__NOTOC__
+== Continuous q-Hermite polynomials ==
+
+; Gold ID : 91
+; Link : https://sigir21.wmflabs.org/wiki/Continuous_q-Hermite_polynomials#math.150.3
+; Formula : <math>\sum_{n=0}^\infty H_n(x \mid q) \frac{t^n}{(q;q)_n} = \frac{1}{\left( t e^{i \theta},t e^{-i \theta};q \right)_\infty}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\sum_{n=0}^\infty H_n(x \mid q) \frac{t^n}{(q;q)_n} = \frac{1}{\left( t e^{i \theta},t e^{-i \theta};q \right)_\infty}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\sum_{n=0}^\infty \HermitepolyH{n}@{x \mid q} \frac{t^n}{(q;q)_n} = \frac{1}{(t \expe^{\iunit \theta} , t \expe^{- \iunit \theta} ; q)_\infty}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\sum_{n=0}^\infty \contqHermitepolyH{n}@{x}{q} \frac{t^n}{\qmultiPochhammersym{q}{q}{n}} = \frac{1}{\qmultiPochhammersym{t \expe^{\iunit \theta} , t \expe^{- \iunit \theta}}{q}{\infty}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

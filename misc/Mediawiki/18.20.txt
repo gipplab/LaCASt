@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Orthogonal Polynomials - 18.20 Hahn Class: Explicit Representations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/18.20.E8 18.20.E8] || <math qid="Q5850">\CharlierpolyC{n}@{x}{a} = \genhyperF{2}{0}@@{-n,-x}{-}{-a^{-1}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\CharlierpolyC{n}@{x}{a} = \genhyperF{2}{0}@@{-n,-x}{-}{-a^{-1}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>HypergeometricPFQ[{-(n), -(x)}, {}, -Divide[1,a]] == HypergeometricPFQ[{- n , - x}, {-}, - (a)^(- 1)]</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/18.20.E9 18.20.E9] || <math qid="Q5851">\contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}} = \frac{\iunit^{n}\Pochhammersym{a+\conj{a}}{n}\Pochhammersym{a+\conj{b}}{n}}{n!}\*\genhyperF{3}{2}@@{-n,n+2\realpart@{a+b}-1,a+\iunit x}{a+\conj{a},a+\conj{b}}{1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\contHahnpolyp{n}@{x}{a}{b}{\conj{a}}{\conj{b}} = \frac{\iunit^{n}\Pochhammersym{a+\conj{a}}{n}\Pochhammersym{a+\conj{b}}{n}}{n!}\*\genhyperF{3}{2}@@{-n,n+2\realpart@{a+b}-1,a+\iunit x}{a+\conj{a},a+\conj{b}}{1}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>I^(n)*Divide[Pochhammer[a + Conjugate[a], n]*Pochhammer[a + Conjugate[b], n], (n)!] * HypergeometricPFQ[{-(n), n + 2*Re[a + b] - 1, a + I*(x)}, {a + Conjugate[a], a + Conjugate[b]}, 1] == Divide[(I)^(n)* Pochhammer[a + Conjugate[a], n]*Pochhammer[a + Conjugate[b], n],(n)!]* HypergeometricPFQ[{- n , n + 2*Re[a + b]- 1 , a + I*x}, {a + Conjugate[a], a + Conjugate[b]}, 1]</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|}
+</div>

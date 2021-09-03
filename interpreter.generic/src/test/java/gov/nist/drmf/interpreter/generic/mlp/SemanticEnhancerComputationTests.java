@@ -1,11 +1,17 @@
 package gov.nist.drmf.interpreter.generic.mlp;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.guava.GuavaModule;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.eval.NumericCalculationGroup;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.common.eval.NumericResult;
 import gov.nist.drmf.interpreter.common.eval.SymbolicResult;
+import gov.nist.drmf.interpreter.common.pojo.CASResult;
+import gov.nist.drmf.interpreter.common.tests.Resource;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
@@ -355,5 +361,29 @@ public class SemanticEnhancerComputationTests {
             LOG.debug("Unable to print numeric test calculation");
         }
 
+    }
+
+    @Resource("pojo/BesselJ.json")
+    @AssumeMathematicaAvailability
+    void besselJSymmetryTest(String besselJString) throws JsonProcessingException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new GuavaModule());
+        MOIPresentations moi = mapper.readValue(besselJString, MOIPresentations.class);
+
+        try {
+            CASResult oldRes = moi.getCasResults(Keys.KEY_MATHEMATICA);
+            oldRes.setNumericResults(null);
+        } catch (NullPointerException npe) { }
+
+        enhancer.appendComputationResults(moi, Keys.KEY_MATHEMATICA);
+        CASResult result = moi.getCasResults(Keys.KEY_MATHEMATICA);
+        NumericResult numericResult = result.getNumericResults();
+
+        assertFalse(numericResult.getTestCalculationsGroups().isEmpty());
+        NumericCalculationGroup ncg = numericResult.getTestCalculationsGroups().get(0);
+        assertFalse(ncg.getTestCalculations().isEmpty());
+        assertFalse(ncg.getTestCalculations().get(0).getTestValues().isEmpty());
+
+        System.out.println(mapper.writeValueAsString(numericResult));
     }
 }

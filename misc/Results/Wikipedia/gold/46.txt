@@ -1,0 +1,35 @@
+__NOTOC__
+== Lemniscatic elliptic function ==
+
+; Gold ID : 46
+; Link : https://sigir21.wmflabs.org/wiki/Lemniscatic_elliptic_function#math.96.1
+; Formula : <math>e_1=\tfrac12,\qquad e_2=0,\qquad e_3=-\tfrac12</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>e_1=\tfrac12,\qquad e_2=0,\qquad e_3=-\tfrac12</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>e_1=\tfrac12,\qquad e_2=0,\qquad e_3=-\tfrac12</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>e_1=\tfrac12,\qquad e_2=0,\qquad e_3=-\tfrac12</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Subscript[e, 1] == Divide[1,2]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Subscript[e, 1] == Divide[1,2]  Subscript[e, 2] = 0  Subscript[e, 3] = -Divide[1,2]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>e[1] = (1)/(2)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>e[1] := (1)/(2); e[2] := 0; e[3] := -(1)/(2)</syntaxhighlight>

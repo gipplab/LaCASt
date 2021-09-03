@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:q -Hypergeometric and Related Functions - 17.4 Basic Hypergeometric Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/17.4.E11 17.4.E11] || <math qid="Q5360">a_{0}q = a_{1}b_{1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>a_{0}q = a_{1}b_{1}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a[0]*q = a[1]*b[1]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[a, 0]*q == Subscript[a, 1]*Subscript[b, 1]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/17.4.E12 17.4.E12] || <math qid="Q5361">b_{1} = -b_{2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>b_{1} = -b_{2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">b[1] = - b[2]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[b, 1] == - Subscript[b, 2]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/17.4.E13 17.4.E13] || <math qid="Q5362">a_{0}q = a_{1}b_{1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>a_{0}q = a_{1}b_{1}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a[0]*q = a[1]*b[1]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[a, 0]*q == Subscript[a, 1]*Subscript[b, 1]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

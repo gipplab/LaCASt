@@ -1,0 +1,35 @@
+__NOTOC__
+== Sinc function ==
+
+; Gold ID : 29
+; Link : https://sigir21.wmflabs.org/wiki/Sinc_function#math.79.11
+; Formula : <math>\int_{-\infty}^\infty \operatorname{sinc}(t) \, e^{-i 2 \pi f t}\,dt = \operatorname{rect}(f)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\int_{-\infty}^\infty \operatorname{sinc}(t) \, e^{-i 2 \pi f t}\,dt = \operatorname{rect}(f)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\int_{-\infty}^\infty \operatorname{sinc}(t) \expe^{- \iunit 2 \cpi f t} \diff{t} = \operatorname{rect}(f)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\int_{-\infty}^\infty \operatorname{sinc}(t) \expe^{- \iunit 2 \cpi f t} \diff{t} = \operatorname{rect}(f)</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Integrate[sinc[t]* Exp[- I*2*Pi*f*t], {t, - Infinity, Infinity}, GenerateConditions->None] == rect[f]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Integrate[sinc[(t)]*Exp[- I*2*Pi*f*t], {t, - Infinity, Infinity}] == rect[f]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>int(sinc(t)* exp(- I*2*Pi*f*t), t = - infinity..infinity) = rect(f)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>int(sinc((t))*exp(- I*2*Pi*f*t), t = - infinity..infinity) = rect(f)</syntaxhighlight>

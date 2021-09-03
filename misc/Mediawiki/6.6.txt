@@ -1,0 +1,34 @@
+{{DISPLAYTITLE:Exponential, Logarithmic, Sine, and Cosine Integrals - 6.6 Power Series}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/6.6.E1 6.6.E1] || <math qid="Q2248">\expintEi@{x} = \EulerConstant+\ln@@{x}+\sum_{n=1}^{\infty}\frac{x^{n}}{n!\thinspace n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintEi@{x} = \EulerConstant+\ln@@{x}+\sum_{n=1}^{\infty}\frac{x^{n}}{n!\thinspace n}</syntaxhighlight> || <math>x > 0</math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralEi[x] == EulerGamma + Log[x]+ Sum[Divide[(x)^(n),(n)!*n], {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Missing Macro Error || Failure || - || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/6.6.E2 6.6.E2] || <math qid="Q2249">\expintE@{z} = -\EulerConstant-\ln@@{z}-\sum_{n=1}^{\infty}\frac{(-1)^{n}z^{n}}{n!\thinspace n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{z} = -\EulerConstant-\ln@@{z}-\sum_{n=1}^{\infty}\frac{(-1)^{n}z^{n}}{n!\thinspace n}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Ei(z) = - gamma - ln(z)- sum(((- 1)^(n)* (z)^(n))/(factorial(n)*n), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, z] == - EulerGamma - Log[z]- Sum[Divide[(- 1)^(n)* (z)^(n),(n)!*n], {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.393548628+1.498247032*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .8944744989+3.773814377*I
+Test Values: {z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/6.6.E3 6.6.E3] || <math qid="Q2250">\expintE@{z} = -\ln@@{z}+e^{-z}\sum_{n=0}^{\infty}\frac{z^{n}}{n!}\digamma@{n+1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{z} = -\ln@@{z}+e^{-z}\sum_{n=0}^{\infty}\frac{z^{n}}{n!}\digamma@{n+1}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Ei(z) = - ln(z)+ exp(- z)*sum(((z)^(n))/(factorial(n))*Psi(n + 1), n = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, z] == - Log[z]+ Exp[- z]*Sum[Divide[(z)^(n),(n)!]*PolyGamma[n + 1], {n, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.393548628+1.498247031*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .8944744987+3.773814376*I
+Test Values: {z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/6.6.E4 6.6.E4] || <math qid="Q2251">\expintEin@{z} = \sum_{n=1}^{\infty}\frac{(-1)^{n-1}z^{n}}{n!\thinspace n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintEin@{z} = \sum_{n=1}^{\infty}\frac{(-1)^{n-1}z^{n}}{n!\thinspace n}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, z] + Ln[z] + EulerGamma == Sum[Divide[(- 1)^(n - 1)* (z)^(n),(n)!*n], {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.0, -0.5235987755982988], Ln[Complex[0.8660254037844387, 0.49999999999999994]]]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Plus[Complex[0.0, -2.0943951023931953], Ln[Complex[-0.4999999999999998, 0.8660254037844387]]]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/6.6.E5 6.6.E5] || <math qid="Q2252">\sinint@{z} = \sum_{n=0}^{\infty}\frac{(-1)^{n}z^{2n+1}}{(2n+1)!(2n+1)}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sinint@{z} = \sum_{n=0}^{\infty}\frac{(-1)^{n}z^{2n+1}}{(2n+1)!(2n+1)}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Si(z) = sum(((- 1)^(n)* (z)^(2*n + 1))/(factorial(2*n + 1)*(2*n + 1)), n = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>SinIntegral[z] == Sum[Divide[(- 1)^(n)* (z)^(2*n + 1),(2*n + 1)!*(2*n + 1)], {n, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/6.6.E6 6.6.E6] || <math qid="Q2253">\cosint@{z} = \EulerConstant+\ln@@{z}+\sum_{n=1}^{\infty}\frac{(-1)^{n}z^{2n}}{(2n)!(2n)}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cosint@{z} = \EulerConstant+\ln@@{z}+\sum_{n=1}^{\infty}\frac{(-1)^{n}z^{2n}}{(2n)!(2n)}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Ci(z) = gamma + ln(z)+ sum(((- 1)^(n)* (z)^(2*n))/(factorial(2*n)*(2*n)), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>CosIntegral[z] == EulerGamma + Log[z]+ Sum[Divide[(- 1)^(n)* (z)^(2*n),(2*n)!*(2*n)], {n, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|}
+</div>

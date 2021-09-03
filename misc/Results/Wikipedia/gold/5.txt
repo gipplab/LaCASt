@@ -1,0 +1,35 @@
+__NOTOC__
+== Logarithm ==
+
+; Gold ID : 5
+; Link : https://sigir21.wmflabs.org/wiki/Logarithm#math.55.18-1
+; Formula : <math>2^{4} = 2 \times2 \times 2 \times 2 = 16</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>2^{4} = 2 \times2 \times 2 \times 2 = 16</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>2^{4} = 2 \times2 \times 2 \times 2 = 16</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>2^{4} = 2 \times2 \times 2 \times 2 = 16</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>(2)^(4) == 2 * 2 * 2 * 2 == 16</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>(2)^(4) == 2 * 2 * 2 * 2 == 16</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>(2)^(4) = 2 * 2 * 2 * 2 = 16</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>(2)^(4) = 2 * 2 * 2 * 2 = 16</syntaxhighlight>

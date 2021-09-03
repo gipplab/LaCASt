@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Elementary Functions - 4.31 Special Values and Limits}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.31.E1 4.31.E1] || <math qid="Q1851">\lim_{z\to 0}\frac{\sinh@@{z}}{z} = 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\lim_{z\to 0}\frac{\sinh@@{z}}{z} = 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>limit((sinh(z))/(z), z = 0) = 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>Limit[Divide[Sinh[z],z], z -> 0, GenerateConditions->None] == 1</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.31.E2 4.31.E2] || <math qid="Q1852">\lim_{z\to 0}\frac{\tanh@@{z}}{z} = 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\lim_{z\to 0}\frac{\tanh@@{z}}{z} = 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>limit((tanh(z))/(z), z = 0) = 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>Limit[Divide[Tanh[z],z], z -> 0, GenerateConditions->None] == 1</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.31.E3 4.31.E3] || <math qid="Q1853">\lim_{z\to 0}\frac{\cosh@@{z}-1}{z^{2}} = \frac{1}{2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\lim_{z\to 0}\frac{\cosh@@{z}-1}{z^{2}} = \frac{1}{2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>limit((cosh(z)- 1)/((z)^(2)), z = 0) = (1)/(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Limit[Divide[Cosh[z]- 1,(z)^(2)], z -> 0, GenerateConditions->None] == Divide[1,2]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|}
+</div>

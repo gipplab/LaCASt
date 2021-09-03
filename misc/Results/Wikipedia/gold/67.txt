@@ -1,0 +1,35 @@
+__NOTOC__
+== Heine–Stieltjes polynomials ==
+
+; Gold ID : 67
+; Link : https://sigir21.wmflabs.org/wiki/Heine–Stieltjes_polynomials#math.119.0
+; Formula : <math>\frac{d^2 S}{dz^2}+\left(\sum _{j=1}^N \frac{\gamma _j}{z - a_j} \right) \frac{dS}{dz} + \frac{V(z)}{\prod _{j=1}^N (z - a_j)}S = 0</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\frac{d^2 S}{dz^2}+\left(\sum _{j=1}^N \frac{\gamma _j}{z - a_j} \right) \frac{dS}{dz} + \frac{V(z)}{\prod _{j=1}^N (z - a_j)}S = 0</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\deriv [2]{S}{z} +(\sum_{j=1}^N \frac{\StieltjesConstants{j}}{z - a_j}) \frac{dS}{dz} + \frac{V(z)}{\prod _{j=1}^N (z - a_j)} S = 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\deriv [2]{S}{z} +(\sum_{j=1}^N \frac{\gamma _j}{z - a_j}) \deriv[]{S}{z} + \frac{V(z)}{\prod _{j=1}^N (z - a_j)} S = 0</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>D[S, {z, 2}]+(Sum[Divide[Subscript[\[Gamma], j],z - Subscript[a, j]], {j, 1, N}, GenerateConditions->None])*Divide[d*S,d*z]+Divide[V[z],Product[z - Subscript[a, j], {j, 1, N}, GenerateConditions->None]]*S == 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>diff(S, [z$(2)])+(sum((gamma(j))/(z - a[j]), j = 1..N))*(d*S)/(d*z)+(V(z))/(product(z - a[j], j = 1..N))*S = 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

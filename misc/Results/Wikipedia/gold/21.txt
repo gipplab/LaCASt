@@ -1,0 +1,35 @@
+__NOTOC__
+== Dirichlet L-function ==
+
+; Gold ID : 21
+; Link : https://sigir21.wmflabs.org/wiki/Dirichlet_L-function#math.71.1-1
+; Formula : <math>\chi(-1) = 1</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\chi(-1) = 1</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\Dirichletchar@@{- 1}{k} = 1</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\Dirichletchar@@{- 1}{k} = 1</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>DirichletCharacter[1, k, - 1] == 1</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>DirichletCharacter[1, 1, -1] == 1</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

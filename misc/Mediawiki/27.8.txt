@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Functions of Number Theory - 27.8 Dirichlet Characters}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/27.8.E1 27.8.E1] || <math qid="Q8047">\Dirichletchar[]@@{1}{k} = 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Dirichletchar[]@@{1}{k} = 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>DirichletCharacter[1, k, 1] == 1</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/27.8.E2 27.8.E2] || <math qid="Q8048">\Dirichletchar[]@@{mn}{k} = \Dirichletchar[]@@{m}{k}\Dirichletchar[]@@{n}{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Dirichletchar[]@@{mn}{k} = \Dirichletchar[]@@{m}{k}\Dirichletchar[]@@{n}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>DirichletCharacter[1, k, m*n] == DirichletCharacter[1, k, m]*DirichletCharacter[1, k, n]</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/27.8.E3 27.8.E3] || <math qid="Q8049">\Dirichletchar[]@@{n+k}{k} = \Dirichletchar[]@@{n}{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Dirichletchar[]@@{n+k}{k} = \Dirichletchar[]@@{n}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>DirichletCharacter[1, k, n + k] == DirichletCharacter[1, k, n]</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/27.8.E4 27.8.E4] || <math qid="Q8050">\Dirichletchar[]@@{n}{k} = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Dirichletchar[]@@{n}{k} = 0</syntaxhighlight> || <math>\pgcd{n > 1, k} > 1</math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>DirichletCharacter[1, k, n] == 0</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/27.8.E8 27.8.E8] || <math qid="Q8054">\Dirichletchar[]@@{n}{k} = \Dirichletchar[0]@@{n}{k}\Dirichletchar[1]@@{n}{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Dirichletchar[]@@{n}{k} = \Dirichletchar[0]@@{n}{k}\Dirichletchar[1]@@{n}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>DirichletCharacter[1, k, n] == DirichletCharacter[0, k, n]*DirichletCharacter[1, k, n]</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|}
+</div>

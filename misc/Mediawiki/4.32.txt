@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Elementary Functions - 4.32 Inequalities}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.32.E1 4.32.E1] || <math qid="Q1854">\cosh@@{x} \leq \left(\frac{\sinh@@{x}}{x}\right)^{3}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cosh@@{x} \leq \left(\frac{\sinh@@{x}}{x}\right)^{3}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>cosh(x) <= ((sinh(x))/(x))^(3)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cosh[x] <= (Divide[Sinh[x],x])^(3)</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/4.32.E2 4.32.E2] || <math qid="Q1855">\sin@@{x}\cos@@{x} < \tanh@@{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sin@@{x}\cos@@{x} < \tanh@@{x}</syntaxhighlight> || <math>x > 0</math> || <syntaxhighlight lang=mathematica>sin(x)*cos(x) < tanh(x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sin[x]*Cos[x] < Tanh[x]</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/4.32.E2 4.32.E2] || <math qid="Q1855">\tanh@@{x} < x</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\tanh@@{x} < x</syntaxhighlight> || <math>x > 0</math> || <syntaxhighlight lang=mathematica>tanh(x) < x</syntaxhighlight> || <syntaxhighlight lang=mathematica>Tanh[x] < x</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/4.32.E3 4.32.E3] || <math qid="Q1856">|\cosh@@{x}-\cosh@@{y}| \geq |x-y|\sqrt{\sinh@@{x}\sinh@@{y}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\cosh@@{x}-\cosh@@{y}| \geq |x-y|\sqrt{\sinh@@{x}\sinh@@{y}}</syntaxhighlight> || <math>x > 0, y > 0</math> || <syntaxhighlight lang=mathematica>abs(cosh(x)- cosh(y)) >= abs(x - y)*sqrt(sinh(x)*sinh(y))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[Cosh[x]- Cosh[y]] >= Abs[x - y]*Sqrt[Sinh[x]*Sinh[y]]</syntaxhighlight> || Failure || Failure || Successful [Tested: 9] || Successful [Tested: 9]
+|- 
+| [https://dlmf.nist.gov/4.32.E4 4.32.E4] || <math qid="Q1857">\atan@@{x} \leq \tfrac{1}{2}\pi\tanh@@{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\atan@@{x} \leq \tfrac{1}{2}\pi\tanh@@{x}</syntaxhighlight> || <math>x \geq 0</math> || <syntaxhighlight lang=mathematica>arctan(x) <= (1)/(2)*Pi*tanh(x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>ArcTan[x] <= Divide[1,2]*Pi*Tanh[x]</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|}
+</div>

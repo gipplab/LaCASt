@@ -262,7 +262,7 @@ Dirac($0);\Diracdelta@{$0};1;;;;;https://www.maplesoft.com/support/help/maple/vi
 ;\DiscriminantDelta@{\tau};;;;;;not defined
 ;;;;;;;
 ifactor($0);\nprimesdiv@{$0};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=ifactor
-;\nprimes@{x};;;;;;not defined
+pi($0);\nprimes@{$0};1;;;;;https://www.maplesoft.com/support/help/Maple/view.aspx?path=NumberTheory%2fPrimeCounting
 ;\ndivisors[k]@{n};;;;;;not defined
 Divisors($0);\ndivisors@{n};1;;;;;http://www.maplesoft.com/support/help/Maple/view.aspx?path=numtheory/divisors%28deprecated%29
 ;\sumdivisors{\alpha}@{n};;;;;;not defined

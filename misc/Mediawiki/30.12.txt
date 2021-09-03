@@ -1,0 +1,28 @@
+{{DISPLAYTITLE:Spheroidal Wave Functions - 30.12 Generalized and Coulomb Spheroidal Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/30.12.E1 30.12.E1] || <math qid="Q8908">\deriv{}{z}\left((1-z^{2})\deriv{w}{z}\right)+{\left(\lambda+\alpha z+\gamma^{2}(1-z^{2})-\frac{\mu^{2}}{1-z^{2}}\right)w} = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv{}{z}\left((1-z^{2})\deriv{w}{z}\right)+{\left(\lambda+\alpha z+\gamma^{2}(1-z^{2})-\frac{\mu^{2}}{1-z^{2}}\right)w} = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(((1 - (z)^(2))*diff(w, z))+(lambda + alpha*z + (gamma)^(2)*(1 - (z)^(2))-((mu)^(2))/(1 - (z)^(2)))*w, z) = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[((1 - (z)^(2))*D[w, z])+(\[Lambda]+ \[Alpha]*z + \[Gamma]^(2)*(1 - (z)^(2))-Divide[\[Mu]^(2),1 - (z)^(2)])*w, z] == 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.965860183+1.904969718*I
+Test Values: {alpha = 3/2, gamma = 1/2*3^(1/2)+1/2*I, lambda = 1/2*3^(1/2)+1/2*I, mu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 2.453469468+.8348874183e-1*I
+Test Values: {alpha = 3/2, gamma = 1/2*3^(1/2)+1/2*I, lambda = 1/2*3^(1/2)+1/2*I, mu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[3.299038105676658, 0.7500000000000002]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[α, 1.5], Rule[γ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[λ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[1.2990381056766578, -2.7141016151377553]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[α, 1.5], Rule[γ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[λ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/30.12.E2 30.12.E2] || <math qid="Q8909">\deriv{}{z}\left((1-z^{2})\deriv{w}{z}\right)+\left(\lambda+\gamma^{2}(1-z^{2})-\frac{\alpha(\alpha+1)}{z^{2}}-\frac{\mu^{2}}{1-z^{2}}\right)w = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv{}{z}\left((1-z^{2})\deriv{w}{z}\right)+\left(\lambda+\gamma^{2}(1-z^{2})-\frac{\alpha(\alpha+1)}{z^{2}}-\frac{\mu^{2}}{1-z^{2}}\right)w = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(((1 - (z)^(2))*diff(w, z))+(lambda + (gamma)^(2)*(1 - (z)^(2))-(alpha*(alpha + 1))/((z)^(2))-((mu)^(2))/(1 - (z)^(2)))*w, z) = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[((1 - (z)^(2))*D[w, z])+(\[Lambda]+ \[Gamma]^(2)*(1 - (z)^(2))-Divide[\[Alpha]*(\[Alpha]+ 1),(z)^(2)]-Divide[\[Mu]^(2),1 - (z)^(2)])*w, z] == 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 4.416822075-5.340220804*I
+Test Values: {alpha = 3/2, gamma = 1/2*3^(1/2)+1/2*I, lambda = 1/2*3^(1/2)+1/2*I, mu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 7.649621884+3.083488740*I
+Test Values: {alpha = 3/2, gamma = 1/2*3^(1/2)+1/2*I, lambda = 1/2*3^(1/2)+1/2*I, mu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[5.749999999999999, -6.495190528383291]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[α, 1.5], Rule[γ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[λ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[3.749999999999999, -9.959292143521045]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[α, 1.5], Rule[γ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[λ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

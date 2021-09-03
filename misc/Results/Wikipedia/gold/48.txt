@@ -1,0 +1,35 @@
+__NOTOC__
+== 3-j symbol ==
+
+; Gold ID : 48
+; Link : https://sigir21.wmflabs.org/wiki/3-j_symbol#math.99.30
+; Formula : <math>\begin{pmatrix}  j \\  m \quad m'\end{pmatrix}:= \sqrt{2 j + 1}\begin{pmatrix}  j & 0 & j \\  m & 0 & m'\end{pmatrix}= (-1)^{j - m'} \delta_{m, -m'}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\begin{pmatrix}  j \\  m \quad m'\end{pmatrix}:= \sqrt{2 j + 1}\begin{pmatrix}  j & 0 & j \\  m & 0 & m'\end{pmatrix}= (-1)^{j - m'} \delta_{m, -m'}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\begin{pmatrix}  j \\  m \quad m'\end{pmatrix} : = \sqrt{2 j + 1} \Wignerthreejsym{j}{0}{j}{m}{0}{m'} =(- 1)^{j - m'} \delta_{m, -m'}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\begin{pmatrix}  j \\  m \quad m'\end{pmatrix}:= \sqrt{2 j + 1}\begin{pmatrix}  j & 0 & j \\  m & 0 & m'\end{pmatrix}= (-1)^{j - m'} \delta_{m, -m'}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Wigner[j_, m_, m\[Prime]_] := Sqrt[2*j+1] * {{j, 0, j}, {m, 0, m\[Prime]}} = (-1)^(j-m\[Prime])*Subscript[\[Delta], m, -m\[Prime]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

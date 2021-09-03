@@ -188,6 +188,12 @@ public class FunctionTranslator extends AbstractListTranslator {
             idxReduction++;
         }
 
+        if ( MathTermUtility.isRelationSymbol(first.getRoot()) ) {
+            throw TranslationException.buildExceptionObj( this,
+                    "Encounter illegal function argument " + first.getRoot().getTermText(),
+                    TranslationExceptionReason.LATEX_MACRO_ERROR, first);
+        }
+
         // translate the argument in the general way
         List<PomTaggedExpression> nextElements;
         if ( definitionIndex > 0 ) {
