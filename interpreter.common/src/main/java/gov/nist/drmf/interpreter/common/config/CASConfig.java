@@ -19,6 +19,9 @@ public class CASConfig {
     @JsonProperty("install.path")
     private String path;
 
+    @JsonProperty("license")
+    private String license;
+
     private CASConfig(){}
 
     @JsonSetter("install.path")
@@ -29,6 +32,16 @@ public class CASConfig {
     @JsonGetter("install.path")
     public String getStringInstallPath() {
         return this.path;
+    }
+
+    @JsonGetter("license")
+    public String getLicenseKey() {
+        return license;
+    }
+
+    @JsonSetter("license")
+    public void setLicenseKey(String license) {
+        this.license = license;
     }
 
     @JsonIgnore

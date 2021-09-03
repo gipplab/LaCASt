@@ -110,9 +110,11 @@ public class SemanticEnhancer implements IPartialEnhancer {
         LOG.debug("Compute numerical verification tests on " + moi.getId());
         NumericResult nr = computeNumerically(semanticLaTeX, casName);
         casResult.setNumericResults(nr);
+        if ( nr == null ) LOG.info("Numeric evaluation failed.");
         LOG.debug("Compute symbolical verification tests on " + moi.getId());
         SymbolicResult sr = computeSymbolically(semanticLaTeX, casName);
         casResult.setSymbolicResults(sr);
+        if ( sr == null ) LOG.info("Symbolic evaluation failed.");
 
         Duration elapsed = Duration.between(start, Instant.now());
         LOG.printf(Level.INFO,
@@ -127,7 +129,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
     @Override
     public NumericResult computeNumerically(String semanticLatex, String casName) {
         if ( EvaluationSkipper.shouldNotBeEvaluated(semanticLatex) ) {
-            LOG.debug("The test expression should not be evaluated due to missing equation or because it contains underscores (troublesome for CAS): " + semanticLatex);
+            LOG.info("The test expression should not be evaluated due to missing equation or because it contains underscores (troublesome for CAS): " + semanticLatex);
             return new NumericResult();
         }
 
@@ -135,7 +137,7 @@ public class SemanticEnhancer implements IPartialEnhancer {
         NativeComputerAlgebraInterfaceBuilder cas = this.casConnections.getCASConnection(casName);
         try {
             if ( cas == null ) {
-                LOG.debug("The requested CAS is not connected with valid native CAS. Skip it.");
+                LOG.warn("The requested CAS is not connected with valid native CAS. Skip it.");
             } else {
                 NumericResult result = computeNumericResults(semanticLatex, cas);
                 try { cas.getCASEngine().forceGC(); }
