@@ -1,0 +1,35 @@
+__NOTOC__
+== Trigonometric integral ==
+
+; Gold ID : 16
+; Link : https://sigir21.wmflabs.org/wiki/Trigonometric_integral#math.66.8
+; Formula : <math>\operatorname{Si}(ix) = i\operatorname{Shi}(x)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\operatorname{Si}(ix) = i\operatorname{Shi}(x)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\sinint@{\iunit x} = \iunit \operatorname{Shi}(x)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\sinint@{\iunit x} = \iunit \sinhint@{x}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>SinIntegral[I*x] == I*Shi[x]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>SinIntegral[I*x] == I*SinhIntegral[x]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Si(I*x) = I*Shi(x)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Si(I*x) = I*Shi(x)</syntaxhighlight>

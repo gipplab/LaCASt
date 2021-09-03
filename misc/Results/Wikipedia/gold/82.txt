@@ -1,0 +1,35 @@
+__NOTOC__
+== Big q-Jacobi polynomials ==
+
+; Gold ID : 82
+; Link : https://sigir21.wmflabs.org/wiki/Big_q-Jacobi_polynomials#math.135.0
+; Formula : <math>\displaystyle   P_n(x;a,b,c;q)={}_3\phi_2(q^{-n},abq^{n+1},x;aq,cq;q,q)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\displaystyle   P_n(x;a,b,c;q)={}_3\phi_2(q^{-n},abq^{n+1},x;aq,cq;q,q)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\bigqJacobipolyP{n}@{x}{a}{b}{c}{q} = \qgenhyperphi{3}{2}@{q^{-n} , abq^{n+1} , x}{aq , cq}{q}{q}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\bigqJacobipolyP{n}@{x}{a}{b}{c}{q} = \qgenhyperphi{3}{2}@{q^{-n} , abq^{n+1} , x}{aq , cq}{q}{q}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>p[n_, x_, a_, b_, c_, q_] := QHypergeometricPFQ[{(q)^(- n), a*b*(q)^(n + 1), x},{a*q , c*q},q,q]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

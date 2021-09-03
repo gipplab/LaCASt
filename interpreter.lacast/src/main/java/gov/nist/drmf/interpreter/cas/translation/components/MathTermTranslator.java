@@ -517,7 +517,7 @@ public class MathTermTranslator extends AbstractListTranslator {
         mlpKey += Keys.MLP_KEY_SET_LEFT_PREFIX  + (leftOpen  ? "open" : "closed") + "-";
         mlpKey += Keys.MLP_KEY_SET_RIGHT_PREFIX + (rightOpen ? "open" : "closed");
 
-        return bfT.translate(
+        String translation = bfT.translate(
                 new String[]{
                         firstArgument.trim(),
                         arguments[0].trim(), // delete the open parenthesis
@@ -525,6 +525,12 @@ public class MathTermTranslator extends AbstractListTranslator {
                 },
                 mlpKey
         );
+
+        if ( translation == null || translation.isEmpty() )
+            throw TranslationException.buildException(
+                    this, "No translation defined for " + mlpKey,
+                    TranslationExceptionReason.MISSING_TRANSLATION_INFORMATION);
+        else return translation;
     }
 
     private boolean returnBracketSet(Brackets bracket, MathTerm term, MathTerm nextTerm) {

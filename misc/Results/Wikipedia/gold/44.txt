@@ -1,0 +1,35 @@
+__NOTOC__
+== Basic hypergeometric series ==
+
+; Gold ID : 44
+; Link : https://sigir21.wmflabs.org/wiki/Basic_hypergeometric_series#math.94.4
+; Formula : <math>\lim_{q\to 1}\;_{j}\phi_k \left[\begin{matrix} q^{a_1} & q^{a_2} & \ldots & q^{a_j} \\ q^{b_1} & q^{b_2} & \ldots & q^{b_k} \end{matrix} ; q,(q-1)^{1+k-j} z \right]=\;_{j}F_k \left[\begin{matrix} a_1 & a_2 & \ldots & a_j \\ b_1 & b_2 & \ldots & b_k \end{matrix} ;z \right]</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\lim_{q\to 1}\;_{j}\phi_k \left[\begin{matrix} q^{a_1} & q^{a_2} & \ldots & q^{a_j} \\ q^{b_1} & q^{b_2} & \ldots & q^{b_k} \end{matrix} ; q,(q-1)^{1+k-j} z \right]=\;_{j}F_k \left[\begin{matrix} a_1 & a_2 & \ldots & a_j \\ b_1 & b_2 & \ldots & b_k \end{matrix} ;z \right]</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| -
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\lim_{q\to 1}_{j} \phi_k [\begin{matrix} q^{a_1} & q^{a_2} & \ldots & q^{a_j} \\ q^{b_1} & q^{b_2} & \ldots & q^{b_k} \end{matrix} ; q ,(q - 1)^{1+k-j} z] =_{j} F_k [\begin{matrix} a_1 & a_2 & \ldots & a_j \\ b_1 & b_2 & \ldots & b_k \end{matrix} ; z]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\lim_{q\to 1} \qgenhyperphi{j}{k}@{q^{a_1} , q^{a_2} , \ldots , q^{a_j}}{q^{b_1} , q^{b_2} , \ldots , q^{b_k}}{q}{(q - 1)^{1+k-j} z} = \genhyperF{j}{k}@{a_1 , a_2 , \ldots , a_j}{b_1 , b_2 , \ldots , b_k}{z}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

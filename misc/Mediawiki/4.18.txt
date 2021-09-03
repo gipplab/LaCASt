@@ -1,0 +1,44 @@
+{{DISPLAYTITLE:Elementary Functions - 4.18 Inequalities}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.18.E1 4.18.E1] || <math qid="Q1669">\frac{2x}{\pi} \leq \sin@@{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{2x}{\pi} \leq \sin@@{x}</syntaxhighlight> || <math>0 \leq x, x \leq \frac{1}{2}\pi</math> || <syntaxhighlight lang=mathematica>(2*x)/(Pi) <= sin(x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[2*x,Pi] <= Sin[x]</syntaxhighlight> || Failure || Failure || Successful [Tested: 2] || Successful [Tested: 2]
+|- 
+| [https://dlmf.nist.gov/4.18.E1 4.18.E1] || <math qid="Q1669">\sin@@{x} \leq x</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sin@@{x} \leq x</syntaxhighlight> || <math>0 \leq x, x \leq \frac{1}{2}\pi</math> || <syntaxhighlight lang=mathematica>sin(x) <= x</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sin[x] <= x</syntaxhighlight> || Failure || Failure || Successful [Tested: 2] || Successful [Tested: 2]
+|- 
+| [https://dlmf.nist.gov/4.18.E2 4.18.E2] || <math qid="Q1670">x \leq \tan@@{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>x \leq \tan@@{x}</syntaxhighlight> || <math>0 \leq x, x < \frac{1}{2}\pi</math> || <syntaxhighlight lang=mathematica>x <= tan(x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>x <= Tan[x]</syntaxhighlight> || Failure || Failure || Successful [Tested: 2] || Successful [Tested: 2]
+|- 
+| [https://dlmf.nist.gov/4.18.E3 4.18.E3] || <math qid="Q1671">\cos@@{x} \leq \frac{\sin@@{x}}{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cos@@{x} \leq \frac{\sin@@{x}}{x}</syntaxhighlight> || <math>0 \leq x, x \leq \pi</math> || <syntaxhighlight lang=mathematica>cos(x) <= (sin(x))/(x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Cos[x] <= Divide[Sin[x],x]</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/4.18.E3 4.18.E3] || <math qid="Q1671">\frac{\sin@@{x}}{x} \leq 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{\sin@@{x}}{x} \leq 1</syntaxhighlight> || <math>0 \leq x, x \leq \pi</math> || <syntaxhighlight lang=mathematica>(sin(x))/(x) <= 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[Sin[x],x] <= 1</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/4.18.E4 4.18.E4] || <math qid="Q1672">\pi < \frac{\sin@{\pi x}}{x(1-x)}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\pi < \frac{\sin@{\pi x}}{x(1-x)}</syntaxhighlight> || <math>0 < x, x < 1</math> || <syntaxhighlight lang=mathematica>Pi < (sin(Pi*x))/(x*(1 - x))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Pi < Divide[Sin[Pi*x],x*(1 - x)]</syntaxhighlight> || Failure || Failure || Successful [Tested: 1] || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.18.E4 4.18.E4] || <math qid="Q1672">\frac{\sin@{\pi x}}{x(1-x)} \leq 4</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{\sin@{\pi x}}{x(1-x)} \leq 4</syntaxhighlight> || <math>0 < x, x < 1</math> || <syntaxhighlight lang=mathematica>(sin(Pi*x))/(x*(1 - x)) <= 4</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[Sin[Pi*x],x*(1 - x)] <= 4</syntaxhighlight> || Failure || Failure || Successful [Tested: 1] || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.18.E5 4.18.E5] || <math qid="Q1673">|\sinh@@{y}| \leq |\sin@@{z}|\leq\cosh@@{y}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\sinh@@{y}| \leq |\sin@@{z}|\leq\cosh@@{y}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>abs(sinh(y)) <= abs(sin(x + y*I)) <= cosh(y)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[Sinh[y]] <= Abs[Sin[x + y*I]] <= Cosh[y]</syntaxhighlight> || Failure || Failure || Error || Successful [Tested: 18]
+|- 
+| [https://dlmf.nist.gov/4.18.E6 4.18.E6] || <math qid="Q1674">|\sinh@@{y}| \leq |\cos@@{z}|\leq\cosh@@{y}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\sinh@@{y}| \leq |\cos@@{z}|\leq\cosh@@{y}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>abs(sinh(y)) <= abs(cos(x + y*I)) <= cosh(y)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[Sinh[y]] <= Abs[Cos[x + y*I]] <= Cosh[y]</syntaxhighlight> || Failure || Failure || Error || Successful [Tested: 18]
+|- 
+| [https://dlmf.nist.gov/4.18.E7 4.18.E7] || <math qid="Q1675">|\csc@@{z}| \leq \csch@@{|y|}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\csc@@{z}| \leq \csch@@{|y|}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>abs(csc(x + y*I)) <= csch(abs(y))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[Csc[x + y*I]] <= Csch[Abs[y]]</syntaxhighlight> || Failure || Failure || Successful [Tested: 18] || Successful [Tested: 18]
+|- 
+| [https://dlmf.nist.gov/4.18.E8 4.18.E8] || <math qid="Q1676">|\cos@@{z}| \leq \cosh@@{|z|}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\cos@@{z}| \leq \cosh@@{|z|}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>abs(cos(z)) <= cosh(abs(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[Cos[z]] <= Cosh[Abs[z]]</syntaxhighlight> || Failure || Failure || Successful [Tested: 7] || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.18.E9 4.18.E9] || <math qid="Q1677">|\sin@@{z}| \leq \sinh@@{|z|}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\sin@@{z}| \leq \sinh@@{|z|}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>abs(sin(z)) <= sinh(abs(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[Sin[z]] <= Sinh[Abs[z]]</syntaxhighlight> || Failure || Failure || Successful [Tested: 7] || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.18#Ex1 4.18#Ex1] || <math qid="Q1678">|\cos@@{z}| < 2</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\cos@@{z}| < 2</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>abs(cos(z)) < 2</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[Cos[z]] < 2</syntaxhighlight> || Failure || Failure || Successful [Tested: 7] || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.18#Ex2 4.18#Ex2] || <math qid="Q1679">|\sin@@{z}| \leq \tfrac{6}{5}|z|</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\sin@@{z}| \leq \tfrac{6}{5}|z|</syntaxhighlight> || <math>|z| < 1</math> || <syntaxhighlight lang=mathematica>abs(sin(z)) <= (6)/(5)*abs(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[Sin[z]] <= Divide[6,5]*Abs[z]</syntaxhighlight> || Failure || Failure || Successful [Tested: 1] || Successful [Tested: 1]
+|}
+</div>

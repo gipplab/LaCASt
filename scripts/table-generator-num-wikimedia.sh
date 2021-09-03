@@ -129,11 +129,6 @@ for FILEMATH in $FILES; do
 
 
   link="[[Results of ${pageNames[FILECOUNTER]}|${id}]]"
-  if (( $FILECOUNTER == 9 )); then
-    link="BS [[Results of Bessel Functions I|I]] & [[Results of Bessel Functions II|II]]"
-  elif (( $FILECOUNTER == 18 )); then
-    link="EL [[Results of Elliptic Integrals I|I]] & [[Results of Elliptic Integrals II|II]]"
-  fi
   
   # 1. AL || Trans Maple || Trans Math || Symb Succ Maple || Percent || Fail || Symb Succ Math || Percent || Fail || Num Succ || Percent || Fail || [P/T]
   printf "! scope=\"row\" style=\"text-align: left; border-right: solid 1px #000\"| %2d. %s \n| style=\"border-right: solid 1px #000;\" | %3d \n|| %3d || %3d \n| style=\"border-right: solid 1px #000;\" | %3d \n|| %3d || %4.1f%% \n| style=\"border-right: solid 2px #aaa;\" | %3d \n|| %3d || %4.1f%% \n| style=\"border-right: solid 1px #000;\" | %3d \n|| %3d || %4.1f%% || %3d || [%3d / %3d] || %3d \n| style=\"border-right: solid 2px #aaa;\" | %3d \n|| %3d || %4.1f%% || %3d || [%3d / %3d] || %3d || %3d \n|-\n" \

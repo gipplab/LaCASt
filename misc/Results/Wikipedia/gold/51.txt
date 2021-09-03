@@ -1,0 +1,35 @@
+__NOTOC__
+== Kravchuk polynomials ==
+
+; Gold ID : 51
+; Link : https://sigir21.wmflabs.org/wiki/Kravchuk_polynomials#math.102.5
+; Formula : <math>\mathcal{K}_k(x; n,q) = \sum_{j=0}^{k}(-q)^j (q-1)^{k-j} \binom {n-j}{k-j} \binom{x}{j}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\mathcal{K}_k(x; n,q) = \sum_{j=0}^{k}(-q)^j (q-1)^{k-j} \binom {n-j}{k-j} \binom{x}{j}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\mathcal{K}_k(x; n,q) = \sum_{j=0}^{k}(-q)^j (q-1)^{k-j} \binom {n-j}{k-j} \binom{x}{j}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\KrawtchoukpolyK{k}@{x}{n}{q} = \sum_{j=0}^{k}(-q)^j (q-1)^{k-j} \binom {n-j}{k-j} \binom{x}{j}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Subscript[\[CapitalKappa], k][x ; n , q] == Sum[(- q)^(j)*(q - 1)^(k - j)*Binomial[n - j,k - j]*Binomial[x,j], {j, 0, k}, GenerateConditions->None]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>K[k_, x_, n_, q_] := Sum[(- q)^(j)*(q - 1)^(k - j)*Binomial[n - j,k - j]*Binomial[x,j], {j, 0, k}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Kappa[k](x ; n , q) = sum((- q)^(j)*(q - 1)^(k - j)*binomial(n - j,k - j)*binomial(x,j), j = 0..k)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

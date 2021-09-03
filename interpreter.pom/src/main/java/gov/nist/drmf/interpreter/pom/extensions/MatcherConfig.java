@@ -29,6 +29,8 @@ public class MatcherConfig {
     private boolean ignoreOperatorName = true;
     private boolean ignoreFontManipulation = false;
 
+    private boolean semanticMacroIgnoreTokenRule = false;
+
     private final Map<String, String> illegalTokenForWildcards = new HashMap<>();
 
     private MatcherConfig() {
@@ -41,6 +43,7 @@ public class MatcherConfig {
         this.ignoreBracketLogic = referenceConfig.ignoreBracketLogic;
         this.ignoreNumberOfAts = referenceConfig.ignoreNumberOfAts;
         this.ignoreOperatorName = referenceConfig.ignoreOperatorName;
+        this.semanticMacroIgnoreTokenRule = referenceConfig.semanticMacroIgnoreTokenRule;
         this.illegalTokenForWildcards.putAll(referenceConfig.illegalTokenForWildcards);
     }
 
@@ -95,6 +98,15 @@ public class MatcherConfig {
 
     public MatcherConfig ignoreFontManipulation(boolean ignoreFontManipulation) {
         this.ignoreFontManipulation = ignoreFontManipulation;
+        return this;
+    }
+
+    public boolean isSemanticMacroIgnoreTokenRule() {
+        return semanticMacroIgnoreTokenRule;
+    }
+
+    public MatcherConfig semanticMacroIgnoreTokenRule(boolean semanticMacroIgnoreTokenRule) {
+        this.semanticMacroIgnoreTokenRule = semanticMacroIgnoreTokenRule;
         return this;
     }
 

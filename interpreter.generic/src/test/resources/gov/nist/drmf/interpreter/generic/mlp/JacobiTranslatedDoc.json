@@ -19,10 +19,17 @@
               "n",
               "x"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -38,10 +45,9 @@
               "n",
               "x"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -264,9 +270,8 @@
               "\\[Beta]",
               "x"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -281,9 +286,8 @@
               "Symbol('beta')",
               "x"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -298,9 +302,8 @@
               "beta",
               "x"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -357,10 +360,7 @@
           "translationInformation" : {
             "subEquations" : [
               "[- 1 , 1]"
-            ],
-            "freeVariables" : [ ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
@@ -368,10 +368,7 @@
           "translationInformation" : {
             "subEquations" : [
               "[- 1 , 1]"
-            ],
-            "freeVariables" : [ ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
@@ -379,10 +376,7 @@
           "translationInformation" : {
             "subEquations" : [
               "[- 1 , 1]"
-            ],
-            "freeVariables" : [ ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -450,12 +444,19 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: HypergeometricPFQ[{$2}, {$3}, $4]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/16.2#E1\nMathematica:  reference.wolfram.com/language/ref/HypergeometricPFQ.html",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  reference.wolfram.com/language/ref/Pochhammer.html"
+              "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: HypergeometricPFQ[{$2}, {$3}, $4]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/16.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/HypergeometricPFQ.html",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://reference.wolfram.com/language/ref/Pochhammer.html"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -471,11 +472,10 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
               "\\genhyperF" : "Generalized hypergeometric function; Example: \\genhyperF{p}{q}@@@{a_1,...,a_p}{b_1,...,b_q}{z}\nWill be translated to: hypergeom([$2], [$3], $4)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/16.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=hypergeom",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: pochhammer($0, $1)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#iii\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer"
             }
           }
@@ -529,10 +529,17 @@
               "\\[Alpha]",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  reference.wolfram.com/language/ref/Pochhammer.html"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: Pochhammer[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#iii\nMathematica:  https://reference.wolfram.com/language/ref/Pochhammer.html"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\Pochhammersym [\\Pochhammersym]"
             }
           }
         },
@@ -546,9 +553,8 @@
               "alpha",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\Pochhammersym" : "Pochhammer symbol; Example: \\Pochhammersym{a}{n}\nWill be translated to: pochhammer($0, $1)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#iii\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=pochhammer"
             }
           }
@@ -586,7 +592,7 @@
       "id" : "FORMULA_8aef2b8e75b872d1e8ef1530bb9bb795",
       "formula" : "P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+n+1)}{n!\\,\\Gamma (\\alpha+\\beta+n+1)} \\sum_{m=0}^n {n\\choose m} \\frac{\\Gamma (\\alpha + \\beta + n + m + 1)}{\\Gamma (\\alpha + m + 1)} \\left(\\frac{z-1}{2}\\right)^m",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + n + 1}}{n! \\EulerGamma@{\\alpha + \\beta + n + 1}} \\sum_{m=0}^n{n\\choose m} \\frac{\\EulerGamma@{\\alpha + \\beta + n + m + 1}}{\\EulerGamma@{\\alpha + m + 1}}(\\frac{z-1}{2})^m",
-      "confidence" : 0.8818092635071948,
+      "confidence" : 0.6613569476303962,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[Gamma[\\[Alpha]+ n + 1],(n)!*Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*Sum[Binomial[n,m]*Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + m + 1],Gamma[\\[Alpha]+ m + 1]]*(Divide[z - 1,2])^(m), {m, 0, n}, GenerateConditions->None]",
@@ -600,11 +606,18 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -620,10 +633,9 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
             }
           }
@@ -665,7 +677,7 @@
       "id" : "FORMULA_b98cc2a3c71764be8bc7fe354e54ebf7",
       "formula" : "P_n^{(\\alpha,\\beta)}(z) = \\frac{(-1)^n}{2^n n!} (1-z)^{-\\alpha} (1+z)^{-\\beta} \\frac{d^n}{dz^n} \\left\\{ (1-z)^\\alpha (1+z)^\\beta \\left (1 - z^2 \\right )^n \\right\\}",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{(-1)^n}{2^n n!}(1 - z)^{-\\alpha}(1 + z)^{-\\beta} \\deriv [n]{ }{z} \\{(1 - z)^\\alpha(1 + z)^\\beta(1 - z^2)^n \\}",
-      "confidence" : 0.9378384212127765,
+      "confidence" : 0.7033788159095824,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], z] == Divide[(- 1)^(n),(2)^(n)* (n)!]*(1 - z)^(- \\[Alpha])*(1 + z)^(- \\[Beta])* D[(1 - z)^\\[Alpha]*(1 + z)^\\[Beta]*(1 - (z)^(2))^(n), {z, n}]",
@@ -679,11 +691,18 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -699,10 +718,9 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff"
             }
           }
@@ -752,9 +770,8 @@
               "\\[Alpha]",
               "\\[Beta]"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -769,9 +786,8 @@
               "Symbol('alpha')",
               "Symbol('beta')"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -786,9 +802,8 @@
               "alpha",
               "beta"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -825,10 +840,17 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\LegendrepolyP" : "Legendre polynomial; Example: \\LegendrepolyP{n}@{x}\nWill be translated to: LegendreP[$0, $1]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r10\nMathematica:  https://reference.wolfram.com/language/ref/LegendreP.html",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html"
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\LegendrepolyP [\\LegendrepolyP]"
             }
           }
         },
@@ -842,7 +864,6 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\LegendrepolyP" : "Legendre polynomial; Example: \\LegendrepolyP{n}@{x}\nWill be translated to: LegendreP($0, $1)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r10\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=LegendreP",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff"
@@ -883,9 +904,7 @@
             ],
             "freeVariables" : [
               "x"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
@@ -896,9 +915,7 @@
             ],
             "freeVariables" : [
               "x"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
@@ -909,9 +926,7 @@
             ],
             "freeVariables" : [
               "x"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -1017,10 +1032,17 @@
               "n",
               "x"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -1036,10 +1058,9 @@
               "n",
               "x"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1081,9 +1102,7 @@
             ],
             "freeVariables" : [
               "n"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
@@ -1094,9 +1113,7 @@
             ],
             "freeVariables" : [
               "n"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
@@ -1107,9 +1124,7 @@
             ],
             "freeVariables" : [
               "n"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -1342,37 +1357,28 @@
         "Mathematica" : {
           "translation" : "Binomial[z,n] == ",
           "translationInformation" : {
-            "subEquations" : [ ],
             "freeVariables" : [
               "n",
               "z"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
           "translation" : "binomial(z,n) == ",
           "translationInformation" : {
-            "subEquations" : [ ],
             "freeVariables" : [
               "n",
               "z"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
           "translation" : "binomial(z,n) = ",
           "translationInformation" : {
-            "subEquations" : [ ],
             "freeVariables" : [
               "n",
               "z"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -1415,9 +1421,16 @@
             "freeVariables" : [
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\EulerGamma [\\EulerGamma]"
             }
           }
         },
@@ -1430,7 +1443,6 @@
             "freeVariables" : [
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
             }
@@ -1505,9 +1517,8 @@
               "\\[Beta]",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1522,9 +1533,8 @@
               "Symbol('beta')",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1539,9 +1549,8 @@
               "beta",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1594,9 +1603,8 @@
               "\\[Beta]",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1611,9 +1619,8 @@
               "Symbol('beta')",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1628,9 +1635,8 @@
               "beta",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1735,10 +1741,17 @@
               "n",
               "x"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -1754,10 +1767,9 @@
               "n",
               "x"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1811,9 +1823,7 @@
             ],
             "freeVariables" : [
               "s"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
@@ -1824,9 +1834,7 @@
             ],
             "freeVariables" : [
               "s"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
@@ -1837,9 +1845,7 @@
             ],
             "freeVariables" : [
               "s"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -1890,7 +1896,7 @@
       "id" : "FORMULA_5a59d52ac2638a6e955a48d2dbf276db",
       "formula" : "P_0^{(\\alpha,\\beta)}(z)= 1",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{0}@{z} = 1",
-      "confidence" : 0.9378384212127765,
+      "confidence" : 0.7033788159095824,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[0, \\[Alpha], \\[Beta], z] == 1",
@@ -1903,10 +1909,17 @@
               "\\[Beta]",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -1921,10 +1934,9 @@
               "beta",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -1949,7 +1961,7 @@
       "id" : "FORMULA_ca61fa237002fce94643d9197732d667",
       "formula" : "P_1^{(\\alpha,\\beta)}(z)= (\\alpha+1) + (\\alpha+\\beta+2)\\frac{z-1}{2}",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{1}@{z} =(\\alpha + 1) +(\\alpha + \\beta + 2) \\frac{z-1}{2}",
-      "confidence" : 0.9378384212127765,
+      "confidence" : 0.7033788159095824,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[1, \\[Alpha], \\[Beta], z] == (\\[Alpha]+ 1)+(\\[Alpha]+ \\[Beta]+ 2)*Divide[z - 1,2]",
@@ -1962,10 +1974,17 @@
               "\\[Beta]",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -1980,10 +1999,9 @@
               "beta",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2008,7 +2026,7 @@
       "id" : "FORMULA_f95cd8e6d82bfb68b3b85bef1c1662b1",
       "formula" : "P_2^{(\\alpha,\\beta)}(z)= \\frac{(\\alpha+1)(\\alpha+2)}{2}+ (\\alpha+2)(\\alpha+\\beta+3)\\frac{z-1}{2}+ \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}\\left(\\frac{z-1}{2}\\right)^2,..",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{2}@{z} = \\frac{(\\alpha+1)(\\alpha+2)}{2} +(\\alpha + 2)(\\alpha + \\beta + 3) \\frac{z-1}{2} + \\frac{(\\alpha+\\beta+3)(\\alpha+\\beta+4)}{2}(\\frac{z-1}{2})^2",
-      "confidence" : 0.9378384212127765,
+      "confidence" : 0.7033788159095824,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[2, \\[Alpha], \\[Beta], z] == Divide[(\\[Alpha]+ 1)*(\\[Alpha]+ 2),2]+(\\[Alpha]+ 2)*(\\[Alpha]+ \\[Beta]+ 3)*Divide[z - 1,2]+Divide[(\\[Alpha]+ \\[Beta]+ 3)*(\\[Alpha]+ \\[Beta]+ 4),2]*(Divide[z - 1,2])^(2)",
@@ -2021,10 +2039,17 @@
               "\\[Beta]",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -2039,10 +2064,9 @@
               "beta",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2067,16 +2091,16 @@
       "id" : "FORMULA_77d1d3b415496da5bb77004fd55dff4c",
       "formula" : "\\int_{-1}^1 (1-x)^{\\alpha} (1+x)^{\\beta} P_m^{(\\alpha,\\beta)} (x)P_n^{(\\alpha,\\beta)} (x)\\,dx =\\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\Gamma(n+\\alpha+1)\\Gamma(n+\\beta+1)}{\\Gamma(n+\\alpha+\\beta+1)n!} \\delta_{nm}, \\qquad \\alpha,\\ \\beta > -1",
       "semanticFormula" : "\\int_{-1}^1(1 - x)^{\\alpha}(1 + x)^{\\beta} \\JacobipolyP{\\alpha}{\\beta}{m}@{x} \\JacobipolyP{\\alpha}{\\beta}{n}@{x} \\diff{x} = \\frac{2^{\\alpha+\\beta+1}}{2n+\\alpha+\\beta+1} \\frac{\\EulerGamma@{n + \\alpha + 1} \\EulerGamma@{n + \\beta + 1}}{\\EulerGamma@{n + \\alpha + \\beta + 1} n!} \\delta_{nm} , \\qquad \\alpha , \\beta > - 1",
-      "confidence" : 0.8605414895047745,
+      "confidence" : 0.7573189762795729,
       "translations" : {
         "Mathematica" : {
-          "translation" : "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]* JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] == Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n*m]",
+          "translation" : "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]* JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] == Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n, m]",
           "translationInformation" : {
             "subEquations" : [
-              "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]* JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] = Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n*m]"
+              "Integrate[(1 - x)^\\[Alpha]*(1 + x)^\\[Beta]* JacobiP[m, \\[Alpha], \\[Beta], x]*JacobiP[n, \\[Alpha], \\[Beta], x], {x, - 1, 1}, GenerateConditions->None] = Divide[(2)^(\\[Alpha]+ \\[Beta]+ 1),2*n + \\[Alpha]+ \\[Beta]+ 1]*Divide[Gamma[n + \\[Alpha]+ 1]*Gamma[n + \\[Beta]+ 1],Gamma[n + \\[Alpha]+ \\[Beta]+ 1]*(n)!]*Subscript[\\[Delta], n, m]"
             ],
             "freeVariables" : [
-              "Subscript[\\[Delta], n*m]",
+              "Subscript[\\[Delta], n, m]",
               "\\[Alpha]",
               "\\[Beta]",
               "m",
@@ -2087,22 +2111,30 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\delta" : "Could be the first Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\delta" : "Could be the first Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
             }
           }
         },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+            }
+          }
+        },
         "Maple" : {
-          "translation" : "int((1 - x)^(alpha)*(1 + x)^(beta)* JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n*m]",
+          "translation" : "int((1 - x)^(alpha)*(1 + x)^(beta)* JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n, m]",
           "translationInformation" : {
             "subEquations" : [
-              "int((1 - x)^(alpha)*(1 + x)^(beta)* JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n*m]"
+              "int((1 - x)^(alpha)*(1 + x)^(beta)* JacobiP(m, alpha, beta, x)*JacobiP(n, alpha, beta, x), x = - 1..1) = ((2)^(alpha + beta + 1))/(2*n + alpha + beta + 1)*(GAMMA(n + alpha + 1)*GAMMA(n + beta + 1))/(GAMMA(n + alpha + beta + 1)*factorial(n))*delta[n, m]"
             ],
             "freeVariables" : [
               "alpha",
               "beta",
-              "delta[n*m]",
+              "delta[n, m]",
               "m",
               "n"
             ],
@@ -2111,8 +2143,8 @@
             ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\delta" : "Could be the first Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\delta" : "Could be the first Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
             }
           }
@@ -2162,9 +2194,7 @@
             "freeVariables" : [
               "m",
               "n"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
@@ -2176,9 +2206,7 @@
             "freeVariables" : [
               "m",
               "n"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
@@ -2190,9 +2218,7 @@
             "freeVariables" : [
               "m",
               "n"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -2237,7 +2263,7 @@
       "id" : "FORMULA_885c4cc0c4b31f8e336b9b90a9f5a73a",
       "formula" : "P_n^{(\\alpha, \\beta)} (1) = {n+\\alpha\\choose n}",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{1} ={n+\\alpha\\choose n}",
-      "confidence" : 0.9378384212127765,
+      "confidence" : 0.7033788159095824,
       "translations" : {
         "Mathematica" : {
           "translation" : "JacobiP[n, \\[Alpha], \\[Beta], 1] == Binomial[n + \\[Alpha],n]",
@@ -2250,10 +2276,17 @@
               "\\[Beta]",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -2268,10 +2301,9 @@
               "beta",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2323,10 +2355,17 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -2342,10 +2381,9 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2397,10 +2435,17 @@
               "\\[Beta]",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -2415,10 +2460,9 @@
               "beta",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2466,9 +2510,7 @@
             ],
             "freeVariables" : [
               "k"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
@@ -2479,9 +2521,7 @@
             ],
             "freeVariables" : [
               "k"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
@@ -2492,9 +2532,7 @@
             ],
             "freeVariables" : [
               "k"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -2542,7 +2580,7 @@
       "id" : "FORMULA_c1a5b2b20d5efff4922f26591d73e078",
       "formula" : "\\frac{d^k}{dz^k} P_n^{(\\alpha,\\beta)} (z) = \\frac{\\Gamma (\\alpha+\\beta+n+1+k)}{2^k \\Gamma (\\alpha+\\beta+n+1)} P_{n-k}^{(\\alpha+k, \\beta+k)} (z)",
       "semanticFormula" : "\\deriv [k]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} = \\frac{\\EulerGamma@{\\alpha + \\beta + n + 1 + k}}{2^k \\EulerGamma@{\\alpha + \\beta + n + 1}} \\JacobipolyP{\\alpha + k}{\\beta + k}{n-k}@{z}",
-      "confidence" : 0.8818092635071948,
+      "confidence" : 0.6613569476303962,
       "translations" : {
         "Mathematica" : {
           "translation" : "D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, k}] == Divide[Gamma[\\[Alpha]+ \\[Beta]+ n + 1 + k],(2)^(k)* Gamma[\\[Alpha]+ \\[Beta]+ n + 1]]*JacobiP[n - k, \\[Alpha]+ k, \\[Beta]+ k, z]",
@@ -2557,12 +2595,19 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: Gamma[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/5.2#E1\nMathematica:  https://reference.wolfram.com/language/ref/Gamma.html"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\deriv [\\deriv]"
             }
           }
         },
@@ -2579,11 +2624,10 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\EulerGamma" : "Euler Gamma function; Example: \\EulerGamma@{z}\nWill be translated to: GAMMA($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/5.2#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=GAMMA"
             }
           }
@@ -2632,9 +2676,8 @@
               "\\[Beta]",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2650,9 +2693,8 @@
               "Symbol('{P}_{n}')",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2668,9 +2710,8 @@
               "beta",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -2889,7 +2930,32 @@
       "formula" : "\\left (1-x^2 \\right )y'' + ( \\beta-\\alpha - (\\alpha + \\beta + 2)x )y' + n(n+\\alpha+\\beta+1) y = 0",
       "semanticFormula" : "(1 - x^2) y ' ' +(\\beta - \\alpha -(\\alpha + \\beta + 2) x) y ' + n(n + \\alpha + \\beta + 1) y = 0",
       "confidence" : 0.0,
-      "translations" : { },
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places."
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places."
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places."
+            }
+          }
+        }
+      },
       "positions" : [
         {
           "section" : 8,
@@ -2930,9 +2996,8 @@
               "\\[Alpha]",
               "\\[Beta]"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2946,9 +3011,8 @@
               "Symbol('alpha')",
               "Symbol('beta')"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2962,9 +3026,8 @@
               "alpha",
               "beta"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -3177,10 +3240,17 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -3196,10 +3266,9 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -3236,34 +3305,25 @@
         "Mathematica" : {
           "translation" : "n == 2\n 3",
           "translationInformation" : {
-            "subEquations" : [ ],
             "freeVariables" : [
               "n"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
           "translation" : "n == 2\n 3",
           "translationInformation" : {
-            "subEquations" : [ ],
             "freeVariables" : [
               "n"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
           "translation" : "n = 2; 3",
           "translationInformation" : {
-            "subEquations" : [ ],
             "freeVariables" : [
               "n"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -3290,22 +3350,21 @@
       "id" : "FORMULA_2583a2b549a7ff71d02941bc95a657b7",
       "formula" : "\\begin{align}(z-1) \\frac{d}{dz} P_n^{(\\alpha,\\beta)}(z) &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\&= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\&=(1+\\alpha+\\beta+n) \\left( P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)} \\right) \\\\&=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\&=\\frac{2(n+1) P_{n+1}^{(\\alpha,\\beta-1)} - \\left(z(1+\\alpha+\\beta+n)+\\alpha+1+n-\\beta \\right) P_n^{(\\alpha,\\beta)}}{1+z} \\\\&=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\&=\\frac{1-z}{1+z} \\left( \\beta P_n^{(\\alpha,\\beta)} - (\\beta+n) P_{n}^{(\\alpha+1,\\beta-1)} \\right) \\, .\\end{align}",
       "semanticFormula" : "\\begin{align}(z - 1) \\deriv [1]{ }{z} \\JacobipolyP{\\alpha}{\\beta}{n}@{z} &= \\frac{1}{2} (z-1)(1+\\alpha+\\beta+n)P_{n-1}^{(\\alpha+1,\\beta+1)} \\\\ &= n P_n^{(\\alpha,\\beta)} - (\\alpha+n) P_{n-1}^{(\\alpha,\\beta+1)} \\\\ &=(1 + \\alpha + \\beta + n)(P_n^{(\\alpha,\\beta+1)} - P_{n}^{(\\alpha,\\beta)}) \\\\ &=(\\alpha+n) P_n^{(\\alpha-1,\\beta+1)} - \\alpha P_n^{(\\alpha,\\beta)} \\\\ &= \\frac{2(n + 1) P_{n+1}^{(\\alpha,\\beta-1)} -(z(1 + \\alpha + \\beta + n) + \\alpha + 1 + n - \\beta) P_n^{(\\alpha,\\beta)}}{1+z} \\\\ &=\\frac{(2\\beta+n+nz) P_n^{(\\alpha,\\beta)} - 2(\\beta+n) P_n^{(\\alpha,\\beta-1)}}{1+z} \\\\ &= \\frac{1-z}{1+z}(\\beta P_n^{(\\alpha,\\beta)} -(\\beta + n) P_{n}^{(\\alpha+1,\\beta-1)}) .\\end{align}",
-      "confidence" : 0.9378384212127765,
+      "confidence" : 0.7033788159095824,
       "translations" : {
         "Mathematica" : {
-          "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) == n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) == (1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta])) == (\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta]) == Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] == Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))",
+          "translation" : "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] == Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) == n*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) == (1 + \\[Alpha]+ \\[Beta]+ n)*((Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- (Subscript[P, n])^(\\[Alpha], \\[Beta])) == (\\[Alpha]+ n)*(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*(Subscript[P, n])^(\\[Alpha], \\[Beta]) == Divide[2*(n + 1)*(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] == Divide[(2*\\[Beta]+ n + n*z)*(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] == Divide[1 - z,1 + z]*(\\[Beta]*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))",
           "translationInformation" : {
             "subEquations" : [
-              "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] = Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1)",
-              "Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*P(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) = n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1)",
-              "n*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*P(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) = (1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta]))",
-              "(1 + \\[Alpha]+ \\[Beta]+ n)*(P(Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- P(Subscript[P, n])^(\\[Alpha], \\[Beta])) = (\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])",
-              "(\\[Alpha]+ n)*P(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*P(Subscript[P, n])^(\\[Alpha], \\[Beta]) = Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z]",
-              "Divide[2*(n + 1)*P(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*P(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] = Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z]",
-              "Divide[(2*\\[Beta]+ n + n*z)*P(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] = Divide[1 - z,1 + z]*(\\[Beta]*P(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*P(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))"
+              "(z - 1)*D[JacobiP[n, \\[Alpha], \\[Beta], z], {z, 1}] = Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1)",
+              "Divide[1,2]*(z - 1)*(1 + \\[Alpha]+ \\[Beta]+ n)*(Subscript[P, n - 1])^(\\[Alpha]+ 1 , \\[Beta]+ 1) = n*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1)",
+              "n*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Alpha]+ n)*(Subscript[P, n - 1])^(\\[Alpha], \\[Beta]+ 1) = (1 + \\[Alpha]+ \\[Beta]+ n)*((Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- (Subscript[P, n])^(\\[Alpha], \\[Beta]))",
+              "(1 + \\[Alpha]+ \\[Beta]+ n)*((Subscript[P, n])^(\\[Alpha], \\[Beta]+ 1)- (Subscript[P, n])^(\\[Alpha], \\[Beta])) = (\\[Alpha]+ n)*(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*(Subscript[P, n])^(\\[Alpha], \\[Beta])",
+              "(\\[Alpha]+ n)*(Subscript[P, n])^(\\[Alpha]- 1 , \\[Beta]+ 1)- \\[Alpha]*(Subscript[P, n])^(\\[Alpha], \\[Beta]) = Divide[2*(n + 1)*(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z]",
+              "Divide[2*(n + 1)*(Subscript[P, n + 1])^(\\[Alpha], \\[Beta]- 1)-(z*(1 + \\[Alpha]+ \\[Beta]+ n)+ \\[Alpha]+ 1 + n - \\[Beta])*(Subscript[P, n])^(\\[Alpha], \\[Beta]),1 + z] = Divide[(2*\\[Beta]+ n + n*z)*(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z]",
+              "Divide[(2*\\[Beta]+ n + n*z)*(Subscript[P, n])^(\\[Alpha], \\[Beta])- 2*(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha], \\[Beta]- 1),1 + z] = Divide[1 - z,1 + z]*(\\[Beta]*(Subscript[P, n])^(\\[Alpha], \\[Beta])-(\\[Beta]+ n)*(Subscript[P, n])^(\\[Alpha]+ 1 , \\[Beta]- 1))"
             ],
             "freeVariables" : [
-              "P",
               "Subscript[P, n + 1]",
               "Subscript[P, n - 1]",
               "Subscript[P, n]",
@@ -3314,28 +3373,34 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
-              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  reference.wolfram.com/language/ref/D.html"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: D[$1, {$2, $0}]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/1.4#E4\nMathematica:  https://reference.wolfram.com/language/ref/D.html"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\deriv [\\deriv]"
             }
           }
         },
         "Maple" : {
-          "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1) = n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta)) = (alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta) = (2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*P(P[n])^(alpha , beta)-(beta + n)*P(P[n])^(alpha + 1 , beta - 1))",
+          "translation" : "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*(P[n - 1])^(alpha + 1 , beta + 1) = n*(P[n])^(alpha , beta)-(alpha + n)*(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*((P[n])^(alpha , beta + 1)- (P[n])^(alpha , beta)) = (alpha + n)*(P[n])^(alpha - 1 , beta + 1)- alpha*(P[n])^(alpha , beta) = (2*(n + 1)*(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*(P[n])^(alpha , beta)- 2*(beta + n)*(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*(P[n])^(alpha , beta)-(beta + n)*(P[n])^(alpha + 1 , beta - 1))",
           "translationInformation" : {
             "subEquations" : [
-              "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1)",
-              "(1)/(2)*(z - 1)*(1 + alpha + beta + n)*P(P[n - 1])^(alpha + 1 , beta + 1) = n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1)",
-              "n*P(P[n])^(alpha , beta)-(alpha + n)*P(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta))",
-              "(1 + alpha + beta + n)*(P(P[n])^(alpha , beta + 1)- P(P[n])^(alpha , beta)) = (alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta)",
-              "(alpha + n)*P(P[n])^(alpha - 1 , beta + 1)- alpha*P(P[n])^(alpha , beta) = (2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z)",
-              "(2*(n + 1)*P(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*P(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z)",
-              "((2*beta + n + n*z)*P(P[n])^(alpha , beta)- 2*(beta + n)*P(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*P(P[n])^(alpha , beta)-(beta + n)*P(P[n])^(alpha + 1 , beta - 1))"
+              "(z - 1)*diff(JacobiP(n, alpha, beta, z), [z$(1)]) = (1)/(2)*(z - 1)*(1 + alpha + beta + n)*(P[n - 1])^(alpha + 1 , beta + 1)",
+              "(1)/(2)*(z - 1)*(1 + alpha + beta + n)*(P[n - 1])^(alpha + 1 , beta + 1) = n*(P[n])^(alpha , beta)-(alpha + n)*(P[n - 1])^(alpha , beta + 1)",
+              "n*(P[n])^(alpha , beta)-(alpha + n)*(P[n - 1])^(alpha , beta + 1) = (1 + alpha + beta + n)*((P[n])^(alpha , beta + 1)- (P[n])^(alpha , beta))",
+              "(1 + alpha + beta + n)*((P[n])^(alpha , beta + 1)- (P[n])^(alpha , beta)) = (alpha + n)*(P[n])^(alpha - 1 , beta + 1)- alpha*(P[n])^(alpha , beta)",
+              "(alpha + n)*(P[n])^(alpha - 1 , beta + 1)- alpha*(P[n])^(alpha , beta) = (2*(n + 1)*(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*(P[n])^(alpha , beta))/(1 + z)",
+              "(2*(n + 1)*(P[n + 1])^(alpha , beta - 1)-(z*(1 + alpha + beta + n)+ alpha + 1 + n - beta)*(P[n])^(alpha , beta))/(1 + z) = ((2*beta + n + n*z)*(P[n])^(alpha , beta)- 2*(beta + n)*(P[n])^(alpha , beta - 1))/(1 + z)",
+              "((2*beta + n + n*z)*(P[n])^(alpha , beta)- 2*(beta + n)*(P[n])^(alpha , beta - 1))/(1 + z) = (1 - z)/(1 + z)*(beta*(P[n])^(alpha , beta)-(beta + n)*(P[n])^(alpha + 1 , beta - 1))"
             ],
             "freeVariables" : [
-              "P",
               "P[n + 1]",
               "P[n - 1]",
               "P[n]",
@@ -3344,10 +3409,9 @@
               "n",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, [$2$($0)])\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nMaple: https://www.maplesoft.com/support/help/Maple/view.aspx?path=diff"
             }
           }
@@ -3399,10 +3463,17 @@
               "t",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -3419,10 +3490,9 @@
               "t",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -3461,57 +3531,45 @@
       "confidence" : 0.0,
       "translations" : {
         "Mathematica" : {
-          "translation" : "R == R[z , t] == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
+          "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)^(2))^(Divide[1,2])",
           "translationInformation" : {
             "subEquations" : [
-              "R = R[z , t]",
-              "R[z , t] = (1 - 2*z*t + (t)^(2))^(Divide[1,2])"
+              "R = R*(z , t)",
+              "R*(z , t) = (1 - 2*z*t + (t)^(2))^(Divide[1,2])"
             ],
             "freeVariables" : [
               "R",
               "t",
               "z"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : {
-              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
-            }
+            ]
           }
         },
         "SymPy" : {
-          "translation" : "R == R(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))",
+          "translation" : "R == R*(z , t) == (1 - 2*z*t + (t)**(2))**((1)/(2))",
           "translationInformation" : {
             "subEquations" : [
-              "R = R(z , t)",
-              "R(z , t) = (1 - 2*z*t + (t)**(2))**((1)/(2))"
+              "R = R*(z , t)",
+              "R*(z , t) = (1 - 2*z*t + (t)**(2))**((1)/(2))"
             ],
             "freeVariables" : [
               "R",
               "t",
               "z"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : {
-              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
-            }
+            ]
           }
         },
         "Maple" : {
-          "translation" : "R = R(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))",
+          "translation" : "R = R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))",
           "translationInformation" : {
             "subEquations" : [
-              "R = R(z , t)",
-              "R(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))"
+              "R = R*(z , t)",
+              "R*(z , t) = (1 - 2*z*t + (t)^(2))^((1)/(2))"
             ],
             "freeVariables" : [
               "R",
               "t",
               "z"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : {
-              "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
-            }
+            ]
           }
         }
       },
@@ -3552,7 +3610,6 @@
             "freeVariables" : [
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
@@ -3567,7 +3624,6 @@
             "freeVariables" : [
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
@@ -3582,7 +3638,6 @@
             "freeVariables" : [
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "R" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
@@ -3615,56 +3670,60 @@
       "id" : "FORMULA_9dc229093c0cfe263c966e50e7f0a24a",
       "formula" : "P_n^{(\\alpha,\\beta)}(\\cos \\theta) = n^{-\\frac{1}{2}}k(\\theta)\\cos (N\\theta + \\gamma) + O \\left (n^{-\\frac{3}{2}} \\right )",
       "semanticFormula" : "\\JacobipolyP{\\alpha}{\\beta}{n}@{\\cos \\theta} = n^{-\\frac{1}{2}} k(\\theta) \\cos(N \\theta + \\gamma) + O(n^{-\\frac{3}{2}})",
-      "confidence" : 0.9378384212127765,
+      "confidence" : 0.7033788159095824,
       "translations" : {
         "Mathematica" : {
-          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ \\[CapitalOmicron][(n)^(-Divide[3,2])]",
+          "translation" : "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] == (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ O[(n)^(-Divide[3,2])]",
           "translationInformation" : {
             "subEquations" : [
-              "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] = (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ \\[CapitalOmicron][(n)^(-Divide[3,2])]"
+              "JacobiP[n, \\[Alpha], \\[Beta], Cos[\\[Theta]]] = (n)^(-Divide[1,2])* k[\\[Theta]]* Cos[N*\\[Theta]+ \\[Gamma]]+ O[(n)^(-Divide[3,2])]"
             ],
             "freeVariables" : [
               "N",
               "\\[Alpha]",
               "\\[Beta]",
-              "\\[CapitalOmicron]",
               "\\[Gamma]",
               "\\[Theta]",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "O" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
           }
         },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+            }
+          }
+        },
         "Maple" : {
-          "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ Omicron((n)^(-(3)/(2)))",
+          "translation" : "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ O((n)^(-(3)/(2)))",
           "translationInformation" : {
             "subEquations" : [
-              "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ Omicron((n)^(-(3)/(2)))"
+              "JacobiP(n, alpha, beta, cos(theta)) = (n)^(-(1)/(2))* k(theta)* cos(N*theta + gamma)+ O((n)^(-(3)/(2)))"
             ],
             "freeVariables" : [
               "N",
-              "Omicron",
               "alpha",
               "beta",
               "gamma",
               "n",
               "theta"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "O" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
           }
@@ -3731,13 +3790,12 @@
               "\\[Theta]",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: Sin[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E1\nMathematica:  https://reference.wolfram.com/language/ref/Sin.html"
             }
           }
@@ -3758,13 +3816,12 @@
               "Symbol('theta')",
               "n"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nSymPy: https://docs.sympy.org/latest/modules/functions/elementary.html#cos",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: pi",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: sin($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E1\nSymPy: https://docs.sympy.org/latest/modules/functions/elementary.html#sin"
             }
           }
@@ -3785,13 +3842,12 @@
               "n",
               "theta"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
               "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
-              "\\gamma" : "Could be the Euler-Mascheroni constant.\n But it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
               "\\sin" : "Sine; Example: \\sin@@{z}\nWill be translated to: sin($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E1\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=sin"
             }
           }
@@ -3846,9 +3902,7 @@
             ],
             "freeVariables" : [
               "O"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
@@ -3859,9 +3913,7 @@
             ],
             "freeVariables" : [
               "O"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
@@ -3872,9 +3924,7 @@
             ],
             "freeVariables" : [
               "O"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -3927,7 +3977,6 @@
             "freeVariables" : [
               "\\[Epsilon]"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cpi" : "Pi was translated to: Pi"
             }
@@ -3942,7 +3991,6 @@
             "freeVariables" : [
               "Symbol('epsilon')"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cpi" : "Pi was translated to: pi"
             }
@@ -3957,7 +4005,6 @@
             "freeVariables" : [
               "epsilon"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cpi" : "Pi was translated to: Pi"
             }
@@ -4010,9 +4057,7 @@
             ],
             "freeVariables" : [
               "\\[Epsilon]"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
@@ -4023,9 +4068,7 @@
             ],
             "freeVariables" : [
               "Symbol('epsilon')"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
@@ -4036,9 +4079,7 @@
             ],
             "freeVariables" : [
               "epsilon"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -4087,10 +4128,16 @@
               "+ 1",
               "- 1"
             ],
-            "freeVariables" : [ ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\pm" : "was translated to: \\[PlusMinus]"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) An unknown or missing element occurred: Cannot translate operation \\pm"
             }
           }
         },
@@ -4101,8 +4148,6 @@
               "+ 1",
               "- 1"
             ],
-            "freeVariables" : [ ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\pm" : "was translated to: &+-"
             }
@@ -4163,13 +4208,20 @@
               "\\[Beta]",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: Cos[$0]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/4.14#E2\nMathematica:  https://reference.wolfram.com/language/ref/Cos.html",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP[$2, $0, $1, $3]\nRelevant links to definitions:\nDLMF:         http://dlmf.nist.gov/18.3#T1.t1.r2\nMathematica:  https://reference.wolfram.com/language/ref/JacobiP.html?q=JacobiP",
               "J" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
             }
           }
         },
@@ -4185,13 +4237,12 @@
               "beta",
               "z"
             ],
-            "constraints" : [ ],
             "tokenTranslations" : {
               "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=cos",
               "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: JacobiP($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nMaple: https://www.maplesoft.com/support/help/maple/view.aspx?path=JacobiP",
               "J" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
               "\\cpi" : "Pi was translated to: Pi",
-              "\\alpha" : "Could be the second Feigenbaum constant.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n"
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         }
@@ -4252,9 +4303,7 @@
             ],
             "freeVariables" : [
               "z"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "SymPy" : {
@@ -4265,9 +4314,7 @@
             ],
             "freeVariables" : [
               "z"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         },
         "Maple" : {
@@ -4278,9 +4325,7 @@
             ],
             "freeVariables" : [
               "z"
-            ],
-            "constraints" : [ ],
-            "tokenTranslations" : { }
+            ]
           }
         }
       },
@@ -4423,7 +4468,32 @@
       "formula" : "d^{j}_{m',m}(\\varphi)",
       "semanticFormula" : "d_{m',m}^{j}(\\varphi)",
       "confidence" : 0.0,
-      "translations" : { },
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places."
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places."
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places."
+            }
+          }
+        }
+      },
       "positions" : [
         {
           "section" : 12,
@@ -4453,7 +4523,32 @@
       "formula" : "0 \\leq \\varphi \\leq 4\\pi)",
       "semanticFormula" : "0 \\leq \\varphi \\leq 4 \\cpi)",
       "confidence" : 0.0,
-      "translations" : { },
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> Mathematica) Parenthesis mismatch in expression: Encountered closing bracket without opening it."
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) Parenthesis mismatch in expression: Encountered closing bracket without opening it."
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> Maple) Parenthesis mismatch in expression: Encountered closing bracket without opening it."
+            }
+          }
+        }
+      },
       "positions" : [
         {
           "section" : 12,
@@ -4483,7 +4578,32 @@
       "formula" : "d^j_{m'm}(\\phi) =\\left[ \\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}\\right]^{\\frac{1}{2}} \\left(\\sin\\tfrac{\\phi}{2}\\right)^{m-m'} \\left(\\cos\\tfrac{\\phi}{2}\\right)^{m+m'} P_{j-m}^{(m-m',m+m')}(\\cos \\phi)",
       "semanticFormula" : "d_{m'm}^j(\\phi) = [\\frac{(j+m)!(j-m)!}{(j+m')!(j-m')!}]^{\\frac{1}{2}}(\\sin \\tfrac{\\phi}{2})^{m-m'}(\\cos \\tfrac{\\phi}{2})^{m+m'} \\JacobipolyP{m - m '}{m + m '}{j-m}@{\\cos \\phi}",
       "confidence" : 0.8662724998444776,
-      "translations" : { },
+      "translations" : {
+        "Mathematica" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> Mathematica) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places."
+            }
+          }
+        },
+        "SymPy" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> SymPy) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places."
+            }
+          }
+        },
+        "Maple" : {
+          "translation" : "",
+          "translationInformation" : {
+            "tokenTranslations" : {
+              "Error" : "(LaTeX -> Maple) The input LaTeX is invalid: Primes can only be translated behind semantic macros (differentiation primes) but not in other places."
+            }
+          }
+        }
+      },
       "positions" : [
         {
           "section" : 12,

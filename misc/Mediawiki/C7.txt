@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[7.1|7.1 Special Notation]]<br>
+; Properties : [[7.2|7.2 Definitions]]<br>[[7.3|7.3 Graphics]]<br>[[7.4|7.4 Symmetry]]<br>[[7.5|7.5 Interrelations]]<br>[[7.6|7.6 Series Expansions]]<br>[[7.7|7.7 Integral Representations]]<br>[[7.8|7.8 Inequalities]]<br>[[7.9|7.9 Continued Fractions]]<br>[[7.10|7.10 Derivatives]]<br>[[7.11|7.11 Relations to Other Functions]]<br>[[7.12|7.12 Asymptotic Expansions]]<br>[[7.13|7.13 Zeros]]<br>[[7.14|7.14 Integrals]]<br>[[7.15|7.15 Sums]]<br>[[7.16|7.16 Generalized Error Functions]]<br>[[7.17|7.17 Inverse Error Functions]]<br>[[7.18|7.18 Repeated Integrals of the Complementary Error Function]]<br>[[7.19|7.19 Voigt Functions]]<br>
+; Applications : [[7.20|7.20 Mathematical Applications]]<br>[[7.21|7.21 Physical Applications]]<br>
+; Computation : [[7.22|7.22 Methods of Computation]]<br>[[7.23|7.23 Tables]]<br>[[7.24|7.24 Approximations]]<br>[[7.25|7.25 Software]]<br>
+</div>

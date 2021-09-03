@@ -1,0 +1,6 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[15.1|15.1 Special Notation]]<br>
+; Properties : [[15.2|15.2 Definitions and Analytical Properties]]<br>[[15.3|15.3 Graphics]]<br>[[15.4|15.4 Special Cases]]<br>[[15.5|15.5 Derivatives and Contiguous Functions]]<br>[[15.6|15.6 Integral Representations]]<br>[[15.7|15.7 Continued Fractions]]<br>[[15.8|15.8 Transformations of Variable]]<br>[[15.9|15.9 Relations to Other Functions]]<br>[[15.10|15.10 Hypergeometric Differential Equation]]<br>[[15.11|15.11 Riemann’s Differential Equation]]<br>[[15.12|15.12 Asymptotic Approximations]]<br>[[15.13|15.13 Zeros]]<br>[[15.14|15.14 Integrals]]<br>[[15.15|15.15 Sums]]<br>[[15.16|15.16 Products]]<br>
+; Applications : [[15.17|15.17 Mathematical Applications]]<br>[[15.18|15.18 Physical Applications]]<br>
+; Computation : [[15.19|15.19 Methods of Computation]]<br>[[15.20|15.20 Software]]<br>
+</div>

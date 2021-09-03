@@ -30,10 +30,10 @@ import static gov.nist.drmf.interpreter.cas.common.DLMFPatterns.CHAR_BACKSLASH;
 public class LetterTranslator extends AbstractListTranslator {
     private static final Logger LOG = LogManager.getLogger(LetterTranslator.class.getName());
 
-    private static final String GREEK_MSG = "Could be %s.\n But it is also a Greek letter. Be aware, that this program " +
-            "translated the letter as a normal Greek letter and not as a constant!\n Use the DLMF-Macro %s to translate %s as a constant.\n";
+    private static final String GREEK_MSG = "Could be %s.\nBut it is also a Greek letter. Be aware, that this program " +
+            "translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro %s to translate %s as a constant.\n";
 
-    private static final String LETTER_MSG = "Could be %s.\n But this system don't know how to translate it as a constant. It was translated as a general letter.\n";
+    private static final String LETTER_MSG = "Could be %s.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n";
 
     private static final String EXPONENTIAL_MLP_KEY = "exponential";
 

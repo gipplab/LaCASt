@@ -1,0 +1,42 @@
+{{DISPLAYTITLE:Combinatorial Analysis - 26.7 Set Partitions: Bell Numbers}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/26.7.E1 26.7.E1] || <math qid="Q7817">\Bellnumber@{0} = 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Bellnumber@{0} = 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>BellB(0, 1) = 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>BellB[0] == 1</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/26.7.E2 26.7.E2] || <math qid="Q7818">\Bellnumber@{n} = \sum_{k=0}^{n}\StirlingnumberS@{n}{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Bellnumber@{n} = \sum_{k=0}^{n}\StirlingnumberS@{n}{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>BellB(n, 1) = sum(Stirling2(n, k), k = 0..n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>BellB[n] == Sum[StirlingS2[n, k], {k, 0, n}, GenerateConditions->None]</syntaxhighlight> || Failure || Successful || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.7.E3 26.7.E3] || <math qid="Q7819">\Bellnumber@{n} = \sum_{k=1}^{m}\frac{k^{n}}{k!}\sum_{j=0}^{m-k}\frac{(-1)^{j}}{j!}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Bellnumber@{n} = \sum_{k=1}^{m}\frac{k^{n}}{k!}\sum_{j=0}^{m-k}\frac{(-1)^{j}}{j!}</syntaxhighlight> || <math>m \geq n</math> || <syntaxhighlight lang=mathematica>BellB(n, 1) = sum(((k)^(n))/(factorial(k))*sum(((- 1)^(j))/(factorial(j)), j = 0..m - k), k = 1..m)</syntaxhighlight> || <syntaxhighlight lang=mathematica>BellB[n] == Sum[Divide[(k)^(n),(k)!]*Sum[Divide[(- 1)^(j),(j)!], {j, 0, m - k}, GenerateConditions->None], {k, 1, m}, GenerateConditions->None]</syntaxhighlight> || Error || Failure || - || Successful [Tested: 6]
+|- 
+| [https://dlmf.nist.gov/26.7.E4 26.7.E4] || <math qid="Q7820">\Bellnumber@{n} = \expe^{-1}\sum_{k=1}^{\infty}\frac{k^{n}}{k!}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Bellnumber@{n} = \expe^{-1}\sum_{k=1}^{\infty}\frac{k^{n}}{k!}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>BellB(n, 1) = exp(- 1)*sum(((k)^(n))/(factorial(k)), k = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>BellB[n] == Exp[- 1]*Sum[Divide[(k)^(n),(k)!], {k, 1, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.7.E4 26.7.E4] || <math qid="Q7820">\expe^{-1}\sum_{k=1}^{\infty}\frac{k^{n}}{k!} = 1+\floor{\expe^{-1}\sum_{k=1}^{2n}\frac{k^{n}}{k!}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expe^{-1}\sum_{k=1}^{\infty}\frac{k^{n}}{k!} = 1+\floor{\expe^{-1}\sum_{k=1}^{2n}\frac{k^{n}}{k!}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>exp(- 1)*sum(((k)^(n))/(factorial(k)), k = 1..infinity) = 1 + floor(exp(- 1)*sum(((k)^(n))/(factorial(k)), k = 1..2*n))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Exp[- 1]*Sum[Divide[(k)^(n),(k)!], {k, 1, Infinity}, GenerateConditions->None] == 1 + Floor[Exp[- 1]*Sum[Divide[(k)^(n),(k)!], {k, 1, 2*n}, GenerateConditions->None]]</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.7.E5 26.7.E5] || <math qid="Q7821">\sum_{n=0}^{\infty}\Bellnumber@{n}\frac{x^{n}}{n!} = \exp(\expe^{x}-1)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=0}^{\infty}\Bellnumber@{n}\frac{x^{n}}{n!} = \exp(\expe^{x}-1)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum(BellB(n, 1)*((x)^(n))/(factorial(n)), n = 0..infinity) = exp(exp(x)- 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[BellB[n]*Divide[(x)^(n),(n)!], {n, 0, Infinity}, GenerateConditions->None] == Exp[Exp[x]- 1]</syntaxhighlight> || Translation Error || Translation Error || - || -
+|- 
+| [https://dlmf.nist.gov/26.7.E6 26.7.E6] || <math qid="Q7822">\Bellnumber@{n+1} = \sum_{k=0}^{n}\binom{n}{k}\Bellnumber@{k}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Bellnumber@{n+1} = \sum_{k=0}^{n}\binom{n}{k}\Bellnumber@{k}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>BellB(n + 1, 1) = sum(binomial(n,k)*BellB(k, 1), k = 0..n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>BellB[n + 1] == Sum[Binomial[n,k]*BellB[k], {k, 0, n}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.7#Ex1 26.7#Ex1] || <math qid="Q7823">\Bellnumber@{n+1} = \sum_{k=0}^{n}\binom{n}{k}\Bellnumber@{n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Bellnumber@{n+1} = \sum_{k=0}^{n}\binom{n}{k}\Bellnumber@{n}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>BellB(n + 1, 1) = sum(binomial(n,k)*BellB(n, 1), k = 0..n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>BellB[n + 1] == Sum[Binomial[n,k]*BellB[n], {k, 0, n}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 3]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -3.
+Test Values: {n = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -25.
+Test Values: {n = 3}</syntaxhighlight><br></div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 3]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -3.0
+Test Values: {Rule[n, 2]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -25.0
+Test Values: {Rule[n, 3]}</syntaxhighlight><br></div></div>
+|- 
+| [https://dlmf.nist.gov/26.7.E8 26.7.E8] || <math qid="Q7825">N\ln@@{N} = n</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>N\ln@@{N} = n</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>N*ln(N) = n</syntaxhighlight> || <syntaxhighlight lang=mathematica>N*Log[N] == n</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.261799388+.4534498412*I
+Test Values: {N = 1/2*3^(1/2)+1/2*I, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -2.261799388+.4534498412*I
+Test Values: {N = 1/2*3^(1/2)+1/2*I, n = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-1.2617993877991494, 0.4534498410585544]
+Test Values: {Rule[n, 1], Rule[N, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-2.261799387799149, 0.4534498410585544]
+Test Values: {Rule[n, 2], Rule[N, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

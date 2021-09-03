@@ -1,0 +1,46 @@
+{{DISPLAYTITLE:Exponential, Logarithmic, Sine, and Cosine Integrals - 6.5 Further Interrelations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/6.5.E1 6.5.E1] || <math qid="Q2241">\expintE@{-x+ i0} = -\expintEi@{x}- i\pi</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{-x+ i0} = -\expintEi@{x}- i\pi</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, - x + I*0] == - ExpIntegralEi[x]- I*Pi</syntaxhighlight> || Missing Macro Error || Failure || - || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/6.5.E1 6.5.E1] || <math qid="Q2241">\expintE@{-x- i0} = -\expintEi@{x}+ i\pi</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintE@{-x- i0} = -\expintEi@{x}+ i\pi</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralE[1, - x - I*0] == - ExpIntegralEi[x]+ I*Pi</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [3 / 3]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, -6.283185307179586]
+Test Values: {Rule[x, 1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.0, -6.283185307179586]
+Test Values: {Rule[x, 0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/6.5.E2 6.5.E2] || <math qid="Q2242">\expintEi@{x} = -\tfrac{1}{2}(\expintE@{-x+i0}+\expintE@{-x-i0})</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\expintEi@{x} = -\tfrac{1}{2}(\expintE@{-x+i0}+\expintE@{-x-i0})</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>ExpIntegralEi[x] == -Divide[1,2]*(ExpIntegralE[1, - x + I*0]+ ExpIntegralE[1, - x - I*0])</syntaxhighlight> || Missing Macro Error || Failure || - || <div class="toccolours mw-collapsible mw-collapsed">Failed [3 / 3]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, -3.141592653589793]
+Test Values: {Rule[x, 1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.0, -3.141592653589793]
+Test Values: {Rule[x, 0.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/6.5.E3 6.5.E3] || <math qid="Q2243">\tfrac{1}{2}(\expintEi@{x}+\expintE@{x}) = \sinhint@{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\tfrac{1}{2}(\expintEi@{x}+\expintE@{x}) = \sinhint@{x}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[1,2]*(ExpIntegralEi[x]+ ExpIntegralE[1, x]) == SinhIntegral[x]</syntaxhighlight> || Missing Macro Error || Failure || - || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/6.5.E3 6.5.E3] || <math qid="Q2243">\sinhint@{x} = -i\sinint@{ix}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sinhint@{x} = -i\sinint@{ix}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Shi(x) = - I*Si(I*x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>SinhIntegral[x] == - I*SinIntegral[I*x]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/6.5.E4 6.5.E4] || <math qid="Q2244">\tfrac{1}{2}(\expintEi@{x}-\expintE@{x}) = \coshint@{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\tfrac{1}{2}(\expintEi@{x}-\expintE@{x}) = \coshint@{x}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[1,2]*(ExpIntegralEi[x]- ExpIntegralE[1, x]) == CoshIntegral[x]</syntaxhighlight> || Missing Macro Error || Failure || Skip - symbolical successful subtest || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/6.5.E4 6.5.E4] || <math qid="Q2244">\coshint@{x} = \cosint@{ix}-\tfrac{1}{2}\pi i</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\coshint@{x} = \cosint@{ix}-\tfrac{1}{2}\pi i</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Chi(x) = Ci(I*x)-(1)/(2)*Pi*I</syntaxhighlight> || <syntaxhighlight lang=mathematica>CoshIntegral[x] == CosIntegral[I*x]-Divide[1,2]*Pi*I</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/6.5.E5 6.5.E5] || <math qid="Q2245">\sinint@{z} = \tfrac{1}{2}i(\expintE@{-iz}-\expintE@{iz})+\tfrac{1}{2}\pi</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sinint@{z} = \tfrac{1}{2}i(\expintE@{-iz}-\expintE@{iz})+\tfrac{1}{2}\pi</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Si(z) = (1)/(2)*I*(Ei(- I*z)- Ei(I*z))+(1)/(2)*Pi</syntaxhighlight> || <syntaxhighlight lang=mathematica>SinIntegral[z] == Divide[1,2]*I*(ExpIntegralE[1, - I*z]- ExpIntegralE[1, I*z])+Divide[1,2]*Pi</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [5 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -3.141592653+0.*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -3.141592654-.1e-9*I
+Test Values: {z = 1/2-1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-3.141592653589793, 0.0]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-3.141592653589793, 0.0]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}</syntaxhighlight><br></div></div>
+|- 
+| [https://dlmf.nist.gov/6.5.E6 6.5.E6] || <math qid="Q2246">\cosint@{z} = -\tfrac{1}{2}(\expintE@{iz}+\expintE@{-iz})</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\cosint@{z} = -\tfrac{1}{2}(\expintE@{iz}+\expintE@{-iz})</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Ci(z) = -(1)/(2)*(Ei(I*z)+ Ei(- I*z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>CosIntegral[z] == -Divide[1,2]*(ExpIntegralE[1, I*z]+ ExpIntegralE[1, - I*z])</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [7 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .8944744988+.632221722*I
+Test Values: {z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.393548628+1.498247032*I
+Test Values: {z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 7]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.0, 3.141592653589793]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.0, -3.141592653589793]
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[-5, 6]], Pi]]]}</syntaxhighlight><br></div></div>
+|}
+</div>

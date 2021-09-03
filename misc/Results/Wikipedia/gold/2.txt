@@ -1,0 +1,35 @@
+__NOTOC__
+== Ellipse ==
+
+; Gold ID : 2
+; Link : https://sigir21.wmflabs.org/wiki/Ellipse#math.52.404
+; Formula : <math>E(e) \,=\, \int_0^{\pi/2}\sqrt {1 - e^2 \sin^2\theta}\ d\theta</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>E(e) \,=\, \int_0^{\pi/2}\sqrt {1 - e^2 \sin^2\theta}\ d\theta</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\compellintEk@{\expe} = \int_0^{\cpi / 2} \sqrt{1 - \expe^2 \sin^2 \theta} \diff{\theta}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\compellintEk@{e} = \int_0^{\cpi / 2} \sqrt{1 - e^2 \sin^2 \theta} \diff{\theta}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>EllipticE[(E)^2] == Integrate[Sqrt[1 - Exp[2]*(Sin[\[Theta]])^(2)], {\[Theta], 0, Pi/2}, GenerateConditions->None]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>EllipticE[(e)^2] == Integrate[Sqrt[1 - (e)^(2)*(Sin[\[Theta]])^(2)], {\[Theta], 0, Pi/2}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>EllipticE(exp(1)) = int(sqrt(1 - exp(2)*(sin(theta))^(2)), theta = 0..Pi/2)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>EllipticE(e) = int(sqrt(1 - (e)^(2)*(sin(theta))^(2)), theta = 0..Pi/2)</syntaxhighlight>

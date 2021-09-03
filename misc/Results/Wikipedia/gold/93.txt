@@ -1,0 +1,35 @@
+__NOTOC__
+== Ferrers function ==
+
+; Gold ID : 93
+; Link : https://sigir21.wmflabs.org/wiki/Ferrers_function#math.152.1
+; Formula : <math>Q_v^\mu(x)= \cos(\mu\pi)\left(\frac{1+x}{1-x}\right)^{\mu/2}\frac{F(v+1,-v;1-\mu;1/2-2/x)}  {\Gamma(1-\mu ) }</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>Q_v^\mu(x)= \cos(\mu\pi)\left(\frac{1+x}{1-x}\right)^{\mu/2}\frac{F(v+1,-v;1-\mu;1/2-2/x)}  {\Gamma(1-\mu ) }</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\FerrersQ[\mu]{v}@{x} = \cos(\mu \cpi)(\frac{1+x}{1-x})^{\mu/2} \frac{F(v+1,-v;1-\mu;1/2-2/x)}  {\Gamma(1-\mu ) }</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\FerrersQ[\mu]{v}@{x} = \cos(\mu \cpi)(\frac{1+x}{1-x})^{\mu/2} \frac{\hyperF@{v+1}{-v}{1-\mu}{1/2-2/x}}{\EulerGamma@{1-\mu}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>LegendreQ[v, \[Mu], x] == Cos[(\[Mu]*Pi)*]*(Divide[1 + x,1 - x])^(\[Mu]/2)*Divide[F[v + 1 , - v ; 1 - \[Mu]; 1/2 - 2/x],\[CapitalGamma]*(1 - \[Mu])]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>LegendreQ[v, \[Mu], x] == Cos[(\[Mu]*Pi)]*(Divide[1 + x,1 - x])^(\[Mu]/2)*Divide[Hypergeometric2F1[v + 1, - v, 1 - \[Mu], 1/2 - 2/x],Gamma[1 - \[Mu]]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>LegendreQ(v, mu, x) = cos((mu*Pi)*)*((1 + x)/(1 - x))^(mu/2)*(F(v + 1 , - v ; 1 - mu ; 1/2 - 2/x))/(Gamma*(1 - mu))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>LegendreQ(v, mu, x) = cos((mu*Pi))*((1 + x)/(1 - x))^(mu/2)*(hypergeom([v + 1, - v], [1 - mu], 1/2 - 2/x))/(GAMMA(1 - mu))</syntaxhighlight>

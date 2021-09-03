@@ -1,0 +1,1333 @@
+\input{./formula-verb-defs.tex}
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\begin{aligned}J_{-(m+\frac{1}{2})}(x) &= (-1)^{m+1} Y_{m+\frac{1}{2}}(x), \\Y_{-(m+\frac{1}{2})}(x) &= (-1)^m J_{m+\frac{1}{2}}(x).\end{aligned}$} &  \multicolumn{1}{r}{\textbf{1:} \href{https://sigir21.wmflabs.org/wiki/Gold_1}{Bessel function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\ABT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\ABST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\ABMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\ABMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$E(e) \,=\, \int_0^{\pi/2}\sqrt {1 - e^2 \sin^2\theta}\ d\theta$} &  \multicolumn{1}{r}{\textbf{2:} \href{https://sigir21.wmflabs.org/wiki/Gold_2}{Ellipse}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\ACT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\ACST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\ACMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\ACMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$F(x;k) = u$} &  \multicolumn{1}{r}{\textbf{3:} \href{https://sigir21.wmflabs.org/wiki/Gold_3}{Elliptic integral}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\ADT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\ADST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\ADMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\ADMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\frac{1}{\Gamma(z)} = \frac{i}{2\pi}\int_C (-t)^{-z}e^{-t}\,dt$} &  \multicolumn{1}{r}{\textbf{4:} \href{https://sigir21.wmflabs.org/wiki/Gold_4}{Gamma function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AET} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AEST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AEMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AEMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$2^{4} = 2 \times2 \times 2 \times 2 = 16$} &  \multicolumn{1}{r}{\textbf{5:} \href{https://sigir21.wmflabs.org/wiki/Gold_5}{Logarithm}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AFT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AFST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AFMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AFMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\psi(x) := \sum_{n=1}^\infty e^{-n^2 \pi x}$} &  \multicolumn{1}{r}{\textbf{6:} \href{https://sigir21.wmflabs.org/wiki/Gold_6}{Riemann zeta function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AGT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AGST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AGMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AGMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\operatorname{li}(x) = \lim_{\varepsilon \to 0+} \left( \int_0^{1-\varepsilon} \frac{dt}{\ln t} + \int_{1+\varepsilon}^x \frac{dt}{\ln t} \right)$} &  \multicolumn{1}{r}{\textbf{7:} \href{https://sigir21.wmflabs.org/wiki/Gold_7}{Logarithmic integral function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AHT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AHST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AHMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AHMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$w_{i} = \frac{1}{p'_{n}(x_{i})}\int_{a}^{b}\omega(x)\frac{p_{n}(x)}{x-x_{i}}dx$} &  \multicolumn{1}{r}{\textbf{8:} \href{https://sigir21.wmflabs.org/wiki/Gold_8}{Gaussian quadrature}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AIT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AIST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AIMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AIMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\begin{aligned}x & =ue^u, \\[5pt]\frac{dx}{du} & =(u+1)e^u.\end{aligned}$} &  \multicolumn{1}{r}{\textbf{9:} \href{https://sigir21.wmflabs.org/wiki/Gold_9}{Lambert W function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AJT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AJST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AJMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AJMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\frac{1}{\left| \mathbf{x}-\mathbf{x}' \right|} = \frac{1}{\sqrt{r^2+{r'}^2-2r{r'}\cos\gamma}} = \sum_{\ell=0}^\infty \frac{{r'}^\ell}{r^{\ell+1}} P_\ell(\cos \gamma)$} &  \multicolumn{1}{r}{\textbf{10:} \href{https://sigir21.wmflabs.org/wiki/Gold_10}{Legendre polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AKT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AKST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AKMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AKMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\operatorname{erf}^{(k)}(z) = \frac{2 (-1)^{k-1}}{\sqrt{\pi}} \mathit{H}_{k-1}(z) e^{-z^2} = \frac{2}{\sqrt{\pi}}  \frac{d^{k-1}}{dz^{k-1}} \left(e^{-z^2}\right),\qquad k=1, 2, \dots$} &  \multicolumn{1}{r}{\textbf{11:} \href{https://sigir21.wmflabs.org/wiki/Gold_11}{Error function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\ALT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\ALST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\ALMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\ALMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$x_k = \cos\left(\frac{\pi(k+1/2)}{n}\right),\quad k=0,\ldots,n-1$} &  \multicolumn{1}{r}{\textbf{12:} \href{https://sigir21.wmflabs.org/wiki/Gold_12}{Chebyshev polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AMT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AMST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AMMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AMMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$E(x, y; u) := \sum_{n=0}^\infty u^n \, \psi_n (x) \, \psi_n (y) = \frac{1}{\sqrt{\pi (1 - u^2)}} \, \exp\left(-\frac{1 - u}{1 + u} \, \frac{(x + y)^2}{4} - \frac{1 + u}{1 - u} \, \frac{(x - y)^2}{4}\right)$} &  \multicolumn{1}{r}{\textbf{13:} \href{https://sigir21.wmflabs.org/wiki/Gold_13}{Hermite polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\ANT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\ANST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\ANMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\ANMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$x = \pm 1$} &  \multicolumn{1}{r}{\textbf{14:} \href{https://sigir21.wmflabs.org/wiki/Gold_14}{Legendre function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AOT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AOST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AOMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AOMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$E_n=2^nE_n(\tfrac{1}{2})$} &  \multicolumn{1}{r}{\textbf{15:} \href{https://sigir21.wmflabs.org/wiki/Gold_15}{Bernoulli polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\APT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\APST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\APMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\APMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\operatorname{Si}(ix) = i\operatorname{Shi}(x)$} &  \multicolumn{1}{r}{\textbf{16:} \href{https://sigir21.wmflabs.org/wiki/Gold_16}{Trigonometric integral}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AQT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AQST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AQMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AQMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$f(z)=\frac{1}{\Beta(x,y)}$} &  \multicolumn{1}{r}{\textbf{17:} \href{https://sigir21.wmflabs.org/wiki/Gold_17}{Beta function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\ART} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\ARST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\ARMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\ARMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\begin{aligned}\int x^m e^{ix^n}\,dx & =\frac{x^{m+1}}{m+1}\,_1F_1\left(\begin{array}{c} \frac{m+1}{n}\\1+\frac{m+1}{n}\end{array}\mid ix^n\right) \\[6px]& =\frac{1}{n} i^\frac{m+1}{n}\gamma\left(\frac{m+1}{n},-ix^n\right),\end{aligned}$} &  \multicolumn{1}{r}{\textbf{18:} \href{https://sigir21.wmflabs.org/wiki/Gold_18}{Fresnel integral}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AST} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\ASST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\ASMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\ASMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$T_n(x) = \frac{\Gamma(1/2)\sqrt{1-x^2}}{(-2)^n\,\Gamma(n+1/2)} \  \frac{d^n}{dx^n}\left([1-x^2]^{n-1/2}\right)$} &  \multicolumn{1}{r}{\textbf{19:} \href{https://sigir21.wmflabs.org/wiki/Gold_19}{Classical orthogonal polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\ATT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\ATST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\ATMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\ATMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{${}_1F_0(1;;z) = \sum_{n \geqslant 0} z^n = (1-z)^{-1}$} &  \multicolumn{1}{r}{\textbf{20:} \href{https://sigir21.wmflabs.org/wiki/Gold_20}{Generalized hypergeometric function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AUT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AUST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AUMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AUMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\chi(-1) = 1$} &  \multicolumn{1}{r}{\textbf{21:} \href{https://sigir21.wmflabs.org/wiki/Gold_21}{Dirichlet L-function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AVT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AVST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AVMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AVMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\operatorname{Bi}'(z)\sim \frac{z^{\frac{1}{4}}e^{\frac{2}{3}z^{\frac{3}{2}}}}{\sqrt\pi\,}\left[ \sum_{n=0}^{\infty}\frac{1+6n}{1-6n} \dfrac{ \Gamma(n+\frac{5}{6})\Gamma(n+\frac{1}{6})\left(\frac{3}{4}\right)^n}{2\pi n! z^{3n/2}} \right]$} &  \multicolumn{1}{r}{\textbf{22:} \href{https://sigir21.wmflabs.org/wiki/Gold_22}{Airy function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AWT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AWST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AWMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AWMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$F'(y)=1-2yF(y)$} &  \multicolumn{1}{r}{\textbf{23:} \href{https://sigir21.wmflabs.org/wiki/Gold_23}{Dawson function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AXT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AXST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AXMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AXMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$s\not =1$} &  \multicolumn{1}{r}{\textbf{24:} \href{https://sigir21.wmflabs.org/wiki/Gold_24}{Hurwitz zeta function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AYT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AYST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AYMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AYMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$q = e^{i\pi\tau}$} &  \multicolumn{1}{r}{\textbf{25:} \href{https://sigir21.wmflabs.org/wiki/Gold_25}{Theta function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\AZT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\AZST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\AZMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\AZMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\frac{\mathrm{d}}{\mathrm{d}z} \operatorname{dn}(z) = - k^2 \operatorname{sn}(z) \operatorname{cn}(z)$} &  \multicolumn{1}{r}{\textbf{26:} \href{https://sigir21.wmflabs.org/wiki/Gold_26}{Jacobi elliptic functions}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BAT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BAST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BAMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BAMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\int_{-\infty}^\infty \frac {\gamma\left(\frac s 2, z^2 \pi \right)} {(z^2 \pi)^\frac s 2} e^{-2 \pi i k z} \mathrm d z = \frac {\Gamma\left(\frac {1-s} 2, k^2 \pi \right)} {(k^2 \pi)^\frac {1-s} 2}$} &  \multicolumn{1}{r}{\textbf{27:} \href{https://sigir21.wmflabs.org/wiki/Gold_27}{Incomplete gamma function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BBT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BBST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BBMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BBMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$_{1}(z) =$} &  \multicolumn{1}{r}{\textbf{28:} \href{https://sigir21.wmflabs.org/wiki/Gold_28}{Polylogarithm}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BCT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BCST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BCMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BCMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\int_{-\infty}^\infty \operatorname{sinc}(t) \, e^{-i 2 \pi f t}\,dt = \operatorname{rect}(f)$} &  \multicolumn{1}{r}{\textbf{29:} \href{https://sigir21.wmflabs.org/wiki/Gold_29}{Sinc function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BDT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BDST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BDMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BDMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$N=1$} &  \multicolumn{1}{r}{\textbf{30:} \href{https://sigir21.wmflabs.org/wiki/Gold_30}{Exponential integral}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BET} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BEST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BEMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BEMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\sum_{n=0}^\infty \frac{n!\,\Gamma\left(\alpha + 1\right)}{\Gamma\left(n+\alpha+1\right)}L_n^{(\alpha)}(x)L_n^{(\alpha)}(y)t^n=\frac{1}{(1-t)^{\alpha + 1}}e^{-(x+y)t/(1-t)}\,_0F_1\left(;\alpha + 1;\frac{xyt}{(1-t)^2}\right)$} &  \multicolumn{1}{r}{\textbf{31:} \href{https://sigir21.wmflabs.org/wiki/Gold_31}{Laguerre polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BFT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BFST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BFMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BFMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$c_{lm} = (-1)^m \frac{(\ell-m)!}{(\ell+m)!}$} &  \multicolumn{1}{r}{\textbf{32:} \href{https://sigir21.wmflabs.org/wiki/Gold_32}{Associated Legendre polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BGT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BGST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BGMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BGMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\mathrm{Gi}(x) = \frac{1}{\pi} \int_0^\infty \sin\left(\frac{t^3}{3} + xt\right)\, dt$} &  \multicolumn{1}{r}{\textbf{33:} \href{https://sigir21.wmflabs.org/wiki/Gold_33}{Scorer's function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BHT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BHST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BHMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BHMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\frac{\partial^2}{\partial x^2} V(x;\sigma,\gamma)= \frac{x^2-\gamma^2-\sigma^2}{\sigma^4} \frac{\operatorname{Re}[w(z)]}{\sigma\sqrt{2 \pi}}-\frac{2 x \gamma}{\sigma^4} \frac{\operatorname{Im}[w(z)]}{\sigma\sqrt{2 \pi}}+\frac{\gamma}{\sigma^4}\frac{1}{\pi}$} &  \multicolumn{1}{r}{\textbf{34:} \href{https://sigir21.wmflabs.org/wiki/Gold_34}{Voigt profile}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BIT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BIST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BIMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BIMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\Phi(z,s,a) = \frac{1}{1-z} \frac{1}{a^{s}}    +    \sum_{n=1}^{N-1} \frac{(-1)^{n} \mathrm{Li}_{-n}(z)}{n!} \frac{(s)_{n}}{a^{n+s}}    +O(a^{-N-s})$} &  \multicolumn{1}{r}{\textbf{35:} \href{https://sigir21.wmflabs.org/wiki/Gold_35}{Lerch zeta function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BJT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BJST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BJMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BJMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$M(1,2,z)=(e^z-1)/z,\ \ M(1,3,z)=2!(e^z-1-z)/z^2$} &  \multicolumn{1}{r}{\textbf{36:} \href{https://sigir21.wmflabs.org/wiki/Gold_36}{Confluent hypergeometric function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BKT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BKST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BKMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BKMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\sigma = \pm 1$} &  \multicolumn{1}{r}{\textbf{37:} \href{https://sigir21.wmflabs.org/wiki/Gold_37}{Mathieu function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BLT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BLST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BLMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BLMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\frac{d^2f}{dz^2} + \left(\tilde{a}z^2+\tilde{b}z+\tilde{c}\right)f=0$} &  \multicolumn{1}{r}{\textbf{38:} \href{https://sigir21.wmflabs.org/wiki/Gold_38}{Parabolic cylinder function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BMT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BMST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BMMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BMMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$c=\infty$} &  \multicolumn{1}{r}{\textbf{39:} \href{https://sigir21.wmflabs.org/wiki/Gold_39}{Painlevé transcendents}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BNT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BNST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BNMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BNMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$c = a + 1$} &  \multicolumn{1}{r}{\textbf{40:} \href{https://sigir21.wmflabs.org/wiki/Gold_40}{Hypergeometric function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BOT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BOST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BOMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BOMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\frac{1}{\Gamma(z)}= z e^{\gamma z} \prod_{k=1}^\infty \left\{ \left(1+\frac{z}{k}\right)e^{-z/k} \right\}$} &  \multicolumn{1}{r}{\textbf{41:} \href{https://sigir21.wmflabs.org/wiki/Gold_41}{Barnes G-function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BPT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BPST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BPMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BPMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$192/24 = 8 = 2 \times 4$} &  \multicolumn{1}{r}{\textbf{42:} \href{https://sigir21.wmflabs.org/wiki/Gold_42}{Heun function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BQT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BQST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BQMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BQMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$=2$} &  \multicolumn{1}{r}{\textbf{43:} \href{https://sigir21.wmflabs.org/wiki/Gold_43}{Gegenbauer polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BRT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BRST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BRMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BRMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\lim_{q\to 1}\;_{j}\phi_k \left[\begin{matrix} q^{a_1} & q^{a_2} & \ldots & q^{a_j} \\ q^{b_1} & q^{b_2} & \ldots & q^{b_k} \end{matrix} ; q,(q-1)^{1+k-j} z \right]=\;_{j}F_k \left[\begin{matrix} a_1 & a_2 & \ldots & a_j \\ b_1 & b_2 & \ldots & b_k \end{matrix} ;z \right]$} &  \multicolumn{1}{r}{\textbf{44:} \href{https://sigir21.wmflabs.org/wiki/Gold_44}{Basic hypergeometric series}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BST} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BSST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BSMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BSMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\frac{d^2w}{dz^2}+\left(-\frac{1}{4}+\frac{\kappa}{z}+\frac{1/4-\mu^2}{z^2}\right)w=0$} &  \multicolumn{1}{r}{\textbf{45:} \href{https://sigir21.wmflabs.org/wiki/Gold_45}{Whittaker function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BTT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BTST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BTMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BTMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$e_1=\tfrac12,\qquad e_2=0,\qquad e_3=-\tfrac12$} &  \multicolumn{1}{r}{\textbf{46:} \href{https://sigir21.wmflabs.org/wiki/Gold_46}{Lemniscatic elliptic function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BUT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BUST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BUMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BUMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\gamma> 0,n-p=m-q> 0$} &  \multicolumn{1}{r}{\textbf{47:} \href{https://sigir21.wmflabs.org/wiki/Gold_47}{Meijer G-function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BVT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BVST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BVMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BVMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\begin{pmatrix}  j \\  m \quad m'\end{pmatrix}:= \sqrt{2 j + 1}\begin{pmatrix}  j & 0 & j \\  m & 0 & m'\end{pmatrix}= (-1)^{j - m'} \delta_{m, -m'}$} &  \multicolumn{1}{r}{\textbf{48:} \href{https://sigir21.wmflabs.org/wiki/Gold_48}{3-j symbol}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BWT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BWST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BWMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BWMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\begin{Bmatrix}    i & j & \ell\\    k & m & n  \end{Bmatrix}= (\Phi_{i,j}^{k,m})_{\ell,n}$} &  \multicolumn{1}{r}{\textbf{49:} \href{https://sigir21.wmflabs.org/wiki/Gold_49}{6-j symbol}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BXT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BXST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BXMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BXMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\sum_{j_7 j_8} (2j_7+1)(2j_8+1)  \begin{Bmatrix}    j_1 & j_2 & j_3\\    j_4 & j_5 & j_6\\    j_7 & j_8 & j_9  \end{Bmatrix} \begin{Bmatrix}    j_1 & j_2 & j_3'\\    j_4 & j_5 & j_6'\\    j_7 & j_8 & j_9  \end{Bmatrix}  = \frac{\delta_{j_3j_3'}\delta_{j_6j_6'} \begin{Bmatrix} j_1 & j_2 & j_3 \end{Bmatrix} \begin{Bmatrix} j_4 & j_5 & j_6\end{Bmatrix} \begin{Bmatrix} j_3 & j_6 & j_9 \end{Bmatrix}}         {(2j_3+1)(2j_6+1)}$} &  \multicolumn{1}{r}{\textbf{50:} \href{https://sigir21.wmflabs.org/wiki/Gold_50}{9-j symbol}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BYT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BYST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BYMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BYMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\mathcal{K}_k(x; n,q) = \sum_{j=0}^{k}(-q)^j (q-1)^{k-j} \binom {n-j}{k-j} \binom{x}{j}$} &  \multicolumn{1}{r}{\textbf{51:} \href{https://sigir21.wmflabs.org/wiki/Gold_51}{Kravchuk polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\BZT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\BZST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\BZMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\BZMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$g_1(x) = \sum_{k \geq 1} \frac{\sin(k \pi / 4)}{k! (8x)^k} \prod_{l = 1}^k (2l - 1)^2$} &  \multicolumn{1}{r}{\textbf{52:} \href{https://sigir21.wmflabs.org/wiki/Gold_52}{Kelvin functions}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CAT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CAST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CAMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CAMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$S_{\mu,\nu}(z) = s_{\mu,\nu}(z) + 2^{\mu-1} \Gamma\left(\frac{\mu + \nu + 1}{2}\right) \Gamma\left(\frac{\mu - \nu + 1}{2}\right)\left(\sin \left[(\mu - \nu)\frac{\pi}{2}\right] J_\nu(z) - \cos \left[(\mu - \nu)\frac{\pi}{2}\right] Y_\nu(z)\right)$} &  \multicolumn{1}{r}{\textbf{53:} \href{https://sigir21.wmflabs.org/wiki/Gold_53}{Lommel function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CBT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CBST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CBMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CBMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\mathbf{H}_{\alpha}(z) = \frac{z^{\alpha+1}}{2^{\alpha}\sqrt{\pi} \Gamma \left (\alpha+\tfrac{3}{2} \right )} {}_1F_2 \left (1,\tfrac{3}{2}, \alpha+\tfrac{3}{2},-\tfrac{z^2}{4} \right )$} &  \multicolumn{1}{r}{\textbf{54:} \href{https://sigir21.wmflabs.org/wiki/Gold_54}{Struve function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CCT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CCST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CCMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CCMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$f(t+p) = f(t)$} &  \multicolumn{1}{r}{\textbf{55:} \href{https://sigir21.wmflabs.org/wiki/Gold_55}{Hill differential equation}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CDT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CDST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CDMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CDMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\mathbf{J}_\nu(z)=\cos\frac{\pi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^kz^{2k}}{4^k\Gamma\left(k+\frac{\nu}{2}+1\right)\Gamma\left(k-\frac{\nu}{2}+1\right)}+\sin\frac{\pi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^kz^{2k+1}}{2^{2k+1}\Gamma\left(k+\frac{\nu}{2}+\frac{3}{2}\right)\Gamma\left(k-\frac{\nu}{2}+\frac{3}{2}\right)}$} &  \multicolumn{1}{r}{\textbf{56:} \href{https://sigir21.wmflabs.org/wiki/Gold_56}{Anger function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CET} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CEST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CEMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CEMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$(\operatorname{Ec})^'_{2K} = (\operatorname{Ec})^'_0 = 0, \;\; (\operatorname{Es})^'_{2K} = (\operatorname{Es})^'_0 = 0$} &  \multicolumn{1}{r}{\textbf{57:} \href{https://sigir21.wmflabs.org/wiki/Gold_57}{Lamé function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CFT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CFST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CFMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CFMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\int_{-\infty}^{+\infty} e^{-x^2} f(x)\,dx \approx \sum_{i=1}^n w_i f(x_i)$} &  \multicolumn{1}{r}{\textbf{58:} \href{https://sigir21.wmflabs.org/wiki/Gold_58}{Gauss–Hermite quadrature}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CGT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CGST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CGMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CGMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$p_n(x;a,b,c,d|q) =(ab,ac,ad;q)_na^{-n}\;_{4}\phi_3 \left[\begin{matrix} q^{-n}&abcdq^{n-1}&ae^{i\theta}&ae^{-i\theta} \\ ab&ac&ad \end{matrix} ; q,q \right]$} &  \multicolumn{1}{r}{\textbf{59:} \href{https://sigir21.wmflabs.org/wiki/Gold_59}{Askey–Wilson polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CHT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CHST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CHMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CHMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$Q_n(x;\alpha,\beta,N)= {}_3F_2(-n,-x,n+\alpha+\beta+1;\alpha+1,-N+1;1).$} &  \multicolumn{1}{r}{\textbf{60:} \href{https://sigir21.wmflabs.org/wiki/Gold_60}{Hahn polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CIT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CIST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CIMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CIMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\sum_{x=0}^\infty \frac{\mu^x}{x!} C_n(x; \mu)C_m(x; \mu)=\mu^{-n} e^\mu n! \delta_{nm}, \quad \mu>0$} &  \multicolumn{1}{r}{\textbf{61:} \href{https://sigir21.wmflabs.org/wiki/Gold_61}{Charlier polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CJT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CJST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CJMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CJMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$p_n(q^{-x}+q^{x+1}cd;a,b,c,d;q) = {}_4\phi_3\left[\begin{matrix} q^{-n} &abq^{n+1}&q^{-x}&q^{x+1}cd\\aq&bdq&cq\\ \end{matrix};q;q\right]$} &  \multicolumn{1}{r}{\textbf{62:} \href{https://sigir21.wmflabs.org/wiki/Gold_62}{Q-Racah polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CKT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CKST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CKMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CKMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\displaystyle c_n(q^{-x};a;q) = {}_2\phi_1(q^{-n},q^{-x};0;q,-q^{n+1}/a)$} &  \multicolumn{1}{r}{\textbf{63:} \href{https://sigir21.wmflabs.org/wiki/Gold_63}{Q-Charlier polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CLT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CLST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CLMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CLMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$M_n(x,\beta,\gamma) = \sum_{k=0}^n (-1)^k{n \choose k}{x\choose k}k!(x+\beta)_{n-k}\gamma^{-k}$} &  \multicolumn{1}{r}{\textbf{64:} \href{https://sigir21.wmflabs.org/wiki/Gold_64}{Meixner polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CMT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CMST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CMMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CMMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$x(1-x) \frac {\partial^2F_1(x,y)} {\partial x^2} + y(1-x) \frac {\partial^2F_1(x,y)} {\partial x \partial y} + [c - (a+b_1+1) x] \frac {\partial F_1(x,y)} {\partial x} - b_1 y \frac {\partial F_1(x,y)} {\partial y} - a b_1 F_1(x,y) = 0$} &  \multicolumn{1}{r}{\textbf{65:} \href{https://sigir21.wmflabs.org/wiki/Gold_65}{Appell series}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CNT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CNST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CNMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CNMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\Theta_\Lambda(\tau) = \sum_{x\in\Lambda}e^{i\pi\tau\|x\|^2}\qquad\mathrm{Im}\,\tau > 0$} &  \multicolumn{1}{r}{\textbf{66:} \href{https://sigir21.wmflabs.org/wiki/Gold_66}{Theta function of a lattice}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\COT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\COST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\COMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\COMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\frac{d^2 S}{dz^2}+\left(\sum _{j=1}^N \frac{\gamma _j}{z - a_j} \right) \frac{dS}{dz} + \frac{V(z)}{\prod _{j=1}^N (z - a_j)}S = 0$} &  \multicolumn{1}{r}{\textbf{67:} \href{https://sigir21.wmflabs.org/wiki/Gold_67}{Heine–Stieltjes polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CPT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CPST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CPMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CPMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$w(x) = \frac{k}{\sqrt{\pi}} x^{-1/2} \exp(-k^2\log^2 x)$} &  \multicolumn{1}{r}{\textbf{68:} \href{https://sigir21.wmflabs.org/wiki/Gold_68}{Stieltjes–Wigert polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CQT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CQST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CQMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CQMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$y^2=x(x-1)(x-\lambda)$} &  \multicolumn{1}{r}{\textbf{69:} \href{https://sigir21.wmflabs.org/wiki/Gold_69}{Modular lambda function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CRT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CRST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CRMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CRMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$P_1^{(\lambda)}(x;\phi)=2(\lambda\cos\phi + x\sin\phi)$} &  \multicolumn{1}{r}{\textbf{70:} \href{https://sigir21.wmflabs.org/wiki/Gold_70}{Meixner–Pollaczek polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CST} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CSST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CSMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CSMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$P_n^{(\alpha,\beta)}(z)=\frac{(\alpha+1)_n}{n!}\,{}_2F_1\left(-n,1+\alpha+\beta+n;\alpha+1;\tfrac{1}{2}(1-z)\right)$} &  \multicolumn{1}{r}{\textbf{71:} \href{https://sigir21.wmflabs.org/wiki/Gold_71}{Jacobi polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CTT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CTST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CTMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CTMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$S_n(x^2;a,b,c)= {}_3F_2(-n,a+ix,a-ix;a+b,a+c;1).$} &  \multicolumn{1}{r}{\textbf{72:} \href{https://sigir21.wmflabs.org/wiki/Gold_72}{Continuous dual Hahn polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CUT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CUST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CUMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CUMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$P_n^{(\alpha,\beta)}=\lim_{t\to\infty}t^{-n}p_n\left(\tfrac12xt; \tfrac12(\alpha+1-it), \tfrac12(\beta+1+it), \tfrac12(\alpha+1+it), \tfrac12(\beta+1-it)\right)$} &  \multicolumn{1}{r}{\textbf{73:} \href{https://sigir21.wmflabs.org/wiki/Gold_73}{Continuous Hahn polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CVT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CVST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CVMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CVMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\sum^{b-1}_{s=a}w_n^{(c)}(s,a,b)w_m^{(c)}(s,a,b)\rho(s)[\Delta x(s-\frac{1}{2}) ]=\delta_{nm}d_n^2$} &  \multicolumn{1}{r}{\textbf{74:} \href{https://sigir21.wmflabs.org/wiki/Gold_74}{Dual Hahn polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CWT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CWST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CWMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CWMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$p_n(x;a,b,c|q)=a^{-n}e^{-inu}(abe^{2iu},ac,ad;q)_n*_4\Phi_3(q^{-n},abcdq^{n-1},ae^{i{(t+2u)}},ae^{-it};abe^{2iu},ac,ad;q;q)$} &  \multicolumn{1}{r}{\textbf{75:} \href{https://sigir21.wmflabs.org/wiki/Gold_75}{Continuous q-Hahn polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CXT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CXST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CXMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CXMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$p_n(x;a,b,c\mid q)=\frac{(ab,ac;q)_n}{a^n}\cdot {_3\Phi_2}(q^-n,ae^{i\theta},ae^{-i\theta}; ab, ac \mid q;q)$} &  \multicolumn{1}{r}{\textbf{76:} \href{https://sigir21.wmflabs.org/wiki/Gold_76}{Continuous dual q-Hahn polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CYT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CYST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CYMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CYMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$Q_n(x;a,b,N;q)=\;_{3}\phi_2\left[\begin{matrix} q^-n & abq^n+1 &  x \\ aq & q^-N  \end{matrix} ; q,q \right]$} &  \multicolumn{1}{r}{\textbf{77:} \href{https://sigir21.wmflabs.org/wiki/Gold_77}{Q-Hahn polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\CZT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\CZST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\CZMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\CZMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$x=$} &  \multicolumn{1}{r}{\textbf{78:} \href{https://sigir21.wmflabs.org/wiki/Gold_78}{Al-Salam–Chihara polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DAT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DAST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DAMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DAMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\Phi_n^*(z)=z^n\overline{\Phi_n(1/\overline{z})}$} &  \multicolumn{1}{r}{\textbf{79:} \href{https://sigir21.wmflabs.org/wiki/Gold_79}{Orthogonal polynomials on the unit circle}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DBT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DBST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DBMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DBMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$P_n(x) = c_n \, \det \begin{bmatrix}m_0 & m_1 &  m_2 &\cdots & m_n \\m_1 & m_2 &  m_3 &\cdots & m_{n+1} \\&&\vdots&& \vdots \\m_{n-1} &m_n& m_{n+1} &\cdots &m_{2n-1}\\1 & x & x^2 & \cdots & x^n\end{bmatrix}$} &  \multicolumn{1}{r}{\textbf{80:} \href{https://sigir21.wmflabs.org/wiki/Gold_80}{Orthogonal polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DCT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DCST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DCMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DCMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\displaystyle  p_n(x;a,b;q) = {}_2\phi_1(q^{-n},abq^{n+1};aq;q,xq)$} &  \multicolumn{1}{r}{\textbf{81:} \href{https://sigir21.wmflabs.org/wiki/Gold_81}{Little q-Jacobi polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DDT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DDST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DDMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DDMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\displaystyle   P_n(x;a,b,c;q)={}_3\phi_2(q^{-n},abq^{n+1},x;aq,cq;q,q)$} &  \multicolumn{1}{r}{\textbf{82:} \href{https://sigir21.wmflabs.org/wiki/Gold_82}{Big q-Jacobi polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DET} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DEST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DEMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DEMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$P_n(x;a,b;q)=\frac{1}{(b^{-1}*q^{-n};q,n)}*_2\Phi_1(q^{-n},aqx^{-1};aq|q;\frac{x}{b})$} &  \multicolumn{1}{r}{\textbf{83:} \href{https://sigir21.wmflabs.org/wiki/Gold_83}{Big q-Laguerre polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DFT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DFST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DFMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DFMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$K_n(\lambda(x);c,N|q)=_3\Phi_2(q^{-n},q^{-x},cq^{x-N};q^{-N},0|q;q)$} &  \multicolumn{1}{r}{\textbf{84:} \href{https://sigir21.wmflabs.org/wiki/Gold_84}{Dual q-Krawtchouk polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DGT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DGST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DGMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DGMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$P_{n}^{(\alpha)}(x|q)=\frac{(q^\alpha+1;q)_{n}}{(q;q)_{n}}$} &  \multicolumn{1}{r}{\textbf{85:} \href{https://sigir21.wmflabs.org/wiki/Gold_85}{Continuous q-Laguerre polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DHT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DHST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DHMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DHMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\displaystyle  p_n(x;a|q) = {}_2\phi_1(q^{-n},0;aq;q,qx) = \frac{1}{(a^{-1}q^{-n};q)_n}{}_2\phi_0(q^{-n},x^{-1};;q,x/a)$} &  \multicolumn{1}{r}{\textbf{86:} \href{https://sigir21.wmflabs.org/wiki/Gold_86}{Little q-Laguerre polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DIT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DIST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DIMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DIMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$y_{n}(x;a;q)=\;_{2}\phi_1 \left(\begin{matrix} q^{-N} & -aq^{n} \\ 0  \end{matrix} ; q,qx \right)$} &  \multicolumn{1}{r}{\textbf{87:} \href{https://sigir21.wmflabs.org/wiki/Gold_87}{Q-Bessel polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DJT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DJST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DJMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DJMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$h_n(ix;q^{-1}) = i^n\hat h_n(x;q)$} &  \multicolumn{1}{r}{\textbf{88:} \href{https://sigir21.wmflabs.org/wiki/Gold_88}{Discrete q-Hermite polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DKT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DKST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DKMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DKMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$P_{n}(x;a\mid q) = a^{-n} e^{in\phi} \frac{a^2;q_n}{(q;q)_n} {_3}\Phi_2(q^-n, ae^{i(\theta+2\phi)}, ae^{-i\theta}; a^2, 0 \mid q; q)$} &  \multicolumn{1}{r}{\textbf{89:} \href{https://sigir21.wmflabs.org/wiki/Gold_89}{Q-Meixner–Pollaczek polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DLT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DLST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DLMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DLMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$\displaystyle  L_n^{(\alpha)}(x;q) = \frac{(q^{\alpha+1};q)_n}{(q;q)_n} {}_1\phi_1(q^{-n};q^{\alpha+1};q,-q^{n+\alpha+1}x)$} &  \multicolumn{1}{r}{\textbf{90:} \href{https://sigir21.wmflabs.org/wiki/Gold_90}{Q-Laguerre polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DMT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DMST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DMMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DMMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$\sum_{n=0}^\infty H_n(x \mid q) \frac{t^n}{(q;q)_n} = \frac{1}{\left( t e^{i \theta},t e^{-i \theta};q \right)_\infty}$} &  \multicolumn{1}{r}{\textbf{91:} \href{https://sigir21.wmflabs.org/wiki/Gold_91}{Continuous q-Hermite polynomials}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DNT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DNST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DNMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DNMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$w^{\prime\prime}+\xi\sin(2z)w^{\prime}+(\eta-p\xi\cos(2z))w=0. $} &  \multicolumn{1}{r}{\textbf{92:} \href{https://sigir21.wmflabs.org/wiki/Gold_92}{Ince equation}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DOT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DOST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DOMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DOMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$Q_v^\mu(x)= \cos(\mu\pi)\left(\frac{1+x}{1-x}\right)^{\mu/2}\frac{F(v+1,-v;1-\mu;1/2-2/x)}  {\Gamma(1-\mu ) }$} &  \multicolumn{1}{r}{\textbf{93:} \href{https://sigir21.wmflabs.org/wiki/Gold_93}{Ferrers function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DPT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DPST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DPMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DPMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\renewcommand{\arraystretch}{1.4}
+	\setlength{\tabcolsep}{3pt}
+	\begin{tabular}{r;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c;{1pt/1pt}c}
+	\hline\hline
+Formula & \multicolumn{5}{Sl}{$H_{-v}^{(1)}(z,w)=e^{v\pi i}H_v^{(1)}(z,w)$} &  \multicolumn{1}{r}{\textbf{94:} \href{https://sigir21.wmflabs.org/wiki/Gold_94}{Incomplete Bessel functions}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DQT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DQST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DQMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DQMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+Formula & \multicolumn{5}{Sl}{$K_v(x,y)=\int_1^\infty\frac{e^{-xt-\frac{y}{t}}}{t^{v+1}}dt$} &  \multicolumn{1}{r}{\textbf{95:} \href{https://sigir21.wmflabs.org/wiki/Gold_95}{Incomplete Bessel K function/generalized incomplete gamma function}} \\\hdashline[1pt/1pt]
+\LaTeX & \multicolumn{6}{l}{\usebox\DRT} \\\hdashline[1pt/1pt]
+\makecell[tr]{Semantic\\ \LaTeX} & \multicolumn{6}{l}{\usebox\DRST} \\\hdashline[1pt/1pt]
+Mathematica & \multicolumn{6}{l}{\usebox\DRMM} \\\hdashline[1pt/1pt]
+Maple & \multicolumn{6}{l}{\usebox\DRMA} \\
+\hline
+\multicolumn{2}{c;{1pt/1pt}}{\textbf{Translations}} & \multicolumn{5}{c}{\textbf{Reason for Failure}} \\\hline
+\makecell[bc]{\textbf{Semantic}\\ \LaTeX} & \textbf{CAS} & \makecell[bc]{\textbf{Definition /}\\ \textbf{Substitution}} & \makecell[bc]{\textbf{Pattern}\\ \textbf{Matching}} & \makecell[bc]{\textbf{Derivatives /}\\ \textbf{Primes}} & \makecell[bc]{\textbf{Missing}\\ \textbf{Information}} & \textbf{Untranslatable} \\\hdashline[1pt/1pt]
+\multicolumn{1}{c;{1pt/1pt}}{{\cellcolor{OliveGreen!20!white}} \correct} & {\cellcolor{Red!20!white}} \wrong & - & - & - & - & - \\\hline
+\textbf{Explanation} & \multicolumn{6}{l}{ --- } \\\hline
+\hline
+	\end{tabular}
+\end{table}

@@ -1,0 +1,35 @@
+__NOTOC__
+== Struve function ==
+
+; Gold ID : 54
+; Link : https://sigir21.wmflabs.org/wiki/Struve_function#math.105.18
+; Formula : <math>\mathbf{H}_{\alpha}(z) = \frac{z^{\alpha+1}}{2^{\alpha}\sqrt{\pi} \Gamma \left (\alpha+\tfrac{3}{2} \right )} {}_1F_2 \left (1,\tfrac{3}{2}, \alpha+\tfrac{3}{2},-\tfrac{z^2}{4} \right )</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\mathbf{H}_{\alpha}(z) = \frac{z^{\alpha+1}}{2^{\alpha}\sqrt{\pi} \Gamma \left (\alpha+\tfrac{3}{2} \right )} {}_1F_2 \left (1,\tfrac{3}{2}, \alpha+\tfrac{3}{2},-\tfrac{z^2}{4} \right )</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\StruveH{\alpha}@{z} = \frac{z^{\alpha+1}}{2^{\alpha} \sqrt{\cpi} \EulerGamma@{\alpha + \tfrac{3}{2}}}{}_1 F_2(1 , \tfrac{3}{2} , \alpha + \tfrac{3}{2} , - \tfrac{z^2}{4})</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\StruveH{\alpha}@{z} = \frac{z^{\alpha+1}}{2^{\alpha} \sqrt{\cpi} \EulerGamma@{\alpha + \tfrac{3}{2}}} \genhyperF{1}{2}@{1}{\tfrac{3}{2}, \alpha + \tfrac{3}{2}}{- \tfrac{z^2}{4}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>StruveH[\[Alpha], z] == Divide[(z)^(\[Alpha]+ 1),(2)^\[Alpha]*Sqrt[Pi]*Gamma[\[Alpha]+Divide[3,2]]]Subscript[, 1]*Subscript[F, 2][1 ,Divide[3,2], \[Alpha]+Divide[3,2], -Divide[(z)^(2),4]]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>StruveH[\[Alpha], z] == Divide[(z)^(\[Alpha]+ 1),(2)^\[Alpha]*Sqrt[Pi]*Gamma[\[Alpha]+Divide[3,2]]]*HypergeometricPFQ[{1}, {Divide[3,2], \[Alpha]+Divide[3,2]}, -Divide[(z)^(2),4]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>StruveH(alpha, z) = ((z)^(alpha + 1))/((2)^(alpha)*sqrt(Pi)*GAMMA(alpha +(3)/(2)))[1]*F[2](1 ,(3)/(2), alpha +(3)/(2), -((z)^(2))/(4))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>StruveH(alpha, z) = ((z)^(alpha + 1))/((2)^(alpha)*sqrt(Pi)*GAMMA(alpha +(3)/(2)))*hypergeom([1], [(3)/(2), alpha +(3)/(2)], -((z)^(2))/(4))</syntaxhighlight>

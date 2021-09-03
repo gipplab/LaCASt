@@ -1,0 +1,35 @@
+__NOTOC__
+== Barnes G-function ==
+
+; Gold ID : 41
+; Link : https://sigir21.wmflabs.org/wiki/Barnes_G-function#math.91.47
+; Formula : <math>\frac{1}{\Gamma(z)}= z e^{\gamma z} \prod_{k=1}^\infty \left\{ \left(1+\frac{z}{k}\right)e^{-z/k} \right\}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\frac{1}{\Gamma(z)}= z e^{\gamma z} \prod_{k=1}^\infty \left\{ \left(1+\frac{z}{k}\right)e^{-z/k} \right\}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\frac{1}{\EulerGamma@{z}} = z \expe^{\EulerConstant z} \prod_{k=1}^\infty \{(1 + \frac{z}{k}) \expe^{-z/k} \}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\frac{1}{\EulerGamma@{z}} = z \expe^{\EulerConstant z} \prod_{k=1}^\infty \{(1 + \frac{z}{k}) \expe^{-z/k} \}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Divide[1,Gamma[z]] == z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}, GenerateConditions->None]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Divide[1,Gamma[z]] == z*Exp[EulerGamma*z]*Product[(1 +Divide[z,k])*Exp[- z/k], {k, 1, Infinity}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>(1)/(GAMMA(z)) = z*exp(gamma*z)*product((1 +(z)/(k))*exp(- z/k), k = 1..infinity)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>(1)/(GAMMA(z)) = z*exp(gamma*z)*product((1 +(z)/(k))*exp(- z/k), k = 1..infinity)</syntaxhighlight>

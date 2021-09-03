@@ -1,12 +1,14 @@
 package gov.nist.drmf.interpreter.evaluation.common;
 
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
+import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
 import gov.nist.drmf.interpreter.evaluation.core.diff.NumericalDifferencesAnalyzer;
+import gov.nist.drmf.interpreter.pom.generic.GenericFunctionAnnotator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -16,9 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -46,14 +46,37 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
             "^(\\d+(?:-[a-z])?)(?: \\[.*?])?: (Skip.*|Successful.*|Error.*|Failed.*|Aborted|Manual Skip)$"
     );
 
-    private String COLLAPSE_ELEMENT = "<div class=\"toccolours mw-collapsible mw-collapsed\">%s<div class=\"mw-collapsible-content\">%s</div></div>";
+    private static final String COLLAPSE_ELEMENT = "<div class=\"toccolours mw-collapsible mw-collapsed\">%s<div class=\"mw-collapsible-content\">%s</div></div>";
 
-    private String TABLE_LINE =
-            "| [https://dlmf.nist.gov/%s %s] || [[Item:%s|<math>%s</math>]] || <code>%s</code> || <code>%s</code> || " +
-                    "%s || %s || " +
-                    "%s || %s\n";
+    private static final String TABLE_LINE =
+            "|- \n" +
+            "| [https://dlmf.nist.gov/%s %s] || <math qid=\"%s\">%s</math><br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%;\" inline>%s</syntaxhighlight> || <math>%s</math> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || <syntaxhighlight lang=mathematica>%s</syntaxhighlight> || " +
+            "%s || %s || " +
+            "%s || %s\n";
 
-    private SymbolDefinedLibrary symbolDefinitionLibrary;
+    private static final String TABLE_LINE_SKIPPED =
+            "|- style=\"background: #dfe6e9;\"\n" +
+            "| [https://dlmf.nist.gov/%s %s] || <math qid=\"%s\">%s</math><br><syntaxhighlight lang=\"tex\" style=\"font-size: 75%%; background: inherit;\" inline>%s</syntaxhighlight> || <math>%s</math> || " +
+                    "<div class=\"mw-highlight mw-highlight-lang-mathematica mw-content-ltr\" dir=\"ltr\"><pre style=\"background: inherit;\">%s</pre></div> || " +
+                    "<div class=\"mw-highlight mw-highlight-lang-mathematica mw-content-ltr\" dir=\"ltr\"><pre style=\"background: inherit;\">%s</pre></div> || " +
+            "%s || %s || " +
+            "%s || %s\n";
+
+    private static final String TABLE_HEADER = "<div style=\"width: 100%; height: 75vh; overflow: auto;\">\n" +
+            "{| class=\"wikitable sortable\" style=\"margin: 0;\"\n" +
+            "|-\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | DLMF \n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Formula \n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Constraints \n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Maple\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Mathematica\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Symbolic<br>Maple\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Symbolic<br>Mathematica\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Numeric<br>Maple\n" +
+            "! scope=\"col\" style=\"position: sticky; top: 0;\" | Numeric<br>Mathematica\n";
+
+    private static final String TABLE_FOOTER = "|}\n" +
+            "</div>";
 
     private Path dataset, symbolicMaple, numericMaple, symbolicMath, numericMath, numericMathSymbSuc, qidmapping;
 
@@ -64,6 +87,8 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
     private SemanticLatexTranslator mapleTranslator, mathematicaTranslator;
 
     private int[] range = new int[]{0,1};
+
+    private Map<String, String> displayTitleMap;
 
     public TranslationWikidataTableGenerator(
             Path datasetPath,
@@ -84,8 +109,6 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         this.numericMathSymbSuc = numericSymbSuccResultsMath;
         this.qidmapping = qidMappingPath;
 
-        this.symbolDefinitionLibrary = new SymbolDefinedLibrary();
-
         this.qidLib = new HashMap<>();
         this.mapleTranslator = new SemanticLatexTranslator(Keys.KEY_MAPLE);
         this.mathematicaTranslator = new SemanticLatexTranslator(Keys.KEY_MATHEMATICA);
@@ -94,6 +117,17 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         this.mapleNum = new HashMap<>();
         this.mathSym = new HashMap<>();
         this.mathNum = new HashMap<>();
+
+        this.displayTitleMap = new HashMap<>();
+    }
+
+    public void initDisplayTitles(Path p) throws IOException {
+        Pattern pattern = Pattern.compile("(\\d+\\.\\d+|\\d+) (.*)");
+        Files.readAllLines(p).stream().forEach(l -> {
+            Matcher m = pattern.matcher(l);
+            if ( !m.matches() ) return;
+            displayTitleMap.put(m.group(1), m.group(2));
+        });
     }
 
     public void init() throws IOException {
@@ -262,31 +296,46 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
 //                });
 
         LOG.info("Start analyzing the data...");
-        int fileID = 1;
+        int chapter = 1;
+        int section = 1;
+
+        String fileID = "1.1";
         Path filePath = outputFile.resolve(fileID+".txt");
 
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(filePath.toFile()));
-            writer.write("{| class=\"wikitable sortable\"\n|-\n");
-            writer.write("! DLMF !! Formula !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica\n|-\n");
+            if ( displayTitleMap.containsKey(fileID) ) {
+                String chapterTitle = displayTitleMap.get(chapter+"");
+                writer.write("{{DISPLAYTITLE:" + chapterTitle + " - " + fileID + " " + displayTitleMap.get(fileID) + "}}\n\n");
+            }
+            writer.write(TABLE_HEADER);
 
             HashMap<Integer, Integer> caseNumberLib = new HashMap<>();
 
-//            for ( LinkedList<Case> lineCase : allCases ) {
-//                Case c = lineCase.get(0);
             for ( Case c : allCases ) {
                 int number = caseNumberLib.computeIfAbsent( c.getLine(), lineNumber -> 1 );
 
-                int currentSec = Integer.parseInt(c.getEquationLabel().split("\\.")[0]);
-                if ( currentSec > fileID ) {
-                    writer.write("|}");
+                String[] equationLabelParts = c.getEquationLabel().split("\\.");
+                int currentCh = Integer.parseInt(equationLabelParts[0]);
+                int currentSec = (equationLabelParts[1] != null && equationLabelParts[1].matches("\\d+")) ?
+                        Integer.parseInt(equationLabelParts[1]) :
+                        Integer.parseInt(equationLabelParts[1].split("#")[0]);
+
+                if ( currentCh > chapter || currentSec > section ) {
+                    writer.write(TABLE_FOOTER);
                     writer.close();
-                    fileID = currentSec;
-                    filePath = outputFile.resolve(fileID+".txt");
+                    fileID = currentCh + "." + currentSec;
+                    filePath = outputFile.resolve(fileID + ".txt");
                     writer = new BufferedWriter(new FileWriter(filePath.toFile()));
-                    writer.write("{| class=\"wikitable sortable\"\n|-\n");
-                    writer.write("! DLMF !! Formula !! Maple !! Mathematica !! Symbolic<br>Maple !! Symbolic<br>Mathematica !! Numeric<br>Maple !! Numeric<br>Mathematica\n|-\n");
+                    if ( displayTitleMap.containsKey(fileID) ) {
+                        String chapterTitle = displayTitleMap.get(chapter+"");
+                        writer.write("{{DISPLAYTITLE:" + chapterTitle + " - " + fileID + " " + displayTitleMap.get(fileID) + "}}\n\n");
+                    }
+                    writer.write(TABLE_HEADER);
+
+                    chapter = currentCh;
+                    section = currentSec;
                 }
 
                 String id = ""+c.getLine();
@@ -300,7 +349,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
                 singleCase(id, c, writer);
             }
 
-            writer.write("|}");
+            writer.write(TABLE_FOOTER);
         } catch ( IOException ioe ) {
             LOG.error("Unable to write file.", ioe);
         } finally {
@@ -308,11 +357,37 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         }
     }
 
+    /**
+     * Check if there must be an intermediate split because the files are too long
+     */
+    private boolean appendSplit(int currentSec, boolean split, Case c) {
+        String label = c.getEquationLabel();
+        return !split && (
+                        currentSec == 4 ||
+                                currentSec == 10 ||
+                                currentSec == 13 ||
+                                currentSec == 14 ||
+                                currentSec == 15 ||
+                                currentSec == 18 ||
+                                currentSec == 19
+                ) && (
+                        label.matches(
+                                "4\\.24\\.E2|" +
+                                "10\\.22\\.E38|10\\.45\\.E1|" +
+                                "13\\.14\\.E1|" +
+                                "14\\.12\\.E1|" +
+                                "15\\.10\\.E1|" +
+                                "18\\.17\\.E1|" +
+                                "19\\.22\\.E1"
+                        )
+                );
+    }
+
     private void singleCase( String id, Case c, BufferedWriter writer ) throws IOException {
         LOG.info("Writing " + id);
 
         String originalExpression = c.getLHS() + " " + c.getRelation().getTexSymbol() + " " + c.getRHS();
-        c = c.replaceSymbolsUsed(symbolDefinitionLibrary);
+        c = c.replaceSymbolsUsed(super.getSymbolDefinitionLibrary());
         String expr = c.getLHS() + " " + c.getRelation().getTexSymbol() + " " + c.getRHS();
         String label = c.getEquationLabel();
         String maple = "", mathematica = "";
@@ -320,16 +395,23 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         String symbMaple = mapleSym.get(id);
         String symbMath = mathSym.get(id);
 
+        String constraints = "";
+
         if ( symbMaple == null && symbMath == null ) return;
 
         try {
-            maple = mapleTranslator.translate(expr, label);
+            // new GenericFunctionAnnotator()
+            TranslationInformation ti = mapleTranslator.translateToObject(expr, label, new GenericFunctionAnnotator());
+            maple = ti.getTranslatedExpression();
+//            maple = mapleTranslator.translate(expr, label);
         } catch ( Exception e ){
             maple = "Error";
         }
 
         try {
-            mathematica = mathematicaTranslator.translate(expr, label);
+            TranslationInformation ti = mathematicaTranslator.translateToObject(expr, label, new GenericFunctionAnnotator());
+            mathematica = ti.getTranslatedExpression();
+//            mathematica = mathematicaTranslator.translate(expr, label);
         } catch ( Exception e ){
             mathematica = "Error";
         }
@@ -341,10 +423,17 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
         String numericMaple = getNumericResultString( true, id );
         String numericMath = getNumericResultString( false, id );
 
+        if ( c.getConstraintObject() != null ) {
+            constraints = String.join(", ", c.getConstraintObject().getTexConstraints());
+        }
+
+        boolean skipped = /*symbMaple.contains("no semantic math") ||*/ symbMath.contains("no semantic math");
+
         String line = String.format(
-                TABLE_LINE,
+                skipped ? TABLE_LINE_SKIPPED : TABLE_LINE,
                 label, label,
-                qid, originalExpression,
+                qid, originalExpression, originalExpression,
+                constraints,
                 maple, mathematica,
                 symbMaple, symbMath,
                 numericMaple, numericMath
@@ -352,7 +441,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
 
         LOG.info(line);
         writer.write(line);
-        writer.write("|-\n");
+//        writer.write("|-\n");
     }
 
     private String getNumericResultString( boolean mapleMode, String id ) {
@@ -372,6 +461,7 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
             int pFailed = Integer.parseInt(startM.group(1));
             int tFailed = Integer.parseInt(startM.group(2));
 
+            startM.appendReplacement(sb, "");
             startM.appendTail(sb);
             result = sb.toString();
 
@@ -381,15 +471,23 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
             while ( m.find() ) {
                 if ( counter >= LIMIT_ENTRIES ) {
                     // too many entries
-                    list.append("... skip entries to safe data<br>");
+                    list.append("... skip entries to safe data");
                     break;
                 }
-                list.append("<code>").append(m.group(1)).append(" <- {").append(m.group(2)).append("}</code><br>");
+                StringBuilder singleCase = new StringBuilder();
+                singleCase.append(m.group(1)).append("\nTest Values: {").append(m.group(2));
+                list.setLength( Math.min(CHAR_LIMIT, list.length()) );
+                list.append("<syntaxhighlight lang=mathematica>Result: ").append(singleCase).append("}</syntaxhighlight><br>");
                 counter++;
             }
 
+            StringBuilder rest = new StringBuilder();
+            m.appendTail(rest);
+            if ( rest.toString().endsWith("...") ) {
+                list.append("... skip entries to safe data");
+            }
+
             String failedStr = "Failed [" + pFailed + " / " + tFailed + "]";
-            list.setLength( Math.min(CHAR_LIMIT, list.length()) );
             return String.format(COLLAPSE_ELEMENT, failedStr, list.toString());
         } else {
             if ( result.contains("Error") ) return "Error";
@@ -408,6 +506,9 @@ public class TranslationWikidataTableGenerator extends AbstractEvaluator {
                 Paths.get("/home/andreg-p/data/Howard/formulaQ.csv")
         );
 
+        t.initDisplayTitles(Paths.get("scripts/xquery/dlmf-section.mapping.txt"));
+
+//        t.setRange(0, 650);
         t.setRange(0, 9978);
         t.init();
 //        t.printFind("\\\\ell[^a-zA-Z]");

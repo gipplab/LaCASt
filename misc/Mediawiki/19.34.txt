@@ -1,0 +1,32 @@
+{{DISPLAYTITLE:Elliptic Integrals - 19.34 Mutual Inductance of Coaxial Circles}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/19.34.E1 19.34.E1] || <math qid="Q6711">ab\int_{0}^{2\pi}(h^{2}+a^{2}+b^{2}-2ab\cos@@{\theta})^{-1/2}\cos@@{\theta}\diff{\theta} = 2ab\int_{-1}^{1}\frac{t\diff{t}}{\sqrt{(1+t)(1-t)(a_{3}-2abt)}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>ab\int_{0}^{2\pi}(h^{2}+a^{2}+b^{2}-2ab\cos@@{\theta})^{-1/2}\cos@@{\theta}\diff{\theta} = 2ab\int_{-1}^{1}\frac{t\diff{t}}{\sqrt{(1+t)(1-t)(a_{3}-2abt)}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>a*b*int(((h)^(2)+ (a)^(2)+ (b)^(2)- 2*a*b*cos(theta))^(- 1/2)* cos(theta), theta = 0..2*Pi) = 2*a*b*int((t)/(sqrt((1 + t)*(1 - t)*(a[3]- 2*a*b*t))), t = - 1..1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>a*b*Integrate[((h)^(2)+ (a)^(2)+ (b)^(2)- 2*a*b*Cos[\[Theta]])^(- 1/2)* Cos[\[Theta]], {\[Theta], 0, 2*Pi}, GenerateConditions->None] == 2*a*b*Integrate[Divide[t,Sqrt[(1 + t)*(1 - t)*(Subscript[a, 3]- 2*a*b*t)]], {t, - 1, 1}, GenerateConditions->None]</syntaxhighlight> || Aborted || Aborted || Skipped - Because timed out || Skipped - Because timed out
+|- 
+| [https://dlmf.nist.gov/19.34.E1 19.34.E1] || <math qid="Q6711">2ab\int_{-1}^{1}\frac{t\diff{t}}{\sqrt{(1+t)(1-t)(a_{3}-2abt)}} = 2abI(\mathbf{e}_{5})</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>2ab\int_{-1}^{1}\frac{t\diff{t}}{\sqrt{(1+t)(1-t)(a_{3}-2abt)}} = 2abI(\mathbf{e}_{5})</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>2*a*b*int((t)/(sqrt((1 + t)*(1 - t)*(a[3]- 2*a*b*t))), t = - 1..1) = 2*abI(e[5])</syntaxhighlight> || <syntaxhighlight lang=mathematica>2*a*b*Integrate[Divide[t,Sqrt[(1 + t)*(1 - t)*(Subscript[a, 3]- 2*a*b*t)]], {t, - 1, 1}, GenerateConditions->None] == 2*abI[Subscript[e, 5]]</syntaxhighlight> || Failure || Aborted || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -3.959693187-6.593729744*I
+Test Values: {I = 1/2*3^(1/2)+1/2*I, a = -3/2, b = -3/2, a[3] = 1/2*3^(1/2)+1/2*I, e[5] = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 2.187421133-4.946615428*I
+Test Values: {I = 1/2*3^(1/2)+1/2*I, a = -3/2, b = -3/2, a[3] = 1/2*3^(1/2)+1/2*I, e[5] = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || Skipped - Because timed out
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/19.34#Ex1 19.34#Ex1] || <math qid="Q6712">a_{3} = h^{2}+a^{2}+b^{2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>a_{3} = h^{2}+a^{2}+b^{2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a[3] = (h)^(2)+ (a)^(2)+ (b)^(2)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[a, 3] == (h)^(2)+ (a)^(2)+ (b)^(2)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/19.34#Ex2 19.34#Ex2] || <math qid="Q6713">a_{5} = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>a_{5} = 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">a[5] = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[a, 5] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/19.34#Ex3 19.34#Ex3] || <math qid="Q6714">b_{5} = 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>b_{5} = 1</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">b[5] = 1</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[b, 5] == 1</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/19.34.E3 19.34.E3] || <math qid="Q6715">2abI(\mathbf{e}_{5}) = a_{3}I(\boldsymbol{{0}})-I(\mathbf{e}_{3})</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>2abI(\mathbf{e}_{5}) = a_{3}I(\boldsymbol{{0}})-I(\mathbf{e}_{3})</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">2*abI(e[5]) = a[3]*I(0)- I(e[3])</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">2*abI[Subscript[e, 5]] == Subscript[a, 3]*I[0]- I[Subscript[e, 3]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/19.34.E4 19.34.E4] || <math qid="Q6716">r_{+}^{2} = a_{3}+ 2ab</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>r_{+}^{2} = a_{3}+ 2ab</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(r[+])^(2) = a[3]+ 2*a*b</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(Subscript[r, +])^(2) == Subscript[a, 3]+ 2*a*b</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

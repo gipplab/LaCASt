@@ -139,6 +139,37 @@ public class FreeVariableExtractionTests {
     }
 
     @Test
+    void multiCaseTest() {
+        slt.translate("\\begin{align} x &= y \\\\ x &= z \\end{align}");
+        TranslationInformation ti = slt.getTranslationInformation();
+        test(ti, "x", "y", "z");
+        assertEquals(2, ti.getPartialTranslations().size());
+        TranslationInformation tiFirst = ti.getPartialTranslations().get(0);
+        test(tiFirst, "x", "y");
+        TranslationInformation tiSecond = ti.getPartialTranslations().get(1);
+        test(tiSecond, "x", "z");
+    }
+
+    @Test
+    void multiCaseBesselTest() {
+        slt.translate("\\begin{align}\\BesselJ{-(m+\\frac{1}{2})}@{x} &=(- 1)^{m+1} \\BesselY{m+\\frac{1}{2}}@{x} , \\\\ \\BesselY{-(m+\\frac{1}{2})}@{x} &=(- 1)^m \\BesselJ{m+\\frac{1}{2}}@{x} .\\end{align}");
+        TranslationInformation ti = slt.getTranslationInformation();
+        test(ti, "m", "x");
+        assertEquals(2, ti.getPartialTranslations().size());
+        TranslationInformation tiFirst = ti.getPartialTranslations().get(0);
+        test(tiFirst, "m", "x");
+        TranslationInformation tiSecond = ti.getPartialTranslations().get(1);
+        test(tiSecond, "m", "x");
+    }
+
+    @Test
+    void besselVariableTest() {
+        slt.translate("\\BesselJ{-(m+\\frac{1}{2})}@{x}");
+        TranslationInformation ti = slt.getTranslationInformation();
+        test(ti, "m", "x");
+    }
+
+    @Test
     @DLMF("4.5.E5")
     void dlmfEFLnTest() {
         slt.translate("\\ln@@{x}\\leq a(x^{1/a}-1)", "4.5.E5");

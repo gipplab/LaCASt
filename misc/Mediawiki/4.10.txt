@@ -1,0 +1,40 @@
+{{DISPLAYTITLE:Elementary Functions - 4.10 Integrals}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/4.10.E1 4.10.E1] || <math qid="Q1616">\int\frac{\diff{z}}{z} = \ln@@{z}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int\frac{\diff{z}}{z} = \ln@@{z}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int((1)/(z), z) = ln(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Divide[1,z], z, GenerateConditions->None] == Log[z]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.10.E2 4.10.E2] || <math qid="Q1617">\int\ln@@{z}\diff{z} = z\ln@@{z}-z</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int\ln@@{z}\diff{z} = z\ln@@{z}-z</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int(ln(z), z) = z*ln(z)- z</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Log[z], z, GenerateConditions->None] == z*Log[z]- z</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.10.E3 4.10.E3] || <math qid="Q1618">\int z^{n}\ln@@{z}\diff{z} = \frac{z^{n+1}}{n+1}\ln@@{z}-\frac{z^{n+1}}{(n+1)^{2}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int z^{n}\ln@@{z}\diff{z} = \frac{z^{n+1}}{n+1}\ln@@{z}-\frac{z^{n+1}}{(n+1)^{2}}</syntaxhighlight> || <math>n \neq -1</math> || <syntaxhighlight lang=mathematica>int((z)^(n)* ln(z), z) = ((z)^(n + 1))/(n + 1)*ln(z)-((z)^(n + 1))/((n + 1)^(2))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[(z)^(n)* Log[z], z, GenerateConditions->None] == Divide[(z)^(n + 1),n + 1]*Log[z]-Divide[(z)^(n + 1),(n + 1)^(2)]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 21]
+|- 
+| [https://dlmf.nist.gov/4.10.E4 4.10.E4] || <math qid="Q1619">\int\frac{\diff{z}}{z\ln@@{z}} = \ln@{\ln@@{z}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int\frac{\diff{z}}{z\ln@@{z}} = \ln@{\ln@@{z}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int((1)/(z*ln(z)), z) = ln(ln(z))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Divide[1,z*Log[z]], z, GenerateConditions->None] == Log[Log[z]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 7]
+|- 
+| [https://dlmf.nist.gov/4.10.E5 4.10.E5] || <math qid="Q1620">\int_{0}^{1}\frac{\ln@@{t}}{1-t}\diff{t} = -\frac{\pi^{2}}{6}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{1}\frac{\ln@@{t}}{1-t}\diff{t} = -\frac{\pi^{2}}{6}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int((ln(t))/(1 - t), t = 0..1) = -((Pi)^(2))/(6)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Divide[Log[t],1 - t], {t, 0, 1}, GenerateConditions->None] == -Divide[(Pi)^(2),6]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.10.E6 4.10.E6] || <math qid="Q1621">\int_{0}^{1}\frac{\ln@@{t}}{1+t}\diff{t} = -\frac{\pi^{2}}{12}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{1}\frac{\ln@@{t}}{1+t}\diff{t} = -\frac{\pi^{2}}{12}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int((ln(t))/(1 + t), t = 0..1) = -((Pi)^(2))/(12)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Divide[Log[t],1 + t], {t, 0, 1}, GenerateConditions->None] == -Divide[(Pi)^(2),12]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.10.E8 4.10.E8] || <math qid="Q1623">\int e^{az}\diff{z} = \frac{e^{az}}{a}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int e^{az}\diff{z} = \frac{e^{az}}{a}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int(exp(a*z), z) = (exp(a*z))/(a)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Exp[a*z], z, GenerateConditions->None] == Divide[Exp[a*z],a]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 42]
+|- 
+| [https://dlmf.nist.gov/4.10.E9 4.10.E9] || <math qid="Q1624">\int\frac{\diff{z}}{e^{az}+b} = \frac{1}{ab}(az-\ln@{e^{az}+b})</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int\frac{\diff{z}}{e^{az}+b} = \frac{1}{ab}(az-\ln@{e^{az}+b})</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int((1)/(exp(a*z)+ b), z) = (1)/(a*b)*(a*z - ln(exp(a*z)+ b))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Divide[1,Exp[a*z]+ b], z, GenerateConditions->None] == Divide[1,a*b]*(a*z - Log[Exp[a*z]+ b])</syntaxhighlight> || Failure || Successful || Successful [Tested: 252] || Successful [Tested: 252]
+|- 
+| [https://dlmf.nist.gov/4.10.E10 4.10.E10] || <math qid="Q1625">\int\frac{e^{az}-1}{e^{az}+1}\diff{z} = \frac{2}{a}\ln@{e^{az/2}+e^{-az/2}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int\frac{e^{az}-1}{e^{az}+1}\diff{z} = \frac{2}{a}\ln@{e^{az/2}+e^{-az/2}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int((exp(a*z)- 1)/(exp(a*z)+ 1), z) = (2)/(a)*ln(exp(a*z/2)+ exp(- a*z/2))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Divide[Exp[a*z]- 1,Exp[a*z]+ 1], z, GenerateConditions->None] == Divide[2,a]*Log[Exp[a*z/2]+ Exp[- a*z/2]]</syntaxhighlight> || Failure || Failure || Successful [Tested: 42] || Successful [Tested: 42]
+|- 
+| [https://dlmf.nist.gov/4.10.E11 4.10.E11] || <math qid="Q1626">\int_{-\infty}^{\infty}e^{-cx^{2}}\diff{x} = \sqrt{\frac{\pi}{c}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{-\infty}^{\infty}e^{-cx^{2}}\diff{x} = \sqrt{\frac{\pi}{c}}</syntaxhighlight> || <math>\realpart@@{c} > 0</math> || <syntaxhighlight lang=mathematica>int(exp(- c*(x)^(2)), x = - infinity..infinity) = sqrt((Pi)/(c))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Exp[- c*(x)^(2)], {x, - Infinity, Infinity}, GenerateConditions->None] == Sqrt[Divide[Pi,c]]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/4.10.E12 4.10.E12] || <math qid="Q1627">\int_{0}^{\ln@@{2}}\frac{xe^{x}}{e^{x}-1}\diff{x} = \frac{\pi^{2}}{12}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\ln@@{2}}\frac{xe^{x}}{e^{x}-1}\diff{x} = \frac{\pi^{2}}{12}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int((x*exp(x))/(exp(x)- 1), x = 0..ln(2)) = ((Pi)^(2))/(12)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Divide[x*Exp[x],Exp[x]- 1], {x, 0, Log[2]}, GenerateConditions->None] == Divide[(Pi)^(2),12]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/4.10.E13 4.10.E13] || <math qid="Q1628">\int_{0}^{\infty}\frac{\diff{x}}{e^{x}+1} = \ln@@{2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\infty}\frac{\diff{x}}{e^{x}+1} = \ln@@{2}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int((1)/(exp(x)+ 1), x = 0..infinity) = ln(2)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Divide[1,Exp[x]+ 1], {x, 0, Infinity}, GenerateConditions->None] == Log[2]</syntaxhighlight> || Successful || Successful || - || Successful [Tested: 1]
+|}
+</div>

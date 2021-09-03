@@ -11,6 +11,7 @@ lacast.cas:
     install.path: "/opt/maple2020"
   Mathematica:
     install.path: "/opt/Wolfram"
+    license: "4311-6677-4H3V66"
   SymPy:
 
 # the following settings are optional and are loaded exactly as below

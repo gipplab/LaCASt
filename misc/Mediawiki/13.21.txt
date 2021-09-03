@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Confluent Hypergeometric Functions - 13.21 Uniform Asymptotic Approximations for Large <math>\kappa</math>}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/13.21.E5 13.21.E5] || <math qid="Q4613">2\sqrt{\zeta} = \sqrt{x+x^{2}}+\ln@{\sqrt{x}+\sqrt{1+x}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>2\sqrt{\zeta} = \sqrt{x+x^{2}}+\ln@{\sqrt{x}+\sqrt{1+x}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>2*sqrt(zeta) = sqrt(x + (x)^(2))+ ln(sqrt(x)+sqrt(1 + x))</syntaxhighlight> || <syntaxhighlight lang=mathematica>2*Sqrt[\[Zeta]] == Sqrt[x + (x)^(2)]+ Log[Sqrt[x]+Sqrt[1 + x]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1.036358555+.5176380902*I
+Test Values: {x = 3/2, zeta = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -1.968210208+1.732050808*I
+Test Values: {x = 3/2, zeta = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [30 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[-1.0363585549733523, 0.5176380902050415]
+Test Values: {Rule[x, 1.5], Rule[ζ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-1.9682102075514887, 1.7320508075688772]
+Test Values: {Rule[x, 1.5], Rule[ζ, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

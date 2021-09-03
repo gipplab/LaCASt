@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Functions of Number Theory - 27.7 Lambert Series as Generating Functions}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/27.7.E4 27.7.E4] || <math qid="Q8044">\sum_{n=1}^{\infty}\Eulertotientphi[]@{n}\frac{x^{n}}{1-x^{n}} = \frac{x}{(1-x)^{2}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=1}^{\infty}\Eulertotientphi[]@{n}\frac{x^{n}}{1-x^{n}} = \frac{x}{(1-x)^{2}}</syntaxhighlight> || <math>|x| < 1</math> || <syntaxhighlight lang=mathematica>sum(phi(n)*((x)^(n))/(1 - (x)^(n)), n = 1..infinity) = (x)/((1 - x)^(2))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[EulerPhi[n]*Divide[(x)^(n),1 - (x)^(n)], {n, 1, Infinity}, GenerateConditions->None] == Divide[x,(1 - x)^(2)]</syntaxhighlight> || Failure || Successful || Successful [Tested: 1] || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/27.7.E5 27.7.E5] || <math qid="Q8045">\sum_{n=1}^{\infty}n^{\alpha}\frac{x^{n}}{1-x^{n}} = \sum_{n=1}^{\infty}\sumdivisors{\alpha}@{n}x^{n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{n=1}^{\infty}n^{\alpha}\frac{x^{n}}{1-x^{n}} = \sum_{n=1}^{\infty}\sumdivisors{\alpha}@{n}x^{n}</syntaxhighlight> || <math>|x| < 1</math> || <syntaxhighlight lang=mathematica>sum((n)^(alpha)*((x)^(n))/(1 - (x)^(n)), n = 1..infinity) = sum(add(divisors(alpha))*(x)^(n), n = 1..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Failure || Missing Macro Error || <div class="toccolours mw-collapsible mw-collapsed">Failed [3 / 3]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 2.671514971
+Test Values: {alpha = 3/2, x = 1/2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.507450946
+Test Values: {alpha = 1/2, x = 1/2}</syntaxhighlight><br>... skip entries to safe data</div></div> || -
+|}
+</div>

@@ -1,0 +1,35 @@
+__NOTOC__
+== Chebyshev polynomials ==
+
+; Gold ID : 12
+; Link : https://sigir21.wmflabs.org/wiki/Chebyshev_polynomials#math.62.44
+; Formula : <math>x_k = \cos\left(\frac{\pi(k+1/2)}{n}\right),\quad k=0,\ldots,n-1</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>x_k = \cos\left(\frac{\pi(k+1/2)}{n}\right),\quad k=0,\ldots,n-1</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>x_k = \cos(\frac{\cpi(k + 1 / 2)}{n}) , \quad k = 0 , \ldots , n - 1</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>x_k = \cos(\frac{\cpi(k + 1 / 2)}{n}) , \quad k = 0 , \ldots , n - 1</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Subscript[x, k] == Cos[Divide[Pi*(k + 1/2),n]]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Subscript[x, k] == Cos[Divide[Pi*(k + 1/2),n]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>x[k] = cos((Pi*(k + 1/2))/(n))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>x[k] = cos((Pi*(k + 1/2))/(n))</syntaxhighlight>

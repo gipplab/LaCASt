@@ -1,0 +1,25 @@
+{{DISPLAYTITLE:Combinatorial Analysis - 26.13 Permutations: Cycle Notation}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/26.13.E4 26.13.E4] || <math qid="Q7949">d(n) = n!\sum_{j=0}^{n}(-1)^{j}\frac{1}{j!}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>d(n) = n!\sum_{j=0}^{n}(-1)^{j}\frac{1}{j!}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>d(n) = factorial(n)*sum((- 1)^(j)*(1)/(factorial(j)), j = 0..n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>d[n] == (n)!*Sum[(- 1)^(j)*Divide[1,(j)!], {j, 0, n}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [29 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .8660254040+.5000000000*I
+Test Values: {d = 1/2*3^(1/2)+1/2*I, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .7320508081+1.*I
+Test Values: {d = 1/2*3^(1/2)+1/2*I, n = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [29 / 30]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.8660254037844387, 0.49999999999999994]
+Test Values: {Rule[d, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[n, 1]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[0.7320508075688774, 0.9999999999999999]
+Test Values: {Rule[d, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[n, 2]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/26.13.E4 26.13.E4] || <math qid="Q7949">n!\sum_{j=0}^{n}(-1)^{j}\frac{1}{j!} = \floor{\frac{n!+\expe-2}{\expe}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>n!\sum_{j=0}^{n}(-1)^{j}\frac{1}{j!} = \floor{\frac{n!+\expe-2}{\expe}}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>factorial(n)*sum((- 1)^(j)*(1)/(factorial(j)), j = 0..n) = floor((factorial(n)+ exp(1)- 2)/(exp(1)))</syntaxhighlight> || <syntaxhighlight lang=mathematica>(n)!*Sum[(- 1)^(j)*Divide[1,(j)!], {j, 0, n}, GenerateConditions->None] == Floor[Divide[(n)!+ E - 2,E]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [1 / 3]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .9999999999
+Test Values: {n = 2}</syntaxhighlight><br></div></div> || Successful [Tested: 3]
+|}
+</div>

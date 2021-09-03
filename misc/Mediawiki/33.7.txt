@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Coulomb Functions - 33.7 Integral Representations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/33.7.E1 33.7.E1] || <math qid="Q9538">\regCoulombF{\ell}@{\eta}{\rho} = \frac{\rho^{\ell+1}2^{\ell}e^{\iunit\rho-(\pi\eta/2)}}{|\EulerGamma@{\ell+1+\iunit\eta}|}\int_{0}^{1}e^{-2\iunit\rho t}t^{\ell+\iunit\eta}(1-t)^{\ell-\iunit\eta}\diff{t}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\regCoulombF{\ell}@{\eta}{\rho} = \frac{\rho^{\ell+1}2^{\ell}e^{\iunit\rho-(\pi\eta/2)}}{|\EulerGamma@{\ell+1+\iunit\eta}|}\int_{0}^{1}e^{-2\iunit\rho t}t^{\ell+\iunit\eta}(1-t)^{\ell-\iunit\eta}\diff{t}</syntaxhighlight> || <math>\realpart@@{(\ell+1+\iunit\eta)} > 0</math> || <syntaxhighlight lang=mathematica>CoulombF(ell, eta, rho) = ((rho)^(ell + 1)* (2)^(ell)* exp(I*rho -(Pi*eta/2)))/(abs(GAMMA(ell + 1 + I*eta)))*int(exp(- 2*I*rho*t)*(t)^(ell + I*eta)*(1 - t)^(ell - I*eta), t = 0..1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || Failure || Missing Macro Error || Error || -
+|}
+</div>

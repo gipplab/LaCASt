@@ -1,0 +1,35 @@
+__NOTOC__
+== Little q-Jacobi polynomials ==
+
+; Gold ID : 81
+; Link : https://sigir21.wmflabs.org/wiki/Little_q-Jacobi_polynomials#math.134.0
+; Formula : <math>\displaystyle  p_n(x;a,b;q) = {}_2\phi_1(q^{-n},abq^{n+1};aq;q,xq)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\displaystyle  p_n(x;a,b;q) = {}_2\phi_1(q^{-n},abq^{n+1};aq;q,xq)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\littleqJacobipolyp{n}@{x}{a}{b}{q} = \qgenhyperphi{2}{1}@{q^{-n} , abq^{n+1}}{aq}{q}{xq}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\littleqJacobipolyp{n}@{x}{a}{b}{q} = \qgenhyperphi{2}{1}@{q^{-n} , abq^{n+1}}{aq}{q}{xq}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>p[n_, x_, a_, b_, q_] := QHypergeometricPFQ[{(q)^(- n), a*b*(q)^(n + 1)},{a*q},q,x*q]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

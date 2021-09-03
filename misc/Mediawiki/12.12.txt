@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Parabolic Cylinder Functions - 12.12 Integrals}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/12.12.E1 12.12.E1] || <math qid="Q4226">\int_{0}^{\infty}e^{-\frac{1}{4}t^{2}}t^{\mu-1}\paraU@{a}{t}\diff{t} = \frac{\sqrt{\pi}2^{-\frac{1}{2}(\mu+a+\frac{1}{2})}\EulerGamma@{\mu}}{\EulerGamma@{\frac{1}{2}(\mu+a+\frac{3}{2})}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\infty}e^{-\frac{1}{4}t^{2}}t^{\mu-1}\paraU@{a}{t}\diff{t} = \frac{\sqrt{\pi}2^{-\frac{1}{2}(\mu+a+\frac{1}{2})}\EulerGamma@{\mu}}{\EulerGamma@{\frac{1}{2}(\mu+a+\frac{3}{2})}}</syntaxhighlight> || <math>\realpart@@{\mu} > 0, \realpart@@{(\mu)} > 0, \realpart@@{(\frac{1}{2}(\mu+a+\frac{3}{2}))} > 0</math> || <syntaxhighlight lang=mathematica>int(exp(-(1)/(4)*(t)^(2))*(t)^(mu - 1)* CylinderU(a, t), t = 0..infinity) = (sqrt(Pi)*(2)^(-(1)/(2)*(mu + a +(1)/(2)))* GAMMA(mu))/(GAMMA((1)/(2)*(mu + a +(3)/(2))))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Exp[-Divide[1,4]*(t)^(2)]*(t)^(\[Mu]- 1)* ParabolicCylinderD[- 1/2 -(a), t], {t, 0, Infinity}, GenerateConditions->None] == Divide[Sqrt[Pi]*(2)^(-Divide[1,2]*(\[Mu]+ a +Divide[1,2]))* Gamma[\[Mu]],Gamma[Divide[1,2]*(\[Mu]+ a +Divide[3,2])]]</syntaxhighlight> || Successful || Aborted || - || Skipped - Because timed out
+|- 
+| [https://dlmf.nist.gov/12.12.E2 12.12.E2] || <math qid="Q4227">\int_{0}^{\infty}e^{-\frac{3}{4}t^{2}}t^{-a-\frac{3}{2}}\paraU@{a}{t}\diff{t} = 2^{\frac{1}{4}+\frac{1}{2}a}\EulerGamma@{-a-\tfrac{1}{2}}\cos@{(\tfrac{1}{4}a+\tfrac{1}{8})\pi}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\infty}e^{-\frac{3}{4}t^{2}}t^{-a-\frac{3}{2}}\paraU@{a}{t}\diff{t} = 2^{\frac{1}{4}+\frac{1}{2}a}\EulerGamma@{-a-\tfrac{1}{2}}\cos@{(\tfrac{1}{4}a+\tfrac{1}{8})\pi}</syntaxhighlight> || <math>\realpart@@{a} < -\tfrac{1}{2}, \realpart@@{(-a-\tfrac{1}{2})} > 0</math> || <syntaxhighlight lang=mathematica>int(exp(-(3)/(4)*(t)^(2))*(t)^(- a -(3)/(2))* CylinderU(a, t), t = 0..infinity) = (2)^((1)/(4)+(1)/(2)*a)* GAMMA(- a -(1)/(2))*cos(((1)/(4)*a +(1)/(8))*Pi)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Exp[-Divide[3,4]*(t)^(2)]*(t)^(- a -Divide[3,2])* ParabolicCylinderD[- 1/2 -(a), t], {t, 0, Infinity}, GenerateConditions->None] == (2)^(Divide[1,4]+Divide[1,2]*a)* Gamma[- a -Divide[1,2]]*Cos[(Divide[1,4]*a +Divide[1,8])*Pi]</syntaxhighlight> || Failure || Failure || Skipped - Because timed out || Successful [Tested: 2]
+|- 
+| [https://dlmf.nist.gov/12.12.E3 12.12.E3] || <math qid="Q4228">\int_{0}^{\infty}e^{-\frac{1}{4}t^{2}}t^{-a-\frac{1}{2}}(x^{2}+t^{2})^{-1}\paraU@{a}{t}\diff{t} = \sqrt{\pi/2}\EulerGamma@{\tfrac{1}{2}-a}x^{-a-\frac{3}{2}}e^{\frac{1}{4}x^{2}}\paraU@{-a}{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\infty}e^{-\frac{1}{4}t^{2}}t^{-a-\frac{1}{2}}(x^{2}+t^{2})^{-1}\paraU@{a}{t}\diff{t} = \sqrt{\pi/2}\EulerGamma@{\tfrac{1}{2}-a}x^{-a-\frac{3}{2}}e^{\frac{1}{4}x^{2}}\paraU@{-a}{x}</syntaxhighlight> || <math>x > 0, \realpart@@{a} < \tfrac{1}{2}, \realpart@@{(\tfrac{1}{2}-a)} > 0</math> || <syntaxhighlight lang=mathematica>int(exp(-(1)/(4)*(t)^(2))*(t)^(- a -(1)/(2))*((x)^(2)+ (t)^(2))^(- 1)* CylinderU(a, t), t = 0..infinity) = sqrt(Pi/2)*GAMMA((1)/(2)- a)*(x)^(- a -(3)/(2))* exp((1)/(4)*(x)^(2))*CylinderU(- a, x)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Exp[-Divide[1,4]*(t)^(2)]*(t)^(- a -Divide[1,2])*((x)^(2)+ (t)^(2))^(- 1)* ParabolicCylinderD[- 1/2 -(a), t], {t, 0, Infinity}, GenerateConditions->None] == Sqrt[Pi/2]*Gamma[Divide[1,2]- a]*(x)^(- a -Divide[3,2])* Exp[Divide[1,4]*(x)^(2)]*ParabolicCylinderD[- 1/2 -(- a), x]</syntaxhighlight> || Failure || Aborted || Skipped - Because timed out || Skipped - Because timed out
+|}
+</div>

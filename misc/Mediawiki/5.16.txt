@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Gamma Function - 5.16 Sums}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/5.16.E1 5.16.E1] || <math qid="Q2178">\sum_{k=1}^{\infty}(-1)^{k}\digamma'@{k} = -\frac{\pi^{2}}{8}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{k=1}^{\infty}(-1)^{k}\digamma'@{k} = -\frac{\pi^{2}}{8}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum((- 1)^(k)* diff( Psi(k), k$(1) ), k = 1..infinity) = -((Pi)^(2))/(8)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[(- 1)^(k)* D[PolyGamma[k], {k, 1}], {k, 1, Infinity}, GenerateConditions->None] == -Divide[(Pi)^(2),8]</syntaxhighlight> || Failure || Successful || Successful [Tested: 0] || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/5.16.E2 5.16.E2] || <math qid="Q2179">\sum_{k=1}^{\infty}\frac{1}{k}\digamma'@{k+1} = \Riemannzeta@{3}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\sum_{k=1}^{\infty}\frac{1}{k}\digamma'@{k+1} = \Riemannzeta@{3}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>sum((1)/(k)*subs( temp=k + 1, diff( Psi(temp), temp$(1) ) ), k = 1..infinity) = Zeta(3)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Sum[Divide[1,k]*(D[PolyGamma[temp], {temp, 1}]/.temp-> k + 1), {k, 1, Infinity}, GenerateConditions->None] == Zeta[3]</syntaxhighlight> || Failure || Successful || Successful [Tested: 0] || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/5.16.E2 5.16.E2] || <math qid="Q2179">\Riemannzeta@{3} = -\frac{1}{2}\digamma''@{1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\Riemannzeta@{3} = -\frac{1}{2}\digamma''@{1}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Zeta(3) = -(1)/(2)*subs( temp=1, diff( Psi(temp), temp$(2) ) )</syntaxhighlight> || <syntaxhighlight lang=mathematica>Zeta[3] == -Divide[1,2]*(D[PolyGamma[temp], {temp, 2}]/.temp-> 1)</syntaxhighlight> || Successful || Successful || Skip - symbolical successful subtest || Successful [Tested: 1]
+|}
+</div>

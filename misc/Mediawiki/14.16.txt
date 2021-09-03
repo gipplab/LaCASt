@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Legendre and Related Functions - 14.16 Zeros}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/14.16#Ex1 14.16#Ex1] || <math qid="Q4880">\mu = m+\delta_{\mu}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\mu = m+\delta_{\mu}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">mu = m + delta[mu]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">\[Mu] == m + Subscript[\[Delta], \[Mu]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/14.16#Ex2 14.16#Ex2] || <math qid="Q4881">\nu = n+\delta_{\nu}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\nu = n+\delta_{\nu}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">nu = n + delta[nu]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">\[Nu] == n + Subscript[\[Delta], \[Nu]]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

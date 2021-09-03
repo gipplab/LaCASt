@@ -278,8 +278,8 @@ DirichletCharacter[$1, $2, $0];\Dirichletchar@@{n}{k};3;;;;;;
 ;;;;;;;;
 ;\DiscriminantDelta@{\tau};;;;;;;
 ;;;;;;;;
-PrimeNu[$0];\nprimesdiv@{n};1;;;;;;
-PrimePi[$0];\nprimes@{x};1;;;;;;
+PrimeNu[$0];\nprimesdiv@{n};1;;;;;;https://reference.wolfram.com/language/ref/PrimeNu.html
+PrimePi[$0];\nprimes@{x};1;;;;;;https://reference.wolfram.com/language/ref/PrimePi.html
 ;\ndivisors[k]@{n};;;;;;;
 ;\ndivisors@{n};;;;;Length[Divisors[$0]];;
 DivisorSigma[$0, $1];\sumdivisors{\alpha}@{n};2;;;;;;

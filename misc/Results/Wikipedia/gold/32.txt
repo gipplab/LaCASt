@@ -1,0 +1,35 @@
+__NOTOC__
+== Associated Legendre polynomials ==
+
+; Gold ID : 32
+; Link : https://sigir21.wmflabs.org/wiki/Associated_Legendre_polynomials#math.82.8
+; Formula : <math>c_{lm} = (-1)^m \frac{(\ell-m)!}{(\ell+m)!}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>c_{lm} = (-1)^m \frac{(\ell-m)!}{(\ell+m)!}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>c_{lm} = (-1)^m \frac{(\ell-m)!}{(\ell+m)!}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>c_{lm} = (-1)^m \frac{(\ell-m)!}{(\ell+m)!}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Subscript[c, l, m] == (- 1)^(m)*Divide[(\[ScriptL]- m)!,(\[ScriptL]+ m)!]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Subscript[c, l, m] == (- 1)^(m)*Divide[(\[ScriptL]- m)!,(\[ScriptL]+ m)!]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>c[l, m] = (- 1)^(m)*(factorial(ell - m))/(factorial(ell + m))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>c[l, m] = (- 1)^(m)*(factorial(ell - m))/(factorial(ell + m))</syntaxhighlight>

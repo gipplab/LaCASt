@@ -1,7 +1,11 @@
 package gov.nist.drmf.interpreter.common.text;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,5 +37,29 @@ public final class TextUtility {
             set.add(elements[i]);
         }
         return set;
+    }
+
+    public static <V> String join(String joiner, Iterable<V> iter, Function<V, String> elementMapper) {
+        return join(new JoinConfig<>(joiner, iter, elementMapper));
+    }
+
+    public static <V> String join(JoinConfig<V> config) {
+        StringBuilder sb = new StringBuilder();
+        Iterator<V> iterator = config.getIter().iterator();
+
+        if (!iterator.hasNext()) return "";
+
+        int number = 1;
+        V last = iterator.next();
+        sb.append(config.getMapper().apply(last));
+        while (iterator.hasNext()) {
+            V next = iterator.next();
+            if ( number >= config.getMax() && config.getMax() > 0 ) {
+                sb.append( config.getJoiner() ).append( config.getMaxMessage() );
+                break;
+            } else sb.append( config.getJoiner() ).append( config.getMapper().apply(next) );
+            number++;
+        }
+        return sb.toString();
     }
 }

@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Mathieu Functions and Hill’s Equation - 28.8 Asymptotic Expansions for Large <math>q</math>}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/28.8#Ex3 28.8#Ex3] || <math qid="Q8273">\dfrac{\Mathieuce{m}@{x}{h^{2}}}{\Mathieuce{m}@{0}{h^{2}}} = \dfrac{2^{m-(\ifrac{1}{2})}}{\sigma_{m}}\left(W_{m}^{+}(x)(P_{m}(x)-Q_{m}(x))+W_{m}^{-}(x)(P_{m}(x)+Q_{m}(x))\right)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\dfrac{\Mathieuce{m}@{x}{h^{2}}}{\Mathieuce{m}@{0}{h^{2}}} = \dfrac{2^{m-(\ifrac{1}{2})}}{\sigma_{m}}\left(W_{m}^{+}(x)(P_{m}(x)-Q_{m}(x))+W_{m}^{-}(x)(P_{m}(x)+Q_{m}(x))\right)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(MathieuCE(m, (h)^(2), x))/(MathieuCE(m, (h)^(2), 0)) = ((2)^(m -((1)/(2))))/(sigma[m])*((W[m])^(+)(x)*(P[m](x)- Q[m](x))+ (W[m])^(-)(x)*(P[m](x)+ Q[m](x)))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[MathieuC[m, (h)^(2), x],MathieuC[m, (h)^(2), 0]] == Divide[(2)^(m -(Divide[1,2])),Subscript[\[Sigma], m]]*((Subscript[W, m])^(+)[x]*(Subscript[P, m][x]- Subscript[Q, m][x])+ (Subscript[W, m])^(-)[x]*(Subscript[P, m][x]+ Subscript[Q, m][x]))</syntaxhighlight> || Error || Failure || - || Skipped - Because timed out
+|- 
+| [https://dlmf.nist.gov/28.8#Ex4 28.8#Ex4] || <math qid="Q8274">\dfrac{\Mathieuse{m+1}@{x}{h^{2}}}{\Mathieuse{m+1}'@{0}{h^{2}}} = \dfrac{2^{m-(\ifrac{1}{2})}}{\tau_{m+1}}\left(W_{m}^{+}(x)(P_{m}(x)-Q_{m}(x))-W_{m}^{-}(x)(P_{m}(x)+Q_{m}(x))\right)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\dfrac{\Mathieuse{m+1}@{x}{h^{2}}}{\Mathieuse{m+1}'@{0}{h^{2}}} = \dfrac{2^{m-(\ifrac{1}{2})}}{\tau_{m+1}}\left(W_{m}^{+}(x)(P_{m}(x)-Q_{m}(x))-W_{m}^{-}(x)(P_{m}(x)+Q_{m}(x))\right)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(MathieuSE(m + 1, (h)^(2), x))/(subs( temp=0, diff( MathieuSE(m + 1, (h)^(2), temp), temp$(1) ) )) = ((2)^(m -((1)/(2))))/(tau[m + 1])*((W[m])^(+)(x)*(P[m](x)- Q[m](x))- (W[m])^(-)(x)*(P[m](x)+ Q[m](x)))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[MathieuS[m + 1, (h)^(2), x],D[MathieuS[m + 1, (h)^(2), temp], {temp, 1}]/.temp-> 0] == Divide[(2)^(m -(Divide[1,2])),Subscript[\[Tau], m + 1]]*((Subscript[W, m])^(+)[x]*(Subscript[P, m][x]- Subscript[Q, m][x])- (Subscript[W, m])^(-)[x]*(Subscript[P, m][x]+ Subscript[Q, m][x]))</syntaxhighlight> || Error || Failure || - || Skipped - Because timed out
+|}
+</div>

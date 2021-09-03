@@ -1,0 +1,35 @@
+__NOTOC__
+== Hermite polynomials ==
+
+; Gold ID : 13
+; Link : https://sigir21.wmflabs.org/wiki/Hermite_polynomials#math.63.109
+; Formula : <math>E(x, y; u) := \sum_{n=0}^\infty u^n \, \psi_n (x) \, \psi_n (y) = \frac{1}{\sqrt{\pi (1 - u^2)}} \, \exp\left(-\frac{1 - u}{1 + u} \, \frac{(x + y)^2}{4} - \frac{1 + u}{1 - u} \, \frac{(x - y)^2}{4}\right)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>E(x, y; u) := \sum_{n=0}^\infty u^n \, \psi_n (x) \, \psi_n (y) = \frac{1}{\sqrt{\pi (1 - u^2)}} \, \exp\left(-\frac{1 - u}{1 + u} \, \frac{(x + y)^2}{4} - \frac{1 + u}{1 - u} \, \frac{(x - y)^2}{4}\right)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{ya}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>E(x , y ; u) : = \sum_{n=0}^\infty u^n \psi_n(x) \psi_n(y) = \frac{1}{\sqrt{\cpi(1 - u^2)}} \exp(- \frac{1 - u}{1 + u} \frac{(x + y)^2}{4} - \frac{1 + u}{1 - u} \frac{(x - y)^2}{4})</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>E(x , y ; u) : = \sum_{n=0}^\infty u^n \psi_n(x) \psi_n(y) = \frac{1}{\sqrt{\cpi(1 - u^2)}} \exp(- \frac{1 - u}{1 + u} \frac{(x + y)^2}{4} - \frac{1 + u}{1 - u} \frac{(x - y)^2}{4})</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>\[CapitalEpsilon][x_, y_, u_] := Sum[(u)^(n)* Subscript[\[Psi], n][x]* Subscript[\[Psi], n][y], {n, 0, Infinity}, GenerateConditions->None] == Divide[1,Sqrt[Pi*(1 - (u)^(2))]]*Exp[-Divide[1 - u,1 + u]*Divide[(x + y)^(2),4]-Divide[1 + u,1 - u]*Divide[(x - y)^(2),4]]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>\[CapitalEpsilon][x_, y_, u_] := Sum[(u)^(n)* Subscript[\[Psi], n][x]* Subscript[\[Psi], n][y], {n, 0, Infinity}] == Divide[1,Sqrt[Pi*(1 - (u)^(2))]]*Exp[-Divide[1 - u,1 + u]*Divide[(x + y)^(2),4]-Divide[1 + u,1 - u]*Divide[(x - y)^(2),4]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Epsilon := (x, y, u) -> sum((u)^(n)* psi[n](x)* psi[n](y), n = 0..infinity) = (1)/(sqrt(Pi*(1 - (u)^(2))))*exp(-(1 - u)/(1 + u)*((x + y)^(2))/(4)-(1 + u)/(1 - u)*((x - y)^(2))/(4))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>Epsilon := (x, y, u) -> sum((u)^(n)* psi[n](x)* psi[n](y), n = 0..infinity) = (1)/(sqrt(Pi*(1 - (u)^(2))))*exp(-(1 - u)/(1 + u)*((x + y)^(2))/(4)-(1 + u)/(1 - u)*((x - y)^(2))/(4))</syntaxhighlight>

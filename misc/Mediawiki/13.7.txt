@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Confluent Hypergeometric Functions - 13.7 Asymptotic Expansions for Large Argument}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/13.7.E4 13.7.E4] || <math qid="Q4412">\KummerconfhyperU@{a}{b}{z} = z^{-a}\sum_{s=0}^{n-1}\frac{\Pochhammersym{a}{s}\Pochhammersym{a-b+1}{s}}{s!}(-z)^{-s}+\varepsilon_{n}(z)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\KummerconfhyperU@{a}{b}{z} = z^{-a}\sum_{s=0}^{n-1}\frac{\Pochhammersym{a}{s}\Pochhammersym{a-b+1}{s}}{s!}(-z)^{-s}+\varepsilon_{n}(z)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>KummerU(a, b, z) = (z)^(- a)* sum((pochhammer(a, s)*pochhammer(a - b + 1, s))/(factorial(s))*(- z)^(- s), s = 0..n - 1)+ varepsilon[n](z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>HypergeometricU[a, b, z] == (z)^(- a)* Sum[Divide[Pochhammer[a, s]*Pochhammer[a - b + 1, s],(s)!]*(- z)^(- s), {s, 0, n - 1}, GenerateConditions->None]+ Subscript[\[CurlyEpsilon], n][z]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.515657870-.5735934827*I
+Test Values: {a = -3/2, b = -3/2, z = 1/2*3^(1/2)+1/2*I, varepsilon[n] = 1/2*3^(1/2)+1/2*I, n = 1, varepsilon = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.515657870-.5735934827*I
+Test Values: {a = -3/2, b = -3/2, z = 1/2*3^(1/2)+1/2*I, varepsilon[n] = 1/2*3^(1/2)+1/2*I, n = 1, varepsilon = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[1.515657869456145, -0.5735934817267648]
+Test Values: {Rule[a, -1.5], Rule[b, -1.5], Rule[n, 1], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ε, 1], Rule[Subscript[ε, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[1.515657869456145, -0.5735934817267648]
+Test Values: {Rule[a, -1.5], Rule[b, -1.5], Rule[n, 1], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ε, 2], Rule[Subscript[ε, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/13.7.E10 13.7.E10] || <math qid="Q4422">\KummerconfhyperU@{a}{b}{z} = z^{-a}\sum_{s=0}^{n-1}\frac{\Pochhammersym{a}{s}\Pochhammersym{a-b+1}{s}}{s!}(-z)^{-s}+R_{n}(a,b,z)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\KummerconfhyperU@{a}{b}{z} = z^{-a}\sum_{s=0}^{n-1}\frac{\Pochhammersym{a}{s}\Pochhammersym{a-b+1}{s}}{s!}(-z)^{-s}+R_{n}(a,b,z)</syntaxhighlight> || <math>\realpart@@{a} > 0, \realpart@@{(a-b+1)} > 0</math> || <syntaxhighlight lang=mathematica>KummerU(a, b, z) = (z)^(- a)* sum((pochhammer(a, s)*pochhammer(a - b + 1, s))/(factorial(s))*(- z)^(- s)+(((- 1)^(n)* 2*Pi*(z)^(a - b))/(GAMMA(a)*GAMMA(a - b + 1))*(sum((pochhammer(1 - a, s)*pochhammer(b - a, s))/(factorial(s))*(- z)^(- s)* G[n + 2*a - b - s](z), s = 0..m - 1)+ pochhammer(1 - a, m)*pochhammer(b - a, m)*R[m , n](a , b , z))), s = 0..n - 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>HypergeometricU[a, b, z] == (z)^(- a)* Sum[Divide[Pochhammer[a, s]*Pochhammer[a - b + 1, s],(s)!]*(- z)^(- s)+(Divide[(- 1)^(n)* 2*Pi*(z)^(a - b),Gamma[a]*Gamma[a - b + 1]]*(Sum[Divide[Pochhammer[1 - a, s]*Pochhammer[b - a, s],(s)!]*(- z)^(- s)* Subscript[G, n + 2*a - b - s][z], {s, 0, m - 1}, GenerateConditions->None]+ Pochhammer[1 - a, m]*Pochhammer[b - a, m]*Subscript[R, m , n][a , b , z])), {s, 0, n - 1}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .1211969897-.2855680854e-1*I+(-.7071067811+.7071067809*I)*(2.023326709-.5908179514*I+(.8862269255-1.534990063*I)*(1.500000000, -1.500000000, .8660254040+.5000000000*I))
+Test Values: {a = 3/2, b = -3/2, z = 1/2*3^(1/2)+1/2*I, G[n+2*a-b-s] = 1/2*3^(1/2)+1/2*I, R[m,n] = 1/2*3^(1/2)+1/2*I, m = 1, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .1211969897-.2855680854e-1*I+(-.7071067811+.7071067809*I)*(-6.242805838+4.181635900*I+(-1.772453851+3.069980127*I)*(1.500000000, -1.500000000, .8660254040+.5000000000*I))
+Test Values: {a = 3/2, b = -3/2, z = 1/2*3^(1/2)+1/2*I, G[n+2*a-b-s] = 1/2*3^(1/2)+1/2*I, R[m,n] = 1/2*3^(1/2)+1/2*I, m = 1, n = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || Error
+|}
+</div>

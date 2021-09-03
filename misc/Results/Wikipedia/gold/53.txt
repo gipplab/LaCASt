@@ -1,0 +1,35 @@
+__NOTOC__
+== Lommel function ==
+
+; Gold ID : 53
+; Link : https://sigir21.wmflabs.org/wiki/Lommel_function#math.104.2
+; Formula : <math>S_{\mu,\nu}(z) = s_{\mu,\nu}(z) + 2^{\mu-1} \Gamma\left(\frac{\mu + \nu + 1}{2}\right) \Gamma\left(\frac{\mu - \nu + 1}{2}\right)\left(\sin \left[(\mu - \nu)\frac{\pi}{2}\right] J_\nu(z) - \cos \left[(\mu - \nu)\frac{\pi}{2}\right] Y_\nu(z)\right)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>S_{\mu,\nu}(z) = s_{\mu,\nu}(z) + 2^{\mu-1} \Gamma\left(\frac{\mu + \nu + 1}{2}\right) \Gamma\left(\frac{\mu - \nu + 1}{2}\right)\left(\sin \left[(\mu - \nu)\frac{\pi}{2}\right] J_\nu(z) - \cos \left[(\mu - \nu)\frac{\pi}{2}\right] Y_\nu(z)\right)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\LommelS{\mu}{\nu}@{z} = \Lommels{\mu}{\nu}@{z} + 2^{\mu-1} \Gamma(\frac{\mu + \nu + 1}{2}) \Gamma(\frac{\mu - \nu + 1}{2})(\sin [(\mu - \nu) \frac{\cpi}{2}] \BesselJ{\nu}@{z} - \cos [(\mu - \nu) \frac{\cpi}{2}] \BesselY{\nu}@{z})</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\LommelS{\mu}{\nu}@{z} = \Lommels{\mu}{\nu}@{z} + 2^{\mu-1} \EulerGamma@{\frac{\mu + \nu + 1}{2}} \EulerGamma@{\frac{\mu - \nu + 1}{2}}(\sin [(\mu - \nu) \frac{\cpi}{2}] \BesselJ{\nu}@{z} - \cos [(\mu - \nu) \frac{\cpi}{2}] \BesselY{\nu}@{z})</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>S[\[Mu]_, \[Nu]_, z_] := Divide[Pi,2]*(BesselY[\[Nu], z]*Integrate[(x)^\[Mu]* BesselJ[\[Nu], x], {x, 0, z}]- BesselJ[\[Nu], z]*Integrate[(x)^\[Mu]* BesselY[\[Nu], x], {x, 0, z}]) + (2)^(\[Mu]- 1)* Gamma[Divide[\[Mu]+ \[Nu]+ 1,2]]*Gamma[Divide[\[Mu]- \[Nu]+ 1,2]]*(Sin[((\[Mu]- \[Nu])*Divide[Pi,2])*]*BesselJ[\[Nu], z]- Cos[((\[Mu]- \[Nu])*Divide[Pi,2])*]*BesselY[\[Nu], z])</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>LommelS2(mu, nu, z) = LommelS1(mu, nu, z)+ (2)^(mu - 1)* Gamma((mu + nu + 1)/(2))* Gamma((mu - nu + 1)/(2))*(sin(((mu - nu)*(Pi)/(2))*)*BesselJ(nu, z)- cos(((mu - nu)*(Pi)/(2))*)*BesselY(nu, z))</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>LommelS1(mu, nu, z) = (Pi)/(2)*(BesselY(nu, z)*int((x)^(mu)* BesselJ(nu, x), x = 0..z)- BesselJ(nu, z)*int((x)^(mu)* BesselY(nu, x), x = 0..z))</syntaxhighlight>

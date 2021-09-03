@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Asymptotic Approximations - 3.1 Arithmetics and Error Measures}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/3.1#Ex3 3.1#Ex3] || <math qid="Q1070">\ln_{0}(x) = x</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\ln_{0}(x) = x</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">$0[0]ln()*(x) = x</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[$0, 0]Log[]*(x) == x</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- 
+| [https://dlmf.nist.gov/3.1#Ex4 3.1#Ex4] || <math qid="Q1071">\ln_{\ell}(x) = \ln@{\ln_{\ell-1}(x)}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\ln_{\ell}(x) = \ln@{\ln_{\ell-1}(x)}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>$0[ell]ln()*(x) = [ell - 1]ln(ln()*(x))</syntaxhighlight> || <syntaxhighlight lang=mathematica>Subscript[$0, \[ScriptL]]Log[]*(x) Subscript[== , \[ScriptL]- 1]Log[Log[]*(x)]</syntaxhighlight> || Translation Error || Translation Error || - || -
+|}
+</div>

@@ -1,0 +1,52 @@
+{{DISPLAYTITLE:Mathieu Functions and Hill’s Equation - 28.29 Definitions and Basic Properties}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/28.29.E2 28.29.E2] || <math qid="Q8482">Q(z+\pi) = Q(z)</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>Q(z+\pi) = Q(z)</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Q(z + Pi) = Q(z)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Q[z + Pi] == Q[z]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- 
+| [https://dlmf.nist.gov/28.29.E3 28.29.E3] || <math qid="Q8483">\int_{0}^{\pi}Q(z)\diff{z} = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\pi}Q(z)\diff{z} = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>int(Q(z), z = 0..Pi) = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[Q[z], {z, 0, Pi}, GenerateConditions->None] == 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [10 / 10]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 4.273664071+2.467401101*I
+Test Values: {Q = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -2.467401101+4.273664071*I
+Test Values: {Q = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [10 / 10]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[4.2736640683230425, 2.467401100272339]
+Test Values: {Rule[Q, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-2.4674011002723386, 4.2736640683230425]
+Test Values: {Rule[Q, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- 
+| [https://dlmf.nist.gov/28.29.E6 28.29.E6] || <math qid="Q8486">-1 < \realpart@@{\nu}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>-1 < \realpart@@{\nu}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>- 1 < Re(nu)</syntaxhighlight> || <syntaxhighlight lang=mathematica>- 1 < Re[\[Nu]]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 10]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: -1. < -1.500000000
+Test Values: {nu = -3/2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -1. < -2.
+Test Values: {nu = -2}</syntaxhighlight><br></div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 10]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: False
+Test Values: {Rule[ν, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: False
+Test Values: {Rule[ν, -2]}</syntaxhighlight><br></div></div>
+|- 
+| [https://dlmf.nist.gov/28.29.E6 28.29.E6] || <math qid="Q8486">\realpart@@{\nu} \leq 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\realpart@@{\nu} \leq 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Re(nu) <= 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>Re[\[Nu]] <= 1</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 10]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.500000000 <= 1.
+Test Values: {nu = 3/2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 2. <= 1.
+Test Values: {nu = 2}</syntaxhighlight><br></div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [2 / 10]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: False
+Test Values: {Rule[ν, 1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: False
+Test Values: {Rule[ν, 2]}</syntaxhighlight><br></div></div>
+|- 
+| [https://dlmf.nist.gov/28.29.E7 28.29.E7] || <math qid="Q8487">w(z+\pi) = e^{\pi\iunit\nu}w(z)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>w(z+\pi) = e^{\pi\iunit\nu}w(z)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>w(z + Pi) = exp(Pi*I*nu)*w(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>w[z + Pi] == Exp[Pi*I*\[Nu]]*w[z]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 3.389122976+2.558671223*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.732824151+2.239220255*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[3.3891229743891893, 2.5586712226918134]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[3.163689701656905, 2.469736091084983]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/28.29.E11 28.29.E11] || <math qid="Q8491">w(z+\pi) = (-1)^{\nu}w(z)+cP(z)</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>w(z+\pi) = (-1)^{\nu}w(z)+cP(z)</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">w(z + Pi) = (- 1)^(nu)* w(z)+ cP(z)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">w[z + Pi] == (- 1)^\[Nu]* w[z]+ cP[z]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- 
+| [https://dlmf.nist.gov/28.29.E13 28.29.E13] || <math qid="Q8493">w(z+\pi)+w(z-\pi) = 2\cos@{\pi\nu}w(z)</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>w(z+\pi)+w(z-\pi) = 2\cos@{\pi\nu}w(z)</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>w(z + Pi)+ w(z - Pi) = 2*cos(Pi*nu)*w(z)</syntaxhighlight> || <syntaxhighlight lang=mathematica>w[z + Pi]+ w[z - Pi] == 2*Cos[Pi*\[Nu]]*w[z]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: 1.661616693+6.639028674*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -6.639028674+1.661616692*I
+Test Values: {nu = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [240 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[1.6616166873386105, 6.63902867151764]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[14.098728614058, -5.830503683799378]
+Test Values: {Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[2, 3]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/28.29.E18 28.29.E18] || <math qid="Q8498">\lambda_{0} < \mu_{1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\lambda_{0} < \mu_{1}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">lambda[0](<)*mu[1]</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[\[Lambda], 0][<]*Subscript[\[Mu], 1]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

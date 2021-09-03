@@ -1,0 +1,35 @@
+__NOTOC__
+== Continuous dual q-Hahn polynomials ==
+
+; Gold ID : 76
+; Link : https://sigir21.wmflabs.org/wiki/Continuous_dual_q-Hahn_polynomials#math.128.0
+; Formula : <math>p_n(x;a,b,c\mid q)=\frac{(ab,ac;q)_n}{a^n}\cdot {_3\Phi_2}(q^-n,ae^{i\theta},ae^{-i\theta}; ab, ac \mid q;q)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>p_n(x;a,b,c\mid q)=\frac{(ab,ac;q)_n}{a^n}\cdot {_3\Phi_2}(q^-n,ae^{i\theta},ae^{-i\theta}; ab, ac \mid q;q)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>p_n(x ; a , b , c \mid q) = \frac{\qmultiPochhammersym{ab , ac}{q}{n}}{a^n} \cdot{_3\Phi_2}(q^- n , ae^{\iunit \theta} , ae^{- \iunit \theta} ; ab , ac \mid q ; q)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>p_n(x ; a , b , c \mid q) = \frac{\qmultiPochhammersym{ab , ac}{q}{n}}{a^n} \cdot \qgenhyperphi{3}{2}@{q^{- n} , a\expe^{\iunit \theta} , a\expe^{- \iunit \theta}}{ab , ac}{q}{q}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>p[n_, x_, a_, b_, c_, q_] := Divide[Product[QPochhammer[Part[{a*b , a*c},i],q,n],{i,1,Length[{a*b , a*c}]}],(a)^(n)] * QHypergeometricPFQ[{(q)^(- n), a*Exp[I*\[Theta]], a*Exp[- I*\[Theta]]},{a*b , a*c},q,q]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

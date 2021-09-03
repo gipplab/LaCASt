@@ -280,6 +280,17 @@ public final class PomTaggedExpressionUtility {
         return false;
     }
 
+    /**
+     * Returns true if the given expression equals primes or carets because only those two can
+     * immediately follow a semantic macro
+     * @param pte the node in the parse tree
+     * @return true if the node is a prime or caret
+     */
+    public static boolean isOptionalTokenBehindSemanticMacro(PomTaggedExpression pte) {
+        if ( pte == null || pte.getRoot() == null ) return false;
+        return MathTermUtility.equalsOr(pte.getRoot(), MathTermTags.prime, MathTermTags.primes, MathTermTags.caret);
+    }
+
     public static boolean equals(PomTaggedExpression pte, ExpressionTags tag) {
         if (pte == null || tag == null) return false;
         ExpressionTags t = ExpressionTags.getTagByKey(pte.getTag());

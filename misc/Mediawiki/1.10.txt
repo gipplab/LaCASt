@@ -1,0 +1,28 @@
+{{DISPLAYTITLE:Algebraic and Analytic Methods - 1.10 Functions of a Complex Variable}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/1.10.E20 1.10.E20] || <math qid="Q375">|\ln@{1+a_{n}(z)}| \leq M_{n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>|\ln@{1+a_{n}(z)}| \leq M_{n}</syntaxhighlight> || <math>n \geq N</math> || <syntaxhighlight lang=mathematica>abs(ln(1 + a[n](z))) <= M[n]</syntaxhighlight> || <syntaxhighlight lang=mathematica>Abs[Log[1 + Subscript[a, n][z]]] <= Subscript[M, n]</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [126 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .7588760888 <= -1.5
+Test Values: {z = 1/2*3^(1/2)+1/2*I, M[n] = -1.5, a[n] = 1/2*3^(1/2)+1/2*I, n = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .7588760888 <= -1.5
+Test Values: {z = 1/2*3^(1/2)+1/2*I, M[n] = -1.5, a[n] = 1/2*3^(1/2)+1/2*I, n = 2}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: .7588760888 <= -1.5
+Test Values: {z = 1/2*3^(1/2)+1/2*I, M[n] = -1.5, a[n] = 1/2*3^(1/2)+1/2*I, n = 3}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: 1.465287519 <= -1.5
+Test Values: {z = 1/2*3^(1/2)+1/2*I, M[n] = -1.5, a[n] = -1/2+1/2*I*3^(1/2), n = 1}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [246 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: LessEqual[0.7588760887069661, Complex[0.8660254037844387, 0.49999999999999994]]
+Test Values: {Rule[n, 1], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[a, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[M, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: LessEqual[0.7588760887069661, Complex[0.8660254037844387, 0.49999999999999994]]
+Test Values: {Rule[n, 2], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[a, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[Subscript[M, n], Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/1.10.E21 1.10.E21] || <math qid="Q376">\sum^{\infty}_{n=1}M_{n} < \infty</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\sum^{\infty}_{n=1}M_{n} < \infty</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">sum(M[n](<)*infinity, n = 1..infinity)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Sum[Subscript[M, n][<]*Infinity, {n, 1, Infinity}, GenerateConditions->None]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/1.10.E22 1.10.E22] || <math qid="Q377">P(z) = \prod^{\infty}_{n=1}\left(1-\frac{z}{z_{n}}\right)e^{z/z_{n}}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>P(z) = \prod^{\infty}_{n=1}\left(1-\frac{z}{z_{n}}\right)e^{z/z_{n}}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">P(z) = product((1 -(z)/(z[n]))*exp(z/z[n]), n = 1..infinity)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">P[z] == Product[(1 -Divide[z,Subscript[z, n]])*Exp[z/Subscript[z, n]], {n, 1, Infinity}, GenerateConditions->None]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

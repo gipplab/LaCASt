@@ -1,0 +1,24 @@
+{{DISPLAYTITLE:Heun Functions - 31.14 General Fuchsian Equation}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/31.14.E1 31.14.E1] || <math qid="Q9112">\deriv[2]{w}{z}+\left(\sum_{j=1}^{N}\frac{\gamma_{j}}{z-a_{j}}\right)\deriv{w}{z}+\left(\sum_{j=1}^{N}\frac{q_{j}}{z-a_{j}}\right)w = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv[2]{w}{z}+\left(\sum_{j=1}^{N}\frac{\gamma_{j}}{z-a_{j}}\right)\deriv{w}{z}+\left(\sum_{j=1}^{N}\frac{q_{j}}{z-a_{j}}\right)w = 0</syntaxhighlight> || <math>\sum_{j=1}^{N}q_{j} = 0</math> || <syntaxhighlight lang=mathematica>diff(w, [z$(2)])+(sum((gamma[j])/(z - a[j]), j = 1..N))*diff(w, z)+(sum((q[j])/(z - a[j]), j = 1..N))*w = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[w, {z, 2}]+(Sum[Divide[Subscript[\[Gamma], j],z - Subscript[a, j]], {j, 1, N}, GenerateConditions->None])*D[w, z]+(Sum[Divide[Subscript[q, j],z - Subscript[a, j]], {j, 1, N}, GenerateConditions->None])*w == 0</syntaxhighlight> || Skipped - Unable to analyze test case: Null || Skipped - Unable to analyze test case: Null || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/31.14#Ex1 31.14#Ex1] || <math qid="Q9113">\alpha+\beta+1 = \sum_{j=1}^{N}\gamma_{j}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\alpha+\beta+1 = \sum_{j=1}^{N}\gamma_{j}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">alpha + beta + 1 = sum(gamma[j], j = 1..N)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">\[Alpha]+ \[Beta]+ 1 == Sum[Subscript[\[Gamma], j], {j, 1, N}, GenerateConditions->None]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/31.14#Ex2 31.14#Ex2] || <math qid="Q9114">\alpha\beta = \sum_{j=1}^{N}a_{j}q_{j}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\alpha\beta = \sum_{j=1}^{N}a_{j}q_{j}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">alpha*beta = sum(a[j]*q[j], j = 1..N)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">\[Alpha]*\[Beta] == Sum[Subscript[a, j]*Subscript[q, j], {j, 1, N}, GenerateConditions->None]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/31.14.E3 31.14.E3] || <math qid="Q9115">w(z) = \left(\prod_{j=1}^{N}(z-a_{j})^{-\gamma_{j}/2}\right)W(z)</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>w(z) = \left(\prod_{j=1}^{N}(z-a_{j})^{-\gamma_{j}/2}\right)W(z)</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">w(z) = (product((z - a[j])^(- gamma[j]/2), j = 1..N))*W(z)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">w[z] == (Product[(z - Subscript[a, j])^(- Subscript[\[Gamma], j]/2), {j, 1, N}, GenerateConditions->None])*W[z]</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

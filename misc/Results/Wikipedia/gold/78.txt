@@ -1,0 +1,35 @@
+__NOTOC__
+== Al-Salam–Chihara polynomials ==
+
+; Gold ID : 78
+; Link : https://sigir21.wmflabs.org/wiki/Al-Salam–Chihara_polynomials#math.131.0
+; Formula : <math>x=</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>x=</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>x=</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>x=\cos@{\theta}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>x ==</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>x = Cos[\[Theta]]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>x =</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>x = cos(theta)</syntaxhighlight>

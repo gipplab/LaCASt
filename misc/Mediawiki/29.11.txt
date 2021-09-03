@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Lamé Functions - 29.11 Lamé Wave Equation}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/29.11.E1 29.11.E1] || <math qid="Q8721">\deriv[2]{w}{z}+(h-\nu(\nu+1)k^{2}\Jacobiellsnk^{2}@{z}{k}+k^{2}\omega^{2}\Jacobiellsnk^{4}@{z}{k})w = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\deriv[2]{w}{z}+(h-\nu(\nu+1)k^{2}\Jacobiellsnk^{2}@{z}{k}+k^{2}\omega^{2}\Jacobiellsnk^{4}@{z}{k})w = 0</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>diff(w, [z$(2)])+(h - nu*(nu + 1)*(k)^(2)* (JacobiSN(z, k))^(2)+ (k)^(2)* (omega)^(2)* (JacobiSN(z, k))^(4))*w = 0</syntaxhighlight> || <syntaxhighlight lang=mathematica>D[w, {z, 2}]+(h - \[Nu]*(\[Nu]+ 1)*(k)^(2)* (JacobiSN[z, (k)^2])^(2)+ (k)^(2)* \[Omega]^(2)* (JacobiSN[z, (k)^2])^(4))*w == 0</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: .4970479804-.2136667430*I
+Test Values: {h = 1/2*3^(1/2)+1/2*I, nu = 1/2*3^(1/2)+1/2*I, omega = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, k = 1}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: -.5039614158-1.687364305*I
+Test Values: {h = 1/2*3^(1/2)+1/2*I, nu = 1/2*3^(1/2)+1/2*I, omega = 1/2*3^(1/2)+1/2*I, w = 1/2*3^(1/2)+1/2*I, z = 1/2*3^(1/2)+1/2*I, k = 2}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [300 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Complex[0.4970479802306743, -0.21366674241821534]
+Test Values: {Rule[h, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[k, 1], Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ω, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Complex[-0.5039614145885605, -1.6873643054323533]
+Test Values: {Rule[h, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[k, 2], Rule[w, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ν, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[ω, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

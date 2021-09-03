@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Coulomb Functions - 33.19 Power-Series Expansions in <math>r</math>}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/33.19.E4 33.19.E4] || <math qid="Q9662">\gamma_{k}-\gamma_{k-1}+\tfrac{1}{4}(k-1)(k-2\ell-2)\epsilon\gamma_{k-2} = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\gamma_{k}-\gamma_{k-1}+\tfrac{1}{4}(k-1)(k-2\ell-2)\epsilon\gamma_{k-2} = 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">gamma[k]- gamma[k - 1]+(1)/(4)*(k - 1)*(k - 2*ell - 2)*epsilon*gamma[k - 2] = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[\[Gamma], k]- Subscript[\[Gamma], k - 1]+Divide[1,4]*(k - 1)*(k - 2*\[ScriptL]- 2)*\[Epsilon]*Subscript[\[Gamma], k - 2] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/33.19.E6 33.19.E6] || <math qid="Q9665">k(k+2\ell+1)\delta_{k}+2\delta_{k-1}+\epsilon\delta_{k-2}+2(2k+2\ell+1)A(\epsilon,\ell)\alpha_{k} = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>k(k+2\ell+1)\delta_{k}+2\delta_{k-1}+\epsilon\delta_{k-2}+2(2k+2\ell+1)A(\epsilon,\ell)\alpha_{k} = 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">k*(k + 2*ell + 1)*delta[k]+ 2*delta[k - 1]+ epsilon*delta[k - 2]+ 2*(2*k + 2*ell + 1)*(product(1 + epsilon*(k)^(2), k = 0..ell))*alpha[k] = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">k*(k + 2*\[ScriptL]+ 1)*Subscript[\[Delta], k]+ 2*Subscript[\[Delta], k - 1]+ \[Epsilon]*Subscript[\[Delta], k - 2]+ 2*(2*k + 2*\[ScriptL]+ 1)*(Product[1 + \[Epsilon]*(k)^(2), {k, 0, \[ScriptL]}, GenerateConditions->None])*Subscript[\[Alpha], k] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/33.19.E7 33.19.E7] || <math qid="Q9666">\beta_{k}-\beta_{k-1}+\tfrac{1}{4}(k-1)(k-2\ell-2)\epsilon\beta_{k-2}+\tfrac{1}{2}(k-1)\epsilon\gamma_{k-2} = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\beta_{k}-\beta_{k-1}+\tfrac{1}{4}(k-1)(k-2\ell-2)\epsilon\beta_{k-2}+\tfrac{1}{2}(k-1)\epsilon\gamma_{k-2} = 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">beta[k]- beta[k - 1]+(1)/(4)*(k - 1)*(k - 2*ell - 2)*epsilon*beta[k - 2]+(1)/(2)*(k - 1)*epsilon*gamma[k - 2] = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Subscript[\[Beta], k]- Subscript[\[Beta], k - 1]+Divide[1,4]*(k - 1)*(k - 2*\[ScriptL]- 2)*\[Epsilon]*Subscript[\[Beta], k - 2]+Divide[1,2]*(k - 1)*\[Epsilon]*Subscript[\[Gamma], k - 2] == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

@@ -1,0 +1,35 @@
+__NOTOC__
+== Meixner polynomials ==
+
+; Gold ID : 64
+; Link : https://sigir21.wmflabs.org/wiki/Meixner_polynomials#math.116.0
+; Formula : <math>M_n(x,\beta,\gamma) = \sum_{k=0}^n (-1)^k{n \choose k}{x\choose k}k!(x+\beta)_{n-k}\gamma^{-k}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>M_n(x,\beta,\gamma) = \sum_{k=0}^n (-1)^k{n \choose k}{x\choose k}k!(x+\beta)_{n-k}\gamma^{-k}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>M_n(x , \beta , \gamma) = \sum_{k=0}^n(- 1)^k{n \choose k}{x\choose k} k! \Pochhammersym{x + \beta}{n-k} \gamma^{-k}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\MeixnerpolyM{n}@{x}{\beta}{\gamma} = \sum_{k=0}^n(- 1)^k{n \choose k}{x\choose k} k! \Pochhammersym{x + \beta}{n-k} \gamma^{-k}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Subscript[\[CapitalMu], n][x , \[Beta], \[Gamma]] == Sum[(- 1)^(k)*Binomial[n,k]*Binomial[x,k]*(k)!*Pochhammer[x + \[Beta], n - k]*\[Gamma]^(- k), {k, 0, n}, GenerateConditions->None]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>M[n_, x_, \[Beta]_, \[Gamma]_] := Sum[(- 1)^(k)*Binomial[n,k]*Binomial[x,k]*(k)!*Pochhammer[x + \[Beta], n - k]*\[Gamma]^(- k), {k, 0, n}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>Mu[n](x , beta , gamma) = sum((- 1)^(k)*binomial(n,k)*binomial(x,k)*factorial(k)*pochhammer(x + beta, n - k)*(gamma)^(- k), k = 0..n)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

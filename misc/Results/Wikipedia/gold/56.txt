@@ -1,0 +1,35 @@
+__NOTOC__
+== Anger function ==
+
+; Gold ID : 56
+; Link : https://sigir21.wmflabs.org/wiki/Anger_function#math.108.3
+; Formula : <math>\mathbf{J}_\nu(z)=\cos\frac{\pi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^kz^{2k}}{4^k\Gamma\left(k+\frac{\nu}{2}+1\right)\Gamma\left(k-\frac{\nu}{2}+1\right)}+\sin\frac{\pi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^kz^{2k+1}}{2^{2k+1}\Gamma\left(k+\frac{\nu}{2}+\frac{3}{2}\right)\Gamma\left(k-\frac{\nu}{2}+\frac{3}{2}\right)}</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\mathbf{J}_\nu(z)=\cos\frac{\pi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^kz^{2k}}{4^k\Gamma\left(k+\frac{\nu}{2}+1\right)\Gamma\left(k-\frac{\nu}{2}+1\right)}+\sin\frac{\pi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^kz^{2k+1}}{2^{2k+1}\Gamma\left(k+\frac{\nu}{2}+\frac{3}{2}\right)\Gamma\left(k-\frac{\nu}{2}+\frac{3}{2}\right)}</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\AngerJ{\nu}@{z} = \cos \frac{\cpi \nu}{2} \sum_{k=0}^\infty \frac{(-1)^k z^{2k}}{4^k \Gamma(k + \frac{\nu}{2} + 1) \Gamma(k - \frac{\nu}{2} + 1)} + \sin \frac{\cpi \nu}{2} \sum_{k=0}^\infty \frac{(-1)^k z^{2k+1}}{2^{2k+1} \Gamma(k + \frac{\nu}{2} + \frac{3}{2}) \Gamma(k - \frac{\nu}{2} + \frac{3}{2})}</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\AngerJ{\nu}@{z} = \cos \frac{\cpi\nu}{2} \sum_{k=0}^\infty \frac{(-1)^k z^{2k}}{4^k\EulerGamma@{k+\frac{\nu}{2}+1}\EulerGamma@{k-\frac{\nu}{2}+1}}+\sin\frac{\cpi\nu}{2}\sum_{k=0}^\infty\frac{(-1)^k z^{2k+1}}{2^{2k+1}\EulerGamma@{k+\frac{\nu}{2}+\frac{3}{2}}\EulerGamma@{k-\frac{\nu}{2}+\frac{3}{2}}}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>AngerJ[\[Nu], z] == Cos[Divide[Pi*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k),(4)^(k)* \[CapitalGamma]*(k +Divide[\[Nu],2]+ 1)*\[CapitalGamma]*(k -Divide[\[Nu],2]+ 1)], {k, 0, Infinity}, GenerateConditions->None]+ Sin[Divide[Pi*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k + 1),(2)^(2*k + 1)* \[CapitalGamma]*(k +Divide[\[Nu],2]+Divide[3,2])*\[CapitalGamma]*(k -Divide[\[Nu],2]+Divide[3,2])], {k, 0, Infinity}, GenerateConditions->None]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>AngerJ[\[Nu], z] == Cos[Divide[Pi*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k),(4)^(k)* Gamma[k +Divide[\[Nu],2]+ 1]*Gamma[k -Divide[\[Nu],2]+ 1]], {k, 0, Infinity}]+ Sin[Divide[Pi*\[Nu],2]]*Sum[Divide[(- 1)^(k)* (z)^(2*k + 1),(2)^(2*k + 1)* Gamma[k +Divide[\[Nu],2]+Divide[3,2]]*Gamma[k -Divide[\[Nu],2]+Divide[3,2]]], {k, 0, Infinity}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>AngerJ(nu, z) = cos((Pi*nu)/(2))*sum(((- 1)^(k)* (z)^(2*k))/((4)^(k)* Gamma*(k +(nu)/(2)+ 1)*Gamma*(k -(nu)/(2)+ 1)), k = 0..infinity)+ sin((Pi*nu)/(2))*sum(((- 1)^(k)* (z)^(2*k + 1))/((2)^(2*k + 1)* Gamma*(k +(nu)/(2)+(3)/(2))*Gamma*(k -(nu)/(2)+(3)/(2))), k = 0..infinity)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>AngerJ(nu, z) = cos((Pi*nu)/(2))*sum(((- 1)^(k)* (z)^(2*k))/((4)^(k)* GAMMA(k +(nu)/(2)+ 1)*GAMMA(k -(nu)/(2)+ 1)), k = 0..infinity)+ sin((Pi*nu)/(2))*sum(((- 1)^(k)* (z)^(2*k + 1))/((2)^(2*k + 1)* GAMMA(k +(nu)/(2)+(3)/(2))*GAMMA(k -(nu)/(2)+(3)/(2))), k = 0..infinity)</syntaxhighlight>

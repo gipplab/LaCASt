@@ -1,0 +1,35 @@
+__NOTOC__
+== Dawson function ==
+
+; Gold ID : 23
+; Link : https://sigir21.wmflabs.org/wiki/Dawson_function#math.73.41
+; Formula : <math>F'(y)=1-2yF(y)</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>F'(y)=1-2yF(y)</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| {{na}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>F'(y)=1-2yF(y)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\DawsonsintF'@{y}=1-2y\DawsonsintF@{y}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>D[DawsonF[y], {y, 1}] == 1 - 2*y*DawsonF[y]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>diff( dawson(y), y$\$$(1) ) = 1 - 2*y*dawson(y)</syntaxhighlight>

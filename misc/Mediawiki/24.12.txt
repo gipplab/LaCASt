@@ -1,0 +1,26 @@
+{{DISPLAYTITLE:Bernoulli and Euler Polynomials - 24.12 Zeros}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/24.12.E1 24.12.E1] || <math qid="Q7522">\tfrac{1}{2} \leq x_{1}^{(n)}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\tfrac{1}{2} \leq x_{1}^{(n)}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(1)/(2) <= (x[1])^(n)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Divide[1,2] <= (Subscript[x, 1])^(n)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/24.12.E2 24.12.E2] || <math qid="Q7523">\frac{3}{4}+\frac{1}{2^{n+2}\pi} < x^{(n)}_{1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\frac{3}{4}+\frac{1}{2^{n+2}\pi} < x^{(n)}_{1}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(3)/(4)+(1)/((2)^(n + 2)* Pi) < (x[1])^(n)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Divide[3,4]+Divide[1,(2)^(n + 2)* Pi] < (Subscript[x, 1])^(n)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/24.12.E7 24.12.E7] || <math qid="Q7530">\tfrac{1}{2} \leq y^{(n)}_{1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\tfrac{1}{2} \leq y^{(n)}_{1}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(1)/(2) <= (y[1])^(n)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Divide[1,2] <= (Subscript[y, 1])^(n)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/24.12.E9 24.12.E9] || <math qid="Q7532">\frac{3}{2}-\frac{\pi^{n+1}}{3(n!)} < y^{(n)}_{2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\frac{3}{2}-\frac{\pi^{n+1}}{3(n!)} < y^{(n)}_{2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(3)/(2)-((Pi)^(n + 1))/(3*(factorial(n))) < (y[2])^(n)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Divide[3,2]-Divide[(Pi)^(n + 1),3*((n)!)] < (Subscript[y, 2])^(n)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/24.12.E10 24.12.E10] || <math qid="Q7533">\frac{3}{2} < y^{(n)}_{2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>\frac{3}{2} < y^{(n)}_{2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(3)/(2) < (y[2])^(n)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">Divide[3,2] < (Subscript[y, 2])^(n)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

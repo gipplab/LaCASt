@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.generic.mlp.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import gov.nist.drmf.interpreter.generic.macro.MacroBean;
 import gov.nist.drmf.interpreter.generic.macro.MacroGenericSemanticEntry;
 
@@ -34,5 +35,17 @@ public class SemanticReplacementRule {
 
     public double getScore() {
         return score;
+    }
+
+    @JsonIgnore
+    @Override
+    public String toString() {
+        return macro.getMetaInformation().getDescription() + " [" + score + "]: " + pattern.getGenericTex() + " -> " + pattern.getSemanticTex();
+    }
+
+    @JsonIgnore
+    public String getWikitextTableString() {
+        return String.format("| <math>%5.4f</math> || %s || <syntaxhighlight lang=tex inline>%s</syntaxhighlight> || -> || <syntaxhighlight lang=tex inline>%s</syntaxhighlight>\n|-",
+                score, macro.getName(), pattern.getGenericTex(), pattern.getSemanticTex());
     }
 }

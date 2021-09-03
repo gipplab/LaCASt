@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Orthogonal Polynomials - 18.21 Hahn Class: Interrelations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/18.21#Ex3 18.21#Ex3] || <math qid="Q5856">\CharlierpolyC{n}@{x}{a} = \CharlierpolyC{x}@{n}{a}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\CharlierpolyC{n}@{x}{a} = \CharlierpolyC{x}@{n}{a}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>HypergeometricPFQ[{-(n), -(x)}, {}, -Divide[1,a]] == HypergeometricPFQ[{-(x), -(n)}, {}, -Divide[1,a]]</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|- 
+| [https://dlmf.nist.gov/18.21.E9 18.21.E9] || <math qid="Q5863">\lim_{a\to\infty}(2a)^{\frac{1}{2}n}\CharlierpolyC{n}@{(2a)^{\frac{1}{2}}x+a}{a} = (-1)^{n}\HermitepolyH{n}@{x}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\lim_{a\to\infty}(2a)^{\frac{1}{2}n}\CharlierpolyC{n}@{(2a)^{\frac{1}{2}}x+a}{a} = (-1)^{n}\HermitepolyH{n}@{x}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>Error</syntaxhighlight> || <syntaxhighlight lang=mathematica>Limit[(2*a)^(Divide[1,2]*n)* HypergeometricPFQ[{-(n), -((2*a)^(Divide[1,2])* x + a)}, {}, -Divide[1,a]], a -> Infinity, GenerateConditions->None] == (- 1)^(n)* HermiteH[n, x]</syntaxhighlight> || Missing Macro Error || Missing Macro Error || - || -
+|}
+</div>

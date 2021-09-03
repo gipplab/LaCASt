@@ -1,0 +1,35 @@
+__NOTOC__
+== Error function ==
+
+; Gold ID : 11
+; Link : https://sigir21.wmflabs.org/wiki/Error_function#math.61.27
+; Formula : <math>\operatorname{erf}^{(k)}(z) = \frac{2 (-1)^{k-1}}{\sqrt{\pi}} \mathit{H}_{k-1}(z) e^{-z^2} = \frac{2}{\sqrt{\pi}}  \frac{d^{k-1}}{dz^{k-1}} \left(e^{-z^2}\right),\qquad k=1, 2, \dots</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\operatorname{erf}^{(k)}(z) = \frac{2 (-1)^{k-1}}{\sqrt{\pi}} \mathit{H}_{k-1}(z) e^{-z^2} = \frac{2}{\sqrt{\pi}}  \frac{d^{k-1}}{dz^{k-1}} \left(e^{-z^2}\right),\qquad k=1, 2, \dots</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| {{ya}}
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\erf@@{(z)}^{(k)} = \frac{2 (-1)^{k-1}}{\sqrt{\cpi}} \HermitepolyH{k-1}@{z} \expe^{-z^2} = \frac{2}{\sqrt{\cpi}} \deriv [{k-1}]{ }{z}(\expe^{-z^2}) , \qquad k = 1 , 2 , \dots</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\erf@@{(z)}^{(k)} = \frac{2 (-1)^{k-1}}{\sqrt{\cpi}} \HermitepolyH{k-1}@{z} \expe^{-z^2} = \frac{2}{\sqrt{\cpi}} \deriv [{k-1}]{ }{z}(\expe^{-z^2}) , \qquad k = 1 , 2 , \dots</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>(Erf[z])^(k) == Divide[2*(- 1)^(k - 1),Sqrt[Pi]]*HermiteH[k - 1, z]*Exp[- (z)^(2)] == Divide[2,Sqrt[Pi]]*(D[(Exp[- (temp)^(2)]), {temp, k - 1}]/.temp-> z)</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>D[Erf[z], {z, k}] == Divide[2*(- 1)^(k - 1),Sqrt[Pi]]*HermiteH[k - 1, z]*Exp[- (z)^(2)] == Divide[2,Sqrt[Pi]]*D[Exp[- (z)^(2)], {z, k - 1}]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline>(erf(z))^(k) = (2*(- 1)^(k - 1))/(sqrt(Pi))*HermiteH(k - 1, z)*exp(- (z)^(2)) = (2)/(sqrt(Pi))*subs( temp=z, diff( (exp(- (temp)^(2))), temp$(k - 1) ) )</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>diff(erf(z), [z$\$$k]) = (2*(- 1)^(k - 1))/(sqrt(Pi))*HermiteH(k - 1, z)*exp(- (z)^(2)) = (2)/(sqrt(Pi))*diff(exp(- (z)^(2)), [z$\$$(k - 1)])</syntaxhighlight>

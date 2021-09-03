@@ -1,0 +1,35 @@
+__NOTOC__
+== Askey–Wilson polynomials ==
+
+; Gold ID : 59
+; Link : https://sigir21.wmflabs.org/wiki/Askey–Wilson_polynomials#math.111.0
+; Formula : <math>p_n(x;a,b,c,d|q) =(ab,ac,ad;q)_na^{-n}\;_{4}\phi_3 \left[\begin{matrix} q^{-n}&abcdq^{n-1}&ae^{i\theta}&ae^{-i\theta} \\ ab&ac&ad \end{matrix} ; q,q \right]</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>p_n(x;a,b,c,d|q) =(ab,ac,ad;q)_na^{-n}\;_{4}\phi_3 \left[\begin{matrix} q^{-n}&abcdq^{n-1}&ae^{i\theta}&ae^{-i\theta} \\ ab&ac&ad \end{matrix} ; q,q \right]</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{na}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>p_n(x ; a , b , c , d|q) =(ab , ac , ad ; q)_n a_{4}^{-n} \phi_3 [\begin{matrix}q^{-n} abcdq^{n-1} ae^{\iunit \theta} ae^{- \iunit \theta} ab&ac&ad\end{matrix} ; q , q]</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\AskeyWilsonpolyp{n}@{x}{a}{b}{c}{d}{q} = \qmultiPochhammersym{ab , ac , ad}{q}{n} a^{-n} \qgenhyperphi{4}{3}@{q^{-n} , abcdq^{n-1} , a\expe^{\iunit\theta} , a\expe^{-\iunit\theta}}{ab , ac , ad}{q}{q}</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>p[n_, x_, a_, b_, c_, d_, q_] := Product[QPochhammer[Part[{a*b , a*c , a*d},i],q,n],{i,1,Length[{a*b , a*c , a*d}]}]*(a)^(- n)* QHypergeometricPFQ[{(q)^(- n), a*b*c*d*(q)^(n - 1), a*Exp[I*\[Theta]], a*Exp[- I*\[Theta]]},{a*b , a*c , a*d},q,q]</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

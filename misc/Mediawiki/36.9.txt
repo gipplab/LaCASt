@@ -1,0 +1,18 @@
+{{DISPLAYTITLE:Integrals with Coalescing Saddles - 36.9 Integral Identities}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/36.9.E2 36.9.E2] || <math qid="Q9955">(\AiryAi@{x})^{2} = \frac{2^{2/3}}{\pi}\int_{0}^{\infty}\AiryAi@{2^{2/3}(u^{2}+x)}\diff{u}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>(\AiryAi@{x})^{2} = \frac{2^{2/3}}{\pi}\int_{0}^{\infty}\AiryAi@{2^{2/3}(u^{2}+x)}\diff{u}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(AiryAi(x))^(2) = ((2)^(2/3))/(Pi)*int(AiryAi((2)^(2/3)*((u)^(2)+ x)), u = 0..infinity)</syntaxhighlight> || <syntaxhighlight lang=mathematica>(AiryAi[x])^(2) == Divide[(2)^(2/3),Pi]*Integrate[AiryAi[(2)^(2/3)*((u)^(2)+ x)], {u, 0, Infinity}, GenerateConditions->None]</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|}
+</div>

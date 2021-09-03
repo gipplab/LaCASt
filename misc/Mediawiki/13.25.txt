@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Confluent Hypergeometric Functions - 13.25 Products}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/13.25.E1 13.25.E1] || <math qid="Q4652">\WhittakerconfhyperM{\kappa}{\mu}@{z}\WhittakerconfhyperM{\kappa}{-\mu-1}@{z}+\frac{(\frac{1}{2}+\mu+\kappa)(\frac{1}{2}+\mu-\kappa)}{4\mu(1+\mu)(1+2\mu)^{2}}\WhittakerconfhyperM{\kappa}{\mu+1}@{z}\WhittakerconfhyperM{\kappa}{-\mu}@{z} = 1</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\WhittakerconfhyperM{\kappa}{\mu}@{z}\WhittakerconfhyperM{\kappa}{-\mu-1}@{z}+\frac{(\frac{1}{2}+\mu+\kappa)(\frac{1}{2}+\mu-\kappa)}{4\mu(1+\mu)(1+2\mu)^{2}}\WhittakerconfhyperM{\kappa}{\mu+1}@{z}\WhittakerconfhyperM{\kappa}{-\mu}@{z} = 1</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>WhittakerM(kappa, mu, z)*WhittakerM(kappa, - mu - 1, z)+(((1)/(2)+ mu + kappa)*((1)/(2)+ mu - kappa))/(4*mu*(1 + mu)*(1 + 2*mu)^(2))*WhittakerM(kappa, mu + 1, z)*WhittakerM(kappa, - mu, z) = 1</syntaxhighlight> || <syntaxhighlight lang=mathematica>WhittakerM[\[Kappa], \[Mu], z]*WhittakerM[\[Kappa], - \[Mu]- 1, z]+Divide[(Divide[1,2]+ \[Mu]+ \[Kappa])*(Divide[1,2]+ \[Mu]- \[Kappa]),4*\[Mu]*(1 + \[Mu])*(1 + 2*\[Mu])^(2)]*WhittakerM[\[Kappa], \[Mu]+ 1, z]*WhittakerM[\[Kappa], - \[Mu], z] == 1</syntaxhighlight> || Failure || Failure || <div class="toccolours mw-collapsible mw-collapsed">Failed [168 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Float(infinity)+Float(infinity)*I
+Test Values: {kappa = 1/2*3^(1/2)+1/2*I, mu = -3/2, z = 1/2*3^(1/2)+1/2*I}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Float(infinity)+Float(infinity)*I
+Test Values: {kappa = 1/2*3^(1/2)+1/2*I, mu = -3/2, z = -1/2+1/2*I*3^(1/2)}</syntaxhighlight><br>... skip entries to safe data</div></div> || <div class="toccolours mw-collapsible mw-collapsed">Failed [162 / 300]<div class="mw-collapsible-content"><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[κ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, -1.5]}</syntaxhighlight><br><syntaxhighlight lang=mathematica>Result: Indeterminate
+Test Values: {Rule[z, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[κ, Power[E, Times[Complex[0, Rational[1, 6]], Pi]]], Rule[μ, 1.5]}</syntaxhighlight><br>... skip entries to safe data</div></div>
+|}
+</div>

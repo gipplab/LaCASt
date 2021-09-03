@@ -1,0 +1,7 @@
+<div style="-moz-column-count:2; column-count:2;">
+; Notation : [[13.1|13.1 Special Notation]]<br>
+; Kummer Functions : [[13.2|13.2 Definitions and Basic Properties]]<br>[[13.3|13.3 Recurrence Relations and Derivatives]]<br>[[13.4|13.4 Integral Representations]]<br>[[13.5|13.5 Continued Fractions]]<br>[[13.6|13.6 Relations to Other Functions]]<br>[[13.7|13.7 Asymptotic Expansions for Large Argument]]<br>[[13.8|13.8 Asymptotic Approximations for Large Parameters]]<br>[[13.9|13.9 Zeros]]<br>[[13.10|13.10 Integrals]]<br>[[13.11|13.11 Series]]<br>[[13.12|13.12 Products]]<br>[[13.13|13.13 Addition and Multiplication Theorems]]<br>
+; Whittaker Functions : [[13.14|13.14 Definitions and Basic Properties]]<br>[[13.15|13.15 Recurrence Relations and Derivatives]]<br>[[13.16|13.16 Integral Representations]]<br>[[13.17|13.17 Continued Fractions]]<br>[[13.18|13.18 Relations to Other Functions]]<br>[[13.19|13.19 Asymptotic Expansions for Large Argument]]<br>[[13.20|13.20 Uniform Asymptotic Approximations for Large <math>\mu</math>]]<br>[[13.21|13.21 Uniform Asymptotic Approximations for Large <math>\kappa</math>]]<br>[[13.22|13.22 Zeros]]<br>[[13.23|13.23 Integrals]]<br>[[13.24|13.24 Series]]<br>[[13.25|13.25 Products]]<br>[[13.26|13.26 Addition and Multiplication Theorems]]<br>
+; Applications : [[13.27|13.27 Mathematical Applications]]<br>[[13.28|13.28 Physical Applications]]<br>
+; Computation : [[13.29|13.29 Methods of Computation]]<br>[[13.30|13.30 Tables]]<br>[[13.31|13.31 Approximations]]<br>[[13.32|13.32 Software]]<br>
+</div>

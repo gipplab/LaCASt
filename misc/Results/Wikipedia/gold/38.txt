@@ -1,0 +1,35 @@
+__NOTOC__
+== Parabolic cylinder function ==
+
+; Gold ID : 38
+; Link : https://sigir21.wmflabs.org/wiki/Parabolic_cylinder_function#math.88.0
+; Formula : <math>\frac{d^2f}{dz^2} + \left(\tilde{a}z^2+\tilde{b}z+\tilde{c}\right)f=0</math>
+; TeX Source : <syntaxhighlight lang="tex" inline>\frac{d^2f}{dz^2} + \left(\tilde{a}z^2+\tilde{b}z+\tilde{c}\right)f=0</syntaxhighlight>
+
+{| class="wikitable"
+|-
+! colspan="3" | Translation Results
+|-
+! Semantic LaTeX !! Mathematica Translation !! Maple Translations
+|-
+| {{ya}}
+| {{na}}
+| -
+|}
+
+=== Semantic LaTeX ===
+
+; Translation : <syntaxhighlight lang="tex" inline>\deriv [2]{f}{z} +(\tilde{a} z^2 + \tilde{b} z + \tilde{c}) f = 0</syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="tex" inline>\deriv [2]{f}{z} +(\tilde{a} z^2 + \tilde{b} z + \tilde{c}) f = 0</syntaxhighlight>
+
+
+=== Mathematica ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline>D[f[z], {z, 2}] + (a*z^2 + b*z + c)*f[z] == 0</syntaxhighlight>
+
+
+=== Maple ===
+
+; Translation : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>
+; Expected (Gold Entry) : <syntaxhighlight lang="mathematica" inline></syntaxhighlight>

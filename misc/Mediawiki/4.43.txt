@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Elementary Functions - 4.43 Cubic Equations}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/4.43#Ex1 4.43#Ex1] || <math qid="Q2001">A = \left(-\tfrac{4}{3}p\right)^{1/2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>A = \left(-\tfrac{4}{3}p\right)^{1/2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">A = (-(4)/(3)*p)^(1/2)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">A == (-Divide[4,3]*p)^(1/2)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/4.43#Ex2 4.43#Ex2] || <math qid="Q2002">B = \left(\tfrac{4}{3}p\right)^{1/2}</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>B = \left(\tfrac{4}{3}p\right)^{1/2}</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">B = ((4)/(3)*p)^(1/2)</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">B == (Divide[4,3]*p)^(1/2)</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|- style="background: #dfe6e9;"
+| [https://dlmf.nist.gov/4.43.E2 4.43.E2] || <math qid="Q2003">z^{3}+pz+q = 0</math><br><syntaxhighlight lang="tex" style="font-size: 75%; background: inherit;" inline>z^{3}+pz+q = 0</syntaxhighlight> || <math></math> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(z)^(3)+ p*z + q = 0</pre></div> || <div class="mw-highlight mw-highlight-lang-mathematica mw-content-ltr" dir="ltr"><pre style="background: inherit;">(z)^(3)+ p*z + q == 0</pre></div> || Skipped - no semantic math || Skipped - no semantic math || - || -
+|}
+</div>

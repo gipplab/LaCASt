@@ -1,0 +1,22 @@
+{{DISPLAYTITLE:Combinatorial Analysis - 26.5 Lattice Paths: Catalan Numbers}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/26.5.E1 26.5.E1] || <math qid="Q7796">\frac{1}{n+1}\binom{2n}{n} = \frac{1}{2n+1}\binom{2n+1}{n}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{1}{n+1}\binom{2n}{n} = \frac{1}{2n+1}\binom{2n+1}{n}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(1)/(n + 1)*binomial(2*n,n) = (1)/(2*n + 1)*binomial(2*n + 1,n)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[1,n + 1]*Binomial[2*n,n] == Divide[1,2*n + 1]*Binomial[2*n + 1,n]</syntaxhighlight> || Successful || Successful || Skip - symbolical successful subtest || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.5.E1 26.5.E1] || <math qid="Q7796">\frac{1}{2n+1}\binom{2n+1}{n} = \binom{2n}{n}-\binom{2n}{n-1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\frac{1}{2n+1}\binom{2n+1}{n} = \binom{2n}{n}-\binom{2n}{n-1}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>(1)/(2*n + 1)*binomial(2*n + 1,n) = binomial(2*n,n)-binomial(2*n,n - 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Divide[1,2*n + 1]*Binomial[2*n + 1,n] == Binomial[2*n,n]-Binomial[2*n,n - 1]</syntaxhighlight> || Successful || Failure || Skip - symbolical successful subtest || Successful [Tested: 3]
+|- 
+| [https://dlmf.nist.gov/26.5.E1 26.5.E1] || <math qid="Q7796">\binom{2n}{n}-\binom{2n}{n-1} = \binom{2n-1}{n}-\binom{2n-1}{n+1}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\binom{2n}{n}-\binom{2n}{n-1} = \binom{2n-1}{n}-\binom{2n-1}{n+1}</syntaxhighlight> || <math></math> || <syntaxhighlight lang=mathematica>binomial(2*n,n)-binomial(2*n,n - 1) = binomial(2*n - 1,n)-binomial(2*n - 1,n + 1)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Binomial[2*n,n]-Binomial[2*n,n - 1] == Binomial[2*n - 1,n]-Binomial[2*n - 1,n + 1]</syntaxhighlight> || Failure || Failure || Successful [Tested: 3] || Successful [Tested: 3]
+|}
+</div>

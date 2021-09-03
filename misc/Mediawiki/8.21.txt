@@ -1,0 +1,20 @@
+{{DISPLAYTITLE:Incomplete Gamma and Related Functions - 8.21 Generalized Sine and Cosine Integrals}}
+
+<div style="width: 100%; height: 75vh; overflow: auto;">
+{| class="wikitable sortable" style="margin: 0;"
+|-
+! scope="col" style="position: sticky; top: 0;" | DLMF 
+! scope="col" style="position: sticky; top: 0;" | Formula 
+! scope="col" style="position: sticky; top: 0;" | Constraints 
+! scope="col" style="position: sticky; top: 0;" | Maple
+! scope="col" style="position: sticky; top: 0;" | Mathematica
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Symbolic<br>Mathematica
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Maple
+! scope="col" style="position: sticky; top: 0;" | Numeric<br>Mathematica
+|- 
+| [https://dlmf.nist.gov/8.21.E3 8.21.E3] || <math qid="Q2724">\int_{0}^{\infty}t^{a-1}e^{+\iunit t}\diff{t} = e^{+\frac{1}{2}\pi\iunit a}\EulerGamma@{a}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\infty}t^{a-1}e^{+\iunit t}\diff{t} = e^{+\frac{1}{2}\pi\iunit a}\EulerGamma@{a}</syntaxhighlight> || <math>0 < \realpart@@{a}, \realpart@@{a} < 1, \realpart@@{a} > 0</math> || <syntaxhighlight lang=mathematica>int((t)^(a - 1)* exp(+ I*t), t = 0..infinity) = exp(+(1)/(2)*Pi*I*a)*GAMMA(a)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[(t)^(a - 1)* Exp[+ I*t], {t, 0, Infinity}, GenerateConditions->None] == Exp[+Divide[1,2]*Pi*I*a]*Gamma[a]</syntaxhighlight> || Successful || Aborted || - || Successful [Tested: 1]
+|- 
+| [https://dlmf.nist.gov/8.21.E3 8.21.E3] || <math qid="Q2724">\int_{0}^{\infty}t^{a-1}e^{-\iunit t}\diff{t} = e^{-\frac{1}{2}\pi\iunit a}\EulerGamma@{a}</math><br><syntaxhighlight lang="tex" style="font-size: 75%;" inline>\int_{0}^{\infty}t^{a-1}e^{-\iunit t}\diff{t} = e^{-\frac{1}{2}\pi\iunit a}\EulerGamma@{a}</syntaxhighlight> || <math>0 < \realpart@@{a}, \realpart@@{a} < 1, \realpart@@{a} > 0</math> || <syntaxhighlight lang=mathematica>int((t)^(a - 1)* exp(- I*t), t = 0..infinity) = exp(-(1)/(2)*Pi*I*a)*GAMMA(a)</syntaxhighlight> || <syntaxhighlight lang=mathematica>Integrate[(t)^(a - 1)* Exp[- I*t], {t, 0, Infinity}, GenerateConditions->None] == Exp[-Divide[1,2]*Pi*I*a]*Gamma[a]</syntaxhighlight> || Successful || Aborted || - || Successful [Tested: 1]
+|}
+</div>

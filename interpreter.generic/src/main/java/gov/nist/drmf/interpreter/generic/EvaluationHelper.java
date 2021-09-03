@@ -16,8 +16,12 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.meta.ListExtender;
 import gov.nist.drmf.interpreter.common.pojo.FormulaDefinition;
-import gov.nist.drmf.interpreter.generic.common.GenericFunctionAnnotator;
-import gov.nist.drmf.interpreter.generic.common.GenericReplacementTool;
+import gov.nist.drmf.interpreter.generic.eval.TexTableEntry;
+import gov.nist.drmf.interpreter.generic.eval.TexTableGenerator;
+import gov.nist.drmf.interpreter.generic.eval.WikiResultGenerator;
+import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedGoldDocument;
+import gov.nist.drmf.interpreter.pom.generic.GenericFunctionAnnotator;
+import gov.nist.drmf.interpreter.pom.generic.GenericReplacementTool;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
@@ -53,6 +57,7 @@ public class EvaluationHelper {
     private final Map<String, Map<String, Double>> goldDefs;
     private List<MOIPresentations> goldMois;
     private Map<String, MOIPresentations> goldMoiMap;
+    private Map<String, String> moiIdMapIdMap;
 
     private int[] totalRelCounter;
 
@@ -63,6 +68,7 @@ public class EvaluationHelper {
         totalRelCounter = new int[]{0, 0, 0};
         this.goldMois = new LinkedList<>();
         this.goldMoiMap = new HashMap<>();
+        this.moiIdMapIdMap = new HashMap<>();
 
         goldDefs = new HashMap<>();
         for (SemanticEnhancedDocument sed : goldDocs) {
@@ -70,6 +76,7 @@ public class EvaluationHelper {
                 goldMois.add(moi);
                 String key = GenericLatexSemanticEnhancer.makeKey(sed, moi);
                 goldMoiMap.put(key, moi);
+                moiIdMapIdMap.put(moi.getId(), key);
                 Map<String, Double> scores = goldDefs.computeIfAbsent(key, k -> new HashMap<>());
                 for (FormulaDefinition fd : moi.getDefiniens()) {
                     scores.put(fd.getDefinition(), fd.getScore());
@@ -328,8 +335,8 @@ public class EvaluationHelper {
                     newTranslatedSeds.add(newDoc);
                 } else if (preProcessing) {
                     PrintablePomTaggedExpression pte = mlp.parse(semanticlatex);
-                    GenericReplacementTool grt = new GenericReplacementTool(pte);
-                    pte = grt.getSemanticallyEnhancedExpression();
+                    GenericReplacementTool grt = new GenericReplacementTool();
+                    pte = grt.getSemanticallyEnhancedExpression(pte);
                     MatchablePomTaggedExpression goldM = goldMoi.get(key);
                     if (semanticlatex == null || !goldM.match(pte)) {
                         nonMatching++;
@@ -429,9 +436,10 @@ public class EvaluationHelper {
         int successfulGoldEntries = 0;
         int goldEntriesInTotal = 0; // should be equal, otherwise something went wrong
 
-        for (Map.Entry<String, MOIPresentations> goldEntry : goldMoiMap.entrySet()) {
-            String key = goldEntry.getKey();
-            MOIPresentations goldMoi = goldEntry.getValue();
+        for (MOIPresentations goldMoiEntry : goldMois) {
+//        for (Map.Entry<String, MOIPresentations> goldEntry : goldMoiMap.entrySet()) {
+            String key = moiIdMapIdMap.get(goldMoiEntry.getId());
+            MOIPresentations goldMoi = goldMoiMap.get( key );
 //            if (goldMoi.getCasRepresentations() == null || goldMoi.getCasResults("Mathematica") == null) continue;
 
 //            if ( !goldMoi.getId().equals("FORMULA_06f9b7b1d3f141742ad1c582b55056ba") ) continue;
@@ -440,6 +448,9 @@ public class EvaluationHelper {
             String goldMathematica = null;
             if (goldMoi.getCasRepresentations() != null && goldMoi.getCasResults("Mathematica") != null)
                 goldMathematica = goldMoi.getCasResults("Mathematica").getCasRepresentation();
+            else {
+                LOG.warn("No gold translation defined for: " + goldMoi.getId() + " : " + goldMoi.getGenericLatex());
+            }
 
             MOIPresentations moi = moiMap.get(key);
             String genericLatex = moi.getGenericLatex();
@@ -482,8 +493,8 @@ public class EvaluationHelper {
             try { // lacast pre-process
                 LOG.debug("Translate pre-processed: " + genericLatex);
                 PrintablePomTaggedExpression pte = mlp.parse(genericLatex);
-                GenericReplacementTool grt = new GenericReplacementTool(pte);
-                pte = grt.getSemanticallyEnhancedExpression();
+                GenericReplacementTool grt = new GenericReplacementTool();
+                pte = grt.getSemanticallyEnhancedExpression(pte);
                 TranslatedExpression lacastMathE = slt.translate(pte);
                 String lacastMath = lacastMathE.getTranslatedExpression();
                 LOG.debug("Enter lacast pre-processed trans: " + lacastMath);
@@ -562,7 +573,7 @@ public class EvaluationHelper {
         System.out.println("Number of total entries with semantic: " + goldEntriesInTotal);
     }
 
-    private static void clearCache(MathematicaInterface mi) {
+    public static void clearCache(MathematicaInterface mi) {
         try {
             mi.evaluate("ClearAll[\"Global`*\"]");
         } catch (MathLinkException e) {
@@ -571,12 +582,89 @@ public class EvaluationHelper {
         }
     }
 
+    private static String buildStr(TexTableEntry entry) {
+        String tmm = entry.isCorrectTMM() ?
+                "✔" :
+                (entry.getMathematica().isBlank() ? "-" : "✘");
+        String tma = entry.isCorrectTMA() ?
+                "✔" :
+                (entry.getMaple().isBlank() ? "-" : "✘");
+
+        return String.format("%02d: %s %s %s",
+                entry.getNum(),
+                entry.isCorrectTST() ? "✔" : "✘",
+                tmm,
+                tma
+        );
+    }
+
     public static void main(String[] args) throws IOException, ParseException, InitTranslatorException {
-//        List<SemanticEnhancedDocument> generatedDocs = SemanticEnhancedDocument.deserialize(Paths.get("./misc/Results/Wikipedia/gold-data-TRANSLATED.json"));
+        List<SemanticEnhancedDocument> translatedDocs = SemanticEnhancedDocument.deserialize(Paths.get("./misc/Results/Wikipedia/gold-data-TRANSLATED-ORDERED.json"));
+        List<SemanticEnhancedGoldDocument> generatedDocs = SemanticEnhancedGoldDocument.deserializeGold(goldPath);
+
+        Map<String, SemanticEnhancedDocument> map = new HashMap<>();
+        for ( SemanticEnhancedDocument sed : translatedDocs ) {
+            map.put(sed.getTitle(), sed);
+        }
+
+        LinkedList<TexTableEntry> entries = new LinkedList<>();
+        LinkedList<String> list = new LinkedList<>();
+
+        for ( int i = 1; i < generatedDocs.size()+1; i++ ) {
+            SemanticEnhancedGoldDocument sed = generatedDocs.get(i-1);
+            LOG.info("Working on Entry: " + i + " (" + sed.getTitle() + ")");
+            TexTableEntry entry = TexTableEntry.generate(sed);
+            SemanticEnhancedDocument translatedSed = map.get(sed.getTitle());
+//            entry.addTranslations(translatedSed);
+            entries.addLast(entry);
+
+//            String str = buildStr(entry);
+//            System.out.println(str);
+//            list.addLast(str);
+        }
+
+//        for ( String s : list ) System.out.println(s);
+
+        // Writes Wikitext Result Pages for Supplementary Materials TPAMI Journal
+//        WikiResultGenerator generator = new WikiResultGenerator(Paths.get("./misc/Results/Wikipedia/gold/"));
+//        for ( TexTableEntry entry : entries ) generator.addResult(entry);
+
+        // Writes the TeX Result Tables for Supplementary Materials TPAMI Journal
+        TexTableGenerator tableGenerator = new TexTableGenerator(Paths.get("./misc/Results/Wikipedia/tex/"));
+        for ( TexTableEntry entry : entries ) tableGenerator.addEntry(entry);
+        tableGenerator.flush();
+        tableGenerator.write();
+
 //        EvaluationHelper helper = new EvaluationHelper(null);
 //        helper.compareMathematicaTranslation(generatedDocs);
 
-        List<SemanticEnhancedDocument> docs = SemanticEnhancedDocument.deserialize(Paths.get("/mnt/share/data/wikipedia/Results/pagesTranslated/"));
+//        List<SemanticEnhancedDocument> docs = SemanticEnhancedDocument.deserialize(Paths.get("./misc/Results/Wikipedia/gold-data-TRANSLATED.json"));
+
+//        List<SemanticEnhancedDocument> gold = SemanticEnhancedDocument.deserialize(goldPath);
+//
+//        List<SemanticEnhancedDocument> output = new LinkedList<>();
+//
+//        Map<String, MOIPresentations> allMoi = new HashMap<>();
+//        for (SemanticEnhancedDocument doc : docs) {
+//            allMoi.putAll(doc.getMoiMapping(m -> doc.getTitle() + "-" + m));
+//        }
+//
+//        for (SemanticEnhancedDocument goldSed : gold) {
+//            for (MOIPresentations goldMoi : goldSed.getFormulae()) {
+////                for (String goldIngoing : goldMoi.getIngoingNodes()) {
+//                    String key = goldSed.getTitle() + "-" + goldMoi.getId();
+//                    MOIPresentations moipres = allMoi.get(key);
+//
+//                    List<MOIPresentations> form = List.of(moipres);
+//                    SemanticEnhancedDocument sed = new SemanticEnhancedDocument(goldSed.getTitle(), form);
+//                    output.add(sed);
+////                }
+//            }
+//        }
+//
+//        String update = EvaluationHelper.writer.writeValueAsString(output);
+//        Files.writeString(Paths.get("./misc/Results/Wikipedia/gold-data-TRANSLATED-ORDERED.json"), update);
+
 //
 //        // straight
 //        GenericLacastConfig config = GenericLacastConfig.getDefaultConfig();
@@ -640,18 +728,18 @@ public class EvaluationHelper {
 //
 //        System.out.println(sed1.toString());
 
-        EvaluationHelper helper = new EvaluationHelper(null);
-        helper.compareMlp(docs, 2, 1, 0);
-        helper.compareMlp(docs, 2, 3, 0);
-        helper.compareMlp(docs, 2, 6, 0);
-        helper.compareMlp(docs, 2, 15, 0);
-
-        helper.compareMlp(docs, 2, 1, 1);
-        helper.compareMlp(docs, 2, 3, 1);
-        helper.compareMlp(docs, 2, 6, 1);
-
-        helper.compareMlp(docs, 2, 1, 2);
-        helper.compareMlp(docs, 2, 3, 2);
+//        EvaluationHelper helper = new EvaluationHelper(null);
+//        helper.compareMlp(docs, 2, 1, 0);
+//        helper.compareMlp(docs, 2, 3, 0);
+//        helper.compareMlp(docs, 2, 6, 0);
+//        helper.compareMlp(docs, 2, 15, 0);
+//
+//        helper.compareMlp(docs, 2, 1, 1);
+//        helper.compareMlp(docs, 2, 3, 1);
+//        helper.compareMlp(docs, 2, 6, 1);
+//
+//        helper.compareMlp(docs, 2, 1, 2);
+//        helper.compareMlp(docs, 2, 3, 2);
     }
 
     private static class SemanticResults {
