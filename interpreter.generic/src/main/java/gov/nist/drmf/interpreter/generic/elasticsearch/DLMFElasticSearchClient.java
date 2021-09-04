@@ -235,6 +235,10 @@ public class DLMFElasticSearchClient {
         try {
             DLMFElasticSearchClient connector = new DLMFElasticSearchClient(new ElasticSearchConfig());
             boolean pingResult = connector.client.ping(RequestOptions.DEFAULT);
+            if ( pingResult ) {
+                LOG.info("Elasticsearch is available. Update DB if necessary.");
+                connector.indexDLMFDatabaseIfNotExist();
+            }
             connector.stop();
             return pingResult;
         } catch (Exception e) {

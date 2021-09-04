@@ -7138,6 +7138,11 @@ Symbol: \nprimes
   Feature Set: dlmf-macro
 	DLMF: \nprimes@{x}
 	DLMF-Link: dlmf.nist.gov/27.2#E2
+	Maple: pi($0)
+	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=NumberTheory%2fPrimeCounting
+	Maple-Package: NumberTheory
+	Mathematica: PrimePi[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/PrimePi.html
 	Meanings: Number of primes not exceeding x
 	Number of Ats: 1
 	Number of Parameters: 0
@@ -7151,6 +7156,8 @@ Symbol: \nprimesdiv
 	DLMF-Link: dlmf.nist.gov/27.2#E1
 	Maple: ifactor($0)
 	Maple-Link: www.maplesoft.com/support/help/Maple/view.aspx?path=ifactor
+	Mathematica: PrimeNu[$0]
+	Mathematica-Link: reference.wolfram.com/language/ref/PrimeNu.html
 	Meanings: Number of distinct primes dividing n
 	Number of Ats: 1
 	Number of Parameters: 0
