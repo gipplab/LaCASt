@@ -5,11 +5,13 @@ import gov.nist.drmf.interpreter.common.config.GenericLacastConfig;
 import gov.nist.drmf.interpreter.common.tests.Resource;
 import gov.nist.drmf.interpreter.generic.GenericLatexSemanticEnhancer;
 import gov.nist.drmf.interpreter.generic.elasticsearch.AssumeElasticsearchAvailability;
+import gov.nist.drmf.interpreter.generic.elasticsearch.DLMFElasticSearchClient;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.*;
 import gov.nist.drmf.interpreter.pom.moi.MOINode;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;

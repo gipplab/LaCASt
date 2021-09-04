@@ -16,9 +16,8 @@ public class ElasticSearchConnectorTests {
     private static DLMFElasticSearchClient es;
 
     @BeforeAll
-    static void setup() throws IOException {
+    static void setup() {
         es = new DLMFElasticSearchClient();
-        es.indexDLMFDatabaseIfNotExist();
     }
 
     @Test
