@@ -216,10 +216,10 @@ X1:\ipderivX\ipderiv[$0]{$1}{$2};D[$1, {$2, $0}];;
 \HankelmodderivN{\nu}@{x};;;Sqrt[KelvinKer[$0, $1]^2 + KelvinKei[$0, $1]^2]
 \Hankelphasetheta{\nu}@{x};;;
 \Hankelphasederivphi{\nu}@{x};;;
-\zBesselj{\nu}{m};;;
-\zderivBesselj{\nu}{m};;;
-\zBessely{\nu}{m};;;
-\zderivBessely{\nu}{m};;;
+\zBesselj{\nu}{m};BesselJZero[$0, $1];;
+\zderivBesselj{\nu}{m};Derivative[1][BesselJZero[$0, $1]];;
+\zBessely{\nu}{m};BesselYZero[$0, $1];;
+\zderivBessely{\nu}{m};Derivative[1][BesselYZero[$0, $1]];;
 \BesselJimag{\nu}@{x};Sech[1/2 Pi $0] Re[BesselJ[I $0, $1]];;
 \BesselYimag{\nu}@{x};Sech[1/2 Pi $0] Re[BesselY[I $0, $1]];;
 \modBesselI{v}@{x};BesselI[$0, $1];;

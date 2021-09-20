@@ -33,3 +33,18 @@ DLMF;SymPy;DLMF-Maple-Comment;SymPy-Package;SymPy-Alternatives
 \genlog{$0}@@{$1};log($1, $0);;;
 ;;;;
 \exp@@{$0};exp($0);;;
+\Sum{$0}{$1}{$2}@{$3};Sum($3, ($0, $1, $2));;;
+\Prod{$0}{$1}{$2}@{$3};Product($3, ($0, $1, $2));;;
+;;;;
+\deriv{$0}{$1};diff($0, $1);;
+\tderiv{$0}{$1};diff($0, $1);;
+\ideriv{$0}{$1};diff($0, $1);;
+\pderiv{$0}{$1};diff($0, $1);;
+\tpderiv{$0}{$1};diff($0, $1);;
+\ipderiv{$0}{$1};diff($0, $1);;
+X1:\derivX\deriv[$0]{$1}{$2};diff($1, $2, $0);;
+X1:\tderivX\tderiv[$0]{$1}{$2};diff($1, $2, $0);;
+X1:\iderivX\ideriv[$0]{$1}{$2};diff($1, $2, $0);;
+X1:\pderivX\pderiv[$0]{$1}{$2};diff($1, $2, $0);;
+X1:\tpderivX\tpderiv[$0]{$1}{$2};diff($1, $2, $0);;
+X1:\ipderivX\ipderiv[$0]{$1}{$2};diff($1, $2, $0);;
