@@ -48,3 +48,5 @@ X1:\iderivX\ideriv[$0]{$1}{$2};diff($1, $2, $0);;
 X1:\pderivX\pderiv[$0]{$1}{$2};diff($1, $2, $0);;
 X1:\tpderivX\tpderiv[$0]{$1}{$2};diff($1, $2, $0);;
 X1:\ipderivX\ipderiv[$0]{$1}{$2};diff($1, $2, $0);;
+;;;;
+\JacobipolyP{$0}{$1}{$2}@{$3};jacobi($2, $0, $1, $3);;

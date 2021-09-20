@@ -26,10 +26,20 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(n, Symbol('alpha'), Symbol('beta'), x)",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(n, Symbol('alpha'), Symbol('beta'), x)"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n",
+              "x"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -456,7 +466,7 @@
           "translation" : "",
           "translationInformation" : {
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\Pochhammersym [\\Pochhammersym]"
             }
           }
         },
@@ -617,7 +627,7 @@
           "translation" : "",
           "translationInformation" : {
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\EulerGamma [\\EulerGamma]"
             }
           }
         },
@@ -699,10 +709,21 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(n, Symbol('alpha'), Symbol('beta'), z) == ((- 1)**(n))/((2)**(n)* factorial(n))*(1 - z)**(- Symbol('alpha'))*(1 + z)**(- Symbol('beta'))* diff((1 - z)**(Symbol('alpha'))*(1 + z)**(Symbol('beta'))*(1 - (z)**(2))**(n), z, n)",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(n, Symbol('alpha'), Symbol('beta'), z) = ((- 1)**(n))/((2)**(n)* factorial(n))*(1 - z)**(- Symbol('alpha'))*(1 + z)**(- Symbol('beta'))* diff((1 - z)**(Symbol('alpha'))*(1 + z)**(Symbol('beta'))*(1 - (z)**(2))**(n), z, n)"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n",
+              "z"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, $2, $0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nSymPy: https://docs.sympy.org/latest/tutorial/calculus.html#derivatives"
             }
           }
         },
@@ -1039,10 +1060,20 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(n, Symbol('alpha'), Symbol('beta'), x) == Sum(binomial(n + Symbol('alpha'),n - s)*binomial(n + Symbol('beta'),s)*((x - 1)/(2))**(s)*((x + 1)/(2))**(n - s), (s, 0, n))",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(n, Symbol('alpha'), Symbol('beta'), x) = Sum(binomial(n + Symbol('alpha'),n - s)*binomial(n + Symbol('beta'),s)*((x - 1)/(2))**(s)*((x + 1)/(2))**(n - s), (s, 0, n))"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n",
+              "x"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1748,10 +1779,20 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(n, Symbol('alpha'), Symbol('beta'), x) == factorial(n + Symbol('alpha'))*factorial(n + Symbol('beta'))*Sum((1)/(factorial(s)*factorial(n + Symbol('alpha')- s)*factorial(Symbol('beta')+ s)*factorial(n - s))*((x - 1)/(2))**(n - s)*((x + 1)/(2))**(s), (s, 0, n))",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(n, Symbol('alpha'), Symbol('beta'), x) = factorial(n + Symbol('alpha'))*factorial(n + Symbol('beta'))*Sum((1)/(factorial(s)*factorial(n + Symbol('alpha')- s)*factorial(Symbol('beta')+ s)*factorial(n - s))*((x - 1)/(2))**(n - s)*((x + 1)/(2))**(s), (s, 0, n))"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n",
+              "x"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1916,10 +1957,19 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(0, Symbol('alpha'), Symbol('beta'), z) == 1",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(0, Symbol('alpha'), Symbol('beta'), z) = 1"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "z"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -1981,10 +2031,19 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(1, Symbol('alpha'), Symbol('beta'), z) == (Symbol('alpha')+ 1)+(Symbol('alpha')+ Symbol('beta')+ 2)*(z - 1)/(2)",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(1, Symbol('alpha'), Symbol('beta'), z) = (Symbol('alpha')+ 1)+(Symbol('alpha')+ Symbol('beta')+ 2)*(z - 1)/(2)"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "z"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2046,10 +2105,19 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(2, Symbol('alpha'), Symbol('beta'), z) == ((Symbol('alpha')+ 1)*(Symbol('alpha')+ 2))/(2)+(Symbol('alpha')+ 2)*(Symbol('alpha')+ Symbol('beta')+ 3)*(z - 1)/(2)+((Symbol('alpha')+ Symbol('beta')+ 3)*(Symbol('alpha')+ Symbol('beta')+ 4))/(2)*((z - 1)/(2))**(2)",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(2, Symbol('alpha'), Symbol('beta'), z) = ((Symbol('alpha')+ 1)*(Symbol('alpha')+ 2))/(2)+(Symbol('alpha')+ 2)*(Symbol('alpha')+ Symbol('beta')+ 3)*(z - 1)/(2)+((Symbol('alpha')+ Symbol('beta')+ 3)*(Symbol('alpha')+ Symbol('beta')+ 4))/(2)*((z - 1)/(2))**(2)"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "z"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2121,7 +2189,7 @@
           "translation" : "",
           "translationInformation" : {
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\EulerGamma [\\EulerGamma]"
             }
           }
         },
@@ -2283,10 +2351,19 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(n, Symbol('alpha'), Symbol('beta'), 1) == binomial(n + Symbol('alpha'),n)",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(n, Symbol('alpha'), Symbol('beta'), 1) = binomial(n + Symbol('alpha'),n)"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2362,10 +2439,20 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(n, Symbol('alpha'), Symbol('beta'), - z) == (- 1)**(n)* jacobi(n, Symbol('beta'), Symbol('alpha'), z)",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(n, Symbol('alpha'), Symbol('beta'), - z) = (- 1)**(n)* jacobi(n, Symbol('beta'), Symbol('alpha'), z)"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n",
+              "z"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2442,10 +2529,19 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(n, Symbol('alpha'), Symbol('beta'), - 1) == (- 1)**(n)*binomial(n + Symbol('beta'),n)",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(n, Symbol('alpha'), Symbol('beta'), - 1) = (- 1)**(n)*binomial(n + Symbol('beta'),n)"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -2607,7 +2703,7 @@
           "translation" : "",
           "translationInformation" : {
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\deriv [\\deriv]"
+              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\EulerGamma [\\EulerGamma]"
             }
           }
         },
@@ -3247,10 +3343,20 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "2*n*(n + Symbol('alpha')+ Symbol('beta'))*(2*n + Symbol('alpha')+ Symbol('beta')- 2)*jacobi(n, Symbol('alpha'), Symbol('beta'), z) == (2*n + Symbol('alpha')+ Symbol('beta')- 1)*((2*n + Symbol('alpha')+ Symbol('beta'))*(2*n + Symbol('alpha')+ Symbol('beta')- 2)*z + (Symbol('alpha'))**(2)- (Symbol('beta'))**(2))*jacobi(n - 1, Symbol('alpha'), Symbol('beta'), z)- 2*(n + Symbol('alpha')- 1)*(n + Symbol('beta')- 1)*(2*n + Symbol('alpha')+ Symbol('beta'))*jacobi(n - 2, Symbol('alpha'), Symbol('beta'), z)",
           "translationInformation" : {
+            "subEquations" : [
+              "2*n*(n + Symbol('alpha')+ Symbol('beta'))*(2*n + Symbol('alpha')+ Symbol('beta')- 2)*jacobi(n, Symbol('alpha'), Symbol('beta'), z) = (2*n + Symbol('alpha')+ Symbol('beta')- 1)*((2*n + Symbol('alpha')+ Symbol('beta'))*(2*n + Symbol('alpha')+ Symbol('beta')- 2)*z + (Symbol('alpha'))**(2)- (Symbol('beta'))**(2))*jacobi(n - 1, Symbol('alpha'), Symbol('beta'), z)- 2*(n + Symbol('alpha')- 1)*(n + Symbol('beta')- 1)*(2*n + Symbol('alpha')+ Symbol('beta'))*jacobi(n - 2, Symbol('alpha'), Symbol('beta'), z)"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "n",
+              "z"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -3381,10 +3487,30 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "(z - 1)*diff(jacobi(n, Symbol('alpha'), Symbol('beta'), z), z, 1) == (1)/(2)*(z - 1)*(1 + Symbol('alpha')+ Symbol('beta')+ n)*(Symbol('{P}_{n - 1}'))**(Symbol('alpha')+ 1 , Symbol('beta')+ 1) == n*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))-(Symbol('alpha')+ n)*(Symbol('{P}_{n - 1}'))**(Symbol('alpha'), Symbol('beta')+ 1) == (1 + Symbol('alpha')+ Symbol('beta')+ n)*((Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')+ 1)- (Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))) == (Symbol('alpha')+ n)*(Symbol('{P}_{n}'))**(Symbol('alpha')- 1 , Symbol('beta')+ 1)- Symbol('alpha')*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')) == (2*(n + 1)*(Symbol('{P}_{n + 1}'))**(Symbol('alpha'), Symbol('beta')- 1)-(z*(1 + Symbol('alpha')+ Symbol('beta')+ n)+ Symbol('alpha')+ 1 + n - Symbol('beta'))*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')))/(1 + z) == ((2*Symbol('beta')+ n + n*z)*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))- 2*(Symbol('beta')+ n)*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')- 1))/(1 + z) == (1 - z)/(1 + z)*(Symbol('beta')*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))-(Symbol('beta')+ n)*(Symbol('{P}_{n}'))**(Symbol('alpha')+ 1 , Symbol('beta')- 1))",
           "translationInformation" : {
+            "subEquations" : [
+              "(z - 1)*diff(jacobi(n, Symbol('alpha'), Symbol('beta'), z), z, 1) = (1)/(2)*(z - 1)*(1 + Symbol('alpha')+ Symbol('beta')+ n)*(Symbol('{P}_{n - 1}'))**(Symbol('alpha')+ 1 , Symbol('beta')+ 1)",
+              "(1)/(2)*(z - 1)*(1 + Symbol('alpha')+ Symbol('beta')+ n)*(Symbol('{P}_{n - 1}'))**(Symbol('alpha')+ 1 , Symbol('beta')+ 1) = n*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))-(Symbol('alpha')+ n)*(Symbol('{P}_{n - 1}'))**(Symbol('alpha'), Symbol('beta')+ 1)",
+              "n*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))-(Symbol('alpha')+ n)*(Symbol('{P}_{n - 1}'))**(Symbol('alpha'), Symbol('beta')+ 1) = (1 + Symbol('alpha')+ Symbol('beta')+ n)*((Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')+ 1)- (Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')))",
+              "(1 + Symbol('alpha')+ Symbol('beta')+ n)*((Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')+ 1)- (Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))) = (Symbol('alpha')+ n)*(Symbol('{P}_{n}'))**(Symbol('alpha')- 1 , Symbol('beta')+ 1)- Symbol('alpha')*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))",
+              "(Symbol('alpha')+ n)*(Symbol('{P}_{n}'))**(Symbol('alpha')- 1 , Symbol('beta')+ 1)- Symbol('alpha')*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')) = (2*(n + 1)*(Symbol('{P}_{n + 1}'))**(Symbol('alpha'), Symbol('beta')- 1)-(z*(1 + Symbol('alpha')+ Symbol('beta')+ n)+ Symbol('alpha')+ 1 + n - Symbol('beta'))*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')))/(1 + z)",
+              "(2*(n + 1)*(Symbol('{P}_{n + 1}'))**(Symbol('alpha'), Symbol('beta')- 1)-(z*(1 + Symbol('alpha')+ Symbol('beta')+ n)+ Symbol('alpha')+ 1 + n - Symbol('beta'))*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')))/(1 + z) = ((2*Symbol('beta')+ n + n*z)*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))- 2*(Symbol('beta')+ n)*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')- 1))/(1 + z)",
+              "((2*Symbol('beta')+ n + n*z)*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))- 2*(Symbol('beta')+ n)*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta')- 1))/(1 + z) = (1 - z)/(1 + z)*(Symbol('beta')*(Symbol('{P}_{n}'))**(Symbol('alpha'), Symbol('beta'))-(Symbol('beta')+ n)*(Symbol('{P}_{n}'))**(Symbol('alpha')+ 1 , Symbol('beta')- 1))"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "Symbol('{P}_{n + 1}')",
+              "Symbol('{P}_{n - 1}')",
+              "Symbol('{P}_{n}')",
+              "n",
+              "z"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\deriv [\\deriv]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "\\deriv1" : "Derivative; Example: \\deriv[n]{f}{x}\nWill be translated to: diff($1, $2, $0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/1.4#E4\nSymPy: https://docs.sympy.org/latest/tutorial/calculus.html#derivatives"
             }
           }
         },
@@ -3470,10 +3596,21 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "Sum(jacobi(n, Symbol('alpha'), Symbol('beta'), z)*(t)**(n), (n, 0, oo)) == (2)**(Symbol('alpha')+ Symbol('beta'))* (R)**(- 1)*(1 - t + R)**(- Symbol('alpha'))*(1 + t + R)**(- Symbol('beta'))",
           "translationInformation" : {
+            "subEquations" : [
+              "Sum(jacobi(n, Symbol('alpha'), Symbol('beta'), z)*(t)**(n), (n, 0, oo)) = (2)**(Symbol('alpha')+ Symbol('beta'))* (R)**(- 1)*(1 - t + R)**(- Symbol('alpha'))*(1 + t + R)**(- Symbol('beta'))"
+            ],
+            "freeVariables" : [
+              "R",
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "t",
+              "z"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
@@ -3697,10 +3834,26 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "jacobi(n, Symbol('alpha'), Symbol('beta'), cos(Symbol('theta'))) == (n)**(-(1)/(2))* k(Symbol('theta'))* cos(N*Symbol('theta')+ Symbol('gamma'))+ O((n)**(-(3)/(2)))",
           "translationInformation" : {
+            "subEquations" : [
+              "jacobi(n, Symbol('alpha'), Symbol('beta'), cos(Symbol('theta'))) = (n)**(-(1)/(2))* k(Symbol('theta'))* cos(N*Symbol('theta')+ Symbol('gamma'))+ O((n)**(-(3)/(2)))"
+            ],
+            "freeVariables" : [
+              "N",
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "Symbol('gamma')",
+              "Symbol('theta')",
+              "n"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nSymPy: https://docs.sympy.org/latest/modules/functions/elementary.html#cos",
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "k" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
+              "\\gamma" : "Could be the Euler-Mascheroni constant.\nBut it is also a Greek letter. Be aware, that this program translated the letter as a normal Greek letter and not as a constant!\nUse the DLMF-Macro \\EulerConstant to translate \\gamma as a constant.\n",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n",
+              "O" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary)."
             }
           }
         },
@@ -4218,10 +4371,23 @@
           }
         },
         "SymPy" : {
-          "translation" : "",
+          "translation" : "limit((n)**(- Symbol('alpha'))* jacobi(n, Symbol('alpha'), Symbol('beta'), cos((z)/(n))), n, oo) == ((z)/(2))**(- Symbol('alpha'))* Symbol('{J}_{Symbol('alpha')}')(z)\nlimit((n)**(- Symbol('beta'))* jacobi(n, Symbol('alpha'), Symbol('beta'), cos(pi -(z)/(n))), n, oo) == ((z)/(2))**(- Symbol('beta'))* Symbol('{J}_{Symbol('beta')}')(z)",
           "translationInformation" : {
+            "subEquations" : [
+              "limit((n)**(- Symbol('alpha'))* jacobi(n, Symbol('alpha'), Symbol('beta'), cos((z)/(n))), n, oo) = ((z)/(2))**(- Symbol('alpha'))* Symbol('{J}_{Symbol('alpha')}')(z)",
+              "limit((n)**(- Symbol('beta'))* jacobi(n, Symbol('alpha'), Symbol('beta'), cos(pi -(z)/(n))), n, oo) = ((z)/(2))**(- Symbol('beta'))* Symbol('{J}_{Symbol('beta')}')(z)"
+            ],
+            "freeVariables" : [
+              "Symbol('alpha')",
+              "Symbol('beta')",
+              "z"
+            ],
             "tokenTranslations" : {
-              "Error" : "(LaTeX -> SymPy) No translation possible for given token: Cannot extract information from feature set: \\JacobipolyP [\\JacobipolyP]"
+              "\\cos" : "Cosine; Example: \\cos@@{z}\nWill be translated to: cos($0)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/4.14#E2\nSymPy: https://docs.sympy.org/latest/modules/functions/elementary.html#cos",
+              "\\JacobipolyP" : "Jacobi polynomial; Example: \\JacobipolyP{\\alpha}{\\beta}{n}@{x}\nWill be translated to: jacobi($2, $0, $1, $3)\nRelevant links to definitions:\nDLMF:  http://dlmf.nist.gov/18.3#T1.t1.r2\nSymPy: https://docs.sympy.org/latest/modules/functions/special.html#jacobi-polynomials",
+              "J" : "Function without DLMF-Definition. We keep it like it is (but delete prefix \\ if necessary).",
+              "\\cpi" : "Pi was translated to: pi",
+              "\\alpha" : "Could be the second Feigenbaum constant.\nBut this system doesn't know how to translate it as a constant. It was translated as a general letter.\n"
             }
           }
         },
