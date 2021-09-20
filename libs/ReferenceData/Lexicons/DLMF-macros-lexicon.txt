@@ -2919,6 +2919,8 @@ Symbol: \Prod
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	SymPy: Product($3, ($0, $1, $2))
+	SymPy-Link: docs.sympy.org/latest/modules/concrete.html#sympy.concrete.products.Product
 
 Symbol: \Racah
 
@@ -3247,6 +3249,8 @@ Symbol: \Sum
 	Number of Ats: 1
 	Number of Parameters: 3
 	Number of Variables: 1
+	SymPy: Sum($3, ($0, $1, $2))
+	SymPy-Link: docs.sympy.org/latest/modules/concrete.html#sympy.concrete.summations.Sum
 
 Symbol: \Ultra
 
@@ -4819,6 +4823,8 @@ Symbol: \deriv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($0, $1)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
   Feature Set: dlmf-alternative-1
 	DLMF: \deriv[n]{f}{x}
@@ -4831,6 +4837,8 @@ Symbol: \deriv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($1, $2, $0)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
 Symbol: \diff
 
@@ -5564,6 +5572,8 @@ Symbol: \ideriv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($0, $1)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
   Feature Set: dlmf-alternative-1
 	DLMF: \ideriv[n]{f}{x}
@@ -5576,6 +5586,8 @@ Symbol: \ideriv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($1, $2, $0)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
 Symbol: \ifrac
 
@@ -5796,6 +5808,8 @@ Symbol: \ipderiv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($0, $1)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
   Feature Set: dlmf-alternative-1
 	DLMF: \ipderiv[n]{f}{x}
@@ -5808,6 +5822,8 @@ Symbol: \ipderiv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($1, $2, $0)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
 Symbol: \irregCoulombG
 
@@ -7279,6 +7295,8 @@ Symbol: \pderiv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($0, $1)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
   Feature Set: dlmf-alternative-1
 	DLMF: \pderiv[n]{f}{x}
@@ -7291,6 +7309,8 @@ Symbol: \pderiv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($1, $2, $0)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
 Symbol: \pdiff
 
@@ -8583,6 +8603,8 @@ Symbol: \tderiv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($0, $1)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
   Feature Set: dlmf-alternative-1
 	DLMF: \tderiv[n]{f}{x}
@@ -8595,6 +8617,8 @@ Symbol: \tderiv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($1, $2, $0)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
 Symbol: \terminant
 
@@ -8620,6 +8644,8 @@ Symbol: \tpderiv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($0, $1)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
   Feature Set: dlmf-alternative-1
 	DLMF: \tpderiv[n]{f}{x}
@@ -8632,6 +8658,8 @@ Symbol: \tpderiv
 	Number of Parameters: 0
 	Number of Variables: 2
 	Role: dlmf-macro
+	SymPy: diff($1, $2, $0)
+	SymPy-Link: docs.sympy.org/latest/tutorial/calculus.html#derivatives
 
 Symbol: \trace
 
@@ -8746,6 +8774,7 @@ Symbol: \zBesselj
   Feature Set: dlmf-macro
 	DLMF: \zBesselj{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
+	Mathematica: BesselJZero[$0, $1]
 	Meanings: Zeros of Bessel function first kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -8756,6 +8785,7 @@ Symbol: \zBessely
   Feature Set: dlmf-macro
 	DLMF: \zBessely{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
+	Mathematica: BesselYZero[$0, $1]
 	Meanings: Zeros of Bessel function second kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -8799,6 +8829,7 @@ Symbol: \zderivBesselj
   Feature Set: dlmf-macro
 	DLMF: \zderivBesselj{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
+	Mathematica: Derivative[1][BesselJZero[$0, $1]]
 	Meanings: Zeros of derivative of Bessel function first kind
 	Number of Ats: 0
 	Number of Parameters: 1
@@ -8809,6 +8840,7 @@ Symbol: \zderivBessely
   Feature Set: dlmf-macro
 	DLMF: \zderivBessely{\nu}{m}
 	DLMF-Link: dlmf.nist.gov/10.21#SS1.p2
+	Mathematica: Derivative[1][BesselYZero[$0, $1]]
 	Meanings: Zeros of derivative of Bessel function second kind
 	Number of Ats: 0
 	Number of Parameters: 1

@@ -32,3 +32,6 @@ log($0);\log@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/element
 log($1,$0);\genlog{$0}@@{$1};2;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#log
 ;;;;;;;
 exp($0);\exp@@{$0};1;;;;;https://docs.sympy.org/latest/modules/functions/elementary.html#exp
+Sum($3, ($0, $1, $2));\Sum{$0}{$1}{$2}@{$3};4;;;;;https://docs.sympy.org/latest/modules/concrete.html#sympy.concrete.summations.Sum
+Product($3, ($0, $1, $2));\Prod{$0}{$1}{$2}@{$3};4;;;;;https://docs.sympy.org/latest/modules/concrete.html#sympy.concrete.products.Product
+diff($0, $1);\deriv{$0}{$1};2;;;;;https://docs.sympy.org/latest/tutorial/calculus.html#derivatives

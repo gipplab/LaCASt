@@ -4,14 +4,16 @@
         "DLMF": "",
         "LaTeX": "\\Sum{k}{1}{n}@{\\frac{1}{y^{k}}}",
         "Maple": "sum((1)/((y)^(k)), k = 1..n)",
-        "Mathematica": "Sum[Divide[1, (y)^(k)], {k, 1, n}, GenerateConditions->None]"
+        "Mathematica": "Sum[Divide[1, (y)^(k)], {k, 1, n}, GenerateConditions->None]",
+        "SymPy": "Sum((1)/((y)**(k)), (k, 1, n))"
     },
     {
         "name": "SIMPLE",
         "DLMF": "",
         "LaTeX": "\\sum_{n=0}^{10} n",
         "Maple": "sum(n, n = 0..10)",
-        "Mathematica": "Sum[n, {n, 0, 10}, GenerateConditions->None]"
+        "Mathematica": "Sum[n, {n, 0, 10}, GenerateConditions->None]",
+        "SymPy": "Sum(n, (n, 0, 10))"
     },
     {
         "name": "SIMPLE_REVERSE",

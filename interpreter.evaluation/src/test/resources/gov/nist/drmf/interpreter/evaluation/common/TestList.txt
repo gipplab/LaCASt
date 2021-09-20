@@ -1,0 +1,100 @@
+\frac{\partial}{\partial x}=\cos\phi\frac{\partial}{\partial r}-\frac{\sin\phi}{r}\frac{\partial}{\partial\phi}
+\mathbf{e}_{j}\times\mathbf{e}_{k}=\epsilon_{jk\ell}\mathbf{e}_{\ell}
+\left(\sum^{\infty}_{n=0}a_{n}z^{n}\right)\left(\sum^{\infty}_{n=0}b_{n}z^{n}\right)=\sum^{\infty}_{n=0}c_{n}z^{n}
+b^{\prime}_{n}=d_{n}b_{n}
+0+0\cdot z^{-1}+0\cdot z^{-2}+\cdots
+\mathbf{B}=\begin{bmatrix}\alpha_{1}&\beta_{2}&&&0\\ \beta_{2}&\alpha_{2}&\beta_{3}&&\\ &\ddots&\ddots&\ddots&\\ &&\beta_{n-1}&\alpha_{n-1}&\beta_{n}\\ 0&&&\beta_{n}&\alpha_{n}\end{bmatrix}
+x=-2.2+1.44011\;1973(f-0.09614\;53780)+0.08865\;85832\*(f-0.09614\;53780)(f-0.02670\;63331)
+k_{2}=hf(z_{n}+\tfrac{1}{2}h,w_{n}+\tfrac{1}{2}k_{1})
+\displaystyle 0=c_{p+q}b_{0}+c_{p+q-1}b_{1}+\dots+c_{p}b_{q}
+e^{\pm\pi\mathrm{i}}=-1
+\lim_{n\to\infty}\left(1+\frac{z}{n}\right)^{n}=e^{z}
+\sin u\pm\cos u=\sqrt{2}\sin\left(u\pm\tfrac{1}{4}\pi\right)=\pm\sqrt{2}\cos\left(u\mp\tfrac{1}{4}\pi\right)
+\operatorname{arccot}z=\pm\tfrac{1}{2}\pi-\operatorname{arctan}z
+\sinh z=z+\frac{z^{3}}{3!}+\frac{z^{5}}{5!}+\cdots
+x_{n}=-n+\frac{1}{\pi}\operatorname{arctan}\left(\frac{\pi}{\ln n}\right)+O\left(\frac{1}{n(\ln n)^{2}}\right)
+\frac{1}{\Gamma\left(x\right)}+\frac{1}{\Gamma\left(1/x\right)}\leq 2
+\mathrm{g}\left(z\right)+i\mathrm{f}\left(z\right)=e^{-\pi iz^{2}/2}\int_{z}^{\infty}e^{\pi it^{2}/2}\mathrm{d}t
+\int_{0}^{\infty}e^{-at}\sin\left(t^{2}\right)\mathrm{d}t=\sqrt{\frac{\pi}{2}}\mathrm{g}\left(\frac{a}{\sqrt{2\pi}}\right)
+\frac{1}{x+\sqrt{x^{2}+2}}<\mathsf{M}\left(x\right)\leq\frac{1}{x+\sqrt{x^{2}+(4/\pi)}}
+\frac{\mathrm{d}\mathrm{f}\left(z\right)}{\mathrm{d}z}=-\pi z\mathrm{g}\left(z\right)
+x_{n}\sim\lambda+\frac{\alpha(\alpha\pi-4)}{8\pi\lambda^{3}}+\cdots
+\gamma^{*}\left(\tfrac{1}{2},-z^{2}\right)=\frac{2e^{z^{2}}}{z\sqrt{\pi}}F\left(z\right)
+\Gamma\left(1-n,z\right)=z^{1-n}E_{n}\left(z\right)
+\Gamma\left(a,z\right)=z^{a}\int_{0}^{\infty}\exp\left(at-ze^{t}\right)\mathrm{d}t
+c_{2}(0)=\tfrac{25}{6048}
+aF_{k+1}=(k+b-a\xi)F_{k}+k\xi F_{k-1}
+\mathrm{Bi}\left(z\right)=\frac{1}{2\pi}\int_{-\infty}^{\infty e^{\pi i/3}}\exp\left(\tfrac{1}{3}t^{3}-zt\right)\mathrm{d}t+\dfrac{1}{2\pi}\int_{-\infty}^{\infty e^{-\pi i/3}}\exp\left(\tfrac{1}{3}t^{3}-zt\right)\mathrm{d}t
+\frac{{\mathrm{d}}^{2}w}{{\mathrm{d}t}^{2}}=\tfrac{1}{4}m^{2}t^{m-2}w
+x^{2}M_{\nu}''\left(x\right)+xM_{\nu}'\left(x\right)+(x^{2}-\nu^{2})M_{\nu}\left(x\right)=\frac{4}{\pi^{2}{{M_{\nu}^{3}}(x)}}
+J_{\nu}\left(z\right)\sim\frac{1}{\sqrt{2\pi\nu}}\left(\frac{ez}{2\nu}\right)^{\nu}
+Y_{\nu}\left(\nu z\right)\sim-\left(\frac{4\zeta}{1-z^{2}}\right)^{\frac{1}{4}}\left(\frac{\mathrm{Bi}\left(\nu^{\frac{2}{3}}\zeta\right)}{\nu^{\frac{1}{3}}}\sum_{k=0}^{\infty}\frac{A_{k}(\zeta)}{\nu^{2k}}+\frac{\mathrm{Bi}'\left(\nu^{\frac{2}{3}}\zeta\right)}{\nu^{\frac{5}{3}}}\sum_{k=0}^{\infty}\frac{B_{k}(\zeta)}{\nu^{2k}}\right)
+j_{\nu,m}'=\nu z(\zeta)+\frac{z(\zeta)(h(\zeta))^{2}C_{0}(\zeta)}{2\zeta\nu}+O\left(\frac{1}{\nu}\right)
+Y_{0}\left(z\right)=\frac{2}{\pi}\left(\ln\left(\tfrac{1}{2}z\right)+\gamma\right)J_{0}\left(z\right)-\frac{4}{\pi}\sum_{k=1}^{\infty}(-1)^{k}\frac{J_{2k}\left(z\right)}{k}
+\int_{0}^{\infty}t^{\mu-1}K_{\nu}\left(t\right)\mathrm{d}t=2^{\mu-2}\Gamma\left(\tfrac{1}{2}\mu-\tfrac{1}{2}\nu\right)\Gamma\left(\tfrac{1}{2}\mu+\tfrac{1}{2}\nu\right)
+{\mathsf{i}^{(2)}_{n}}\left(z\right)=\tfrac{1}{2}e^{z}\sum_{k=0}^{n}(-1)^{k}\frac{a_{k}(n+\frac{1}{2})}{z^{k+1}}+(-1)^{n}\tfrac{1}{2}e^{-z}\sum_{k=0}^{n}\frac{a_{k}(n+\frac{1}{2})}{z^{k+1}}
+a_{n,m}=j_{n+\frac{1}{2},m}
+b_{n,m}=y_{n+\frac{1}{2},m}
+\mbox{zeros of $\operatorname{kei}_{\nu}x$}\sim\sqrt{2}(t+f(-t))
+\mathbf{E}_{\nu}\left(z\right)=\frac{2}{\pi\nu}\left({\sin^{2}}\left(\tfrac{1}{2}\pi\nu\right)+\frac{\nu z}{\nu^{2}-1}{\cos^{2}}\left(\tfrac{1}{2}\pi\nu\right)+O\left(\frac{1}{\nu^{2}}\right)\right)
+a_{1}(\lambda)=-\frac{\lambda}{2(1+\lambda)^{4}}
+C_{s}(\zeta)=\chi(\zeta)A_{s}(\zeta)+A^{\prime}_{s}(\zeta)+\zeta B_{s}(\zeta)
+\int_{0}^{\infty}e^{-\frac{3}{4}t^{2}}t^{-a-\frac{3}{2}}U\left(a,t\right)\mathrm{d}t=2^{\frac{1}{4}+\frac{1}{2}a}\Gamma\left(-a-\tfrac{1}{2}\right)\cos\left((\tfrac{1}{4}a+\tfrac{1}{8})\pi\right)
+c_{2r}+id_{2r}=\frac{\Gamma\left(2r+\tfrac{1}{2}+ia\right)}{\Gamma\left(\tfrac{1}{2}+ia\right)}
+e^{y}\sum_{n=0}^{\infty}\frac{{\left(b-a\right)_{n}}(-y)^{n}}{{\left(b\right)_{n}}n!}M\left(a,b+n,x\right)
+U\left(a,b,z\right)=e^{\frac{1}{2}z}z^{-\frac{1}{2}b}W_{\frac{1}{2}b-a,\frac{1}{2}b-\frac{1}{2}}\left(z\right)
+W_{\kappa+1,\mu}\left(z\right)+(2\kappa-z)W_{\kappa,\mu}\left(z\right)+(\kappa-\mu-\tfrac{1}{2})(\kappa+\mu-\tfrac{1}{2})W_{\kappa-1,\mu}\left(z\right)=0
+\alpha=\sqrt{2|\kappa-\mu|/\mu}
+\mathsf{P}^{\mu}_{\nu}\left(0\right)=\frac{2^{\mu}\pi^{1/2}}{\Gamma\left(\frac{1}{2}\nu-\frac{1}{2}\mu+1\right)\Gamma\left(\frac{1}{2}-\frac{1}{2}\nu-\frac{1}{2}\mu\right)}
+\frac{\sin\left((\nu-\mu)\pi\right)}{\Gamma\left(\nu+\mu+1\right)}\mathsf{P}^{\mu}_{\nu}\left(x\right)=\frac{\sin\left(\nu\pi\right)}{\Gamma\left(\nu-\mu+1\right)}\mathsf{P}^{-\mu}_{\nu}\left(x\right)-\frac{\sin\left(\mu\pi\right)}{\Gamma\left(\nu-\mu+1\right)}\mathsf{P}^{-\mu}_{\nu}\left(-x\right)
+\int_{-1}^{1}\mathsf{Q}_{\nu}\left(x\right)\mathsf{Q}_{\lambda}\left(x\right)\mathrm{d}x=\frac{\left((\psi\left(\nu+1\right)-\psi\left(\lambda+1\right))(1+\cos\left(\nu\pi\right)\cos\left(\lambda\pi\right))+\frac{1}{2}\pi\sin\left((\lambda-\nu)\pi\right)\right)}{(\lambda-\nu)(\lambda+\nu+1)}
+\mathsf{P}_{-\frac{1}{2}+i\tau}\left(\cos\theta\right)=1+\frac{4\tau^{2}+1^{2}}{2^{2}}{\sin^{2}}\left(\tfrac{1}{2}\theta\right)+\frac{\left(4\tau^{2}+1^{2}\right)\left(4\tau^{2}+3^{2}\right)}{2^{2}\cdot 4^{2}}{\sin^{4}}\left(\tfrac{1}{2}\theta\right)+\cdots
+\frac{F\left(a,b;c;z\right)}{\Gamma\left(c\right)}=\mathbf{F}\left(a,b;c;z\right)=\mathbf{F}\left({a,b\atop c};z\right)={{}_{2}{\mathbf{F}}_{1}}\left(a,b;c;z\right)
+\frac{{\mathrm{d}}^{n}}{{\mathrm{d}z}^{n}}\left(z^{c-1}F\left(a,b;c;z\right)\right)={\left(c-n\right)_{n}}z^{c-n-1}F\left(a,b;c-n;z\right)
+\frac{{\mathrm{d}}^{n}}{{\mathrm{d}z}^{n}}{{}_{p}F_{q}}\left({a_{1},\dots,a_{p}\atop b_{1},\dots,b_{q}};z\right)=\frac{{\left(\mathbf{a}\right)_{n}}}{{\left(\mathbf{b}\right)_{n}}}{{}_{p}F_{q}}\left({a_{1}+n,\dots,a_{p}+n\atop b_{1}+n,\dots,b_{q}+n};z\right)
+\left({\textstyle\ifrac{\prod\limits_{\ell=1}^{q}\Gamma\left(a_{\ell}\right)}{\prod\limits_{\ell=1}^{q}\Gamma\left(b_{\ell}\right)}}\right){{}_{q}F_{q}}\left({a_{1},\dots,a_{q}\atop b_{1},\dots,b_{q}};z\right)\sim H_{q,q}(z{\mathrm{e}^{\mp\pi\mathrm{i}}})+E_{q,q}(z)
+{{}_{6}\phi_{5}}\left({a,qa^{\frac{1}{2}},-qa^{\frac{1}{2}},b,c,q^{-n}\atop a^{\frac{1}{2}},-a^{\frac{1}{2}},aq/b,aq/c,aq^{n+1}};q,\frac{aq^{n+1}}{bc}\right)=\frac{\left(aq,aq/(bc);q\right)_{n}}{\left(aq/b,aq/c;q\right)_{n}}
+\sum_{x\in X}x^{2n}w_{x}<\infty
+\lambda_{n}=\begin{cases}\ifrac{\Gamma\left(n+1\right)}{\Gamma\left(\frac{1}{2}n+1\right)},&n\text{ even},\\ \ifrac{\Gamma\left(n+2\right)}{\left(\mu^{\frac{1}{2}}\Gamma\left(\frac{1}{2}n+\frac{3}{2}\right)\right)},&n\text{ odd},\end{cases}
+P_{n}\left(x;a,b,c;q\right)={{}_{3}\phi_{2}}\left({q^{-n},abq^{n+1},x\atop aq,cq};q,q\right)
+C_{n}\left(\cos\theta;\beta\,|\,q\right)=\frac{\left(\beta^{2};q\right)_{n}}{\left(q;q\right)_{n}\beta^{\frac{1}{2}n}}{{}_{4}\phi_{3}}\left({q^{-n},\beta^{2}q^{n},\beta^{\frac{1}{2}}e^{\mathrm{i}\theta},\beta^{\frac{1}{2}}e^{-\mathrm{i}\theta}\atop\beta q^{\frac{1}{2}},-\beta,-\beta q^{\frac{1}{2}}};q,q\right)
+A_{n}A_{n+1}C_{n+1}>0
+\frac{1}{2\pi\mathrm{i}}\int_{|z|=1}\phi_{n}(z)\overline{\phi_{m}(z)}w(z)\frac{\mathrm{d}z}{z}=\delta_{n,m}
+F\left(m\pi\pm\phi,k\right)=2mK\left(k\right)\pm F\left(\phi,k\right)
+\phi\leq F\left(\phi,k\right)\leq\min(\phi/\Delta,{\operatorname{gd}^{-1}}\left(\phi\right))
+R_{F}\left(0,z-1,z\right)=R_{F}\left(0,1-z,1\right)\mp\mathrm{i}\!R_{F}\left(0,z,1\right)
+\Pi\left(\phi,\alpha^{2},k\right)=-\tfrac{1}{3}\omega^{2}R_{J}\left(c-1,c-k^{2},c,c-\omega^{2}\right)+\sqrt{\frac{(c-1)(c-k^{2})}{(\alpha^{2}-1)(1-\omega^{2})}}\*R_{C}\left(c(\alpha^{2}-1)(1-\omega^{2}),(\alpha^{2}-c)(c-\omega^{2})\right)
+s=a\int_{0}^{\phi}\sqrt{1-k^{2}{\sin^{2}}\theta}\mathrm{d}\theta
+\boldsymbol{{\Omega}}=\begin{bmatrix}1.69098\;3006+0.95105\;6516\,i&1.5+0.36327\;1264\,i\\ 1.5+0.36327\;1264\,i&1.30901\;6994+0.95105\;6516\,i\end{bmatrix}
+\operatorname{cn}\left(z,k\right)=\operatorname{sech}z+\frac{{k^{\prime}}^{2}}{4}(z-\sinh z\cosh z)\tanh z\operatorname{sech}z+O\left({k^{\prime}}^{4}\right)
+\wp''\left(z\right)=6\!{\wp^{2}}\left(z\right)-\tfrac{1}{2}g_{2}
+\tau=\omega_{3}/\omega_{1}
+c_{2}=\frac{1}{20}g_{2}
+\frac{B_{m}}{m}\equiv\frac{B_{n}}{n}\pmod{p}
+\sum_{k=0}^{n}{n\choose k}B_{k}B_{n-k}=(1-n)B_{n}-nB_{n-1}
+\zeta\left(s\right)=\frac{1}{s-1}+\frac{1}{2}+\sum_{k=1}^{n}\genfrac{(}{)}{0.0pt}{}{s+2k-2}{2k-1}\frac{B_{2k}}{2k}-\genfrac{(}{)}{0.0pt}{}{s+2n}{2n+1}\int_{1}^{\infty}\frac{\widetilde{B}_{2n+1}\left(x\right)}{x^{s+2n+1}}\mathrm{d}x
+\zeta\left(s\right)=\frac{1}{(1-2^{1-s})\Gamma\left(s\right)}\int_{0}^{\infty}\frac{x^{s-1}}{e^{x}+1}\mathrm{d}x
+\sum_{n=0}^{\infty}c_{m}\left(n\right)q^{n}=\frac{q^{m}}{(1-q)^{m}}
+\left|S\setminus(A_{1}\cup A_{2}\cup\cdots\cup A_{n})\right|=\left|S\right|+\sum_{t=1}^{n}(-1)^{t}\sum_{1\leq j_{1}<j_{2}<\cdots<j_{t}\leq n}\left|A_{j_{1}}\cap A_{j_{2}}\cap\cdots\cap A_{j_{t}}\right|
+\chi\left(mn\right)=\chi\left(m\right)\chi\left(n\right)
+A=\eta-\tfrac{1}{8}\xi^{2}
+\alpha_{p}=\tfrac{1}{2}(\nu-2p-1)(\nu+2p+2)k^{2}
+h=\nu(\nu+1)-h^{\prime}
+\mathsf{Qs}^{m}_{n}\left(x,\gamma^{2}\right)
+\mathsf{Qs}^{m}_{n}\left(x,0\right)=\mathsf{Q}^{m}_{n}\left(x\right)
+2^{10}\beta_{2}=-5(q^{4}+26q^{2}+21)+384m^{2}(q^{2}+1)
+\frac{{\mathrm{d}}^{2}w}{{\mathrm{d}z}^{2}}+\left(\frac{\delta}{z^{2}}+\frac{\gamma}{z}+1\right)\frac{\mathrm{d}w}{\mathrm{d}z}+\frac{\alpha z-q}{z^{2}}w=0
+w(z;\alpha)=\epsilon W(\zeta)+\frac{1}{\epsilon^{5}}
+z=\zeta^{2}
+\beta=-\tfrac{1}{8}c\epsilon^{-2}
+p=\ifrac{(\sigma^{\prime}+\kappa_{0}\kappa_{\infty}z)}{(2\kappa_{0})}
+w(z)=\ifrac{P_{n^{2}+1}(\zeta)}{Q_{n^{2}}(\zeta)}
+z^{2}(w^{\prime})^{2}+2zww^{\prime}=(C+2\alpha zw+\gamma z^{2}w^{2})w^{2}
+w(x)=\sigma\sqrt{\tfrac{1}{2}x}+\sigma\rho(2x)^{-1/4}\cos\left(\psi(x)+\theta\right)+O\left(x^{-1}\right)
+h\left(\epsilon,\ell;r\right)=(-1)^{\ell}\nu^{\ell+1}A(\epsilon,\ell)\Gamma\left(\nu-\ell\right)\zeta_{\ell}(-\nu,r)/\pi
+\mathit{3j}{j}{j}{1}{m}{-m}{0}=(-1)^{j-m}\frac{2m}{\left(2j(2j+1)(2j+2)\right)^{\frac{1}{2}}}
+\Gamma_{m}\left(s_{1},\dots,s_{m}\right)=\int_{\boldsymbol{\Omega}}\mathrm{etr}\left(-\mathbf{X}\right)|\mathbf{X}|^{s_{m}-\frac{1}{2}(m+1)}\prod_{j=1}^{m-1}|(\mathbf{X})_{j}|^{s_{j}-s_{j+1}}\mathrm{d}\mathbf{X}
+\mathrm{B}_{m}\left(a,b\right)=\int\limits_{\boldsymbol{{0}}<\mathbf{X}<\mathbf{I}}|\mathbf{X}|^{a-\frac{1}{2}(m+1)}|\mathbf{I}-\mathbf{X}|^{b-\frac{1}{2}(m+1)}\mathrm{d}\mathbf{X}
+{{}_{2}F_{1}}\left({a,b\atop c};\mathbf{T}\right)=\frac{1}{\mathrm{B}_{m}\left(a,c-a\right)}\int\limits_{\boldsymbol{{0}}<\mathbf{X}<\mathbf{I}}|\mathbf{X}|^{a-\frac{1}{2}(m+1)}\*{|\mathbf{I}-\mathbf{X}|}^{c-a-\frac{1}{2}(m+1)}{|\mathbf{I}-\mathbf{T}\mathbf{X}|}^{-b}\mathrm{d}\mathbf{X}
+x+iy=-z^{2}\exp\left(\tfrac{2}{3}i\pi m\right)
+Y=\tfrac{1}{2}+\left((x+y)/z^{2}\right)
