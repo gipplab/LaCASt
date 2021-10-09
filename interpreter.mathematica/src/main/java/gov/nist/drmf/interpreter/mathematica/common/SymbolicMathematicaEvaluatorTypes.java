@@ -15,11 +15,12 @@ public enum SymbolicMathematicaEvaluatorTypes implements ISymbolicTestCases {
             ""
     );
 
-    private SymbolicTestIDs id;
-    private String name;
+    private final SymbolicTestIDs id;
+    private final String name;
     private boolean activated;
 
-    private String pre, post;
+    private final String pre;
+    private final String post;
 
     SymbolicMathematicaEvaluatorTypes(SymbolicTestIDs id, String name, boolean activated, String pre, String post ){
         this.id = id;

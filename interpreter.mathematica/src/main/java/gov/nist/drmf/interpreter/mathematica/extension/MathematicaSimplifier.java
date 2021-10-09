@@ -28,6 +28,7 @@ public class MathematicaSimplifier extends AbstractCasEngineSymbolicEvaluator<Ex
 
     public MathematicaSimplifier() {
         this.mathematicaInterface = MathematicaInterface.getInstance();
+        assert mathematicaInterface != null;
         this.miEquiChecker = mathematicaInterface.getEvaluationChecker();
     }
 
@@ -119,7 +120,7 @@ public class MathematicaSimplifier extends AbstractCasEngineSymbolicEvaluator<Ex
         return result.toString().matches(Pattern.quote(MathematicaInterface.MATH_ABORTION_SIGNAL));
     }
 
-    private static Pattern inPattern = Pattern.compile("^(.*?) \\[Element] (.*)$");
+    private static final Pattern inPattern = Pattern.compile("^(.*?) \\[Element] (.*)$");
 
     @Override
     public void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {

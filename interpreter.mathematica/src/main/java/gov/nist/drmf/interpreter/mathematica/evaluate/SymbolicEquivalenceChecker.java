@@ -1,14 +1,14 @@
 package gov.nist.drmf.interpreter.mathematica.evaluate;
 
-import com.wolfram.jlink.*;
+import com.wolfram.jlink.Expr;
+import com.wolfram.jlink.ExprFormatException;
+import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.time.Duration;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
  * @author Andre Greiner-Petter

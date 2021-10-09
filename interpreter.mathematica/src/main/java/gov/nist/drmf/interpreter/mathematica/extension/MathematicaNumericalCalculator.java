@@ -1,7 +1,6 @@
 package gov.nist.drmf.interpreter.mathematica.extension;
 
 import com.wolfram.jlink.Expr;
-import com.wolfram.jlink.ExprFormatException;
 import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.GenericCommandBuilder;
