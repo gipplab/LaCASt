@@ -4,7 +4,6 @@ import com.wolfram.jlink.Expr;
 import com.wolfram.jlink.KernelLink;
 import com.wolfram.jlink.MathLinkException;
 import com.wolfram.jlink.MathLinkFactory;
-import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
@@ -15,15 +14,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author Andre Greiner-Petter
@@ -42,8 +37,6 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
 
     private final SymbolicEquivalenceChecker evalChecker;
 
-    private Path mathPath;
-
     private MathematicaInterface() throws MathLinkException {
         init();
         this.evalChecker = new SymbolicEquivalenceChecker(this);
@@ -58,10 +51,11 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         if ( mathematicaInterface != null ) return; // already instantiated
 
         LOG.info("Instantiating mathematica interface");
-        mathPath = MathematicaConfig.loadMathematicaPath();
+        Path mathPath = MathematicaConfig.loadMathematicaPath();
+        assert mathPath != null;
         String[] args = getDefaultArguments(mathPath);
 
-        KernelLink mathKernel = null;
+        KernelLink mathKernel;
         try {
             mathKernel = MathLinkFactory.createKernelLink(args);
             // we don't care about the answer for instantiation, so skip it
@@ -200,8 +194,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         Expr[] argsExp = exs.args();
         Set<String> output = new HashSet<>();
 
-        for ( int i = 0; i < argsExp.length; i++ ) {
-            Expr arg = argsExp[i];
+        for (Expr arg : argsExp) {
             output.add(arg.toString());
         }
 

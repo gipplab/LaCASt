@@ -6,22 +6,13 @@ import gov.nist.drmf.interpreter.common.config.CASConfig;
 import gov.nist.drmf.interpreter.common.config.Config;
 import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
 import gov.nist.drmf.interpreter.common.config.RequirementChecker;
-import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Map;
-import java.util.Properties;
 
 /**
  * @author Andre Greiner-Petter
