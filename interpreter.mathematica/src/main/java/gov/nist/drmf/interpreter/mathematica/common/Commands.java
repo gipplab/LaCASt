@@ -25,8 +25,8 @@ public enum Commands {
 
 
     private static final String PLACE_HOLDER = "XXX";
-    private String cmd;
-    private int numOfArgs;
+    private final String cmd;
+    private final int numOfArgs;
 
     Commands(String cmd, int numOfArgs) {
         this.cmd = cmd;
@@ -41,7 +41,7 @@ public enum Commands {
         for ( int i = 1; i <= expr.length; i++ ) {
             String arg = expr[i-1];
             arg = arg.replace("\\", "\\\\");
-            b = b.replaceAll(PLACE_HOLDER+"\\-"+i, arg);
+            b = b.replaceAll(PLACE_HOLDER+"-"+i, arg);
         }
 
         return b;
