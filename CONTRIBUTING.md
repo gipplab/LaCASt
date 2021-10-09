@@ -43,7 +43,7 @@ Make sure you have JDK 11 installed. There should be no difference between Oracl
 
 <details><summary><strong>4. Download the project sources</strong></summary>
   
-* Run <code>git clone git@github.com:ag-gipp/LaCASt.git</code>
+* Run <code>git clone git@github.com:ag-gipp/LaCASt.git --recurse-submodules</code>
 * cd into the folder you downloaded `cd latex-grammer`
 * Run `git fetch` to fetch remote branches to your local machine
 * Run `git checkout -b extensions` to create a new branch with name `extensions`. You do not have permissions to push any changes to the master branch, so it's recommended to create a new branch right at the beginning.
