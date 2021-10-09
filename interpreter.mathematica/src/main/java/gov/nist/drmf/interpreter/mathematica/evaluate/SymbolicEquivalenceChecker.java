@@ -1,10 +1,10 @@
 package gov.nist.drmf.interpreter.mathematica.evaluate;
 
-import com.wolfram.jlink.Expr;
-import com.wolfram.jlink.ExprFormatException;
-import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
+import gov.nist.drmf.interpreter.mathematica.wrapper.ExprFormatException;
+import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

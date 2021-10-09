@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.mathematica.common;
 
-import java.util.regex.Pattern;
-
 /**
  * @author Andre Greiner-Petter
  */
