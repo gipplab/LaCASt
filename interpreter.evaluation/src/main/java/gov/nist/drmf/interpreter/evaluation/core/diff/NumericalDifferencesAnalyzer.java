@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.evaluation.core.diff;
 
-import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;

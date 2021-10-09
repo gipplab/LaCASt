@@ -1,13 +1,13 @@
 package gov.nist.drmf.interpreter.mathematica.config;
 
-import com.wolfram.jlink.KernelLink;
-import com.wolfram.jlink.MathLinkException;
 import gov.nist.drmf.interpreter.common.config.CASConfig;
 import gov.nist.drmf.interpreter.common.config.Config;
 import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
 import gov.nist.drmf.interpreter.common.config.RequirementChecker;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
+import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
