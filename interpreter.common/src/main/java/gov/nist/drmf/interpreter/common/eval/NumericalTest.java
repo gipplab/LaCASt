@@ -107,7 +107,7 @@ public class NumericalTest implements Serializable {
         return this;
     }
 
-    NumericalTest setRequiredPackages(Set<String> requiredPackages) {
+    public NumericalTest setRequiredPackages(Set<String> requiredPackages) {
         if ( requiredPackages == null ) this.requiredPackages = new HashSet<>();
         else this.requiredPackages = new HashSet<>(requiredPackages);
         return this;

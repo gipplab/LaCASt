@@ -31,6 +31,50 @@ public class SymbolicalTest implements Serializable {
         requiredPackages = new HashSet<>();
     }
 
+    /**
+     * This setup is required for gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator
+     * Here the setup was performed prior and we simple add all necessary values to perform the tests.
+     * The given testExpression for example is fixed. All splitting was also performed prior so that the
+     * {@link #testExpressions} will always only contain a single value.
+     * <p>
+     * This is in contrast to the setup from generic evaluation which presumes the setup will be performed
+     * here in this class.
+     *
+     * @param lhs
+     * @param rhs
+     * @param testExpression
+     * @param testCases
+     * @param config
+     * @param translator
+     */
+    public SymbolicalTest(
+            String lhs, String rhs,
+            String testExpression,
+            ISymbolicTestCases[] testCases,
+            SymbolicalConfig config,
+            IConstraintTranslator translator
+    ) {
+        super();
+        this.testCases = testCases;
+
+        this.testExpressions = new LinkedList<>();
+        this.expectedValues = new LinkedList<>();
+
+        SymbolicalTestBaseCase stbc = new SymbolicalTestBaseCase(lhs, rhs, testExpression);
+        this.testExpressions.add(stbc);
+        this.expectedValues.add(config.getExpectationValue());
+    }
+
+    /**
+     * This setup is required for generic translator, specifically: gov.nist.drmf.interpreter.generic.mlp.SemanticEnhancer
+     * This setup is different because it presumes the given argument was NOT translated so the splitting in multiple cases
+     * etc is done here. In contrast to the real SymbolEvaluator in gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator
+     *
+     * @param config
+     * @param translator
+     * @param latex
+     * @param testCases
+     */
     public SymbolicalTest(
             SymbolicalConfig config,
             IConstraintTranslator translator,
@@ -43,14 +87,14 @@ public class SymbolicalTest implements Serializable {
         this.expectedValues = new LinkedList<>();
 
         List<String> cases = CaseSplitter.splitPMSymbols(latex);
-        for ( String texCase : cases ) {
+        for (String texCase : cases) {
             TranslationInformation ti = translator.translateToObject(texCase);
             this.requiredPackages = ti.getRequiredPackages();
 
-            if ( ti.getPartialTranslations().isEmpty() ) {
+            if (ti.getPartialTranslations().isEmpty()) {
                 addTranslationTests(ti, config, translator);
             } else {
-                for ( TranslationInformation subTi : ti.getPartialTranslations() ) {
+                for (TranslationInformation subTi : ti.getPartialTranslations()) {
                     addTranslationTests(subTi, config, translator);
                 }
             }
@@ -59,27 +103,27 @@ public class SymbolicalTest implements Serializable {
 
     private void addTranslationTests(TranslationInformation ti, SymbolicalConfig config, IConstraintTranslator translator) {
         RelationalComponents relComps = ti.getRelationalComponents();
-        if ( relComps.getComponents().size() == 1 ) {
-            testExpressions.add( new SymbolicalTestBaseCase(relComps.getComponents().getFirst()) );
-            expectedValues.add( config.getExpectationValue() );
+        if (relComps.getComponents().size() == 1) {
+            testExpressions.add(new SymbolicalTestBaseCase(relComps.getComponents().getFirst()));
+            expectedValues.add(config.getExpectationValue());
         } else {
             LinkedList<String> comps = new LinkedList<>(relComps.getComponents());
             LinkedList<Relations> rels = new LinkedList<>(relComps.getRelations());
-            while ( !rels.isEmpty() ) {
+            while (!rels.isEmpty()) {
                 String lhs = comps.removeFirst();
                 String rhs = comps.getFirst();
                 Relations rel = rels.removeFirst();
 
-                if ( Relations.EQUAL.equals(rel) ) {
+                if (Relations.EQUAL.equals(rel)) {
                     SymbolicalTestBaseCase test = new SymbolicalTestBaseCase(lhs, rhs, config.getTestExpression(lhs, rhs));
-                    this.testExpressions.add( test );
-                    this.expectedValues.add( config.getExpectationValue() );
+                    this.testExpressions.add(test);
+                    this.expectedValues.add(config.getExpectationValue());
                 } else {
                     // rebuild expression and add it as it is... expecting true now :)
-                    String testExpression = lhs + rel.getSymbol(translator.getTargetLanguage() ) + rhs;
+                    String testExpression = lhs + rel.getSymbol(translator.getTargetLanguage()) + rhs;
                     SymbolicalTestBaseCase test = new SymbolicalTestBaseCase(lhs, rhs, testExpression);
-                    this.testExpressions.add( test );
-                    this.expectedValues.add( "true" );
+                    this.testExpressions.add(test);
+                    this.expectedValues.add("true");
                 }
             }
         }

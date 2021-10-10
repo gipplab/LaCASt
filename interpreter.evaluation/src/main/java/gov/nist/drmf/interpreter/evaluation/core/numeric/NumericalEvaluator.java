@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.evaluation.core.numeric;
 
-import com.maplesoft.externalcall.MapleException;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.cas.Constraints;
 import gov.nist.drmf.interpreter.common.eval.*;
@@ -8,7 +7,6 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.eval.NumericResult;
-import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.common.text.JoinConfig;
 import gov.nist.drmf.interpreter.common.text.TextUtility;
 import gov.nist.drmf.interpreter.core.api.DLMFTranslator;
@@ -424,6 +422,7 @@ public class NumericalEvaluator extends AbstractNumericalEvaluator {//implements
                 config,
                 getThisConstraintTranslator()
         );
+        test.setRequiredPackages(super.getRequiredPackages());
         test.setPostProcessingMethodName(scriptHandler.getPostProcessingScriptName(c.isEquation()));
         test.setVariables(variables);
         return test;
@@ -486,7 +485,7 @@ public class NumericalEvaluator extends AbstractNumericalEvaluator {//implements
     private int factor = 1;
 
     public static NumericalEvaluator createStandardMapleEvaluator()
-            throws IOException, MapleException, ComputerAlgebraSystemEngineException, InitTranslatorException {
+            throws IOException, ComputerAlgebraSystemEngineException, InitTranslatorException {
         NumericalEvaluator evaluator = new NumericalEvaluator(new MapleConnector());
         evaluator.isMaple = true;
         return evaluator;
