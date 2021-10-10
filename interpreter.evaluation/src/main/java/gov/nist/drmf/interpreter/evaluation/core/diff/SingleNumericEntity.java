@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.evaluation.core.diff;
 
-import com.wolfram.jlink.Expr;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
