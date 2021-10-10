@@ -32,7 +32,7 @@ public class SymbolicalTest implements Serializable {
     }
 
     /**
-     * This setup is required for ov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator
+     * This setup is required for gov.nist.drmf.interpreter.evaluation.core.symbolic.SymbolicEvaluator
      * Here the setup was performed prior and we simple add all necessary values to perform the tests.
      * The given testExpression for example is fixed. All splitting was also performed prior so that the
      * {@link #testExpressions} will always only contain a single value.
