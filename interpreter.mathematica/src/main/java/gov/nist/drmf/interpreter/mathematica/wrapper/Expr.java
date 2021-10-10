@@ -10,7 +10,7 @@ public class Expr {
     public Expr[] args() {
         int len = expr.args().length;
         Expr[] out = new Expr[len];
-        for ( int i =1; i<len;i++  ) {
+        for ( int i =0; i<len;i++  ) {
             out[i] = new Expr(expr.args()[i]);
         }
         return out;
