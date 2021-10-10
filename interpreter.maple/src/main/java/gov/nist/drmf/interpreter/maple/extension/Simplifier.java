@@ -7,9 +7,11 @@ import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
+import gov.nist.drmf.interpreter.common.eval.SymbolicalConfig;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
+import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,6 +52,10 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
             LOG.fatal("Unable to initiate the symbol and function translator.", e);
         }
         packageWrapper = new PackageWrapper(basicFunctionsTranslator, symbolTranslator);
+
+        // little hack, we need to load the configs on this VM too (the simplifier no longer share the same
+        // SymbolicMapleEvaluatorTypes because they are in another VM)
+        new SymbolicalConfig(SymbolicMapleEvaluatorTypes.values());
     }
 
     @Override

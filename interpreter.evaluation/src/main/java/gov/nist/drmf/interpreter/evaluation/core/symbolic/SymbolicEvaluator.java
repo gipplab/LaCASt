@@ -261,11 +261,12 @@ public class SymbolicEvaluator extends AbstractSymbolicEvaluator {
 
         ICASEngineSymbolicEvaluator evaluator = super.getSymbolicEvaluator();
         SymbolicalTest test = new SymbolicalTest(
+                lhs, rhs, expression,
+                type,
                 config,
-                getThisConstraintTranslator(),
-                expression,
-                type
+                getThisConstraintTranslator()
         );
+        test.setRequiredPackages(super.getRequiredPackages());
 
         SymbolicResult result = evaluator.performSymbolicTest(test);
 
