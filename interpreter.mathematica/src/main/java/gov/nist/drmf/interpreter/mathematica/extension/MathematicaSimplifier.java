@@ -1,11 +1,12 @@
 package gov.nist.drmf.interpreter.mathematica.extension;
 
-import com.wolfram.jlink.Expr;
-import com.wolfram.jlink.MathLinkException;
+
 import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
+import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
+import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

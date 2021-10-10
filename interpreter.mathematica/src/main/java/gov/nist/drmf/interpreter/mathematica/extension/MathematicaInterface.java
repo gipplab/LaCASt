@@ -1,15 +1,15 @@
 package gov.nist.drmf.interpreter.mathematica.extension;
 
-import com.wolfram.jlink.Expr;
-import com.wolfram.jlink.KernelLink;
-import com.wolfram.jlink.MathLinkException;
-import com.wolfram.jlink.MathLinkFactory;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
+import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
+import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
+import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
+import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
