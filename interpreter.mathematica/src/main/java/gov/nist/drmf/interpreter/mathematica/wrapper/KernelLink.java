@@ -1,9 +1,9 @@
 package gov.nist.drmf.interpreter.mathematica.wrapper;
 
 public class KernelLink {
-    com.wolfram.jlink.KernelLink kernelLink;
+    private final com.wolfram.jlink.KernelLink kernelLink;
 
-    public KernelLink(com.wolfram.jlink.KernelLink kernelLink) {
+    protected KernelLink(com.wolfram.jlink.KernelLink kernelLink) {
         this.kernelLink=kernelLink;
     }
 

@@ -1,8 +1,7 @@
 package gov.nist.drmf.interpreter.mathematica.wrapper;
 
-
 public class Expr {
-    com.wolfram.jlink.Expr expr;
+    private final com.wolfram.jlink.Expr expr;
 
     public Expr(com.wolfram.jlink.Expr expr) {
         this.expr = expr;
@@ -51,5 +50,10 @@ public class Expr {
         } catch (com.wolfram.jlink.ExprFormatException e) {
             throw new ExprFormatException(e);
         }
+    }
+
+    @Override
+    public String toString() {
+        return expr.toString();
     }
 }
