@@ -82,7 +82,7 @@ public abstract class AbstractCasEngineSymbolicEvaluator<T> implements ICASEngin
                     else symbolicCalculation.setResult(TestResultType.FAILURE);
 
                 } catch (Exception e) {
-                    LOG.error("Error in symbolic test case: " + e.getMessage());
+                    LOG.error("Error in symbolic test case: " + e.getMessage(), e);
                     symbolicCalculation.setResult(TestResultType.ERROR);
                 } finally {
                     group.addTestCalculation(symbolicCalculation);

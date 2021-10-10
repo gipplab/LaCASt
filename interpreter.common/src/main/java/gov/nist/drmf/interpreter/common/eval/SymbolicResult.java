@@ -139,7 +139,7 @@ public class SymbolicResult implements Serializable, ITestResultCounter {
         List<String> results = testCalculationsGroups.stream()
                 .map( SymbolicCalculationGroup::getTestCalculations )
                 .flatMap(Collection::stream)
-                .map( SymbolicCalculation::getResultExpression )
+                .map( s -> s.getTestTitle() + ": " + s.getResultExpression() )
                 .collect(Collectors.toList());
         return "[" + String.join(", ", results) + "]";
     }
