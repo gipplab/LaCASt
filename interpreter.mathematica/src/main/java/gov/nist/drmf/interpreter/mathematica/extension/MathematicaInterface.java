@@ -51,8 +51,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         if ( mathematicaInterface != null ) return; // already instantiated
 
         LOG.info("Instantiating mathematica interface");
-        String jLinkDir = "C:/Program Files/Wolfram Research/Wolfram Engine/12.0/SystemFiles/Links/JLink/SystemFiles/Libraries/Windows-x86-64";
-        System.setProperty("com.wolfram.jlink.libdir", jLinkDir);
+        System.setProperty("com.wolfram.jlink.libdir", MathematicaConfig.getjLinkNativePath());
         Path mathPath = MathematicaConfig.loadMathematicaPath();
         assert mathPath != null;
         String[] args = getDefaultArguments(mathPath);
@@ -96,7 +95,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
     private static String[] getDefaultArguments(Path mathPath) {
         return new String[]{
                 "-linkmode", "launch",
-                "-linkname", mathPath.toString()//, "-mathlink"
+                "-linkname", mathPath.toString(), "-mathlink"
         };
     }
 

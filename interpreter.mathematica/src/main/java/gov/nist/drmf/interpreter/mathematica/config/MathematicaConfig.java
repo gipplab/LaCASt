@@ -14,28 +14,37 @@ import org.apache.logging.log4j.Logger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 /**
  * @author Andre Greiner-Petter
  */
 public class MathematicaConfig {
     private static final Logger LOG = LogManager.getLogger(MathematicaConfig.class.getName());
 
-    private static final String STD_PATH_TO_MATH = "SystemFiles/Links/JLink/SystemFiles/Libraries/Windows-x86-64/";
+    private static final String STD_PATH_TO_MATH = "SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/";
 
     private MathematicaConfig(){}
 
     public static Path loadMathematicaPath(){
-        Config config = ConfigDiscovery.getConfig();
-        CASConfig mathConfig = config.getCasConfigs().get(Keys.KEY_MATHEMATICA);
+        CASConfig mathConfig = getMathConfig();
         if ( mathConfig == null ) return null;
         Path baseInstallPath = mathConfig.getInstallPath();
         if ( baseInstallPath == null ) return null;
-        return baseInstallPath.resolve("MathKernel.exe");
+        if ( IS_OS_WINDOWS ){
+            return baseInstallPath.resolve("MathKernel.exe");
+        } else {
+            return baseInstallPath.resolve("Executables/math");
+        }
+
+    }
+
+    private static CASConfig getMathConfig() {
+        Config config = ConfigDiscovery.getConfig();
+        return config.getCasConfigs().get(Keys.KEY_MATHEMATICA);
     }
 
     public static String loadMathematicaLicense() {
-        Config config = ConfigDiscovery.getConfig();
-        CASConfig mathConfig = config.getCasConfigs().get(Keys.KEY_MATHEMATICA);
+        CASConfig mathConfig = getMathConfig();
         if ( mathConfig == null ) return null;
         return mathConfig.getLicenseKey();
     }
@@ -77,5 +86,9 @@ public class MathematicaConfig {
         } catch (Exception | Error e) {
             return false;
         }
+    }
+
+    public static String getjLinkNativePath() {
+        return getMathConfig().getjLinkNativePath();
     }
 }
