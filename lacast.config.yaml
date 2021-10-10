@@ -10,7 +10,7 @@ lacast.cas:
   Maple:
     install.path: "/opt/maple2020"
   Mathematica:
-    install.path: "/opt/Wolfram"
+    install.path: "C:/Program Files/Wolfram Research/Wolfram Engine/12.0"
     license: "4311-6677-4H3V66"
   SymPy:
 

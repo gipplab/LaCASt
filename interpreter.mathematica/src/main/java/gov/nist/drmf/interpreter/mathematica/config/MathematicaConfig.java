@@ -20,7 +20,7 @@ import java.nio.file.Path;
 public class MathematicaConfig {
     private static final Logger LOG = LogManager.getLogger(MathematicaConfig.class.getName());
 
-    private static final String STD_PATH_TO_MATH = "SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/";
+    private static final String STD_PATH_TO_MATH = "SystemFiles/Links/JLink/SystemFiles/Libraries/Windows-x86-64/";
 
     private MathematicaConfig(){}
 
@@ -30,7 +30,7 @@ public class MathematicaConfig {
         if ( mathConfig == null ) return null;
         Path baseInstallPath = mathConfig.getInstallPath();
         if ( baseInstallPath == null ) return null;
-        return baseInstallPath.resolve("Executables/math");
+        return baseInstallPath.resolve("MathKernel.exe");
     }
 
     public static String loadMathematicaLicense() {
