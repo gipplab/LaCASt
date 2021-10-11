@@ -44,6 +44,17 @@
                 <module>mathosphere</module>
             </modules>
         </profile>
+        <profile>
+            <id>ci</id>
+            <activation>
+                <file>
+                    <missing>${main.basedir}/lacast.config.yaml</missing>
+                </file>
+            </activation>
+            <properties>
+                <config.file.path>${main.basedir}/config/template-lacast.config.yaml</config.file.path>
+            </properties>
+        </profile>
     </profiles>
 
     <properties>
@@ -54,6 +65,9 @@
         <maple.version>2020.1</maple.version>
         <mathematica.jlink.path>${main.basedir}/libs/Mathematica</mathematica.jlink.path>
         <mathematica.jlink.version>1.0</mathematica.jlink.version>
+
+        <!-- Setup default config path -->
+        <config.file.path>${main.basedir}/lacast.config.yaml</config.file.path>
 
         <!-- Setup Java and maven versions -->
         <java.version>11</java.version>
@@ -380,7 +394,7 @@
                         </goals>
                         <configuration>
                             <files>
-                                <file>${main.basedir}/lacast.config.yaml</file>
+                                <file>${config.file.path}</file>
                             </files>
                         </configuration>
                     </execution>

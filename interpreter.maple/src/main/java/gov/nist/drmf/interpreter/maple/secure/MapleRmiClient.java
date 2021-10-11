@@ -205,6 +205,6 @@ public class MapleRmiClient extends RmiProcessHandler
      * @return checks if maple is theoretically present. It does not perform any license tests!
      */
     public synchronized static boolean isMaplePresent() {
-        return MapleConfig.areSystemVariablesSetProperly();
+        return MapleConfig.isMapleSetup();
     }
 }

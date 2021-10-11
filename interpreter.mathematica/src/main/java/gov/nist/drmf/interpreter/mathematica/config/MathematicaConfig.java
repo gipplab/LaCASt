@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.mathematica.config;
 import gov.nist.drmf.interpreter.common.config.CASConfig;
 import gov.nist.drmf.interpreter.common.config.Config;
 import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
-import gov.nist.drmf.interpreter.common.config.RequirementChecker;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
@@ -75,25 +74,9 @@ public class MathematicaConfig {
         return true;
     }
 
-    /**
-     * Checks if the LD_LIBRARY_PATH environment variable is properly set
-     *
-     * @return true if the library path is correctly set otherwise false
-     */
-    public static boolean isSystemEnvironmentVariableProperlySet() {
-        return RequirementChecker.validEnvVariable(
-                Keys.SYSTEM_ENV_LD_LIBRARY_PATH,
-                Keys.KEY_MATHEMATICA,
-                // this path is just an example for proper logging messages
-                "<mathematica-installation-path>/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/",
-                // this is the regex that should appear in the path to pass the test
-                "SystemFiles[/\\\\]Links[/\\\\]JLink"
-        );
-    }
-
     public static boolean isMathematicaPresent() {
         try {
-            if (!isMathematicaMathPathAvailable() || !isSystemEnvironmentVariableProperlySet()) return false;
+            if (!isMathematicaMathPathAvailable()) return false;
             MathematicaInterface m = MathematicaInterface.getInstance();
             return m != null;
         } catch (Exception | Error e) {

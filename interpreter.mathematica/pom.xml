@@ -40,13 +40,6 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <environmentVariables>
-                        <LD_LIBRARY_PATH>${lacast.cas.Mathematica.native.library.path}</LD_LIBRARY_PATH>
-                    </environmentVariables>
-                    <!--suppress UnresolvedMavenProperty -->
-                    <argLine>${argLine}</argLine>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-install-plugin</artifactId>

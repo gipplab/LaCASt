@@ -33,7 +33,7 @@
                 <configuration>
                     <environmentVariables>
                         <MAPLE>${lacast.cas.Maple.install.path}</MAPLE>
-                        <LD_LIBRARY_PATH>${lacast.cas.Maple.native.library.path}:${lacast.cas.Mathematica.native.library.path}</LD_LIBRARY_PATH>
+                        <LD_LIBRARY_PATH>${lacast.cas.Maple.native.library.path}</LD_LIBRARY_PATH>
                     </environmentVariables>
                     <!--suppress UnresolvedMavenProperty -->
                     <argLine>${argLine} -Xss50M</argLine>
