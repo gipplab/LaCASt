@@ -1,0 +1,33 @@
+# This configuration defines the path the library and configuration folder for LaCASt.
+# You can either specify the location of this file with a flag: "-config=pathToThisConfig.yaml",
+# or you put this file into the local directory or your home directory in ".lacast" folder.
+lacast.libs.path: "./libs"
+lacast.config.path: "./config"
+
+# the cas paths are currently not in use but my be needed later
+# any new supported cas must be given in that list
+lacast.cas:
+  # If you are unsure, use 'kernelopts( mapledir );' for Maple.install.path and 'kernelopts( bindir );' to get
+  # Maple.native.library.path in your local Maple instance.
+  Maple:
+    install.path: "/opt/maple2020"
+    native.library.path: "/opt/maple2020/bin.X86_64_LINUX"
+  Mathematica:
+    install.path: "/opt/Wolfram"
+    native.library.path: "/opt/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64"
+    license: "4311-6677-4H3V66"
+  SymPy:
+
+# the following settings are optional and are loaded exactly as below
+# if nothing is changed because those are the default settings.
+lacast.generic:
+  elasticsearch.host: "localhost"
+  elasticsearch.port: 9200
+  elasticsearch.macros.index: "dlmf-macros"
+  mathoid.url: "http://localhost:10044/texvcinfo"
+  settings:
+    max.relations: 3
+    max.macros: 5
+    max.depth: -1
+    suppressMacros: ["pgcd"]
+#    supportDescriptions: ["Euler gamma function"]

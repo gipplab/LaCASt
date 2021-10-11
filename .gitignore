@@ -1,6 +1,3 @@
-# Ignore user specific config file
-lacast.config.yaml
-
 # Since it is a maven project, we could ignore all files under .idea/
 # But it would be better to keep the basics. That makes it a lot easier
 # for new contributers to open the program in IntelliJ.
