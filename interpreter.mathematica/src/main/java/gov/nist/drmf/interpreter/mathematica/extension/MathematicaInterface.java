@@ -51,7 +51,12 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         if ( mathematicaInterface != null ) return; // already instantiated
 
         LOG.info("Instantiating mathematica interface");
+
+        // as long as we put JLink.jar in a different context, we may want to hack around potential issues by telling
+        // wolfram the original libdir (here the JLinkNativePath). See also:
+        // https://mathematica.stackexchange.com/questions/15097/failed-to-connect-remote-mathematica-kernel-using-j-link
         System.setProperty("com.wolfram.jlink.libdir", MathematicaConfig.getjLinkNativePath());
+
         Path mathPath = MathematicaConfig.loadMathematicaPath();
         assert mathPath != null;
         String[] args = getDefaultArguments(mathPath);

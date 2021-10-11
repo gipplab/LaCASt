@@ -7,6 +7,7 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.evaluation.core.symbolic.AbstractSymbolicEvaluator;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.intellij.lang.annotations.Language;
@@ -31,7 +32,7 @@ public abstract class AbstractNumericalEvaluator extends AbstractEvaluator imple
     private String[] scripts;
 
     public AbstractNumericalEvaluator(
-            IConstraintTranslator forwardTranslator,
+            IConstraintTranslator<PrintablePomTaggedExpression> forwardTranslator,
             IComputerAlgebraSystemEngine engine,
             ICASEngineNumericalEvaluator numericalEvaluator
     ) {

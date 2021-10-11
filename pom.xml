@@ -47,16 +47,6 @@
     </profiles>
 
     <properties>
-        <!--
-            TODO
-            The following two variables has to be updated for every user!
-            Enter the installation folder (without / in the end) for maple
-            and Mathematica. If you did not install the CAS on your system,
-            just set the variables to your home directory.
-        -->
-        <maple.installation.dir>/opt/maple2020</maple.installation.dir>
-        <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
-
         <!-- settings to proper work with pom-tagger, maple, and mathematica -->
         <mlp.path>${main.basedir}/libs/MLP/MLP.jar</mlp.path>
         <mlp.version>1.1</mlp.version>
@@ -156,6 +146,13 @@
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
                 <version>2.7</version>
+            </dependency>
+
+            <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.12.0</version>
             </dependency>
 
             <dependency>
@@ -368,6 +365,24 @@
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>it.ozimov</groupId>
+                <artifactId>yaml-properties-maven-plugin</artifactId>
+                <version>1.1.3</version>
+                <executions>
+                    <execution>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>read-project-properties</goal>
+                        </goals>
+                        <configuration>
+                            <files>
+                                <file>${main.basedir}/lacast.config.yaml</file>
+                            </files>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

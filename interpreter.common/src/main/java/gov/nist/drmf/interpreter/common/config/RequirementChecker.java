@@ -1,6 +1,5 @@
 package gov.nist.drmf.interpreter.common.config;
 
-import gov.nist.drmf.interpreter.common.constants.Keys;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -53,7 +52,7 @@ public final class RequirementChecker {
         String variable = System.getenv(systemEnv);
         if ( variable == null ) {
             LOG.printf(Level.WARN,
-                    "The system variable %s is required for %s but is not available. Set it to %s",
+                    "The system variable %s is required for %s but is not available. Set it to, for example, '%s'",
                     systemEnv, name, expectedPath
             );
             return false;
@@ -70,14 +69,14 @@ public final class RequirementChecker {
                 if ( Files.exists(path) ) return true;
                 else {
                     LOG.printf(Level.WARN,
-                            "The specified path %s for %s does not exist! It should be %s",
+                            "The specified path %s for %s does not exist! It should be something like: '%s'",
                             p, name, expectedPath
                     );
                 }
             }
         }
 
-        LOG.warn("Unable to find '" + expectedPath + "' in LD_LIBRARY_PATH: " + Arrays.toString(paths));
+        LOG.warn("Unable to find expected '" + expectedPath + "' in LD_LIBRARY_PATH: " + Arrays.toString(paths));
         return false;
     }
 

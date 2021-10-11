@@ -10,6 +10,7 @@ import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.evaluation.common.*;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.pom.common.CaseMetaData;
+import gov.nist.drmf.interpreter.pom.extensions.PrintablePomTaggedExpression;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,14 +33,14 @@ public abstract class AbstractEvaluator {
 
     private static double timeoutMS = 30_000;
 
-    private IConstraintTranslator forwardTranslator;
+    private IConstraintTranslator<PrintablePomTaggedExpression> forwardTranslator;
     private IComputerAlgebraSystemEngine engine;
 
     private HashMap<String, Integer> missingMacrosLib;
 
     private SymbolDefinedLibrary symbolDefinitionLibrary;
 
-    private IPackageWrapper packageWrapper;
+    private IPackageWrapper<String, String> packageWrapper;
     private Set<String> reqPackageMemory;
 
     public static int DEFAULT_OUTPUT_LENGTH = 150;
@@ -54,7 +55,7 @@ public abstract class AbstractEvaluator {
     );
 
     public AbstractEvaluator(
-            IConstraintTranslator forwardTranslator,
+            IConstraintTranslator<PrintablePomTaggedExpression> forwardTranslator,
             IComputerAlgebraSystemEngine engine
     ) {
         this.forwardTranslator = forwardTranslator;

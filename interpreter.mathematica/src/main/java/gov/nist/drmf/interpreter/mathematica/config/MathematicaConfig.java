@@ -14,16 +14,17 @@ import org.apache.logging.log4j.Logger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static org.apache.commons.lang3.SystemUtils.IS_OS_LINUX;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
+
 /**
  * @author Andre Greiner-Petter
  */
 public class MathematicaConfig {
     private static final Logger LOG = LogManager.getLogger(MathematicaConfig.class.getName());
 
-    private static final String STD_PATH_TO_MATH = "SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/";
-
-    private MathematicaConfig(){}
+    private MathematicaConfig() {
+    }
 
     public static Path loadMathematicaPath(){
         CASConfig mathConfig = getMathConfig();
@@ -33,9 +34,14 @@ public class MathematicaConfig {
         if ( IS_OS_WINDOWS ){
             return baseInstallPath.resolve("MathKernel.exe");
         } else {
+            if ( !IS_OS_LINUX ) {
+                LOG.warn("The system you are using is not Linux which may require a different " +
+                        "Mathematica execution path (compared to Executables/math). " +
+                        "Please open an issue on github.com/ag-gipp/LaCASt/issues if you face any " +
+                        "issues starting Mathematica from here on.");
+            }
             return baseInstallPath.resolve("Executables/math");
         }
-
     }
 
     private static CASConfig getMathConfig() {
@@ -69,18 +75,25 @@ public class MathematicaConfig {
         return true;
     }
 
+    /**
+     * Checks if the LD_LIBRARY_PATH environment variable is properly set
+     *
+     * @return true if the library path is correctly set otherwise false
+     */
     public static boolean isSystemEnvironmentVariableProperlySet() {
         return RequirementChecker.validEnvVariable(
                 Keys.SYSTEM_ENV_LD_LIBRARY_PATH,
                 Keys.KEY_MATHEMATICA,
-                "<mathematica-installation-path>/" + STD_PATH_TO_MATH,
-                "SystemFiles/Links/JLink"
+                // this path is just an example for proper logging messages
+                "<mathematica-installation-path>/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/",
+                // this is the regex that should appear in the path to pass the test
+                "SystemFiles[/\\\\]Links[/\\\\]JLink"
         );
     }
 
     public static boolean isMathematicaPresent() {
         try {
-            if ( !isMathematicaMathPathAvailable() || !isSystemEnvironmentVariableProperlySet() ) return false;
+            if (!isMathematicaMathPathAvailable() || !isSystemEnvironmentVariableProperlySet()) return false;
             MathematicaInterface m = MathematicaInterface.getInstance();
             return m != null;
         } catch (Exception | Error e) {
@@ -89,6 +102,6 @@ public class MathematicaConfig {
     }
 
     public static String getjLinkNativePath() {
-        return getMathConfig().getjLinkNativePath();
+        return getMathConfig().getNativeLibraryPath();
     }
 }

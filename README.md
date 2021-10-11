@@ -92,14 +92,14 @@ Currently in submission, no bibtex available yet.
 
 # How to use our program<a name="howTo"></a>
 The `bin` directory contains a couple of executable jars. Any of these programs require the `lacast.config.yaml`.
-This config file must specify the paths to the `libs` and `config` folder and the supported CAS, 
-see [lacast.config.yaml](lacast.config.yaml).
+Copy the `libs/template-lacast.config.yaml` to the main directory and rename it to `lacast.config.yaml`. Afterward,
+update the entries in the template file to the properties that are applicable for you.
 LaCASt tries to load the config by following these rules:
-1. There is a system variable that specifies the config location, e.g., `export LACAST_CONFIG="path/to/lacast.config.yaml"`.
+1. The system variable `LACAST_CONFIG` specifies the config location, e.g., `export LACAST_CONFIG="path/to/lacast.config.yaml"`.
 2. The config file is in the current working directory.
-3. Loads the default config from the internal resources in the jar, see [default config](https://github.com/ag-gipp/LaCASt/blob/master/interpreter.common/src/main/resources/lacast.config.yaml)
+3. Loads the default config from the internal resources in the jar, see [default config](https://github.com/ag-gipp/LaCASt/blob/master/interpreter.common/src/main/resources/lacast.config.yaml) in `interpreter.common/src/main/resources/`
 
-If none of the rules above worked, LaCASt stops.
+If none of the rules above point to a valid config, LaCASt stops.
 
 <details><summary><code>latex-to-cas-converter.jar</code>: The forward translator (LaTeX -> CAS)</summary>
 

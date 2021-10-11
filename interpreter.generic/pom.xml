@@ -92,8 +92,8 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <environmentVariables>
-                        <MAPLE>${maple.installation.dir}</MAPLE>
-                        <LD_LIBRARY_PATH>${maple.installation.dir}/bin.X86_64_LINUX:${mathematica.installation.dir}/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64/</LD_LIBRARY_PATH>
+                        <MAPLE>${lacast.cas.Maple.install.path}</MAPLE>
+                        <LD_LIBRARY_PATH>${lacast.cas.Maple.native.library.path}:${lacast.cas.Mathematica.native.library.path}</LD_LIBRARY_PATH>
                     </environmentVariables>
                     <!--suppress UnresolvedMavenProperty -->
                     <argLine>${argLine} -Xss50M</argLine>
