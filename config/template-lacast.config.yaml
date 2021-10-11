@@ -16,7 +16,7 @@ lacast.cas:
     native.library.path: "/opt/maple2020/bin.X86_64_LINUX"
   Mathematica:
     install.path: "/opt/Wolfram"
-    jLinkNativeLibrary: "/opt/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64"
+    native.library.path: "/opt/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64"
     license: "4311-6677-4H3V66"
   SymPy: # sets up LaCASt to perform translations to SymPy (no installation of sympy is required)
 
