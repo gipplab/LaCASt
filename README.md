@@ -92,7 +92,7 @@ Currently in submission, no bibtex available yet.
 
 # How to use our program<a name="howTo"></a>
 The `bin` directory contains a couple of executable jars. Any of these programs require the `lacast.config.yaml`.
-Copy the `libs/template-lacast.config.yaml` to the main directory and rename it to `lacast.config.yaml`. Afterward,
+Copy the `config/template-lacast.config.yaml` to the main directory and rename it to `lacast.config.yaml`. Afterward,
 update the entries in the template file to the properties that are applicable for you.
 LaCASt tries to load the config by following these rules:
 1. The system variable `LACAST_CONFIG` specifies the config location, e.g., `export LACAST_CONFIG="path/to/lacast.config.yaml"`.
