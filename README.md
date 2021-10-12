@@ -92,14 +92,14 @@ Currently in submission, no bibtex available yet.
 
 # How to use our program<a name="howTo"></a>
 The `bin` directory contains a couple of executable jars. Any of these programs require the `lacast.config.yaml`.
-This config file must specify the paths to the `libs` and `config` folder and the supported CAS, 
-see [lacast.config.yaml](lacast.config.yaml).
+Copy the `config/template-lacast.config.yaml` to the main directory and rename it to `lacast.config.yaml`. Afterward,
+update the entries in the template file to the properties that are applicable for you.
 LaCASt tries to load the config by following these rules:
-1. There is a system variable that specifies the config location, e.g., `export LACAST_CONFIG="path/to/lacast.config.yaml"`.
+1. The system variable `LACAST_CONFIG` specifies the config location, e.g., `export LACAST_CONFIG="path/to/lacast.config.yaml"`.
 2. The config file is in the current working directory.
-3. Loads the default config from the internal resources in the jar, see [default config](https://github.com/ag-gipp/LaCASt/blob/master/interpreter.common/src/main/resources/lacast.config.yaml)
+3. Loads the default config from the internal resources in the jar, see [default config](https://github.com/ag-gipp/LaCASt/blob/master/interpreter.common/src/main/resources/lacast.config.yaml) in `interpreter.common/src/main/resources/`
 
-If none of the rules above worked, LaCASt stops.
+If none of the rules above point to a valid config, LaCASt stops.
 
 <details><summary><code>latex-to-cas-converter.jar</code>: The forward translator (LaTeX -> CAS)</summary>
 
@@ -143,7 +143,10 @@ Current list: [CAS_Maple.csv, CAS_Mathematica.csv]
 <details><summary><code>maple-translator.jar</code>: The backward translator for Maple (Maple -> Semantic LaTeX)</summary>
 
 ---
-This jar requires an installed Maple license on the machine! To start the translator, you have to set the environment variables to properly run Maple. In my case, Maple is installed in `/opt/maple2019` and I'm on a Linux machine. In addition, you have to provide more heap size, otherwise Maple crashes. Here is an example:
+This jar requires an installed Maple license on the machine! To start the translator, 
+you have to set the environment variables to properly run Maple (see here [Building and Running a Java OpenMaple Application](https://de.maplesoft.com/support/help/maple/view.aspx?path=OpenMaple%2fJava%2frunning))
+In my case, Maple is installed in `/opt/maple2019` and I'm on a Linux machine which requires to set `MAPLE` and `LD_LIBRARY_PATH`.
+In addition, you have to provide more heap size via `-Xss50M`, otherwise Maple crashes. Here is an example:
 
 ```shell script
 andre@agp:~$ export MAPLE="/opt/maple2019"
@@ -185,9 +188,12 @@ missing_macro_output=/home/andreg-p/Howard/Results/AutoMaple/22-JA-missing.txt
 
 2) `symbolic-tester.jar` program arguments:
     * `-maple` to run the tests with Maple
-    * `-mathematica` to run the tests with Mathematica
+    * `-mathematica` to run the tests with Mathematica (you can only specify one at a time, maple or mathematica)
     * `-Xmx8g` increase the java memory, that's not required but useful
     * `-Xss50M` increase the heap size if you use Maple
+    
+Additionally, you have to set environment variables if you work with Maple (see the `maple-translator.jar` instructions
+above for more details about required variables).
 
 3) Since you may want to run automatically evaluations on subsets, you can use the `scripts/symbolic-evaluator.sh`. Of course you need to update the paths in the script. With `config/together-lines.txt` you can control what subsets the script shall evaluate, e.g.,
 
@@ -196,6 +202,7 @@ missing_macro_output=/home/andreg-p/Howard/Results/AutoMaple/22-JA-missing.txt
 05-GA: 1994,2179
 ```
 
+The second argument is excluded (i.e., `1,2` runs only one line, `1` but not `2`).
 To test the lines `1465-1994` and `1994-2179` and store the results in `04-EF-symbolic.txgt` and `05-GA-symbolic.txt` file.
 
 ---

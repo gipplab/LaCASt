@@ -9,6 +9,8 @@ lacast.config.path: "./config"
 # Setup CAS support for LaCASt. If you do not have Maple/Mathematica installed, simply delete the fields or keep them
 # like they are pointing nowhere.
 lacast.cas:
+  # If you are unsure, use 'kernelopts( mapledir );' for Maple.install.path and 'kernelopts( bindir );' to get
+  # Maple.native.library.path in your local Maple instance.
   Maple:
     install.path: "/opt/maple2020"
     native.library.path: "/opt/maple2020/bin.X86_64_LINUX"

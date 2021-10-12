@@ -19,6 +19,9 @@ public class CASConfig {
     @JsonProperty("install.path")
     private String path;
 
+    @JsonProperty("native.library.path")
+    private String nativeLibraryPath;
+
     @JsonProperty("license")
     private String license;
 
@@ -32,6 +35,16 @@ public class CASConfig {
     @JsonGetter("install.path")
     public String getStringInstallPath() {
         return this.path;
+    }
+
+    @JsonGetter("native.library.path")
+    public String getNativeLibraryPath() {
+        return this.nativeLibraryPath;
+    }
+
+    @JsonSetter("native.library.path")
+    public void setNativeLibraryPath(String path) {
+        this.nativeLibraryPath = path;
     }
 
     @JsonGetter("license")

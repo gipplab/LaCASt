@@ -64,17 +64,32 @@ If these commands does not finish succesfully, please contact [André Greiner-Pe
 
 This is only necessary if you work on the backward translations or the evaluation engine.
 
-* Change the properties in `pom.xml`
-```xml
-<properties>
-    <maple.installation.dir>/opt/maple2019</maple.installation.dir>
-    <mathematica.installation.dir>/opt/Wolfram</mathematica.installation.dir>
-</properties>
+* Change the properties in `lacast.config.yaml`
+```yaml
+Maple:
+    install.path: "/opt/maple2020"
+    native.library.path: "/opt/maple2020/bin.X86_64_LINUX"
+Mathematica:
+    install.path: "/opt/Wolfram"
+    native.library.path: "/opt/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64"
+    license: "4311-6677-4H3V66"
 ```
 
-* For Mathematica, update `config/mathematica_config.properties`
-```properties
-mathematica_math=/opt/Wolfram/Executables/math
+* If you work on Windows, you may have to change the environment variables in the `pom.xml` because there is no
+`LD_LIBRARY_PATH` and `MAPLE` necessary on windows. In case of Apple OS, you need something else again. See 
+[here](https://de.maplesoft.com/support/help/maple/view.aspx?path=OpenMaple%2fJava%2frunning)
+for more information. If you have trouble, open an issue.
+```xml
+<plugin>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <configuration>
+        <environmentVariables>
+            <PATH>${lacast.cas.Maple.native.library.path}</PATH>
+        </environmentVariables>
+        <!--suppress UnresolvedMavenProperty -->
+        <argLine>${argLine} -Xss50M</argLine>
+    </configuration>
+</plugin>
 ```
 
 * Verify everything works. Run again `mvn clean install -DskipTests`
@@ -105,7 +120,7 @@ We are working with IntelliJ. If you download the project open the project via I
     * Open `Run/Debug Configurations` via `Run -> Edit Configurations...`
     * Make sure you set the right working directory (see important note above)
     * Set the environment variables (click on the `$` sign in the end of the line
-    * Add `MAPLE=/opt/maple2019` and `LD_LIBRARY_PATH=/opt/maple2019/bin.X86_64_LINUX` (of coursel, the paths might be different on your system, so update it accordingly)
+    * Add `MAPLE=/opt/maple2019` and `LD_LIBRARY_PATH=/opt/maple2019/bin.X86_64_LINUX` (the variables and paths might be different on your system, so update it accordingly and check [this guide](https://de.maplesoft.com/support/help/maple/view.aspx?path=OpenMaple%2fJava%2frunning)))
     * Add the VM option: `-Xss50M`, otherwise the heap space is too small for Maple 2019
     
 **Tip:** You can change the default `working directory` in Intellij under 

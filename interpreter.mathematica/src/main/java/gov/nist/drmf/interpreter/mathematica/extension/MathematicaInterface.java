@@ -51,6 +51,10 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         if ( mathematicaInterface != null ) return; // already instantiated
 
         LOG.info("Instantiating mathematica interface");
+
+        // Since version 2.1.0 of J/Link, we can use this property to hack around LD_LIBRARY_PATH requirements
+        System.setProperty("com.wolfram.jlink.libdir", MathematicaConfig.getjLinkNativePath());
+
         Path mathPath = MathematicaConfig.loadMathematicaPath();
         assert mathPath != null;
         String[] args = getDefaultArguments(mathPath);
@@ -106,7 +110,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         if ( mathematicaInterface != null ) return mathematicaInterface;
         else {
             try {
-                if ( MathematicaConfig.isMathematicaMathPathAvailable() && MathematicaConfig.isSystemEnvironmentVariableProperlySet() ) {
+                if ( MathematicaConfig.isMathematicaMathPathAvailable() ) {
                     mathematicaInterface = new MathematicaInterface();
                 }
                 return mathematicaInterface;
