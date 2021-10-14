@@ -139,7 +139,13 @@ public class SymbolicResult implements Serializable, ITestResultCounter {
         List<String> results = testCalculationsGroups.stream()
                 .map( SymbolicCalculationGroup::getTestCalculations )
                 .flatMap(Collection::stream)
-                .map( s -> s.getTestTitle() + ": " + s.getResultExpression() )
+                .map( s -> s.getTestTitle() + ": " + (
+                        // For compatibility reasons, we only show "NaN" for "not a number" results rather than
+                        // the entire non-simplified expression (which is in case of symbolic simplifications
+                        // generally not appealing anyway).
+                        !TestResultType.SUCCESS.equals(s.getResult()) ?
+                                "NaN" : s.getResultExpression()
+                ))
                 .collect(Collectors.toList());
         return "[" + String.join(", ", results) + "]";
     }
