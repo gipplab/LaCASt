@@ -81,22 +81,22 @@ jobs:
           file_glob: false
           overwrite: true
           body: "Auto Release"
-  deploy_dke:
-    name: Deploy to DKE
-    if: github.ref == 'refs/heads/master'
-    needs: build_and_test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
-      - name: Restart docker on DKE
-        uses: appleboy/ssh-action@v0.1.4
-        with:
-          host: ${{ secrets.DKE_IP }}
-          username: git
-          key: ${{ secrets.DKE_SSH_KEY }}
-          port: ${{ secrets.DKE_PORT }}
-          script_stop: true # stops script after first failure
-          script: |
-            cd /hdd/work/git/ag-gipp/LaCASt
-            git pull
+#  deploy_dke:
+#    name: Deploy to DKE
+#    if: github.ref == 'refs/heads/master'
+#    needs: build_and_test
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout repo
+#        uses: actions/checkout@v2
+#      - name: Restart docker on DKE
+#        uses: appleboy/ssh-action@v0.1.4
+#        with:
+#          host: ${{ secrets.DKE_IP }}
+#          username: git
+#          key: ${{ secrets.DKE_SSH_KEY }}
+#          port: ${{ secrets.DKE_PORT }}
+#          script_stop: true # stops script after first failure
+#          script: |
+#            cd /hdd/work/git/ag-gipp/LaCASt
+#            git pull
