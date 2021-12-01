@@ -4,14 +4,12 @@ import gov.nist.drmf.interpreter.common.config.CASConfig;
 import gov.nist.drmf.interpreter.common.config.Config;
 import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
 import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
-import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
-import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static org.apache.commons.lang3.SystemUtils.IS_OS_LINUX;
 import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
@@ -54,37 +52,58 @@ public class MathematicaConfig {
         return mathConfig.getLicenseKey();
     }
 
-    public static void setCharacterEncoding(KernelLink engine){
-        try {
-            engine.evaluate("$CharacterEncoding = \"ASCII\"");
-            engine.discardAnswer();
-        } catch (MathLinkException mle) {
-            LOG.warn("Cannot change character encoding in Mathematica.");
-            engine.clearError();
-            engine.newPacket();
-        }
-    }
-
-    public static boolean isMathematicaMathPathAvailable() {
+    private static boolean isMathematicaMathPathAvailable() {
         Path mathPath = MathematicaConfig.loadMathematicaPath();
         if ( mathPath == null || !Files.exists(mathPath) ) {
-            LOG.warn("Mathematica installation path is not available. Specify the proper path in lacast.config.yaml.");
+            LOG.warn("Mathematica installation path is not available. Specify the proper path in lacast.config.yaml. " +
+                    (mathPath != null ? "Broken path: " + mathPath : ""));
             return false;
         }
+
         return true;
     }
 
-    public static boolean isMathematicaPresent() {
-        try {
-            if (!isMathematicaMathPathAvailable()) return false;
-            MathematicaInterface m = MathematicaInterface.getInstance();
-            return m != null;
-        } catch (Exception | Error e) {
+    private static boolean isMathematicaJLinkAvailable() {
+        String pathStr = getJLinkNativePath();
+        if ( pathStr == null || pathStr.isBlank() ) {
+            LOG.warn("No JLink path for mathematica specified in lacast.config.yaml");
             return false;
         }
+
+        Path jlinkPath = Paths.get(pathStr);
+        if ( !Files.exists(jlinkPath) ) {
+            LOG.warn("The path to the JLink library does not exist. Specify a proper path in lacast.config.yaml. " +
+                    "(Broken path: "+ pathStr +")");
+            return false;
+        }
+
+        // check if JLink.jar is in the right spot
+        // .../JLink/SystemFiles/Libraries/OS-Spec-Dir/ -3 ends on /JLink
+        Path jlinkDirectoryPath = jlinkPath.getName(jlinkPath.getNameCount()-3);
+        jlinkPath = jlinkDirectoryPath.resolve("JLink.jar");
+        if ( !Files.exists(jlinkPath) ) {
+            LOG.warn("Unable to locate JLink.jar in " + jlinkDirectoryPath);
+            return false;
+        }
+
+        return true;
     }
 
-    public static String getjLinkNativePath() {
+    public static String getJLinkNativePath() {
         return getMathConfig().getNativeLibraryPath();
+    }
+
+    /**
+     * Mathematica's presence is determined by two facts:
+     * 1) The lacast.config.yaml sets a valid path to the install directory of mathematica
+     * 2) The lacast.config.yaml defines a valid path to the system specific native library for JLink.
+     *
+     * Note that this method no longer initiates mathematica connection itself!
+     *
+     * @return true if both facts are valid
+     */
+    public static boolean isMathematicaPresent() {
+        // maybe we should try to load a class to check if the interface is correctly loaded (e.g., com.wolfram.jlink.Expr)
+        return isMathematicaMathPathAvailable() && isMathematicaJLinkAvailable();
     }
 }

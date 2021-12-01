@@ -53,7 +53,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         LOG.info("Instantiating mathematica interface");
 
         // Since version 2.1.0 of J/Link, we can use this property to hack around LD_LIBRARY_PATH requirements
-        System.setProperty("com.wolfram.jlink.libdir", MathematicaConfig.getjLinkNativePath());
+        System.setProperty("com.wolfram.jlink.libdir", MathematicaConfig.getJLinkNativePath());
 
         Path mathPath = MathematicaConfig.loadMathematicaPath();
         assert mathPath != null;
@@ -78,7 +78,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         }
 
         // set encoding to avoid UTF-8 chars of greek letters
-        MathematicaConfig.setCharacterEncoding(mathKernel);
+        setCharacterEncoding(mathKernel);
         this.mathKernel = mathKernel;
         LOG.info("Successfully instantiated mathematica interface");
     }
@@ -102,6 +102,17 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         };
     }
 
+    private void setCharacterEncoding(KernelLink engine){
+        try {
+            engine.evaluate("$CharacterEncoding = \"ASCII\"");
+            engine.discardAnswer();
+        } catch (MathLinkException mle) {
+            LOG.warn("Cannot change character encoding in Mathematica.");
+            engine.clearError();
+            engine.newPacket();
+        }
+    }
+
     /**
      * Get the Mathematica instance
      * @return instance of mathematica interface
@@ -110,7 +121,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         if ( mathematicaInterface != null ) return mathematicaInterface;
         else {
             try {
-                if ( MathematicaConfig.isMathematicaMathPathAvailable() ) {
+                if ( MathematicaConfig.isMathematicaPresent() ) {
                     mathematicaInterface = new MathematicaInterface();
                 }
                 return mathematicaInterface;

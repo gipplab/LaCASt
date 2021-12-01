@@ -17,7 +17,7 @@ public class MathematicaNumericalMethodsTests {
     private static MathematicaInterface mi;
 
     @BeforeAll
-    public static void setup() throws MathLinkException {
+    public static void setup() {
         mi = MathematicaInterface.getInstance();
     }
 
