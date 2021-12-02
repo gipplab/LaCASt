@@ -6,10 +6,7 @@ import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
-import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
-import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
-import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
-import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkFactory;
+import gov.nist.drmf.interpreter.mathematica.wrapper.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -202,15 +199,26 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         return mathKernel.evaluateToOutputForm(fullf, 0);
     }
 
+    /**
+     * This method should not be used since it does not work reliable! On top of it, mathematica does not want to
+     * return greek letters in their input form.
+     *
+     * @param expression formula
+     * @return the set of free variables extracted by the undocumented "Reduce`FreeVariables" method.
+     * @throws MathLinkException link to mathematica kernel is broken
+     */
     public Set<String> getVariables(String expression) throws MathLinkException {
         String extract = Commands.EXTRACT_VARIABLES.build(expression);
-        Expr exs = evaluateToExpression("ToString["+extract+", CharacterEncoding -> \"ASCII\"]");
+        extract = "Map[ToString[#, InputForm, CharacterEncoding -> \"ASCII\"] &, "+extract+"]";
+        Expr exs = evaluateToExpression(extract);
 
         Expr[] argsExp = exs.args();
         Set<String> output = new HashSet<>();
 
         for (Expr arg : argsExp) {
-            output.add(arg.toString());
+            String el = arg.toString();
+            if ( el.matches("\".*\"") ) output.add(el.substring(1, el.length()-1));
+            else output.add(el);
         }
 
         return output;
@@ -245,15 +253,6 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
     public String buildList(List<String> list) {
         String ls = list.toString();
         return ls.substring(1, ls.length()-1);
-    }
-
-    public int checkIfEvaluationIsInRange(String command, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {
-        try {
-            Expr res = mathematicaInterface.evaluateToExpression(command);
-            return checkIfEvaluationIsInRange(res, lowerLimit, upperLimit);
-        } catch (MathLinkException | NumberFormatException e) {
-            throw new ComputerAlgebraSystemEngineException(e);
-        }
     }
 
     public int checkIfEvaluationIsInRange(Expr res, int lowerLimit, int upperLimit) throws ComputerAlgebraSystemEngineException {

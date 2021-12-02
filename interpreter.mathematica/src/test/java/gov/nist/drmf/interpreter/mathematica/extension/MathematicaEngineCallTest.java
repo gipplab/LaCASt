@@ -4,16 +4,16 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
 import gov.nist.drmf.interpreter.mathematica.wrapper.ExprFormatException;
 import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,7 +31,6 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 @AssumeMathematicaAvailability
 public class MathematicaEngineCallTest {
-
     private static final String JACOBIP = "JacobiP[n,\\[Alpha],\\[Beta],Cos[a \\[CapitalTheta]]]";
     private static final String JACOBIP_FULL_FORM = "JacobiP[n, \\[Alpha], \\[Beta], Cos[Times[a, \\[CapitalTheta]]]]";
 
@@ -52,7 +51,7 @@ public class MathematicaEngineCallTest {
     private static MathematicaInterface mi;
 
     @BeforeAll
-    public static void setup() throws MathLinkException {
+    public static void setup() {
         mi = MathematicaInterface.getInstance();
     }
 
@@ -143,14 +142,13 @@ public class MathematicaEngineCallTest {
     }
 
     @Test
-    @Disabled
     public void extractVariableTest() throws MathLinkException {
         Set<String> vars = mi.getVariables(JACOBIP);
         assertTrue(vars.contains("a"));
         assertTrue(vars.contains("n"));
-        assertTrue(vars.contains("\\[Alpha]"));
-        assertTrue(vars.contains("\\[Beta]"));
-        assertTrue(vars.contains("\\[CapitalTheta]"));
+        assertTrue(vars.contains("\\\\[Alpha]"));
+        assertTrue(vars.contains("\\\\[Beta]"));
+        assertTrue(vars.contains("\\\\[CapitalTheta]"));
     }
 
     @Test
@@ -200,8 +198,21 @@ public class MathematicaEngineCallTest {
         }
     }
 
+    @Test
+    void gcTest() {
+        mi.forceGC();
+    }
+
+    @Test
+    void buildList() {
+        List<String> list = new LinkedList<>();
+        list.add("a");
+        list.add("b");
+        assertEquals("a, b", mi.buildList(list));
+    }
+
     @AfterAll
-    public static void shutwodn() {
+    public static void shutdown() {
         mi.shutdown();
     }
 }

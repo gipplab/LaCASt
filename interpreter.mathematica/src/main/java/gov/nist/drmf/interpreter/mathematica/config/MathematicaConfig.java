@@ -77,15 +77,6 @@ public class MathematicaConfig {
             return false;
         }
 
-        // check if JLink.jar is in the right spot
-        // .../JLink/SystemFiles/Libraries/OS-Spec-Dir/ -3 ends on /JLink
-        Path jlinkDirectoryPath = jlinkPath.getName(jlinkPath.getNameCount()-3);
-        jlinkPath = jlinkDirectoryPath.resolve("JLink.jar");
-        if ( !Files.exists(jlinkPath) ) {
-            LOG.warn("Unable to locate JLink.jar in " + jlinkDirectoryPath);
-            return false;
-        }
-
         return true;
     }
 
@@ -103,7 +94,6 @@ public class MathematicaConfig {
      * @return true if both facts are valid
      */
     public static boolean isMathematicaPresent() {
-        // maybe we should try to load a class to check if the interface is correctly loaded (e.g., com.wolfram.jlink.Expr)
         return isMathematicaMathPathAvailable() && isMathematicaJLinkAvailable();
     }
 }

@@ -139,7 +139,7 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
      * @return the result
      * @throws ComputerAlgebraSystemEngineException if an error was thrown
      */
-    public T performNumericalTest(NumericalTest test)
+    private T performNumericalTest(NumericalTest test)
             throws ComputerAlgebraSystemEngineException {
         addRequiredPackages(test.getRequiredPackages());
 

@@ -46,7 +46,7 @@ public class NumericalTest implements Serializable {
             String testExpression,
             INumericTestCase c,
             NumericalConfig config,
-            IConstraintTranslator translator
+            IConstraintTranslator<?> translator
     ) {
         this(lhs, rhs, testExpression);
 

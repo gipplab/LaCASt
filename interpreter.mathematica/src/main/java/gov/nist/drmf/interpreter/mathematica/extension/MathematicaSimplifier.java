@@ -121,7 +121,7 @@ public class MathematicaSimplifier extends AbstractCasEngineSymbolicEvaluator<Ex
         return result.toString().matches(Pattern.quote(MathematicaInterface.MATH_ABORTION_SIGNAL));
     }
 
-    private static final Pattern inPattern = Pattern.compile("^(.*?) \\[Element] (.*)$");
+    private static final Pattern inPattern = Pattern.compile("^(.*?) \\\\\\[Element] (.*)$");
 
     @Override
     public void setGlobalSymbolicAssumptions(List<String> assumptions) throws ComputerAlgebraSystemEngineException {
@@ -135,9 +135,20 @@ public class MathematicaSimplifier extends AbstractCasEngineSymbolicEvaluator<Ex
         String cmd = String.join(" && ", assumptions);
         try {
             String result = mathematicaInterface.evaluate("$Assumptions = " + cmd);
-            LOG.info("Setup global assumptions: " + result);
+            LOG.info("Setup global assumptions: " + cmd + "; returned: " + result);
         } catch (MathLinkException e) {
             LOG.error("Unable to set global assumptions in Mathematica. Assumptions: " + assumptions);
+            throw new ComputerAlgebraSystemEngineException(e);
+        }
+    }
+
+    public void resetGlobalAssumptions() throws ComputerAlgebraSystemEngineException {
+        try {
+            LOG.debug("Unset global assumptions ($Assumptions)");
+            mathematicaInterface.evaluate("$Assumptions = True");
+        }
+        catch ( MathLinkException e ) {
+            LOG.error("Unable to reset global assumptions in Mathematica.");
             throw new ComputerAlgebraSystemEngineException(e);
         }
     }

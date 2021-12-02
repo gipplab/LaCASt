@@ -9,10 +9,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.function.Function;
 import java.util.regex.Matcher;
 
@@ -25,39 +22,48 @@ public class NumericalConfig implements EvaluationConfig {
 
     private static final Logger LOG = LogManager.getLogger(NumericalConfig.class.getName());
 
+    private final Map<NumericalProperties, String> settings;
+
     public static final String ENTRY_SPLITTER = ",";
 
-    public NumericalConfig () {
-        try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_NUMERICAL_SETUP.toFile()) ){
+    public NumericalConfig() {
+        this(GlobalPaths.PATH_NUMERICAL_SETUP);
+    }
+
+    public NumericalConfig(Path configFile) {
+        settings = new HashMap<>();
+        try (FileInputStream in = new FileInputStream(configFile.toFile())) {
             Properties props = new Properties();
             props.load(in);
 
-            for ( NumericalProperties np : NumericalProperties.values() ){
+            for (NumericalProperties np : NumericalProperties.values()) {
                 String val = props.getProperty(np.key);
-                np.setValue(val);
+                if (val != null && !val.isBlank())
+                    settings.put(np, val); // set definition value
+                else settings.put(np, np.value); // store default value
             }
-            LOG.debug( "Successfully loaded config for numerical tests." );
-        } catch ( IOException ioe ){
-            LOG.fatal("Cannot load the numerical test config from " + GlobalPaths.PATH_NUMERICAL_SETUP.getFileName(), ioe);
+            LOG.debug("Successfully loaded config for numerical tests.");
+        } catch (IOException ioe) {
+            LOG.fatal("Cannot load the numerical test config from " + configFile.getFileName(), ioe);
         }
     }
 
-    public Path getDataset(){
-        return Paths.get(NumericalProperties.KEY_DATASET.value);
+    public Path getDataset() {
+        return Paths.get(settings.get(NumericalProperties.KEY_DATASET));
     }
 
-    public Path getLabelSet(){
-        return Paths.get(NumericalProperties.KEY_LABELSET.value);
+    public Path getLabelSet() {
+        return Paths.get(settings.get(NumericalProperties.KEY_LABELSET));
     }
 
-    public Path getOutputPath(){
-        return Paths.get(NumericalProperties.KEY_OUTPUT.value);
+    public Path getOutputPath() {
+        return Paths.get(settings.get(NumericalProperties.KEY_OUTPUT));
     }
 
     @Override
-    public int[] getSubSetInterval(){
-        String in = NumericalProperties.KEY_SUBSET.value;
-        if ( in == null ) return null;
+    public int[] getSubSetInterval() {
+        String in = settings.get(NumericalProperties.KEY_SUBSET);
+        if (in == null) return null;
 
         String[] splitted = in.split(",");
         return new int[]{
@@ -66,102 +72,104 @@ public class NumericalConfig implements EvaluationConfig {
         };
     }
 
-    public String getNumericalValues(){
-        return NumericalProperties.KEY_VALUES.value;
+    public String getNumericalValues() {
+        return settings.get(NumericalProperties.KEY_VALUES);
     }
 
-    public int getMaximumNumberOfCombs(){
-        return Integer.parseInt(NumericalProperties.KEY_SKIP_IF_MORE_COMBS.value);
+    public int getMaximumNumberOfCombs() {
+        return Integer.parseInt(settings.get(NumericalProperties.KEY_SKIP_IF_MORE_COMBS));
     }
 
-    public String getRawTestExpression(){
-        return NumericalProperties.KEY_EXPR.value;
+    public String getRawTestExpression() {
+        return settings.get(NumericalProperties.KEY_EXPR);
     }
 
-    public String getTestExpression(Function<String, String> testExpressionGenerator, String LHS, String RHS ){
-        String in = NumericalProperties.KEY_EXPR.value;
+    public String getTestExpression(Function<String, String> testExpressionGenerator, String LHS, String RHS) {
+        String in = settings.get(NumericalProperties.KEY_EXPR);
 
-        if ( LHS == null || LHS.isEmpty() ){
+        if (LHS == null || LHS.isEmpty()) {
             LOG.debug("LHS is 0, use special " + NumericalProperties.KEY_IF_LHS_NULL.key + " pattern.");
-            in = NumericalProperties.KEY_IF_LHS_NULL.value;
-        } else if ( RHS == null || RHS.isEmpty() ) {
+            in = settings.get(NumericalProperties.KEY_IF_LHS_NULL);
+            LHS = "";
+        } else if (RHS == null || RHS.isEmpty()) {
             LOG.debug("RHS is 0, use special " + NumericalProperties.KEY_IF_LHS_NULL.key + " pattern.");
-            in = NumericalProperties.KEY_IF_RHS_NULL.value;
+            in = settings.get(NumericalProperties.KEY_IF_RHS_NULL);
+            RHS = "";
         }
 
-        in = in.replaceAll( PATTERN_LHS, Matcher.quoteReplacement(LHS) );
-        in = in.replaceAll( PATTERN_RHS, Matcher.quoteReplacement(RHS) );
+        in = in.replaceAll(PATTERN_LHS, Matcher.quoteReplacement(LHS));
+        in = in.replaceAll(PATTERN_RHS, Matcher.quoteReplacement(RHS));
 //        in = "evalf(" + in + ")";
         return testExpressionGenerator.apply(in);
     }
 
-    public String getExpectationTemplate(){
-        String in = NumericalProperties.KEY_EXPECT.value;
-        in = in.replaceAll( PATTERN_RES, PATTERN_SIEVE_METHOD_RESULT );
-        in = in.replaceAll( PATTERN_THRESHOLD, Double.toString(getThreshold()) );
+    public String getExpectationTemplate() {
+        String in = settings.get(NumericalProperties.KEY_EXPECT);
+        in = in.replaceAll(PATTERN_RES, PATTERN_SIEVE_METHOD_RESULT);
+        in = in.replaceAll(PATTERN_THRESHOLD, Double.toString(getThreshold()));
         return in;
     }
 
-    public double getThreshold(){
-        String in = NumericalProperties.KEY_THRESHOLD.value;
+    public double getThreshold() {
+        String in = settings.get(NumericalProperties.KEY_THRESHOLD);
         return Double.parseDouble(in);
     }
 
-    public int getPrecision(){
-        String in = NumericalProperties.KEY_PREC.value;
+    public int getPrecision() {
+        String in = settings.get(NumericalProperties.KEY_PREC);
         return Integer.parseInt(in);
     }
 
-    public boolean showDLMFLinks(){
-        String in = NumericalProperties.KEY_DLMF_LINK.value;
+    public boolean showDLMFLinks() {
+        String in = settings.get(NumericalProperties.KEY_DLMF_LINK);
         return in.equals("true");
     }
 
-    public String getSpecialVariables(){
-        return NumericalProperties.KEY_SPECIAL_VARS.value;
+    public String getSpecialVariables() {
+        return settings.get(NumericalProperties.KEY_SPECIAL_VARS);
     }
 
     public Path getSymbolicResultsPath() {
         try {
-            return Paths.get(NumericalProperties.KEY_PREV_RESULTS.value);
+            return Paths.get(settings.get(NumericalProperties.KEY_PREV_RESULTS));
         } catch (NullPointerException npe) {
             return null;
         }
     }
 
-    public String getSpecialVariablesValues(){
-        return NumericalProperties.KEY_SPECIAL_VARS_VALUES.value;
+    public String getSpecialVariablesValues() {
+        return settings.get(NumericalProperties.KEY_SPECIAL_VARS_VALUES);
     }
 
     private List<String> numericalValues = null, specVars = null, specVarsVals = null;
 
-    public List<String> getListOfNumericalValues(IConstraintTranslator translator, String label) {
-        if ( numericalValues == null ) {
+    public List<String> getListOfNumericalValues(IConstraintTranslator<?> translator, String label) {
+        if (numericalValues == null) {
             numericalValues = translateElements(translator, getNumericalValues(), label);
         }
         return numericalValues;
     }
 
-    public List<String> getListOfSpecialVariables(IConstraintTranslator translator) {
-        if ( specVars == null ) {
+    public List<String> getListOfSpecialVariables(IConstraintTranslator<?> translator) {
+        if (specVars == null) {
             specVars = translateElements(translator, getSpecialVariables(), null);
         }
         return specVars;
     }
 
-    public List<String> getListOfSpecialVariableValues( IConstraintTranslator translator ) {
-        if ( specVarsVals == null ) {
+    public List<String> getListOfSpecialVariableValues(IConstraintTranslator<?> translator) {
+        if (specVarsVals == null) {
             specVarsVals = translateElements(translator, getSpecialVariablesValues(), null);
         }
         return specVarsVals;
     }
 
-    private List<String> translateElements(IConstraintTranslator translator, String str, String label) {
+    private List<String> translateElements(IConstraintTranslator<?> translator, String str, String label) {
         LinkedList<String> results = new LinkedList<>();
 
-        if ( str == null || str.length() < 2 ) return results;
+        if (str == null || str.length() < 2) return results;
 
-        str = str.substring(1, str.length()-1);
+        str = str.substring(1, str.length() - 1);
         String[] elements = str.split(ENTRY_SPLITTER);
         String[] transEls = translator.translateEachConstraint(elements, label);
         results.addAll(Arrays.asList(transEls));
@@ -169,12 +177,12 @@ public class NumericalConfig implements EvaluationConfig {
     }
 
     public double getTimeout() {
-        String val = NumericalProperties.KEY_TIMEOUT.value;
+        String val = settings.get(NumericalProperties.KEY_TIMEOUT);
         return Double.parseDouble(val == null ? "0" : val);
     }
 
-    public String getEntireTestSuiteAssumptions(){
-        return NumericalProperties.KEY_ASSUMPTION.value;
+    public String getEntireTestSuiteAssumptions() {
+        return settings.get(NumericalProperties.KEY_ASSUMPTION);
     }
 
     public String[] getEntireTestSuiteAssumptionsList() {
@@ -188,12 +196,12 @@ public class NumericalConfig implements EvaluationConfig {
 
     @Override
     public Path getMissingMacrosOutputPath() {
-        if ( NumericalProperties.KEY_MISSING_MACRO_OUTPUT.value != null )
-            return Paths.get(NumericalProperties.KEY_MISSING_MACRO_OUTPUT.value);
+        if (settings.get(NumericalProperties.KEY_MISSING_MACRO_OUTPUT) != null)
+            return Paths.get(settings.get(NumericalProperties.KEY_MISSING_MACRO_OUTPUT));
         else return null;
     }
 
-    public enum NumericalProperties{
+    public enum NumericalProperties {
         KEY_DATASET("dlmf_dataset", null),
         KEY_LABELSET("dlmf_labelset", null),
         KEY_SUBSET("subset_tests", null),
@@ -214,14 +222,10 @@ public class NumericalConfig implements EvaluationConfig {
         KEY_ASSUMPTION("entire_test_set_assumptions", null),
         KEY_TIMEOUT("timeout", null);
 
-        private String key, value;
+        private final String key, value;
 
-        NumericalProperties( String key, String value ){
+        NumericalProperties(String key, String value) {
             this.key = key;
-            this.value = value;
-        }
-
-        public void setValue( String value ){
             this.value = value;
         }
     }
