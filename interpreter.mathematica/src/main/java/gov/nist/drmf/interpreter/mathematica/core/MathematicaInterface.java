@@ -1,12 +1,16 @@
-package gov.nist.drmf.interpreter.mathematica.extension;
+package gov.nist.drmf.interpreter.mathematica.core;
 
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
-import gov.nist.drmf.interpreter.mathematica.wrapper.*;
+import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
+import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
+import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
+import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -34,8 +38,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
 
     private final SymbolicEquivalenceChecker evalChecker;
 
-    private MathematicaInterface() throws MathLinkException {
-        init();
+    private MathematicaInterface() {
         this.evalChecker = new SymbolicEquivalenceChecker(this);
     }
 
@@ -43,13 +46,17 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
      * Initiates mathematica interface. This function skips if there is already an instance
      * available.
      * @throws MathLinkException if an interface cannot instantiated
+     * @throws CASUnavailableException if the CAS is unavailable
      */
-    private void init() throws MathLinkException {
-        if ( mathematicaInterface != null ) return; // already instantiated
+    private void init() throws MathLinkException, CASUnavailableException {
+        if ( mathematicaInterface != null && mathKernel != null) return; // already initiated
 
-        LOG.info("Instantiating mathematica interface");
+        if ( !MathematicaConfig.isMathematicaPresent() ) throw new CASUnavailableException();
+        LOG.info("Init mathematica interface");
 
         // Since version 2.1.0 of J/Link, we can use this property to hack around LD_LIBRARY_PATH requirements
+        // when this method is triggered, it already passed the MathematicaConfig#isMathematicaPresent check
+        // and thus the JLink path in the config can be assumed valid
         System.setProperty("com.wolfram.jlink.libdir", MathematicaConfig.getJLinkNativePath());
 
         Path mathPath = MathematicaConfig.loadMathematicaPath();
@@ -92,6 +99,11 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
         }
     }
 
+    /**
+     * Returns the setup arguments for mathlink.
+     * @param mathPath the path to the Wolfram Engine executable file
+     * @return the arguments to launch the math kernel
+     */
     private static String[] getDefaultArguments(Path mathPath) {
         return new String[]{
                 "-linkmode", "launch",
@@ -115,27 +127,63 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
      * @return instance of mathematica interface
      */
     public static MathematicaInterface getInstance() {
-        if ( mathematicaInterface != null ) return mathematicaInterface;
-        else {
-            try {
-                if ( MathematicaConfig.isMathematicaPresent() ) {
-                    mathematicaInterface = new MathematicaInterface();
-                }
-                return mathematicaInterface;
-            } catch (MathLinkException e) {
-                LOG.error("Cannot instantiate Mathematica interface: " + e.getMessage());
-                mathematicaInterface = null;
-                return null;
+        if ( mathematicaInterface == null ) {
+            if ( MathematicaConfig.isMathematicaPresent() )
+                mathematicaInterface = new MathematicaInterface();
+            else {
+                LOG.error("Mathematica is not available!");
             }
         }
+        return mathematicaInterface;
     }
 
     /**
-     * For tests
+     * This method is for testing purposes only, hence the extra core-package.
+     * Theoretically, you should not directly work with the kernel
      * @return the engine of Mathematica
      */
-    KernelLink getMathKernel() {
+    KernelLink getMathKernel() throws MathLinkException {
+        init();
         return mathKernel;
+    }
+
+    /**
+     * Shuts down the connection to the math kernel.
+     *
+     * Since it is an lazy init concept now, theoretically you are free to fire it back on by calling any other method
+     * (which probably makes the explicit shutdown pointless?)
+     */
+    public void shutdown() {
+        if ( mathKernel != null ) mathKernel.close();
+        mathKernel = null;
+        MathematicaInterface.mathematicaInterface = null;
+    }
+
+    /**
+     * The only real math kernel connection method! Apart from direct calls via {@link #getMathKernel()},
+     * this is the only method that communicates with the kernel.
+     * @param input the command that will be entered into mathematica
+     * @return the expression wrapper
+     * @throws MathLinkException if the connection to the kernel was lost midway
+     * @throws CASUnavailableException if mathematica is not available on the system
+     */
+    private Expr internalRecoveryEvaluate(String input) throws MathLinkException, CASUnavailableException {
+        try {
+            init();
+            mathKernel.evaluate(input);
+            mathKernel.waitForAnswer();
+            return mathKernel.getExpr();
+        } catch (MathLinkException mle) {
+            String msg = mle.getMessage();
+            if ( msg != null && msg.toLowerCase().contains("lost") ) {
+                LOG.error("Lost mathematica kernel connection. Try to recover by re-initiating kernel.");
+                shutdown();
+                init();
+            }
+            mathKernel.evaluate(input);
+            mathKernel.waitForAnswer();
+            return mathKernel.getExpr();
+        }
     }
 
     public Expr internalEnterCommand(String command) throws ComputerAlgebraSystemEngineException {
@@ -157,21 +205,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
     }
 
     public Expr evaluateToExpression(String input) throws MathLinkException {
-        try {
-            mathKernel.evaluate(input);
-            mathKernel.waitForAnswer();
-            return mathKernel.getExpr();
-        } catch (MathLinkException mle) {
-            String msg = mle.getMessage();
-            if ( msg != null && msg.toLowerCase().contains("lost") ) {
-                LOG.error("Lost mathematica kernel connection. Try to recover by re-initiating kernel.");
-                shutdown();
-                init();
-            }
-            mathKernel.evaluate(input);
-            mathKernel.waitForAnswer();
-            return mathKernel.getExpr();
-        }
+        return internalRecoveryEvaluate(input);
     }
 
     public Expr evaluateToExpression(String input, Duration timeout) throws MathLinkException {
@@ -186,17 +220,6 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
             input = Commands.TIME_CONSTRAINED.build( input, timeoutStr );
         }
         return input;
-    }
-
-    /**
-     * This method isn't fail-safe. Use {@link #evaluateToExpression(String)} in combination of
-     * {@link Commands#build(String...)} instead.
-     * @param input command
-     * @return returns the full output form of the input
-     */
-    protected String convertToFullForm(String input) {
-        String fullf = Commands.FULL_FORM.build(input);
-        return mathKernel.evaluateToOutputForm(fullf, 0);
     }
 
     /**
@@ -232,11 +255,6 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
 
     public SymbolicEquivalenceChecker getEvaluationChecker() {
         return evalChecker;
-    }
-
-    public void shutdown() {
-        mathKernel.close();
-        MathematicaInterface.mathematicaInterface = null;
     }
 
     @Override

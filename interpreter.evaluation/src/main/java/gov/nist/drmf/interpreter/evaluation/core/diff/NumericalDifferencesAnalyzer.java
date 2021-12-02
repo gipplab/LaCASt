@@ -10,7 +10,7 @@ import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.common.cas.CASProcedureLoader;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

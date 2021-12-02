@@ -11,7 +11,7 @@ import gov.nist.drmf.interpreter.common.eval.NativeComputerAlgebraInterfaceBuild
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.mathematica.common.SymbolicMathematicaEvaluatorTypes;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaNumericalCalculator;
 import gov.nist.drmf.interpreter.mathematica.extension.MathematicaSimplifier;
 

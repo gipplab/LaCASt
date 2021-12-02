@@ -4,6 +4,7 @@ package gov.nist.drmf.interpreter.mathematica.extension;
 import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
+import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
 import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;

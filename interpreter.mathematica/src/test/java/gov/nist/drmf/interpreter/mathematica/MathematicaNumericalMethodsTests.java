@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.mathematica;
 
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

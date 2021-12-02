@@ -20,8 +20,9 @@ import static org.apache.commons.lang3.SystemUtils.IS_OS_WINDOWS;
 public class MathematicaConfig {
     private static final Logger LOG = LogManager.getLogger(MathematicaConfig.class.getName());
 
-    private MathematicaConfig() {
-    }
+    private static Boolean mathematicaWasPresent = null;
+
+    private MathematicaConfig() {}
 
     public static Path loadMathematicaPath(){
         CASConfig mathConfig = getMathConfig();
@@ -52,7 +53,7 @@ public class MathematicaConfig {
         return mathConfig.getLicenseKey();
     }
 
-    private static boolean isMathematicaMathPathAvailable() {
+    protected static boolean isMathematicaMathPathAvailable() {
         Path mathPath = MathematicaConfig.loadMathematicaPath();
         if ( mathPath == null || !Files.exists(mathPath) ) {
             LOG.warn("Mathematica installation path is not available. Specify the proper path in lacast.config.yaml. " +
@@ -63,7 +64,7 @@ public class MathematicaConfig {
         return true;
     }
 
-    private static boolean isMathematicaJLinkAvailable() {
+    protected static boolean isMathematicaJLinkAvailable() {
         String pathStr = getJLinkNativePath();
         if ( pathStr == null || pathStr.isBlank() ) {
             LOG.warn("No JLink path for mathematica specified in lacast.config.yaml");
@@ -94,6 +95,10 @@ public class MathematicaConfig {
      * @return true if both facts are valid
      */
     public static boolean isMathematicaPresent() {
-        return isMathematicaMathPathAvailable() && isMathematicaJLinkAvailable();
+        // This avoids heavy IO checks all the time, either Mathematica is available on boot or never,
+        // the state does not change during runtime!
+        if ( mathematicaWasPresent == null )
+            mathematicaWasPresent = isMathematicaMathPathAvailable() && isMathematicaJLinkAvailable();
+        return mathematicaWasPresent;
     }
 }
