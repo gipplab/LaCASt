@@ -1,73 +1,114 @@
 package gov.nist.drmf.interpreter.mathematica.wrapper;
 
-public class KernelLink {
-    private final com.wolfram.jlink.KernelLink kernelLink;
+import java.lang.reflect.Method;
 
-    protected KernelLink(com.wolfram.jlink.KernelLink kernelLink) {
-        this.kernelLink=kernelLink;
+public class KernelLink implements IJLinkClass {
+    private static final String CLAZZ_NAME = "KernelLink";
+    private static final String CLAZZ_PATH = "com.wolfram.jlink." + CLAZZ_NAME;
+
+    private static final JLinkWrapper jLinkWrapper = JLinkWrapper.getInstance();
+
+    private final Object kernelLink;
+
+    KernelLink() {
+        this.kernelLink = null;
+    }
+
+    KernelLink(Object kernelLink) {
+        this.kernelLink = kernelLink;
     }
 
     public void evaluate(String s) throws MathLinkException {
-        try {
-            kernelLink.evaluate(s);
-        } catch (com.wolfram.jlink.MathLinkException e) {
-            throw new MathLinkException(e);
-        }
+        Methods.evaluate.invoke(kernelLink, s);
     }
 
     public void discardAnswer() throws MathLinkException {
-        try {
-            kernelLink.discardAnswer();
-        } catch (com.wolfram.jlink.MathLinkException e) {
-            throw new MathLinkException(e);
-        }
+        Methods.discardAnswer.invoke(kernelLink);
     }
 
     public void clearError() {
-        kernelLink.clearError();
+        Methods.clearError.invoke(kernelLink);
     }
 
     public void newPacket() {
-        kernelLink.newPacket();
+        Methods.newPacket.invoke(kernelLink);
     }
 
     public void waitForAnswer() throws MathLinkException {
-        try {
-            kernelLink.waitForAnswer();
-        } catch (com.wolfram.jlink.MathLinkException e) {
-            throw new MathLinkException(e);
-        }
+        Methods.waitForAnswer.invoke(kernelLink);
     }
 
     public Expr getExpr() throws MathLinkException {
-        try {
-            return new Expr(kernelLink.getExpr());
-        } catch (com.wolfram.jlink.MathLinkException e) {
-            throw new MathLinkException(e);
-        }
+        return new Expr(Methods.getExpr.invoke(kernelLink));
     }
 
     public String evaluateToOutputForm(String fullf, int i) {
-        return kernelLink.evaluateToOutputForm(fullf,i);
+        return (String) Methods.evaluateToOutputForm.invoke(kernelLink, fullf, i);
     }
 
     public void close() {
-        kernelLink.close();
+        Methods.close.invoke(kernelLink);
     }
 
     public boolean getBoolean() throws MathLinkException {
-        try {
-            return kernelLink.getBoolean();
-        } catch (com.wolfram.jlink.MathLinkException e) {
-           throw new MathLinkException(e);
-        }
+        return (boolean) Methods.getBoolean.invoke(kernelLink);
     }
 
     public void abortEvaluation() {
-        kernelLink.abortEvaluation();
+        Methods.abortEvaluation.invoke(kernelLink);
     }
 
     public Throwable getLastError() {
-        return kernelLink.getLastError();
+        return (Throwable) Methods.getLastError.invoke(kernelLink);
+    }
+
+    @Override
+    public String getJLinkClassName() {
+        return CLAZZ_PATH;
+    }
+
+    @Override
+    public IJLinkMethod[] getMethodSpecs() {
+        return Methods.values();
+    }
+
+    private enum Methods implements IJLinkMethod {
+        evaluate(String.class),
+        evaluateToOutputForm(String.class, int.class),
+        abortEvaluation(),
+
+        waitForAnswer(),
+        discardAnswer(),
+
+        getExpr(),
+        getBoolean(),
+        getLastError(),
+
+        clearError(),
+        newPacket(),
+        close();
+
+        private final String id;
+        private final Class<?>[] arguments;
+
+        Methods(Class<?>... args) {
+            this.id = this.name();
+            this.arguments = args;
+        }
+
+        @Override
+        public String getMethodID() {
+            return id;
+        }
+
+        @Override
+        public Class<?>[] getArguments() {
+            return arguments;
+        }
+
+        public Object invoke(Object obj, Object... arguments) {
+            Method method = jLinkWrapper.getMethod(CLAZZ_NAME, id);
+            return jLinkWrapper.invoke(method, obj, arguments);
+        }
     }
 }

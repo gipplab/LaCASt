@@ -4,9 +4,14 @@ import gov.nist.drmf.interpreter.common.config.CASConfig;
 import gov.nist.drmf.interpreter.common.config.Config;
 import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
+import gov.nist.drmf.interpreter.mathematica.wrapper.JLinkWrapper;
+import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -86,9 +91,50 @@ public class MathematicaConfig {
     }
 
     /**
-     * Mathematica's presence is determined by two facts:
+     * @return the path to the JLink.jar file based on the config
+     * @throws CASUnavailableException if the JAR does not exist
+     */
+    public static Path getJLinkJarPath() throws CASUnavailableException {
+        try {
+            Path nativePath = Paths.get(getJLinkNativePath());
+            Path jarFolderPath = nativePath.subpath(0, nativePath.getNameCount()-3);
+            Path jarFilePath = jarFolderPath.resolve("JLink.jar");
+            if ( nativePath.getRoot() != null ) {
+                jarFilePath = nativePath.getRoot().resolve(jarFilePath);
+            }
+            if ( Files.notExists(jarFilePath) )
+                throw new CASUnavailableException("Unable to locate JLink.jar under " + jarFilePath.toString());
+            return jarFilePath;
+        } catch (RuntimeException e) {
+            throw new CASUnavailableException("Unable to find JLink.jar", e);
+        }
+    }
+
+    /**
+     * Checks if the KernelLink exists in the class path.
+     * @return true if the KernelLink exists in the classpath
+     */
+    private static boolean isKernelClassAvailable() {
+        try {
+            Class.forName("com.wolfram.jlink.KernelLink");
+            return true;
+        } catch (ClassNotFoundException e) {
+            // if it doesn't exist, maybe we just need to load it via init.
+            // if this also fails, Mathematica (or in this case the J/Link interface) is not available
+            try {
+                MathLinkFactory.invokeReflectionInit();
+                return true;
+            } catch (Exception ex) {
+                return false;
+            }
+        }
+    }
+
+    /**
+     * Mathematica's presence is determined by three facts:
      * 1) The lacast.config.yaml sets a valid path to the install directory of mathematica
      * 2) The lacast.config.yaml defines a valid path to the system specific native library for JLink.
+     * 3) The J/Link KernelLink class must be available in the classpath
      *
      * Note that this method no longer initiates mathematica connection itself!
      *
@@ -97,8 +143,14 @@ public class MathematicaConfig {
     public static boolean isMathematicaPresent() {
         // This avoids heavy IO checks all the time, either Mathematica is available on boot or never,
         // the state does not change during runtime!
-        if ( mathematicaWasPresent == null )
-            mathematicaWasPresent = isMathematicaMathPathAvailable() && isMathematicaJLinkAvailable();
+        if ( mathematicaWasPresent == null ) {
+            // the order matters: isKernelClassAvailable() should be the last check because it is 100% false
+            // if one of the previous test failed
+            mathematicaWasPresent =
+                    isMathematicaMathPathAvailable() &&
+                    isMathematicaJLinkAvailable() &&
+                    isKernelClassAvailable();
+        }
         return mathematicaWasPresent;
     }
 }
