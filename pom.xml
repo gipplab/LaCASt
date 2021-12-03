@@ -63,8 +63,6 @@
         <mlp.version>1.1</mlp.version>
         <maple.path>${main.basedir}/libs/Maple</maple.path>
         <maple.version>2020.1</maple.version>
-        <mathematica.jlink.path>${main.basedir}/libs/Mathematica</mathematica.jlink.path>
-        <mathematica.jlink.version>1.0</mathematica.jlink.version>
 
         <!-- Setup default config path -->
         <config.file.path>${main.basedir}/lacast.config.yaml</config.file.path>
@@ -241,16 +239,21 @@
                 <version>${maple.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>mathematica</artifactId>
-                <version>${mathematica.jlink.version}</version>
-            </dependency>
-
             <dependency> <!-- Used to annotate regex as a regex string (enable highlighting) -->
                 <groupId>org.jetbrains</groupId>
                 <artifactId>annotations</artifactId>
                 <version>19.0.0</version>
+            </dependency>
+
+            <dependency> <!-- Easy to scan for classes with specific annotations, interfaces, superclasses etc. -->
+                <groupId>org.reflections</groupId>
+                <artifactId>reflections</artifactId>
+                <version>0.10.2</version>
+            </dependency>
+            <dependency> <!-- Stop reflections package from weeping that LOG4J2 is so much more cool... -->
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-simple</artifactId>
+                <version>1.7.32</version>
             </dependency>
 
             <dependency> <!-- Wikidata Toolkit -->
@@ -334,20 +337,6 @@
                                 <version>${maple.version}</version>
                                 <packaging>jar</packaging>
                                 <file>${maple.path}/externalcall.jar</file>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>mathematica-install</id>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>install-file</goal>
-                            </goals>
-                            <configuration>
-                                <groupId>${project.groupId}</groupId>
-                                <artifactId>mathematica</artifactId>
-                                <version>${mathematica.jlink.version}</version>
-                                <packaging>jar</packaging>
-                                <file>${mathematica.jlink.path}/JLink.jar</file>
                             </configuration>
                         </execution>
                     </executions>

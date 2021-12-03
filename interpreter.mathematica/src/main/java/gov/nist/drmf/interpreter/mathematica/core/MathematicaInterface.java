@@ -15,6 +15,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.MalformedURLException;
 import java.nio.file.Path;
 import java.time.Duration;
 import java.util.HashSet;
@@ -78,7 +80,15 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
             } catch ( IOException | InterruptedException e ) {
                 LOG.warn("Unable to activate Wolfram license.", e);
                 throw mle;
+            } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException |
+                    InstantiationException | InvocationTargetException e) {
+                LOG.warn("Unable to access J/Link library and load necessary classes; " + e.getMessage());
+                throw new CASUnavailableException("Unable to access Mathematica's interface J/Link library", e);
             }
+        } catch (MalformedURLException | ClassNotFoundException | NoSuchMethodException |
+                IllegalAccessException | InstantiationException | InvocationTargetException e) {
+            LOG.warn("Unable to access J/Link library and load necessary classes; " + e.getMessage());
+            throw new CASUnavailableException("Unable to access Mathematica's interface J/Link library", e);
         }
 
         // set encoding to avoid UTF-8 chars of greek letters
