@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.mathematica.core;
 
+import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  *
  * @author Andre Greiner-Petter
  */
+@AssumeMathematicaAvailability
 public class MathematicaKernelTests {
     private static final String JACOBIP = "JacobiP[n,\\[Alpha],\\[Beta],Cos[a \\[CapitalTheta]]]";
     private static final String JACOBIP_FULL_FORM = "JacobiP[n, \\[Alpha], \\[Beta], Cos[Times[a, \\[CapitalTheta]]]]";
