@@ -90,7 +90,7 @@ public class MathematicaSimplifierTest {
         assertFalse(simplifier.isTrue(exp));
         assertFalse(simplifier.isConditionallyExpected(exp, 0), "This simple test should not return conditional results");
         assertFalse(simplifier.isAsExpected(exp, 0), "Under the global assumption of z=-1, this equation is incorrect.");
-        simplifier.resetGlobalAssumptions();
+        simplifier.resetAssumptions();
     }
 
     @Test

@@ -70,6 +70,19 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
         }
     }
 
+    public void resetAssumptions(Set<String> variablesToReset) throws ComputerAlgebraSystemEngineException {
+        StringBuilder cmd = new StringBuilder();
+        for ( String var : variablesToReset ) {
+            cmd.append(var).append(" := '").append(var).append("';").append(System.lineSeparator());
+        }
+        try {
+            maple.evaluate(cmd.toString());
+        } catch (MapleException me) {
+            LOG.error("Unable to reset global assumptions for variables: " + variablesToReset);
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
     @Override
     public void setTimeout(EvaluatorType type, double timeLimit) {
         if ( EvaluatorType.SYMBOLIC.equals(type) ) this.timeout = timeLimit;
@@ -238,7 +251,7 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
         latestTestExpression = "";
         String simplify = chooseSimplify(requiredPackages);
 
-        if ( !requiredPackages.isEmpty() ) {
+        if ( requiredPackages != null && !requiredPackages.isEmpty() ) {
             String loadCommands = packageWrapper.loadPackages(requiredPackages);
             maple.evaluate(loadCommands);
             LOG.debug("Loaded packages: " + requiredPackages);
@@ -256,7 +269,7 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
         listener.timerReset();
         Algebraic result = maple.evaluate(command);
 
-        if ( !requiredPackages.isEmpty() ) {
+        if ( requiredPackages != null && !requiredPackages.isEmpty() ) {
             String unloadCommands = packageWrapper.unloadPackages(requiredPackages);
             maple.evaluate(unloadCommands);
             LOG.debug("Unloaded packages: " + requiredPackages);

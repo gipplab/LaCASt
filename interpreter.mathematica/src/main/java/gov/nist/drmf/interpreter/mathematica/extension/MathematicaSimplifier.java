@@ -143,7 +143,7 @@ public class MathematicaSimplifier extends AbstractCasEngineSymbolicEvaluator<Ex
         }
     }
 
-    public void resetGlobalAssumptions() throws ComputerAlgebraSystemEngineException {
+    public void resetAssumptions() throws ComputerAlgebraSystemEngineException {
         try {
             LOG.debug("Unset global assumptions ($Assumptions)");
             mathematicaInterface.evaluate("$Assumptions = True");

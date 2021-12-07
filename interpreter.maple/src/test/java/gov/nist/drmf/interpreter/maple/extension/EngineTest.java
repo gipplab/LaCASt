@@ -2,10 +2,10 @@ package gov.nist.drmf.interpreter.maple.extension;
 
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.Engine;
 import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleEngineWrapper;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  */
 @AssumeMapleAvailability
 public class EngineTest {
-    private static Engine t;
+    private static MapleEngineWrapper t;
     private static Algebraic
             example_query,
             list,
