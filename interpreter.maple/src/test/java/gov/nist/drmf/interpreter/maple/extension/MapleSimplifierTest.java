@@ -1,12 +1,12 @@
 package gov.nist.drmf.interpreter.maple.extension;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
+import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

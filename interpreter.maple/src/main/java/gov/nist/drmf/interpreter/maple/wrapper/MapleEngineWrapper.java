@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.maple.wrapper;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
 import com.maplesoft.openmaple.EngineCallBacks;
 
 /**
@@ -16,14 +14,28 @@ public class MapleEngineWrapper {
     private final com.maplesoft.openmaple.Engine engine;
 
     public MapleEngineWrapper(String[] args, EngineCallBacks callbacks, Object data, Object info) throws MapleException {
-        this.engine = new com.maplesoft.openmaple.Engine(args, callbacks, data, info);
+        try {
+            this.engine = new com.maplesoft.openmaple.Engine(args, callbacks, data, info);
+        } catch (Exception e) {
+            throw new MapleException(e);
+        }
     }
 
     public Algebraic evaluate(String input) throws MapleException {
-        return engine.evaluate(input);
+        try {
+            return OpenMapleWrapperHelper.delegateOpenMapleObject(
+                    engine.evaluate(input)
+            );
+        } catch (Exception e) {
+            throw new MapleException(e);
+        }
     }
 
     public void restart() throws MapleException {
-        this.engine.restart();
+        try {
+            this.engine.restart();
+        } catch (Exception e) {
+            throw new MapleException(e);
+        }
     }
 }

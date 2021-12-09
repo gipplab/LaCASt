@@ -1,11 +1,11 @@
 package gov.nist.drmf.interpreter.maple.extension;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
+import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
 import gov.nist.drmf.interpreter.maple.wrapper.MapleEngineWrapper;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -89,10 +89,10 @@ public class EngineTest {
 
     @Test
     public void listTest(){
-        if ( !(list instanceof List) )
+        if ( !(MapleList.isInstance(list)) )
             fail("Assumed a list algebraic object but it isn't." + list);
         try {
-            List l = (List)list;
+            MapleList l = MapleList.cast(list);
             assertEquals( 2, l.length(), "Wrong length of list.");
         } catch ( Exception e ){
             fail("Exception thrown.");
@@ -101,15 +101,15 @@ public class EngineTest {
 
     @Test
     public void procedureTest(){
-        if ( !(proc_alg instanceof List) )
+        if ( !(MapleList.isInstance(proc_alg)) )
             fail("Assumed a list algebraic object but it isn't. " + proc_alg);
         try {
-            List l = (List)proc_alg;
+            MapleList l = MapleList.cast(proc_alg);
             assertEquals( 3, l.length(), "Wrong length of list after procedure.");
             assertEquals( "_Inert_SUM", l.select(1).toString(), "List is not a sum!" );
-            if ( !(l.select(2) instanceof List) )
+            if ( !(MapleList.isInstance(l.select(2))) )
                 fail( "First argument ist not a list." );
-            if ( !(l.select(3) instanceof List) )
+            if ( !(MapleList.isInstance(l.select(3))) )
                 fail( "Second argument ist not a list." );
         } catch ( Exception e ){
             fail("Exception thrown.");

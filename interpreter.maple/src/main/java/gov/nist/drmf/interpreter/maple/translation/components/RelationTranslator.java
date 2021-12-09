@@ -1,14 +1,14 @@
 package gov.nist.drmf.interpreter.maple.translation.components;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleList;
 
 /**
  * Created by AndreG-P on 28.04.2017.
@@ -26,7 +26,7 @@ public class RelationTranslator extends ListTranslator {
     }
 
     @Override
-    public Boolean translate( List list ) throws TranslationException {
+    public Boolean translate( MapleList list ) throws TranslationException {
         try {
             return innerTranslate( list );
         } catch (MapleException me) {
@@ -34,7 +34,7 @@ public class RelationTranslator extends ListTranslator {
         }
     }
 
-    public boolean innerTranslate( List list ) throws MapleException, IllegalArgumentException {
+    public boolean innerTranslate( MapleList list ) throws MapleException, IllegalArgumentException {
         SymbolTranslator symbolTranslator =
                 MapleTranslator.getDefaultInstance().getSymbolTranslator();
         String translated_symb;
@@ -69,7 +69,7 @@ public class RelationTranslator extends ListTranslator {
         return translateRelation( list, translated_symb );
     }
 
-    private boolean translateRelation( List list, String translated_relation )
+    private boolean translateRelation( MapleList list, String translated_relation )
             throws MapleException {
         Algebraic lhs = list.select(2);
         Algebraic rhs = list.select(3);

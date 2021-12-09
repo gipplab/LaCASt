@@ -1,13 +1,13 @@
 package gov.nist.drmf.interpreter.maple.extension;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.maple.common.MapleConfig;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
+import gov.nist.drmf.interpreter.maple.wrapper.MString;
 import gov.nist.drmf.interpreter.maple.wrapper.MapleEngineWrapper;
+import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

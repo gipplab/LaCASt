@@ -1,13 +1,13 @@
 package gov.nist.drmf.interpreter.maple.translation.components;
 
-import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleList;
 
 /**
  * Created by AndreG-P on 22.02.2017.
  */
-public class ListTranslator extends AbstractAlgebraicTranslator<List> {
+public class ListTranslator extends AbstractAlgebraicTranslator<MapleList> {
 
     protected int length;
     protected MapleInternal root;
@@ -23,7 +23,7 @@ public class ListTranslator extends AbstractAlgebraicTranslator<List> {
      * @return
      */
     @Override
-    public Boolean translate( List list ) throws TranslationException {
+    public Boolean translate( MapleList list ) throws TranslationException {
         AbstractAlgebraicTranslator generalParser = null;
         switch( root ){
             case sum:

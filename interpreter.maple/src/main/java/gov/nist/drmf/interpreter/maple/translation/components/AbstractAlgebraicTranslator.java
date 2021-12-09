@@ -1,8 +1,5 @@
 package gov.nist.drmf.interpreter.maple.translation.components;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.InformationLogger;
 import gov.nist.drmf.interpreter.common.config.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.Keys;
@@ -13,6 +10,9 @@ import gov.nist.drmf.interpreter.common.exceptions.MapleTranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import gov.nist.drmf.interpreter.maple.grammar.TranslationFailures;
+import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,7 +54,7 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic>
      */
     protected TranslatedList translateGeneralExpression( Algebraic element )
             throws TranslationException, MapleException {
-        if ( !(element instanceof List) ){
+        if ( !(MapleList.isInstance(element)) ){
             LOG.fatal(
                     "The general translator assumes an algebraic object " +
                     "in a Maple inert-form in a List structure but get: " +
@@ -63,7 +63,7 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic>
             return null;
         }
 
-        List list = (List)element;
+        MapleList list = MapleList.cast(element);
         String root = list.select(1).toString();
         MapleInternal in = getAbstractInternal(root);
         LOG.trace( "Translate general expression: " + list );
@@ -100,7 +100,7 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic>
         return in;
     }
 
-    String[] translateExpressionSequence( List exp_seq )
+    String[] translateExpressionSequence( MapleList exp_seq )
             throws MapleTranslationException, MapleException {
         String[] translations = new String[exp_seq.length()-1];
         for ( int i = 2; i-2 < translations.length; i++ ){
