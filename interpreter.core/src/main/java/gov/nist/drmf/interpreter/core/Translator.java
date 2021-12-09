@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.core;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.cas.translation.SemanticLatexTranslator;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
@@ -10,6 +8,8 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
 import gov.nist.drmf.interpreter.maple.extension.MapleSimplifier;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -183,7 +183,7 @@ public class Translator {
      * @throws TranslationException if the translation fails.
      * @throws MapleException if the conversion into an {@link Algebraic} object fails.
      */
-    public Algebraic translateFromLaTeXToMapleAlgebraicClean( String latex_expression, String label )
+    public Algebraic translateFromLaTeXToMapleAlgebraicClean(String latex_expression, String label )
             throws TranslationException, MapleException{
         return translateFromLaTeXToMapleAlgebraic( latex_expression, label ).getAlgebraicTranslatedExpression();
     }
