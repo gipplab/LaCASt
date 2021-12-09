@@ -28,8 +28,8 @@ import static gov.nist.drmf.interpreter.maple.extension.CommandBuilder.makeMaple
 /**
  * @author Andre Greiner-Petter
  */
-public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algebraic> {
-    private static final Logger LOG = LogManager.getLogger(NumericCalculator.class.getName());
+public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<Algebraic> {
+    private static final Logger LOG = LogManager.getLogger(MapleNumericCalculator.class.getName());
 
     public static final int MAX_LOG_LENGTH = 300;
 
@@ -64,7 +64,7 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
 
     private Set<String> requiredPackages = new HashSet<>();
 
-    public NumericCalculator() {
+    public MapleNumericCalculator() {
         maple = MapleInterface.getUniqueMapleInterface();
         commandsList = new StringBuffer();
         latestAppliedConstraints = new LinkedList<>();
@@ -409,7 +409,7 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
     }
 
     @Override
-    public TestResultType getStatusOfResult(Algebraic result) throws ComputerAlgebraSystemEngineException {
+    public TestResultType getStatusOfSingleResult(Algebraic result) throws ComputerAlgebraSystemEngineException {
         if ( result == null ) return TestResultType.ERROR;
         try {
             if ( latestResultCheckMethod.isBlank() ) {
@@ -445,7 +445,7 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
         } catch (MapleException me) {
             throw new ComputerAlgebraSystemEngineException(me);
         } catch (Exception e) {
-            LOG.warn("Error during check the result. " + result.toString());
+            LOG.warn("Error during check the result. " + result.toString(), e);
             return TestResultType.ERROR;
         }
     }
@@ -487,7 +487,7 @@ public class NumericCalculator extends AbstractCasEngineNumericalEvaluator<Algeb
 
             NumericCalculation numericCalculation = new NumericCalculation();
             LOG.trace("Get result of " + resList);
-            numericCalculation.setResult(getStatusOfResult(resList));
+            numericCalculation.setResult(getStatusOfSingleResult(resList));
             numericCalculation.setResultExpression(resList.get(0).toString());
 
             Map<String, String> varValMap = new HashMap<>();

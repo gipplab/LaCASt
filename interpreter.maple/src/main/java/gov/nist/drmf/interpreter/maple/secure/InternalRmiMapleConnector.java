@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.maple.secure;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
-import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
@@ -11,9 +10,8 @@ import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.common.MapleScriptHandler;
 import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
-import gov.nist.drmf.interpreter.maple.extension.NumericCalculator;
-import gov.nist.drmf.interpreter.maple.extension.Simplifier;
-import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.maple.extension.MapleNumericCalculator;
+import gov.nist.drmf.interpreter.maple.extension.MapleSimplifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,8 +25,8 @@ public class InternalRmiMapleConnector implements NativeComputerAlgebraInterface
 
     private Boolean mapleIsAvailable = null;
 
-    private NumericCalculator numericCalculator = null;
-    private Simplifier symbolicCalculator = null;
+    private MapleNumericCalculator numericCalculator = null;
+    private MapleSimplifier symbolicCalculator = null;
 
     private MapleScriptHandler scriptHandler;
 
@@ -69,14 +67,14 @@ public class InternalRmiMapleConnector implements NativeComputerAlgebraInterface
     @Override
     public ICASEngineNumericalEvaluator getNumericEvaluator() throws CASUnavailableException {
         if ( !isCASAvailable() ) throw new CASUnavailableException();
-        if ( numericCalculator == null ) numericCalculator = new NumericCalculator();
+        if ( numericCalculator == null ) numericCalculator = new MapleNumericCalculator();
         return numericCalculator;
     }
 
     @Override
     public ICASEngineSymbolicEvaluator getSymbolicEvaluator() throws CASUnavailableException {
         if ( !isCASAvailable() ) throw new CASUnavailableException();
-        if ( symbolicCalculator == null ) symbolicCalculator = new Simplifier();
+        if ( symbolicCalculator == null ) symbolicCalculator = new MapleSimplifier();
         return symbolicCalculator;
     }
 

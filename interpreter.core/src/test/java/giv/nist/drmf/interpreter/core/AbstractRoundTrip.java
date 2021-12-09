@@ -1,7 +1,7 @@
 package giv.nist.drmf.interpreter.core;
 
 import gov.nist.drmf.interpreter.core.Translator;
-import gov.nist.drmf.interpreter.maple.extension.Simplifier;
+import gov.nist.drmf.interpreter.maple.extension.MapleSimplifier;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.function.Executable;
@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @AssumeMapleAvailability
 public abstract class AbstractRoundTrip {
     protected Translator translator;
-    private static Simplifier simplifier = new Simplifier();
+    private static MapleSimplifier simplifier = new MapleSimplifier();
 
     protected Iterable<DynamicTest> createFromMapleTestList( String[] tests, String[] names ){
         List<DynamicTest> list = new LinkedList<>();

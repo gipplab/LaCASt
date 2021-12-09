@@ -8,7 +8,7 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
-import gov.nist.drmf.interpreter.maple.extension.Simplifier;
+import gov.nist.drmf.interpreter.maple.extension.MapleSimplifier;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -48,7 +48,7 @@ public class Translator {
      */
     private final MapleInterface mapleInterface;
     private final MapleTranslator mapleTranslator;
-    private final Simplifier mapleSimplifier;
+    private final MapleSimplifier mapleSimplifier;
 
     /**
      * Default instance of this class
@@ -78,7 +78,7 @@ public class Translator {
         LOG.debug("Instantiate Maple's interface and backward translator");
         mapleInterface = MapleInterface.getUniqueMapleInterface();
         mapleTranslator = MapleTranslator.getDefaultInstance();
-        mapleSimplifier = new Simplifier();
+        mapleSimplifier = new MapleSimplifier();
     }
 
     /**
@@ -110,7 +110,7 @@ public class Translator {
         return mapleTranslator;
     }
 
-    public Simplifier getMapleSimplifier() {
+    public MapleSimplifier getMapleSimplifier() {
         return mapleSimplifier;
     }
 

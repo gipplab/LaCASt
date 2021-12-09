@@ -12,7 +12,7 @@ import gov.nist.drmf.interpreter.common.process.RmiSubprocessInfo;
 import gov.nist.drmf.interpreter.common.process.UnrecoverableProcessException;
 import gov.nist.drmf.interpreter.maple.common.MapleConfig;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
-import gov.nist.drmf.interpreter.maple.extension.NumericCalculator;
+import gov.nist.drmf.interpreter.maple.extension.MapleNumericCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -196,7 +196,7 @@ public class MapleRmiClient extends RmiProcessHandler
     }
 
     public synchronized String generateNumericTestExpression(String expression) {
-        return NumericCalculator.generateNumericCalculationExpression(expression);
+        return MapleNumericCalculator.generateNumericCalculationExpression(expression);
     }
 
     /**

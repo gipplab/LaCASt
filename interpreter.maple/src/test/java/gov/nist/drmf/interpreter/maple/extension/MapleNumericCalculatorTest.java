@@ -1,16 +1,18 @@
-package gov.nist.drmf.interpreter.mathematica.extension;
+package gov.nist.drmf.interpreter.maple.extension;
 
+import com.maplesoft.externalcall.MapleException;
+import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
-import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
-import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
-import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
+import gov.nist.drmf.interpreter.maple.common.MapleScriptHandler;
+import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
@@ -19,27 +21,33 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.spy;
 
 /**
  * @author Andre Greiner-Petter
  */
-@AssumeMathematicaAvailability
-public class MathematicaNumericCalculatorTest {
+@AssumeMapleAvailability
+public class MapleNumericCalculatorTest {
 
-    private static MathematicaNumericalCalculator calculator;
+    private static MapleNumericCalculator calculator;
+    private static MapleScriptHandler scriptHandler;
     private static Path numericConfigPath;
 
     @BeforeAll
-    static void setup() throws ComputerAlgebraSystemEngineException {
-        MathematicaConnector connector = new MathematicaConnector();
-        connector.loadNumericProcedures();
-        calculator = (MathematicaNumericalCalculator) connector.getNumericEvaluator();
-        numericConfigPath = Paths.get(MathematicaNumericCalculatorTest.class.getResource("numerical_tests.properties").getPath());
+    static void setup() throws IOException, MapleException {
+        calculator = new MapleNumericCalculator();
+        numericConfigPath = Paths.get(MapleNumericCalculatorTest.class.getResource("numerical_tests.properties").getPath());
+        scriptHandler = new MapleScriptHandler();
+
+        for ( String script : scriptHandler.getNumericProcedures() ) {
+            MapleInterface.getUniqueMapleInterface().evaluate(script);
+        }
     }
 
     @Test
     void simpleNumericCalcTest() throws ComputerAlgebraSystemEngineException {
+        // Following the steps required in AbstractCasEngineNumericalEvaluator#performNumericalTest(...)
         calculator.storeVariables(
                 genSet("x"),
                 genList("1", "2")
@@ -51,8 +59,8 @@ public class MathematicaNumericCalculatorTest {
         String constN = calculator.setConstraints(null);
         String testValuesN = calculator.buildTestCases(constN, 10);
 
-        Expr result = calculator.performGeneratedTestOnExpression(
-                "x - 1", testValuesN, "", 10
+        Algebraic result = calculator.performGeneratedTestOnExpression(
+                "x - 1", testValuesN, scriptHandler.getPostProcessingScriptName(true), 10
         );
 
         assertFalse(calculator.wasAborted(result));
@@ -71,9 +79,9 @@ public class MathematicaNumericCalculatorTest {
     @Test
     @DLMF("1.2.E1")
     void numericEquivalenceTest() throws ComputerAlgebraSystemEngineException {
-        String lhs = "Binomial[n,k]";
-        String rhs = "Divide[(n)!,(n - k)!*(k)!]";
-        String test = "(Binomial[n,k]) - (Divide[(n)!,(n - k)!*(k)!])";
+        String lhs = "binomial(n,k)";
+        String rhs = "(factorial(n))/(factorial(n - k)*factorial(k))";
+        String test = "(binomial(n,k)) - ((factorial(n))/(factorial(n - k)*factorial(k)))";
 
         // Mocking config to avoid actual translation calls, this module does not depend on the forward translator
         // and should not to just to test out numerical test behaviour
@@ -106,11 +114,14 @@ public class MathematicaNumericCalculatorTest {
                     public List<String> getConstraintValues() {
                         return new LinkedList<>();
                     }
+
+
                 },
                 mockConfig,
                 // no translator necessary
                 null
         );
+        testBench.setPostProcessingMethodName(scriptHandler.getPostProcessingScriptName(true));
         testBench.setVariables(genSet("n, k"));
         NumericResult result = calculator.performNumericTest(testBench);
         // n and k where defined as special variables, so they were tested for 1,2,3,4 each which makes
@@ -118,9 +129,13 @@ public class MathematicaNumericCalculatorTest {
         assertEquals(16, calculator.getPerformedTestCases());
         assertEquals(0, calculator.getNumberOfFailedTestCases());
 
-        assertEquals(TestResultType.SUCCESS, result.overallResult());
         assertFalse(result.crashed());
         assertFalse(result.wasAborted());
+
+        // Maple may complain about factorial(-1) and throw a "division by zero" exception
+        // So not all cases are necessarily successful
+//        assertEquals(TestResultType.SUCCESS, result.overallResult(),
+//                "The overall numeric evaluation of DLMF 1.2.1 was unsuccessful. Result list: " + buildStringOfNumericResult(result));
         assertEquals(1, result.getTestCalculationsGroups().size());
 
         NumericCalculationGroup group = result.getTestCalculationsGroups().get(0);
@@ -128,9 +143,18 @@ public class MathematicaNumericCalculatorTest {
         // 4*4 = 16 test combinations
         assertEquals(16, group.getTestCalculations().size());
         for ( NumericCalculation nc : group.getTestCalculations() ) {
-            assertEquals( TestResultType.SUCCESS, nc.getResult() );
-            assertTrue( nc.getResultExpression().matches("0+\\.?0*") );
+            if ( isNGreaterK(nc.getTestValues()) ) {
+                assertEquals( TestResultType.SUCCESS, nc.getResult(),
+                        "Expected successful test: " + nc.toString() );
+                assertTrue( nc.getResultExpression().matches("0+\\.?0*") );
+            }
         }
+    }
+
+    private boolean isNGreaterK(Map<String, String> values) {
+        int k = Integer.parseInt(values.get("k"));
+        int n = Integer.parseInt(values.get("n"));
+        return n >= k;
     }
 
     private List<String> genList(String... elements) {

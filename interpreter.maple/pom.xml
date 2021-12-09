@@ -34,6 +34,11 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>maple-call</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

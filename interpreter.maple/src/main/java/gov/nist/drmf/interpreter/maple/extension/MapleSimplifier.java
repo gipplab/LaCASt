@@ -3,7 +3,6 @@ package gov.nist.drmf.interpreter.maple.extension;
 import com.maplesoft.externalcall.MapleException;
 import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineSymbolicEvaluator;
-import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
@@ -24,8 +23,8 @@ import java.util.TreeSet;
 /**
  * @author Andre Greiner-Petter
  */
-public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
-    private static final Logger LOG = LogManager.getLogger(Simplifier.class.getName());
+public class MapleSimplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
+    private static final Logger LOG = LogManager.getLogger(MapleSimplifier.class.getName());
 
     /**
      * This zero pattern allows expressions such as
@@ -39,7 +38,7 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
 
     private double timeout = -1;
 
-    public Simplifier() {
+    public MapleSimplifier() {
         maple = MapleInterface.getUniqueMapleInterface();
         listener = MapleInterface.getUniqueMapleListener();
 

@@ -23,16 +23,16 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Andre Greiner-Petter
  */
 @AssumeMapleAvailability
-public class SimplifierTest {
+public class MapleSimplifierTest {
 
-    private static Simplifier simplifier;
+    private static MapleSimplifier simplifier;
     private static Path symbolicConfigPath;
 
     @BeforeAll
     static void setup() {
-        simplifier = new Simplifier();
+        simplifier = new MapleSimplifier();
         simplifier.setTimeout(2);
-        symbolicConfigPath = Paths.get(SimplifierTest.class.getResource("symbolic_tests.properties").getPath());
+        symbolicConfigPath = Paths.get(MapleSimplifierTest.class.getResource("symbolic_tests.properties").getPath());
     }
 
     @Test
@@ -42,7 +42,7 @@ public class SimplifierTest {
         reqPackages.add("QDifferenceEquations,QPochhammer");
 
         Algebraic algResult = simplifier.simplify(testExpression, reqPackages);
-        assertTrue( Simplifier.isZero(algResult), "Not Zero: " + algResult );
+        assertTrue( MapleSimplifier.isZero(algResult), "Not Zero: " + algResult );
     }
 
     @Test
@@ -52,7 +52,7 @@ public class SimplifierTest {
 
         Algebraic algResult = simplifier.simplify(testExpression, reqPackages);
         assertFalse(
-                Simplifier.isZero(algResult),
+                MapleSimplifier.isZero(algResult),
                 "Valid result even we did not loaded required packages? This cannot happen."
         );
     }
@@ -78,7 +78,7 @@ public class SimplifierTest {
 
         Algebraic algResult = simplifier.simplify(testExpression, reqPackages);
         assertTrue(
-                Simplifier.isZero(algResult),
+                MapleSimplifier.isZero(algResult),
                 "Valid result even we did not loaded required packages? This cannot happen."
         );
     }
