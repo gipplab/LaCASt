@@ -6,12 +6,9 @@ import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.mathematica.wrapper.JLinkWrapper;
-import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkFactory;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -116,17 +113,14 @@ public class MathematicaConfig {
      */
     private static boolean isKernelClassAvailable() {
         try {
-            Class.forName("com.wolfram.jlink.KernelLink");
+            Class.forName(
+                    "com.wolfram.jlink.KernelLink",
+                    false,
+                    JLinkWrapper.getClassLoader()
+            );
             return true;
         } catch (ClassNotFoundException e) {
-            // if it doesn't exist, maybe we just need to load it via init.
-            // if this also fails, Mathematica (or in this case the J/Link interface) is not available
-            try {
-                MathLinkFactory.invokeReflectionInit();
-                return true;
-            } catch (Exception ex) {
-                return false;
-            }
+            return false;
         }
     }
 

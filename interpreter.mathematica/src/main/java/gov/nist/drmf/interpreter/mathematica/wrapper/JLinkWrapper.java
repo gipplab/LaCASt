@@ -1,140 +1,141 @@
 package gov.nist.drmf.interpreter.mathematica.wrapper;
 
+import gov.nist.drmf.interpreter.common.cas.CASReflectionWrapper;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.Expr;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
-import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
- * This class wraps J/Link. It must be initiated prior invoking methods via the {@link #init()} method.
- * This class is not self-initializing to provide more control over a good timing.
+ * This class is the base for loading the J/Link library dynamically (at runtime). The main function is the
+ * {@link #getEntryPointInstance(Object...)} which hooks up a class loader instance to load the MathLinkFactory class
+ * and calls the createKernelLink. This can be considered the J/Link entrypoint. Since every other class will be
+ * derived through the resulted KernelLink object, all classes uses our new class loader (bootstrapping). Hence,
+ * we do not need to write a full custom class loader and specify it on startup.
  *
  * @author Andre Greiner-Petter
  */
-public class JLinkWrapper {
+public abstract class JLinkWrapper extends CASReflectionWrapper {
     private static final Logger LOG = LogManager.getLogger(JLinkWrapper.class.getName());
 
-    // the single instance of this class. This is necessary to avoid loading classes multiple times
-    private static final JLinkWrapper instance = new JLinkWrapper();
+    private static final String entryPointClass = "com.wolfram.jlink.MathLinkFactory";
+    private static final String entryPointMethod = "createKernelLink";
+    private static final Class<?> entryPointMethodArguments = String[].class;
 
-    // The register that stores methods that can be invoked
-    private final Map<String, Method> methodRegister;
+    private static final Map<String, Class<?>> proxyClasses = new HashMap<>();
 
-    // avoid calling init multiple times
-    private boolean initiated;
+    private static ClassLoader classLoader = null;
 
-    /**
-     * Use {@link #getInstance()}
-     */
-    private JLinkWrapper() {
-        methodRegister = new HashMap<>();
-        this.initiated = false;
-    }
 
-    /**
-     * Loads J/Link classes and methods via reflections.
-     * @throws MalformedURLException if the JLink.jar path (from {@link MathematicaConfig#getJLinkJarPath()}) is invalid
-     * @throws ClassNotFoundException if one of the classes we expect to see in J/Link does not exist anymore
-     * @throws NoSuchMethodException if one of the methods we expect to see in J/Link does not exist anymore
-     * @throws IllegalAccessException if the VM security system does not allow to access an instance of our wrapper classes
-     * @throws InvocationTargetException if we are unable to construct one of our wrapper classes
-     * @throws InstantiationException if we are unable to construct (instantiate) one of our wrapper classes
-     */
-    void init() throws MalformedURLException, ClassNotFoundException, NoSuchMethodException,
-            IllegalAccessException, InvocationTargetException, InstantiationException {
-        if ( initiated ) {
-            LOG.debug("Avoid multiple loading cycles for J/Link lib. This should be avoided programmatically");
-            return;
-        }
-
-        LOG.info("Try to load J/Link jar");
-        Path jLinkJar = MathematicaConfig.getJLinkJarPath();
-        ClassLoader classLoader = URLClassLoader.newInstance(
-                new URL[] {jLinkJar.toUri().toURL()},
-                getClass().getClassLoader() // we may want to use the system classloader here?
-        );
-
-        LOG.info("Load classes and methods from J/Link");
-        // get all classes that implement the IJLinkClass interface
-        Reflections reflections = new Reflections("gov.nist.drmf.interpreter.mathematica.wrapper");
-        Set<Class<? extends IJLinkClass>> interfaces = reflections.getSubTypesOf(IJLinkClass.class);
-
-        assert(interfaces.size() > 0);
-        for ( Class<? extends IJLinkClass> jLinkInterface : interfaces ) {
-            // get an instance of those classes in order to invoke the interface methods
-            IJLinkClass jLinkClass = jLinkInterface.getDeclaredConstructor().newInstance();
-            // load specific classes from the J/Link library
-            Class<?> clazz = classLoader.loadClass(jLinkClass.getJLinkClassName());
-            IJLinkMethod[] methodSpecs = jLinkClass.getMethodSpecs();
-            String className = clazz.getSimpleName();
-            // load and store the methods we want to use for each class of interest in the J/Link lib
-            for ( IJLinkMethod methodSpec : methodSpecs ) {
-                Method method = methodSpec.getArguments() == null ?
-                        clazz.getMethod(methodSpec.getMethodID()) :
-                        clazz.getMethod(methodSpec.getMethodID(), methodSpec.getArguments());
-                methodRegister.put(
-                        buildMethodRegisterID(className, methodSpec.getMethodID()),
-                        method
-                );
+    public static ClassLoader getClassLoader() {
+        if ( classLoader == null ) {
+            try {
+                classLoader = CASReflectionWrapper.getClassLoader( MathematicaConfig.getJLinkJarPath() );
+            } catch (MalformedURLException e) {
+                throw new CASUnavailableException("Unable to access Mathematica's interface J/Link library", e);
             }
         }
-
-        LOG.info("Successfully loaded J/Link library");
-        initiated = true;
+        return classLoader;
     }
 
-    private static String buildMethodRegisterID(String clazzName, String methodName) {
-        return clazzName + "#" + methodName;
-    }
+    @Override
+    protected Object getEntryPointInstance(Object... arguments) throws CASUnavailableException {
+        try {
+            ClassLoader classLoader = getClassLoader();
+            Class<?> clazz = classLoader.loadClass(entryPointClass);
+            Method method = clazz.getMethod(entryPointMethod, entryPointMethodArguments);
+            //noinspection JavaReflectionInvocation
+            Object returnVal = method.invoke(clazz, arguments);
 
-    public Method getMethod(String clazzName, String methodName) {
-        return methodRegister.get(buildMethodRegisterID(clazzName, methodName));
+            if ( proxyClasses.isEmpty() ) {
+                proxyClasses.put("Expr", classLoader.loadClass("com.wolfram.jlink.Expr"));
+                proxyClasses.put("KernelLink", classLoader.loadClass("com.wolfram.jlink.KernelLink"));
+            }
+
+            return returnVal;
+        } catch (ClassNotFoundException | NoSuchMethodException |
+                IllegalAccessException | InvocationTargetException e) {
+            LOG.warn("Unable to access J/Link library and load necessary classes; " + e.getMessage());
+            throw new CASUnavailableException("Unable to access Mathematica's interface J/Link library", e);
+        }
     }
 
     /**
-     * Invokes the given method on the given object with the given arguments. The number of arguments is variable
-     * and can be empty (not null).
-     * @param method the method object we want to invoke
-     * @param obj the instance we perform the method on
-     * @param args the arguments for the method
-     * @return the result Object or null if nothing was returned (a void method)
-     * @throws ExprFormatException might be thrown by the invoked method
-     * @throws MathLinkException might be thrown by the invoked method
-     * @throws CASUnavailableException if another unusual error was thrown (neither of the above) during invoking the
-     *                                  method. Note that an VM security issue can also prohibit invoking a method which
-     *                                  is also encapsulated by a CAS unavailable exception here.
+     * @see CASReflectionWrapper#getQualifiedMethodID(Method) 
+     * @param qualifiedMethodID the qualified method ID as generated by {@link CASReflectionWrapper#getQualifiedMethodID(Method)}
+     * @return the method of the J/Link implementation instance
      */
-    Object invoke(Method method, Object obj, Object... args)
+    protected abstract Method getProxyMethod(String qualifiedMethodID);
+
+    /**
+     * @return the J/Link implementation instance we created a reference of.
+     */
+    protected abstract Object getProxyReference();
+
+    /**
+     * Might be little confusing but the proxy object is our interface not the actual implementation.
+     * Even more confusing, the given method is the method from our interface too! Hence invoking
+     * the given method on the given proxy: method.invoke(proxy, args)
+     * is not gonna work since we would try to invoke an interface method that does not has any real
+     * implementation behind it. So what we need to do is to ignore the proxy object (which is just our
+     * interface), map the given method (our interface method) to the actual implementation in J/Link
+     * and invoke that instead.
+     * @param proxy an auto generated instance of our interface which does not do anything
+     * @param method a method from our interface which should exist in J/Link too
+     * @param args the arguments to invoke the method on the J/Link implementation of our interface
+     * @return the result as an object. This might be casted to our proxies manually in cases where the
+     *          method returned a J/Link instance (non primitive), e.g., Expr
+     * @throws ExprFormatException if J/Link throws an ExprFormatException
+     * @throws MathLinkException if J/Link throws an ExprFormatException
+     * @throws CASUnavailableException if the method/proxy implementation does not exist because Mathematica is not
+     *                                  available in the classpath
+     */
+    @Override
+    public Object invoke(Object proxy, Method method, Object... args)
             throws ExprFormatException, MathLinkException, CASUnavailableException {
-        assert( method != null && initiated );
         try {
-            return args == null ? method.invoke(obj) : method.invoke(obj, args);
-        } catch (IllegalAccessException e) {
-            LOG.error("Unable to call method '" + method.getName() + "'");
-            throw new CASUnavailableException("Unable to communicate via Mathematica's interface J/Link", e);
-        } catch (InvocationTargetException e) {
+            Method exprImplMethod = getProxyMethod(CASReflectionWrapper.getQualifiedMethodID(method));
+            Object returnVal = exprImplMethod.invoke(getProxyReference(), args);
+            return castExpression(returnVal);
+        } catch (InvocationTargetException | IllegalAccessException e) {
             LOG.error("Invoking J/Link method '" + method.getName() + "' threw an exception.");
             Throwable throwable = e.getCause();
-            if ( throwable != null && throwable.getClass().getSimpleName().matches("ExprFormatException") )
+            if (throwable != null && throwable.getClass().getSimpleName().matches("ExprFormatException"))
                 throw new ExprFormatException(throwable);
-            else if ( throwable != null && throwable.getClass().getSimpleName().matches("MathLinkException") )
-                throw new MathLinkException(throwable);
+            else if (throwable != null && throwable.getClass().getSimpleName().matches("MathLinkException"))
+                throw formMathLinkException(throwable);
             else throw new CASUnavailableException("Unable to communicate via Mathematica's interface J/Link", e);
         }
     }
 
-    static JLinkWrapper getInstance() {
-        return instance;
+    private Object castExpression(Object jLinkObject) {
+        Class<?> jLinkExprClass = proxyClasses.get("Expr");
+        if ( jLinkExprClass.isInstance(jLinkObject) ) {
+            return ExprHelper.getExpr(jLinkObject);
+        } else if ( jLinkObject != null && jLinkObject.getClass().isArray() ) {
+            Object[] arr = (Object[]) jLinkObject;
+            Expr[] castedArr = new Expr[arr.length];
+            for ( int i = 0; i < arr.length; i++ ) {
+                castedArr[i] = ExprHelper.getExpr(arr[i]);
+            }
+            return castedArr;
+        } else return jLinkObject;
+    }
+
+    private MathLinkException formMathLinkException(Throwable cause) {
+        try {
+            Method method = cause.getClass().getMethod("getErrCode");
+            int errCode = (int) method.invoke(cause);
+            return new MathLinkException(errCode, cause);
+        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
+            return new MathLinkException(cause);
+        }
     }
 }

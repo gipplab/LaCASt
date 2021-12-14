@@ -1,51 +1,31 @@
 package gov.nist.drmf.interpreter.mathematica.wrapper;
 
-import java.lang.reflect.InvocationTargetException;
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.KernelLink;
+
 import java.lang.reflect.Method;
-import java.net.MalformedURLException;
 
-public class MathLinkFactory implements IJLinkClass {
-    private static final String CLAZZ_NAME = "MathLinkFactory";
-    private static final String CLAZZ_PATH = "com.wolfram.jlink." + CLAZZ_NAME;
+public class MathLinkFactory extends JLinkWrapper {
 
-    private static final JLinkWrapper jLinkWrapper = JLinkWrapper.getInstance();
+    private static final MathLinkFactory instance = new MathLinkFactory();
+    
+    private MathLinkFactory() {}
 
-    MathLinkFactory() {}
-
-    public static KernelLink createKernelLink(String[] args)
-            throws  MathLinkException, ClassNotFoundException, NoSuchMethodException,
-                    MalformedURLException, IllegalAccessException, InstantiationException,
-                    InvocationTargetException {
-        invokeReflectionInit();
-        Method method = jLinkWrapper.getMethod(CLAZZ_NAME, "createKernelLink");
-        return new KernelLink( jLinkWrapper.invoke(method, null, (Object) args) );
-    }
-
-    public static void invokeReflectionInit() throws ClassNotFoundException, NoSuchMethodException,
-            MalformedURLException, IllegalAccessException, InstantiationException,
-            InvocationTargetException {
-        jLinkWrapper.init();
+    public static KernelLink createKernelLink(String[] args) throws MathLinkException {
+        return KernelLinkHelper.getKernelLink(instance.getEntryPointInstance((Object) args));
     }
 
     @Override
-    public String getJLinkClassName() {
-        return CLAZZ_PATH;
+    protected Method getProxyMethod(String methodName) {
+        throw new IllegalCallerException("MathLinkFactory only supports the createKernelLink method");
     }
 
     @Override
-    public IJLinkMethod[] getMethodSpecs() {
-        return new IJLinkMethod[] {
-                new IJLinkMethod() {
-                    @Override
-                    public String getMethodID() {
-                        return "createKernelLink";
-                    }
+    protected Object getProxyReference() {
+        throw new IllegalCallerException("MathLinkFactory only supports the createKernelLink method");
+    }
 
-                    @Override
-                    public Class<?>[] getArguments() {
-                        return new Class[]{String[].class};
-                    }
-                }
-        };
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) {
+        throw new IllegalCallerException("MathLinkFactory only supports the createKernelLink method");
     }
 }
