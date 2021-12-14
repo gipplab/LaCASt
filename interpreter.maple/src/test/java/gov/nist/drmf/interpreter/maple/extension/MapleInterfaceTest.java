@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.maple.extension;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
-import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

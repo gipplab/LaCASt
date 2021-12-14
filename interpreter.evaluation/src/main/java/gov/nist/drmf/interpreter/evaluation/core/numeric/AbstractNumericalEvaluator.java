@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.evaluation.core.numeric;
 
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.eval.INumericTestCalculator;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
@@ -33,7 +33,7 @@ public abstract class AbstractNumericalEvaluator extends AbstractEvaluator imple
 
     public AbstractNumericalEvaluator(
             IConstraintTranslator<PrintablePomTaggedExpression> forwardTranslator,
-            IComputerAlgebraSystemEngine engine,
+            ICASEngine engine,
             ICASEngineNumericalEvaluator numericalEvaluator
     ) {
         super(forwardTranslator, engine);

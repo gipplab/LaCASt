@@ -6,10 +6,10 @@ import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
-import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
-import gov.nist.drmf.interpreter.maple.wrapper.MapleList;
-import gov.nist.drmf.interpreter.maple.wrapper.Numeric;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Numeric;
 
 /**
  * Created by AndreG-P on 22.02.2017.
@@ -59,14 +59,14 @@ public class SequenceTranslator extends ListTranslator {
         // check starting sign
         // since we reorder internal maple structure, the constant +/-1 is
         // always leading a sequence
-        flist = MapleList.cast(list.select( start_index ));
+        flist = (MapleList) list.select( start_index );
         // check if first is pos oder neg integer
         maple_internal = getAbstractInternal(flist.select(1).toString());
         switch ( maple_internal ){
             case intneg:
                 negative = true;
             case intpos:
-                Numeric num = Numeric.cast(flist.select(2));
+                Numeric num = (Numeric) flist.select(2);
                 int n = num.intValue();
                 if ( n == 1 ){
                     start_index++;
@@ -76,12 +76,12 @@ public class SequenceTranslator extends ListTranslator {
 
         for ( int i = start_index; i <= length; i++ ){
             factor = list.select(i);
-            if ( !(MapleList.isInstance(factor)) )
+            if ( !(factor instanceof MapleList) )
                 throw createException(
                         "Expected inner list in product but get: " + factor,
                         TranslationExceptionReason.IMPLEMENTATION_ERROR
                 );
-            flist = MapleList.cast(factor);
+            flist = (MapleList) factor;
             maple_internal = getAbstractInternal( flist.select(1).toString() );
 
             boolean embrace =

@@ -10,9 +10,9 @@ import gov.nist.drmf.interpreter.common.exceptions.MapleTranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import gov.nist.drmf.interpreter.maple.grammar.TranslationFailures;
-import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
-import gov.nist.drmf.interpreter.maple.wrapper.MapleList;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -54,7 +54,7 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic>
      */
     protected TranslatedList translateGeneralExpression( Algebraic element )
             throws TranslationException, MapleException {
-        if ( !(MapleList.isInstance(element)) ){
+        if ( !(element instanceof MapleList) ){
             LOG.fatal(
                     "The general translator assumes an algebraic object " +
                     "in a Maple inert-form in a List structure but get: " +
@@ -63,7 +63,7 @@ public abstract class AbstractAlgebraicTranslator<T extends Algebraic>
             return null;
         }
 
-        MapleList list = MapleList.cast(element);
+        MapleList list = (MapleList) element;
         String root = list.select(1).toString();
         MapleInternal in = getAbstractInternal(root);
         LOG.trace( "Translate general expression: " + list );

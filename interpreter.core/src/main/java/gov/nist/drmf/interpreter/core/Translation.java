@@ -1,6 +1,6 @@
 package gov.nist.drmf.interpreter.core;
 
-import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
 
 /**
  * A simple java container to collect the information of a translation process.

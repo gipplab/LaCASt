@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.maple.translation.components;
 
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
-import gov.nist.drmf.interpreter.maple.wrapper.MapleList;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
 
 /**
  * Created by AndreG-P on 22.02.2017.

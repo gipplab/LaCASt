@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.maple;
 
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.INumericalEvaluationScripts;
 import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
@@ -60,7 +60,7 @@ public class MapleConnector implements NativeComputerAlgebraInterfaceBuilder {
     }
 
     @Override
-    public IComputerAlgebraSystemEngine getCASEngine() throws CASUnavailableException {
+    public ICASEngine getCASEngine() throws CASUnavailableException {
         if ( !isCASAvailable() ) throw new CASUnavailableException();
         return mapleClient;
     }

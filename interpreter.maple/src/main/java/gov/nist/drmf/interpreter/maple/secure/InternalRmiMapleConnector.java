@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.maple.secure;
 
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
@@ -59,7 +59,7 @@ public class InternalRmiMapleConnector implements NativeComputerAlgebraInterface
     }
 
     @Override
-    public IComputerAlgebraSystemEngine getCASEngine() throws CASUnavailableException {
+    public ICASEngine getCASEngine() throws CASUnavailableException {
         if ( !isCASAvailable() ) throw new CASUnavailableException();
         return MapleInterface.getUniqueMapleInterface();
     }

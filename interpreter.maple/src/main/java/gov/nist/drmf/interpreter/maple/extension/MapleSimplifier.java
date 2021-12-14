@@ -10,7 +10,8 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
-import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleEngineFactory;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +41,7 @@ public class MapleSimplifier extends AbstractCasEngineSymbolicEvaluator<Algebrai
 
     public MapleSimplifier() {
         maple = MapleInterface.getUniqueMapleInterface();
-        listener = MapleInterface.getUniqueMapleListener();
+        listener = MapleEngineFactory.getUniqueMapleListener();
 
         SymbolTranslator symbolTranslator = new SymbolTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
         BasicFunctionsTranslator basicFunctionsTranslator = new BasicFunctionsTranslator(Keys.KEY_MAPLE);

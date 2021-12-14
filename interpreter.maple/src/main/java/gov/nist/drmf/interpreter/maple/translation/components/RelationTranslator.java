@@ -6,9 +6,9 @@ import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
-import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
-import gov.nist.drmf.interpreter.maple.wrapper.MapleList;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
 
 /**
  * Created by AndreG-P on 28.04.2017.
@@ -69,7 +69,7 @@ public class RelationTranslator extends ListTranslator {
         return translateRelation( list, translated_symb );
     }
 
-    private boolean translateRelation( MapleList list, String translated_relation )
+    private boolean translateRelation(MapleList list, String translated_relation )
             throws MapleException {
         Algebraic lhs = list.select(2);
         Algebraic rhs = list.select(3);

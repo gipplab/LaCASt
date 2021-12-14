@@ -10,10 +10,10 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.eval.NumericCalculation;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
-import gov.nist.drmf.interpreter.maple.wrapper.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
-import gov.nist.drmf.interpreter.maple.wrapper.MapleList;
-import gov.nist.drmf.interpreter.maple.wrapper.Numeric;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Numeric;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -321,11 +321,12 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
     private void setActiveConstraints(Algebraic constraintsList) throws MapleException {
         if ( constraintsList == null ) return;
 
-        if ( !(MapleList.isInstance(constraintsList)) ) {
+        if ( !(constraintsList instanceof MapleList) ) {
             latestAppliedConstraints.add(constraintsList.toString());
         }
 
-        MapleList conList = MapleList.cast(constraintsList);
+        //noinspection ConstantConditions
+        MapleList conList = (MapleList) constraintsList;
         for ( int i = 0; i < conList.length(); i++ ) {
             latestAppliedConstraints.add( conList.get(i).toString() );
         }
@@ -418,8 +419,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
                 return TestResultType.ERROR;
             }
 
-            if ( MapleList.isInstance(result) ) {
-                MapleList resList = MapleList.cast(result);
+            if ( result instanceof MapleList ) {
+                MapleList resList = (MapleList) result;
                 if ( resList.length() != 2 ) {
                     LOG.error("The provided result is not a single result. Expected a list of value and test values but got " + resList.toString());
                     return TestResultType.ERROR;
@@ -454,8 +455,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
     @Override
     public NumericCalculationGroup getNumericCalculationGroup(Algebraic results) {
         try {
-            if (MapleList.isInstance(results) ) {
-                MapleList resList = MapleList.cast(results);
+            if (results instanceof MapleList) {
+                MapleList resList = (MapleList) results;
                 NumericCalculationGroup group = new NumericCalculationGroup();
                 group.setTestExpression(latestTestExpression);
                 group.setConstraints(new LinkedList<>(latestAppliedConstraints));
@@ -477,8 +478,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
     }
 
     private NumericCalculation getNumericCalculation(Algebraic singleResult) {
-        if ( !(MapleList.isInstance(singleResult)) ) return null;
-        MapleList resList = MapleList.cast(singleResult);
+        if ( !(singleResult instanceof MapleList) ) return null;
+        MapleList resList = (MapleList) singleResult;
 
         try {
             if ( resList.length() != 2 ) {
@@ -495,8 +496,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
             numericCalculation.setTestValues(varValMap);
 
             Algebraic variableValues = resList.get(1);
-            if (MapleList.isInstance(variableValues) ) {
-                MapleList variableList = MapleList.cast(variableValues);
+            if (variableValues instanceof MapleList) {
+                MapleList variableList = (MapleList) variableValues;
                 for ( int i = 0; i < variableList.length(); i++ ) {
                     Algebraic varValPair = variableList.get(i);
                     String[] varValPairArr = varValPair.toString().split(" = ");
@@ -567,8 +568,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
             throw new IllegalArgumentException("There are no valid test values.");
         }
 
-        if (MapleList.isInstance(nTestValsA)){
-            checkTestValuesList(MapleList.cast(nTestValsA), valsName);
+        if (nTestValsA instanceof MapleList){
+            checkTestValuesList((MapleList) nTestValsA, valsName);
         }
     }
 
@@ -581,7 +582,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
         }
 
         numberOfTestCases = list.length();
-        LOG.info("First couple [of "+numberOfTestCases+"] generated test cases: " + list.subList(0, Math.min(5, list.length())));
+        Object sublist = list.subList(0, Math.min(5, numberOfTestCases));
+        LOG.info("First couple [of "+numberOfTestCases+"] generated test cases: " + sublist);
 
         int length = list.length();
         if ( length <= 0 ){
@@ -598,6 +600,6 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
 
     private boolean checkNumericalNTest() throws MapleException {
         Algebraic numericalCheck = maple.evaluate("nTest;");
-        return Numeric.isInstance(numericalCheck);
+        return numericalCheck instanceof Numeric;
     }
 }

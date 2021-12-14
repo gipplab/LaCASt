@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.generic.eval;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.pojo.CASResult;
 import gov.nist.drmf.interpreter.generic.EvaluationHelper;
@@ -9,6 +7,8 @@ import gov.nist.drmf.interpreter.generic.mlp.pojo.MOIPresentations;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedDocument;
 import gov.nist.drmf.interpreter.generic.mlp.pojo.SemanticEnhancedGoldDocument;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import gov.nist.drmf.interpreter.pom.extensions.MatchablePomTaggedExpression;
