@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.maple.secure;
 
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
@@ -28,7 +28,7 @@ import java.util.concurrent.ExecutionException;
  * @author Andre Greiner-Petter
  */
 public class MapleRmiClient extends RmiProcessHandler
-        implements IComputerAlgebraSystemEngine, IAbortEvaluator {
+        implements ICASEngine, IAbortEvaluator {
     private static final Logger LOG = LogManager.getLogger(MapleRmiClient.class.getName());
 
     private RmiCasServer server;

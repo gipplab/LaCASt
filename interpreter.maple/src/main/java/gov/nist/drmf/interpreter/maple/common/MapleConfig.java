@@ -1,13 +1,19 @@
 package gov.nist.drmf.interpreter.maple.common;
 
+import gov.nist.drmf.interpreter.common.config.CASConfig;
+import gov.nist.drmf.interpreter.common.config.Config;
+import gov.nist.drmf.interpreter.common.config.ConfigDiscovery;
 import gov.nist.drmf.interpreter.common.config.RequirementChecker;
 import gov.nist.drmf.interpreter.common.constants.Keys;
+import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.management.ManagementFactory;
 import java.lang.management.RuntimeMXBean;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.List;
 
 /**
@@ -19,7 +25,9 @@ public final class MapleConfig {
     private MapleConfig(){}
 
     public static boolean isMapleSetup() {
-        return areSystemVariablesSetProperly() && isThreadStackIncreased();
+        return isMaplePathAvailable() &&
+                areSystemVariablesSetProperly() &&
+                isThreadStackIncreased();
     }
 
     public static boolean areSystemVariablesSetProperly() {
@@ -69,4 +77,39 @@ public final class MapleConfig {
         }
     }
 
+    private static CASConfig getMapleConfig() {
+        Config config = ConfigDiscovery.getConfig();
+        return config.getCasConfigs().get(Keys.KEY_MAPLE);
+    }
+
+    private static boolean isMaplePathAvailable() {
+        Path mapleInstallPath = getMapleConfig().getInstallPath();
+        if ( mapleInstallPath == null || !Files.exists(mapleInstallPath) ) {
+            LOG.warn("Maple installation path is not available. Specify the proper path in lacast.config.yaml. " +
+                    (mapleInstallPath != null ? "Broken path: " + mapleInstallPath : ""));
+            return false;
+        }
+
+        return true;
+    }
+
+    public static Path getMapleJarPath() throws CASUnavailableException {
+        return getNativeJarPath("Maple.jar");
+    }
+
+    public static Path getMapleExternalCallJarPath() throws CASUnavailableException {
+        return getNativeJarPath("externalcall.jar");
+    }
+
+    private static Path getNativeJarPath(String jarName) throws CASUnavailableException {
+        try {
+            Path mapleInstallPath = getMapleConfig().getInstallPath();
+            Path jar = mapleInstallPath.resolve("java").resolve(jarName);
+            if ( Files.notExists(jar) ) {
+                throw new CASUnavailableException("Unable to locate " + jarName + " at " + jar.toString());
+            } else return jar;
+        } catch (RuntimeException e) {
+            throw new CASUnavailableException("Unable to locate " + jarName );
+        }
+    }
 }

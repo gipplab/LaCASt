@@ -5,7 +5,7 @@ import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
-import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.Expr;
 import gov.nist.drmf.interpreter.mathematica.wrapper.ExprFormatException;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.junit.jupiter.api.AfterAll;

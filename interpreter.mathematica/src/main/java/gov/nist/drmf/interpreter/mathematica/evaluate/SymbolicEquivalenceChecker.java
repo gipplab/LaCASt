@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.mathematica.evaluate;
 
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
-import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.Expr;
 import gov.nist.drmf.interpreter.mathematica.wrapper.ExprFormatException;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.apache.logging.log4j.LogManager;

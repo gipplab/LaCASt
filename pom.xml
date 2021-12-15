@@ -86,7 +86,7 @@
         <jacoco.report.dir>${main.basedir}/target</jacoco.report.dir>
 
         <!-- Setup Logging -->
-        <log4j2.version>2.13.3</log4j2.version>
+        <log4j2.version>2.16.0</log4j2.version>
 
         <!-- Addition versions -->
         <jackson.version>2.11.0</jackson.version>
@@ -309,34 +309,6 @@
                                 <version>${mlp.version}</version>
                                 <packaging>jar</packaging>
                                 <file>${mlp.path}</file>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>maple-install</id>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>install-file</goal>
-                            </goals>
-                            <configuration>
-                                <groupId>${project.groupId}</groupId>
-                                <artifactId>maple</artifactId>
-                                <version>${maple.version}</version>
-                                <packaging>jar</packaging>
-                                <file>${maple.path}/Maple.jar</file>
-                            </configuration>
-                        </execution>
-                        <execution>
-                            <id>maple-call-install</id>
-                            <phase>initialize</phase>
-                            <goals>
-                                <goal>install-file</goal>
-                            </goals>
-                            <configuration>
-                                <groupId>${project.groupId}</groupId>
-                                <artifactId>maple-call</artifactId>
-                                <version>${maple.version}</version>
-                                <packaging>jar</packaging>
-                                <file>${maple.path}/externalcall.jar</file>
                             </configuration>
                         </execution>
                     </executions>

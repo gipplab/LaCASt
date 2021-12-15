@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.evaluation.core;
 
 import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
@@ -28,7 +28,7 @@ public class SampleTranslator extends AbstractEvaluator {
 
     private List<Integer> testCases;
 
-    public SampleTranslator(IConstraintTranslator forwardTranslator, IComputerAlgebraSystemEngine engine) throws IOException {
+    public SampleTranslator(IConstraintTranslator forwardTranslator, ICASEngine engine) throws IOException {
         super(forwardTranslator, engine);
         List<String> lines = Files.readAllLines(
                 Paths.get("/home/andreg-p/data/DLMF-AI/random100SampleLineIDs.txt")

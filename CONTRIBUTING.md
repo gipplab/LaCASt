@@ -197,6 +197,8 @@ is setup correctly, use
 mvn test -DjacocoReport=full
 ```
 The results can be found in `target/jacoco-report/`. Open the `index.html` to get a website view of the coverage report.
+Obviously, you can still run the full coverage mode even without CAS source available, but your coverage report will be
+much lower since all code related to the missing CAS would end up in 0% coverage.
 
 ## Update translation patterns<a name="howToUpdate"></a>
 Basic translation patterns can be found in `libs/ReferenceData/BasicConversions`. Here, basic functions, symbols, and 

@@ -1,11 +1,10 @@
 package gov.nist.drmf.interpreter.evaluation.core;
 
 import gov.nist.drmf.interpreter.common.TranslationInformation;
-import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
 import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.interfaces.IPackageWrapper;
 import gov.nist.drmf.interpreter.evaluation.common.*;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
@@ -34,7 +33,7 @@ public abstract class AbstractEvaluator {
     private static double timeoutMS = 30_000;
 
     private IConstraintTranslator<PrintablePomTaggedExpression> forwardTranslator;
-    private IComputerAlgebraSystemEngine engine;
+    private ICASEngine engine;
 
     private HashMap<String, Integer> missingMacrosLib;
 
@@ -56,7 +55,7 @@ public abstract class AbstractEvaluator {
 
     public AbstractEvaluator(
             IConstraintTranslator<PrintablePomTaggedExpression> forwardTranslator,
-            IComputerAlgebraSystemEngine engine
+            ICASEngine engine
     ) {
         this.forwardTranslator = forwardTranslator;
         this.packageWrapper = forwardTranslator.getPackageWrapper();

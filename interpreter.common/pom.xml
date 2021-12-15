@@ -59,6 +59,11 @@
             <artifactId>commons-io</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.reflections</groupId>
+            <artifactId>reflections</artifactId>
+        </dependency>
+
         <!-- graph visualization (should be deleted or moved to another place if no longer needed -->
         <dependency>
             <groupId>org.graphstream</groupId>

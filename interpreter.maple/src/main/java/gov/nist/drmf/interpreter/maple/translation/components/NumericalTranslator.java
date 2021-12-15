@@ -1,10 +1,5 @@
 package gov.nist.drmf.interpreter.maple.translation.components;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.List;
-import com.maplesoft.openmaple.MString;
-import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
@@ -13,6 +8,11 @@ import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedExpression;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
+import gov.nist.drmf.interpreter.maple.wrapper.*;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MString;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Numeric;
 
 import static gov.nist.drmf.interpreter.maple.common.MapleConstants.*;
 
@@ -34,7 +34,7 @@ public class NumericalTranslator extends ListTranslator {
     }
 
     @Override
-    public Boolean translate( List list ) throws TranslationException {
+    public Boolean translate( MapleList list ) throws TranslationException {
         try {
             return innerTranslate( list );
         } catch (MapleException me) {
@@ -42,7 +42,7 @@ public class NumericalTranslator extends ListTranslator {
         }
     }
 
-    public boolean innerTranslate( List list ) throws MapleException, IllegalArgumentException {
+    public boolean innerTranslate( MapleList list ) throws MapleException, IllegalArgumentException {
         boolean b;
         switch (root) {
             case intpos:
@@ -73,19 +73,19 @@ public class NumericalTranslator extends ListTranslator {
         }
     }
 
-    private void translatePosInt( List list ) throws MapleException {
+    private void translatePosInt( MapleList list ) throws MapleException {
         String s = translateInt( list );
         translatedList.addTranslatedExpression(s);
     }
 
-    private void translateNegInt( List list ) throws MapleException {
+    private void translateNegInt( MapleList list ) throws MapleException {
         String s = translateInt( list );
         translatedList.addTranslatedExpression(MINUS_SIGN + s);
     }
 
-    private String translateInt( List list ) throws MapleException {
+    private String translateInt( MapleList list ) throws MapleException {
         try {
-            Numeric n = (Numeric)list.select(2);
+            Numeric n = (Numeric) list.select(2);
             return Integer.toString( n.intValue() );
         } catch( MapleException me ){
             LOG.fatal( "Cannot parse integer.", me );
@@ -98,11 +98,11 @@ public class NumericalTranslator extends ListTranslator {
      * @param list Type: RATIONAL, Struct: [RATIONAL, Numeric, Numeric]
      * @throws MapleException extract elements from list or parse elements
      */
-    private void parseRationalNumber( List list ) throws MapleException {
+    private void parseRationalNumber( MapleList list ) throws MapleException {
         try {
             // get numerator and denominator
-            List numerator = (List)list.select(2);
-            List denominator = (List)list.select(3);
+            MapleList numerator = (MapleList) list.select(2);
+            MapleList denominator = (MapleList) list.select(3);
 
             // translate them into a string representation
             String num = translateInt( numerator );
@@ -137,7 +137,7 @@ public class NumericalTranslator extends ListTranslator {
      * @param list
      * @return
      */
-    private boolean parseFloatingNumber( List list ) throws MapleException {
+    private boolean parseFloatingNumber( MapleList list ) throws MapleException {
         try{
             Algebraic first = list.select(2);
             if ( !(first instanceof Numeric) ){
@@ -178,14 +178,14 @@ public class NumericalTranslator extends ListTranslator {
      * @param list
      * @return
      */
-    private boolean parseComplexNumber( List list ) throws MapleException, IllegalArgumentException {
+    private boolean parseComplexNumber( MapleList list ) throws MapleException, IllegalArgumentException {
         try {
-            TranslatedExpression first = parseComplexElement( (List)list.select(2) );
+            TranslatedExpression first = parseComplexElement( (MapleList) list.select(2) );
             if ( first == null ) return false;
             translatedList.addTranslatedExpression(first);
 
             if ( list.length() == 3 ){
-                TranslatedExpression second = parseComplexElement( (List)list.select(3) );
+                TranslatedExpression second = parseComplexElement( (MapleList) list.select(3) );
                 if ( second == null ) return false;
                 translatedList.addTranslatedExpression(PLUS_SIGN);
                 translatedList.addTranslatedExpression(second);
@@ -215,7 +215,7 @@ public class NumericalTranslator extends ListTranslator {
         }
     }
 
-    private TranslatedExpression parseComplexElement( List list )
+    private TranslatedExpression parseComplexElement( MapleList list )
             throws IllegalArgumentException, MapleException {
         MapleInternal in = getAbstractInternal(list.select(1).toString());
         String name;
@@ -228,14 +228,14 @@ public class NumericalTranslator extends ListTranslator {
                     return null;
                 } else return new TranslatedExpression(INFINITY, POSITIVE);
             case prod:
-                List l1 = (List)list.select(2);
-                List l2 = (List)list.select(3);
+                MapleList l1 = (MapleList) list.select(2);
+                MapleList l2 = (MapleList) list.select(3);
                 Algebraic a = l1.select(2);
                 if ( !(a instanceof MString) ){
                     failures.addFailure( "Illegal argument for complex numbers.", this.getClass(), l1.toString() );
                     return null;
                 }
-                MString mString = (MString)a;
+                MString mString = (MString) a;
                 if ( !mString.stringValue().matches( INFINITY ) ){
                     failures.addFailure( "Not allowed structure for -infinity. ", this.getClass(), l1.toString() );
                     return null;

@@ -3,7 +3,7 @@ package gov.nist.drmf.interpreter.evaluation.core.symbolic;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.eval.ISymbolicTestCases;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.interfaces.IConstraintTranslator;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.common.eval.EvaluationConfig;
@@ -32,7 +32,7 @@ public abstract class AbstractSymbolicEvaluator extends AbstractEvaluator {
 
     public AbstractSymbolicEvaluator(
             IConstraintTranslator forwardTranslator,
-            IComputerAlgebraSystemEngine engine,
+            ICASEngine engine,
             ICASEngineSymbolicEvaluator symbolicEvaluator,
             ISymbolicTestCases[] testCases
     ) {

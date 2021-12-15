@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.mathematica.core;
 
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
-import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.KernelLink;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,8 +1,5 @@
 package gov.nist.drmf.interpreter.maple.extension;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.Numeric;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineNumericalEvaluator;
@@ -13,6 +10,10 @@ import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineEx
 import gov.nist.drmf.interpreter.common.eval.NumericCalculation;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Numeric;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -320,11 +321,12 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
     private void setActiveConstraints(Algebraic constraintsList) throws MapleException {
         if ( constraintsList == null ) return;
 
-        if ( !(constraintsList instanceof com.maplesoft.openmaple.List) ) {
+        if ( !(constraintsList instanceof MapleList) ) {
             latestAppliedConstraints.add(constraintsList.toString());
         }
 
-        com.maplesoft.openmaple.List conList = (com.maplesoft.openmaple.List) constraintsList;
+        //noinspection ConstantConditions
+        MapleList conList = (MapleList) constraintsList;
         for ( int i = 0; i < conList.length(); i++ ) {
             latestAppliedConstraints.add( conList.get(i).toString() );
         }
@@ -394,8 +396,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
 //                        postProcessingMethodName + "(numResults);"
 //                );
 //
-//                if ( result instanceof com.maplesoft.openmaple.List ) {
-//                    com.maplesoft.openmaple.List list = (com.maplesoft.openmaple.List) result;
+//                if (MapleList.isInstance(result) ) {
+//                    MapleList list = MapleList.cast(result)
 //                    LOG.info("First entries of result list [total: " + list.length() + "]: " + list.subList(0, Math.min(5, list.length())));
 //                }
 //
@@ -417,8 +419,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
                 return TestResultType.ERROR;
             }
 
-            if ( result instanceof com.maplesoft.openmaple.List ) {
-                com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) result;
+            if ( result instanceof MapleList ) {
+                MapleList resList = (MapleList) result;
                 if ( resList.length() != 2 ) {
                     LOG.error("The provided result is not a single result. Expected a list of value and test values but got " + resList.toString());
                     return TestResultType.ERROR;
@@ -453,8 +455,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
     @Override
     public NumericCalculationGroup getNumericCalculationGroup(Algebraic results) {
         try {
-            if ( results instanceof com.maplesoft.openmaple.List ) {
-                com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) results;
+            if (results instanceof MapleList) {
+                MapleList resList = (MapleList) results;
                 NumericCalculationGroup group = new NumericCalculationGroup();
                 group.setTestExpression(latestTestExpression);
                 group.setConstraints(new LinkedList<>(latestAppliedConstraints));
@@ -476,8 +478,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
     }
 
     private NumericCalculation getNumericCalculation(Algebraic singleResult) {
-        if ( !(singleResult instanceof com.maplesoft.openmaple.List) ) return null;
-        com.maplesoft.openmaple.List resList = (com.maplesoft.openmaple.List) singleResult;
+        if ( !(singleResult instanceof MapleList) ) return null;
+        MapleList resList = (MapleList) singleResult;
 
         try {
             if ( resList.length() != 2 ) {
@@ -494,8 +496,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
             numericCalculation.setTestValues(varValMap);
 
             Algebraic variableValues = resList.get(1);
-            if ( variableValues instanceof com.maplesoft.openmaple.List ) {
-                com.maplesoft.openmaple.List variableList = (com.maplesoft.openmaple.List) variableValues;
+            if (variableValues instanceof MapleList) {
+                MapleList variableList = (MapleList) variableValues;
                 for ( int i = 0; i < variableList.length(); i++ ) {
                     Algebraic varValPair = variableList.get(i);
                     String[] varValPairArr = varValPair.toString().split(" = ");
@@ -511,7 +513,7 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
         }
     }
 
-    private TestResultType getStatusOfList(com.maplesoft.openmaple.List aList) throws MapleException {
+    private TestResultType getStatusOfList(MapleList aList) throws MapleException {
         // if l == 0, the list is empty so the test was successful
         if ( aList.length() == 0 ){
             LOG.info("Test was successful.");
@@ -566,12 +568,12 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
             throw new IllegalArgumentException("There are no valid test values.");
         }
 
-        if ( nTestValsA instanceof com.maplesoft.openmaple.List){
-            checkTestValuesList((com.maplesoft.openmaple.List) nTestValsA, valsName);
+        if (nTestValsA instanceof MapleList){
+            checkTestValuesList((MapleList) nTestValsA, valsName);
         }
     }
 
-    private void checkTestValuesList(com.maplesoft.openmaple.List list, String valsName) throws MapleException {
+    private void checkTestValuesList(MapleList list, String valsName) throws MapleException {
         if (checkNumericalNTest()){
             maple.evaluate( valsName+" := [];" );
             numberOfTestCases = 0;
@@ -580,7 +582,8 @@ public class MapleNumericCalculator extends AbstractCasEngineNumericalEvaluator<
         }
 
         numberOfTestCases = list.length();
-        LOG.info("First couple [of "+numberOfTestCases+"] generated test cases: " + list.subList(0, Math.min(5, list.length())));
+        Object sublist = list.subList(0, Math.min(5, numberOfTestCases));
+        LOG.info("First couple [of "+numberOfTestCases+"] generated test cases: " + sublist);
 
         int length = list.length();
         if ( length <= 0 ){

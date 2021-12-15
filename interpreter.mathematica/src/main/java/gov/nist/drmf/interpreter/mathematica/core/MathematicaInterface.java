@@ -1,14 +1,14 @@
 package gov.nist.drmf.interpreter.mathematica.core;
 
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.replacements.LogManipulator;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
 import gov.nist.drmf.interpreter.mathematica.config.MathematicaConfig;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
-import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
-import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.Expr;
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.KernelLink;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkFactory;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +26,7 @@ import java.util.Set;
 /**
  * @author Andre Greiner-Petter
  */
-public final class MathematicaInterface implements IComputerAlgebraSystemEngine {
+public final class MathematicaInterface implements ICASEngine {
     private static final Logger LOG = LogManager.getLogger(MathematicaInterface.class.getName());
 
     public static final String MATH_ABORTION_SIGNAL = "$Aborted";
@@ -80,15 +80,7 @@ public final class MathematicaInterface implements IComputerAlgebraSystemEngine 
             } catch ( IOException | InterruptedException e ) {
                 LOG.warn("Unable to activate Wolfram license.", e);
                 throw mle;
-            } catch (ClassNotFoundException | NoSuchMethodException | IllegalAccessException |
-                    InstantiationException | InvocationTargetException e) {
-                LOG.warn("Unable to access J/Link library and load necessary classes; " + e.getMessage());
-                throw new CASUnavailableException("Unable to access Mathematica's interface J/Link library", e);
             }
-        } catch (MalformedURLException | ClassNotFoundException | NoSuchMethodException |
-                IllegalAccessException | InstantiationException | InvocationTargetException e) {
-            LOG.warn("Unable to access J/Link library and load necessary classes; " + e.getMessage());
-            throw new CASUnavailableException("Unable to access Mathematica's interface J/Link library", e);
         }
 
         // set encoding to avoid UTF-8 chars of greek letters

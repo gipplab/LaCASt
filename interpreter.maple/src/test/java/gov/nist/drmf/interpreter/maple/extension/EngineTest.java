@@ -1,11 +1,14 @@
 package gov.nist.drmf.interpreter.maple.extension;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.List;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
+import gov.nist.drmf.interpreter.maple.listener.MapleListener;
 import gov.nist.drmf.interpreter.maple.setup.AssumeMapleAvailability;
-import gov.nist.drmf.interpreter.maple.wrapper.MapleEngineWrapper;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleEngineFactory;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.EngineHelper;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Engine;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -23,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  */
 @AssumeMapleAvailability
 public class EngineTest {
-    private static MapleEngineWrapper t;
+    private static Engine t;
     private static Algebraic
             example_query,
             list,
@@ -33,10 +36,9 @@ public class EngineTest {
 
     @BeforeAll
     public static void startEngine() {
-        MapleInterface mi = MapleInterface.getUniqueMapleInterface();
-        if ( mi == null ) fail("Unable to instantiate Maple interface");
-
-        t = mi.getEngine();
+//        MapleInterface mi = MapleInterface.getUniqueMapleInterface();
+//        if ( mi == null ) fail("Unable to instantiate Maple interface");
+        t = MapleEngineFactory.getEngineInstance();
         if ( t == null ) fail("Unable to instantiate Maple interface");
 
         // loading procedure from file.
@@ -74,6 +76,8 @@ public class EngineTest {
         }
     }
 
+
+
     @Test
     public void exampleAlgebraicTest(){
         String sol = example_query.toString();
@@ -89,10 +93,10 @@ public class EngineTest {
 
     @Test
     public void listTest(){
-        if ( !(list instanceof List) )
+        if ( !(list instanceof MapleList) )
             fail("Assumed a list algebraic object but it isn't." + list);
         try {
-            List l = (List)list;
+            MapleList l = (MapleList) list;
             assertEquals( 2, l.length(), "Wrong length of list.");
         } catch ( Exception e ){
             fail("Exception thrown.");
@@ -101,15 +105,15 @@ public class EngineTest {
 
     @Test
     public void procedureTest(){
-        if ( !(proc_alg instanceof List) )
+        if ( !(proc_alg instanceof MapleList) )
             fail("Assumed a list algebraic object but it isn't. " + proc_alg);
         try {
-            List l = (List)proc_alg;
+            MapleList l = (MapleList) proc_alg;
             assertEquals( 3, l.length(), "Wrong length of list after procedure.");
             assertEquals( "_Inert_SUM", l.select(1).toString(), "List is not a sum!" );
-            if ( !(l.select(2) instanceof List) )
+            if ( !(l.select(2) instanceof MapleList) )
                 fail( "First argument ist not a list." );
-            if ( !(l.select(3) instanceof List) )
+            if ( !(l.select(3) instanceof MapleList) )
                 fail( "Second argument ist not a list." );
         } catch ( Exception e ){
             fail("Exception thrown.");

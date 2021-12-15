@@ -1,7 +1,5 @@
 package gov.nist.drmf.interpreter.maple.translation;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.TranslationInformation;
 import gov.nist.drmf.interpreter.common.config.TranslationProcessConfig;
 import gov.nist.drmf.interpreter.common.constants.GlobalPaths;
@@ -9,6 +7,8 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;

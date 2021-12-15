@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.common.eval;
 
 import gov.nist.drmf.interpreter.common.cas.ICASEngineNumericalEvaluator;
 import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 
@@ -36,7 +36,7 @@ public interface NativeComputerAlgebraInterfaceBuilder {
      * @return a direct interface to the native CAS
      * @throws CASUnavailableException if {@link #isCASAvailable()} returns false
      */
-    IComputerAlgebraSystemEngine getCASEngine() throws CASUnavailableException;
+    ICASEngine getCASEngine() throws CASUnavailableException;
 
     /**
      * Returns the numeric evaluator of the CAS
