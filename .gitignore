@@ -1,5 +1,7 @@
 # Ignore user specific config file
 lacast.config.yaml
+./config/symbolic_tests.properties
+./config/numerical_tests.properties
 
 # Since it is a maven project, we could ignore all files under .idea/
 # But it would be better to keep the basics. That makes it a lot easier
