@@ -86,7 +86,7 @@
         <jacoco.report.dir>${main.basedir}/target</jacoco.report.dir>
 
         <!-- Setup Logging -->
-        <log4j2.version>2.16.0</log4j2.version>
+        <log4j2.version>2.17.2</log4j2.version>
 
         <!-- Addition versions -->
         <jackson.version>2.11.0</jackson.version>
@@ -177,7 +177,7 @@
             <dependency>
                 <groupId>com.thoughtworks.xstream</groupId>
                 <artifactId>xstream</artifactId>
-                <version>1.4.18</version>
+                <version>1.4.19</version>
             </dependency>
 
             <dependency>
