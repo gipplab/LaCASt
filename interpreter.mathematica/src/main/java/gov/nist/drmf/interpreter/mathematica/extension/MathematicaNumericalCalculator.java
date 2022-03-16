@@ -8,7 +8,8 @@ import gov.nist.drmf.interpreter.common.eval.NumericCalculationGroup;
 import gov.nist.drmf.interpreter.common.eval.TestResultType;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.mathematica.common.Commands;
-import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
+import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.Expr;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -301,11 +302,11 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
     }
 
     @Override
-    public TestResultType getStatusOfResult(Expr results) {
-        String checkCommand = Commands.WAS_NUMERICALLY_SUCCESSFUL.build(results.toString(), lastPrecision);
+    public TestResultType getStatusOfSingleResult(Expr result) {
+        String checkCommand = Commands.WAS_NUMERICALLY_SUCCESSFUL.build(result.toString(), lastPrecision);
         try {
-            String result = mathematicaInterface.evaluate(checkCommand);
-            if ( "True".equals(result) ) return TestResultType.SUCCESS;
+            String res = mathematicaInterface.evaluate(checkCommand);
+            if ( "True".equals(res) ) return TestResultType.SUCCESS;
             else return TestResultType.FAILURE;
         } catch (MathLinkException e) {
             LOG.warn("Unable to analyze result: " + e.getMessage());
@@ -360,7 +361,7 @@ public class MathematicaNumericalCalculator extends AbstractCasEngineNumericalEv
             return null;
         }
 
-        NumericCalculation nc = new NumericCalculation( getStatusOfResult(singleResultArgs[0]) );
+        NumericCalculation nc = new NumericCalculation( getStatusOfSingleResult(singleResultArgs[0]) );
         String s = mathematicaInterface.evaluate("ToString["+singleResultArgs[0].toString()+", InputForm]");
         if ( !s.isBlank() ) s = s.substring(1, s.length()-1);
         nc.setResultExpression( s );

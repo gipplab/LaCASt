@@ -1,17 +1,23 @@
 package gov.nist.drmf.interpreter.maple.listener;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.EngineCallBacks;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.EngineCallBacks;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Observable;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by AndreG-P on 21.02.2017.
  */
-public class MapleListener extends Observable implements EngineCallBacks {
+public class MapleListener implements EngineCallBacks, InvocationHandler {
     private Logger log = LogManager.getLogger( MapleListener.class.toString() );
+
+    private final Map<String, Method> ownMethodLib;
 
     private boolean logging;
 
@@ -27,6 +33,10 @@ public class MapleListener extends Observable implements EngineCallBacks {
         this.logging = logging;
         this.interrupter = false;
         this.auto_interrupt = false;
+        this.ownMethodLib = new HashMap<>();
+        for(Method method: this.getClass().getDeclaredMethods()) {
+            this.ownMethodLib.put(method.getName(), method);
+        }
     }
 
     public static void setMemoryUsageLimit( long limitInKB ){
@@ -73,8 +83,6 @@ public class MapleListener extends Observable implements EngineCallBacks {
 
         if ( l >= upperMemUsageLimit && upperMemUsageLimit > 0 ){
             log.debug("Reached notification limit of memory usage! Notify all observers.");
-            setChanged();
-            notifyObservers();
         }
 
         if ( auto_interrupt && (v - last_process_time > auto_interrupt_threshold) ){
@@ -162,5 +170,12 @@ public class MapleListener extends Observable implements EngineCallBacks {
 
     public void timerReset(){
         this.last_process_time = -1;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args)
+            throws InvocationTargetException, IllegalAccessException {
+        Method thisMethod = ownMethodLib.get(method.getName());
+        return thisMethod.invoke(this, args);
     }
 }

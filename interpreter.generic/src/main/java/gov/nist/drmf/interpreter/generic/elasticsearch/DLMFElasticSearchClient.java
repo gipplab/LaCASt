@@ -1,5 +1,6 @@
 package gov.nist.drmf.interpreter.generic.elasticsearch;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -34,11 +35,14 @@ import org.elasticsearch.index.query.NestedQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.aggregations.bucket.global.Global;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -152,14 +156,50 @@ public class DLMFElasticSearchClient {
     }
 
     private void reIndexDLMFDatabase() throws IOException {
+        if ( !Files.exists(GlobalPaths.PATH_MACROS_REPLACEMENT_PATTERNS) ) {
+            LOG.error("Unable to reindex DLMF DB because the DB file DLMFMacroReplacementDB.json is missing. Expected " +
+                    "it to be in: " + GlobalPaths.PATH_MACROS_REPLACEMENT_PATTERNS);
+            throw new IOException("Unable to locate DLMFMacroReplacementDB.json");
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        TypeReference<Map<String, MacroBean>> typeRef = new TypeReference<>() {};
+        Map<String, MacroBean> macros = mapper.readValue(
+                Files.readString(GlobalPaths.PATH_MACROS_REPLACEMENT_PATTERNS),
+                typeRef
+        );
+
+        indexElements(macros);
+    }
+
+    /**
+     * Regenerates the DLMF ES database (json format) based on the DLMFfcns.sty file. The DLMFfcns.sty is still
+     * confidential and hence you probably do not need this method. The DLMFfcns.sty is available as a json file you
+     * can work with instead. This method is only useful to update the mentioned JSON representation in case new
+     * macros are added and we are granted special access to DLMFfcns.sty.
+     *
+     * This method also deserializes the new generated database as JSON format and overwrites the (probably existing)
+     * DLMFMacroReplacementDB.json at {@link GlobalPaths#PATH_MACROS_REPLACEMENT_PATTERNS}. Finally, this methods
+     * also returns the database as a map.
+     *
+     * @return the regenerated database of DLMF macros
+     * @throws IOException if the DLMFfcns.sty is not available
+     *      (which typically happens because this file is still confidential and therefore probably not available to you).
+     */
+    private Map<String, MacroBean> regenerateDLMFDatabase() throws IOException {
         MacroDefinitionStyleFileParser macroParser = new MacroDefinitionStyleFileParser();
+        if ( !Files.exists(GlobalPaths.PATH_SEMANTIC_MACROS_DEFINITIONS) ) {
+            LOG.error("Unable to regenerate DLMF database because DLMFfcns.sty is unavailable. Expected it to be in: " +
+                    GlobalPaths.PATH_SEMANTIC_MACROS_DEFINITIONS);
+            throw new IOException("DLMFfcns.sty cannot be found");
+        }
         String macroDefinitions = Files.readString(GlobalPaths.PATH_SEMANTIC_MACROS_DEFINITIONS);
         macroParser.load(macroDefinitions);
         Map<String, MacroBean> macros = macroParser.getExtractedMacros();
         ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
         String ser = mapper.writeValueAsString(macros);
         Files.writeString(GlobalPaths.PATH_MACROS_REPLACEMENT_PATTERNS, ser);
-        indexElements(macros);
+        return macros;
     }
 
     private void deleteIndex() throws IOException, ElasticsearchException {
@@ -248,8 +288,11 @@ public class DLMFElasticSearchClient {
 
     public static void main(String[] args) throws IOException {
         DLMFElasticSearchClient es = new DLMFElasticSearchClient();
-        es.resetOrCreateIndex();
-        es.reIndexDLMFDatabase();
-        es.stop();
+        try {
+            es.resetOrCreateIndex();
+            es.reIndexDLMFDatabase();
+        } finally {
+            es.stop();
+        }
     }
 }

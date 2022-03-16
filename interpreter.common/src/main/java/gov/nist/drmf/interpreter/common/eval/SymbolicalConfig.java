@@ -8,6 +8,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 
@@ -21,20 +23,29 @@ public class SymbolicalConfig implements EvaluationConfig {
 
     private static final Logger LOG = LogManager.getLogger(SymbolicalConfig.class.getName());
 
+    private final Map<SymbolicProperties, String> settings;
+
     public SymbolicalConfig(ISymbolicTestCases[] symbolicTestCases) {
-        try ( FileInputStream in = new FileInputStream(GlobalPaths.PATH_SYMBOLIC_SETUP.toFile()) ){
+        this(symbolicTestCases, GlobalPaths.PATH_SYMBOLIC_SETUP);
+    }
+
+    public SymbolicalConfig(ISymbolicTestCases[] symbolicTestCases, Path configFile) {
+        this.settings = new HashMap<>();
+        try ( FileInputStream in = new FileInputStream(configFile.toFile()) ){
             Properties props = new Properties();
             props.load(in);
 
             for ( SymbolicalConfig.SymbolicProperties np : SymbolicalConfig.SymbolicProperties.values() ){
                 String val = props.getProperty(np.key);
-                np.setValue(val);
+                if ( val != null && !val.isBlank() )
+                    settings.put(np, val); // set definition value
+                else settings.put(np, np.value); // store default value
             }
 
             activateSymbolicTests(symbolicTestCases);
             LOG.info( "Successfully loaded config for symbolic tests." );
         } catch ( IOException ioe ){
-            LOG.fatal("Cannot load the symbolic test config from " + GlobalPaths.PATH_NUMERICAL_SETUP.getFileName(), ioe);
+            LOG.fatal("Cannot load the symbolic test config from " + configFile.getFileName(), ioe);
         }
     }
 
@@ -52,22 +63,22 @@ public class SymbolicalConfig implements EvaluationConfig {
     }
 
     public Path getDataset(){
-        return Paths.get(SymbolicalConfig.SymbolicProperties.KEY_DATASET.value);
+        return Paths.get(settings.get(SymbolicProperties.KEY_DATASET));
     }
 
     @Override
     public Path getOutputPath(){
-        return Paths.get(SymbolicProperties.KEY_OUTPUT.value);
+        return Paths.get(settings.get(SymbolicProperties.KEY_OUTPUT));
     }
 
     @Override
     public Path getMissingMacrosOutputPath() {
-        return Paths.get(SymbolicProperties.KEY_MISSING_MACRO_OUTPUT.value);
+        return Paths.get(settings.get(SymbolicProperties.KEY_MISSING_MACRO_OUTPUT));
     }
 
     @Override
     public int[] getSubSetInterval(){
-        String in = SymbolicalConfig.SymbolicProperties.KEY_SUBSET.value;
+        String in = settings.get(SymbolicProperties.KEY_SUBSET);
         if ( in == null ) return null;
 
         String[] splitted = in.split(",");
@@ -79,52 +90,52 @@ public class SymbolicalConfig implements EvaluationConfig {
 
     @Override
     public String getTestExpression(){
-        return SymbolicalConfig.SymbolicProperties.KEY_EXPR.value;
+        return settings.get(SymbolicProperties.KEY_EXPR);
     }
 
     public String getTestExpression( String LHS, String RHS ){
-        String in = SymbolicalConfig.SymbolicProperties.KEY_EXPR.value;
+        String in = settings.get(SymbolicProperties.KEY_EXPR);
         in = in.replaceAll( PATTERN_LHS, Matcher.quoteReplacement(LHS) );
         in = in.replaceAll( PATTERN_RHS, Matcher.quoteReplacement(RHS) );
         return in;
     }
 
     public String getExpectationValue(){
-        String val = SymbolicalConfig.SymbolicProperties.KEY_EXPECT.value;
+        String val = settings.get(SymbolicProperties.KEY_EXPECT);
         return val == null ? "0" : val;
     }
 
     @Override
     public boolean showDLMFLinks(){
-        return Boolean.parseBoolean(SymbolicProperties.KEY_DLMF_LINK.value);
+        return Boolean.parseBoolean(settings.get(SymbolicProperties.KEY_DLMF_LINK));
     }
 
     public boolean enabledConvEXP(){
-        return Boolean.parseBoolean(SymbolicProperties.KEY_ENABLE_CONV_EXP.value);
+        return Boolean.parseBoolean(settings.get(SymbolicProperties.KEY_ENABLE_CONV_EXP));
     }
 
     public boolean enabledConvHYP(){
-        return Boolean.parseBoolean(SymbolicProperties.KEY_ENABLE_CONV_HYP.value);
+        return Boolean.parseBoolean(settings.get(SymbolicProperties.KEY_ENABLE_CONV_HYP));
     }
 
     public boolean enabledExpand(){
-        return Boolean.parseBoolean(SymbolicProperties.KEY_ENABLE_EXPAND.value);
+        return Boolean.parseBoolean(settings.get(SymbolicProperties.KEY_ENABLE_EXPAND));
     }
 
     public boolean enabledExpandWithEXP(){
-        return Boolean.parseBoolean(SymbolicProperties.KEY_ENABLE_EXPAND_EXP.value);
+        return Boolean.parseBoolean(settings.get(SymbolicProperties.KEY_ENABLE_EXPAND_EXP));
     }
 
     public boolean enabledExpandWithHYP(){
-        return Boolean.parseBoolean(SymbolicProperties.KEY_ENABLE_EXPAND_HYP.value);
+        return Boolean.parseBoolean(settings.get(SymbolicProperties.KEY_ENABLE_EXPAND_HYP));
     }
 
     public String getEntireTestSuiteAssumptions(){
-        return SymbolicProperties.KEY_ASSUMPTION.value;
+        return settings.get(SymbolicProperties.KEY_ASSUMPTION);
     }
 
     public double getTimeout() {
-        return Double.parseDouble(SymbolicProperties.KEY_TIMEOUT.value);
+        return Double.parseDouble(settings.get(SymbolicProperties.KEY_TIMEOUT));
     }
 
     private enum SymbolicProperties{
@@ -143,14 +154,10 @@ public class SymbolicalConfig implements EvaluationConfig {
         KEY_ASSUMPTION("entire_test_set_assumptions", null),
         KEY_TIMEOUT("timeout", "10");
 
-        private String key, value;
+        private final String key, value;
 
         SymbolicProperties( String key, String value ){
             this.key = key;
-            this.value = value;
-        }
-
-        void setValue( String value ){
             this.value = value;
         }
     }

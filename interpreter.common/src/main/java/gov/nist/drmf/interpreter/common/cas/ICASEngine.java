@@ -8,7 +8,7 @@ import java.util.List;
  * Communicate via CAS engine directly
  * @author Andre Greiner-Petter
  */
-public interface IComputerAlgebraSystemEngine {
+public interface ICASEngine {
     /**
      * Enter a command into the CAS. If the input was not valid or something else went wrong, a
      * CAS exception will be thrown. Unfortunately, the CAS engine may run in a separated JVM, hence

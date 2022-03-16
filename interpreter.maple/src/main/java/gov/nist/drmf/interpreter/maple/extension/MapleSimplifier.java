@@ -1,9 +1,6 @@
 package gov.nist.drmf.interpreter.maple.extension;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
 import gov.nist.drmf.interpreter.common.cas.AbstractCasEngineSymbolicEvaluator;
-import gov.nist.drmf.interpreter.common.cas.ICASEngineSymbolicEvaluator;
 import gov.nist.drmf.interpreter.common.cas.PackageWrapper;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.EvaluatorType;
@@ -13,6 +10,9 @@ import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.SymbolTranslator;
 import gov.nist.drmf.interpreter.maple.common.SymbolicMapleEvaluatorTypes;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleEngineFactory;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -24,8 +24,8 @@ import java.util.TreeSet;
 /**
  * @author Andre Greiner-Petter
  */
-public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
-    private static final Logger LOG = LogManager.getLogger(Simplifier.class.getName());
+public class MapleSimplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
+    private static final Logger LOG = LogManager.getLogger(MapleSimplifier.class.getName());
 
     /**
      * This zero pattern allows expressions such as
@@ -39,9 +39,9 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
 
     private double timeout = -1;
 
-    public Simplifier() {
+    public MapleSimplifier() {
         maple = MapleInterface.getUniqueMapleInterface();
-        listener = MapleInterface.getUniqueMapleListener();
+        listener = MapleEngineFactory.getUniqueMapleListener();
 
         SymbolTranslator symbolTranslator = new SymbolTranslator(Keys.KEY_LATEX, Keys.KEY_MAPLE);
         BasicFunctionsTranslator basicFunctionsTranslator = new BasicFunctionsTranslator(Keys.KEY_MAPLE);
@@ -66,6 +66,19 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
             LOG.info("Set global assumptions in Maple: " + assumptions);
         } catch (MapleException me) {
             LOG.error("Unable to set global assumptions for Maple: " + assumptions);
+            throw new ComputerAlgebraSystemEngineException(me);
+        }
+    }
+
+    public void resetAssumptions(Set<String> variablesToReset) throws ComputerAlgebraSystemEngineException {
+        StringBuilder cmd = new StringBuilder();
+        for ( String var : variablesToReset ) {
+            cmd.append(var).append(" := '").append(var).append("';").append(System.lineSeparator());
+        }
+        try {
+            maple.evaluate(cmd.toString());
+        } catch (MapleException me) {
+            LOG.error("Unable to reset global assumptions for variables: " + variablesToReset);
             throw new ComputerAlgebraSystemEngineException(me);
         }
     }
@@ -238,7 +251,7 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
         latestTestExpression = "";
         String simplify = chooseSimplify(requiredPackages);
 
-        if ( !requiredPackages.isEmpty() ) {
+        if ( requiredPackages != null && !requiredPackages.isEmpty() ) {
             String loadCommands = packageWrapper.loadPackages(requiredPackages);
             maple.evaluate(loadCommands);
             LOG.debug("Loaded packages: " + requiredPackages);
@@ -256,7 +269,7 @@ public class Simplifier extends AbstractCasEngineSymbolicEvaluator<Algebraic> {
         listener.timerReset();
         Algebraic result = maple.evaluate(command);
 
-        if ( !requiredPackages.isEmpty() ) {
+        if ( requiredPackages != null && !requiredPackages.isEmpty() ) {
             String unloadCommands = packageWrapper.unloadPackages(requiredPackages);
             maple.evaluate(unloadCommands);
             LOG.debug("Unloaded packages: " + requiredPackages);

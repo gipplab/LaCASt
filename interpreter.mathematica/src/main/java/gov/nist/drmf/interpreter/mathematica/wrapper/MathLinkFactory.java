@@ -1,11 +1,31 @@
 package gov.nist.drmf.interpreter.mathematica.wrapper;
 
-public class MathLinkFactory {
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.KernelLink;
+
+import java.lang.reflect.Method;
+
+public class MathLinkFactory extends JLinkWrapper {
+
+    private static final MathLinkFactory instance = new MathLinkFactory();
+    
+    private MathLinkFactory() {}
+
     public static KernelLink createKernelLink(String[] args) throws MathLinkException {
-        try {
-            return new KernelLink(com.wolfram.jlink.MathLinkFactory.createKernelLink(args));
-        } catch (com.wolfram.jlink.MathLinkException e) {
-            throw new gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException(e);
-        }
+        return KernelLinkHelper.getKernelLink(instance.getEntryPointInstance((Object) args));
+    }
+
+    @Override
+    protected Method getProxyMethod(String methodName) {
+        throw new IllegalCallerException("MathLinkFactory only supports the createKernelLink method");
+    }
+
+    @Override
+    protected Object getProxyReference() {
+        throw new IllegalCallerException("MathLinkFactory only supports the createKernelLink method");
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) {
+        throw new IllegalCallerException("MathLinkFactory only supports the createKernelLink method");
     }
 }

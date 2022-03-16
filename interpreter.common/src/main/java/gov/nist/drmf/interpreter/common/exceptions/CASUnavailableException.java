@@ -15,4 +15,12 @@ public class CASUnavailableException extends RuntimeException {
     public CASUnavailableException(Exception e) {
         super(e);
     }
+
+    public CASUnavailableException(String msg) {
+        super(msg);
+    }
+
+    public CASUnavailableException(String msg, Throwable e) {
+        super(msg, e);
+    }
 }

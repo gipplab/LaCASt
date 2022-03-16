@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.mathematica;
 
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ public class MathematicaNumericalMethodsTests {
     private static MathematicaInterface mi;
 
     @BeforeAll
-    public static void setup() throws MathLinkException {
+    public static void setup() {
         mi = MathematicaInterface.getInstance();
     }
 

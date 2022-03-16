@@ -15,7 +15,7 @@ import gov.nist.drmf.interpreter.evaluation.common.Status;
 import gov.nist.drmf.interpreter.evaluation.core.AbstractEvaluator;
 import gov.nist.drmf.interpreter.maple.MapleConnector;
 import gov.nist.drmf.interpreter.mathematica.MathematicaConnector;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -67,13 +67,13 @@ public class SymbolicEvaluator extends AbstractSymbolicEvaluator {
         casBuilder.getSymbolicEvaluator().setTimeout(config.getTimeout());
         super.setTimeoutSeconds(config.getTimeout());
 
-        NumericalConfig.NumericalProperties.KEY_OUTPUT.setValue(config.getOutputPath().toString());
-        NumericalConfig.NumericalProperties.KEY_DATASET.setValue(config.getDataset().toString());
+//        NumericalConfig.NumericalProperties.KEY_OUTPUT.setValue(config.getOutputPath().toString());
+//        NumericalConfig.NumericalProperties.KEY_DATASET.setValue(config.getDataset().toString());
 //        NumericalConfig.NumericalProperties.KEY_LABELSET.setValue(config.getLabelSet().toString());
-        NumericalConfig.NumericalProperties.KEY_DLMF_LINK.setValue(""+config.showDLMFLinks());
+//        NumericalConfig.NumericalProperties.KEY_DLMF_LINK.setValue(""+config.showDLMFLinks());
 
-        String subset = config.getSubSetInterval()[0] + "," + config.getSubSetInterval()[1];
-        NumericalConfig.NumericalProperties.KEY_SUBSET.setValue(subset);
+//        String subset = config.getSubSetInterval()[0] + "," + config.getSubSetInterval()[1];
+//        NumericalConfig.NumericalProperties.KEY_SUBSET.setValue(subset);
 
         Path output = config.getOutputPath();
         if (!Files.exists(output)) {

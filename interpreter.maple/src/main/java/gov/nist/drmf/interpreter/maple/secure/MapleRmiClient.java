@@ -1,7 +1,7 @@
 package gov.nist.drmf.interpreter.maple.secure;
 
 import gov.nist.drmf.interpreter.common.cas.IAbortEvaluator;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.eval.*;
 import gov.nist.drmf.interpreter.common.exceptions.CASUnavailableException;
@@ -12,7 +12,7 @@ import gov.nist.drmf.interpreter.common.process.RmiSubprocessInfo;
 import gov.nist.drmf.interpreter.common.process.UnrecoverableProcessException;
 import gov.nist.drmf.interpreter.maple.common.MapleConfig;
 import gov.nist.drmf.interpreter.maple.extension.MapleInterface;
-import gov.nist.drmf.interpreter.maple.extension.NumericCalculator;
+import gov.nist.drmf.interpreter.maple.extension.MapleNumericCalculator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,7 +28,7 @@ import java.util.concurrent.ExecutionException;
  * @author Andre Greiner-Petter
  */
 public class MapleRmiClient extends RmiProcessHandler
-        implements IComputerAlgebraSystemEngine, IAbortEvaluator {
+        implements ICASEngine, IAbortEvaluator {
     private static final Logger LOG = LogManager.getLogger(MapleRmiClient.class.getName());
 
     private RmiCasServer server;
@@ -196,7 +196,7 @@ public class MapleRmiClient extends RmiProcessHandler
     }
 
     public synchronized String generateNumericTestExpression(String expression) {
-        return NumericCalculator.generateNumericCalculationExpression(expression);
+        return MapleNumericCalculator.generateNumericCalculationExpression(expression);
     }
 
     /**

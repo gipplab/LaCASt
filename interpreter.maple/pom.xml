@@ -26,13 +26,8 @@
         </dependency>
 
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>maple</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>maple-call</artifactId>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
         </dependency>
     </dependencies>
 
@@ -48,9 +43,6 @@
                     <!--suppress UnresolvedMavenProperty -->
                     <argLine>${argLine} -Xss50M</argLine>
                 </configuration>
-            </plugin>
-            <plugin>
-                <artifactId>maven-install-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

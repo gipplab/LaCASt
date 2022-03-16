@@ -3,20 +3,21 @@ package gov.nist.drmf.interpreter.mathematica.extension;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.meta.DLMF;
 import gov.nist.drmf.interpreter.mathematica.common.AssumeMathematicaAvailability;
+import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import gov.nist.drmf.interpreter.mathematica.evaluate.SymbolicEquivalenceChecker;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
-import gov.nist.drmf.interpreter.mathematica.wrapper.Expr;
+import gov.nist.drmf.interpreter.mathematica.wrapper.jlink.Expr;
 import gov.nist.drmf.interpreter.mathematica.wrapper.ExprFormatException;
-import gov.nist.drmf.interpreter.mathematica.wrapper.KernelLink;
 import gov.nist.drmf.interpreter.mathematica.wrapper.MathLinkException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * This requires JLink from Mathematica.
@@ -30,10 +31,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author Andre Greiner-Petter
  */
 @AssumeMathematicaAvailability
-public class MathematicaEngineCallTest {
-
+public class MathematicaInterfaceCallTest {
     private static final String JACOBIP = "JacobiP[n,\\[Alpha],\\[Beta],Cos[a \\[CapitalTheta]]]";
-    private static final String JACOBIP_FULL_FORM = "JacobiP[n, \\[Alpha], \\[Beta], Cos[Times[a, \\[CapitalTheta]]]]";
 
     private static final String TRIG_EQ_LHS = "Sinh[x+y I]";
     private static final String TRIG_EQ_RHS = "(Sinh[x] Cos[y] + I Cosh[x] Sin[y])";
@@ -46,13 +45,10 @@ public class MathematicaEngineCallTest {
     private static final String complTestMath_LHS = "(D[AiryAi[temp], {temp, 1}]/.temp-> 0)";
     private static final String complTestMath_RHS = "- Divide[1, Power[3, Divide[1, 3]] * Gamma[Divide[1, 3]]]";
 
-    private static final int TYPE_FUNCTION = 100;
-    private static final int TYPE_IDENTIFIER = 4;
-
     private static MathematicaInterface mi;
 
     @BeforeAll
-    public static void setup() throws MathLinkException {
+    public static void setup() {
         mi = MathematicaInterface.getInstance();
     }
 
@@ -72,8 +68,6 @@ public class MathematicaEngineCallTest {
      * There is one problem with inner Expression form. Symbols are returned as UTF-8
      * characters and not as Mathematica commands. For example \[Alpha] will only (!)
      * contains the UTF-8 character for an alpha rather than '\[Alpha]
-     * @throws MathLinkException
-     * @throws ExprFormatException
      */
     @Test
     public void getParseTreeTest() throws MathLinkException, ExprFormatException {
@@ -85,13 +79,6 @@ public class MathematicaEngineCallTest {
         assertEquals("n", args[0].asString());
 
         System.out.println(expr.toString());
-    }
-
-    @Test
-    public void getFullFormTest() throws MathLinkException {
-        String fullForm = mi.convertToFullForm(JACOBIP);
-        assertEquals(JACOBIP_FULL_FORM, fullForm, "Expected a different full form of JacobiP");
-        System.out.println(fullForm);
     }
 
     @Test
@@ -143,65 +130,30 @@ public class MathematicaEngineCallTest {
     }
 
     @Test
-    @Disabled
     public void extractVariableTest() throws MathLinkException {
         Set<String> vars = mi.getVariables(JACOBIP);
         assertTrue(vars.contains("a"));
         assertTrue(vars.contains("n"));
-        assertTrue(vars.contains("\\[Alpha]"));
-        assertTrue(vars.contains("\\[Beta]"));
-        assertTrue(vars.contains("\\[CapitalTheta]"));
+        assertTrue(vars.contains("\\\\[Alpha]"));
+        assertTrue(vars.contains("\\\\[Beta]"));
+        assertTrue(vars.contains("\\\\[CapitalTheta]"));
     }
 
     @Test
-    public void errorTest() {
-        KernelLink engine = mi.getMathKernel();
-        try {
-            engine.evaluate("Cos[x]");
-            engine.waitForAnswer();
-            engine.getBoolean(); // error
-            fail("No MathLinkException thrown? Impossible!");
-        } catch ( MathLinkException mle ) {
-            engine.clearError();
-            engine.newPacket();
-        }
+    void gcTest() {
+        mi.forceGC();
     }
 
     @Test
-    public void abortTest() {
-        KernelLink engine = mi.getMathKernel();
-        String test = "Integrate[Divide[1,t], {t, 1, Divide[1,z]}]";
-        test = test + " - " + test;
-
-        Thread abortThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("Finished delay, call abort evaluation.");
-                engine.abortEvaluation();
-            }
-        });
-
-        abortThread.start();
-        try {
-            engine.evaluate(test);
-            engine.waitForAnswer();
-            System.out.println(engine.getExpr());
-            engine.newPacket();
-        } catch (MathLinkException e) {
-            e.printStackTrace();
-            System.out.println(engine.getLastError());
-            engine.clearError();
-            engine.newPacket();
-        }
+    void buildList() {
+        List<String> list = new LinkedList<>();
+        list.add("a");
+        list.add("b");
+        assertEquals("a, b", mi.buildList(list));
     }
 
     @AfterAll
-    public static void shutwodn() {
+    public static void shutdown() {
         mi.shutdown();
     }
 }

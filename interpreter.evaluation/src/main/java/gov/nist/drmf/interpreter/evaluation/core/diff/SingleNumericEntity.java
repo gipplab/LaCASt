@@ -2,7 +2,7 @@ package gov.nist.drmf.interpreter.evaluation.core.diff;
 
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,7 +35,7 @@ public class SingleNumericEntity {
         }
     }
 
-    public boolean match(SingleNumericEntity sne, ITranslator forwardTranslator, ITranslator backwardTranslator, IComputerAlgebraSystemEngine engine) throws ComputerAlgebraSystemEngineException {
+    public boolean match(SingleNumericEntity sne, ITranslator forwardTranslator, ITranslator backwardTranslator, ICASEngine engine) throws ComputerAlgebraSystemEngineException {
         if (sne.isMathematica) return false;
 
         String[] vars = sne.variables.split(", ");

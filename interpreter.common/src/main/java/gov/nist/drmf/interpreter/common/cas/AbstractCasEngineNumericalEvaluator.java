@@ -112,8 +112,8 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
      * @param testCasesName the variable name of the stored test cases returned by {@link #buildTestCases(String, int)}
      * @param postProcessingMethodName the process to call after the test was performed (for post processing)
      * @param precision the precision the numerical test should use
-     * @return the original CAS result. Use {@link #wasAborted(Object)} and {@link #getStatusOfResult(Object)} to analyze
-     * the result or call {@link #getNumericCalculationGroup(Object)} (Object)} to get an object list of the result
+     * @return the original CAS result. Use {@link #wasAborted(Object)} to analyze
+     * the result and {@link #getNumericCalculationGroup(Object)} (Object)} to get an object list of the results.
      * @throws ComputerAlgebraSystemEngineException if something in the CAS went wrong during the test
      */
     public abstract T performGeneratedTestOnExpression(
@@ -139,7 +139,7 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
      * @return the result
      * @throws ComputerAlgebraSystemEngineException if an error was thrown
      */
-    public T performNumericalTest(NumericalTest test)
+    private T performNumericalTest(NumericalTest test)
             throws ComputerAlgebraSystemEngineException {
         addRequiredPackages(test.getRequiredPackages());
 
@@ -182,13 +182,23 @@ public abstract class AbstractCasEngineNumericalEvaluator<T> implements ICASEngi
     }
 
     /**
-     * Returns the status of the test result
-     * @param results the test result returned by {@link #performNumericalTest(NumericalTest)} or
-     *                {@link #performGeneratedTestOnExpression(String, String, String, int)}.
+     * Returns the status of a single (!) test result, i.e., the given result is a list of two elements:
+     * 1) The numeric result (expected to be a numerical value, such as 0. But it can be anything if a test was unsuccessful)
+     * 2) A map/list of the values for each variable that produced this test result (e.g., {x -> 1, y -> I}).
+     *
+     * Note that the test methods {@link #performNumericalTest(NumericalTest)} and
+     * {@link #performGeneratedTestOnExpression(String, String, String, int)} return lists of results. This method,
+     * expects a single test result, i.e., just a single element of the list returned by these methods. If you want
+     * to know the overall status (i.e., the status over all test results combined in the entire list of tests), use
+     * {@link #getNumericResult(Object)} with {@link NumericResult#overallResult()} instead.
+     *
+     * @param results one element of the list of results that was returned either by
+     *                  {@link #performNumericalTest(NumericalTest)} or
+     *                  {@link #performGeneratedTestOnExpression(String, String, String, int)}.
      * @return the type of the result
      * @throws ComputerAlgebraSystemEngineException if the expressions cannot be analyzed
      */
-    public abstract TestResultType getStatusOfResult(T results) throws ComputerAlgebraSystemEngineException;
+    public abstract TestResultType getStatusOfSingleResult(T results) throws ComputerAlgebraSystemEngineException;
 
     /**
      * Returns a rather convenient pojo that summarizes the test result

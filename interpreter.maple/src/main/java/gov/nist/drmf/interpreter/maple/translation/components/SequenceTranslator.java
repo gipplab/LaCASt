@@ -1,16 +1,15 @@
 package gov.nist.drmf.interpreter.maple.translation.components;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.List;
-import com.maplesoft.openmaple.Numeric;
-import gov.nist.drmf.interpreter.common.constants.Keys;
-import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.MapleTranslationException;
+import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationExceptionReason;
 import gov.nist.drmf.interpreter.maple.common.MapleConstants;
 import gov.nist.drmf.interpreter.maple.grammar.MapleInternal;
 import gov.nist.drmf.interpreter.maple.grammar.TranslatedList;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Numeric;
 
 /**
  * Created by AndreG-P on 22.02.2017.
@@ -21,7 +20,7 @@ public class SequenceTranslator extends ListTranslator {
     }
 
     @Override
-    public Boolean translate( List list ) throws TranslationException {
+    public Boolean translate( MapleList list ) throws TranslationException {
         try {
             return innerTranslate( list );
         } catch (MapleException me) {
@@ -29,7 +28,7 @@ public class SequenceTranslator extends ListTranslator {
         }
     }
 
-    public boolean innerTranslate( List expression ) throws TranslationException, MapleException {
+    public boolean innerTranslate( MapleList expression ) throws TranslationException, MapleException {
         switch ( root ){
             case sum:
                 parseSum( expression );
@@ -47,10 +46,10 @@ public class SequenceTranslator extends ListTranslator {
         }
     }
 
-    private void parseProd( List list ) throws TranslationException, MapleException{
+    private void parseProd( MapleList list ) throws TranslationException, MapleException{
         //parseSequence(list, true, MULTIPLY, true);
         Algebraic factor;
-        List flist;
+        MapleList flist;
         int start_index = 2;
         int length = list.length();
         boolean negative = false;
@@ -60,14 +59,14 @@ public class SequenceTranslator extends ListTranslator {
         // check starting sign
         // since we reorder internal maple structure, the constant +/-1 is
         // always leading a sequence
-        flist = (List)list.select( start_index );
+        flist = (MapleList) list.select( start_index );
         // check if first is pos oder neg integer
         maple_internal = getAbstractInternal(flist.select(1).toString());
         switch ( maple_internal ){
             case intneg:
                 negative = true;
             case intpos:
-                Numeric num = (Numeric)flist.select(2);
+                Numeric num = (Numeric) flist.select(2);
                 int n = num.intValue();
                 if ( n == 1 ){
                     start_index++;
@@ -77,12 +76,12 @@ public class SequenceTranslator extends ListTranslator {
 
         for ( int i = start_index; i <= length; i++ ){
             factor = list.select(i);
-            if ( !(factor instanceof List) )
+            if ( !(factor instanceof MapleList) )
                 throw createException(
                         "Expected inner list in product but get: " + factor,
                         TranslationExceptionReason.IMPLEMENTATION_ERROR
                 );
-            flist = (List)factor;
+            flist = (MapleList) factor;
             maple_internal = getAbstractInternal( flist.select(1).toString() );
 
             boolean embrace =
@@ -103,7 +102,7 @@ public class SequenceTranslator extends ListTranslator {
         LOG.debug("Prod Changed List: " + translatedList);
     }
 
-    private void parseSum( List list ) throws MapleException{
+    private void parseSum( MapleList list ) throws MapleException{
         Algebraic summand;
         int length = list.length();
 

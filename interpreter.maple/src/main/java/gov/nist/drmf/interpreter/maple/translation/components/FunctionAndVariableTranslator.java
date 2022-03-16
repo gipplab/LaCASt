@@ -1,12 +1,12 @@
 package gov.nist.drmf.interpreter.maple.translation.components;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.List;
-import com.maplesoft.openmaple.MString;
 import gov.nist.drmf.interpreter.common.constants.GlobalConstants;
 import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MString;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MapleList;
 import gov.nist.drmf.interpreter.pom.common.grammar.Brackets;
 import gov.nist.drmf.interpreter.common.symbols.BasicFunctionsTranslator;
 import gov.nist.drmf.interpreter.common.symbols.Constants;
@@ -34,7 +34,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
     }
 
     @Override
-    public Boolean translate( List list ) throws TranslationException {
+    public Boolean translate( MapleList list ) throws TranslationException {
         try {
             return innerTranslate( list );
         } catch (MapleException me) {
@@ -42,7 +42,7 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         }
     }
 
-    private boolean innerTranslate( List list ) throws TranslationException, MapleException {
+    private boolean innerTranslate( MapleList list ) throws TranslationException, MapleException {
         boolean b;
         switch ( root ){
             case string:
@@ -76,15 +76,15 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         }
     }
 
-    private void wrapString( List list ) throws MapleException {
+    private void wrapString( MapleList list ) throws MapleException {
         Algebraic a = list.select(2);
-        MString ms = (MString)a;
+        MString ms = (MString) a;
         String out = ms.stringValue();
         out = "\\text{" + out + "}";
         translatedList.addTranslatedExpression(out);
     }
 
-    private boolean translateName( List list ) throws MapleException {
+    private boolean translateName( MapleList list ) throws MapleException {
         Algebraic a = list.select(2);
         if ( !(a instanceof MString) ){
             failures.addFailure( "Expecting an MString!", this.getClass(), a.toString() );
@@ -120,13 +120,13 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         return true;
     }
 
-    private void translateFunction( List list ) throws MapleTranslationException, MapleException {
+    private void translateFunction( MapleList list ) throws MapleTranslationException, MapleException {
         if ( list.length() != 3 )
             throw new MapleTranslationException(
                     "Illegal length of function list. Length " + list.length());
 
-        List assigned_name_list = (List)list.select(2);
-        List expression_seq_list = (List)list.select(3);
+        MapleList assigned_name_list = (MapleList) list.select(2);
+        MapleList expression_seq_list = (MapleList) list.select(3);
 
         MapleInternal in = getAbstractInternal( assigned_name_list.select(1).toString() );
         if ( !(in.equals( MapleInternal.ass_name ) || in.equals( MapleInternal.name )) )
@@ -171,12 +171,12 @@ public class FunctionAndVariableTranslator extends ListTranslator {
 
     }
 
-    private void translatePower( List list ) throws TranslationException, MapleException {
-        List base, exponent;
+    private void translatePower( MapleList list ) throws TranslationException, MapleException {
+        MapleList base, exponent;
 
         try {
-            base = (List)list.select(2);
-            exponent = (List)list.select(3);
+            base = (MapleList) list.select(2);
+            exponent = (MapleList) list.select(3);
         } catch ( MapleException me ){
             throw createException(
                     "Cannot translate power. Fail to extract base and exponent.",
@@ -200,13 +200,13 @@ public class FunctionAndVariableTranslator extends ListTranslator {
         LOG.trace("Translated POWER. " + trans_base + GlobalConstants.CARET_CHAR + trans_exponent);
     }
 
-    private void translateFraction( List list ) throws TranslationException, MapleException {
-        List numerator, denominator;
+    private void translateFraction( MapleList list ) throws TranslationException, MapleException {
+        MapleList numerator, denominator;
         boolean sign = MapleConstants.POSITIVE;
 
         try {
-            numerator = (List)list.select(2);
-            denominator = (List)list.select(3);
+            numerator = (MapleList) list.select(2);
+            denominator = (MapleList) list.select(3);
         } catch ( MapleException me ){
             throw createException(
                     "Cannot translate fraction. Fail to extract numerator and denominator.",

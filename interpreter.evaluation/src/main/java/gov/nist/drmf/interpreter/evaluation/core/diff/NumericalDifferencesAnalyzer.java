@@ -6,11 +6,11 @@ import gov.nist.drmf.interpreter.common.constants.Keys;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.common.exceptions.InitTranslatorException;
 import gov.nist.drmf.interpreter.common.exceptions.TranslationException;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.interfaces.ITranslator;
 import gov.nist.drmf.interpreter.common.cas.CASProcedureLoader;
 import gov.nist.drmf.interpreter.maple.translation.MapleTranslator;
-import gov.nist.drmf.interpreter.mathematica.extension.MathematicaInterface;
+import gov.nist.drmf.interpreter.mathematica.core.MathematicaInterface;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -62,7 +62,7 @@ public class NumericalDifferencesAnalyzer {
 
     private static final Pattern urlPattern = Pattern.compile("url\\{(.*?)}");
 
-    private IComputerAlgebraSystemEngine mathematica;
+    private ICASEngine mathematica;
     private ITranslator forwardTranslator;
     private ITranslator backwardTranslator;
 

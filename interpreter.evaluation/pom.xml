@@ -39,9 +39,6 @@
                     <argLine>${argLine} -Xss50M</argLine>
                 </configuration>
             </plugin>
-            <plugin>
-                <artifactId>maven-install-plugin</artifactId>
-            </plugin>
         </plugins>
     </build>
 

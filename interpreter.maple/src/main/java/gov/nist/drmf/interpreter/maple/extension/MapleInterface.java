@@ -1,44 +1,29 @@
 package gov.nist.drmf.interpreter.maple.extension;
 
-import com.maplesoft.externalcall.MapleException;
-import com.maplesoft.openmaple.Algebraic;
-import com.maplesoft.openmaple.Engine;
-import com.maplesoft.openmaple.MString;
-import gov.nist.drmf.interpreter.common.cas.IComputerAlgebraSystemEngine;
+import gov.nist.drmf.interpreter.common.cas.ICASEngine;
 import gov.nist.drmf.interpreter.common.exceptions.ComputerAlgebraSystemEngineException;
 import gov.nist.drmf.interpreter.maple.common.MapleConfig;
 import gov.nist.drmf.interpreter.maple.listener.MapleListener;
+import gov.nist.drmf.interpreter.maple.wrapper.EngineHelper;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleEngineFactory;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Algebraic;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.MString;
+import gov.nist.drmf.interpreter.maple.wrapper.openmaple.Engine;
+import gov.nist.drmf.interpreter.maple.wrapper.MapleException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Observer;
 
 /**
  * @author Andre Greiner-Petter
  */
-public final class MapleInterface implements IComputerAlgebraSystemEngine {
+public final class MapleInterface implements ICASEngine {
     private static final Logger LOG = LogManager.getLogger(MapleInterface.class.getName());
 
-    /**
-     * Inner constant to initialize Maple
-     */
-    private static final String[] maple_args = new String[]{
-            "java"
-    };
-
-    /**
-     * Maple's engine
-     */
-    private Engine engine;
-
-    /**
-     * Maple listener
-     */
-    private static MapleListener listener;
+    private Engine mapleEngineWrapper;
 
     /**
      * The unique instance
@@ -54,8 +39,6 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
      * The signal maple returns if the computation timed out
      */
     public static final String TIMED_OUT_SIGNAL = "TIMED-OUT";
-
-    private boolean loadedQExtension = false;
 
     /**
      * The interface to maple
@@ -91,8 +74,7 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
      */
     private void init() throws MapleException {
         LOG.info("Establish Maple connection");
-        listener = new MapleListener(true);
-        engine = new Engine( maple_args, listener, null, null );
+        mapleEngineWrapper = MapleEngineFactory.getEngineInstance();
         LOG.info("Successfully setup Maple engine connection");
     }
 
@@ -101,7 +83,7 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
      * @return the engine of Maple
      */
     Engine getEngine() {
-        return engine;
+        return mapleEngineWrapper;
     }
 
     /**
@@ -113,7 +95,7 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
      * @throws MapleException if Maple produces an error
      */
     public Algebraic evaluate(String input) throws MapleException {
-        return engine.evaluate(input);
+        return mapleEngineWrapper.evaluate(input);
     }
 
     @Override
@@ -131,7 +113,7 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
      */
     public void invokeGC() throws MapleException {
         LOG.debug("Manually invoke Maple's garbage collector.");
-        engine.evaluate("gc();");
+        mapleEngineWrapper.evaluate("gc();");
     }
 
     @Override
@@ -159,21 +141,12 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
     }
 
     /**
-     * Adds an observer to the listener
-     * @param observer observer
-     */
-    @Deprecated
-    public void addMemoryObserver(Observer observer) {
-        listener.addObserver(observer);
-    }
-
-    /**
      * Loads a procedure
      * @param procedure
      * @throws MapleException
      */
     public void loadProcedure( String procedure ) throws MapleException {
-        engine.evaluate( procedure );
+        mapleEngineWrapper.evaluate( procedure );
         procedureBackup.add(procedure);
     }
 
@@ -186,7 +159,7 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
      * @throws IOException if the procedures cannot be loaded
      */
     public void restart() throws MapleException {
-        engine.restart();
+        mapleEngineWrapper.restart();
         for ( String proc : procedureBackup )
             evaluate(proc);
     }
@@ -214,13 +187,6 @@ public final class MapleInterface implements IComputerAlgebraSystemEngine {
         }
         return mapleInterface;
     }
-
-    /**
-     * Return the unique listener of current Maple process.
-     *
-     * @return unique listener
-     */
-    public static MapleListener getUniqueMapleListener(){ return listener; }
 
     public boolean isAbortedExpression(Algebraic result) {
         if ( result instanceof MString) {

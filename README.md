@@ -1,6 +1,10 @@
 <a href="https://go.java/index.html"><img align="right" src="https://forthebadge.com/images/badges/made-with-java.svg" alt="Made With Java" height="20"></a><a href="https://www.latex-project.org/"><img align="right" src="https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg" alt="Made With LaTeX" height="20"></a> 
 [![Build Status](https://travis-ci.com/ag-gipp/LaCASt.svg?token=3obgod4qv4wGCx8sihym&branch=master)](https://travis-ci.com/ag-gipp/LaCASt) [![Tests](https://github.com/ag-gipp/LaCASt/workflows/GitHub%20CI/badge.svg)](https://github.com/ag-gipp/latex-grammar/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/3960df830b098ef0afa9/maintainability)](https://codeclimate.com/repos/5df6328a606a9501a1001189/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/3960df830b098ef0afa9/test_coverage)](https://codeclimate.com/repos/5df6328a606a9501a1001189/test_coverage)
 
+```
+andreg-p@AGP-ThinkPad-T460p:~$ java -cp /opt/intellij/plugins/java-decompiler/lib/java-decompiler.jar org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler -hdc=0 -dgs=1 -rsy=1 -lit=1 /opt/Wolfram/SystemFiles/Links/JLink/JLink.jar ~/jlink-jar-decompiled
+```
+
 # LaCASt - A LaTeX Translator for Computer Algebra Systems
 
 1. This is a private repository with non-public sources. It is strictly **_prohibited to share_** any files without permission.

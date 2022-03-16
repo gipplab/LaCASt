@@ -180,4 +180,19 @@ public class NumericResult implements Serializable, ITestResultCounter {
     public int getNumberOfCalculationGroups() {
         return testCalculationsGroups.size();
     }
+
+    @JsonIgnore
+    public String toDebugString() {
+        StringBuilder sb = new StringBuilder(overallResult().toString());
+        String NL = System.lineSeparator();
+        sb.append(NL);
+        for ( NumericCalculationGroup group : getTestCalculationsGroups() ) {
+            sb.append(group.getTestExpression()).append(NL);
+            for ( NumericCalculation calcs : group.getTestCalculations() ) {
+                sb.append(calcs.toString()).append(NL);
+            }
+            sb.append(NL);
+        }
+        return sb.toString();
+    }
 }
