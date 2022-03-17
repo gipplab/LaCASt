@@ -381,6 +381,8 @@ This could happen when our program cannot find out the encoding of your CSV file
 You forget to provide Maple enough heap space. Start java with the JVM option: `-Xss50M`
 3. **Errors with Maple SO files**: (typical exception: `Process finished with exit code 134 (interrupted by signal 6: SIGABRT)` and `java.lang.UnsatisfiedLinkError: /opt/maple2019/bin.X86_64_LINUX/libjopenmaple.so: libimf.so: cannot open shared object file: No such file or directory`) 
 There is a problem with the environment variables `Maple` and `LD_LIBRARY_PATH`.
+4. **Maple UnsupportedClassVersionError**: (typical exception: `java.lang.UnsupportedClassVersionError: com/maplesoft/openmaple/EngineCallBacks has been compiled by a more recent version of the Java Runtime (class file version 61.0), this version of the Java Runtime only recognizes class file versions up to 59.0`)
+This can happen if your Maple version does not match your Java version. Maple's JARs are generally generated with Java's latest LTS versions. So in case you use Maple 2020 you should run your code with Java 11 or higher. Similarly, Maple 2021 now requires Java 17.
 4. **Cannot initiate translator or other programs**: (typical exception: `java.nio.file.NoSuchFileException: libs/ReferenceData/BasicConversions/GreekLettersAndConstants.json`)
 You start the program within the wrong directory. The working directory has to be the root directory of the project (i.e., directory `LaCASt`). To change the default working directory
 in IntelliJ, check the hint in step 8 (*Build and Run in IntelliJ*) under [Setup Project](#start).

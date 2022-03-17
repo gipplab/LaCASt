@@ -83,7 +83,12 @@ public final class MapleConfig {
     }
 
     private static boolean isMaplePathAvailable() {
-        Path mapleInstallPath = getMapleConfig().getInstallPath();
+        CASConfig config = getMapleConfig();
+        if ( config == null ) {
+            LOG.warn("No Maple installation specified (you can change this in the lacast.config.yaml)");
+            return false;
+        }
+        Path mapleInstallPath = config.getInstallPath();
         if ( mapleInstallPath == null || !Files.exists(mapleInstallPath) ) {
             LOG.warn("Maple installation path is not available. Specify the proper path in lacast.config.yaml. " +
                     (mapleInstallPath != null ? "Broken path: " + mapleInstallPath : ""));

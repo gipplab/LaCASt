@@ -84,7 +84,9 @@ public class MathematicaConfig {
     }
 
     public static String getJLinkNativePath() {
-        return getMathConfig().getNativeLibraryPath();
+        CASConfig mathConfig = getMathConfig();
+        if ( mathConfig == null ) return null;
+        return mathConfig.getNativeLibraryPath();
     }
 
     /**

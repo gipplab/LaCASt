@@ -42,6 +42,12 @@ public final class Config {
         return Paths.get(configPath);
     }
 
+    /**
+     * Note that this map could have null values, e.g. "SymPy"->null in case SymPy is not installed and, therefore,
+     * not defined in the config file.
+     * @return the map of CAS and their specific configs (the key might exist but the config could be null in case the
+     *          CAS is not installed on the system)
+     */
     public Map<String, CASConfig> getCasConfigs() {
         return casConfigs;
     }
