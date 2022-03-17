@@ -12,12 +12,12 @@ lacast.cas:
   # If you are unsure, use 'kernelopts( mapledir );' for Maple.install.path and 'kernelopts( bindir );' to get
   # Maple.native.library.path in your local Maple instance.
   Maple:
-    install.path: "/opt/maple2020"
-    native.library.path: "/opt/maple2020/bin.X86_64_LINUX"
-  Mathematica:
-    install.path: "/opt/Wolfram"
-    native.library.path: "/opt/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64"
-    license: "4311-6677-4H3V66"
+    #install.path: "/maple-install-path"
+    #native.library.path: "/maple-install-path/bin.X86_64_LINUX"
+    Mathematica:
+    #install.path: "/wolfram-install-path"
+    #native.library.path: "/wolfram-install-path/Wolfram/SystemFiles/Links/JLink/SystemFiles/Libraries/Linux-x86-64"
+    #license: "XXXX-XXXX-XXXX"
   SymPy: # sets up LaCASt to perform translations to SymPy (no installation of sympy is required)
 
 # The following settings are optional and only required for the semantification pipeline of LaCASt.

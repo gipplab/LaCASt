@@ -76,7 +76,7 @@ public final class RequirementChecker {
             }
         }
 
-        LOG.warn("Unable to find expected '" + expectedPath + "' in LD_LIBRARY_PATH: " + Arrays.toString(paths));
+        LOG.warn("Unable to find expected '" + expectedPath + "' in " + systemEnv + ": " + Arrays.toString(paths));
         return false;
     }
 
