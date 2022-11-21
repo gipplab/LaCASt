@@ -1,17 +1,38 @@
 <a href="https://go.java/index.html"><img align="right" src="https://forthebadge.com/images/badges/made-with-java.svg" alt="Made With Java" height="20"></a><a href="https://www.latex-project.org/"><img align="right" src="https://img.shields.io/badge/Made%20with-LaTeX-1f425f.svg" alt="Made With LaTeX" height="20"></a> 
-[![Build Status](https://travis-ci.com/ag-gipp/LaCASt.svg?token=3obgod4qv4wGCx8sihym&branch=master)](https://travis-ci.com/ag-gipp/LaCASt) [![Tests](https://github.com/ag-gipp/LaCASt/workflows/GitHub%20CI/badge.svg)](https://github.com/ag-gipp/latex-grammar/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/3960df830b098ef0afa9/maintainability)](https://codeclimate.com/repos/5df6328a606a9501a1001189/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/3960df830b098ef0afa9/test_coverage)](https://codeclimate.com/repos/5df6328a606a9501a1001189/test_coverage)
+[![Tests](https://github.com/ag-gipp/LaCASt/workflows/GitHub%20CI/badge.svg)](https://github.com/ag-gipp/latex-grammar/actions) [![Maintainability](https://api.codeclimate.com/v1/badges/3960df830b098ef0afa9/maintainability)](https://codeclimate.com/repos/5df6328a606a9501a1001189/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/3960df830b098ef0afa9/test_coverage)](https://codeclimate.com/repos/5df6328a606a9501a1001189/test_coverage)
 
 # LaCASt - A LaTeX Translator for Computer Algebra Systems
 
-1. This is a private repository with non-public sources. It is strictly **_prohibited to share_** any files without permission.
-2. If you wish to contribute, read the [contribution guidelines](CONTRIBUTING.md) first.
-
 ## Publications
+If you want to reference to this tool, please use the most recent publication at TACAS 2022.
+
 <details>
-  <summary>A. Greiner-Petter, H. S. Cohl, A. Youssef, M. Schubotz, A. Trost, R. Dey, A. Aizawa, B. Gipp (2020) "Comparative Verification & Validation of Digital Mathematical Libraries and Computer Algebra Systems". In Submission</summary>
+  <summary>A. Greiner-Petter, H. S. Cohl, A. Youssef, M. Schubotz, A. Trost, R. Dey, A. Aizawa, B. Gipp (2020) "Comparative Verification of the Digital Library of Mathematical Functions and Computer Algebra Systems". In TACAS 2022: 87-105</summary>
   
-```
-Currently in submission, no bibtex available yet.
+```bibtex
+@InProceedings{Greiner-PetterC22,
+  author    = {Andr{\'{e}} Greiner{-}Petter and
+               Howard S. Cohl and
+               Abdou Youssef and
+               Moritz Schubotz and
+               Avi Trost and
+               Rajen Dey and
+               Akiko Aizawa and
+               Bela Gipp},
+  title     = {Comparative Verification of the Digital Library of Mathematical Functions
+               and Computer Algebra Systems},
+  booktitle = {Tools and Algorithms for the Construction and Analysis of Systems
+               - 28th International Conference, {TACAS} 2022, Held as Part of the
+               European Joint Conferences on Theory and Practice of Software, {ETAPS}
+               2022, Munich, Germany, April 2-7, 2022, Proceedings, Part {I}},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {13243},
+  pages     = {87--105},
+  publisher = {Springer},
+  year      = {2022},
+  url       = {https://doi.org/10.1007/978-3-030-99524-9\_5},
+  doi       = {10.1007/978-3-030-99524-9\_5}
+}
 ```
 </details>
 
