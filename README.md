@@ -3,8 +3,37 @@
 
 # LaCASt - A LaTeX Translator for Computer Algebra Systems
 
+LaCASt is the first context-aware translator for mathematical LaTeX expressions. LaCASt includes natural language processing to analyze textual contexts, custom semantic LaTeX parser to analyze math inputs, and CAS interfaces (currently Maple and Mathematica) to compute and verify translated expressions automatically.
+
 ## Publications
-If you want to reference to this tool, please use the most recent publication at TACAS 2022.
+If you want to reference to this tool in general, please use the most recent publication from TPAMI 2023.
+If you want to refer to automatic evaluations only, use the 2nd latest publication in TACAS 2022.
+
+<details>
+  <summary>A. Greiner-Petter, M. Schubotz, C. Breitinger, P. Scharpf, A. Aizawa, B. Gipp (2023) "Do the Math: Making Mathematics in Wikipedia Computable". In TPAMI 2023: 4384-4395</summary>
+  
+```bibtex
+@Article{GreinerPetter23,
+  author       = {Andr{\'{e}} Greiner{-}Petter and
+                  Moritz Schubotz and
+                  Corinna Breitinger and
+                  Philipp Scharpf and
+                  Akiko Aizawa and
+                  Bela Gipp},
+  title        = {Do the Math: Making Mathematics in Wikipedia Computable},
+  journal      = {{IEEE} Trans. Pattern Anal. Mach. Intell.},
+  volume       = {45},
+  number       = {4},
+  pages        = {4384--4395},
+  year         = {2023},
+  url          = {https://doi.org/10.1109/TPAMI.2022.3195261},
+  doi          = {10.1109/TPAMI.2022.3195261},
+  timestamp    = {Mon, 28 Aug 2023 21:37:38 +0200},
+  biburl       = {https://dblp.org/rec/journals/pami/GreinerPetterSBSAG23.bib},
+  bibsource    = {dblp computer science bibliography, https://dblp.org}
+}
+```
+</details>
 
 <details>
   <summary>A. Greiner-Petter, H. S. Cohl, A. Youssef, M. Schubotz, A. Trost, R. Dey, A. Aizawa, B. Gipp (2020) "Comparative Verification of the Digital Library of Mathematical Functions and Computer Algebra Systems". In TACAS 2022: 87-105</summary>
@@ -112,6 +141,9 @@ If you want to reference to this tool, please use the most recent publication at
 </details>
 
 # How to use our program<a name="howTo"></a>
+
+The following provides a high level introduction on how to use the JARs and LaCASt in general. If you want to dive into the source code, we advice you to check [our contribution guidelines](CONTRIBUTING.md) first for more details on the structure.
+
 The `bin` directory contains a couple of executable jars. Any of these programs require the `lacast.config.yaml`.
 Copy the `config/template-lacast.config.yaml` to the main directory and rename it to `lacast.config.yaml`. Afterward,
 update the entries in the template file to the properties that are applicable for you.
@@ -120,7 +152,11 @@ LaCASt tries to load the config by following these rules:
 2. The config file is in the current working directory.
 3. Loads the default config from the internal resources in the jar, see [default config](https://github.com/ag-gipp/LaCASt/blob/master/interpreter.common/src/main/resources/lacast.config.yaml) in `interpreter.common/src/main/resources/`
 
-If none of the rules above point to a valid config, LaCASt stops.
+If none of the rules above point to a valid config, LaCASt stops with an error.
+
+----------------------------------
+
+LaCASt contains several executable JARs as standalone applications. The following list explains the functionality of each JAR in more detail.
 
 <details><summary><code>latex-to-cas-converter.jar</code>: The forward translator (LaTeX -> CAS)</summary>
 
@@ -280,8 +316,8 @@ Just change the files to add, modify, or remove rules.
 
 | Role | Name | Contact |
 | :---: | :---: | :---: |
-| **Main Developer** | [André Greiner-Petter](https://github.com/AndreG-P) | [andre.greiner-petter@t-online.de](mailto:andre.greiner-petter@t-online.de) |
-| **Supervisor** | [Dr. Howard Cohl](https://github.com/HowardCohl) | [howard.cohl@nist.gov](mailto:howard.cohl@nist.gov) |
-| **Advisor** | [Dr. Moritz Schubotz](https://github.com/physikerwelt) | [schubotz@uni-wuppertal.de](mailto:schubotz@uni-wuppertal.de) |
-| **Advisor** | [Prof. Abdou Youssef](https://github.com/abdouyoussef) | [abdou.youssef@nist.gov](mailto:abdou.youssef@nist.gov) |
-| **Student Developers** | [Avi Trost](https://github.com/avitrost) & [Rajen Dey](https://github.com/Nejiv) & [Claude](https://github.com/ClaudeZou) & [Jagan](https://github.com/notjagan) | |
+| **Main Developer** | [André Greiner-Petter](https://github.com/AndreG-P) | greinerpetter (at) wuppertal.de |
+| **Supervisor** | [Dr. Howard Cohl](https://github.com/HowardCohl) | howard.cohl (at) nist.gov |
+| **Advisor** | [Dr. Moritz Schubotz](https://github.com/physikerwelt) | schubotz (at) uni-wuppertal.de |
+| **Advisor** | [Prof. Abdou Youssef](https://github.com/abdouyoussef) | abdou.youssef (at) nist.gov |
+| **Student Developers** | [Avi Trost](https://github.com/avitrost), [Rajen Dey](https://github.com/Nejiv), [Claude](https://github.com/ClaudeZou), [Jagan](https://github.com/notjagan) | |
